@@ -7,7 +7,7 @@ export default function Footer({ onContactClick }: FooterProps) {
     return (
         <footer className="py-20 bg-black border-t border-white/15">
             <div className="max-w-7xl mx-auto px-8 flex flex-col items-center gap-16">
-                <div className="w-full flex flex-col md:flex-row items-center justify-between gap-8">
+                <div className="w-full flex flex-col md:flex-row items-center justify-between gap-8 relative z-50">
                     <div className="flex items-center gap-4">
                         <img src="/logo.png" alt="wnode" className="w-10 h-10" />
                         <div className="flex flex-col text-left">

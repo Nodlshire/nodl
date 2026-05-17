@@ -105,19 +105,19 @@ export default function Header({ onContactClick }: HeaderProps) {
                     <div className="flex items-center gap-6">
                         <div className="hidden md:flex items-center gap-4 mr-4">
                             <a href="https://x.com/wnodemesh" target="_blank" rel="noopener noreferrer" className="hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.7)] transition-all">
-                                <img src="/icons/x_neon.png" alt="X (Twitter)" className="h-16 w-auto" />
+                                <img src="/icons/x_neon.png" alt="X (Twitter)" className="h-16 w-auto brightness-125" />
                             </a>
                             <a href="https://discord.gg/5BNhsfg5Br" target="_blank" rel="noopener noreferrer" className="hover:drop-shadow-[0_0_12px_rgba(34,197,94,0.7)] transition-all">
-                                <img src="/icons/discord_neon.png" alt="Discord" className="h-16 w-auto" />
+                                <img src="/icons/discord_neon.png" alt="Discord" className="h-16 w-auto brightness-125" />
                             </a>
                             <a href="https://t.me/wnodemesh" target="_blank" rel="noopener noreferrer" className="hover:drop-shadow-[0_0_12px_rgba(239,68,68,0.7)] transition-all">
-                                <img src="/icons/telegram_neon.png" alt="Telegram" className="h-16 w-auto" />
+                                <img src="/icons/telegram_neon.png" alt="Telegram" className="h-16 w-auto brightness-125" />
                             </a>
                             <a href="https://www.youtube.com/channel/UCJsyB9UrIP1eXzkdJpPDFww" target="_blank" rel="noopener noreferrer" className="hover:drop-shadow-[0_0_12px_rgba(255,0,0,0.7)] transition-all">
-                                <img src="/icons/youtube_neon.png" alt="YouTube" className="h-12 w-auto" />
+                                <img src="/icons/youtube_neon.png" alt="YouTube" className="h-7 w-auto brightness-125" />
                             </a>
                             <a href="https://github.com/wnodeltd/wnode" target="_blank" rel="noopener noreferrer" className="hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.7)] transition-all">
-                                <img src="/icons/gitlogo.png" alt="GitHub" className="h-16 w-auto" />
+                                <img src="/icons/gitlogo.png" alt="GitHub" className="h-9 w-auto brightness-125" />
                             </a>
                         </div>
                         
@@ -191,19 +191,19 @@ export default function Header({ onContactClick }: HeaderProps) {
                         
                         <div className="flex items-center gap-8 pt-4">
                             <a href="https://x.com/wnodemesh" target="_blank" rel="noopener noreferrer" className="hover:drop-shadow-[0_0_15px_rgba(59,130,246,0.9)] transition-all">
-                                <img src="/icons/x_neon.png" alt="X (Twitter)" className="h-28 w-auto" />
+                                <img src="/icons/x_neon.png" alt="X (Twitter)" className="h-28 w-auto brightness-125" />
                             </a>
                             <a href="https://discord.gg/5BNhsfg5Br" target="_blank" rel="noopener noreferrer" className="hover:drop-shadow-[0_0_15px_rgba(34,197,94,0.9)] transition-all">
-                                <img src="/icons/discord_neon.png" alt="Discord" className="h-28 w-auto" />
+                                <img src="/icons/discord_neon.png" alt="Discord" className="h-28 w-auto brightness-125" />
                             </a>
                             <a href="https://t.me/wnodemesh" target="_blank" rel="noopener noreferrer" className="hover:drop-shadow-[0_0_15px_rgba(239,68,68,0.9)] transition-all">
-                                <img src="/icons/telegram_neon.png" alt="Telegram" className="h-28 w-auto" />
+                                <img src="/icons/telegram_neon.png" alt="Telegram" className="h-28 w-auto brightness-125" />
                             </a>
                             <a href="https://www.youtube.com/channel/UCJsyB9UrIP1eXzkdJpPDFww" target="_blank" rel="noopener noreferrer" className="hover:drop-shadow-[0_0_15px_rgba(255,0,0,0.9)] transition-all">
-                                <img src="/icons/youtube_neon.png" alt="YouTube" className="h-20 w-auto" />
+                                <img src="/icons/youtube_neon.png" alt="YouTube" className="h-12 w-auto brightness-125" />
                             </a>
                             <a href="https://github.com/wnodeltd/wnode" target="_blank" rel="noopener noreferrer" className="hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.9)] transition-all">
-                                <img src="/icons/gitlogo.png" alt="GitHub" className="h-28 w-auto" />
+                                <img src="/icons/gitlogo.png" alt="GitHub" className="h-16 w-auto brightness-125" />
                             </a>
                         </div>
                     </div>

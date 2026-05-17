@@ -16,7 +16,7 @@ export default function Footer({ onContactClick }: FooterProps) {
                         </div>
                     </div>
                     
-                    <div className="flex flex-wrap justify-center items-center gap-10">
+                    <div className="flex flex-wrap justify-center items-center gap-10 relative z-50">
                         <a href="/" className="text-white/40 hover:text-white transition-colors text-xs uppercase tracking-[0.2em]">Home</a>
                         
                         <div className="relative group py-2 -my-2">

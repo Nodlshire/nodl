@@ -107,11 +107,14 @@ export default function Header({ onContactClick }: HeaderProps) {
                             <a href="https://x.com/wnodemesh" target="_blank" rel="noopener noreferrer" className="inline-block hover:drop-shadow-[0_0_20px_#3b82f6] hover:scale-110 transition-all duration-300">
                                 <img src="/icons/x_neon.png" alt="X (Twitter)" className="h-16 w-auto brightness-125" />
                             </a>
-                            <a href="https://discord.gg/5BNhsfg5Br" target="_blank" rel="noopener noreferrer" className="inline-block hover:drop-shadow-[0_0_20px_#22c55e] hover:scale-110 transition-all duration-300">
+                            <a href="https://discord.gg/5BNhsfg5Br" target="_blank" rel="noopener noreferrer" className="inline-block hover:drop-shadow-[0_0_20px_#2563eb] hover:scale-110 transition-all duration-300">
                                 <img src="/icons/discord_neon.png" alt="Discord" className="h-16 w-auto brightness-125" />
                             </a>
-                            <a href="https://t.me/wnodemesh" target="_blank" rel="noopener noreferrer" className="inline-block hover:drop-shadow-[0_0_20px_#ef4444] hover:scale-110 transition-all duration-300">
+                            <a href="https://t.me/wnodemesh" target="_blank" rel="noopener noreferrer" className="inline-block hover:drop-shadow-[0_0_20px_#ec4899] hover:scale-110 transition-all duration-300">
                                 <img src="/icons/telegram_neon.png" alt="Telegram" className="h-16 w-auto brightness-125" />
+                            </a>
+                            <a href="https://wa.me/447458197900" target="_blank" rel="noopener noreferrer" className="inline-block hover:drop-shadow-[0_0_20px_#22c55e] hover:scale-110 transition-all duration-300">
+                                <img src="/icons/whatsapp_neon.png" alt="WhatsApp" className="h-16 w-auto brightness-125" />
                             </a>
                             <a href="https://www.youtube.com/channel/UCJsyB9UrIP1eXzkdJpPDFww" target="_blank" rel="noopener noreferrer" className="inline-block hover:drop-shadow-[0_0_20px_#ff0000] hover:scale-110 transition-all duration-300">
                                 <img src="/icons/youtube_neon.png" alt="YouTube" className="h-7 w-auto brightness-125" />
@@ -193,11 +196,14 @@ export default function Header({ onContactClick }: HeaderProps) {
                             <a href="https://x.com/wnodemesh" target="_blank" rel="noopener noreferrer" className="inline-block hover:drop-shadow-[0_0_20px_#3b82f6] hover:scale-110 transition-all duration-300">
                                 <img src="/icons/x_neon.png" alt="X (Twitter)" className="h-28 w-auto brightness-125" />
                             </a>
-                            <a href="https://discord.gg/5BNhsfg5Br" target="_blank" rel="noopener noreferrer" className="inline-block hover:drop-shadow-[0_0_20px_#22c55e] hover:scale-110 transition-all duration-300">
+                            <a href="https://discord.gg/5BNhsfg5Br" target="_blank" rel="noopener noreferrer" className="inline-block hover:drop-shadow-[0_0_20px_#2563eb] hover:scale-110 transition-all duration-300">
                                 <img src="/icons/discord_neon.png" alt="Discord" className="h-28 w-auto brightness-125" />
                             </a>
-                            <a href="https://t.me/wnodemesh" target="_blank" rel="noopener noreferrer" className="inline-block hover:drop-shadow-[0_0_20px_#ef4444] hover:scale-110 transition-all duration-300">
+                            <a href="https://t.me/wnodemesh" target="_blank" rel="noopener noreferrer" className="inline-block hover:drop-shadow-[0_0_20px_#ec4899] hover:scale-110 transition-all duration-300">
                                 <img src="/icons/telegram_neon.png" alt="Telegram" className="h-28 w-auto brightness-125" />
+                            </a>
+                            <a href="https://wa.me/447458197900" target="_blank" rel="noopener noreferrer" className="inline-block hover:drop-shadow-[0_0_20px_#22c55e] hover:scale-110 transition-all duration-300">
+                                <img src="/icons/whatsapp_neon.png" alt="WhatsApp" className="h-28 w-auto brightness-125" />
                             </a>
                             <a href="https://www.youtube.com/channel/UCJsyB9UrIP1eXzkdJpPDFww" target="_blank" rel="noopener noreferrer" className="inline-block hover:drop-shadow-[0_0_20px_#ff0000] hover:scale-110 transition-all duration-300">
                                 <img src="/icons/youtube_neon.png" alt="YouTube" className="h-12 w-auto brightness-125" />

@@ -1,0 +1,17 @@
+{
+  "name": "wenode-token",
+  "version": "1.0.0",
+  "description": "WENODE (WEX) ERC20 Token Hardhat Project",
+  "scripts": {
+    "compile": "npx hardhat compile",
+    "test": "npx hardhat test"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "hardhat": "^2.22.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.9.6",
+    "dotenv": "^17.4.2"
+  }
+}

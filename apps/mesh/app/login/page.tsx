@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowRight, Loader2 } from 'lucide-react';
+import { Chrome, ArrowRight, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function LoginPage() {
@@ -10,8 +10,12 @@ export default function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [authMode, setAuthMode] = useState<'signin' | 'signup'>('signin');
+    const [error, setError] = useState('');
+
     const [isMounted, setIsMounted] = useState(false);
 
+    // Fix Hydration Error: Ensure component is mounted before rendering client-specific logic (not strictly needed for this layout but good practice)
     useEffect(() => {
         setIsMounted(true);
     }, []);
@@ -19,29 +23,36 @@ export default function LoginPage() {
     const handleEmailAuth = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
+        setError('');
+
+        const normalizedEmail = email.trim().toLowerCase();
+        const normalizedPassword = password.trim();
 
         try {
-            // Real Backend Session Request (Debug Mode)
-            const res = await fetch('/api/v1/auth/debug-session', {
+            const res = await fetch('/api/auth/debug-session', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    wuid: '100001-0426-01-AA',
-                    domain: 'mesh'
+                body: JSON.stringify({ 
+                    email: normalizedEmail, 
+                    password: normalizedPassword, 
+                    domain: 'mesh' 
                 })
             });
 
             if (res.ok) {
-                // Backend has set the HttpOnly mesh_session cookie
+                console.log('[Mesh Auth Debug] Session established');
+                localStorage.removeItem('nodl_auth_bypass');
+                localStorage.setItem('nodl_user_email', normalizedEmail);
                 router.push('/dashboard');
+                return;
             } else {
                 const data = await res.json();
-                alert(`Authentication failed: ${data.error || 'Invalid session'}`);
-                setIsLoading(false);
+                setError(data.error || 'Invalid credentials.');
             }
-        } catch (error) {
-            console.error('[Login Error]:', error);
-            alert('Identity provider unreachable');
+        } catch (e) {
+            console.error('[Mesh Auth Debug] Login error:', e);
+            setError('Authentication service unreachable.');
+        } finally {
             setIsLoading(false);
         }
     };
@@ -50,7 +61,7 @@ export default function LoginPage() {
 
     return (
         <div className="min-h-screen bg-black flex flex-col items-center justify-center p-6 relative overflow-hidden w-full">
-            {/* Background scanline effect */}
+            {/* Background scanline effect (matches nodlr) */}
             <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(transparent_0%,rgba(0,242,255,0.02)_50%,transparent_100%)] bg-[length:100%_4px] animate-scanline" />
 
             <motion.div
@@ -65,19 +76,22 @@ export default function LoginPage() {
                             <path d="M 22 110 L 22 50 A 28 28 0 0 1 78 50 L 78 110" fill="none" stroke="white" strokeWidth="26" strokeLinecap="butt" />
                             <circle cx="50" cy="72" r="16" />
                         </svg>
-                        <span className="text-xl font-bold text-white mt-3 tracking-tight">wnode</span>
+                        <span style={{ fontFamily: "'Roboto', sans-serif", fontSize: "14pt", fontWeight: "bold", color: "white", marginTop: "12px", lineHeight: "1", letterSpacing: "0.02em" }}>wnode</span>
                     </div>
                 </div>
 
-                {/* Dashboard Login Card */}
+                {/* Dashboard Login Card (nodlr style) */}
                 <div className="bg-[#1a1a1b] border border-white/5 rounded-[5px] p-10 shadow-2xl relative overflow-hidden">
                     <div className="text-center mb-8">
                         <h1 className="text-4xl font-bold text-white mb-2 tracking-tight">
-                            wnode dashboard
+                            Mesh Control
                         </h1>
                     </div>
 
                     <div className="space-y-4">
+
+
+                        {/* Email Form */}
                         <form onSubmit={handleEmailAuth} className="space-y-4">
                             <div className="space-y-1.5 focus-within:ring-1 focus-within:ring-[#00f2ff]/30 rounded-[5px] transition-all">
                                 <input
@@ -101,6 +115,12 @@ export default function LoginPage() {
                                 />
                             </div>
 
+                            {error && (
+                                <div className="text-red-500 text-[10px] uppercase bg-red-500/10 border border-red-500/20 p-3 rounded-[5px]">
+                                    {error}
+                                </div>
+                            )}
+
                             <button
                                 type="submit"
                                 disabled={isLoading}
@@ -116,6 +136,15 @@ export default function LoginPage() {
                                 )}
                             </button>
                         </form>
+
+                        <div className="text-center mt-6">
+                            <button
+                                onClick={() => setAuthMode(authMode === 'signin' ? 'signup' : 'signin')}
+                                className="text-slate-500 text-xs hover:text-white transition-colors underline-offset-4 hover:underline"
+                            >
+                                {authMode === 'signin' ? "Don't have an account? Sign up" : 'Already have an account? Sign in'}
+                            </button>
+                        </div>
                     </div>
                 </div>
 

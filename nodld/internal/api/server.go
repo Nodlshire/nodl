@@ -16,7 +16,6 @@ import (
 	"github.com/gofiber/contrib/websocket"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
-	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"go.uber.org/zap"
 
@@ -105,7 +104,6 @@ func New(dispatcher *jobs.Dispatcher, store *jobs.Store, pricingStore *pricing.S
 		AllowHeaders:     "Origin, Content-Type, Accept, Authorization, X-User-ID, X-Owner-ID, X-Owner-Email",
 		AllowCredentials: true,
 	}))
-	app.Use(logger.New())
 
 	s := &Server{
 		app:          app,
@@ -137,6 +135,11 @@ func (s *Server) registerRoutes() {
 		return fiber.ErrUpgradeRequired
 	})
 
+	// Favicon static file server (Step 1)
+	s.app.Get("/favicon.ico", func(c *fiber.Ctx) error {
+		return c.SendFile("assets/favicon.ico")
+	})
+
 	// Liveness probe
 	s.app.Get("/health", s.handleHealth)
 
@@ -152,6 +155,7 @@ func (s *Server) registerRoutes() {
 	// Job CRUD (Moved under /api/v1)
 	apiV1.Get("/jobs", s.handleListJobs)
 	apiV1.Post("/jobs", s.requireLevel(account.RoleStandard), s.handleSubmitJob)
+	apiV1.Post("/jobs/submit", s.requireLevel(account.RoleStandard), s.handleSubmitJob)
 	apiV1.Get("/jobs/:id", s.handleGetJob)
 	apiV1.Post("/jobs/stream", s.requireLevel(account.RoleStandard), s.handleStreamJob)
 	apiV1.Get("/jobs/:id/stream", s.handlePullJobStream)
@@ -197,6 +201,9 @@ func (s *Server) registerRoutes() {
 	apiV1.Get("/admin/money/transaction/:id", s.requireLevel(account.RoleOwner), s.handleGetAdminMoneyTransactionDetail)
 	apiV1.Get("/admin/money/export/csv", s.requireLevel(account.RoleOwner), s.handleExportAdminMoneyCSV)
 	apiV1.Get("/admin/money/export/pdf", s.requireLevel(account.RoleOwner), s.handleExportAdminMoneyPDF)
+	apiV1.Get("/earnings", s.handleGetEarnings)
+	apiV1.Get("/affiliates", s.handleGetAffiliatesSummary)
+	apiV1.Get("/rank", s.handleGetRank)
 
 	// Business & RBAC
 	s.app.Post("/admin/business/profile", s.requireLevel(account.RoleOwner), s.handleUpdateBusinessProfile)
@@ -685,6 +692,10 @@ func (s *Server) handleUpdateMyAccount(c *fiber.Ctx) error {
 	acc, ok := s.accountStore.GetNodlr(userId)
 	if !ok {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "account not found"})
+	}
+
+	if acc.IsProtected || acc.ID == account.AuthoritativeOwnerID {
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "constitutional lock: protected foundation identities cannot be altered"})
 	}
 
 	if req.DisplayName != "" {
@@ -1797,4 +1808,28 @@ func (s *Server) handleExportAdminMoneyPDF(c *fiber.Ctx) error {
 	
 	_, _ = c.Write([]byte(content))
 	return nil
+}
+
+func (s *Server) handleGetEarnings(c *fiber.Ctx) error {
+	return c.JSON(fiber.Map{
+		"totalEarnings":    0,
+		"affiliateRevenue": 0,
+		"globalRank":       0,
+	})
+}
+
+func (s *Server) handleGetAffiliatesSummary(c *fiber.Ctx) error {
+	return c.JSON(fiber.Map{
+		"totalEarnings":    0,
+		"affiliateRevenue": 0,
+		"globalRank":       0,
+	})
+}
+
+func (s *Server) handleGetRank(c *fiber.Ctx) error {
+	return c.JSON(fiber.Map{
+		"totalEarnings":    0,
+		"affiliateRevenue": 0,
+		"globalRank":       0,
+	})
 }

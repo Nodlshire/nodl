@@ -27,7 +27,7 @@ export function BillingProvider({ children }: { children: ReactNode }) {
         }
 
         try {
-            const apiBase = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8081';
+            const apiBase = '';
             // Use a short timeout to prevent long-hanging fetches if the backend is proxied/looping
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), 2000);

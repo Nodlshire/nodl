@@ -3,6 +3,7 @@
     "100001-0426-01-AA": {
       "id": "100001-0426-01-AA",
       "email": "stephen@wnode.one",
+      "password": "command",
       "displayName": "Stephen Soos",
       "meshClientId": "",
       "stripeConnectId": "",
@@ -25,6 +26,33 @@
       "onboardingComplete": true,
       "verified": true,
       "createdAt": "2026-05-06T17:13:26.216343242+02:00"
+    },
+    "100002-0426-01-AA": {
+      "id": "100002-0426-01-AA",
+      "email": "test@user.com",
+      "password": "test",
+      "displayName": "Test User",
+      "meshClientId": "",
+      "stripeConnectId": "",
+      "stripeAccountId": "",
+      "founderStripeAccountId": null,
+      "nodlrStripeAccountId": null,
+      "role": "visitor",
+      "payoutStatus": "",
+      "integrityScore": 0,
+      "isFrozen": false,
+      "accruedFounderBalance": 0,
+      "walletBalance": 0,
+      "pendingBalanceCents": 0,
+      "escrowBalanceCents": 0,
+      "isFounder": false,
+      "payoutFrequency": "",
+      "status": "active",
+      "isProtected": false,
+      "isSuperAdmin": false,
+      "onboardingComplete": true,
+      "verified": true,
+      "createdAt": "2026-05-18T05:27:20.268844263+02:00"
     }
   },
   "pending_commissions": {},
@@ -35,9 +63,17 @@
   "crm_records": {
     "100001-0426-01-AA": {
       "nodlrId": "100001-0426-01-AA",
-      "businessName": "Final Victory",
-      "phone": "777-7777",
-      "createdAt": "2026-05-12T09:32:30.851218231+02:00"
+      "businessName": "Wnode Sovereign Foundation",
+      "phone": "+1-555-0199",
+      "avatar": "",
+      "createdAt": "2026-05-19T02:46:56.348067586+02:00"
+    },
+    "100002-0426-01-AA": {
+      "nodlrId": "100002-0426-01-AA",
+      "businessName": "Test Operations LLC",
+      "phone": "+1-555-0100",
+      "avatar": "",
+      "createdAt": "2026-05-19T02:46:56.348067791+02:00"
     }
   }
 }

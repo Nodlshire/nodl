@@ -19,15 +19,12 @@ export default function Sidebar() {
     const pathname = usePathname();
     const router = useRouter();
 
-    const handleLogout = async () => {
+    const handleSignOut = async () => {
         try {
             await fetch('/api/v1/auth/logout', { method: 'POST' });
-        } catch (e) {
-            console.error("Logout API call failed:", e);
-        }
-        
-        localStorage.removeItem('nodl_auth_bypass');
-        router.push('/login');
+        } catch (e) {}
+        document.cookie = "mesh_session=; Max-Age=0; path=/;";
+        window.location.href = "/login";
     };
 
     const navItems = [
@@ -77,7 +74,7 @@ export default function Sidebar() {
 
                 {/* moved logout under settings */}
                 <button 
-                    onClick={handleLogout}
+                    onClick={handleSignOut}
                     className="flex items-center gap-3 px-6 py-4 w-full rounded-none transition-all text-[10px] tracking-[0.2em] font-black uppercase text-slate-500 hover:text-red-500 hover:bg-red-500/5 group mt-4"
                 >
                     <LogOut className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> 

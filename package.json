@@ -7,7 +7,7 @@
         "apps/*"
     ],
     "scripts": {
-        "dev:all": "concurrently -n \"BACKEND,WNODER,MESH,COMMAND\" -c \"bgBlue,bgGreen,bgMagenta,bgCyan\" \"cd wnoded && go run cmd/wnoded/main.go\" \"cd apps/wnoder && npm run dev\" \"cd apps/mesh && npm run dev\" \"cd apps/command && npm run dev\"",
+        "dev:all": "concurrently -n \"BACKEND,NODLR,MESH,COMMAND\" -c \"bgBlue,bgGreen,bgMagenta,bgCyan\" \"cd wnoded && go run cmd/wnoded/main.go\" \"cd apps/nodlr && npm run dev\" \"cd apps/mesh && npm run dev\" \"cd apps/command && npm run dev\"",
         "start:all": "./scripts/start-all.sh",
         "test": "echo \"No tests yet\""
     },

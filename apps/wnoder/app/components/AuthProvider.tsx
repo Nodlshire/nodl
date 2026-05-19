@@ -15,10 +15,51 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-    const [user, setUser] = useState<any | null>(null);
-    const [session, setSession] = useState<any | null>(null);
-    const [profile, setProfile] = useState<any | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const [user, setUser] = useState<any | null>(() => {
+        if (typeof window !== 'undefined') {
+            const cached = localStorage.getItem('nodl_user');
+            if (cached) {
+                try {
+                    const parsed = JSON.parse(cached);
+                    parsed.id = parsed.id || parsed.ID || parsed.wuid || parsed.WnodeID;
+                    return parsed;
+                } catch (e) {}
+            }
+        }
+        return null;
+    });
+    const [session, setSession] = useState<any | null>(() => {
+        if (typeof window !== 'undefined') {
+            const cached = localStorage.getItem('nodl_user');
+            if (cached) {
+                try {
+                    const parsed = JSON.parse(cached);
+                    parsed.id = parsed.id || parsed.ID || parsed.wuid || parsed.WnodeID;
+                    return { user: parsed };
+                } catch (e) {}
+            }
+        }
+        return null;
+    });
+    const [profile, setProfile] = useState<any | null>(() => {
+        if (typeof window !== 'undefined') {
+            const cached = localStorage.getItem('nodl_user');
+            if (cached) {
+                try {
+                    const parsed = JSON.parse(cached);
+                    parsed.id = parsed.id || parsed.ID || parsed.wuid || parsed.WnodeID;
+                    return parsed;
+                } catch (e) {}
+            }
+        }
+        return null;
+    });
+    const [isLoading, setIsLoading] = useState(() => {
+        if (typeof window !== 'undefined') {
+            return !localStorage.getItem('nodl_user');
+        }
+        return true;
+    });
     const router = useRouter();
     const pathname = usePathname();
 
@@ -28,9 +69,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                 const res = await fetch('/api/account/me');
                 if (res.ok) {
                     const data = await res.json();
+                    data.id = data.id || data.ID || data.wuid || data.WnodeID;
                     setUser(data);
                     setSession({ user: data });
                     setProfile(data);
+                    if (typeof window !== 'undefined') {
+                        localStorage.setItem('nodl_user', JSON.stringify(data));
+                    }
+                } else {
+                    setUser(null);
+                    setSession(null);
+                    setProfile(null);
+                    if (typeof window !== 'undefined') {
+                        localStorage.removeItem('nodl_user');
+                    }
                 }
             } catch (err) {
                 console.error("Failed to fetch session", err);

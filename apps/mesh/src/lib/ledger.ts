@@ -113,7 +113,7 @@ export function calculateAllocations(
  * Atomicly records a Stripe event and its ledger allocations.
  */
 export async function allocateLedgerForStripeEvent(
-  event: any,
+  event: Stripe.Event,
   client: PoolClient
 ): Promise<void> {
   const stripeEventId = event.id;
@@ -143,12 +143,12 @@ export async function allocateLedgerForStripeEvent(
   let metadata: any = {};
 
   if (event.type === 'checkout.session.completed') {
-    const session = event.data.object as any;
+    const session = event.data.object as Stripe.Checkout.Session;
     grossAmount = session.amount_total || 0;
     currency = session.currency || 'usd';
     metadata = session.metadata || {};
   } else if (event.type === 'invoice.paid') {
-    const invoice = event.data.object as any;
+    const invoice = event.data.object as Stripe.Invoice;
     grossAmount = invoice.amount_paid;
     currency = invoice.currency || 'usd';
     metadata = invoice.metadata || {};

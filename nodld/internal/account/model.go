@@ -267,6 +267,7 @@ type CRMRecord struct {
 	NodlrID      string    `json:"nodlrId"`
 	BusinessName string    `json:"businessName"`
 	Phone        string    `json:"phone"`
+	Avatar       string    `json:"avatar"`
 	CreatedAt    time.Time `json:"createdAt"`
 }
 

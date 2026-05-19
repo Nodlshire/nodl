@@ -102,5 +102,9 @@ func (s *Store) LoadState() error {
 		s.crmRecords = state.CRMRecords
 	}
 
+	s.mu.Unlock()
+	s.SeedFoundationIdentities()
+	s.mu.Lock()
+
 	return nil
 }

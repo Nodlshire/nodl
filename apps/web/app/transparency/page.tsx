@@ -13,7 +13,7 @@ export default function TransparencyPage() {
         const fetchStats = async () => {
             try {
                 // Public transparency hits the overview endpoint (aggregated totals only)
-                const apiBase = "http://localhost:8081"; // Mesh Proxy
+                const apiBase = "http://localhost:3002"; // Mesh Proxy
                 const res = await fetch(`${apiBase}/api/v1/institutional/overview`);
                 if (res.ok) {
                     setStats(await res.json());

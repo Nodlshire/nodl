@@ -40,12 +40,8 @@ func main() {
 	}
 
 	// ── Logger ──────────────────────────────────────────────────────────────
-	var zapCfg zap.Config
-	if cfg.LogLevel == "debug" {
-		zapCfg = zap.NewDevelopmentConfig()
-	} else {
-		zapCfg = zap.NewProductionConfig()
-	}
+	zapCfg := zap.NewProductionConfig()
+	zapCfg.Level = zap.NewAtomicLevelAt(zap.InfoLevel) // Enforce clean Info level only
 	
 	log, err := zapCfg.Build()
 	if err != nil {
@@ -101,6 +97,7 @@ func main() {
 	}
 	accountStore := account.NewStore(forensicsStore, statePath)
 	accountStore.LoadState()
+	accountStore.SeedFoundationIdentities()
 
 	// ── Economics Integrity Audit ───────────────────────────────────────────
 	sanity := "ok"; if err := accountStore.VerifyLedgerSanity(); err != nil { sanity = err.Error() }

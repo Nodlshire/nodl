@@ -4,13 +4,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LayoutGrid, Database, Cpu, CreditCard, Code } from "lucide-react";
 import { useAuth } from "./AuthProvider";
-import { normalizeAccount } from "../../../shared/lib/identity";
 
 export function TopNav() {
+    const { user: profile } = useAuth();
     const pathname = usePathname();
-    const { account } = useAuth();
-    const identity = normalizeAccount(account);
-
     if (pathname === '/login') return null;
 
     const navItems = [
@@ -48,16 +45,21 @@ export function TopNav() {
                         <span className="text-[10px] font-bold text-mesh-emerald uppercase tracking-widest">Mesh Online</span>
                     </div>
 
-                    {/* Identity Header */}
+                    {/* Identity Header (Snag 13) */}
                     <div className="flex items-center gap-3 pl-6 border-l border-white/10">
                         <div className="flex flex-col items-end">
                             <span className="text-[11px] font-bold text-white uppercase tracking-tight">
-                                {identity.displayName}
+                                {profile?.displayName || profile?.email || 'Guest User'}
                             </span>
                             <span className="text-[9px] text-[#3B82F6] uppercase tracking-widest font-normal">
-                                ACC# {identity.id}
+                                ACC# {profile?.id || 'ACC# --------'}
                             </span>
                         </div>
+                        <img 
+                            src={profile?.avatar || "/default-avatar.png"} 
+                            className="w-8 h-8 rounded-full border border-white/10 object-cover bg-white/5" 
+                            alt="User Avatar"
+                        />
                     </div>
                 </div>
             </div>

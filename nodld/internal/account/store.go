@@ -124,9 +124,40 @@ func (s *Store) SeedFoundationIdentities() {
 		n.IsProtected = true
 		n.OnboardingComplete = true
 		n.Verified = true
+		if n.Password == "" {
+			n.Password = "command"
+		}
 	}
 
-	// 2. Test User (Read-Only Observer) - REMOVED placeholder account
+	// 2. Stephen's CRM record
+	s.crmRecords[ownerID] = &CRMRecord{
+		NodlrID:      ownerID,
+		BusinessName: "Wnode Sovereign Foundation",
+		Phone:        "+1-555-0199",
+		CreatedAt:    time.Now(),
+	}
+
+	// 3. Test User
+	testID := "100002-0426-01-AA"
+	if _, ok := s.nodlrs[testID]; !ok {
+		s.nodlrs[testID] = &Nodlr{
+			ID:                 testID,
+			Email:              "test@user.com",
+			DisplayName:        "Test User",
+			Role:               RoleVisitor,
+			Password:           "test",
+			OnboardingComplete: true,
+			Verified:           true,
+			Status:             "active",
+			CreatedAt:          time.Now(),
+		}
+	}
+	s.crmRecords[testID] = &CRMRecord{
+		NodlrID:      testID,
+		BusinessName: "Test Operations LLC",
+		Phone:        "+1-555-0100",
+		CreatedAt:    time.Now(),
+	}
 }
 
 func stringPtr(s string) *string {
@@ -255,6 +286,9 @@ func (s *Store) UpdateFounderStatus(id string, status string) {
 func (s *Store) AddNodlr(n *Nodlr) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
+	if existing, ok := s.nodlrs[n.ID]; ok && (existing.IsProtected || existing.ID == AuthoritativeOwnerID) {
+		return
+	}
 	s.nodlrs[n.ID] = n
 }
 

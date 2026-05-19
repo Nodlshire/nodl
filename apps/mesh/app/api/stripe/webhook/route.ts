@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Missing signature or secret' }, { status: 400 });
   }
 
-  let event: any;
+  let event: Stripe.Event;
 
   try {
     // Get raw body for signature verification

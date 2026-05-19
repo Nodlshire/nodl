@@ -8,7 +8,10 @@ import { NextRequest } from 'next/server';
 export function resolveIdentityHeaders(req: NextRequest): Record<string, string> {
     const authHeader = req.headers.get('Authorization') || '';
     const token = authHeader.replace('Bearer ', '');
-    const headers: Record<string, string> = { 'Authorization': authHeader };
+    const headers: Record<string, string> = { 
+        'Authorization': authHeader,
+        'Cookie': req.headers.get('cookie') || ''
+    };
 
     if (!token) return headers;
 

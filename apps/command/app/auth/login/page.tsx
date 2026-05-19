@@ -27,6 +27,7 @@ export default function LoginPage() {
         try {
             const body = { 
                 email: normalizedEmail, 
+                password: normalizedPassword,
                 domain: 'command' 
             };
             console.log('[DEBUG-SESSION-REQ]', {
@@ -51,6 +52,9 @@ export default function LoginPage() {
             });
 
             if (res.ok) {
+                if (data) {
+                    localStorage.setItem("nodl_user", JSON.stringify(data.user || data));
+                }
                 router.push('/');
                 return;
             } else {

@@ -14,7 +14,7 @@ export default function FoundersNotePage() {
                                 />
                             </div>
                             <div>
-                                <h1 className="text-4xl md:text-5xl font-bold tracking-tighter uppercase leading-none">Founder's Note</h1>
+                                <h1 className="text-4xl md:text-5xl font-bold tracking-tighter uppercase leading-none">Founder's Bio & Note</h1>
                                 <p className="text-blue-500 font-bold uppercase tracking-widest text-xs mt-2">Stephen Soos - Founder</p>
                             </div>
                         </div>
@@ -32,6 +32,18 @@ export default function FoundersNotePage() {
                         </div>
 
                         <div className="space-y-8 text-slate-300 text-lg md:text-xl leading-relaxed font-light">
+                            <h2 className="text-2xl md:text-3xl font-bold text-white uppercase tracking-tighter border-b border-white/10 pb-4">BIO - Stephen Soos</h2>
+                            <p>
+                                Stephen Soos is the founder, architect, and developer of Wnode, a sovereign, zero-trust compute network built from almost nothing. After four years living through the war in Ukraine, enduring blackouts, freezing winters, and martial law, Stephen relocated to Hungary with only what fitted in his car. With no capital, no team, and sleeping on a sofa, he built the entire Wnode MVP on a Lenovo M700 “potato,” a re-engineered Dell T1500, and a stack of broken laptops he revived by hand.
+                            </p>
+                            <p>
+                                A lifelong systems architect, Stephen has spent decades building early ecommerce platforms, cloud-connected print systems, medical hardware, and full-stack ecosystems that scaled to seven-figure revenues and public listings. His mission now is singular: connect billions of existing devices into a global compute layer that reduces e-waste, eliminates unnecessary datacenters, and gives everyday people a meaningful income stream in the emerging compute economy.
+                            </p>
+                            <p>
+                                Wnode is the culmination of a lifetime of building, and the belief that decentralisation should serve everyone, not just hyperscalers.
+                            </p>
+
+                            <h2 className="text-2xl md:text-3xl font-bold text-white uppercase tracking-tighter border-b border-white/10 pb-4 pt-12">Founders Note</h2>
                             <p>
                                 You’ve probably felt it, the shift, a tension, a quiet knowing that something fundamental is changing. 
                                 We’re entering a new era of human experience where the old structures no longer serve us, and the 

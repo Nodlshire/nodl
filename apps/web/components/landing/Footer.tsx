@@ -26,7 +26,7 @@ export default function Footer({ onContactClick }: FooterProps) {
                             </button>
                             <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-full h-8 pointer-events-none group-hover:pointer-events-auto" />
                             <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 bg-black border border-white/25 p-6 rounded-2xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all flex flex-col gap-4 min-w-[200px] shadow-[0_-20px_50px_rgba(0,0,0,0.5)] backdrop-blur-xl">
-                                <a href="/about/founders-note" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Founder's Note</a>
+                                <a href="/about/founders-bio-note" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Founder's Bio & Note</a>
                                 <a href="/about/node-operator" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Node Operator</a>
                             </div>
                         </div>

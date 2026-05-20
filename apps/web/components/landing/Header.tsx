@@ -49,7 +49,7 @@ export default function Header({ onContactClick }: HeaderProps) {
             name: "About",
             isDropdown: true,
             subLinks: [
-                { name: "Founder's Note", href: "/about/founders-note", color: "text-slate-500" },
+                { name: "Founder's Bio & Note", href: "/about/founders-bio-note", color: "text-slate-500" },
                 { name: "Node Operator", href: "/about/node-operator", color: "text-slate-500" }
             ]
         },

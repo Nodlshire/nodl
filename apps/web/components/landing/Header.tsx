@@ -63,8 +63,13 @@ export default function Header({ onContactClick }: HeaderProps) {
                 { name: "Treasury Transparency", href: "/governance/treasury", color: "text-slate-500" },
                 { name: "Whitepaper", href: "/governance/whitepaper", color: "text-slate-500" },
                 { name: "DAO Mechanics", href: "/governance/dao", color: "text-slate-500" },
-                { name: "Tokenomics", href: "/governance/tokenomics", color: "text-slate-500" },
-                { name: "Investors", isHeader: true },
+                { name: "Tokenomics", href: "/governance/tokenomics", color: "text-slate-500" }
+            ]
+        },
+        {
+            name: "Investors",
+            isDropdown: true,
+            subLinks: [
                 { name: "Investor One-Pager", href: "/governance/investors/investor-1-pager", color: "text-slate-500" },
                 { name: "Investor Relations", href: "/governance/investors/investor-relations", color: "text-slate-500" },
                 { name: "Pitch Deck", href: "/governance/investors/pitchdeck", color: "text-slate-500" }
@@ -160,7 +165,11 @@ export default function Header({ onContactClick }: HeaderProps) {
                                             <a 
                                                 key={sub.name}
                                                 href={sub.href} 
-                                                onClick={() => setMobileMenuOpen(false)}
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    setMobileMenuOpen(false);
+                                                    if (sub.href) window.location.href = sub.href;
+                                                }}
                                                 className="text-xl font-bold uppercase tracking-[0.4em] text-slate-500 hover:text-white transition-all text-center px-8"
                                             >
                                                 {sub.name}
@@ -173,7 +182,15 @@ export default function Header({ onContactClick }: HeaderProps) {
                             <a 
                                 key={link.name} 
                                 href={link.href} 
-                                onClick={() => setMobileMenuOpen(false)}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    setMobileMenuOpen(false);
+                                    if (link.href === "/" && window.location.pathname === "/") {
+                                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                                    } else if (link.href) {
+                                        window.location.href = link.href;
+                                    }
+                                }}
                                 className="text-2xl font-bold uppercase tracking-[0.4em] text-slate-400 hover:text-white transition-all"
                             >
                                 {link.name}

@@ -45,8 +45,16 @@ export default function Footer({ onContactClick }: FooterProps) {
                                 <a href="/governance/whitepaper" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Whitepaper</a>
                                 <a href="/governance/dao" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">DAO Mechanics</a>
                                 <a href="/governance/tokenomics" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Tokenomics</a>
-                                <div className="h-px bg-white/10 my-1" />
-                                <span className="text-[9px] font-black uppercase tracking-[0.4em] text-blue-500/60 mt-2">Investors</span>
+                            </div>
+                        </div>
+
+                        <div className="relative group py-2 -my-2">
+                            <button className="text-white/40 group-hover:text-white transition-colors text-xs uppercase tracking-[0.2em] cursor-default flex items-center gap-2">
+                                Investors
+                                <span className="text-[10px] opacity-30 group-hover:opacity-100 transition-opacity">↑</span>
+                            </button>
+                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-full h-8 pointer-events-none group-hover:pointer-events-auto" />
+                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 bg-black border border-white/25 p-6 rounded-2xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all flex flex-col gap-4 min-w-[220px] shadow-[0_-20px_50px_rgba(0,0,0,0.5)] backdrop-blur-xl">
                                 <a href="/governance/investors/investor-1-pager" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Investor One-Pager</a>
                                 <a href="/governance/investors/investor-relations" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Investor Relations</a>
                                 <a href="/governance/investors/pitchdeck" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Pitch Deck</a>

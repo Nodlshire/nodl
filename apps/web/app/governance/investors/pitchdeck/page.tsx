@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 const SlideImage = ({ num, alt }: { num: number, alt: string }) => (
     <div className="w-full border border-white/10 rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(59,130,246,0.1)] group relative">
         <img 
-            src={`/slides/slide-${num}.png`} 
+            src={`/slides/slide-${num.toString().padStart(2, '0')}.png`} 
             alt={alt} 
             className="w-full h-auto" 
         />
@@ -41,7 +41,7 @@ export default function PitchDeckPage() {
                             </p>
                         </div>
                         <a 
-                            href="/docs/pitchdeck.pdf" 
+                            href="/docs/detailed_pitchdeck.pdf" 
                             target="_blank"
                             rel="noopener noreferrer"
                             className="bg-white text-black px-8 py-3 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-blue-500 hover:text-white transition-all shadow-[0_0_30px_rgba(255,255,255,0.1)] inline-flex items-center gap-2 w-fit mb-2"
@@ -56,12 +56,9 @@ export default function PitchDeckPage() {
                     </div>
 
                     <div className="space-y-16">
-                        <SlideImage num={1} alt="The AI-Powered Planetary Compute Mesh - Turning the world's idle hardware into sovereign, hyper-scalable AI compute." />
-                        <SlideImage num={2} alt="Unlocking the $1 Trillion Compute Bottleneck - Market Dynamics & Opportunity." />
-                        <SlideImage num={3} alt="The Zero-Trust Routing Engine - Fully Automated Execution." />
-                        <SlideImage num={4} alt="The Economic Engine - Fiat-First Revenue Flow." />
-                        <SlideImage num={5} alt="Capture-Resistant Sovereignty - The Wnode Moat." />
-                        <SlideImage num={6} alt="Roadmap to a Planetary Mesh - Future Outlook." />
+                        {Array.from({ length: 15 }, (_, i) => i + 1).map(num => (
+                            <SlideImage key={num} num={num} alt={`Wnode Pitch Deck - Slide ${num}`} />
+                        ))}
                     </div>
                 </div>
             </div>

@@ -8,11 +8,19 @@ export default function Footer({ onContactClick }: FooterProps) {
         <footer className="py-20 bg-black border-t border-white/15">
             <div className="max-w-7xl mx-auto px-8 flex flex-col items-center gap-16">
                 <div className="w-full flex flex-col md:flex-row items-center justify-between gap-8 relative z-50">
-                    <div className="flex items-center gap-4">
-                        <img src="/logo.png" alt="wnode" className="w-10 h-10" />
-                        <div className="flex flex-col text-left">
-                            <span className="font-space-grotesk text-2xl tracking-tighter font-bold text-white uppercase leading-none">wnode</span>
-                            <span className="text-[10px] uppercase tracking-widest text-blue-500 font-bold mt-1">Planetary Compute Mesh</span>
+                    <div className="flex flex-col md:items-start items-center gap-4">
+                        <div className="flex items-center gap-4">
+                            <img src="/logo.png" alt="wnode" className="w-10 h-10" />
+                            <div className="flex flex-col text-left">
+                                <span className="font-space-grotesk text-2xl tracking-tighter font-bold text-white uppercase leading-none">wnode</span>
+                                <span className="text-[10px] uppercase tracking-widest text-blue-500 font-bold mt-1">Planetary Compute Mesh</span>
+                            </div>
+                        </div>
+                        <div className="text-white/60 text-[10px] tracking-widest text-center md:text-left leading-relaxed">
+                            Unit A 82 James Carter Road<br />
+                            Mildenhall Industrial Estate<br />
+                            Suffolk, United Kingdom<br />
+                            IP28 7DE
                         </div>
                     </div>
                     

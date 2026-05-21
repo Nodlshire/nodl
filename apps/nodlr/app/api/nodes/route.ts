@@ -5,28 +5,33 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const authHeader = request.headers.get('Authorization') || request.headers.get('authorization');
     const userId = request.headers.get('x-user-id');
+    const cookieHeader = request.headers.get('cookie') || '';
 
     if (featureFlags.NODLR_DEBUG_REGISTRATION) {
         console.log('[DEBUG-REG] /api/nodes request:', {
             url: request.url,
             authPresent: !!authHeader,
+            cookiePresent: !!cookieHeader,
             userId
         });
     }
 
-    if (!authHeader || !userId) {
-        console.warn('Nodlr API /api/nodes: Missing authorization or user-id headers');
+    if (!authHeader && !userId && !cookieHeader) {
+        console.warn('Nodlr API /api/nodes: Missing authorization, user-id, or cookie headers');
         return NextResponse.json([]);
     }
 
     try {
         // Fetch all nodes from the Coordinator
-        const apiUrl = process.env.WNODE_BACKEND_URL || '';
-        const res = await fetch(`/api/v1/nodes`, {
-            headers: {
-                'Authorization': authHeader,
-                'x-user-id': userId
-            },
+        const apiUrl = process.env.WNODE_BACKEND_URL || 'http://127.0.0.1:8081';
+        
+        const headers: Record<string, string> = {};
+        if (authHeader) headers['Authorization'] = authHeader;
+        if (userId) headers['x-user-id'] = userId;
+        if (cookieHeader) headers['Cookie'] = cookieHeader;
+
+        const res = await fetch(`${apiUrl}/api/v1/nodes`, {
+            headers,
             cache: 'no-store'
         });
 
@@ -42,26 +47,29 @@ export async function GET(request: Request) {
         }
 
         const nodes = await res.json();
+        let providerNodes = Array.isArray(nodes) ? nodes : [];
 
-        // 1. Filter: Include ONLY nodes belonging to this provider
+        // 1. Filter: Include ONLY nodes belonging to this provider (if userId is known)
+        if (userId) {
+            providerNodes = providerNodes.filter((n: any) => n.userID === userId || n.user_id === userId);
+        }
+
         // 2. Normalize: Map to FleetMap shape { id, name, lat, lon, status }
-        const providerNodes = (Array.isArray(nodes) ? nodes : [])
-            .filter((n: any) => n.userID === userId || n.user_id === userId)
-            .map((n: any) => ({
-                id: n.node_id || n.id,
-                name: n.node_name || n.name || n.node_id || n.id,
-                lat: n.lat ?? n.latitude ?? (n.location?.lat),
-                lon: n.lon ?? n.longitude ?? (n.location?.lon),
-                status: n.status || 'Active',
-                cpu_specs: n.cpu_cores ? `${n.cpu_cores} Cores` : 'Unknown CPU',
-                gpu_specs: n.gpu_model || 'Integrated Graphics',
-                ram_total: n.memory_gb ? `${n.memory_gb}GB` : 'Unknown RAM',
-                uptime: n.last_heartbeat ? 'online' : '00:00:00',
-                last_seen: n.last_heartbeat || 'Never',
-                os: n.os || 'Unknown OS',
-                arch: n.arch || 'Unknown Arch',
-                tier: n.tier || 'Standard'
-            }));
+        providerNodes = providerNodes.map((n: any) => ({
+            id: n.node_id || n.id,
+            name: n.node_name || n.name || n.node_id || n.id,
+            lat: n.lat ?? n.latitude ?? (n.location?.lat),
+            lon: n.lon ?? n.longitude ?? (n.location?.lon),
+            status: n.status || 'Active',
+            cpu_specs: n.cpu_cores ? `${n.cpu_cores} Cores` : 'Unknown CPU',
+            gpu_specs: n.gpu_model || 'Integrated Graphics',
+            ram_total: n.memory_gb ? `${n.memory_gb}GB` : 'Unknown RAM',
+            uptime: n.last_heartbeat ? 'online' : '00:00:00',
+            last_seen: n.last_heartbeat || 'Never',
+            os: n.os || 'Unknown OS',
+            arch: n.arch || 'Unknown Arch',
+            tier: n.tier || 'Standard'
+        }));
 
         return NextResponse.json(providerNodes);
     } catch (err) {

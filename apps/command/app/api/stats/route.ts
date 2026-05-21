@@ -2,14 +2,18 @@ import { NextResponse, NextRequest } from 'next/server';
 import { resolveIdentityHeaders } from '@/app/lib/identity';
 
 export async function GET(req: NextRequest) {
-    const MESH_API_URL = process.env.MESH_API_URL || 'http://localhost:8081';
+    const BACKEND_URL = process.env.NODLD_API_URL || 'http://127.0.0.1:8081';
     const headers = resolveIdentityHeaders(req);
     
     try {
-        const res = await fetch(`${MESH_API_URL}/stats`, { 
+        const res = await fetch(`${BACKEND_URL}/stats`, { 
             headers,
             cache: 'no-store' 
         });
+        if (!res.ok) {
+            console.warn(`Backend returned ${res.status} for /stats`);
+            return NextResponse.json({ redisStatus: 'offline' });
+        }
         const data = await res.json();
         return NextResponse.json({
             ...data,

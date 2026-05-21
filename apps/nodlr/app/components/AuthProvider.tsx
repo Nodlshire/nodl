@@ -41,7 +41,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // 2. Call /api/account/me in background
         const fetchSession = async () => {
             try {
-                const res = await fetch('/api/account/me');
+                const res = await fetch('/api/account/me', { credentials: 'include' });
                 if (res.ok) {
                     const data = await res.json();
                     data.id = data.id || data.ID || data.wuid || data.WnodeID;

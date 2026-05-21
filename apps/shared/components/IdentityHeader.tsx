@@ -25,7 +25,7 @@ export default function IdentityHeader({ account }: { account?: any }) {
         const loadUser = async () => {
             try {
                 // Identity resolve via domain-scoped session cookies (handled by proxy)
-                const res = await fetch("/api/account/me");
+                const res = await fetch("/api/account/me", { credentials: 'include' });
 
                 if (res.ok && !cancelled) {
                     const data = await res.json();

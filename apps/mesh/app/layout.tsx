@@ -4,7 +4,7 @@ import "./globals.css";
 import { AuthProvider } from "./components/AuthProvider";
 import { BillingProvider } from "./components/BillingProvider";
 import { JobsProvider } from "./components/JobsProvider";
-import { Libp2pProvider } from "./components/Libp2pProvider";
+
 import { NavWrapper } from "./components/NavWrapper";
 
 const roboto = Roboto({
@@ -25,11 +25,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <AuthProvider>
                     <BillingProvider>
                         <JobsProvider>
-                            <Libp2pProvider>
                                 <NavWrapper>
                                     {children}
                                 </NavWrapper>
-                            </Libp2pProvider>
                         </JobsProvider>
                     </BillingProvider>
                 </AuthProvider>

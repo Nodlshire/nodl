@@ -3,7 +3,7 @@
 import React from "react";
 import { usePathname } from "next/navigation";
 import "./globals.css";
-import { Libp2pProvider } from "./components/Libp2pProvider";
+
 import Shell from "./components/Shell";
 import AuthGuard from "./components/AuthGuard";
 
@@ -26,7 +26,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     "--command-portal-glow-color": "#22D3EE",
                 } as React.CSSProperties}
             >
-                <Libp2pProvider>
                     <AuthGuard>
                         <React.Suspense fallback={<div className="h-screen w-screen bg-black" />}>
                             {pathname?.startsWith("/auth") ? (
@@ -36,7 +35,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                             )}
                         </React.Suspense>
                     </AuthGuard>
-                </Libp2pProvider>
             </body>
         </html>
     );

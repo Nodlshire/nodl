@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "./components/AuthProvider";
-import { Libp2pProvider } from "./components/Libp2pProvider";
+
 import { PageTitleProvider } from "./components/PageTitleContext";
 
 const roboto = Roboto({
@@ -38,11 +38,9 @@ export default function RootLayout({
                 suppressHydrationWarning
             >
                 <AuthProvider>
-                    <Libp2pProvider>
                         <PageTitleProvider>
                             {children}
                         </PageTitleProvider>
-                    </Libp2pProvider>
                 </AuthProvider>
             </body>
         </html>

@@ -5,7 +5,9 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Loader2, CheckCircle2, XCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-export default function StripeCallbackPage() {
+import { Suspense } from 'react';
+
+function StripeCallbackContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading');
@@ -88,5 +90,17 @@ export default function StripeCallbackPage() {
                 )}
             </motion.div>
         </div>
+    );
+}
+
+export default function StripeCallbackPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen bg-black flex items-center justify-center">
+                <Loader2 className="w-8 h-8 animate-spin text-[#22D3EE]" />
+            </div>
+        }>
+            <StripeCallbackContent />
+        </Suspense>
     );
 }

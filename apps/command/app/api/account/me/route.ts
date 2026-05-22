@@ -1,18 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
-    const apiUrl = process.env.NODLD_API_URL || 'http://localhost:8081';
+    const apiUrl = process.env.NODLD_API_URL || process.env.NEXT_PUBLIC_API_URL;
 
     try {
         const res = await fetch(`${apiUrl}/api/v1/account/me`, {
-            cache: 'no-store',
+            method: 'GET',
             headers: {
-                'Accept': 'application/json',
-                // Forward all cookies (including cmd_session) and auth headers
-                'Cookie': req.headers.get('cookie') || '',
-                'Authorization': req.headers.get('authorization') || '',
-                'X-User-ID': req.headers.get('x-user-id') || '', // DEVELOPMENT_MODE bypass
+                cookie: req.headers.get('cookie') ?? '',
             },
+            credentials: 'include',
         });
 
         if (!res.ok) {

@@ -36,10 +36,9 @@ export default function FinancesPage() {
         setIsRefreshing(true);
         try {
             const userEmail = localStorage.getItem("nodl_user_email") || "stephen@nodl.one";
-            const apiBase = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8081';
             
             // We fetch the money overview which contains the operator details
-            const res = await fetch(`${apiBase}/api/v1/money/overview?email=${encodeURIComponent(userEmail)}`);
+            const res = await fetch(`/api/v1/money/overview?email=${encodeURIComponent(userEmail)}`);
             if (res.ok) {
                 const data = await res.json();
                 // Map the money overview structure to the finances page local state
@@ -93,11 +92,9 @@ export default function FinancesPage() {
 
     const handleOnboard = async () => {
         try {
-            const apiBase = process.env.NEXT_PUBLIC_COORDINATOR_URL || 'http://127.0.0.1:8082';
-            
             let connectId = account?.stripeConnectId;
             if (!connectId) {
-                const resAcct = await fetch(`${apiBase}/api/v1/stripe/connect/account`, {
+                const resAcct = await fetch("/api/v1/stripe/connect/account", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email: account?.email || 'admin@wnode.one' })
@@ -106,7 +103,7 @@ export default function FinancesPage() {
                 connectId = dataAcct.accountID;
             }
 
-            const res = await fetch(`${apiBase}/api/v1/stripe/connect/onboard`, {
+            const res = await fetch("/api/v1/stripe/connect/onboard", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 

@@ -28,7 +28,7 @@ async function handleProxy(req: NextRequest, method: string, subPath: string) {
 
     // Proxy other api requests (like jobs, pricing, logout, etc.) directly to Go backend (8081)
     try {
-        const apiUrl = process.env.NODLD_API_URL || 'http://127.0.0.1:8081';
+        const apiUrl = process.env.NODLD_API_URL || process.env.NEXT_PUBLIC_API_URL;
         const targetUrl = `${apiUrl}/api/v1/${subPath}${req.nextUrl.search}`;
         
         let requestBody: any = undefined;
@@ -40,13 +40,11 @@ async function handleProxy(req: NextRequest, method: string, subPath: string) {
 
         const res = await fetch(targetUrl, {
             method,
-            cache: 'no-store',
             headers: {
                 'Content-Type': req.headers.get('content-type') || 'application/json',
-                'Accept': 'application/json',
-                'Cookie': req.headers.get('cookie') || '',
-                'Authorization': req.headers.get('authorization') || '',
+                cookie: req.headers.get('cookie') ?? '',
             },
+            credentials: 'include',
             body: requestBody,
         });
 

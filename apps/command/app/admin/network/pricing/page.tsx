@@ -34,7 +34,7 @@ export default function PricingManager() {
 
     const fetchTiers = async () => {
         try {
-            const res = await fetch('http://127.0.0.1:8082/api/v1/meta/tiers');
+            const res = await fetch('/api/admin/pricing/tiers');
             const data = await res.json();
             setTiers(data);
             setLoading(false);
@@ -49,7 +49,7 @@ export default function PricingManager() {
 
     const handleUpdate = async (tier: Tier) => {
         try {
-            const res = await fetch(`http://127.0.0.1:8082/v1/admin/tiers/${tier.id}`, {
+            const res = await fetch(`/api/admin/pricing/update`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(tier)

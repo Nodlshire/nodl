@@ -23,7 +23,7 @@ export default function StripeCallbackPage() {
 
         const finalizeRegistration = async () => {
             try {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/stripe/callback`, {
+                const res = await fetch("/api/auth/stripe/callback", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, stripe_account_id: stripeAccountId }),

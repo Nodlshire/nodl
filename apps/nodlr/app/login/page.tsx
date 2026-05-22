@@ -34,7 +34,7 @@ export default function LoginPage() {
         if (authMode === 'signup') {
             try {
                 // Using 8081 as the backend port for Wnode/Mesh as seen in .env
-                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/signup`, {
+                const res = await fetch("/api/auth/signup", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email: normalizedEmail }),

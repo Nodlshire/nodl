@@ -69,8 +69,7 @@ function OnboardingStatus() {
             setLoading(true);
             setError(null);
             
-            const apiBase = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_WNODE_API_BASE || "http://127.0.0.1:8082";
-            const statusUrl = `${apiBase}/api/v1/stripe/connect/status?email=${encodeURIComponent(email)}`;
+            const statusUrl = `/api/v1/stripe/connect/status?email=${encodeURIComponent(email)}`;
             
             try {
                 const res = await fetch(statusUrl);
@@ -99,10 +98,7 @@ function OnboardingStatus() {
         setStartingOnboarding(true);
         setError(null);
         
-        const apiBase = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_WNODE_API_BASE || "http://127.0.0.1:8082";
-        
-        try {
-            const response = await fetch(`${apiBase}/api/v1/stripe/connect/start`, {
+            const response = await fetch(`/api/v1/stripe/connect/start`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, inviteCode }),

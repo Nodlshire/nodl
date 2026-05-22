@@ -75,7 +75,7 @@ export default function PricingPage() {
         setMessage(null);
         try {
             const jwt = typeof window !== "undefined" ? localStorage.getItem("nodl_jwt") : null;
-            const apiBase = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8082';
+            const apiBase = ""; // Empty string for relative path
             
             const payload = {
                 tier_id: tierId,

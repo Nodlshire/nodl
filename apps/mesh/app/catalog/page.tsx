@@ -36,8 +36,7 @@ export default function CatalogPage() {
 
     const fetchTiers = async () => {
         try {
-            const apiBase = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8080';
-            const res = await fetch(`${apiBase}/api/v1/meta/tiers`).catch(err => {
+            const res = await fetch(`/api/v1/meta/tiers`).catch(err => {
                 // Internal catch to prevent bubbling to Next.js Dev Overlay
                 return null;
             });

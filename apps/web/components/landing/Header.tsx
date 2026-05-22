@@ -70,9 +70,8 @@ export default function Header({ onContactClick }: HeaderProps) {
             name: "Investors",
             isDropdown: true,
             subLinks: [
-                { name: "Investor One-Pager", href: "/governance/investors/investor-1-pager", color: "text-slate-500" },
-                { name: "Investor Relations", href: "/governance/investors/investor-relations", color: "text-slate-500" },
-                { name: "Pitch Deck", href: "/governance/investors/pitchdeck", color: "text-slate-500" }
+                { name: "Investor Relations", href: "/investors/investor-relations", color: "text-slate-500" },
+                { name: "Data Room", href: "https://dr.wnode.one", color: "text-slate-500" }
             ]
         },
         {

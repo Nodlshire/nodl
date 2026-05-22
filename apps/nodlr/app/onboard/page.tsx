@@ -15,9 +15,7 @@ export default function OnboardPage() {
     useEffect(() => {
         const fetchSession = async () => {
             try {
-                const apiBase = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8080';
-                // Using stephen@wnode.one as the seeded founder email per blueprint
-                const response = await fetch(`${apiBase}/api/v1/stripe/connect/v2/session`, {
+                const response = await fetch("/api/v1/stripe/connect/v2/session", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email: 'stephen@wnode.one' })

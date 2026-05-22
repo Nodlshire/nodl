@@ -3,18 +3,16 @@ import { NextRequest, NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
-    const apiUrl = process.env.NODLD_API_URL || 'http://127.0.0.1:8081';
+    const apiUrl =
+        process.env.NODLD_API_URL || process.env.NEXT_PUBLIC_API_URL;
 
     try {
         const res = await fetch(`${apiUrl}/api/v1/account/me`, {
-            cache: 'no-store',
-            credentials: 'include',
+            method: "GET",
             headers: {
-                'Accept': 'application/json',
-                'Cookie': req.headers.get('cookie') || '',
-                'Authorization': req.headers.get('authorization') || '',
-                'X-User-ID': req.headers.get('x-user-id') || '',
+                cookie: req.headers.get("cookie") ?? "",
             },
+            credentials: "include",
         });
 
         const data = await res.json();

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest, { params }: { params: Promise<{ path: string[] }> }) {
-    const apiUrl = process.env.NODLD_API_URL || 'http://127.0.0.1:3002';
+    const apiUrl = process.env.NODLD_API_URL || process.env.NEXT_PUBLIC_API_URL;
     const { path } = await params;
     const pathString = path.join('/');
 
@@ -9,11 +9,11 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ pat
         const body = await req.json();
         const res = await fetch(`${apiUrl}/api/v1/auth/${pathString}`, {
             method: 'POST',
-            cache: 'no-store',
             headers: {
                 'Content-Type': 'application/json',
-                'Accept': 'application/json',
+                cookie: req.headers.get('cookie') ?? '',
             },
+            credentials: 'include',
             body: JSON.stringify(body),
         });
 

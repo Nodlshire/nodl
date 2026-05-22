@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
-    const apiUrl = process.env.ACCOUNT_SERVICE_URL || process.env.WNODER_URL || 'http://localhost:8080';
+    const apiUrl = process.env.NODLD_API_URL || process.env.NEXT_PUBLIC_API_URL;
 
     // Forward the Authorization header from the client
     const authHeader = req.headers.get('authorization') || '';
@@ -12,12 +12,12 @@ export async function GET(req: NextRequest) {
     const token = jwt || cookieToken || '';
 
     try {
-        const res = await fetch(`${apiUrl}/account/me`, {
-            cache: 'no-store',
+        const res = await fetch(`${apiUrl}/api/v1/account/me`, {
+            method: 'GET',
             headers: {
-                'Accept': 'application/json',
-                ...(token ? { 'Authorization': `Bearer ${token}` } : {}),
+                cookie: req.headers.get('cookie') ?? '',
             },
+            credentials: 'include',
         });
 
         if (!res.ok) {

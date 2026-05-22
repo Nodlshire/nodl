@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
-    const apiUrl = process.env.NODLD_API_URL || 'http://127.0.0.1:8081';
+    const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8081";
     try {
         const res = await fetch(`${apiUrl}/api/v1/jobs${req.nextUrl.search}`, {
             method: 'GET',
@@ -24,7 +24,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-    const apiUrl = process.env.NODLD_API_URL || 'http://127.0.0.1:8081';
+    const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8081";
     try {
         const bodyText = await req.text();
         const res = await fetch(`${apiUrl}/api/v1/jobs`, {

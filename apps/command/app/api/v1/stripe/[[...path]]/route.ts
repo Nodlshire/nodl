@@ -4,7 +4,7 @@ export const dynamic = 'force-dynamic';
 
 async function handleProxy(req: NextRequest, method: string, pathSegments: string[]) {
     try {
-        const apiUrl = process.env.NODLD_API_URL || process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8081';
+        const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8081";
         const path = pathSegments.join('/');
         let targetUrl = `${apiUrl}/api/v1/stripe/${path}`;
         

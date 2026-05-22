@@ -5,7 +5,7 @@ export async function POST(
     { params }: { params: Promise<{ id: string }> }
 ) {
     const { id } = await params;
-    const apiUrl = process.env.NODLD_API_URL || 'https://api.wnode.one';
+    const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8081";
 
     try {
         const body = await request.json();

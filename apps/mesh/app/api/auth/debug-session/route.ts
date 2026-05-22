@@ -6,7 +6,7 @@ export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
 
-        const apiUrl = process.env.NODLD_API_URL || 'http://127.0.0.1:8081';
+        const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8081";
         const res = await fetch(`${apiUrl}/api/v1/auth/debug-session`, {
             method: 'POST',
             headers: {

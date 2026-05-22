@@ -4,7 +4,7 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
     try {
-        const apiUrl = process.env.NODLD_API_URL || process.env.NEXT_PUBLIC_API_URL;
+        const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8081";
         const res = await fetch(`${apiUrl}/api/v1/account/me`, {
             method: 'GET',
             headers: {

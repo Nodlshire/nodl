@@ -7,7 +7,7 @@ export async function GET(
 ) {
     const params = await props.params;
     const path = params.path.join('/');
-    const apiUrl = process.env.NODLD_API_URL || 'https://api.wnode.one';
+    const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8081";
     
     // Pass along session cookies for RoleOwner check
     const cookieStore = await cookies();

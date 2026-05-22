@@ -28,7 +28,7 @@ async function handleProxy(req: NextRequest, method: string, subPath: string) {
 
     // Proxy other api requests (like jobs, pricing, logout, etc.) directly to Go backend (8081)
     try {
-        const apiUrl = process.env.NODLD_API_URL || process.env.NEXT_PUBLIC_API_URL;
+        const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8081";
         const targetUrl = `${apiUrl}/api/v1/${subPath}${req.nextUrl.search}`;
         
         let requestBody: any = undefined;

@@ -23,7 +23,7 @@ export async function GET(request: Request) {
 
     try {
         // Fetch all nodes from the Coordinator
-        const apiUrl = process.env.WNODE_BACKEND_URL || 'http://127.0.0.1:8081';
+        const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8081";
         
         const headers: Record<string, string> = {};
         if (authHeader) headers['Authorization'] = authHeader;

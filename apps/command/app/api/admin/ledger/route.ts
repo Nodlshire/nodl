@@ -21,7 +21,7 @@ export async function GET() {
         });
     }
 
-    const apiUrl = process.env.NODLD_API_URL || 'https://api.wnode.one';
+    const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8081";
 
     try {
         const res = await fetch(`${apiUrl}/api/admin/ledger`, {

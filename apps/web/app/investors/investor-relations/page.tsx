@@ -1,6 +1,6 @@
 "use client";
 
-import AppLayout from "../../../../components/layout/AppLayout";
+import AppLayout from "../../../components/layout/AppLayout";
 import React, { useEffect, useState } from "react";
 
 const Section = ({ id, title, children }: { id: string, title: string, children: React.ReactNode }) => (

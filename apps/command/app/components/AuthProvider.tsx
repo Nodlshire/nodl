@@ -9,7 +9,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        let bootstrappedUser = null;
+        let bootstrappedUser: any = null;
         if (typeof window !== "undefined") {
             const userStr = localStorage.getItem("nodl_user");
             if (userStr) {

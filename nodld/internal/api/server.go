@@ -803,13 +803,21 @@ func (s *Server) handleVerifyMagicLink(c *fiber.Ctx) error {
 		cookieName = "mesh_session"
 	}
 
+	magicSecure := true
+	magicDomain := "wnode.one"
+	if os.Getenv("DEVELOPMENT_MODE") == "true" {
+		magicSecure = false
+		magicDomain = ""
+	}
+
 	c.Cookie(&fiber.Cookie{
 		Name:     cookieName,
 		Value:    sessionID,
 		Expires:  time.Now().Add(24 * time.Hour),
 		HTTPOnly: true,
-		Secure:   false,
-		SameSite: "Lax",
+		Secure:   magicSecure,
+		SameSite: "None",
+		Domain:   magicDomain,
 		Path:     "/",
 	})
 
@@ -1612,10 +1620,10 @@ func (s *Server) handleDebugSession(c *fiber.Ctx) error {
 	}
 
 	secureFlag := true
-	domainFlag := ".wnode.one"
+	domainFlag := "wnode.one"
 	if os.Getenv("DEVELOPMENT_MODE") == "true" {
 		secureFlag = false
-		domainFlag = "" // or "localhost" if specifically needed, but empty usually works better for localhost
+		domainFlag = ""
 	}
 
 	c.Cookie(&fiber.Cookie{
@@ -1624,7 +1632,7 @@ func (s *Server) handleDebugSession(c *fiber.Ctx) error {
 		Expires:  time.Now().Add(24 * time.Hour),
 		HTTPOnly: true,
 		Secure:   secureFlag,
-		SameSite: "Lax",
+		SameSite: "None",
 		Domain:   domainFlag,
 		Path:     "/",
 	})
@@ -1639,7 +1647,7 @@ func (s *Server) handleLogout(c *fiber.Ctx) error {
 		}
 
 		secureFlag := true
-		domainFlag := ".wnode.one"
+		domainFlag := "wnode.one"
 		if os.Getenv("DEVELOPMENT_MODE") == "true" {
 			secureFlag = false
 			domainFlag = ""
@@ -1652,7 +1660,7 @@ func (s *Server) handleLogout(c *fiber.Ctx) error {
 			Expires:  time.Now().Add(-24 * time.Hour),
 			HTTPOnly: true,
 			Secure:   secureFlag,
-			SameSite: "Lax",
+			SameSite: "None",
 			Domain:   domainFlag,
 			Path:     "/",
 		})

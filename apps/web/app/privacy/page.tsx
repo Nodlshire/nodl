@@ -11,7 +11,7 @@ export default function PrivacyPage() {
                     
                     <div className="space-y-16 text-slate-400 text-lg md:text-xl leading-relaxed font-light">
                         <section className="border-t border-white/10 pt-12">
-                            <h2 className="text-sm font-bold text-blue-500 uppercase tracking-[0.3em] mb-6">Wnode Ltd. Privacy Policy</h2>
+                            <h2 className="text-sm font-bold text-blue-500 uppercase tracking-[0.3em] mb-6">Wenode Ltd. Privacy Policy</h2>
                             <p className="text-white font-medium mb-4">Last Updated: April 2026</p>
                             <p className="text-slate-500 italic">Registered Address: Unit A, 82 James Carter Road, Mildenhall Industrial Estate, Suffolk, United Kingdom, IP28 7DE.</p>
                         </section>
@@ -19,7 +19,7 @@ export default function PrivacyPage() {
                         <section>
                             <h2 className="text-2xl font-bold text-white mb-6 uppercase tracking-tight">1. Global Compliance Framework</h2>
                             <p>
-                                Wnode Ltd. operates as a UK entity and is committed to upholding the highest global data protection standards, 
+                                Wenode Ltd. operates as a UK entity and is committed to upholding the highest global data protection standards, 
                                 including the <span className="text-white">UK GDPR</span>, <span className="text-white">EU GDPR</span>, 
                                 and <span className="text-white">US Privacy Requirements</span> (including CCPA/CPRA).
                             </p>

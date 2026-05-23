@@ -11,14 +11,14 @@ export default function DAOMechanicsPage() {
                     <div className="space-y-4">
                         <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-white font-space-grotesk uppercase">DAO Mechanics</h1>
                         <p className="text-slate-400 max-w-2xl leading-relaxed">
-                            The engine of community sovereignty: understanding how the Wnode DAO operates, votes, and executes.
+                            The engine of community sovereignty: understanding how the Wenode DAO operates, votes, and executes.
                         </p>
                     </div>
 
                     <section className="space-y-6">
-                        <h2 className="text-xl font-bold text-white uppercase tracking-tight font-space-grotesk">What is the Wnode DAO?</h2>
+                        <h2 className="text-xl font-bold text-white uppercase tracking-tight font-space-grotesk">What is the Wenode DAO?</h2>
                         <p className="text-slate-400 leading-relaxed">
-                            The Wnode DAO is the ultimate decision-making body of the Mesh. It is not a corporation or a centralised board, but a decentralised collective of verified Souls empowered to shape the future of the network.
+                            The Wenode DAO is the ultimate decision-making body of the Mesh. It is not a corporation or a centralised board, but a decentralised collective of verified Souls empowered to shape the future of the network.
                         </p>
                     </section>
 
@@ -26,7 +26,7 @@ export default function DAOMechanicsPage() {
                         <h2 className="text-xl font-bold text-white uppercase tracking-tight font-space-grotesk">1 Soul = 1 Vote Model</h2>
                         <div className="p-8 bg-white/[0.02] border border-white/5 rounded-sm border-l-2 border-l-blue-500">
                             <p className="text-sm text-slate-300 leading-relaxed">
-                                Governance power in Wnode is non-purchasable. Every verified individual, regardless of their token holdings or technical contribution, holds exactly one Voting Soul. This ensures that the collective interest of the community always overrides the interests of capital.
+                                Governance power in Wenode is non-purchasable. Every verified individual, regardless of their token holdings or technical contribution, holds exactly one Voting Soul. This ensures that the collective interest of the community always overrides the interests of capital.
                             </p>
                         </div>
                     </section>

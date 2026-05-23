@@ -43,7 +43,7 @@ export default function WhitepaperPage() {
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 border-b border-white/10 pb-12">
                         <div className="space-y-4">
                             <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-white font-space-grotesk uppercase leading-none">
-                                Wnode Whitepaper
+                                Wenode Whitepaper
                             </h1>
                             <p className="text-blue-500 font-mono text-sm tracking-[0.3em] uppercase font-bold">
                                 Version 1.0 — Unified Specification
@@ -69,14 +69,14 @@ export default function WhitepaperPage() {
                         {/* 1. Abstract */}
                         <Section id="abstract" title="1. Abstract">
                             <p>
-                                Wnode is a decentralised AI compute network that transforms global idle hardware into a
+                                Wenode is a decentralised AI compute network that transforms global idle hardware into a
                                 unified, verifiable, market-aligned compute layer. It enables individuals and organisations
-                                to contribute compute capacity, be paid in USD, earn WNODE tokens, and participate in a
+                                to contribute compute capacity, be paid in USD, earn WENODE tokens, and participate in a
                                 transparent governance system designed to ensure fairness, resilience, and long-term
                                 sustainability.
                             </p>
                             <p>
-                                The Wnode Mesh coordinates compute tasks across a distributed network of nodes
+                                The Wenode Mesh coordinates compute tasks across a distributed network of nodes
                                 using a stateless execution model, RAM-only processing, and cryptographic verification to
                                 ensure confidentiality and correctness. Governance is structured to prevent
                                 centralisation and whale attacks, ensure accountability whilst maintaining regulatory
@@ -84,7 +84,7 @@ export default function WhitepaperPage() {
                             </p>
                             <p className="italic">
                                 This whitepaper defines the architecture, governance, tokenomics, regulatory
-                                considerations, and roadmap for Wnode.
+                                considerations, and roadmap for Wenode.
                             </p>
                         </Section>
 
@@ -98,7 +98,7 @@ export default function WhitepaperPage() {
                                 substantial opportuniy to provide the world with much needed comute resource.
                             </p>
                             <p>
-                                Wnode bridges this gap by creating a decentralised compute mesh where anyone can
+                                Wenode bridges this gap by creating a decentralised compute mesh where anyone can
                                 contribute hardware and earn rewards with 3 simple clicks. The system is designed to be:
                             </p>
                             <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
@@ -124,7 +124,7 @@ export default function WhitepaperPage() {
                                 ))}
                             </ul>
                             <p className="pt-4">
-                                Wnode’s mission is to democratise access to compute and create a Planetary,
+                                Wenode’s mission is to democratise access to compute and create a Planetary,
                                 truly community-owned intelligence layer.
                             </p>
                         </Section>
@@ -161,18 +161,18 @@ export default function WhitepaperPage() {
                                     <li className="flex gap-3 items-center"><span className="w-1.5 h-1.5 bg-blue-500 rounded-full" /> Regulatory clarity</li>
                                 </ul>
                                 <p className="pt-4 font-bold text-white">
-                                    Wnode addresses all four problems simultaneously.
+                                    Wenode addresses all four problems simultaneously.
                                 </p>
                             </SubSection>
                         </Section>
 
-                        {/* 4. Wnode Overview */}
-                        <Section id="wnode-overview" title="4. Wnode Overview">
-                            <p>Wnode is a distributed compute network where:</p>
+                        {/* 4. Wenode Overview */}
+                        <Section id="wnode-overview" title="4. Wenode Overview">
+                            <p>Wenode is a distributed compute network where:</p>
                             <ul className="list-none space-y-3 pl-4">
                                 <li className="flex gap-3 items-start"><span className="text-blue-500 mt-1">•</span> <span><strong className="text-white">Nodlrs</strong> contribute Compute – get paid in USD and/or Tokens</span></li>
                                 <li className="flex gap-3 items-start"><span className="text-blue-500 mt-1">•</span> <span><strong className="text-white">Mesh Clients</strong> submit compute tasks – Pay in USD and/or Tokens</span></li>
-                                <li className="flex gap-3 items-start"><span className="text-blue-500 mt-1">•</span> <span><strong className="text-white">WNODE tokens</strong> coordinate incentives</span></li>
+                                <li className="flex gap-3 items-start"><span className="text-blue-500 mt-1">•</span> <span><strong className="text-white">WENODE tokens</strong> coordinate incentives</span></li>
                                 <li className="flex gap-3 items-start"><span className="text-blue-500 mt-1">•</span> <span><strong className="text-white">Governance</strong> ensures fairness and transparency</span></li>
                             </ul>
                             <p className="pt-4">The Mesh routes tasks to nodes based on:</p>
@@ -252,7 +252,7 @@ export default function WhitepaperPage() {
 
                         {/* 6. Governance Model */}
                         <Section id="governance-model" title="6. Governance Model">
-                            <p>Wnode governance is designed to be:</p>
+                            <p>Wenode governance is designed to be:</p>
                             <ul className="grid grid-cols-2 gap-4 pt-2">
                                 {["Transparent", "Capture-resistant", "Role-based", "Constitutionally constrained"].map(item => (
                                     <li key={item} className="p-4 bg-white/[0.02] border border-white/5 text-center text-xs font-bold uppercase tracking-widest text-white">{item}</li>
@@ -300,7 +300,7 @@ export default function WhitepaperPage() {
                         {/* 7. Tokenomics */}
                         <Section id="tokenomics" title="7. Tokenomics">
                             <SubSection id="token-utility" title="7.1 Token Utility">
-                                <p>WNODE is used for:</p>
+                                <p>WENODE is used for:</p>
                                 <ul className="list-none space-y-2 pl-4">
                                     <li className="flex gap-3 items-start"><span className="text-blue-500 mt-1">•</span> <span>Node rewards (Not compute payment)</span></li>
                                     <li className="flex gap-3 items-start"><span className="text-blue-500 mt-1">•</span> <span>Incentives</span></li>
@@ -342,9 +342,9 @@ export default function WhitepaperPage() {
 
                         {/* 8. Regulatory Considerations */}
                         <Section id="regulatory-considerations" title="8. Regulatory Considerations">
-                            <p>Wnode is designed to be compliant and transparent.</p>
+                            <p>Wenode is designed to be compliant and transparent.</p>
                             <SubSection id="token-classification" title="8.1 Token Classification">
-                                <p>WNODE is a utility token, justified by:</p>
+                                <p>WENODE is a utility token, justified by:</p>
                                 <ul className="list-none space-y-2 pl-4">
                                     <li className="flex gap-3 items-start"><span className="text-blue-500 mt-1">•</span> <span>Required for rewards</span></li>
                                     <li className="flex gap-3 items-start"><span className="text-blue-500 mt-1">•</span> <span>Required to pay partners</span></li>
@@ -446,13 +446,13 @@ export default function WhitepaperPage() {
                         {/* 11. Conclusion */}
                         <Section id="conclusion" title="11. Conclusion">
                             <p>
-                                Wnode represents a new model for global compute: decentralized, confidential,
+                                Wenode represents a new model for global compute: decentralized, confidential,
                                 verifiable, and governed by the community. By combining distributed hardware,
-                                cryptographic verification, and transparent governance, Wnode creates a sustainable,
+                                cryptographic verification, and transparent governance, Wenode creates a sustainable,
                                 fair, and scalable compute layer for the AI-driven future.
                             </p>
                             <p className="text-white font-bold text-xl md:text-2xl leading-tight">
-                                Wnode Mesh is a Planetary truly community-owned intelligence layer.
+                                Wenode Mesh is a Planetary truly community-owned intelligence layer.
                             </p>
                         </Section>
 

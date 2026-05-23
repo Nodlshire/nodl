@@ -28,18 +28,23 @@ export default function CTAModal({ isOpen, onClose, mode }: CTAModalProps) {
             tag: "beta_tester"
         },
         waitlist: {
-            title: "Join the Waitlist",
-            line: "We'll notify you as soon as new node allocations become available.",
+            title: "Champion Wenode",
+            line: "Help us to promote Wenode to your audience and champion our movement",
             tag: "waitlist"
         },
         developer: {
             title: "Beta Developer",
-            line: "Get early API access and start building on the wnode mesh.",
+            line: "Get early access and start building on the Wenode mesh.",
             tag: "developer"
         },
         investor: {
             title: "Nodlr Waitlist",
-            line: "Join the priority list to become a node operator and activate your device on the mesh.",
+            line: (
+                <>
+                    Join the priority list to become a node operator and activate your device on the mesh.
+                    <span className="block mt-2 text-sm text-blue-500 font-bold">Launch June-July</span>
+                </>
+            ),
             tag: "investor"
         },
         persona_creator: {

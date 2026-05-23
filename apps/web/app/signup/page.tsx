@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 
 /**
- * Premium Signup Page for Wnode
+ * Premium Signup Page for Wenode
  * This handles the initial email entry and Stripe onboarding redirect.
  */
 function SignupContent() {
@@ -87,12 +87,12 @@ function SignupContent() {
             <div className="absolute inset-0 bg-purple-500 blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-700 rounded-full" />
             <img 
                 src="/logo.png" 
-                alt="Wnode Logo" 
+                alt="Wenode Logo" 
                 className="relative w-12 h-auto drop-shadow-2xl transition-transform duration-700 group-hover:rotate-[5deg]"
             />
           </Link>
           <div className="text-center">
-            <h1 className="text-2xl font-black tracking-[0.3em] uppercase italic">Wnode</h1>
+            <h1 className="text-2xl font-black tracking-[0.3em] uppercase italic">Wenode</h1>
             <p className="text-[9px] uppercase tracking-[0.4em] text-purple-400/60 font-medium font-mono">Operator_Provisioning v2.1</p>
           </div>
         </div>
@@ -190,7 +190,7 @@ function SignupContent() {
 
               <div className="mt-8 pt-8 border-t border-white/5">
                 <p className="text-[10px] text-slate-600 leading-relaxed text-center uppercase tracking-wide italic">
-                  By joining, you agree to the Wnode Network Participation Protocol and peer-to-peer settlement terms.
+                  By joining, you agree to the Wenode Network Participation Protocol and peer-to-peer settlement terms.
                 </p>
               </div>
             </div>

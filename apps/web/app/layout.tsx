@@ -15,10 +15,10 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-    title: "Wnode — Own Your Network. Own Your Future.",
-    description: "Wnode is a sovereign mesh economy platform that lets you create, grow, and monetise your own network. Join the beta or get on the waitlist.",
+    title: "Wenode — Own Your Network. Own Your Future.",
+    description: "Wenode is a sovereign mesh economy platform that lets you create, grow, and monetise your own network. Join the beta or get on the waitlist.",
     openGraph: {
-        title: "Wnode — Own Your Network. Own Your Future.",
+        title: "Wenode — Own Your Network. Own Your Future.",
         description: "The sovereign mesh economy platform.",
         type: "website",
         url: "https://wnode.one",

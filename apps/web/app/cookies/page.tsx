@@ -11,13 +11,13 @@ export default function CookiePage() {
                     
                     <div className="space-y-16 text-slate-400 text-lg md:text-xl leading-relaxed font-light">
                         <section className="border-t border-white/10 pt-12">
-                            <h2 className="text-sm font-bold text-blue-500 uppercase tracking-[0.3em] mb-6">Wnode Ltd. Cookie Policy</h2>
+                            <h2 className="text-sm font-bold text-blue-500 uppercase tracking-[0.3em] mb-6">Wenode Ltd. Cookie Policy</h2>
                             <p className="text-white font-medium mb-4">Last Updated: April 2026</p>
                         </section>
 
                         <section>
                             <p>
-                                Wnode Ltd. ("we", "us", or "our") believes in digital sovereignty. Our use of cookies is strictly functional 
+                                Wenode Ltd. ("we", "us", or "our") believes in digital sovereignty. Our use of cookies is strictly functional 
                                 and designed to meet global privacy standards, including the <span className="text-white">UK/EU GDPR</span> 
                                 and <span className="text-white">US State Privacy Laws</span>.
                             </p>
@@ -32,7 +32,7 @@ export default function CookiePage() {
                             <h2 className="text-2xl font-bold text-white mb-6 uppercase tracking-tight">How we use them</h2>
                             <p>
                                 We only use <span className="text-white">Strictly Necessary</span> cookies. These are essential for 
-                                authentication and session management within the Wnode Dashboards.
+                                authentication and session management within the Wenode Dashboards.
                             </p>
                         </section>
 

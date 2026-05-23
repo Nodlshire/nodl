@@ -25,7 +25,7 @@ export default function TreasuryTransparencyPage() {
                     <section className="space-y-6">
                         <h2 className="text-xl font-bold text-white uppercase tracking-tight font-space-grotesk">Purpose of the Treasury</h2>
                         <p className="text-slate-400 leading-relaxed">
-                            The Wnode Treasury exists to ensure the long-term sustainability and growth of the Mesh. It is a community-owned reserve used to fund infrastructure, R&D, and network expansion according to the priorities set by the DAO.
+                            The Wenode Treasury exists to ensure the long-term sustainability and growth of the Mesh. It is a community-owned reserve used to fund infrastructure, R&D, and network expansion according to the priorities set by the DAO.
                         </p>
                     </section>
 

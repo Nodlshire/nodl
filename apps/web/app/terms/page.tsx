@@ -9,7 +9,7 @@ export default function TermsPage() {
                 <div className="space-y-12 text-gray-400 leading-relaxed">
                     <section>
                         <h2 className="text-xl font-bold text-white mb-4">1. Introduction</h2>
-                        <p>Welcome to Wnode. By accessing our service, you agree to be bound by these terms.</p>
+                        <p>Welcome to Wenode. By accessing our service, you agree to be bound by these terms.</p>
                     </section>
 
                     <section>
@@ -24,12 +24,12 @@ export default function TermsPage() {
 
                     <section>
                         <h2 className="text-xl font-bold text-white mb-4">4. Intellectual Property</h2>
-                        <p>Wnode remains the property of Wnode Ltd. Your network data remains your sovereign asset.</p>
+                        <p>Wenode remains the property of Wenode Ltd. Your network data remains your sovereign asset.</p>
                     </section>
 
                     <section>
                         <h2 className="text-xl font-bold text-white mb-4">5. Limitation of Liability</h2>
-                        <p>Wnode is provided "as is" without any warranties of any kind.</p>
+                        <p>Wenode is provided "as is" without any warranties of any kind.</p>
                     </section>
 
                     <section>

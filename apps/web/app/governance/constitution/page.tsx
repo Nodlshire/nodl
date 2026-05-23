@@ -40,7 +40,7 @@ export default function ConstitutionPage() {
                     <div className="space-y-6 pb-8 border-b border-white/10">
                         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
                             <div className="space-y-2">
-                                <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-white font-space-grotesk uppercase">WNODE CONSTITUTION v2.1</h1>
+                                <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-white font-space-grotesk uppercase">WENODE CONSTITUTION v2.1</h1>
                                 <p className="text-xs uppercase tracking-[0.4em] text-blue-500 font-bold">Official Governance Charter — Full Text Version</p>
                             </div>
                             <a 
@@ -85,9 +85,9 @@ export default function ConstitutionPage() {
                                 <p>By: Stephen Soos (WUID 1000001-0426-01-AA)</p>
                                 <p>Founder • Architect • Initial Steward • Initial Governance Board Member</p>
                                 
-                                <p>Wnode was created as a community-owned, community-governed, and AI-powered planetary compute mesh.</p>
+                                <p>Wenode was created as a community-owned, community-governed, and AI-powered planetary compute mesh.</p>
                                 
-                                <p>As the Founder, I established this Constitution to ensure that Wnode remains:</p>
+                                <p>As the Founder, I established this Constitution to ensure that Wenode remains:</p>
                                 <ul className="list-disc pl-5 space-y-2 text-slate-400">
                                     <li>open,</li>
                                     <li>decentralised,</li>
@@ -97,13 +97,13 @@ export default function ConstitutionPage() {
                                     <li>permanently aligned with the interests of its users, node operators, and token holders.</li>
                                 </ul>
 
-                                <p>I recognise that the Wnode Mesh belongs to the community, and that governance must always remain accountable to those who operate, support, and rely upon it.</p>
+                                <p>I recognise that the Wenode Mesh belongs to the community, and that governance must always remain accountable to those who operate, support, and rely upon it.</p>
                                 
-                                <p>This Constitution v2.1 sets out the governance structure, rights, duties, and safeguards that protect the Wnode Mesh, the DAO, and the community for all future generations. It establishes full operational sovereignty through Wnode-owned servers, development environments, power systems (including solar arrays), and a recursive sovereign AI LLM.</p>
+                                <p>This Constitution v2.1 sets out the governance structure, rights, duties, and safeguards that protect the Wenode Mesh, the DAO, and the community for all future generations. It establishes full operational sovereignty through Wenode-owned servers, development environments, power systems (including solar arrays), and a recursive sovereign AI LLM.</p>
                                 
-                                <p>Wnode is deliberately built for maximum independence — owning and operating its own critical infrastructure to eliminate reliance on third-party cloud providers and ensure resilience against censorship, deplatforming, or external control.</p>
+                                <p>Wenode is deliberately built for maximum independence — owning and operating its own critical infrastructure to eliminate reliance on third-party cloud providers and ensure resilience against censorship, deplatforming, or external control.</p>
                                 
-                                <p>It is adopted with the shared commitment that Wnode shall remain a public good, a community asset, and a truly sovereign, decentralised network governed by its participants with a strict 1 Soul = 1 Vote structure.</p>
+                                <p>It is adopted with the shared commitment that Wenode shall remain a public good, a community asset, and a truly sovereign, decentralised network governed by its participants with a strict 1 Soul = 1 Vote structure.</p>
                             </div>
                         </div>
 
@@ -118,18 +118,18 @@ export default function ConstitutionPage() {
                                 
                                 <div className="space-y-6">
                                     <div className="space-y-2">
-                                        <h3 className="text-white font-bold text-sm tracking-tight uppercase">1.1 “Wnode Mesh”</h3>
+                                        <h3 className="text-white font-bold text-sm tracking-tight uppercase">1.1 “Wenode Mesh”</h3>
                                         <p className="text-slate-400 text-sm leading-relaxed pl-4 border-l border-white/5">The decentralised compute network operated collectively by node operators, governed by the DAO, and maintained through the governance structures defined in this Constitution.</p>
                                     </div>
 
                                     <div className="space-y-2">
-                                        <h3 className="text-white font-bold text-sm tracking-tight uppercase">1.2 “DAO” or “Wnode DAO”</h3>
+                                        <h3 className="text-white font-bold text-sm tracking-tight uppercase">1.2 “DAO” or “Wenode DAO”</h3>
                                         <p className="text-slate-400 text-sm leading-relaxed pl-4 border-l border-white/5">The decentralised autonomous organisation composed of verified token holders and NODLR Souls, empowered to vote on proposals and amend this Constitution.</p>
                                     </div>
 
                                     <div className="space-y-2">
                                         <h3 className="text-white font-bold text-sm tracking-tight uppercase">1.3 “Founder”</h3>
-                                        <p className="text-slate-400 text-sm leading-relaxed pl-4 border-l border-white/5">Stephen Soos (WUID 1000001-0426-01-AA), the creator and architect of the Wnode Mesh, and the individual who established the initial governance framework, token model, and operational architecture.</p>
+                                        <p className="text-slate-400 text-sm leading-relaxed pl-4 border-l border-white/5">Stephen Soos (WUID 1000001-0426-01-AA), the creator and architect of the Wenode Mesh, and the individual who established the initial governance framework, token model, and operational architecture.</p>
                                     </div>
 
                                     <div className="space-y-2">
@@ -205,7 +205,7 @@ export default function ConstitutionPage() {
 
                                     <div className="space-y-2">
                                         <h3 className="text-white font-bold text-sm tracking-tight uppercase">1.11 “WUID”</h3>
-                                        <p className="text-slate-400 text-sm leading-relaxed pl-4 border-l border-white/5">The Wnode Universal Identifier assigned to each Soul. The Founder’s WUID is 1000001-0426-01-AA.</p>
+                                        <p className="text-slate-400 text-sm leading-relaxed pl-4 border-l border-white/5">The Wenode Universal Identifier assigned to each Soul. The Founder’s WUID is 1000001-0426-01-AA.</p>
                                     </div>
 
                                     <div className="space-y-2">
@@ -253,13 +253,13 @@ export default function ConstitutionPage() {
                                     </div>
 
                                     <div className="space-y-2">
-                                        <h3 className="text-white font-bold text-sm tracking-tight uppercase">1.17 “Wnode Token”</h3>
+                                        <h3 className="text-white font-bold text-sm tracking-tight uppercase">1.17 “Wenode Token”</h3>
                                         <p className="text-slate-400 text-sm leading-relaxed pl-4 border-l border-white/5">The governance-adjacent utility token of the Mesh, used for staking, incentives, and economic participation. Tokens do not grant voting rights (see Section 3).</p>
                                     </div>
 
                                     <div className="space-y-2">
                                         <h3 className="text-white font-bold text-sm tracking-tight uppercase">1.18 “Constitution”</h3>
-                                        <p className="text-slate-400 text-sm leading-relaxed pl-4 border-l border-white/5">This document, known as the Wnode Constitution v2.1, including all amendments ratified by the DAO in accordance with Section 5.</p>
+                                        <p className="text-slate-400 text-sm leading-relaxed pl-4 border-l border-white/5">This document, known as the Wenode Constitution v2.1, including all amendments ratified by the DAO in accordance with Section 5.</p>
                                     </div>
 
                                     <div className="space-y-2">
@@ -302,8 +302,8 @@ export default function ConstitutionPage() {
                         <div id="section2" className="scroll-mt-24 space-y-4">
                             <h2 className="text-xl font-bold text-white uppercase tracking-tight font-space-grotesk">SECTION 2 — GOVERNANCE HIERARCHY</h2>
                             <div className="space-y-4">
-                                <p>This section establishes the structural order of authority within the Wnode DAO and defines how governance power is distributed, limited, and safeguarded.</p>
-                                <p>The Wnode governance model is a hybrid constitutional system combining:</p>
+                                <p>This section establishes the structural order of authority within the Wenode DAO and defines how governance power is distributed, limited, and safeguarded.</p>
+                                <p>The Wenode governance model is a hybrid constitutional system combining:</p>
                                 <ul className="list-disc pl-5 space-y-2 text-slate-400">
                                     <li>decentralised community voting (1 Soul = 1 Vote),</li>
                                     <li>Founder-level constitutional guardianship with progressive decentralisation,</li>
@@ -315,8 +315,8 @@ export default function ConstitutionPage() {
                                 
                                 <div className="space-y-8 pt-4">
                                     <div className="space-y-4">
-                                        <h3 className="text-lg font-bold text-white uppercase tracking-tight">2.1 The DAO (Wnode DAO)</h3>
-                                        <p>The DAO is the sovereign community governance body of the Wnode Mesh.</p>
+                                        <h3 className="text-lg font-bold text-white uppercase tracking-tight">2.1 The DAO (Wenode DAO)</h3>
+                                        <p>The DAO is the sovereign community governance body of the Wenode Mesh.</p>
                                         <div className="space-y-2">
                                             <p>The DAO:</p>
                                             <ul className="list-disc pl-5 space-y-1 text-slate-400">
@@ -551,13 +551,13 @@ export default function ConstitutionPage() {
                         <div id="section3" className="scroll-mt-24 space-y-4">
                             <h2 className="text-xl font-bold text-white uppercase tracking-tight font-space-grotesk">SECTION 3 — SOULS, IDENTITY & VOTING RIGHTS</h2>
                             <div className="space-y-4">
-                                <p>This section defines the identity system of the Wnode Mesh, the structure of Souls, and the rules governing voting rights within the DAO.</p>
+                                <p>This section defines the identity system of the Wenode Mesh, the structure of Souls, and the rules governing voting rights within the DAO.</p>
                                 <p>It establishes the 1 Soul = 1 Vote model and ensures that governance remains decentralised, fair, and resistant to capture.</p>
                                 
                                 <div className="space-y-8 pt-4">
                                     <div className="space-y-3">
                                         <h3 className="text-lg font-bold text-white uppercase tracking-tight">3.1 Souls as the Foundation of Identity</h3>
-                                        <p>A Soul is the core identity primitive of the Wnode Mesh.</p>
+                                        <p>A Soul is the core identity primitive of the Wenode Mesh.</p>
                                         <div className="space-y-2">
                                             <p>A Soul:</p>
                                             <ul className="list-disc pl-5 space-y-1 text-slate-400">
@@ -625,13 +625,13 @@ export default function ConstitutionPage() {
                                                 <li>allow participation in constitutional amendments</li>
                                             </ul>
                                         </div>
-                                        <p>Voting Souls are the only source of governance power in the Wnode Mesh.</p>
+                                        <p>Voting Souls are the only source of governance power in the Wenode Mesh.</p>
                                     </div>
 
                                     <div className="space-y-3">
                                         <h3 className="text-lg font-bold text-white uppercase tracking-tight">3.5 1 Soul = 1 Vote</h3>
                                         <p>A Soul is a flesh and blood human being, or Person.</p>
-                                        <p>The Wnode Mesh uses a strict one-person-one-vote model.</p>
+                                        <p>The Wenode Mesh uses a strict one-person-one-vote model.</p>
                                         <div className="space-y-2">
                                             <p>This prevents:</p>
                                             <ul className="list-disc pl-5 space-y-1 text-slate-400">
@@ -677,13 +677,13 @@ export default function ConstitutionPage() {
 
                                     <div className="space-y-3">
                                         <h3 className="text-lg font-bold text-white uppercase tracking-tight">3.7 WUID Assignment</h3>
-                                        <p>Each Soul receives a Wnode Universal Identifier (WUID).</p>
+                                        <p>Each Soul receives a Wenode Universal Identifier (WUID).</p>
                                         <div className="space-y-2">
                                             <p>A WUID:</p>
                                             <ul className="list-disc pl-5 space-y-1 text-slate-400">
                                                 <li>is permanent</li>
                                                 <li>is globally unique</li>
-                                                <li>identifies the Soul across all Wnode systems</li>
+                                                <li>identifies the Soul across all Wenode systems</li>
                                                 <li>is required for governance participation</li>
                                                 <li>is required for node operation</li>
                                                 <li>is required for buying Compute</li>
@@ -772,7 +772,7 @@ export default function ConstitutionPage() {
                                                 <li>do not override Souls</li>
                                             </ul>
                                         </div>
-                                        <p>Tokens are economic assets. Souls are governance assets. This separation protects the Wnode Mesh from token-based governance capture. <span className="text-blue-500 font-bold uppercase text-xs">Core Immutable Provision.</span></p>
+                                        <p>Tokens are economic assets. Souls are governance assets. This separation protects the Wenode Mesh from token-based governance capture. <span className="text-blue-500 font-bold uppercase text-xs">Core Immutable Provision.</span></p>
                                     </div>
 
                                     <div className="space-y-3">
@@ -796,14 +796,14 @@ export default function ConstitutionPage() {
                         <div id="section4" className="scroll-mt-24 space-y-4">
                             <h2 className="text-xl font-bold text-white uppercase tracking-tight font-space-grotesk">SECTION 4 — NODES, NODLRS & OPERATIONAL PARTICIPATION</h2>
                             <div className="space-y-4">
-                                <p>This section defines the operational layer of the Wnode Mesh, including node operation, NODLR status, verification requirements, and the rules governing participation in the compute network.</p>
+                                <p>This section defines the operational layer of the Wenode Mesh, including node operation, NODLR status, verification requirements, and the rules governing participation in the compute network.</p>
                                 <p>It establishes the standards for running nodes, earning revenue, maintaining network integrity, and participating in governance.</p>
                                 
                                 <div className="space-y-8 pt-4">
                                     <div className="space-y-3">
                                         <h3 className="text-lg font-bold text-white uppercase tracking-tight">4.1 Node Definition</h3>
                                         <div className="space-y-2">
-                                            <p>A Node is any compute device registered to the Wnode Mesh that:</p>
+                                            <p>A Node is any compute device registered to the Wenode Mesh that:</p>
                                             <ul className="list-disc pl-5 space-y-1 text-slate-400">
                                                 <li>contributes compute resources,</li>
                                                 <li>participates in distributed workloads,</li>
@@ -811,7 +811,7 @@ export default function ConstitutionPage() {
                                                 <li>is linked to a Soul and WUID,</li>
                                             </ul>
                                         </div>
-                                        <p>Nodes form the physical backbone of the Wnode Mesh.</p>
+                                        <p>Nodes form the physical backbone of the Wenode Mesh.</p>
                                     </div>
 
                                     <div className="space-y-3">
@@ -820,7 +820,7 @@ export default function ConstitutionPage() {
                                             <p>To operate a node, an individual must:</p>
                                             <ul className="list-disc pl-5 space-y-1 text-slate-400">
                                                 <li>hold a Soul (Locked or Voting),</li>
-                                                <li>register the device with the Wnode Mesh,</li>
+                                                <li>register the device with the Wenode Mesh,</li>
                                                 <li>maintain uptime requirements,</li>
                                                 <li>comply with Stripe verification checks,</li>
                                                 <li>adhere to security and compliance standards.</li>
@@ -842,7 +842,7 @@ export default function ConstitutionPage() {
                                                 <li>gains full DAO voting rights.</li>
                                             </ul>
                                         </div>
-                                        <p>NODLRs are the core operational participants of the Wnode Mesh.</p>
+                                        <p>NODLRs are the core operational participants of the Wenode Mesh.</p>
                                     </div>
 
                                     <div className="space-y-3">
@@ -1000,7 +1000,7 @@ export default function ConstitutionPage() {
                                                 <li>maintain secure hardware,</li>
                                                 <li>avoid prohibited workloads,</li>
                                                 <li>comply with jurisdictional regulations,</li>
-                                                <li>avoid interference with the Wnode Mesh,</li>
+                                                <li>avoid interference with the Wenode Mesh,</li>
                                                 <li>avoid attempts to manipulate workloads or rewards.</li>
                                                 <li>run nodes in Virtual machines or environments</li>
                                             </ul>
@@ -1039,7 +1039,7 @@ export default function ConstitutionPage() {
                         <div id="section5" className="scroll-mt-24 space-y-4">
                             <h2 className="text-xl font-bold text-white uppercase tracking-tight font-space-grotesk">SECTION 5 — GOVERNANCE PROPOSALS & VOTING PROCEDURES</h2>
                             <div className="space-y-4">
-                                <p>This section defines how governance proposals are created, submitted, validated, voted on, and enacted within the Wnode Mesh.</p>
+                                <p>This section defines how governance proposals are created, submitted, validated, voted on, and enacted within the Wenode Mesh.</p>
                                 <p>It establishes the rules for DAO participation, proposal types, voting thresholds, and the constitutional safeguards that prevent governance abuse.</p>
                                 
                                 <div className="space-y-8 pt-4">
@@ -1286,7 +1286,7 @@ export default function ConstitutionPage() {
                             <h2 className="text-xl font-bold text-white uppercase tracking-tight font-space-grotesk">SECTION 6 — THE STEWARDSHIP LICENCE</h2>
                             <div className="space-y-4">
                                 <p>The Stewardship Licence defines the commercial, operational, and administrative authority granted to the Steward.</p>
-                                <p>It establishes the rights, obligations, limitations, and revocation conditions under which the Steward operates the Wnode Mesh.</p>
+                                <p>It establishes the rights, obligations, limitations, and revocation conditions under which the Steward operates the Wenode Mesh.</p>
                                 <p>The Stewardship Licence is a commercial licence, not a governance role. The Founder is the Initial Steward.</p>
                                 
                                 <div className="space-y-8 pt-4">
@@ -1420,7 +1420,7 @@ export default function ConstitutionPage() {
                                             <p>The Steward must:</p>
                                             <ul className="list-disc pl-5 space-y-1 text-slate-400">
                                                 <li>comply with DAO and Governance Board directives</li>
-                                                <li>maintain the integrity of the Wnode Mesh</li>
+                                                <li>maintain the integrity of the Wenode Mesh</li>
                                                 <li>avoid actions that threaten long-term stability</li>
                                                 <li>uphold the Founder’s constitutional rights</li>
                                                 <li>maintain the Affiliate Affiliate Tree structure</li>
@@ -1500,7 +1500,7 @@ export default function ConstitutionPage() {
                                                 <li>cannot use revenue to influence governance</li>
                                             </ul>
                                         </div>
-                                        <p>This separation protects the Wnode Mesh from commercial governance capture.</p>
+                                        <p>This separation protects the Wenode Mesh from commercial governance capture.</p>
                                     </div>
 
                                     <div className="space-y-3">
@@ -1528,7 +1528,7 @@ export default function ConstitutionPage() {
                         <div id="section7" className="scroll-mt-24 space-y-4">
                             <h2 className="text-xl font-bold text-white uppercase tracking-tight font-space-grotesk">SECTION 7 — Affiliate Tree ASSETS</h2>
                             <div className="space-y-4">
-                                <p>Affiliate Tree Assets are commercial, non-governance, non-token structures representing referral lineage and organic growth within the Wnode Mesh. They are permanent economic assets but have zero influence over governance, voting, token supply, or constitutional authority.</p>
+                                <p>Affiliate Tree Assets are commercial, non-governance, non-token structures representing referral lineage and organic growth within the Wenode Mesh. They are permanent economic assets but have zero influence over governance, voting, token supply, or constitutional authority.</p>
                                 <p>This section defines the rights, limitations, and protections for all Affiliate Tree Assets.</p>
                                 
                                 <div className="space-y-8 pt-4">
@@ -1709,7 +1709,7 @@ export default function ConstitutionPage() {
                                                 <li>be used to buy political power</li>
                                             </ul>
                                         </div>
-                                        <p>This separation protects the Wnode Mesh from commercial governance capture. <span className="text-blue-500 font-bold uppercase text-xs">Core Immutable Provision.</span></p>
+                                        <p>This separation protects the Wenode Mesh from commercial governance capture. <span className="text-blue-500 font-bold uppercase text-xs">Core Immutable Provision.</span></p>
                                     </div>
 
                                     <div className="space-y-3">
@@ -1776,8 +1776,8 @@ export default function ConstitutionPage() {
                             <h2 className="text-xl font-bold text-white uppercase tracking-tight font-space-grotesk">SECTION 8 — EMERGENCY POWERS & NETWORK PROTECTION</h2>
                             <div className="space-y-4">
                                 <p>This section defines the emergency powers granted to the Founder Board and the Infrastructure Manager (IM), and the conditions under which these powers may be activated.</p>
-                                <p>Emergency powers exist solely to protect the Wnode Mesh from catastrophic harm and cannot be used for political or commercial purposes.</p>
-                                <p>These powers ensure the Wnode Mesh remains secure, stable, and resilient under extreme conditions.</p>
+                                <p>Emergency powers exist solely to protect the Wenode Mesh from catastrophic harm and cannot be used for political or commercial purposes.</p>
+                                <p>These powers ensure the Wenode Mesh remains secure, stable, and resilient under extreme conditions.</p>
                                 
                                 <div className="space-y-8 pt-4">
                                     <div className="space-y-3">
@@ -1950,12 +1950,12 @@ export default function ConstitutionPage() {
                         <div id="section9" className="scroll-mt-24 space-y-4">
                             <h2 className="text-xl font-bold text-white uppercase tracking-tight font-space-grotesk">SECTION 9 — TOKENOMICS & ECONOMIC MODEL</h2>
                             <div className="space-y-4">
-                                <p>This section defines the economic framework of the Wnode Mesh, the role of the Wnode Token, Treasury management, and protections for investors, node operators, and the broader community.</p>
+                                <p>This section defines the economic framework of the Wenode Mesh, the role of the Wenode Token, Treasury management, and protections for investors, node operators, and the broader community.</p>
                                 
                                 <div className="space-y-8 pt-4">
                                     <div className="space-y-3">
-                                        <h3 className="text-lg font-bold text-white uppercase tracking-tight">9.1 Purpose of the Wnode Token</h3>
-                                        <p>The Wnode Token is a utility and incentive token. It is designed to support network growth, reward participation, and enable economic activity within the Mesh.</p>
+                                        <h3 className="text-lg font-bold text-white uppercase tracking-tight">9.1 Purpose of the Wenode Token</h3>
+                                        <p>The Wenode Token is a utility and incentive token. It is designed to support network growth, reward participation, and enable economic activity within the Mesh.</p>
                                         <p className="text-white font-bold">Critical Separation:</p>
                                         <p>Governance power resides exclusively with Souls (1 Soul = 1 Vote). Token holdings confer no voting rights, no proposal submission rights, and no governance influence. <span className="text-blue-500 font-bold uppercase text-xs">Core Immutable Provision.</span></p>
                                     </div>
@@ -1963,7 +1963,7 @@ export default function ConstitutionPage() {
                                     <div className="space-y-3">
                                         <h3 className="text-lg font-bold text-white uppercase tracking-tight">9.2 Token Supply and Issuance</h3>
                                         <ul className="list-disc pl-5 space-y-1 text-slate-400">
-                                            <li>The total token supply is fixed or algorithmically capped as detailed in the official Wnode Technical Whitepaper.</li>
+                                            <li>The total token supply is fixed or algorithmically capped as detailed in the official Wenode Technical Whitepaper.</li>
                                             <li>No unilateral minting is permitted.</li>
                                             <li>Any changes to token supply mechanics (including burns or additional emissions) require an Economic Proposal ({">"}87% approval).</li>
                                             <li>Initial token distribution, team allocations, and vesting schedules shall be publicly disclosed at launch and subject to standard industry vesting (minimum 12–36 months with cliffs where applicable).</li>
@@ -1973,7 +1973,7 @@ export default function ConstitutionPage() {
                                     <div className="space-y-3">
                                         <h3 className="text-lg font-bold text-white uppercase tracking-tight">9.3 Token Utility</h3>
                                         <div className="space-y-2">
-                                            <p>The Wnode Token may be used for:</p>
+                                            <p>The Wenode Token may be used for:</p>
                                             <ul className="list-disc pl-5 space-y-1 text-slate-400">
                                                 <li>Staking to earn network incentives</li>
                                                 <li>Payment of certain platform fees (with possible discounts)</li>
@@ -2073,13 +2073,13 @@ export default function ConstitutionPage() {
                         <div id="section10" className="scroll-mt-24 space-y-4">
                             <h2 className="text-xl font-bold text-white uppercase tracking-tight font-space-grotesk">SECTION 10 — COMPLIANCE, LIABILITY & GENERAL PROVISIONS</h2>
                             <div className="space-y-4">
-                                <p>This section establishes the compliance framework, liability limitations, and general legal provisions that govern the Wnode Mesh and all participants.</p>
+                                <p>This section establishes the compliance framework, liability limitations, and general legal provisions that govern the Wenode Mesh and all participants.</p>
                                 
                                 <div className="space-y-8 pt-4">
                                     <div className="space-y-3">
                                         <h3 className="text-lg font-bold text-white uppercase tracking-tight">10.1 Regulatory Compliance</h3>
                                         <div className="space-y-2">
-                                            <p>The Wnode Mesh and all participants shall comply with applicable laws, including but not limited to:</p>
+                                            <p>The Wenode Mesh and all participants shall comply with applicable laws, including but not limited to:</p>
                                             <ul className="list-disc pl-5 space-y-1 text-slate-400">
                                                 <li>Anti-Money Laundering (AML) and Know-Your-Customer (KYC) requirements</li>
                                                 <li>Data protection laws (including GDPR and equivalent regulations)</li>
@@ -2105,7 +2105,7 @@ export default function ConstitutionPage() {
                                             <p>To the maximum extent permitted by law:</p>
                                             <ul className="list-disc pl-5 space-y-1 text-slate-400">
                                                 <li>The DAO, Founder, Founder Board, Governance Board, Steward, Infrastructure Manager, and their respective affiliates shall not be liable for any indirect, incidental, special, consequential, or punitive damages.</li>
-                                                <li>Participants use the Wnode Mesh at their own risk.</li>
+                                                <li>Participants use the Wenode Mesh at their own risk.</li>
                                                 <li>No party shall be liable for any loss of profits, loss of data, or business interruption arising from the use or inability to use the Mesh.</li>
                                                 <li>Total liability shall not exceed the amounts paid by the participant to the Mesh in the preceding 12 months (where applicable).</li>
                                             </ul>
@@ -2370,7 +2370,7 @@ export default function ConstitutionPage() {
                                                 <li>Prohibition on token-based governance</li>
                                             </ul>
                                         </div>
-                                        <p>These provisions reflect the foundational principles of the Wnode Mesh and may only be changed under the strictest conditions.</p>
+                                        <p>These provisions reflect the foundational principles of the Wenode Mesh and may only be changed under the strictest conditions.</p>
                                     </div>
 
                                     <div className="space-y-3">
@@ -2414,12 +2414,12 @@ export default function ConstitutionPage() {
 
                                     <div className="space-y-3">
                                         <h3 className="text-lg font-bold text-white uppercase tracking-tight">12.8 Entire Agreement</h3>
-                                        <p>This Constitution, together with the Stewardship Licence Agreement and publicly referenced technical documents (Whitepaper, Node Rules, etc.), constitutes the entire understanding between the DAO, its participants, and the Founder regarding the governance of the Wnode Mesh.</p>
+                                        <p>This Constitution, together with the Stewardship Licence Agreement and publicly referenced technical documents (Whitepaper, Node Rules, etc.), constitutes the entire understanding between the DAO, its participants, and the Founder regarding the governance of the Wenode Mesh.</p>
                                     </div>
 
                                     <div className="space-y-3">
                                         <h3 className="text-lg font-bold text-white uppercase tracking-tight">12.9 Final Declaration</h3>
-                                        <p>This Constitution is adopted with the shared commitment that Wnode shall remain a public good — community-owned, community-governed, decentralised, transparent, and fair — for current and future generations.</p>
+                                        <p>This Constitution is adopted with the shared commitment that Wenode shall remain a public good — community-owned, community-governed, decentralised, transparent, and fair — for current and future generations.</p>
                                     </div>
                                 </div>
                             </div>
@@ -2431,7 +2431,7 @@ export default function ConstitutionPage() {
                         <div id="section13" className="scroll-mt-24 space-y-4">
                             <h2 className="text-xl font-bold text-white uppercase tracking-tight font-space-grotesk">SECTION 13 — SOVEREIGNTY AND INFRASTRUCTURE INDEPENDENCE</h2>
                             <div className="space-y-4">
-                                <p>Wnode is committed to achieving full operational sovereignty, technological independence, and long-term resilience. To eliminate reliance on external providers and ensure maximum control over its core systems, the Mesh shall own and operate the following critical infrastructure:</p>
+                                <p>Wenode is committed to achieving full operational sovereignty, technological independence, and long-term resilience. To eliminate reliance on external providers and ensure maximum control over its core systems, the Mesh shall own and operate the following critical infrastructure:</p>
                                 
                                 <div className="space-y-8 pt-4">
                                     <div className="space-y-3">
@@ -2439,19 +2439,19 @@ export default function ConstitutionPage() {
                                         <div className="space-y-4">
                                             <div className="space-y-2">
                                                 <p className="text-white font-bold">Own and operate its own physical servers</p>
-                                                <p className="text-slate-400">The Infrastructure Manager shall maintain and expand Wnode-owned bare-metal server infrastructure as the primary backbone for critical network coordination and verification functions.</p>
+                                                <p className="text-slate-400">The Infrastructure Manager shall maintain and expand Wenode-owned bare-metal server infrastructure as the primary backbone for critical network coordination and verification functions.</p>
                                             </div>
                                             <div className="space-y-2">
                                                 <p className="text-white font-bold">Own and operate its own primary development environment</p>
-                                                <p className="text-slate-400">All core protocol development, smart contracts, node software, platform tooling, and testing environments shall be hosted and managed within Wnode’s self-operated development infrastructure.</p>
+                                                <p className="text-slate-400">All core protocol development, smart contracts, node software, platform tooling, and testing environments shall be hosted and managed within Wenode’s self-operated development infrastructure.</p>
                                             </div>
                                             <div className="space-y-2">
                                                 <p className="text-white font-bold">Own and operate its own Uninterruptible Power Supply (UPS) and power resilience systems</p>
-                                                <p className="text-slate-400">Critical infrastructure shall be protected by Wnode-owned UPS systems and backup power solutions.</p>
+                                                <p className="text-slate-400">Critical infrastructure shall be protected by Wenode-owned UPS systems and backup power solutions.</p>
                                             </div>
                                             <div className="space-y-2">
                                                 <p className="text-white font-bold">Own and operate its own solar array</p>
-                                                <p className="text-slate-400">Wnode shall develop and maintain its own solar power generation capacity to provide clean, independent, and resilient energy to its core infrastructure.</p>
+                                                <p className="text-slate-400">Wenode shall develop and maintain its own solar power generation capacity to provide clean, independent, and resilient energy to its core infrastructure.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -2460,7 +2460,7 @@ export default function ConstitutionPage() {
                                         <h3 className="text-lg font-bold text-white uppercase tracking-tight">13.2 Sovereign AI Capability</h3>
                                         <div className="space-y-4">
                                             <p className="text-white font-bold">Own and operate its own recursive AI LLM</p>
-                                            <p>Wnode shall own and operate its own proprietary recursive Large Language Model (LLM). This sovereign AI system will be designed to:</p>
+                                            <p>Wenode shall own and operate its own proprietary recursive Large Language Model (LLM). This sovereign AI system will be designed to:</p>
                                             <ul className="list-disc pl-5 space-y-1 text-slate-400">
                                                 <li>Intelligently route jobs across the global compute mesh with superior insights, speed, and efficiency</li>
                                                 <li>Continuously learn and improve from network data and operational outcomes</li>
@@ -2468,13 +2468,13 @@ export default function ConstitutionPage() {
                                                 <li>Assist with core development, debugging, and protocol optimization</li>
                                                 <li>Provide autonomous operational intelligence to the Infrastructure Manager and Steward</li>
                                             </ul>
-                                            <p>The development, training, hosting, and governance of this recursive AI shall remain under the full control of Wnode’s sovereign infrastructure and be subject to oversight by the Infrastructure Manager and Governance Board.</p>
+                                            <p>The development, training, hosting, and governance of this recursive AI shall remain under the full control of Wenode’s sovereign infrastructure and be subject to oversight by the Infrastructure Manager and Governance Board.</p>
                                         </div>
                                     </div>
 
                                     <div className="space-y-3">
                                         <h3 className="text-lg font-bold text-white uppercase tracking-tight">13.3 Purpose of Sovereignty Measures</h3>
-                                        <p>These sovereignty principles ensure total infrastructure and technological independence. While the broader Wnode Mesh remains a decentralised network of community-operated nodes, the core coordination layer, development environment, power systems, and AI capabilities shall be protected through self-owned and self-operated infrastructure.</p>
+                                        <p>These sovereignty principles ensure total infrastructure and technological independence. While the broader Wenode Mesh remains a decentralised network of community-operated nodes, the core coordination layer, development environment, power systems, and AI capabilities shall be protected through self-owned and self-operated infrastructure.</p>
                                         <div className="space-y-2">
                                             <p>This approach delivers:</p>
                                             <ul className="list-disc pl-5 space-y-1 text-slate-400">
@@ -2510,7 +2510,7 @@ export default function ConstitutionPage() {
                             </div>
                             <div className="p-8 border border-white/5 bg-white/[0.01] rounded-sm max-w-xl mx-auto">
                                 <p className="text-[9px] text-slate-600 leading-relaxed uppercase tracking-widest font-black">
-                                    Notice: This web version is a formal rendering of the Wnode Constitution v2.1. In case of any textual discrepancy, the official signed PDF version remains the final authority.
+                                    Notice: This web version is a formal rendering of the Wenode Constitution v2.1. In case of any textual discrepancy, the official signed PDF version remains the final authority.
                                 </p>
                             </div>
                         </div>

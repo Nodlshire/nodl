@@ -82,9 +82,9 @@ export default function PersonasSection({ onOpenModal }: PersonasSectionProps) {
     return (
         <section className="py-32 bg-black border-t border-white/15">
             <div className="max-w-7xl mx-auto px-8">
-                {/* Wnode Economic Constitution Section */}
+                {/* Wenode Economic Constitution Section */}
                 <div className="mb-40 p-12 border border-white/25 bg-white/[0.02] rounded-[2.5rem] space-y-10 max-w-5xl mx-auto backdrop-blur-3xl shadow-2xl">
-                    <h3 className="text-2xl font-bold uppercase tracking-[0.3em] text-blue-500 border-b border-white/25 pb-8 text-center">Wnode Economic Constitution</h3>
+                    <h3 className="text-2xl font-bold uppercase tracking-[0.3em] text-blue-500 border-b border-white/25 pb-8 text-center">Wenode Economic Constitution</h3>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-10">
                         {/* Column 1 */}
@@ -144,7 +144,7 @@ export default function PersonasSection({ onOpenModal }: PersonasSectionProps) {
                 </div>
 
                 <h2 className="text-4xl md:text-5xl font-bold text-white uppercase tracking-tighter mb-20 font-space-grotesk text-center">
-                    Join Wnode.
+                    Join Wenode.
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {personas.map((p, i) => (

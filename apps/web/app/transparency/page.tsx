@@ -36,8 +36,8 @@ export default function TransparencyPage() {
             {/* Header */}
             <nav className="fixed top-0 w-full z-50 bg-black/50 backdrop-blur-xl border-b border-white/5 px-8 h-16 flex items-center justify-between">
                 <Link href="/" className="flex items-center gap-3 group">
-                    <img src="/logo.png" alt="Wnode" className="w-6 h-auto grayscale group-hover:grayscale-0 transition-all" />
-                    <span className="text-sm font-black tracking-[0.4em] uppercase italic">Wnode Transparency</span>
+                    <img src="/logo.png" alt="Wenode" className="w-6 h-auto grayscale group-hover:grayscale-0 transition-all" />
+                    <span className="text-sm font-black tracking-[0.4em] uppercase italic">Wenode Transparency</span>
                 </Link>
                 <Link href="/" className="text-[10px] uppercase font-bold text-slate-500 hover:text-white transition-colors tracking-widest">Back to Protocol</Link>
             </nav>
@@ -50,7 +50,7 @@ export default function TransparencyPage() {
                         Network Proof of Reserve
                     </h1>
                     <p className="text-slate-500 max-w-2xl mx-auto text-sm font-normal uppercase tracking-widest leading-loose">
-                        Real-time aggregate telemetry of the Wnode mesh architecture. <br />
+                        Real-time aggregate telemetry of the Wenode mesh architecture. <br />
                         Decentralized compute, cryptographically verified.
                     </p>
                 </section>
@@ -85,7 +85,7 @@ export default function TransparencyPage() {
                             <h2 className="text-2xl font-black tracking-tight italic uppercase">Forensic Ledger Integrity</h2>
                         </div>
                         <p className="text-slate-400 font-light leading-relaxed">
-                            The Wnode protocol enforces a strict, math-based disbursement model. Every compute cycle submitted to the mesh is recorded in the authoritative ledger, triggering automated splits for node providers, founders, and the platform treasury.
+                            The Wenode protocol enforces a strict, math-based disbursement model. Every compute cycle submitted to the mesh is recorded in the authoritative ledger, triggering automated splits for node providers, founders, and the platform treasury.
                         </p>
                         <div className="space-y-4">
                             {[
@@ -131,7 +131,7 @@ export default function TransparencyPage() {
             {/* Footer Copy */}
             <footer className="py-20 border-t border-white/5 px-8">
                 <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 opacity-50 italic">
-                    <span className="text-[10px] font-black uppercase tracking-widest">Wnode Institutional Protocol v1.4.2</span>
+                    <span className="text-[10px] font-black uppercase tracking-widest">Wenode Institutional Protocol v1.4.2</span>
                     <span className="text-[10px] uppercase font-bold text-slate-600 tracking-widest leading-loose text-center md:text-right">
                         This dashboard provides anonymized, aggregate platform metrics. <br />
                         Detailed forensic data is restricted to authorized institutional guardians.

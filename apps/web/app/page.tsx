@@ -37,7 +37,7 @@ export default function LandingPage() {
                 <div className="max-w-7xl mx-auto px-8 py-20 fade-in-section flex flex-col items-center">
                     <img 
                         src="/model.png" 
-                        alt="Wnode Sovereign Compute Model" 
+                        alt="Wenode Sovereign Compute Model" 
                         className="w-full h-auto rounded-[2rem] border border-white/15 shadow-2xl mb-12" 
                     />
                     <div className="flex flex-col items-center">

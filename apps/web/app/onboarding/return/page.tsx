@@ -180,7 +180,7 @@ function OnboardingStatus() {
                 </div>
                 <h2 className="text-2xl font-bold text-white mb-2 uppercase tracking-tight">Not Connected</h2>
                 <p className="text-slate-400 mb-8 text-sm leading-relaxed max-w-[280px] mx-auto">
-                    {`Please return to the main dashboard to link your account to the Wnode infrastructure.`}
+                    {`Please return to the main dashboard to link your account to the Wenode infrastructure.`}
                 </p>
                 <Link
                     href="/"
@@ -253,8 +253,8 @@ export default function OnboardingReturnPage() {
             <div className="relative z-10 max-w-lg w-full">
                 {/* Branding Core */}
                 <div className="flex flex-col items-center mb-10 gap-3">
-                    <img src="/logo.png" alt="Wnode" className="w-10 h-auto grayscale opacity-80" />
-                    <h1 className="text-sm font-black tracking-[0.5em] uppercase text-white italic">Wnode</h1>
+                    <img src="/logo.png" alt="Wenode" className="w-10 h-auto grayscale opacity-80" />
+                    <h1 className="text-sm font-black tracking-[0.5em] uppercase text-white italic">Wenode</h1>
                     <div className="h-px w-16 bg-gradient-to-r from-transparent via-purple-500/30 to-transparent" />
                 </div>
 

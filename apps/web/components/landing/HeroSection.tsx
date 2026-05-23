@@ -45,7 +45,7 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
                         <div className="absolute inset-0 bg-blue-500/10 blur-[120px] rounded-full animate-pulse" />
                         <img 
                             src="/steps.png" 
-                            alt="How Wnode Works" 
+                            alt="How Wenode Works" 
                             className="relative z-10 w-full h-auto drop-shadow-[0_0_30px_rgba(59,130,246,0.2)]"
                         />
                     </div>

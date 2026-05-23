@@ -5,9 +5,18 @@ import { useState } from "react";
 interface ContactModalProps {
     isOpen: boolean;
     onClose: () => void;
+    title?: string;
+    hideInquiryType?: boolean;
+    requirePhone?: boolean;
 }
 
-export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
+export default function ContactModal({ 
+    isOpen, 
+    onClose,
+    title = "Let's Be Amici",
+    hideInquiryType = false,
+    requirePhone = false
+}: ContactModalProps) {
     const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
     const [formData, setFormData] = useState({
         firstName: "",
@@ -23,10 +32,16 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         
-        if (formData.inquiryTypes.length === 0) {
+        if (!hideInquiryType && formData.inquiryTypes.length === 0) {
             alert("Please select at least one category.");
             return;
         }
+
+        // If inquiry types are hidden, provide a default for the email subject
+        const submissionData = {
+            ...formData,
+            inquiryTypes: hideInquiryType ? ["Partner Enquiry"] : formData.inquiryTypes
+        };
 
         setStatus("submitting");
         
@@ -34,7 +49,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
             const res = await fetch('/api/contact', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
+                body: JSON.stringify(submissionData),
             });
 
             if (res.ok) {
@@ -85,8 +100,8 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     </svg>
                 </button>
 
-                <h2 className="text-4xl font-bold text-white mb-2 tracking-tight uppercase">Let's Be Amici</h2>
-                <p className="text-lg text-slate-500 mb-10">Connect with the Wnode team.</p>
+                <h2 className="text-4xl font-bold text-white mb-2 tracking-tight uppercase">{title}</h2>
+                <p className="text-lg text-slate-500 mb-10">Connect with the Wenode team.</p>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -127,9 +142,10 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     </div>
 
                     <div className="space-y-2">
-                        <label className="text-xs font-bold text-slate-300 uppercase ml-2">Phone (Optional)</label>
+                        <label className="text-xs font-bold text-slate-300 uppercase ml-2">Phone {requirePhone ? '*' : '(Optional)'}</label>
                         <input
                             type="tel"
+                            required={requirePhone}
                             placeholder="+1 (555) 000-0000"
                             className="w-full bg-white/5 border border-white/20 rounded-2xl px-6 py-4 text-white outline-none focus:border-blue-500/50 transition-colors placeholder:text-slate-600"
                             value={formData.phone}
@@ -137,37 +153,39 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                         />
                     </div>
 
-                    <div className="space-y-4">
-                        <p className="text-xs font-bold text-slate-300 uppercase tracking-[0.2em]">Inquiry Type * (Select at least one)</p>
-                        <div className="flex flex-wrap gap-x-8 gap-y-4">
-                            {['Compute Buyer', 'Compute Provider', 'Other'].map(type => (
-                                <label key={type} className="flex items-center gap-3 cursor-pointer group">
-                                    <input
-                                        type="checkbox"
-                                        className="hidden"
-                                        checked={formData.inquiryTypes.includes(type)}
-                                        onChange={() => toggleInquiryType(type)}
-                                    />
-                                    <div className={`w-6 h-6 rounded-md border transition-all flex items-center justify-center ${
-                                        formData.inquiryTypes.includes(type) 
-                                        ? 'bg-blue-600 border-blue-600' 
-                                        : 'bg-white/5 border-white/20 group-hover:border-white/40'
-                                    }`}>
-                                        {formData.inquiryTypes.includes(type) && (
-                                            <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                                            </svg>
-                                        )}
-                                    </div>
-                                    <span className={`text-base font-medium transition-colors ${
-                                        formData.inquiryTypes.includes(type) ? 'text-white' : 'text-slate-400 group-hover:text-slate-200'
-                                    }`}>
-                                        {type}
-                                    </span>
-                                </label>
-                            ))}
+                    {!hideInquiryType && (
+                        <div className="space-y-4">
+                            <p className="text-xs font-bold text-slate-300 uppercase tracking-[0.2em]">Inquiry Type * (Select at least one)</p>
+                            <div className="flex flex-wrap gap-x-8 gap-y-4">
+                                {['Compute Buyer', 'Compute Provider', 'Other'].map(type => (
+                                    <label key={type} className="flex items-center gap-3 cursor-pointer group">
+                                        <input
+                                            type="checkbox"
+                                            className="hidden"
+                                            checked={formData.inquiryTypes.includes(type)}
+                                            onChange={() => toggleInquiryType(type)}
+                                        />
+                                        <div className={`w-6 h-6 rounded-md border transition-all flex items-center justify-center ${
+                                            formData.inquiryTypes.includes(type) 
+                                            ? 'bg-blue-600 border-blue-600' 
+                                            : 'bg-white/5 border-white/20 group-hover:border-white/40'
+                                        }`}>
+                                            {formData.inquiryTypes.includes(type) && (
+                                                <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                                </svg>
+                                            )}
+                                        </div>
+                                        <span className={`text-base font-medium transition-colors ${
+                                            formData.inquiryTypes.includes(type) ? 'text-white' : 'text-slate-400 group-hover:text-slate-200'
+                                        }`}>
+                                            {type}
+                                        </span>
+                                    </label>
+                                ))}
+                            </div>
                         </div>
-                    </div>
+                    )}
 
                     <div className="space-y-2">
                         <label className="text-xs font-bold text-slate-300 uppercase ml-2">Message *</label>

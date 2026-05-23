@@ -132,7 +132,7 @@ export default function NodeOperatorPage() {
                                 Earn From Your Devices. Any Device. Anywhere.
                             </p>
                             <p className="text-blue-500/60 font-black uppercase tracking-[0.4em] text-[10px]">
-                                Join the Wnode Sovereign Compute Mesh.
+                                Join the Wenode Sovereign Compute Mesh.
                             </p>
                         </div>
                         <div className="pt-8">
@@ -153,7 +153,7 @@ export default function NodeOperatorPage() {
                         <SectionHeader>What Is a NODLR?</SectionHeader>
                         <div className="space-y-8">
                             <p className="text-lg text-slate-400 leading-relaxed max-w-3xl">
-                                A <strong className="text-white">NODLR</strong> is a Node Operator in the Wnode Sovereign Compute Mesh — a decentralized, DAO‑governed network where anyone can contribute compute from everyday devices and earn a share of real‑world AI inference demand.
+                                A <strong className="text-white">NODLR</strong> is a Node Operator in the Wenode Sovereign Compute Mesh — a decentralized, DAO‑governed network where anyone can contribute compute from everyday devices and earn a share of real‑world AI inference demand.
                             </p>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                 {[
@@ -220,7 +220,7 @@ export default function NodeOperatorPage() {
 
                         <div className="p-10 border border-white/5 rounded-3xl space-y-6 bg-white/[0.01] text-center">
                             <p className="text-sm text-slate-500 uppercase tracking-widest leading-relaxed">
-                                Wnode is <span className="text-blue-500/80 font-bold">FIAT‑first</span>. Compute buyers pay in <span className="text-white">USD</span>.
+                                Wenode is <span className="text-blue-500/80 font-bold">FIAT‑first</span>. Compute buyers pay in <span className="text-white">USD</span>.
                             </p>
                             <p className="text-lg font-bold text-white uppercase tracking-widest">
                                 You earn in <span className="text-blue-500/80">real money</span>, with optional token rewards as a bonus.
@@ -363,9 +363,9 @@ export default function NodeOperatorPage() {
                         </div>
                     </div>
 
-                    {/* Why Wnode Different */}
+                    {/* Why Wenode Different */}
                     <div className="space-y-12 mb-32">
-                        <SectionHeader>Why Wnode Is Different</SectionHeader>
+                        <SectionHeader>Why Wenode Is Different</SectionHeader>
                         
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 pt-4">
                             {[
@@ -373,7 +373,7 @@ export default function NodeOperatorPage() {
                                 { t: "Zero Overhead", d: "No corporate margin. No cloud tax. Up to 90% of revenue goes directly to you." },
                                 { t: "Any Device Works", d: "Phones, TVs, laptops, gaming PCs, Macs, servers — all supported." },
                                 { t: "Viral Growth", d: "Node operators are also affiliates and create permanent sales source income." },
-                                { t: "DAO‑Governed", d: "No corporation. No shareholders. The Wnode mesh belongs to the participants — you. 1 person = 1 vote. True 100% community ownership." }
+                                { t: "DAO‑Governed", d: "No corporation. No shareholders. The Wenode mesh belongs to the participants — you. 1 person = 1 vote. True 100% community ownership." }
                             ].map(item => (
                                 <div key={item.t} className="space-y-2 border-l border-white/5 pl-6">
                                     <h3 className="text-white font-bold text-[10px]">{item.t}</h3>
@@ -422,7 +422,7 @@ export default function NodeOperatorPage() {
                                 { t: "Not a promise", d: "All earnings are illustrative and based on market conditions." },
                                 { t: "Due diligence", d: "Node operation involves technical and operational risks." },
                                 { t: "Comparison only", d: "Figures are based on public market data, not guarantees." },
-                                { t: "DAO‑based", d: "Wnode is a DAO. There is no profit, dividends, or equity." }
+                                { t: "DAO‑based", d: "Wenode is a DAO. There is no profit, dividends, or equity." }
                             ].map(item => (
                                 <div key={item.t} className="space-y-2">
                                     <h3 className="text-[10px] font-black text-white/60 uppercase tracking-widest">{item.t}</h3>

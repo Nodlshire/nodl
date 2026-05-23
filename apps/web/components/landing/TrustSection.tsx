@@ -48,7 +48,7 @@ export default function TrustSection({ onOpenModal }: TrustSectionProps) {
                 <div className="mt-32 pt-20 border-t border-white/15 flex flex-col items-center">
                     <img 
                         src="/topology.png" 
-                        alt="Wnode Network Topology" 
+                        alt="Wenode Network Topology" 
                         className="w-full max-w-5xl h-auto shadow-[0_0_50px_rgba(59,130,246,0.1)] rounded-3xl mb-12" 
                     />
                     <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 mt-12">

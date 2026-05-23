@@ -18,7 +18,8 @@ export async function POST(req: Request) {
 
         const mailOptions = {
             from: 'team1@wnode.one',
-            to: 'team1@wnode.one',
+            to: 'stephen@wnode.one',
+            replyTo: email,
             subject: `[LEAD] ${firstName} ${lastName} - ${inquiryTypes.join(', ')}`,
             text: `
                 Name: ${firstName} ${lastName}

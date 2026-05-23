@@ -15,6 +15,8 @@ export default function LeadCaptureForm({ tag, onSuccess }: LeadCaptureFormProps
         message: "",
     });
 
+    const isJoinUsGroup = tag === "developer" || tag === "beta_tester" || tag === "waitlist";
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setStatus("submitting");
@@ -85,16 +87,19 @@ export default function LeadCaptureForm({ tag, onSuccess }: LeadCaptureFormProps
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     />
                 </div>
-                <div className="group">
-                    <textarea
-                        maxLength={2000}
-                        rows={3}
-                        className="w-full bg-[#2c2c2e] border-none rounded-2xl px-6 py-5 text-lg text-white focus:ring-2 focus:ring-blue-500/50 transition-all outline-none placeholder:text-[#48484a] resize-none"
-                        placeholder="Project Details (Optional)"
-                        value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    />
-                </div>
+                {tag !== "investor" && (
+                    <div className="group">
+                        <textarea
+                            maxLength={2000}
+                            rows={3}
+                            required={isJoinUsGroup}
+                            className="w-full bg-[#2c2c2e] border-none rounded-2xl px-6 py-5 text-lg text-white focus:ring-2 focus:ring-blue-500/50 transition-all outline-none placeholder:text-[#48484a] resize-none"
+                            placeholder={isJoinUsGroup ? "Brief Message" : "Project Details (Optional)"}
+                            value={formData.message}
+                            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        />
+                    </div>
+                )}
             </div>
 
             <button
@@ -102,7 +107,7 @@ export default function LeadCaptureForm({ tag, onSuccess }: LeadCaptureFormProps
                 disabled={status === "submitting"}
                 className="w-full button-apple-primary py-5 text-xl disabled:opacity-50"
             >
-                {status === "submitting" ? "Processing..." : "Submit Application"}
+                {status === "submitting" ? "Processing..." : tag === "investor" ? "Join Waitlist" : isJoinUsGroup ? "Join Us" : "Submit Application"}
             </button>
 
             {status === "error" && (

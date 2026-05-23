@@ -1,11 +1,21 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import AppLayout from "../../components/layout/AppLayout";
+import ContactModal from "../../components/landing/ContactModal";
 
 export default function PartnersPage() {
+    const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
     return (
         <AppLayout>
+            <ContactModal 
+                isOpen={isContactModalOpen} 
+                onClose={() => setIsContactModalOpen(false)} 
+                title="New Partner Enquiry"
+                hideInquiryType={true}
+                requirePhone={true}
+            />
             <div className="relative pt-40 pb-24 px-8 bg-black min-h-screen selection:bg-blue-500/30">
                 {/* Logo and Brand - Replicated from Hero/Informational Pages */}
                 <div className="absolute top-12 left-12 flex items-center gap-4 z-20">
@@ -16,7 +26,7 @@ export default function PartnersPage() {
                 <div className="max-w-6xl mx-auto">
                     <div className="fade-in-section mb-24">
                         <h1 className="text-5xl md:text-7xl font-bold text-white uppercase tracking-tighter mb-8 font-space-grotesk">
-                            Wnode Partner Ecosystem
+                            Wenode Partner Ecosystem
                         </h1>
                         <p className="text-xl md:text-2xl text-slate-400 max-w-3xl leading-relaxed">
                             Transform every device you ship into a sovereign compute asset.
@@ -29,10 +39,10 @@ export default function PartnersPage() {
                             <h2 className="text-sm font-bold text-blue-500 uppercase tracking-[0.3em] mb-10">Introduction</h2>
                             <div className="max-w-3xl space-y-8">
                                 <p className="text-xl md:text-2xl text-white leading-relaxed font-light">
-                                    Wnode enables the world’s leading device manufacturers to unlock a new economic layer: passive, perpetual compute revenue from every device they ship — with zero hardware changes.
+                                    Wenode enables the world’s leading device manufacturers to unlock a new economic layer. A passive, perpetual compute revenue from every device they ship with zero hardware changes.
                                 </p>
                                 <div className="space-y-4">
-                                    <p className="text-slate-400 text-lg uppercase tracking-widest font-medium">Wnode invites only one partner per sector:</p>
+                                    <p className="text-slate-400 text-lg uppercase tracking-widest font-medium">Wenode invites only one partner per sector:</p>
                                     <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-white text-lg">
                                         <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-blue-500 rounded-full"></span> 1 Smart TV manufacturer</li>
                                         <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 bg-blue-500 rounded-full"></span> 1 EV manufacturer</li>
@@ -118,7 +128,7 @@ export default function PartnersPage() {
                             <h2 className="text-sm font-bold text-blue-500 uppercase tracking-[0.3em] mb-10">Ecosystem Lock‑In</h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
                                 <div className="space-y-8">
-                                    <p className="text-xl text-slate-400 leading-relaxed">Wnode introduces economic lock‑in:</p>
+                                    <p className="text-xl text-slate-400 leading-relaxed">Wenode introduces economic lock‑in:</p>
                                     <ul className="space-y-4">
                                         {["Devices earn money", "Compute identity grows over time", "Old devices remain valuable", "New devices plug into the same tree"].map((item, i) => (
                                             <li key={i} className="flex items-center gap-3 text-white text-lg">
@@ -188,12 +198,12 @@ export default function PartnersPage() {
                                 One Partner Per Sector — Forever
                             </h2>
                             
-                            <a 
-                                href="mailto:stephen@wnode.one"
+                            <button 
+                                onClick={() => setIsContactModalOpen(true)}
                                 className="inline-block bg-purple-600 hover:bg-purple-500 text-white text-lg font-bold px-12 py-6 rounded-none transition-all shadow-[0_0_40px_rgba(168,85,247,0.4)] uppercase tracking-widest"
                             >
                                 Partnership Enquiries
-                            </a>
+                            </button>
                         </section>
                     </div>
                 </div>

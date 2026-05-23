@@ -1,0 +1,59 @@
+[
+  {
+    "action": "preview",
+    "filePath": "Business Plan & Financials/business Plan Final.pdf",
+    "fileType": "pdf",
+    "userEmail": "Owner",
+    "timestamp": "2026-05-22T23:54:56.730Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "action": "preview",
+    "filePath": "Business Plan & Financials/business Plan Final.pdf",
+    "fileType": "pdf",
+    "userEmail": "Owner",
+    "timestamp": "2026-05-23T00:13:33.946Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "action": "preview",
+    "filePath": "Business Plan & Financials/business Plan Final.pdf",
+    "fileType": "pdf",
+    "userEmail": "stephensoos@yahoo.com",
+    "inviteId": "569aa2c3-bc4b-4950-8c13-5d5b47affa6b",
+    "timestamp": "2026-05-23T00:25:56.216Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "action": "preview",
+    "filePath": "Business Plan & Financials/business Plan Final.pdf",
+    "fileType": "pdf",
+    "userEmail": "Owner",
+    "timestamp": "2026-05-23T00:29:31.655Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "action": "preview",
+    "filePath": "Business Plan & Financials/business Plan Final.pdf",
+    "fileType": "pdf",
+    "userEmail": "Owner",
+    "timestamp": "2026-05-23T00:33:07.710Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "action": "preview",
+    "filePath": "Video Walkthroughs/Wenode CMD Dashboard.mp4",
+    "fileType": "mp4",
+    "userEmail": "Owner",
+    "timestamp": "2026-05-23T00:33:55.430Z",
+    "ipAddress": "127.0.0.1"
+  },
+  {
+    "action": "preview",
+    "filePath": "Pitch Deck/detailed deck.pdf",
+    "fileType": "pdf",
+    "userEmail": "Owner",
+    "timestamp": "2026-05-23T00:41:12.173Z",
+    "ipAddress": "127.0.0.1"
+  }
+]

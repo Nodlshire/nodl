@@ -71,7 +71,7 @@ export default function Header({ onContactClick }: HeaderProps) {
             isDropdown: true,
             subLinks: [
                 { name: "Investor Relations", href: "/investors/investor-relations", color: "text-slate-500" },
-                { name: "Data Room", href: "https://dr.wnode.one", color: "text-slate-500" }
+                { name: "Data Room", href: "/investors/dr", color: "text-slate-500" }
             ]
         },
         {
@@ -99,9 +99,9 @@ export default function Header({ onContactClick }: HeaderProps) {
             }`}>
                 <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
                     <a href="/" className="flex items-center gap-4 group">
-                        <img src="/logo.png" alt="wnode" className="w-10 h-10 transition-transform group-hover:scale-110" />
+                        <img src="/logo.png" alt="WeNode" className="w-10 h-10 transition-transform group-hover:scale-110" />
                         <div className="flex flex-col">
-                            <span className="font-space-grotesk text-2xl tracking-tighter font-bold text-white uppercase leading-none">wnode</span>
+                            <span className="font-space-grotesk text-2xl tracking-tighter font-bold text-white leading-none">WeNode</span>
                             <span className="text-[10px] uppercase tracking-widest text-blue-500 font-bold mt-1">Planetary Compute Mesh</span>
                         </div>
                     </a>

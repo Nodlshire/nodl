@@ -10,9 +10,9 @@ export default function Footer({ onContactClick }: FooterProps) {
                 <div className="w-full flex flex-col md:flex-row items-center justify-between gap-8 relative z-50">
                     <div className="flex flex-col md:items-start items-center gap-4">
                         <div className="flex items-center gap-4">
-                            <img src="/logo.png" alt="wnode" className="w-10 h-10" />
+                            <img src="/logo.png" alt="WeNode" className="w-10 h-10" />
                             <div className="flex flex-col text-left">
-                                <span className="font-space-grotesk text-2xl tracking-tighter font-bold text-white uppercase leading-none">wnode</span>
+                                <span className="font-space-grotesk text-2xl tracking-tighter font-bold text-white leading-none">WeNode</span>
                                 <span className="text-[10px] uppercase tracking-widest text-blue-500 font-bold mt-1">Planetary Compute Mesh</span>
                             </div>
                         </div>
@@ -64,7 +64,7 @@ export default function Footer({ onContactClick }: FooterProps) {
                             <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-full h-8 pointer-events-none group-hover:pointer-events-auto" />
                             <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 bg-black border border-white/25 p-6 rounded-2xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all flex flex-col gap-4 min-w-[220px] shadow-[0_-20px_50px_rgba(0,0,0,0.5)] backdrop-blur-xl">
                                 <a href="/investors/investor-relations" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Investor Relations</a>
-                                <a href="https://dr.wnode.one" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Data Room</a>
+                                <a href="/investors/dr" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Data Room</a>
                             </div>
                         </div>
 
@@ -119,7 +119,7 @@ export default function Footer({ onContactClick }: FooterProps) {
                     </div>
 
                     <div className="text-white/20 font-bold uppercase tracking-widest text-[10px]">
-                        wnode © 2026
+                        WeNode © 2026
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { logActivity } from '../../../../../lib/db/activity';
+import { logActivity } from '../../../../lib/db/activity';
 import { cookies } from 'next/headers';
 
 export async function POST(req: NextRequest) {

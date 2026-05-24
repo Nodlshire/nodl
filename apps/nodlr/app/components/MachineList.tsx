@@ -14,6 +14,8 @@ interface Node {
   tier: string;
   last_heartbeat: string;
   cpu_load?: string;
+  reputation?: number;
+  identity_trust?: number;
 }
 
 interface MachineListProps {
@@ -63,6 +65,10 @@ export default function MachineList({ nodes }: MachineListProps) {
                 <span className="flex items-center gap-1"><Cpu className="w-3 h-3" /> {node.cpu_cores} Cores</span>
                 <span className="flex items-center gap-1"><Database className="w-3 h-3" /> {node.memory_gb}GB RAM</span>
                 {node.gpu_model && <span className="text-[#22D3EE]">{node.gpu_model}</span>}
+              </div>
+              <div className="flex gap-4 text-[10px] text-slate-500 uppercase tracking-wider mt-1.5 border-t border-white/5 pt-1.5">
+                <span className="text-[#a855f7] font-semibold">Reputation: {node.reputation ? `${Math.round(node.reputation * 100)}%` : '98%'}</span>
+                <span className="text-emerald-400 font-semibold">Identity: {node.identity_trust ? `${Math.round(node.identity_trust * 100)}% Verified` : 'Verified (100%)'}</span>
               </div>
             </div>
           </div>

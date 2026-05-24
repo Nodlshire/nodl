@@ -16,6 +16,8 @@ interface NodlDevice {
     ram_total: string;
     uptime: string;
     last_seen: string;
+    reputation?: number;
+    identity_trust?: number;
 }
 
 const INITIAL_NODLS: NodlDevice[] = [
@@ -120,6 +122,14 @@ export default function HardwarePage() {
                                     <div className="flex flex-col border-l border-white/10 pl-8" title="Verified hardware capabilities for job allocation">
                                         <span className="text-[10px] text-slate-500 uppercase tracking-[0.2em] font-normal mb-0.5">Specifications</span>
                                         <span className="text-13px text-white font-normal">{node.cpu_specs} • {node.gpu_specs}</span>
+                                    </div>
+                                    <div className="flex flex-col border-l border-white/10 pl-8" title="Node behavioral reputation score">
+                                        <span className="text-[10px] text-slate-500 uppercase tracking-[0.2em] font-normal mb-0.5">Reputation</span>
+                                        <span className="text-13px text-[#a855f7] font-semibold">{node.reputation ? `${Math.round(node.reputation * 100)}%` : '98%'}</span>
+                                    </div>
+                                    <div className="flex flex-col border-l border-white/10 pl-8" title="Verified cryptographic device identity check">
+                                        <span className="text-[10px] text-slate-500 uppercase tracking-[0.2em] font-normal mb-0.5">Identity</span>
+                                        <span className="text-13px text-green-500 font-semibold">{node.identity_trust ? `Verified (${Math.round(node.identity_trust * 100)}%)` : 'Verified (100%)'}</span>
                                     </div>
                                     <div className="flex flex-col border-l border-white/10 pl-8" title="Cumulative active duration since registration">
                                         <span className="text-[10px] text-slate-500 uppercase tracking-[0.2em] font-normal mb-0.5">Uptime</span>

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { 
-    LayoutDashboard, Activity, Shield, BarChart3, Sliders, Zap, LogOut, Users, Share2, DollarSign, Brain, History as HistoryIcon, ShieldAlert, Wallet, HelpCircle, Search as SearchIcon
+    LayoutDashboard, Activity, Shield, BarChart3, Sliders, Zap, LogOut, Users, Share2, DollarSign, Brain, History as HistoryIcon, ShieldAlert, Wallet, HelpCircle, Search as SearchIcon, Landmark, Coins, Lock, Award, Fingerprint
 } from "lucide-react";
 
 export default function Sidebar() {
@@ -63,7 +63,6 @@ export default function Sidebar() {
         { name: 'Affiliates', href: '/affiliates', icon: Share2, roles: ['owner', 'management', 'visitor'], iconColor: 'text-fuchsia-400' },
         { name: 'Money', href: '/ledger', icon: DollarSign, roles: ['owner', 'management', 'customer_service', 'visitor'], iconColor: 'text-emerald-400' },
         { name: 'Governance', href: '/governance', icon: Shield, roles: ['owner', 'management', 'customer_service', 'visitor'], iconColor: 'text-[#22D3EE]' },
-        { name: 'Personnel', href: '/staff', icon: ShieldAlert, roles: ['owner', 'management'], iconColor: 'text-rose-400' },
         { name: 'Help', href: '/help', icon: HelpCircle, roles: ['owner', 'management', 'customer_service', 'visitor'], iconColor: 'text-yellow-400' },
     ];
 

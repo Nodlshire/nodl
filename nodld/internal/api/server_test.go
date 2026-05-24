@@ -22,7 +22,7 @@ func newTestServer(t *testing.T) *api.Server {
 	accStore := account.NewStore(fStore, "")
 	store := jobs.NewStore()
 	dispatcher := jobs.NewDispatcher(store, nil, accStore, fStore, log)
-	return api.New(dispatcher, store, nil, accStore, nil, nil, nil, nil, nil, nil, log, time.Now())
+	return api.New(dispatcher, store, nil, accStore, nil, nil, nil, nil, nil, nil, nil, log, time.Now())
 }
 
 func TestHandleHealth(t *testing.T) {

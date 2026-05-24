@@ -203,7 +203,10 @@ func (d *Dispatcher) Submit(ctx context.Context, meshClientID string, wasm []byt
 // GetTaskForNode returns a job slice for the given node.
 // Ghost Protocol: If the node is shadow-benched, return a "No-Op" WASM payload.
 func (d *Dispatcher) GetTaskForNode(ctx context.Context, hwDNA string) ([]byte, string, error) {
-	status := d.registry.GetStatus(hwDNA)
+	status := p2p.StatusActive
+	if d.registry != nil {
+		status = d.registry.GetStatus(hwDNA)
+	}
 	
 	if status == p2p.StatusShadowBenched {
 		d.log.Info("Ghost Protocol: delivering no-op task to shadow-benched node", zap.String("hwDNA", hwDNA))
@@ -214,7 +217,7 @@ func (d *Dispatcher) GetTaskForNode(ctx context.Context, hwDNA string) ([]byte, 
 
 	// Honeypot Logic: Every 50 tasks for NIS 300-600
 	d.jobCounter++
-	if d.jobCounter%50 == 0 {
+	if d.accountStore != nil && d.jobCounter%50 == 0 {
 		// Find the nodlr to check their score
 		// (Assume hwDNA maps to nodeID/nodlrID for now)
 		nodlr, ok := d.accountStore.GetNodlr(hwDNA)
@@ -226,21 +229,23 @@ func (d *Dispatcher) GetTaskForNode(ctx context.Context, hwDNA string) ([]byte, 
 	}
 
 	// Phase 2: Priority Routing (Sales Source)
-	nodlr, ok := d.accountStore.GetNodlr(hwDNA)
-	if ok {
-		t0 := time.Now()
-		jobsList := d.store.List()
-		for _, j := range jobsList {
-			if j.Status == StatusPending || j.Status == StatusActive {
-				client, ok := d.accountStore.GetMeshClient(j.MeshClientID)
-				if ok && client.SalesSourceID == nodlr.ID {
-					// Latency compliance check (< 50ms)
-					if elapsed := time.Since(t0); elapsed < 50*time.Millisecond {
-						d.log.Info("Priority Hit: assigning job to Sales Source node", 
-							zap.String("jobID", j.ID), 
-							zap.String("nodeID", hwDNA),
-							zap.Duration("latency", elapsed))
-						return j.WASMPayload, j.ID, nil
+	if d.accountStore != nil {
+		nodlr, ok := d.accountStore.GetNodlr(hwDNA)
+		if ok {
+			t0 := time.Now()
+			jobsList := d.store.List()
+			for _, j := range jobsList {
+				if j.Status == StatusPending || j.Status == StatusActive {
+					client, ok := d.accountStore.GetMeshClient(j.MeshClientID)
+					if ok && client.SalesSourceID == nodlr.ID {
+						// Latency compliance check (< 50ms)
+						if elapsed := time.Since(t0); elapsed < 50*time.Millisecond {
+							d.log.Info("Priority Hit: assigning job to Sales Source node", 
+								zap.String("jobID", j.ID), 
+								zap.String("nodeID", hwDNA),
+								zap.Duration("latency", elapsed))
+							return j.WASMPayload, j.ID, nil
+						}
 					}
 				}
 			}
@@ -343,7 +348,7 @@ func (d *Dispatcher) RecordProof(receipt ProofReceipt) error {
 		
 		// authoritative disbursement via unified model
 		budgetCents := int64(j.Budget * 100)
-		if budgetCents > 0 {
+		if d.accountStore != nil && budgetCents > 0 {
 			records := d.accountStore.CalculateSplits(budgetCents, receipt.NodeID, j.MeshClientID)
 			for i := range records {
 				records[i].TransactionID = j.ID

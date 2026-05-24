@@ -77,6 +77,8 @@ type Nodlr struct {
 	Role                  UserRole        `json:"role"`
 	Permissions           []string        `json:"permissions,omitempty"`
 	PayoutStatus          PayoutStatus    `json:"payoutStatus"`
+	PayoutsEnabled        bool            `json:"payoutsEnabled"`
+	VerificationStatus    string          `json:"verificationStatus"`
 	IntegrityScore        int             `json:"integrityScore"` // 0-1000
 	IsFrozen              bool            `json:"isFrozen"`       // Constitutional hold
 	FrozenAt              *time.Time      `json:"frozenAt,omitempty"`
@@ -145,13 +147,61 @@ type Payout struct {
 
 // WnodeNode represents a physical or virtual machine connected to the network.
 type WnodeNode struct {
-	ID          string       `json:"id"`
-	UserID      string       `json:"userId"`
-	DeviceToken string       `json:"-"` // Long-lived secure secret
-	Metadata    NodeMetadata `json:"metadata"`
-	Status      string       `json:"status"` // active, offline
-	CreatedAt   time.Time    `json:"createdAt"`
-	LastSeen    time.Time    `json:"lastSeen"`
+	ID                 string             `json:"id"`
+	UserID             string             `json:"userId"`
+	DeviceToken        string             `json:"-"` // Long-lived secure secret
+	Metadata           NodeMetadata       `json:"metadata"`
+	Status             string             `json:"status"` // active, offline
+	CreatedAt          time.Time          `json:"createdAt"`
+	LastSeen           time.Time          `json:"lastSeen"`
+	Metrics            *NodeHealthMetrics `json:"metrics,omitempty"`
+	GlobalScore        float64            `json:"globalScore"`
+	Tier               int                `json:"tier"` // Phase 11 capability tier (1-5)
+	IsWASM             bool               `json:"isWasm"`
+	DowntimePenalized  bool               `json:"downtimePenalized"`
+	DowntimeSlashed    bool               `json:"downtimeSlashed"`
+	HardwareHash       string             `json:"hardwareHash,omitempty"`
+	BrowserFingerprint string             `json:"browserFingerprint,omitempty"`
+	DeviceClass        string             `json:"deviceClass,omitempty"`
+}
+
+func CalculateTier(computeScore float64) int {
+	if computeScore >= 90 {
+		return 1
+	} else if computeScore >= 60 {
+		return 2
+	} else if computeScore >= 30 {
+		return 3
+	} else if computeScore >= 10 {
+		return 4
+	}
+	return 5
+}
+
+type ReputationMetrics struct {
+	LocalScore         float64 `json:"localScore"`
+	UptimeHours        int64   `json:"uptimeHours"`
+	SuccessRate        float64 `json:"successRate"`
+	AvgShardDurationMs int64   `json:"avgShardDurationMs"`
+	TotalWU            int     `json:"totalWU"`
+	TotalRewards       float64 `json:"totalRewards"`
+}
+
+// NodeHealthMetrics captures dynamic telemetry from a node.
+type NodeHealthMetrics struct {
+	CPU         float64            `json:"cpu"`
+	RAM         float64            `json:"ram"`
+	Disk        float64            `json:"disk"`
+	Uptime      int64              `json:"uptime"`
+	Temperature float64            `json:"temperature,omitempty"`
+	Network     string             `json:"network"`
+	Reputation  *ReputationMetrics `json:"reputation,omitempty"`
+	CurrentLoad  int                `json:"currentLoad"`
+	ComputeScore float64            `json:"computeScore"`
+	CPUScore     float64            `json:"cpuScore"`
+	GPUScore     float64            `json:"gpuScore"`
+	MemoryScore  float64            `json:"memoryScore"`
+	IsWASM       bool               `json:"isWasm"`
 }
 
 // NodeMetadata captures hardware or environment specs.

@@ -36,6 +36,29 @@ type Store struct {
 	meshBucket         int
 	meshSequence       int
 	meshMonthYear      string
+
+	// Operator Earnings & Payout Ledgers
+	operatorEarnings []*OperatorEarnings
+	operatorPayouts  []*OperatorPayout
+
+	// Off-chain Tokens
+	tokenLedger   []*TokenLedgerEntry
+	tokenBalances map[string]*TokenBalance
+
+	// Off-chain Staking
+	operatorStakes map[string]*OperatorStake
+	stakeLedger    []*StakeLedger
+
+	// Off-chain Reputation
+	operatorReputations map[string]*OperatorReputation
+	reputationLedger    []*ReputationLedger
+
+	// Off-chain Identity
+	operatorIdentities map[string]*OperatorIdentity
+	identityLedger     []*IdentityLedgerEntry
+
+	// Passive Telemetry Ingestion
+	Telemetry          *TelemetryDispatcher
 }
 
 type storeState struct {
@@ -58,10 +81,89 @@ func NewStore(forensics *forensics.Store, statePath string) *Store {
 		crmRecords:         make(map[string]*CRMRecord),
 		forensics:          forensics,
 		statePath:          statePath,
+		operatorEarnings:   make([]*OperatorEarnings, 0),
+		operatorPayouts:    make([]*OperatorPayout, 0),
+		tokenLedger:        make([]*TokenLedgerEntry, 0),
+		tokenBalances:      make(map[string]*TokenBalance),
+		operatorStakes:     make(map[string]*OperatorStake),
+		stakeLedger:        make([]*StakeLedger, 0),
+		operatorReputations: make(map[string]*OperatorReputation),
+		reputationLedger:    make([]*ReputationLedger, 0),
+		operatorIdentities:  make(map[string]*OperatorIdentity),
+		identityLedger:      make([]*IdentityLedgerEntry, 0),
+		Telemetry:           NewTelemetryDispatcher("http://127.0.0.1:3001/api/intelligence/event"),
 	}
 	s.loadState()
 	s.SeedFoundationIdentities()
+	go s.runDowntimeWatchdog(10 * time.Second)
+	go s.runReputationRecalculation(24 * time.Hour)
 	return s
+}
+
+func (s *Store) runDowntimeWatchdog(interval time.Duration) {
+	ticker := time.NewTicker(interval)
+	for range ticker.C {
+		s.mu.Lock()
+		now := time.Now()
+		for _, node := range s.nodes {
+			// A node sends a heartbeat every 30 seconds.
+			// 3 missed heartbeats = 90 seconds.
+			if now.Sub(node.LastSeen) > 90*time.Second {
+				if !node.DowntimePenalized {
+					node.DowntimePenalized = true
+					node.Status = "offline"
+					
+					// Apply downtime penalty: -1 * BaseRateForTier
+					baseRate := GetBaseRateForTier(node.Tier)
+					penalty := -1.0 * baseRate
+					
+					entry := &TokenLedgerEntry{
+						EntryID:    uuid.New().String(),
+						OperatorID: node.UserID,
+						JobID:      "downtime",
+						ShardID:    node.ID,
+						Amount:     penalty,
+						Reason:     "downtime_penalty",
+						Timestamp:  now,
+					}
+					s.tokenLedger = append(s.tokenLedger, entry)
+					
+					bal, exists := s.tokenBalances[node.UserID]
+					if !exists {
+						bal = &TokenBalance{
+							OperatorID: node.UserID,
+							Balance:    0,
+							UpdatedAt:  now,
+						}
+						s.tokenBalances[node.UserID] = bal
+					}
+					bal.Balance += penalty
+					bal.UpdatedAt = now
+					
+					fmt.Printf("[Downtime Watchdog] Node %s went offline. Deducted %f from operator %s\n", node.ID, penalty, node.UserID)
+					go s.SaveState()
+				}
+			}
+
+			// 5 missed heartbeats = 150 seconds
+			if now.Sub(node.LastSeen) > 150*time.Second {
+				if !node.DowntimeSlashed {
+					node.DowntimeSlashed = true
+					s.slashDowntimeLocked(node.UserID)
+					fmt.Printf("[Downtime Watchdog] Node %s missed 5 heartbeats. Slashed 10 tokens from operator %s\n", node.ID, node.UserID)
+					go s.SaveState()
+				}
+			}
+		}
+		s.mu.Unlock()
+	}
+}
+
+func (s *Store) runReputationRecalculation(interval time.Duration) {
+	ticker := time.NewTicker(interval)
+	for range ticker.C {
+		s.RecalculateAllReputations()
+	}
 }
 
 func (s *Store) loadState() {
@@ -139,18 +241,25 @@ func (s *Store) SeedFoundationIdentities() {
 
 	// 3. Test User
 	testID := "100002-0426-01-AA"
-	if _, ok := s.nodlrs[testID]; !ok {
+	if n, ok := s.nodlrs[testID]; !ok {
 		s.nodlrs[testID] = &Nodlr{
 			ID:                 testID,
 			Email:              "test@user.com",
 			DisplayName:        "Test User",
-			Role:               RoleVisitor,
+			Role:               RoleObserver,
+			Permissions:        ObserverPermissions,
 			Password:           "test",
+			IsProtected:        true,
 			OnboardingComplete: true,
 			Verified:           true,
 			Status:             "active",
 			CreatedAt:          time.Now(),
 		}
+	} else {
+		n.DisplayName = "Test User"
+		n.Role = RoleObserver
+		n.Permissions = ObserverPermissions
+		n.IsProtected = true
 	}
 	s.crmRecords[testID] = &CRMRecord{
 		NodlrID:      testID,
@@ -725,7 +834,7 @@ func (s *Store) ConsumePairingCode(code string, metadata NodeMetadata) (string, 
 }
 
 // RegisterNode creates a node directly for a user (browser connect flow).
-func (s *Store) RegisterNode(userId string, metadata NodeMetadata) (string, error) {
+func (s *Store) RegisterNode(userId string, metadata NodeMetadata, hardwareHash string, browserFingerprint string, deviceClass string) (string, error) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 
@@ -733,17 +842,35 @@ func (s *Store) RegisterNode(userId string, metadata NodeMetadata) (string, erro
 	nodeId := s.nextNodeID(userId)
 
 	node := &WnodeNode{
-		ID:          nodeId,
-		UserID:      userId,
-		DeviceToken: deviceToken,
-		Metadata:    metadata,
-		Status:      "active",
-		CreatedAt:   time.Now(),
-		LastSeen:    time.Now(),
+		ID:                 nodeId,
+		UserID:             userId,
+		DeviceToken:        deviceToken,
+		Metadata:           metadata,
+		Status:             "active",
+		CreatedAt:          time.Now(),
+		LastSeen:           time.Now(),
+		HardwareHash:       hardwareHash,
+		BrowserFingerprint: browserFingerprint,
+		DeviceClass:        deviceClass,
 	}
 
 	s.nodes[nodeId] = node
+
+	// Perform initial identity registration consistency check
+	s.EvaluateIdentityConsistencyLocked(userId, hardwareHash, browserFingerprint, deviceClass)
+
 	return deviceToken, nil
+}
+
+// GetNode returns a specific node by its ID.
+func (s *Store) GetNode(nodeId string) (*WnodeNode, bool) {
+	s.DecayNodes()
+
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+
+	node, ok := s.nodes[nodeId]
+	return node, ok
 }
 
 // GetNodeByToken retrieves a node by its long-lived secret.
@@ -759,6 +886,119 @@ func (s *Store) GetNodeByToken(token string) (*WnodeNode, bool) {
 	return nil, false
 }
 
+// UpdateNodeHeartbeat sets the LastSeen and Metrics for a node.
+func (s *Store) UpdateNodeHeartbeat(nodeID string, metrics NodeHealthMetrics, hardwareHash string, browserFingerprint string, deviceClass string) error {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	node, ok := s.nodes[nodeID]
+	if !ok {
+		return fmt.Errorf("node not found")
+	}
+
+	node.LastSeen = time.Now()
+	node.Metrics = &metrics
+	node.Status = "active"
+	node.IsWASM = metrics.IsWASM
+	node.DowntimePenalized = false
+	node.DowntimeSlashed = false
+	node.HardwareHash = hardwareHash
+	node.BrowserFingerprint = browserFingerprint
+	node.DeviceClass = deviceClass
+
+	tier := CalculateTier(metrics.ComputeScore)
+	if metrics.IsWASM {
+		if tier < 4 {
+			tier = 4
+		}
+	}
+	node.Tier = tier
+
+	// Minimum Stake Requirement check
+	stakedVal := 0.0
+	if stake, exists := s.operatorStakes[node.UserID]; exists {
+		stakedVal = stake.Staked
+	}
+	if stakedVal < 100.0 {
+		node.Tier = 5
+	}
+
+	// Compute Global Reputation Score if metrics exist
+	if metrics.Reputation != nil {
+		localScore := metrics.Reputation.LocalScore
+		successRate := metrics.Reputation.SuccessRate
+		
+		// Approximate UptimeScore (max out at 720 hours / 1 month for full 1.0 score)
+		uptimeScore := float64(metrics.Reputation.UptimeHours) / 720.0
+		if uptimeScore > 1.0 {
+			uptimeScore = 1.0
+		}
+
+		// Weighted aggregation
+		node.GlobalScore = (localScore * 0.6) + (uptimeScore * 0.2) + (successRate * 0.2)
+	}
+
+	s.EvaluateIdentityConsistencyLocked(node.UserID, hardwareHash, browserFingerprint, deviceClass)
+	s.RecalculateReputationLocked(node.UserID)
+
+	deviceID := hardwareHash
+	if deviceClass == "wasm" {
+		deviceID = browserFingerprint
+	}
+	s.Telemetry.Publish(&TelemetryEvent{
+		EventType:  "heartbeat",
+		OperatorID: node.UserID,
+		NodeID:     node.ID,
+		DeviceID:   deviceID,
+		Payload: map[string]interface{}{
+			"metrics": map[string]interface{}{
+				"cpu":          metrics.CPU,
+				"ram":          metrics.RAM,
+				"disk":         metrics.Disk,
+				"uptime":       metrics.Uptime,
+				"temperature":  metrics.Temperature,
+				"network":      metrics.Network,
+				"currentLoad":  metrics.CurrentLoad,
+				"computeScore": metrics.ComputeScore,
+				"isWasm":       metrics.IsWASM,
+			},
+			"hardwareHash":       hardwareHash,
+			"browserFingerprint": browserFingerprint,
+			"deviceClass":        deviceClass,
+		},
+	})
+
+	return nil
+}
+
+// DecayNodes applies reputation penalties for nodes that are offline.
+// It applies a 5% penalty per hour offline to the GlobalScore.
+func (s *Store) DecayNodes() {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	now := time.Now()
+	for _, node := range s.nodes {
+		hoursOffline := now.Sub(node.LastSeen).Hours()
+		if hoursOffline > 1.0 && node.Status != "offline" {
+			node.Status = "offline"
+		}
+		
+		if hoursOffline > 1.0 {
+			// Apply 0.95 multiplier per hour
+			decayFactor := 1.0
+			for i := 0; i < int(hoursOffline); i++ {
+				decayFactor *= 0.95
+			}
+			
+			node.GlobalScore = node.GlobalScore * decayFactor
+			if node.GlobalScore < 0 {
+				node.GlobalScore = 0
+			}
+		}
+	}
+}
+
 // nextNodeID generates the next formatted ID for a user's node.
 func (s *Store) nextNodeID(userID string) string {
 	count := 0
@@ -772,6 +1012,8 @@ func (s *Store) nextNodeID(userID string) string {
 
 // ListNodes returns all nodes belonging to a specific user.
 func (s *Store) ListNodes(userId string) []*WnodeNode {
+	s.DecayNodes()
+
 	s.mu.RLock()
 	defer s.mu.RUnlock()
 

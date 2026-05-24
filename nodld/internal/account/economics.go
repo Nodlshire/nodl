@@ -62,29 +62,54 @@ func (s *Store) CalculateSplitsForAmount(totalCents int64, earnerID string, mesh
 	// A. Founder Override (3%)
 	genesisFounderID := s.getGenesisFounderNoLock(earnerID)
 	if genesisFounderID != "" {
-		add(CommRoleFounder, genesisFounderID, PctFounderOverride)
+		recipient := genesisFounderID
+		if f, ok := s.nodlrs[genesisFounderID]; ok {
+			if f.FounderStripeAccountID != nil && *f.FounderStripeAccountID != "" {
+				recipient = *f.FounderStripeAccountID
+			} else if f.StripeConnectID != "" {
+				recipient = f.StripeConnectID
+			}
+		}
+		add(CommRoleFounder, recipient, PctFounderOverride)
 	}
 
 	// B. Operator Share (70%)
-	add(CommRolePlatform, earnerID, PctOperator)
+	opRecipient := s.GetStripeRecipient(earnerID)
+	if opRecipient == "" {
+		opRecipient = earnerID
+	}
+	add(CommRolePlatform, opRecipient, PctOperator)
 
 	// C. Wnode Infrastructure (7%)
 	add(CommRoleWnode, WnodeBusinessStripeID, PctPlatform)
 
 	// D. Level 1 Sponsor (3%)
 	if l1ID != "" {
-		add(CommRoleLevel1, l1ID, PctLevel1)
+		recipient := s.GetStripeRecipient(l1ID)
+		if recipient == "" {
+			recipient = l1ID
+		}
+		add(CommRoleLevel1, recipient, PctLevel1)
 	}
 
 	// E. Level 2 Sponsor (7%)
 	if l2ID != "" {
-		add(CommRoleLevel2, l2ID, PctLevel2)
+		recipient := s.GetStripeRecipient(l2ID)
+		if recipient == "" {
+			recipient = l2ID
+		}
+		add(CommRoleLevel2, recipient, PctLevel2)
 	}
 
 	// F. Sales Source (10%)
 	if meshClientID != "" {
 		if client, ok := s.meshClients[meshClientID]; ok && client.SalesSourceID != "" {
-			add(CommRoleSalesSource, client.SalesSourceID, PctSalesSource)
+			recipient := s.GetStripeRecipient(client.SalesSourceID)
+			if recipient != "" {
+				add(CommRoleSalesSource, recipient, PctSalesSource)
+			} else {
+				add(CommRoleEscrow, WnodeBusinessStripeID, PctSalesSource)
+			}
 		}
 	}
 

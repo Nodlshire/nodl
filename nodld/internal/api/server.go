@@ -23,6 +23,9 @@ import (
 	"github.com/obregan/nodl/nodld/internal/p2p"
 	"github.com/obregan/nodl/nodld/internal/pricing"
 	"github.com/obregan/nodl/nodld/internal/account"
+	"github.com/obregan/nodl/nodld/internal/compute"
+	"encoding/base64"
+	"strconv"
 	"github.com/obregan/nodl/nodld/internal/impact"
 	"github.com/obregan/nodl/nodld/internal/stripe"
 	"github.com/obregan/nodl/nodld/internal/money"
@@ -40,11 +43,13 @@ type Server struct {
 	hub          *wsHub
 	pricingStore *pricing.Store
 	accountStore *account.Store
+	billingStore *account.BillingStore
 	stripeSvc    *stripe.Service
 	moneyHandler *money.Handler
 	acqHandler   *acquisition.Handler
 	instHandler  *institutional.Handler
 	govHandler   *governance.API
+	distEngine   *compute.DistributedEngine
 	log          *zap.Logger
 	startTime    time.Time
 }
@@ -79,9 +84,55 @@ func (h *wsHub) broadcast(msg []byte) {
 	}
 }
 
+// ==========================================
+// Phase 12: Billing Handlers
+// ==========================================
+
+func (s *Server) handleBillingCreateCustomer(c *fiber.Ctx) error {
+	var req struct {
+		Email string `json:"email"`
+	}
+	if err := c.BodyParser(&req); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid payload"})
+	}
+
+	id, err := s.billingStore.CreateCustomer(req.Email)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	return c.JSON(fiber.Map{"customerId": id})
+}
+
+func (s *Server) handleBillingHistory(c *fiber.Ctx) error {
+	history := s.billingStore.GetHistory()
+	return c.JSON(history)
+}
+
+func (s *Server) handleBillingJob(c *fiber.Ctx) error {
+	id := c.Params("id")
+	if id == "" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "job id required"})
+	}
+	
+	ledger, ok := s.billingStore.GetJobBilling(id)
+	if !ok {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "job billing not found"})
+	}
+
+	// Fetch job details for extra UI context
+	job, _ := s.distEngine.GetJob(id)
+	
+	return c.JSON(fiber.Map{
+		"ledger": ledger,
+		"job":    job,
+	})
+}
+
 // New constructs the API server and registers all routes.
-func New(dispatcher *jobs.Dispatcher, store *jobs.Store, pricingStore *pricing.Store, accountStore *account.Store, govStore *governance.Store, stripeSvc *stripe.Service, moneyHandler *money.Handler, acqHandler *acquisition.Handler, instHandler *institutional.Handler, host *p2p.Host, log *zap.Logger, startTime time.Time) *Server {
-	hub := newWSHub()
+func New(dispatcher *jobs.Dispatcher, store *jobs.Store, pricingStore *pricing.Store, accountStore *account.Store, billingStore *account.BillingStore, govStore *governance.Store, stripeSvc *stripe.Service, moneyHandler *money.Handler, acqHandler *acquisition.Handler, instHandler *institutional.Handler, host *p2p.Host, log *zap.Logger, startTime time.Time) *Server {
+	// Initialize the DistributedEngine with the new billing store
+	distEngine := compute.NewDistributedEngine(accountStore, billingStore)
 
 	app := fiber.New(fiber.Config{
 		ReadTimeout:  10 * time.Second,
@@ -111,13 +162,15 @@ func New(dispatcher *jobs.Dispatcher, store *jobs.Store, pricingStore *pricing.S
 		store:        store,
 		pricingStore: pricingStore,
 		accountStore: accountStore,
+		billingStore: billingStore,
 		stripeSvc:    stripeSvc,
 		moneyHandler: moneyHandler,
 		acqHandler:   acqHandler,
 		instHandler:  instHandler,
 		govHandler:   governance.NewAPI(govStore),
+		distEngine:   distEngine,
 		host:         host,
-		hub:          hub,
+		hub:          newWSHub(),
 		log:          log,
 		startTime:    startTime,
 	}
@@ -149,13 +202,49 @@ func (s *Server) registerRoutes() {
 	// Peer information
 	s.app.Get("/peers", s.handlePeers)
 
-	// Node Connectivity & Pairing
+	// Phase 12: Billing API
 	apiV1 := s.app.Group("/api/v1")
+	apiV1.Post("/billing/customer", s.handleBillingCreateCustomer)
+	apiV1.Get("/billing/history", s.handleBillingHistory)
+	apiV1.Get("/billing/job/:id", s.handleBillingJob)
+
+	// Phase 13: Operator Payouts
+	apiV1.Post("/operator/payouts/create-account", s.requireLevel(account.RoleStandard), s.handleOperatorCreateAccount)
+	apiV1.Post("/operator/payouts/refresh-link", s.requireLevel(account.RoleStandard), s.handleOperatorRefreshLink)
+	apiV1.Get("/operator/payouts/status", s.requireLevel(account.RoleStandard), s.handleOperatorStatus)
+	apiV1.Get("/operator/payouts/summary", s.requireLevel(account.RoleStandard), s.handleOperatorSummary)
+	apiV1.Post("/admin/payouts/trigger", s.handleAdminTriggerPayouts)
+
+	// Phase 14: Off-Chain Tokens API
+	apiV1.Get("/tokens/balance", s.requireLevel(account.RoleStandard), s.handleGetTokenBalance)
+	apiV1.Get("/tokens/ledger", s.requireLevel(account.RoleStandard), s.handleGetTokenLedger)
+	apiV1.Get("/tokens/summary", s.requireLevel(account.RoleStandard), s.handleGetTokenSummary)
+	apiV1.Get("/tokens/leaderboard", s.requireLevel(account.RoleStandard), s.handleGetTokenLeaderboard)
+
+	// Phase 15: Off-Chain Staking API
+	apiV1.Post("/stake/deposit", s.requireLevel(account.RoleStandard), s.handleStakeDeposit)
+	apiV1.Post("/stake/withdraw", s.requireLevel(account.RoleStandard), s.handleStakeWithdraw)
+	apiV1.Get("/stake/status", s.requireLevel(account.RoleStandard), s.handleGetStakeStatus)
+
+	// Phase 16: Reputation Engine API
+	apiV1.Get("/reputation/score", s.requireLevel(account.RoleStandard), s.handleGetReputationScore)
+	apiV1.Get("/reputation/ledger", s.requireLevel(account.RoleStandard), s.handleGetReputationLedger)
+	apiV1.Get("/reputation/leaderboard", s.requireLevel(account.RoleStandard), s.handleGetReputationLeaderboard)
+	apiV1.Post("/reputation/recalculate", s.requireLevel(account.RoleStandard), s.handleReputationRecalculate)
+
+	// Phase 17: Operator Identity API
+	apiV1.Get("/identity/status", s.requireLevel(account.RoleStandard), s.handleGetIdentityStatus)
+	apiV1.Get("/identity/linked", s.requireLevel(account.RoleStandard), s.handleGetIdentityLinked)
+	apiV1.Get("/identity/sybil", s.requireLevel(account.RoleStandard), s.handleGetIdentitySybil)
+	apiV1.Get("/identity/ledger", s.requireLevel(account.RoleStandard), s.handleGetIdentityLedger)
+	apiV1.Post("/identity/recalculate", s.requireLevel(account.RoleStandard), s.handleRecalculateIdentity)
 
 	// Job CRUD (Moved under /api/v1)
 	apiV1.Get("/jobs", s.handleListJobs)
 	apiV1.Post("/jobs", s.requireLevel(account.RoleStandard), s.handleSubmitJob)
 	apiV1.Post("/jobs/submit", s.requireLevel(account.RoleStandard), s.handleSubmitJob)
+	apiV1.Post("/jobs/distributed", s.handlePostDistributedJob)
+	apiV1.Get("/jobs/distributed", s.handleListDistributedJobs)
 	apiV1.Get("/jobs/:id", s.handleGetJob)
 	apiV1.Post("/jobs/stream", s.requireLevel(account.RoleStandard), s.handleStreamJob)
 	apiV1.Get("/jobs/:id/stream", s.handlePullJobStream)
@@ -227,8 +316,16 @@ func (s *Server) registerRoutes() {
 	apiV1.Post("/nodes/pairing-code/consume", s.requireLevel(account.RoleStandard), s.handleConsumePairingCode)
 	apiV1.Post("/nodes/register", s.requireLevel(account.RoleStandard), s.handleRegisterNode)
 	apiV1.Get("/nodes/verify-token", s.requireDeviceToken(), s.handleVerifyToken)
+	apiV1.Post("/nodes/heartbeat", s.requireDeviceToken(), s.handleHeartbeatNode)
+	apiV1.Get("/nodes/me", s.requireDeviceToken(), s.handleGetNodeMe)
+	apiV1.Get("/nodes/work", s.requireDeviceToken(), s.handleGetNodeWork)
+	apiV1.Post("/nodes/work/result", s.requireDeviceToken(), s.handlePostNodeWorkResult)
 	apiV1.Get("/nodes", s.handleListNodes)
 	apiV1.Get("/nodes/summary", s.handleNodesSummary)
+
+	// Distributed Compute Engine (Phase 10)
+	apiV1.Post("/jobs/distributed", s.handlePostDistributedJob)
+	apiV1.Get("/jobs/distributed", s.handleListDistributedJobs)
 	
 	// CRM Registry
 	apiV1.Get("/nodlrs", s.handleListNodlrs)
@@ -1007,7 +1104,7 @@ func (s *Server) requireLevel(minLevel account.UserRole) fiber.Handler {
 
 		requester, ok := s.accountStore.GetNodlr(requesterID)
 		if !ok {
-			return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "account not found"})
+			return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "account not found"})
 		}
 
 		// Master Key Protocol: SuperAdmins bypass all RBAC and status checks
@@ -1341,6 +1438,7 @@ func (s *Server) requireDeviceToken() fiber.Handler {
 		// Set locals for subsequent handlers
 		c.Locals("node_id", node.ID)
 		c.Locals("user_id", node.UserID)
+		c.Locals("deviceToken", token)
 
 		return c.Next()
 	}
@@ -1445,7 +1543,10 @@ func (s *Server) handleConsumePairingCode(c *fiber.Ctx) error {
 
 func (s *Server) handleRegisterNode(c *fiber.Ctx) error {
 	var req struct {
-		Metadata account.NodeMetadata `json:"metadata"`
+		Metadata           account.NodeMetadata `json:"metadata"`
+		HardwareHash       string               `json:"hardwareHash,omitempty"`
+		BrowserFingerprint string               `json:"browserFingerprint,omitempty"`
+		DeviceClass        string               `json:"deviceClass,omitempty"`
 	}
 	if err := c.BodyParser(&req); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid request body"})
@@ -1453,7 +1554,16 @@ func (s *Server) handleRegisterNode(c *fiber.Ctx) error {
 
 	userId := account.AuthoritativeOwnerID 
 
-	token, err := s.accountStore.RegisterNode(userId, req.Metadata)
+	deviceClass := req.DeviceClass
+	if deviceClass == "" {
+		if req.Metadata.OS == "browser" {
+			deviceClass = "wasm"
+		} else {
+			deviceClass = "native"
+		}
+	}
+
+	token, err := s.accountStore.RegisterNode(userId, req.Metadata, req.HardwareHash, req.BrowserFingerprint, deviceClass)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
 	}
@@ -1462,6 +1572,16 @@ func (s *Server) handleRegisterNode(c *fiber.Ctx) error {
 		"deviceToken": token,
 		"status":      "connected",
 	})
+}
+
+// handleGetNodeMe retrieves the requesting node's data.
+func (s *Server) handleGetNodeMe(c *fiber.Ctx) error {
+	nodeID := c.Locals("nodeId").(string)
+	node, exists := s.accountStore.GetNode(nodeID)
+	if !exists {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "node not found"})
+	}
+	return c.JSON(node)
 }
 
 func (s *Server) handleListNodes(c *fiber.Ctx) error {
@@ -1480,6 +1600,35 @@ func (s *Server) handleVerifyToken(c *fiber.Ctx) error {
 		"userId": userId,
 		"status": "authorized",
 	})
+}
+
+func (s *Server) handleHeartbeatNode(c *fiber.Ctx) error {
+	nodeId := c.Locals("node_id").(string)
+	
+	var req struct {
+		Metrics            account.NodeHealthMetrics `json:"metrics"`
+		HardwareHash       string                    `json:"hardwareHash,omitempty"`
+		BrowserFingerprint string                    `json:"browserFingerprint,omitempty"`
+		DeviceClass        string                    `json:"deviceClass,omitempty"`
+	}
+	if err := c.BodyParser(&req); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid request body"})
+	}
+
+	deviceClass := req.DeviceClass
+	if deviceClass == "" {
+		if req.Metrics.IsWASM {
+			deviceClass = "wasm"
+		} else {
+			deviceClass = "native"
+		}
+	}
+
+	if err := s.accountStore.UpdateNodeHeartbeat(nodeId, req.Metrics, req.HardwareHash, req.BrowserFingerprint, deviceClass); err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	return c.JSON(fiber.Map{"status": "success"})
 }
 func (s *Server) validateMeshClientID(c *fiber.Ctx) error {
 	var req struct {
@@ -1841,3 +1990,385 @@ func (s *Server) handleGetRank(c *fiber.Ctx) error {
 		"globalRank":       0,
 	})
 }
+
+// ==========================================
+// Phase 10: Distributed Compute Orchestration
+// ==========================================
+
+type DistributedJobReq struct {
+	Action        string   `json:"action"`
+	Payload       []string `json:"payload"`
+	DesiredShards int      `json:"desiredShards"`
+	Priority      string   `json:"priority"` // high, normal, background
+	CustomerID    string   `json:"customerId"` // Stripe Customer ID
+}
+
+func (s *Server) handlePostDistributedJob(c *fiber.Ctx) error {
+	var req DistributedJobReq
+	if err := c.BodyParser(&req); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid json"})
+	}
+
+	if req.DesiredShards <= 0 {
+		req.DesiredShards = 1
+	}
+	if req.Priority == "" {
+		req.Priority = "normal"
+	}
+
+	job, err := s.distEngine.SubmitJob(req.Action, req.Payload, req.DesiredShards, req.Priority, req.CustomerID)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	return c.JSON(job)
+}
+
+func (s *Server) handleListDistributedJobs(c *fiber.Ctx) error {
+	jobs := s.distEngine.ListJobs()
+	return c.JSON(jobs)
+}
+
+func (s *Server) handleGetNodeWork(c *fiber.Ctx) error {
+	nodeToken := c.Locals("deviceToken").(string)
+
+	shard, action, ok := s.distEngine.PollWork(nodeToken)
+	if !ok {
+		return c.SendStatus(fiber.StatusNoContent)
+	}
+
+	// Transform to the schema expected by Node Operator
+	type WorkRequest struct {
+		TaskID  string `json:"taskId"`
+		Payload string `json:"payload"`
+		Type    string `json:"type"`
+		Timeout int    `json:"timeout"`
+	}
+
+	payloadMap := map[string]interface{}{
+		"action": action,
+		"dataList": shard.Payload,
+	}
+
+	payloadBytes, _ := json.Marshal(payloadMap)
+	payloadBase64 := base64.StdEncoding.EncodeToString(payloadBytes)
+
+	// taskId formatted as parentTaskId:shardIndex
+	taskID := fmt.Sprintf("%s:%d", shard.ParentTaskID, shard.ShardIndex)
+
+	return c.JSON(WorkRequest{
+		TaskID:  taskID,
+		Payload: payloadBase64,
+		Type:    "gpu", // Hardcoded for Phase 10 based on prompt requirement
+		Timeout: 5000,
+	})
+}
+
+type NodeWorkResultReq struct {
+	TaskID     string `json:"taskId"`
+	Result     string `json:"result"`
+	DurationMs int64  `json:"durationMs"`
+	Success    bool   `json:"success"`
+	Error      string `json:"error"`
+}
+
+func (s *Server) handlePostNodeWorkResult(c *fiber.Ctx) error {
+	nodeToken := c.Locals("deviceToken").(string)
+
+	var req NodeWorkResultReq
+	if err := c.BodyParser(&req); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid json"})
+	}
+
+	parts := strings.Split(req.TaskID, ":")
+	if len(parts) != 2 {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid task ID format"})
+	}
+
+	parentTaskID := parts[0]
+	shardIndex, err := strconv.Atoi(parts[1])
+	if err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid shard index"})
+	}
+
+	err = s.distEngine.SubmitResult(nodeToken, parentTaskID, shardIndex, req.Result, req.Success, req.DurationMs)
+	if err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	return c.SendStatus(fiber.StatusOK)
+}
+
+func (s *Server) handleOperatorCreateAccount(c *fiber.Ctx) error {
+	userID := c.Locals("user_id").(string)
+	acctID, onboardingURL, err := s.accountStore.CreateStripeConnectAccount(userID)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+	s.log.Info("Stripe Connect account created", zap.String("operatorId", userID), zap.String("stripeAccountId", acctID))
+	return c.JSON(fiber.Map{
+		"stripeAccountId": acctID,
+		"onboardingUrl":   onboardingURL,
+	})
+}
+
+func (s *Server) handleOperatorRefreshLink(c *fiber.Ctx) error {
+	userID := c.Locals("user_id").(string)
+	url, err := s.accountStore.RefreshStripeConnectLink(userID)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+	return c.JSON(fiber.Map{"onboardingUrl": url})
+}
+
+func (s *Server) handleOperatorStatus(c *fiber.Ctx) error {
+	userID := c.Locals("user_id").(string)
+	nodlr, err := s.accountStore.SyncStripeConnectStatus(userID)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+	return c.JSON(fiber.Map{
+		"stripeAccountId":    nodlr.StripeAccountID,
+		"payoutsEnabled":     nodlr.PayoutsEnabled,
+		"verificationStatus": nodlr.VerificationStatus,
+	})
+}
+
+func (s *Server) handleOperatorSummary(c *fiber.Ctx) error {
+	userID := c.Locals("user_id").(string)
+	earnings := s.accountStore.GetOperatorEarnings(userID)
+	payouts := s.accountStore.GetOperatorPayouts(userID)
+	
+	nodlr, _ := s.accountStore.GetNodlr(userID)
+	
+	var stripeAcctID string
+	var payoutsEnabled bool
+	var verificationStatus string
+	if nodlr != nil {
+		stripeAcctID = nodlr.StripeAccountID
+		payoutsEnabled = nodlr.PayoutsEnabled
+		verificationStatus = nodlr.VerificationStatus
+	}
+
+	return c.JSON(fiber.Map{
+		"stripeAccountId":    stripeAcctID,
+		"payoutsEnabled":     payoutsEnabled,
+		"verificationStatus": verificationStatus,
+		"earnings":           earnings,
+		"payouts":            payouts,
+	})
+}
+
+func (s *Server) handleAdminTriggerPayouts(c *fiber.Ctx) error {
+	payouts, err := s.accountStore.AggregateAndExecutePayouts()
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+	s.log.Info("Payout transfers aggregated and triggered", zap.Int("payoutsCount", len(payouts)))
+	return c.JSON(fiber.Map{
+		"status":  "success",
+		"payouts": payouts,
+	})
+}
+
+func (s *Server) handleGetTokenBalance(c *fiber.Ctx) error {
+	userID := c.Locals("user_id").(string)
+	balance, earned, penalties := s.accountStore.GetTokenBalance(userID)
+	return c.JSON(fiber.Map{
+		"operatorId":        userID,
+		"balance":           balance,
+		"lifetimeEarned":    earned,
+		"lifetimePenalties": penalties,
+	})
+}
+
+func (s *Server) handleGetTokenLedger(c *fiber.Ctx) error {
+	userID := c.Locals("user_id").(string)
+	jobID := c.Query("jobId")
+	shardID := c.Query("shardId")
+	reason := c.Query("reason")
+
+	entries := s.accountStore.GetTokenLedger(userID, jobID, shardID, reason)
+
+	pageStr := c.Query("page")
+	limitStr := c.Query("limit")
+	page := 1
+	limit := 100
+
+	if pageVal, err := strconv.Atoi(pageStr); err == nil && pageVal > 0 {
+		page = pageVal
+	}
+	if limitVal, err := strconv.Atoi(limitStr); err == nil && limitVal > 0 {
+		limit = limitVal
+	}
+
+	start := (page - 1) * limit
+	if start > len(entries) {
+		start = len(entries)
+	}
+	end := start + limit
+	if end > len(entries) {
+		end = len(entries)
+	}
+
+	paginated := entries[start:end]
+
+	return c.JSON(fiber.Map{
+		"entries":    paginated,
+		"totalCount": len(entries),
+		"page":       page,
+		"limit":      limit,
+	})
+}
+
+func (s *Server) handleGetTokenSummary(c *fiber.Ctx) error {
+	userID := c.Locals("user_id").(string)
+	summary := s.accountStore.GetTokenSummary(userID)
+	return c.JSON(summary)
+}
+
+func (s *Server) handleGetTokenLeaderboard(c *fiber.Ctx) error {
+	leaderboard := s.accountStore.GetLeaderboard()
+	return c.JSON(leaderboard)
+}
+
+func (s *Server) handleStakeDeposit(c *fiber.Ctx) error {
+	userID := c.Locals("user_id").(string)
+	var body struct {
+		Amount float64 `json:"amount"`
+	}
+	if err := c.BodyParser(&body); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid request body"})
+	}
+
+	if err := s.accountStore.DepositStake(userID, body.Amount); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	return c.JSON(fiber.Map{"status": "success", "message": "deposit completed"})
+}
+
+func (s *Server) handleStakeWithdraw(c *fiber.Ctx) error {
+	userID := c.Locals("user_id").(string)
+	var body struct {
+		Amount float64 `json:"amount"`
+	}
+	if err := c.BodyParser(&body); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid request body"})
+	}
+
+	if err := s.accountStore.WithdrawStake(userID, body.Amount); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	return c.JSON(fiber.Map{"status": "success", "message": "withdrawal completed"})
+}
+
+func (s *Server) handleGetStakeStatus(c *fiber.Ctx) error {
+	userID := c.Locals("user_id").(string)
+	status := s.accountStore.GetStakeStatus(userID)
+	return c.JSON(status)
+}
+
+func (s *Server) handleGetReputationScore(c *fiber.Ctx) error {
+	userID := c.Locals("user_id").(string)
+	status := s.accountStore.GetReputationStatus(userID)
+	return c.JSON(status)
+}
+
+func (s *Server) handleGetReputationLedger(c *fiber.Ctx) error {
+	userID := c.Locals("user_id").(string)
+	status := s.accountStore.GetReputationStatus(userID)
+	history := status["history"]
+	return c.JSON(history)
+}
+
+func (s *Server) handleGetReputationLeaderboard(c *fiber.Ctx) error {
+	leaderboard := s.accountStore.GetReputationLeaderboard()
+	return c.JSON(leaderboard)
+}
+
+func (s *Server) handleReputationRecalculate(c *fiber.Ctx) error {
+	userID := c.Locals("user_id").(string)
+	nodlr, ok := s.accountStore.GetNodlr(userID)
+	if !ok {
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "user not found"})
+	}
+
+	if nodlr.Role != account.RoleOwner && !nodlr.IsSuperAdmin && nodlr.Role != account.RoleManagement {
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "forbidden: administration authorization required"})
+	}
+
+	s.accountStore.RecalculateAllReputations()
+	return c.JSON(fiber.Map{"status": "success", "message": "all operator reputations recalculated"})
+}
+
+func (s *Server) handleGetIdentityStatus(c *fiber.Ctx) error {
+	userID := c.Locals("user_id").(string)
+	id, exists := s.accountStore.GetOperatorIdentity(userID)
+	if !exists {
+		return c.JSON(fiber.Map{
+			"operatorId":         userID,
+			"hardwareHash":       "Not Detected",
+			"browserFingerprint": "Not Detected",
+			"deviceClass":        "native",
+			"firstSeen":          time.Now(),
+			"lastSeen":           time.Now(),
+			"trustLevel":         1.0,
+			"sybilSuspected":     false,
+			"linkedNodeIds":      []string{},
+			"changeCount24h":     0,
+		})
+	}
+	return c.JSON(id)
+}
+
+func (s *Server) handleGetIdentityLinked(c *fiber.Ctx) error {
+	userID := c.Locals("user_id").(string)
+	id, exists := s.accountStore.GetOperatorIdentity(userID)
+	if !exists {
+		return c.JSON([]interface{}{})
+	}
+
+	var result []*account.WnodeNode
+	for _, nodeID := range id.LinkedNodeIDs {
+		if node, exists := s.accountStore.GetNode(nodeID); exists {
+			result = append(result, node)
+		}
+	}
+	return c.JSON(result)
+}
+
+func (s *Server) handleGetIdentitySybil(c *fiber.Ctx) error {
+	userID := c.Locals("user_id").(string)
+	id, exists := s.accountStore.GetOperatorIdentity(userID)
+	if !exists {
+		return c.JSON(fiber.Map{"sybilSuspected": false, "trustLevel": 1.0})
+	}
+	return c.JSON(fiber.Map{
+		"sybilSuspected": id.SybilSuspected,
+		"trustLevel":     id.TrustLevel,
+	})
+}
+
+func (s *Server) handleGetIdentityLedger(c *fiber.Ctx) error {
+	userID := c.Locals("user_id").(string)
+	history := s.accountStore.GetIdentityLedger(userID)
+	return c.JSON(history)
+}
+
+func (s *Server) handleRecalculateIdentity(c *fiber.Ctx) error {
+	userID := c.Locals("user_id").(string)
+	nodlr, ok := s.accountStore.GetNodlr(userID)
+	if !ok {
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "user not found"})
+	}
+
+	if nodlr.Role != account.RoleOwner && !nodlr.IsSuperAdmin && nodlr.Role != account.RoleManagement {
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "forbidden: administration authorization required"})
+	}
+
+	s.accountStore.RecalculateAllReputations()
+	return c.JSON(fiber.Map{"status": "success", "message": "recalculated and sybil consistency scan completed"})
+}
+

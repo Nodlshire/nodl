@@ -83,7 +83,10 @@ export default function IntelligencePage() {
                 {item.label}
               </span>
             </Tooltip>
-            <span className={`text-[13px] font-bold ${item.accent}`}>
+            <span 
+              className={`text-[11px] font-bold leading-snug ${item.accent} line-clamp-2 overflow-hidden text-ellipsis`}
+              title={typeof item.value === 'string' ? item.value : undefined}
+            >
               {item.value}
             </span>
           </div>

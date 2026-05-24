@@ -155,12 +155,35 @@ func main() {
 	instSvc := institutional.NewService(accountStore, forensicsStore, log)
 	instHandler := institutional.NewHandler(instSvc, log)
 
+	// ── Billing Service ────────────────────────────────────────────────────────
+	billingStore := account.NewBillingStore()
+
 	// ── API Server ────────────────────────────────────────────────────────────
-	srv := api.New(dispatcher, store, pricingStore, accountStore, govStore, stripeSvc, moneyHandler, acqHandler, instHandler, p2pHost, log, startTime)
+	srv := api.New(dispatcher, store, pricingStore, accountStore, billingStore, govStore, stripeSvc, moneyHandler, acqHandler, instHandler, p2pHost, log, startTime)
 
 	// ── Settlement Scheduler ──────────────────────────────────────────────────
 	scheduler := account.NewScheduler(accountStore, stripeSvc, log)
 	go scheduler.Run(ctx)
+
+	// ── Payout Aggregation Scheduler (Daily Transfers) ────────────────────────
+	go func() {
+		ticker := time.NewTicker(24 * time.Hour)
+		defer ticker.Stop()
+		for {
+			select {
+			case <-ctx.Done():
+				return
+			case <-ticker.C:
+				log.Info("Running daily Operator payout aggregation...")
+				payouts, err := accountStore.AggregateAndExecutePayouts()
+				if err != nil {
+					log.Error("Failed to run Operator payout aggregation", zap.Error(err))
+				} else {
+					log.Info("Operator payout aggregation completed successfully", zap.Int("count", len(payouts)))
+				}
+			}
+		}
+	}()
 
 	// ── Heartbeat broadcaster (real-time WS events) ───────────────────────────
 	go func() {

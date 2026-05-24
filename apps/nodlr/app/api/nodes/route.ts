@@ -68,7 +68,9 @@ export async function GET(request: Request) {
             last_seen: n.last_heartbeat || 'Never',
             os: n.os || 'Unknown OS',
             arch: n.arch || 'Unknown Arch',
-            tier: n.tier || 'Standard'
+            tier: n.tier || 'Standard',
+            reputation: n.reputation ?? 0.98,
+            identity_trust: n.identity_trust ?? 1.0
         }));
 
         return NextResponse.json(providerNodes);

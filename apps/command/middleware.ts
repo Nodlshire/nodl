@@ -19,8 +19,12 @@ export function middleware(request: NextRequest) {
       // Allow the identity and auth endpoints to be handled by the proxy/handler
       if (request.nextUrl.pathname === '/api/account/me' || 
           request.nextUrl.pathname.startsWith('/api/auth') ||
+          request.nextUrl.pathname.startsWith('/api/cmd') ||
           request.nextUrl.pathname.startsWith('/api/v1/stripe/ledger') ||
-          request.nextUrl.pathname.startsWith('/api/discord')) {
+          request.nextUrl.pathname.startsWith('/api/v1/jobs/distributed') ||
+          request.nextUrl.pathname.startsWith('/api/v1/billing') ||
+          request.nextUrl.pathname.startsWith('/api/discord') ||
+          request.nextUrl.pathname.startsWith('/api/intelligence/event')) {
         return NextResponse.next();
       }
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

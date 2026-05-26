@@ -143,9 +143,23 @@ export default function PersonasSection({ onOpenModal }: PersonasSectionProps) {
                     </p>
                 </div>
 
-                <h2 className="text-4xl md:text-5xl font-bold text-white uppercase tracking-tighter mb-20 font-space-grotesk text-center">
-                    Join Wenode.
-                </h2>
+                <div className="text-center mb-20">
+                    <h2 className="text-4xl md:text-5xl font-bold text-white uppercase tracking-tighter mb-8 font-space-grotesk">
+                        MachineFi – Devices earn for you
+                    </h2>
+                    <p className="text-xl text-slate-300 leading-relaxed max-w-4xl mx-auto mb-16">
+                        MachineFi is where machines become earners with devices proving real work and getting paid for it, autonomously and on‑chain. Wenode turns that idea into reality by letting any device sell compute into a global marketplace with verifiable, trustless payouts, to you
+                    </p>
+                    
+                    <div className="relative group max-w-5xl mx-auto">
+                        <div className="absolute inset-0 bg-blue-500/5 blur-[100px] rounded-full pointer-events-none" />
+                        <img 
+                            src="/machinefi.png" 
+                            alt="MachineFi Ecosystem" 
+                            className="relative w-full h-auto rounded-[2rem] border border-white/15 shadow-2xl transition-all duration-700 group-hover:border-blue-500/20" 
+                        />
+                    </div>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {personas.map((p, i) => (
                         <div key={i} className={`fade-in-section p-12 border ${p.borderColor} rounded-[10px] bg-white/[0.01] flex flex-col justify-between hover:bg-white/[0.02] transition-all`}>

@@ -9,6 +9,7 @@ export interface Invite {
     status: 'invited' | 'otp_verified' | 'nda_accepted' | 'active';
     lastLogin: string | null;
     activity: string[]; // UUIDs of activity logs if we want, but activity.json tracks inviteId
+    label?: string;
 }
 
 const INVITES_PATH = path.join(process.cwd(), 'storage', 'invites.json');
@@ -42,4 +43,15 @@ export async function saveInvite(invite: Invite): Promise<void> {
     }
     await fs.mkdir(path.dirname(INVITES_PATH), { recursive: true });
     await fs.writeFile(INVITES_PATH, JSON.stringify(invites, null, 2));
+}
+
+export async function deleteInvite(id: string): Promise<boolean> {
+    const invites = await getInvites();
+    const initialLength = invites.length;
+    const filtered = invites.filter(i => i.id !== id);
+    if (filtered.length !== initialLength) {
+        await fs.writeFile(INVITES_PATH, JSON.stringify(filtered, null, 2));
+        return true;
+    }
+    return false;
 }

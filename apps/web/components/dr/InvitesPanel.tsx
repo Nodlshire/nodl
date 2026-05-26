@@ -6,6 +6,8 @@ export default function InvitesPanel() {
     const [invites, setInvites] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [isCreating, setIsCreating] = useState(false);
+    const [editingId, setEditingId] = useState<string | null>(null);
+    const [editLabelValue, setEditLabelValue] = useState("");
 
     const loadInvites = () => {
         setLoading(true);
@@ -67,6 +69,36 @@ export default function InvitesPanel() {
         alert("Invite link copied to clipboard!");
     };
 
+    const startEditing = (inv: any) => {
+        setEditingId(inv.id);
+        setEditLabelValue(inv.label || "");
+    };
+
+    const saveLabel = async (id: string) => {
+        try {
+            await fetch(`/api/dr/invites/${id}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ label: editLabelValue })
+            });
+            loadInvites();
+        } catch (e) {
+            console.error("Failed to save label", e);
+        } finally {
+            setEditingId(null);
+        }
+    };
+
+    const handleDelete = async (id: string) => {
+        if (!confirm("Are you sure you want to delete this invite?")) return;
+        try {
+            await fetch(`/api/dr/invites/${id}`, { method: 'DELETE' });
+            loadInvites();
+        } catch (e) {
+            console.error("Failed to delete invite", e);
+        }
+    };
+
     if (loading && invites.length === 0) return <div className="text-blue-400 text-xs uppercase tracking-widest animate-pulse font-bold p-6">Loading Invites...</div>;
 
     return (
@@ -90,6 +122,7 @@ export default function InvitesPanel() {
                             <tr>
                                 <th className="p-4">Type</th>
                                 <th className="p-4">Identity</th>
+                                <th className="p-4">Label</th>
                                 <th className="p-4">Status</th>
                                 <th className="p-4">Created</th>
                                 <th className="p-4">Actions</th>
@@ -100,20 +133,37 @@ export default function InvitesPanel() {
                                 <tr key={inv.id} className="hover:bg-white/5 transition-colors">
                                     <td className="p-4">{inv.inviteType === 'email' ? '✉️ Email' : '🔗 Link'}</td>
                                     <td className="p-4 font-bold">{inv.email || <span className="text-slate-500 italic">Pending...</span>}</td>
+                                    <td className="p-4" onClick={() => !editingId && startEditing(inv)}>
+                                        {editingId === inv.id ? (
+                                            <input
+                                                autoFocus
+                                                value={editLabelValue}
+                                                onChange={e => setEditLabelValue(e.target.value)}
+                                                onBlur={() => saveLabel(inv.id)}
+                                                onKeyDown={e => e.key === 'Enter' && saveLabel(inv.id)}
+                                                className="bg-black border border-white/20 rounded px-2 py-1 text-xs text-white"
+                                            />
+                                        ) : (
+                                            <span className="cursor-pointer hover:text-white text-slate-300">
+                                                {inv.label || 'Unnamed Invite'}
+                                            </span>
+                                        )}
+                                    </td>
                                     <td className="p-4">
                                         <span className={`px-2 py-1 rounded text-[10px] uppercase tracking-widest font-bold ${inv.status === 'active' ? 'bg-green-500/20 text-green-400' : 'bg-slate-500/20 text-slate-400'}`}>
                                             {inv.status}
                                         </span>
                                     </td>
                                     <td className="p-4 text-slate-400">{new Date(inv.createdAt).toLocaleDateString()}</td>
-                                    <td className="p-4">
-                                        <button onClick={() => copyLink(inv.id)} className="text-xs text-blue-400 hover:text-blue-300 uppercase tracking-widest font-bold">Copy Link</button>
+                                    <td className="p-4 flex flex-col gap-2">
+                                        <button onClick={() => copyLink(inv.id)} className="text-xs text-blue-400 hover:text-blue-300 uppercase tracking-widest font-bold text-left">Copy Link</button>
+                                        <button onClick={() => handleDelete(inv.id)} className="text-xs text-red-500 hover:text-red-400 uppercase tracking-widest font-bold text-left">Delete</button>
                                     </td>
                                 </tr>
                             ))}
                             {invites.length === 0 && (
                                 <tr>
-                                    <td colSpan={5} className="p-8 text-center text-slate-500">No invites created yet.</td>
+                                    <td colSpan={6} className="p-8 text-center text-slate-500">No invites created yet.</td>
                                 </tr>
                             )}
                         </tbody>

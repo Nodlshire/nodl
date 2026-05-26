@@ -51,39 +51,87 @@ export default function RequestAccessModal({ isOpen, onClose, onSuccess }: Props
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-            <div className="bg-[#080808] border border-white/10 rounded-2xl w-full max-w-md p-8 relative shadow-2xl animate-in zoom-in-95 duration-200">
-                <button onClick={onClose} className="absolute top-4 right-4 text-slate-500 hover:text-white transition-colors">
-                    ✕
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 animate-in fade-in duration-500">
+            <div 
+                className="absolute inset-0 bg-black/60 backdrop-blur-md" 
+                onClick={onClose}
+            />
+            <div className="relative w-full max-w-xl bg-[#1c1c1e] border border-white/15 rounded-[2.5rem] p-12 shadow-2xl overflow-hidden group">
+                {/* Subtle Glow */}
+                <div className="absolute -top-24 -left-24 w-48 h-48 bg-blue-500/10 blur-[80px] rounded-full pointer-events-none" />
+                
+                <button 
+                    onClick={onClose}
+                    className="absolute top-8 right-8 text-[#86868b] hover:text-white transition-colors"
+                >
+                    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
                 </button>
-                <h2 className="text-xl font-bold mb-6 text-white">Request Access</h2>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                        <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Name</label>
-                        <input type="text" value={name} onChange={e => setName(e.target.value)} required className="w-full bg-black border border-white/10 rounded px-3 py-2 text-sm text-white focus:border-blue-500 outline-none" />
-                    </div>
-                    <div>
-                        <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Email</label>
-                        <input type="email" value={email} onChange={e => setEmail(e.target.value)} required className="w-full bg-black border border-white/10 rounded px-3 py-2 text-sm text-white focus:border-blue-500 outline-none" />
-                    </div>
-                    <div>
-                        <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Investment Range</label>
-                        <input type="text" placeholder="e.g. $50k - $250k" value={investmentRange} onChange={e => setInvestmentRange(e.target.value)} required className="w-full bg-black border border-white/10 rounded px-3 py-2 text-sm text-white focus:border-blue-500 outline-none" />
-                    </div>
-                    <div>
-                        <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Investor Profile</label>
-                        <input type="text" placeholder="e.g. Angel, VC, Family Office" value={profile} onChange={e => setProfile(e.target.value)} required className="w-full bg-black border border-white/10 rounded px-3 py-2 text-sm text-white focus:border-blue-500 outline-none" />
-                    </div>
-                    <div>
-                        <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Social Media / Website</label>
-                        <input type="text" placeholder="LinkedIn, Twitter, or Website URL" value={link} onChange={e => setLink(e.target.value)} required className="w-full bg-black border border-white/10 rounded px-3 py-2 text-sm text-white focus:border-blue-500 outline-none" />
-                    </div>
-                    <div className="pt-4">
-                        <button type="submit" disabled={!isFormValid || isSubmitting} className="w-full bg-blue-600 hover:bg-blue-500 disabled:opacity-50 disabled:hover:bg-blue-600 text-white font-bold text-xs uppercase tracking-widest py-3 rounded transition-all shadow-[0_0_15px_rgba(37,99,235,0.2)] hover:shadow-[0_0_25px_rgba(37,99,235,0.4)]">
-                            {isSubmitting ? "Submitting..." : "Submit Request"}
-                        </button>
-                    </div>
-                </form>
+
+                <div className="relative z-10">
+                    <h2 className="text-4xl font-semibold mb-3 tracking-tight text-white">Request Access</h2>
+                    <p className="text-xl text-[#86868b] mb-12 leading-relaxed">Please provide your details below.</p>
+
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                        <div className="space-y-4">
+                            <input 
+                                type="text" 
+                                placeholder="Full Name" 
+                                value={name} 
+                                onChange={e => setName(e.target.value)} 
+                                required 
+                                className="w-full bg-[#2c2c2e] border-none rounded-2xl px-6 py-5 text-lg text-white focus:ring-2 focus:ring-blue-500/50 transition-all outline-none placeholder:text-[#48484a]" 
+                            />
+                            
+                            <input 
+                                type="email" 
+                                placeholder="Email Address" 
+                                value={email} 
+                                onChange={e => setEmail(e.target.value)} 
+                                required 
+                                className="w-full bg-[#2c2c2e] border-none rounded-2xl px-6 py-5 text-lg text-white focus:ring-2 focus:ring-blue-500/50 transition-all outline-none placeholder:text-[#48484a]" 
+                            />
+                            
+                            <input 
+                                type="text" 
+                                placeholder="Investment Range (e.g. $50k - $250k)" 
+                                value={investmentRange} 
+                                onChange={e => setInvestmentRange(e.target.value)} 
+                                required 
+                                className="w-full bg-[#2c2c2e] border-none rounded-2xl px-6 py-5 text-lg text-white focus:ring-2 focus:ring-blue-500/50 transition-all outline-none placeholder:text-[#48484a]" 
+                            />
+                            
+                            <input 
+                                type="text" 
+                                placeholder="Investor Profile (e.g. Angel, VC, Family Office)" 
+                                value={profile} 
+                                onChange={e => setProfile(e.target.value)} 
+                                required 
+                                className="w-full bg-[#2c2c2e] border-none rounded-2xl px-6 py-5 text-lg text-white focus:ring-2 focus:ring-blue-500/50 transition-all outline-none placeholder:text-[#48484a]" 
+                            />
+                            
+                            <input 
+                                type="text" 
+                                placeholder="Social Media / Website URL" 
+                                value={link} 
+                                onChange={e => setLink(e.target.value)} 
+                                required 
+                                className="w-full bg-[#2c2c2e] border-none rounded-2xl px-6 py-5 text-lg text-white focus:ring-2 focus:ring-blue-500/50 transition-all outline-none placeholder:text-[#48484a]" 
+                            />
+                        </div>
+                        
+                        <div className="pt-4">
+                            <button 
+                                type="submit" 
+                                disabled={!isFormValid || isSubmitting} 
+                                className="w-full button-apple-primary py-5 text-xl disabled:opacity-50"
+                            >
+                                {isSubmitting ? "Submitting..." : "Submit Request"}
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     );

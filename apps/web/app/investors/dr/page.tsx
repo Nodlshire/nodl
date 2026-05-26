@@ -1,10 +1,19 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AppLayout from "../../../components/layout/AppLayout";
 import Link from "next/link";
+import RequestAccessModal from "../../../components/ui/dr/RequestAccessModal";
 
 export default function DataRoomLandingPage() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [showToast, setShowToast] = useState(false);
+
+    const handleSuccess = () => {
+        setIsModalOpen(false);
+        setShowToast(true);
+        setTimeout(() => setShowToast(false), 5000);
+    };
     return (
         <AppLayout>
             <div className="bg-black text-white min-h-screen pt-32 pb-20 px-8 flex flex-col items-center selection:bg-blue-500/30">
@@ -22,7 +31,7 @@ export default function DataRoomLandingPage() {
 
                     {/* Action Buttons */}
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-8 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-150">
-                        <button className="px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full font-bold uppercase tracking-widest text-xs transition-all w-full sm:w-auto">
+                        <button onClick={() => setIsModalOpen(true)} className="px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full font-bold uppercase tracking-widest text-xs transition-all w-full sm:w-auto">
                             Request Access
                         </button>
                         
@@ -48,6 +57,18 @@ export default function DataRoomLandingPage() {
                     
                 </div>
             </div>
+
+            <RequestAccessModal 
+                isOpen={isModalOpen} 
+                onClose={() => setIsModalOpen(false)} 
+                onSuccess={handleSuccess} 
+            />
+
+            {showToast && (
+                <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-green-500/20 border border-green-500/50 text-green-400 px-6 py-3 rounded shadow-lg animate-in fade-in slide-in-from-bottom-8">
+                    <p className="text-sm font-bold">Request sent. You will receive access shortly.</p>
+                </div>
+            )}
         </AppLayout>
     );
 }

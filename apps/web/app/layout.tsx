@@ -28,6 +28,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en" className="dark scroll-smooth">
+            <head>
+                <script defer src="https://stats.wnode.one/script.js" data-website-id="a4384d11-fbf7-4a2c-a8c8-08c252d96b54"></script>
+            </head>
             <body suppressHydrationWarning className={`${inter.variable} ${roboto.variable} ${spaceGrotesk.variable} antialiased bg-black text-slate-50 font-sans`}>
                 {children}
             </body>

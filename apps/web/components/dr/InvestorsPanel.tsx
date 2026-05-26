@@ -72,7 +72,7 @@ export default function InvestorsPanel() {
             <h2 className="text-xl font-bold border-b border-white/10 pb-4">Investors Directory</h2>
             
             <div className="bg-[#080808] border border-white/10 rounded-xl overflow-hidden">
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto max-h-[60vh] overflow-y-auto">
                     <table className="w-full text-left text-sm whitespace-nowrap">
                         <thead className="bg-white/5 border-b border-white/10 text-xs uppercase tracking-widest text-slate-400">
                             <tr>

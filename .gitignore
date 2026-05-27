@@ -82,3 +82,4 @@ wnoded/
 **/main
 **/nodld-old
 **/build-cache
+apps/web/storage/*.json

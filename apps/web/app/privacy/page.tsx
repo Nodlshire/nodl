@@ -4,57 +4,133 @@ export default function PrivacyPage() {
     return (
         <AppLayout>
             <div className="relative pt-40 pb-24 px-8">
-
                 <div className="max-w-4xl mx-auto">
-                <div className="fade-in-section">
-                    <h1 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter uppercase">Privacy Policy</h1>
-                    
-                    <div className="space-y-16 text-slate-400 text-lg md:text-xl leading-relaxed font-light">
-                        <section className="border-t border-white/10 pt-12">
-                            <h2 className="text-sm font-bold text-blue-500 uppercase tracking-[0.3em] mb-6">Wenode Ltd. Privacy Policy</h2>
-                            <p className="text-white font-medium mb-4">Last Updated: April 2026</p>
-                            <p className="text-slate-500 italic">Registered Address: Unit A, 82 James Carter Road, Mildenhall Industrial Estate, Suffolk, United Kingdom, IP28 7DE.</p>
-                        </section>
+                    <div className="fade-in-section text-slate-300 whitespace-pre-wrap font-sans text-lg">
+{`Wnode Ltd. (trading as Wenode) — Privacy Policy
+Last Updated: April 2026
 
-                        <section>
-                            <h2 className="text-2xl font-bold text-white mb-6 uppercase tracking-tight">1. Global Compliance Framework</h2>
-                            <p>
-                                Wenode Ltd. operates as a UK entity and is committed to upholding the highest global data protection standards, 
-                                including the <span className="text-white">UK GDPR</span>, <span className="text-white">EU GDPR</span>, 
-                                and <span className="text-white">US Privacy Requirements</span> (including CCPA/CPRA).
-                            </p>
-                        </section>
+Wnode Ltd., trading as Wenode (“we”, “us”, “our”), is committed to digital sovereignty, privacy-first design, and strict data minimisation. This Privacy Policy explains how we collect, use, store, and protect personal data across the Wenode platform, including our dashboards, authentication systems, and protected services.
 
-                        <section>
-                            <h2 className="text-2xl font-bold text-white mb-6 uppercase tracking-tight">2. Data Sovereignty & Minimization</h2>
-                            <p>
-                                Our architecture is built on <span className="text-white">Data Minimization</span>. 
-                                We collect only the information necessary to facilitate the decentralized mesh. 
-                                We do not sell or trade user data.
-                            </p>
-                        </section>
+1. Who We Are
+Wnode Ltd. (trading as Wenode)
+Registered in the United Kingdom
+Contact: team1@wnode.one
 
-                        <section>
-                            <h2 className="text-2xl font-bold text-white mb-6 uppercase tracking-tight">3. Information We Collect</h2>
-                            <ul className="space-y-6">
-                                <li><strong className="text-white">Account Data:</strong> Email and Nodlr ID for secure access and commission payouts.</li>
-                                <li><strong className="text-white">Telemetry:</strong> Node performance data (uptime, capacity) used strictly for mesh optimization.</li>
-                                <li><strong className="text-white">Inquiries:</strong> Data submitted via our contact form is used solely to facilitate your request.</li>
-                            </ul>
-                        </section>
+We operate privacy-first infrastructure and do not engage in advertising, behavioural tracking, or data monetisation.
 
-                        <section>
-                            <h2 className="text-2xl font-bold text-white mb-6 uppercase tracking-tight">4. Data Subject Rights</h2>
-                            <p>
-                                Regardless of your location, we honor your rights to access, delete, or port your data. 
-                                For all privacy requests or to exercise your rights under EU/US/UK law, please contact our privacy team at 
-                                <a href="mailto:team1@wnode.one" className="text-blue-500 hover:text-blue-400 ml-2 transition-colors">team1@wnode.one</a>.
-                            </p>
-                        </section>
+2. Data We Collect
+We collect only the minimum personal data required to operate the Wenode platform securely and effectively.
+
+2.1 Account Information
+• Name  
+• Email address  
+• Password (hashed and salted; never stored in plain text)
+
+2.2 Authentication and Security Data
+• Session tokens  
+• Login timestamps  
+• IP address (for security, fraud prevention, and abuse mitigation)  
+• Device and browser metadata (non-identifying)
+
+2.3 Operational Data
+• Actions performed within authenticated dashboards  
+• System events required for platform stability  
+• Support communications sent to team1@wnode.one
+
+We do not collect sensitive personal data unless explicitly provided by the user.
+
+3. Data We Do Not Collect
+We do not collect:
+• Advertising identifiers  
+• Third-party tracking data  
+• Behavioural profiling data  
+• Cross-site tracking information  
+• Biometric data  
+• Financial information (payments are handled by Stripe)  
+
+We do not sell, share, rent, or monetise personal data.
+
+4. How We Use Personal Data
+We use personal data solely for:
+• Account creation and management  
+• Secure authentication  
+• Session continuity  
+• Fraud prevention and security monitoring  
+• Providing access to Wenode dashboards  
+• System maintenance and performance optimisation  
+• Responding to support requests  
+
+All processing is limited to what is necessary for platform operation.
+
+5. Legal Basis for Processing
+Under UK GDPR and EU GDPR, our processing is based on:
+• Article 6(1)(b) — performance of a contract (providing the Wenode service)  
+• Article 6(1)(f) — legitimate interests (security, fraud prevention, platform stability)  
+
+We do not rely on consent for any processing activity except where legally required.
+
+6. Cookies and Similar Technologies
+We only use Strictly Necessary cookies required for:
+• Authentication  
+• Session management  
+• Security  
+• Infrastructure stability  
+
+We do not use advertising cookies, analytics cookies that identify individuals, or third-party tracking technologies. See our Cookie Policy for full details.
+
+7. Data Storage and Retention
+We retain personal data only for as long as necessary to:
+• Maintain active accounts  
+• Provide the Wenode service  
+• Meet legal and security obligations  
+
+Session data is short-lived and automatically expires.  
+Support communications are retained only as long as required for operational purposes.
+
+8. Data Sharing and Third Parties
+We do not sell or share personal data with advertisers or data brokers.
+
+We may share limited data with:
+• Infrastructure providers required to operate the platform  
+• Stripe (for payments and KYC, where applicable)  
+• Legal authorities when required by law  
+
+All third parties are bound by strict data protection agreements.
+
+9. International Transfers
+Where data is transferred outside the UK or EU, we use:
+• Adequacy decisions  
+• Standard Contractual Clauses (SCCs)  
+• Equivalent safeguards required by GDPR  
+
+10. Your Rights
+Under UK GDPR and EU GDPR, you have the right to:
+• Access your data  
+• Correct inaccurate data  
+• Request deletion  
+• Restrict processing  
+• Object to processing  
+• Request data portability  
+
+To exercise these rights, contact: team1@wnode.one
+
+11. Security Measures
+We implement:
+• Encryption in transit and at rest  
+• Strict access controls  
+• Zero-trust authentication  
+• Regular security audits  
+• Continuous monitoring for abuse and intrusion attempts  
+
+12. Children’s Data
+Wenode is not intended for individuals under 18.  
+We do not knowingly collect data from minors.
+
+13. Changes to This Policy
+We may update this Privacy Policy to reflect legal, technical, or operational changes. Updates will be posted on this page with a revised “Last Updated`}
                     </div>
                 </div>
             </div>
-        </div>
-    </AppLayout>
+        </AppLayout>
     );
 }

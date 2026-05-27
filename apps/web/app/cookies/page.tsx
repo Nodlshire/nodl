@@ -4,55 +4,59 @@ export default function CookiePage() {
     return (
         <AppLayout>
             <div className="relative pt-40 pb-24 px-8">
-
                 <div className="max-w-4xl mx-auto">
-                <div className="fade-in-section">
-                    <h1 className="text-5xl md:text-7xl font-bold mb-16 tracking-tighter uppercase">Cookie Policy</h1>
-                    
-                    <div className="space-y-16 text-slate-400 text-lg md:text-xl leading-relaxed font-light">
-                        <section className="border-t border-white/10 pt-12">
-                            <h2 className="text-sm font-bold text-blue-500 uppercase tracking-[0.3em] mb-6">Wenode Ltd. Cookie Policy</h2>
-                            <p className="text-white font-medium mb-4">Last Updated: April 2026</p>
-                        </section>
+                    <div className="fade-in-section text-slate-300 whitespace-pre-wrap font-sans text-lg">
+{`Wnode Ltd. (trading as Wenode) — Cookie Policy
+Last Updated: April 2026
 
-                        <section>
-                            <p>
-                                Wenode Ltd. ("we", "us", or "our") believes in digital sovereignty. Our use of cookies is strictly functional 
-                                and designed to meet global privacy standards, including the <span className="text-white">UK/EU GDPR</span> 
-                                and <span className="text-white">US State Privacy Laws</span>.
-                            </p>
-                        </section>
+Wnode Ltd., trading as Wenode (“we”, “us”, “our”), is committed to digital sovereignty, privacy-first design, and strict data minimisation. This Cookie Policy explains how we use cookies and similar technologies across the Wenode platform, including our dashboards, authentication systems, and protected services.
 
-                        <section>
-                            <h2 className="text-2xl font-bold text-white mb-6 uppercase tracking-tight">What are cookies?</h2>
-                            <p>Small text files stored on your device to help websites function.</p>
-                        </section>
+1. What Are Cookies
+Cookies are small text files stored on your device by your browser. They support essential website functions such as secure login, session continuity, and platform stability. Cookies do not grant us access to your device or personal files.
 
-                        <section>
-                            <h2 className="text-2xl font-bold text-white mb-6 uppercase tracking-tight">How we use them</h2>
-                            <p>
-                                We only use <span className="text-white">Strictly Necessary</span> cookies. These are essential for 
-                                authentication and session management within the Wenode Dashboards.
-                            </p>
-                        </section>
+2. Types of Cookies We Use
+We only use Strictly Necessary first-party cookies. These cookies are essential for:
+• Secure authentication
+• Maintaining your login session
+• Protecting access to the Wenode Dashboards
+• Ensuring infrastructure stability and load balancing
 
-                        <section>
-                            <h2 className="text-2xl font-bold text-white mb-6 uppercase tracking-tight text-blue-500">No Tracking</h2>
-                            <p>We do not use advertising or third-party tracking cookies.</p>
-                        </section>
+These cookies do not track you across websites, do not identify you for marketing, and do not store personal data beyond what is required for secure operation.
 
-                        <section>
-                            <h2 className="text-2xl font-bold text-white mb-6 uppercase tracking-tight">Control</h2>
-                            <p>
-                                You can manage cookie preferences via your browser. Contact 
-                                <a href="mailto:team1@wnode.one" className="text-blue-500 hover:text-blue-400 ml-2 transition-colors">team1@wnode.one</a> 
-                                for technical inquiries regarding our session management.
-                            </p>
-                        </section>
+3. Cookies We Do Not Use
+We do not use:
+• Advertising cookies
+• Third-party tracking cookies
+• Behavioural profiling cookies
+• Cross-site tracking technologies
+• Social media tracking pixels
+• Fingerprinting technologies
+• Analytics cookies that identify individuals
+
+Wenode does not sell, share, or monetise user data.
+
+4. Legal Basis for Cookie Use
+Under GDPR and UK GDPR, our use of Strictly Necessary cookies is based on:
+• Article 6(1)(f) — legitimate interest (security, authentication, platform operation)
+• Article 6(1)(b) — performance of a contract (providing access to Wenode dashboards)
+
+Under the ePrivacy Directive, Strictly Necessary cookies do not require prior consent. Under US State Privacy Laws, these cookies are classified as essential for service delivery and are exempt from opt-out requirements.
+
+5. Managing Cookies
+You may control or delete cookies through your browser settings. Disabling Strictly Necessary cookies will prevent access to secure areas and disrupt core platform functionality.
+
+6. Data Minimisation and Retention
+We store only the minimum cookie data required to maintain secure sessions. Session cookies expire automatically when you log out, when your session times out, or when security policies require invalidation. We do not retain cookie data beyond operational necessity.
+
+7. Contact Information
+For privacy, compliance, or technical inquiries, contact:
+team1@wnode.one
+
+Wnode Ltd. (trading as Wenode)
+Registered in the United Kingdom`}
                     </div>
                 </div>
             </div>
-        </div>
-    </AppLayout>
+        </AppLayout>
     );
 }

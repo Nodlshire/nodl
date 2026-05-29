@@ -1,0 +1,7 @@
+{
+  "platform": "linux",
+  "version": "v0.3.0",
+  "installation_path": "/usr/bin/node-operator",
+  "service_path": "/etc/systemd/system/node-operator.service",
+  "data_dir": "/var/lib/node-operator"
+}

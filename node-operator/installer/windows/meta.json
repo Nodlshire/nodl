@@ -1,0 +1,6 @@
+{
+  "platform": "windows",
+  "version": "v0.3.0",
+  "installation_path": "C:\\Program Files\\Wnode\\NodeOperator\\node-operator.exe",
+  "data_dir": "C:\\ProgramData\\Wnode\\NodeOperator"
+}

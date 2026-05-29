@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "description": "Wnode mesh task result envelope schema",
+  "fields": {
+    "task_id": {
+      "type": "string",
+      "format": "UUID v4",
+      "description": "The task_id from the original task envelope"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["success", "error", "timeout"],
+      "description": "Outcome of the task execution"
+    },
+    "output": {
+      "type": "string",
+      "encoding": "base64",
+      "description": "The result data produced by the task, base64-encoded"
+    },
+    "logs": {
+      "type": "array of string",
+      "description": "Ordered log lines emitted during execution (stdout capture)"
+    },
+    "execution_time_ms": {
+      "type": "uint64",
+      "description": "Wall-clock milliseconds from task start to completion"
+    },
+    "error_message": {
+      "type": "string",
+      "optional": true,
+      "description": "Human-readable error description (only present when status is error or timeout)"
+    }
+  }
+}

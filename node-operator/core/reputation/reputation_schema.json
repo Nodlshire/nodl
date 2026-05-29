@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "description": "Wnode Node Operator local reputation score schema",
+  "scoring_range": "0.0 to 1.0 per dimension, total is weighted average",
+  "fields": {
+    "uptime_score": {
+      "type": "float64",
+      "range": "0.0 - 1.0",
+      "weight": 0.25,
+      "description": "Ratio of actual uptime to expected uptime since registration"
+    },
+    "task_success_score": {
+      "type": "float64",
+      "range": "0.0 - 1.0",
+      "weight": 0.35,
+      "description": "Ratio of successfully completed tasks to total assigned tasks"
+    },
+    "heartbeat_score": {
+      "type": "float64",
+      "range": "0.0 - 1.0",
+      "weight": 0.20,
+      "description": "Ratio of on-time heartbeats to expected heartbeats"
+    },
+    "thermal_score": {
+      "type": "float64",
+      "range": "0.0 - 1.0",
+      "weight": 0.10,
+      "description": "Penalty applied when thermal throttling is detected"
+    },
+    "battery_score": {
+      "type": "float64",
+      "range": "0.0 - 1.0",
+      "weight": 0.10,
+      "description": "Penalty applied when battery is low or not charging"
+    },
+    "total_score": {
+      "type": "float64",
+      "range": "0.0 - 1.0",
+      "description": "Weighted composite score across all dimensions"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "RFC3339",
+      "description": "Timestamp of last reputation recalculation"
+    }
+  }
+}

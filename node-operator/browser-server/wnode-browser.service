@@ -1,0 +1,17 @@
+[Unit]
+Description=Wnode Browser Node Server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/wnode/browser-server
+ExecStart=/opt/wnode/browser-server/browser-server
+Restart=always
+RestartSec=10
+User=wnode
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

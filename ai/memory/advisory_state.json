@@ -1,0 +1,31 @@
+{
+  "lastUpdated": "2026-05-24T02:00:15.344Z",
+  "stats": {
+    "trendWindowsAnalyzed": 1,
+    "forecastsGenerated": 2,
+    "advisoriesGenerated": 1
+  },
+  "forecasts": [
+    {
+      "metric": "failureRate",
+      "slope": 0,
+      "forecastedValue": 0,
+      "trend": "stable"
+    },
+    {
+      "metric": "avgReputation",
+      "slope": 0,
+      "forecastedValue": 0.9,
+      "trend": "stable"
+    }
+  ],
+  "recommendations": [
+    {
+      "id": "advisory-rec-0",
+      "type": "Nominal",
+      "severity": "info",
+      "message": "Advisory: Network health forecasts are stable. Shard delivery capacity matches load forecasts.",
+      "actionSuggestion": "No administrative action required."
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "lastUpdated": "2026-05-24T02:19:49.543Z",
+  "stats": {
+    "proposalsGenerated": 5,
+    "proposalsVisible": 5,
+    "lastProposalTimestamp": "2026-05-24T02:19:49.544Z"
+  },
+  "proposals": [
+    {
+      "id": "proposal-0",
+      "proposedChange": "Adjust Scheduling Weight Coefficient to 0.85",
+      "predictedDeltas": "Reputation-weighted scheduling is projected to reduce shard distribution load variance by 85.7% compared to random allocation.",
+      "confidenceScore": 0.65,
+      "simulationContext": "weighted_scheduling",
+      "rationale": "Optimal load balance requires balancing historical operator reputation scores and routing randomization. Simulating the weighted selection delta predicts a decrease in resource starvation events.",
+      "summary": "Governance Proposal: Adjust scheduling weight to 0.85 (Confidence: 65%)"
+    },
+    {
+      "id": "proposal-1",
+      "proposedChange": "Scale Shard Execution Timeout Threshold by +150ms",
+      "predictedDeltas": "A 1.5x increase in shard payload dimensions is predicted to increase average node compute completion duration by 153.6ms.",
+      "confidenceScore": 0.62,
+      "simulationContext": "shard_scaling_1.5x",
+      "rationale": "Simulations of 1.5x larger shards show elevated risk of compute completion overruns. Extending timeouts preserves job integrity.",
+      "summary": "Governance Proposal: Scale execution timeout threshold by +150ms (Confidence: 62%)"
+    },
+    {
+      "id": "proposal-2",
+      "proposedChange": "Reduce Downtime Penalty Coefficient from -0.15 to -0.10",
+      "predictedDeltas": "Downtime simulation predicts reputation point decay from 0.92 to 0.77 for operator unknown.",
+      "confidenceScore": 0.59,
+      "simulationContext": "reputation_slashing_downtime",
+      "rationale": "Aggressive penalties during minor downtime events trigger cascade demotions. Adjusting penalty parameters improves operator retention during transient outages.",
+      "summary": "Governance Proposal: Calibrate downtime penalty coefficient to -0.10 (Confidence: 59%)"
+    },
+    {
+      "id": "proposal-3",
+      "proposedChange": "Require Multi-Factor Verification Trigger on Hardware Signature Drift",
+      "predictedDeltas": "Identity signature mismatch simulation reduces profile trust index to 0.48, flagging node for verification.",
+      "confidenceScore": 0.55,
+      "simulationContext": "identity_spoofing_drift",
+      "rationale": "A hardware fingerprint signature mismatch indicates possible device spoofing. Requiring immediate validation preserves identity trust boundaries.",
+      "summary": "Governance Proposal: Require validation check on hardware signature drift (Confidence: 55%)"
+    },
+    {
+      "id": "proposal-4",
+      "proposedChange": "Establish Minimum Lock Staking Threshold of 500 WEX",
+      "predictedDeltas": "A 30% reduction in locked collateral stake limits maximum operator concurrent shard eligibility by 40%.",
+      "confidenceScore": 0.57,
+      "simulationContext": "collateral_unstake_impact",
+      "rationale": "Stabilizes operator stake distributions and matches maximum concurrent job scheduling capacities.",
+      "summary": "Governance Proposal: Establish minimum locked stake threshold at 500 WEX (Confidence: 57%)"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "mode": "iot",
+  "limits": {
+    "memory_cap_mb": 64,
+    "cpu_quota_percent": 20
+  },
+  "execution": {
+    "ram_only_mode": true
+  },
+  "telemetry": {
+    "minimal_telemetry": true
+  }
+}

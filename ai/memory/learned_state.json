@@ -1,0 +1,61 @@
+{
+  "lastUpdated": "2026-05-24T01:51:43.576Z",
+  "stats": {
+    "totalEvents": 3,
+    "anomalyCount": 0,
+    "profileCount": 3
+  },
+  "clusters": [
+    {
+      "clusterId": 0,
+      "count": 1,
+      "eventTypes": [
+        "heartbeat"
+      ]
+    },
+    {
+      "clusterId": 1,
+      "count": 1,
+      "eventTypes": [
+        "identity_trust"
+      ]
+    },
+    {
+      "clusterId": 2,
+      "count": 1,
+      "eventTypes": [
+        "heartbeat"
+      ]
+    }
+  ],
+  "anomalies": [],
+  "profiles": [
+    {
+      "operatorId": "unknown",
+      "eventCount": 1,
+      "anomaliesCount": 0,
+      "eventTypes": {
+        "heartbeat": 1
+      },
+      "lastSeen": "2026-05-24T01:38:04.872Z"
+    },
+    {
+      "operatorId": "operator-1",
+      "eventCount": 1,
+      "anomaliesCount": 0,
+      "eventTypes": {
+        "identity_trust": 1
+      },
+      "lastSeen": "2026-05-24T01:39:33Z"
+    },
+    {
+      "operatorId": "operator-testing-abc",
+      "eventCount": 1,
+      "anomaliesCount": 0,
+      "eventTypes": {
+        "heartbeat": 1
+      },
+      "lastSeen": "2026-05-24T01:51:39.718Z"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "description": "Wnode Node Operator heartbeat payload schema",
+  "fields": {
+    "node_id": {
+      "type": "string",
+      "description": "Unique identifier for this operator node"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "RFC3339",
+      "description": "ISO-8601 timestamp of this heartbeat"
+    },
+    "version": {
+      "type": "string",
+      "description": "Semantic version of the running operator binary"
+    },
+    "uptime_seconds": {
+      "type": "uint64",
+      "unit": "seconds",
+      "description": "Seconds since the operator process started"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["alive", "degraded", "error"],
+      "description": "Current liveness state of the operator"
+    },
+    "last_telemetry": {
+      "type": "object",
+      "description": "Most recent telemetry snapshot (conforms to telemetry_schema.json)"
+    }
+  }
+}

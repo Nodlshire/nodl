@@ -1,0 +1,5 @@
+{
+  "uninstaller_type": "nsis_placeholder",
+  "registry_key": "HKLM\\Software\\Wnode\\NodeOperator",
+  "preserve_data": true
+}

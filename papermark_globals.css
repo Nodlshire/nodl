@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%; /* #000000 */
+    --foreground: 0 0% 100%; /* #ffffff */
+
+    --muted: 0 0% 12.2%; /* #1f1f1f */
+    --muted-foreground: 0 0% 60%; /* gray */
+
+    --popover: 0 0% 6.7%; /* #111111 */
+    --popover-foreground: 0 0% 100%;
+
+    --card: 0 0% 6.7%; /* #111111 */
+    --card-foreground: 0 0% 100%;
+
+    --border: 0 0% 12.2%; /* #1f1f1f */
+    --input: 0 0% 12.2%;
+
+    --primary: 217 91% 60%; /* #3b82f6 */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 12.2%; /* #1f1f1f */
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 0 0% 12.2%; /* #1f1f1f */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 85.7% 97.3%;
+
+    --warning: 38 92% 30%;
+    --warning-foreground: 38 92% 95%;
+
+    --ring: 217 91% 60%; /* #3b82f6 */
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 0%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 12.2%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 12.2%;
+    --sidebar-ring: 217 91% 60%;
+  }
+
+  .dark {
+    --background: 0 0% 0%; /* #000000 */
+    --foreground: 0 0% 100%; /* #ffffff */
+
+    --muted: 0 0% 12.2%; /* #1f1f1f */
+    --muted-foreground: 0 0% 60%; /* gray */
+
+    --popover: 0 0% 6.7%; /* #111111 */
+    --popover-foreground: 0 0% 100%;
+
+    --card: 0 0% 6.7%; /* #111111 */
+    --card-foreground: 0 0% 100%;
+
+    --border: 0 0% 12.2%; /* #1f1f1f */
+    --input: 0 0% 12.2%;
+
+    --primary: 217 91% 60%; /* #3b82f6 */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 12.2%; /* #1f1f1f */
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 0 0% 12.2%; /* #1f1f1f */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 85.7% 97.3%;
+
+    --warning: 38 92% 30%;
+    --warning-foreground: 38 92% 95%;
+
+    --ring: 217 91% 60%; /* #3b82f6 */
+
+    --sidebar-background: 0 0% 0%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 12.2%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 12.2%;
+    --sidebar-ring: 217 91% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .touch-action-manipulation {
+    touch-action: manipulation;
+  }
+
+  .touch-action-pinch-zoom {
+    touch-action: pinch-zoom;
+  }
+
+  .transform-container {
+    transform-origin: 0 0;
+    will-change: transform;
+  }
+
+  .touch-zoom-container {
+    touch-action: none; /* Disable all browser handling */
+    -webkit-overflow-scrolling: touch;
+    isolation: isolate; /* Create a new stacking context */
+    contain: paint; /* Optimize rendering */
+  }
+}

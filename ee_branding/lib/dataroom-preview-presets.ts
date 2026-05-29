@@ -1,0 +1,1 @@
+export const DEFAULT_DATAROOM_BRAND_PRESETS = [];

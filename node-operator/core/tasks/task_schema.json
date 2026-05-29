@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "description": "Wnode mesh task envelope schema",
+  "fields": {
+    "task_id": {
+      "type": "string",
+      "format": "UUID v4",
+      "description": "Globally unique identifier assigned by the mesh scheduler"
+    },
+    "action": {
+      "type": "string",
+      "description": "The operation to perform (e.g. wasm_execute, hash_sha256, compute_inference)",
+      "examples": ["wasm_execute", "hash_sha256", "uppercase", "compute_inference"]
+    },
+    "payload": {
+      "type": "string",
+      "encoding": "base64",
+      "description": "The input data for the task, base64-encoded"
+    },
+    "resource_requirements": {
+      "type": "object",
+      "description": "Hardware constraints the scheduler used to select this node",
+      "fields": {
+        "memory_mb": {
+          "type": "uint64",
+          "description": "Minimum memory the task needs"
+        },
+        "cpu_timeout_ms": {
+          "type": "uint64",
+          "description": "Maximum wall-clock time before the task is killed"
+        },
+        "gpu_required": {
+          "type": "bool",
+          "description": "Whether the task requires GPU compute access"
+        },
+        "wasm_url": {
+          "type": "string",
+          "description": "URL to the WASM module (only for wasm_execute actions)"
+        },
+        "wasm_checksum": {
+          "type": "string",
+          "format": "SHA-256 hex",
+          "description": "Integrity hash of the WASM binary"
+        }
+      }
+    },
+    "timeout_seconds": {
+      "type": "uint64",
+      "description": "Absolute deadline in seconds; the mesh reclaims the task after this"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Opaque key-value pairs forwarded to the task but not interpreted by the operator",
+      "fields": {
+        "submitted_by": { "type": "string" },
+        "priority": { "type": "int", "range": "0-10" },
+        "retry_count": { "type": "int" },
+        "tags": { "type": "array of string" }
+      }
+    }
+  }
+}

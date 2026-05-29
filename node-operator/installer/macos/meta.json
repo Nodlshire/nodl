@@ -1,0 +1,7 @@
+{
+  "platform": "macos",
+  "version": "v0.3.0",
+  "installation_path": "/usr/local/bin/node-operator",
+  "service_path": "/Library/LaunchDaemons/one.wnode.operator.plist",
+  "data_dir": "/Library/Application Support/Wnode/node-operator"
+}

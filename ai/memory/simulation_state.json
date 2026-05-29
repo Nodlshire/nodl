@@ -1,0 +1,40 @@
+{
+  "lastUpdated": "2026-05-24T02:19:49.541Z",
+  "stats": {
+    "simulationsRun": 10,
+    "simulationScenariosAvailable": 5,
+    "lastSimulationTimestamp": "2026-05-24T02:19:49.541Z"
+  },
+  "scenarios": [
+    {
+      "scenarioName": "weighted_scheduling",
+      "description": "Compare reputation-weighted scheduling vs uniform random allocation.",
+      "predictedDelta": "Reputation-weighted scheduling is projected to reduce shard distribution load variance by 85.7% compared to random allocation.",
+      "confidenceScore": 0.65
+    },
+    {
+      "scenarioName": "shard_scaling_1.5x",
+      "description": "Predict average latency overhead when scaling shard data size to 1.5x.",
+      "predictedDelta": "A 1.5x increase in shard payload dimensions is predicted to increase average node compute completion duration by 153.6ms.",
+      "confidenceScore": 0.62
+    },
+    {
+      "scenarioName": "reputation_slashing_downtime",
+      "description": "Simulates a 1-hour downtime event penalty on operator reputation scores.",
+      "predictedDelta": "Downtime simulation predicts reputation point decay from 0.92 to 0.77 for operator unknown.",
+      "confidenceScore": 0.59
+    },
+    {
+      "scenarioName": "identity_spoofing_drift",
+      "description": "Simulates trust index variations on hardware signature modifications.",
+      "predictedDelta": "Identity signature mismatch simulation reduces profile trust index to 0.48, flagging node for verification.",
+      "confidenceScore": 0.55
+    },
+    {
+      "scenarioName": "collateral_unstake_impact",
+      "description": "Simulates eligibility bounds when reducing locked collateral stake.",
+      "predictedDelta": "A 30% reduction in locked collateral stake limits maximum operator concurrent shard eligibility by 40%.",
+      "confidenceScore": 0.57
+    }
+  ]
+}

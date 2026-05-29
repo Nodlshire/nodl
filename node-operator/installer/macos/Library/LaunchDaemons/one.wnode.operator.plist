@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>one.wnode.operator</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/local/bin/node-operator</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>/var/log/node-operator.log</string>
+    <key>StandardErrorPath</key>
+    <string>/var/log/node-operator.log</string>
+    <key>WorkingDirectory</key>
+    <string>/Library/Application Support/Wnode/node-operator</string>
+</dict>
+</plist>

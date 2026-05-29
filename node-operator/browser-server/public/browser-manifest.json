@@ -1,0 +1,15 @@
+{
+  "version": "v0.1.0",
+  "wasm_path": "wnode.wasm",
+  "js_bundle": ["capabilities.js", "workload.js", "wsclient.js", "mesh.js", "wnode.js"],
+  "supported_browsers": {
+    "chrome": ">= 90",
+    "firefox": ">= 90",
+    "safari": ">= 15",
+    "edge": ">= 90"
+  },
+  "update_channel": {
+    "stable": "https://node.wnode.one/browser-manifest.json",
+    "nightly": "https://node.wnode.one/nightly/browser-manifest.json"
+  }
+}

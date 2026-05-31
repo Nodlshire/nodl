@@ -1,0 +1,8 @@
+{
+  "name": "Bob",
+  "category": "Uncategorized",
+  "description": "Integration for Bob",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

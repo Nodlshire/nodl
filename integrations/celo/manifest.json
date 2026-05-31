@@ -1,0 +1,8 @@
+{
+  "name": "Celo",
+  "category": "Ecosystem",
+  "description": "Integration with Celo.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

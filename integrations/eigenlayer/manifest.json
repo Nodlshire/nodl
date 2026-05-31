@@ -1,0 +1,8 @@
+{
+  "name": "EigenLayer",
+  "category": "Restaking",
+  "description": "Protocol built on Ethereum that introduces restaking, a new primitive in cryptoeconomic security.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

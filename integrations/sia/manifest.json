@@ -1,0 +1,8 @@
+{
+  "name": "Sia",
+  "category": "Ecosystem",
+  "description": "Integration with Sia.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

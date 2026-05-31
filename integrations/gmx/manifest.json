@@ -1,0 +1,8 @@
+{
+  "name": "GMX",
+  "category": "Ecosystem",
+  "description": "Integration with GMX.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Yearn",
+  "category": "Ecosystem",
+  "description": "Integration with Yearn.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Lido",
+  "category": "Ecosystem",
+  "description": "Integration with Lido.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

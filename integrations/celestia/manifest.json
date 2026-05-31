@@ -1,0 +1,8 @@
+{
+  "name": "Celestia",
+  "category": "Data Availability",
+  "description": "Modular data availability network that securely scales with the number of users.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Blockdaemon",
+  "category": "Ecosystem",
+  "description": "Integration with Blockdaemon.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

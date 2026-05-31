@@ -1,0 +1,8 @@
+{
+  "name": "Starknet",
+  "category": "Ecosystem",
+  "description": "Integration with Starknet.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

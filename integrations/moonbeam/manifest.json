@@ -1,0 +1,8 @@
+{
+  "name": "Moonbeam",
+  "category": "Ecosystem",
+  "description": "Integration with Moonbeam.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

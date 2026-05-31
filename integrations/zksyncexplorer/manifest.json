@@ -1,0 +1,8 @@
+{
+  "name": "ZkSync Explorer",
+  "category": "Ecosystem",
+  "description": "Integration with ZkSync Explorer.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "CoinMarketCap",
+  "category": "Ecosystem",
+  "description": "Integration with CoinMarketCap.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

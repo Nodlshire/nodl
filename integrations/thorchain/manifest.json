@@ -1,0 +1,8 @@
+{
+  "name": "Thorchain",
+  "category": "Ecosystem",
+  "description": "Integration with Thorchain.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

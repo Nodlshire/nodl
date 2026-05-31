@@ -1,0 +1,8 @@
+{
+  "name": "Rocket Pool",
+  "category": "Ecosystem",
+  "description": "Integration with Rocket Pool.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

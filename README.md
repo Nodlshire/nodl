@@ -1,11 +1,22 @@
-#This version is in Beta - Please expect bugs - We are working in realtime to fix.
+# This version is in Beta - Please expect bugs - We are working in realtime to fix.
 
-# 🌍 Wnode — The Planetary Compute Mesh
-### Turn your idle devices into real daily income.
+## Wnode: The Planetary Compute Mesh
 
-**Phones, laptops, EVs, smart TVs, and more become part of a shared, community‑owned compute network.**  
-**No crypto. No wallets. Daily payouts in real currency via Stripe.**  
-**Wnode MVP is live and open for beta testers.**
+Wnode is an AI-powered, decentralized orchestration layer designed to unify global computing power. By abstracting the fragmentation of Web3 and DePIN (Decentralized Physical Infrastructure Networks), Wnode transforms any internet-connected device into a high-performance node within a community-owned planetary mesh.
+
+Our mission is to democratize global infrastructure, bridging the gap between legacy enterprise cloud and the decentralized web through a frictionless, fiat-native ecosystem.
+
+🚀 The Moonshot
+To build an omnipresent, self-optimizing compute network that scales infinitely, eliminates blockchain complexity, and makes decentralized infrastructure universally accessible.
+
+💡 Core Pillars
+Unified Orchestration: Connects thousands of disparate Web3 platforms, Layer-1/Layer-2 chains, compute fleets, and decentralized oracles into a single cohesive layer.
+
+Zero-Crypto Friction: Complete abstraction of web3 mechanics. Customers pay in fiat, and node operators earn directly in USD via automated backend crypto-to-fiat routing.
+
+3-Click Deployment: Universal onboarding allows any device to join the mesh instantly using hyper-lightweight WebAssembly (Wasm) or native runtime environments.
+
+Hyper-Scale Economics: Unlocks hyper-low-cost, distributed compute for AI and automation workloads while turning everyday hardware into yield-generating assets.
 
 ---
 

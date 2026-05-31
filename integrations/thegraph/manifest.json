@@ -1,0 +1,8 @@
+{
+  "name": "TheGraph",
+  "category": "Indexing",
+  "description": "Decentralized protocol for indexing and querying blockchain data.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Infura",
+  "category": "Ecosystem",
+  "description": "Integration with Infura.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

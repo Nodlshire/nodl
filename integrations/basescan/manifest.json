@@ -1,0 +1,8 @@
+{
+  "name": "Basescan",
+  "category": "Ecosystem",
+  "description": "Integration with Basescan.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

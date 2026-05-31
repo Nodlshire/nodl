@@ -1,0 +1,8 @@
+{
+  "name": "Safe",
+  "category": "Wallet",
+  "description": "Multi-signature smart contract wallet for managing digital assets on Ethereum.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

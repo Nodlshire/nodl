@@ -1,0 +1,8 @@
+{
+  "name": "Compound",
+  "category": "Ecosystem",
+  "description": "Integration with Compound.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

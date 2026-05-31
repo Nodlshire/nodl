@@ -1,0 +1,8 @@
+{
+  "name": "Solana",
+  "category": "Ecosystem",
+  "description": "Integration with Solana.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

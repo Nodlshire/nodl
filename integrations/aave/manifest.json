@@ -1,0 +1,8 @@
+{
+  "name": "Aave",
+  "category": "DeFi",
+  "description": "Decentralized non-custodial liquidity protocol where users can participate as depositors or borrowers.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

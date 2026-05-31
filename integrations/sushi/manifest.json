@@ -1,0 +1,8 @@
+{
+  "name": "Sushi",
+  "category": "Ecosystem",
+  "description": "Integration with Sushi.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

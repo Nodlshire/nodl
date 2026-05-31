@@ -1,0 +1,8 @@
+{
+  "name": "dYdX",
+  "category": "Ecosystem",
+  "description": "Integration with dYdX.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

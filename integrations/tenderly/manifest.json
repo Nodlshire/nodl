@@ -1,0 +1,8 @@
+{
+  "name": "Tenderly",
+  "category": "Ecosystem",
+  "description": "Integration with Tenderly.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

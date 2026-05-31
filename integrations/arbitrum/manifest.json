@@ -1,0 +1,8 @@
+{
+  "name": "Arbitrum",
+  "category": "Layer 2",
+  "description": "Layer 2 scaling solution for Ethereum using Optimistic Rollups.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

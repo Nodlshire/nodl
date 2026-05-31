@@ -1,0 +1,8 @@
+{
+  "name": "WalletConnect",
+  "category": "Ecosystem",
+  "description": "Integration with WalletConnect.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

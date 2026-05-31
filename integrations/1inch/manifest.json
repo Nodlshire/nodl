@@ -1,0 +1,8 @@
+{
+  "name": "1inch",
+  "category": "Ecosystem",
+  "description": "Integration with 1inch.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

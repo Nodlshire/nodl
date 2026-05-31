@@ -1,0 +1,8 @@
+{
+  "name": "Blockscout",
+  "category": "Ecosystem",
+  "description": "Integration with Blockscout.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

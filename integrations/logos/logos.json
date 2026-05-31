@@ -1,0 +1,497 @@
+[
+  {
+    "name": "Optimism",
+    "svg": "https://cryptologos.cc/logos/optimism-ethereum-op-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Base",
+    "svg": "https://cryptologos.cc/logos/base-base-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Polygon",
+    "svg": "https://cryptologos.cc/logos/polygon-matic-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Avalanche",
+    "svg": "https://cryptologos.cc/logos/avalanche-avax-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Solana",
+    "svg": "https://cryptologos.cc/logos/solana-sol-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Near",
+    "svg": "https://cryptologos.cc/logos/near-protocol-near-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Fantom",
+    "svg": "https://cryptologos.cc/logos/fantom-ftm-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Moonbeam",
+    "svg": "https://cryptologos.cc/logos/moonbeam-glmr-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Gnosis Chain",
+    "svg": "https://cryptologos.cc/logos/gnosis-gno-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Linea",
+    "svg": null,
+    "png": "https://assets.coingecko.com/coins/images/30173/large/linea.png"
+  },
+  {
+    "name": "Scroll",
+    "svg": null,
+    "png": "https://assets.coingecko.com/coins/images/31473/large/scroll.png"
+  },
+  {
+    "name": "ZkSync",
+    "svg": null,
+    "png": "https://assets.coingecko.com/coins/images/38644/large/zksync.png"
+  },
+  {
+    "name": "Starknet",
+    "svg": "https://cryptologos.cc/logos/starknet-strk-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Mantle",
+    "svg": "https://cryptologos.cc/logos/mantle-mnt-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Celo",
+    "svg": "https://cryptologos.cc/logos/celo-celo-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Celestia",
+    "svg": "https://cryptologos.cc/logos/celestia-tia-logo.svg",
+    "png": null
+  },
+  {
+    "name": "EigenLayer",
+    "svg": null,
+    "png": "https://assets.coingecko.com/coins/images/33613/large/eigen.png"
+  },
+  {
+    "name": "Filecoin",
+    "svg": "https://cryptologos.cc/logos/filecoin-fil-logo.svg",
+    "png": null
+  },
+  {
+    "name": "IPFS",
+    "svg": "https://cryptologos.cc/logos/ipfs-ipfs-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Arweave",
+    "svg": "https://cryptologos.cc/logos/arweave-ar-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Sia",
+    "svg": "https://cryptologos.cc/logos/siacoin-sc-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Safe",
+    "svg": "https://cryptologos.cc/logos/safe-safe-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Aave",
+    "svg": "https://cryptologos.cc/logos/aave-aave-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Uniswap",
+    "svg": "https://cryptologos.cc/logos/uniswap-uni-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Curve",
+    "svg": "https://cryptologos.cc/logos/curve-dao-token-crv-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Balancer",
+    "svg": "https://cryptologos.cc/logos/balancer-bal-logo.svg",
+    "png": null
+  },
+  {
+    "name": "MakerDAO",
+    "svg": "https://cryptologos.cc/logos/maker-mkr-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Compound",
+    "svg": "https://cryptologos.cc/logos/compound-comp-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Yearn",
+    "svg": "https://cryptologos.cc/logos/yearn-finance-yfi-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Sushi",
+    "svg": "https://cryptologos.cc/logos/sushiswap-sushi-logo.svg",
+    "png": null
+  },
+  {
+    "name": "1inch",
+    "svg": "https://cryptologos.cc/logos/1inch-1inch-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Paraswap",
+    "svg": null,
+    "png": "https://assets.coingecko.com/coins/images/11601/large/paraswap.png"
+  },
+  {
+    "name": "Kyber",
+    "svg": "https://cryptologos.cc/logos/kyber-network-knc-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Chainlink",
+    "svg": "https://cryptologos.cc/logos/chainlink-link-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Band Protocol",
+    "svg": "https://cryptologos.cc/logos/band-protocol-band-logo.svg",
+    "png": null
+  },
+  {
+    "name": "API3",
+    "svg": "https://cryptologos.cc/logos/api3-api3-logo.svg",
+    "png": null
+  },
+  {
+    "name": "The Graph",
+    "svg": "https://cryptologos.cc/logos/the-graph-grt-logo.svg",
+    "png": null
+  },
+  {
+    "name": "SubQuery",
+    "svg": null,
+    "png": "https://assets.coingecko.com/coins/images/34386/large/subquery.png"
+  },
+  {
+    "name": "Covalent",
+    "svg": "https://cryptologos.cc/logos/covalent-cqt-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Wormhole",
+    "svg": "https://cryptologos.cc/logos/wormhole-w-logo.svg",
+    "png": null
+  },
+  {
+    "name": "LayerZero",
+    "svg": "https://cryptologos.cc/logos/layerzero-zro-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Axelar",
+    "svg": null,
+    "png": "https://assets.coingecko.com/coins/images/23333/large/Axelar.png"
+  },
+  {
+    "name": "Synapse",
+    "svg": "https://cryptologos.cc/logos/synapse-syn-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Hop Protocol",
+    "svg": null,
+    "png": "https://assets.coingecko.com/coins/images/25924/large/hop.png"
+  },
+  {
+    "name": "Across",
+    "svg": null,
+    "png": "https://assets.coingecko.com/coins/images/28096/large/ACX_Token_Logo.png"
+  },
+  {
+    "name": "Thorchain",
+    "svg": "https://cryptologos.cc/logos/thorchain-rune-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Ren Protocol",
+    "svg": "https://cryptologos.cc/logos/ren-ren-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Lido",
+    "svg": "https://cryptologos.cc/logos/lido-dao-ldo-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Rocket Pool",
+    "svg": "https://cryptologos.cc/logos/rocket-pool-rpl-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Frax",
+    "svg": "https://cryptologos.cc/logos/frax-frax-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Liquity",
+    "svg": "https://cryptologos.cc/logos/liquity-lqty-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Synthetix",
+    "svg": "https://cryptologos.cc/logos/synthetix-network-token-snx-logo.svg",
+    "png": null
+  },
+  {
+    "name": "GMX",
+    "svg": "https://cryptologos.cc/logos/gmx-gmx-logo.svg",
+    "png": null
+  },
+  {
+    "name": "dYdX",
+    "svg": "https://cryptologos.cc/logos/dydx-dydx-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Perpetual Protocol",
+    "svg": "https://cryptologos.cc/logos/perpetual-protocol-perp-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Kwenta",
+    "svg": null,
+    "png": "https://assets.coingecko.com/coins/images/24009/large/kwenta.png"
+  },
+  {
+    "name": "Pendle",
+    "svg": "https://cryptologos.cc/logos/pendle-pendle-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Euler",
+    "svg": "https://cryptologos.cc/logos/euler-eul-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Radiant",
+    "svg": null,
+    "png": "https://assets.coingecko.com/coins/images/26532/large/rdnt.png"
+  },
+  {
+    "name": "Maple Finance",
+    "svg": "https://cryptologos.cc/logos/maple-mpl-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Goldfinch",
+    "svg": "https://cryptologos.cc/logos/goldfinch-gfi-logo.svg",
+    "png": null
+  },
+  {
+    "name": "TrueFi",
+    "svg": "https://cryptologos.cc/logos/truefi-tru-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Notional",
+    "svg": null,
+    "png": "https://assets.coingecko.com/coins/images/20562/large/notional.png"
+  },
+  {
+    "name": "Morpho",
+    "svg": null,
+    "png": "https://assets.coingecko.com/coins/images/32525/large/morpho.png"
+  },
+  {
+    "name": "Flashbots",
+    "svg": null,
+    "png": "https://raw.githubusercontent.com/flashbots/brand/main/logo/png/flashbots-logo-square.png"
+  },
+  {
+    "name": "Eden Network",
+    "svg": null,
+    "png": "https://assets.coingecko.com/coins/images/18024/large/eden.png"
+  },
+  {
+    "name": "BloxRoute",
+    "svg": null,
+    "png": "https://avatars.githubusercontent.com/u/38202970?s=200&v=4"
+  },
+  {
+    "name": "Blocknative",
+    "svg": null,
+    "png": "https://avatars.githubusercontent.com/u/43431649?s=200&v=4"
+  },
+  {
+    "name": "Gelato",
+    "svg": "https://cryptologos.cc/logos/gelato-gel-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Reservoir",
+    "svg": null,
+    "png": "https://avatars.githubusercontent.com/u/98148810?s=200&v=4"
+  },
+  {
+    "name": "OpenSea",
+    "svg": null,
+    "png": "https://seeklogo.com/images/O/opensea-logo-7B5A5F6E0F-seeklogo.com.png"
+  },
+  {
+    "name": "Rarible",
+    "svg": null,
+    "png": "https://seeklogo.com/images/R/rarible-logo-4F0C1E7B3E-seeklogo.com.png"
+  },
+  {
+    "name": "Zora",
+    "svg": null,
+    "png": "https://assets.coingecko.com/coins/images/30748/large/zora.png"
+  },
+  {
+    "name": "Superfluid",
+    "svg": null,
+    "png": "https://assets.coingecko.com/coins/images/29402/large/superfluid.png"
+  },
+  {
+    "name": "Livepeer",
+    "svg": "https://cryptologos.cc/logos/livepeer-lpt-logo.svg",
+    "png": null
+  },
+  {
+    "name": "The Graph Hosted Service",
+    "svg": "https://cryptologos.cc/logos/the-graph-grt-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Pocket Network",
+    "svg": "https://cryptologos.cc/logos/pocket-network-pokt-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Ankr",
+    "svg": "https://cryptologos.cc/logos/ankr-ankr-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Infura",
+    "svg": null,
+    "png": "https://seeklogo.com/images/I/infura-logo-1A5C1F5E4D-seeklogo.com.png"
+  },
+  {
+    "name": "Alchemy",
+    "svg": null,
+    "png": "https://seeklogo.com/images/A/alchemy-logo-DC2E3F5C0B-seeklogo.com.png"
+  },
+  {
+    "name": "QuickNode",
+    "svg": null,
+    "png": "https://seeklogo.com/images/Q/quicknode-logo-6E0C0C1A4A-seeklogo.com.png"
+  },
+  {
+    "name": "Blockdaemon",
+    "svg": null,
+    "png": "https://avatars.githubusercontent.com/u/35091217?s=200&v=4"
+  },
+  {
+    "name": "Chainstack",
+    "svg": null,
+    "png": "https://avatars.githubusercontent.com/u/39014163?s=200&v=4"
+  },
+  {
+    "name": "Tenderly",
+    "svg": null,
+    "png": "https://avatars.githubusercontent.com/u/39327599?s=200&v=4"
+  },
+  {
+    "name": "Etherscan",
+    "svg": null,
+    "png": "https://seeklogo.com/images/E/etherscan-logo-6C4D1F5E0F-seeklogo.com.png"
+  },
+  {
+    "name": "Snowtrace",
+    "svg": null,
+    "png": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/avalanchec/info/logo.png"
+  },
+  {
+    "name": "Basescan",
+    "svg": null,
+    "png": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/base/info/logo.png"
+  },
+  {
+    "name": "Optimistic Etherscan",
+    "svg": null,
+    "png": "https://seeklogo.com/images/O/optimism-op-logo-1A5C1F5E4D-seeklogo.com.png"
+  },
+  {
+    "name": "ZkSync Explorer",
+    "svg": null,
+    "png": "https://assets.coingecko.com/coins/images/38644/large/zksync.png"
+  },
+  {
+    "name": "Blockscout",
+    "svg": null,
+    "png": "https://avatars.githubusercontent.com/u/38749845?s=200&v=4"
+  },
+  {
+    "name": "CoinGecko",
+    "svg": null,
+    "png": "https://seeklogo.com/images/C/coingecko-logo-5F0C1E7B3E-seeklogo.com.png"
+  },
+  {
+    "name": "CoinMarketCap",
+    "svg": null,
+    "png": "https://seeklogo.com/images/C/coinmarketcap-logo-6C4D1F5E0F-seeklogo.com.png"
+  },
+  {
+    "name": "TrustWallet Assets",
+    "svg": null,
+    "png": "https://seeklogo.com/images/T/trust-wallet-logo-1A5C1F5E4D-seeklogo.com.png"
+  },
+  {
+    "name": "RainbowKit",
+    "svg": null,
+    "png": "https://avatars.githubusercontent.com/u/98715830?s=200&v=4"
+  },
+  {
+    "name": "WalletConnect",
+    "svg": null,
+    "png": "https://seeklogo.com/images/W/walletconnect-logo-DC2E3F5C0B-seeklogo.com.png"
+  },
+  {
+    "name": "ENS",
+    "svg": "https://cryptologos.cc/logos/ethereum-name-service-ens-logo.svg",
+    "png": null
+  },
+  {
+    "name": "Lens Protocol",
+    "svg": null,
+    "png": "https://assets.coingecko.com/coins/images/34324/large/lens.png"
+  },
+  {
+    "name": "XMTP",
+    "svg": null,
+    "png": "https://avatars.githubusercontent.com/u/89498263?s=200&v=4"
+  },
+  {
+    "name": "Push Protocol",
+    "svg": "https://cryptologos.cc/logos/push-protocol-push-logo.svg",
+    "png": null
+  }
+]

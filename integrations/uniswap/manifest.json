@@ -1,0 +1,8 @@
+{
+  "name": "Uniswap",
+  "category": "DeFi",
+  "description": "Decentralized trading protocol for automated liquidity provision on Ethereum.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

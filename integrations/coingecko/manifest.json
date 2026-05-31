@@ -1,0 +1,8 @@
+{
+  "name": "CoinGecko",
+  "category": "Ecosystem",
+  "description": "Integration with CoinGecko.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

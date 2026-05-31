@@ -1,0 +1,11 @@
+{
+  "name": "Gelato Web3 Functions × Wnode",
+  "slug": "gelato-web3-functions-wnode",
+  "category": "automation",
+  "platform": "Gelato",
+  "status": "coming_soon",
+  "description": "Offload Gelato Web3 Function compute to the Wnode decentralized execution mesh.",
+  "wnodeEndpoint": "https://gateway.wnode.network/v1/tasks/run",
+  "docsUrl": "https://wnode.network/docs/integrations/gelato",
+  "sdkExample": "./sdk-example.ts"
+}

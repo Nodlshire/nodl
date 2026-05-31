@@ -1,0 +1,126 @@
+"use client";
+
+import Link from "next/link";
+
+const validIntegrations = [
+    { name: "optimism", label: "Optimism", ext: "svg" },
+    { name: "polygon", label: "Polygon", ext: "svg" },
+    { name: "avalanche", label: "Avalanche", ext: "svg" },
+    { name: "solana", label: "Solana", ext: "svg" },
+    { name: "near", label: "Near", ext: "svg" },
+    { name: "fantom", label: "Fantom", ext: "svg" },
+    { name: "moonbeam", label: "Moonbeam", ext: "svg" },
+    { name: "mantle", label: "Mantle", ext: "svg" },
+    { name: "celo", label: "Celo", ext: "svg" },
+    { name: "celestia", label: "Celestia", ext: "svg" },
+    { name: "filecoin", label: "Filecoin", ext: "svg" },
+    { name: "arweave", label: "Arweave", ext: "svg" },
+    { name: "aave", label: "Aave", ext: "svg" },
+    { name: "uniswap", label: "Uniswap", ext: "svg" },
+    { name: "curve", label: "Curve", ext: "svg" },
+    { name: "balancer", label: "Balancer", ext: "svg" },
+    { name: "makerdao", label: "MakerDAO", ext: "svg" },
+    { name: "compound", label: "Compound", ext: "svg" },
+    { name: "yearn", label: "Yearn", ext: "svg" },
+    { name: "sushi", label: "Sushi", ext: "svg" },
+    { name: "1inch", label: "1inch", ext: "svg" },
+    { name: "chainlink", label: "Chainlink", ext: "svg" },
+    { name: "bandprotocol", label: "Band Protocol", ext: "svg" },
+    { name: "api3", label: "API3", ext: "svg" },
+    { name: "thegraph", label: "The Graph", ext: "svg" },
+    { name: "covalent", label: "Covalent", ext: "svg" },
+    { name: "wormhole", label: "Wormhole", ext: "svg" },
+    { name: "thorchain", label: "Thorchain", ext: "svg" },
+    { name: "renprotocol", label: "Ren Protocol", ext: "svg" },
+    { name: "lido", label: "Lido", ext: "svg" },
+    { name: "rocketpool", label: "Rocket Pool", ext: "svg" },
+    { name: "frax", label: "Frax", ext: "svg" },
+    { name: "dydx", label: "dYdX", ext: "svg" },
+    { name: "perpetualprotocol", label: "Perpetual Protocol", ext: "svg" },
+    { name: "pendle", label: "Pendle", ext: "svg" },
+    { name: "livepeer", label: "Livepeer", ext: "svg" },
+    { name: "thegraphhostedservice", label: "The Graph Hosted Service", ext: "svg" },
+    { name: "pocketnetwork", label: "Pocket Network", ext: "svg" },
+    { name: "ankr", label: "Ankr", ext: "svg" },
+    { name: "ens", label: "ENS", ext: "svg" },
+    { name: "bloxroute", label: "BloxRoute", ext: "png" },
+    { name: "blocknative", label: "Blocknative", ext: "png" },
+    { name: "reservoir", label: "Reservoir", ext: "png" },
+    { name: "blockdaemon", label: "Blockdaemon", ext: "png" },
+    { name: "chainstack", label: "Chainstack", ext: "png" },
+    { name: "tenderly", label: "Tenderly", ext: "png" },
+    { name: "blockscout", label: "Blockscout", ext: "png" },
+    { name: "rainbowkit", label: "RainbowKit", ext: "png" },
+    { name: "xmtp", label: "XMTP", ext: "png" },
+    { name: "sia", label: "Sia", ext: "svg" }
+];
+
+export default function EcosystemRibbon() {
+    return (
+        <section className="w-full bg-black pt-16 fade-in-section overflow-hidden">
+            <div className="max-w-7xl mx-auto px-8 flex flex-col items-center">
+                <div className="text-center mb-16">
+                    <h2 className="text-3xl md:text-4xl font-bold text-white uppercase tracking-tighter mb-6 font-space-grotesk">
+                        The Unifying Infrastructure Layer for Everything Web3
+                    </h2>
+                    <p className="text-lg text-blue-500 font-medium leading-relaxed max-w-4xl mx-auto">
+                        Connecting Every Compute Network, Agent, and Protocol into One Unified Layer.
+                    </p>
+                </div>
+            </div>
+
+            <div className="w-full border-y border-[#00FF9D]/15 py-12 relative flex overflow-hidden group">
+                <style>{`
+                    @keyframes customMarquee {
+                        0% { transform: translateX(0%); }
+                        100% { transform: translateX(-50%); }
+                    }
+                    .animate-marquee-custom {
+                        animation: customMarquee 50s linear infinite;
+                    }
+                `}</style>
+                <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
+                <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
+                
+                {/* Marquee Track */}
+                <div className="flex w-max animate-marquee-custom">
+                    {/* First Set */}
+                    <div className="flex min-w-max gap-16 px-8 items-center">
+                        {validIntegrations.map((integration, idx) => (
+                            <div key={`int1-${idx}`} className="flex flex-col items-center gap-4 group/item w-32 shrink-0">
+                                <div className="h-12 w-full flex items-center justify-center opacity-60 group-hover/item:opacity-100 transition-opacity duration-300">
+                                    <img 
+                                        src={`/integrations/${integration.name}/${integration.name}logo.${integration.ext}`}
+                                        alt={integration.label} 
+                                        className="max-h-full max-w-full object-contain filter group-hover/item:drop-shadow-[0_0_8px_rgba(59,130,246,0.6)] transition-all duration-300"
+                                    />
+                                </div>
+                                <span className="text-[10px] text-white/50 uppercase tracking-widest font-bold group-hover/item:text-blue-400 transition-colors text-center">
+                                    {integration.label}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Duplicate for infinite loop */}
+                    <div className="flex min-w-max gap-16 px-8 items-center" aria-hidden="true">
+                        {validIntegrations.map((integration, idx) => (
+                            <div key={`int2-${idx}`} className="flex flex-col items-center gap-4 group/item w-32 shrink-0">
+                                <div className="h-12 w-full flex items-center justify-center opacity-60 group-hover/item:opacity-100 transition-opacity duration-300">
+                                    <img 
+                                        src={`/integrations/${integration.name}/${integration.name}logo.${integration.ext}`}
+                                        alt={integration.label} 
+                                        className="max-h-full max-w-full object-contain filter group-hover/item:drop-shadow-[0_0_8px_rgba(59,130,246,0.6)] transition-all duration-300"
+                                    />
+                                </div>
+                                <span className="text-[10px] text-white/50 uppercase tracking-widest font-bold group-hover/item:text-blue-400 transition-colors text-center">
+                                    {integration.label}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}

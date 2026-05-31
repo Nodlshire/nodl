@@ -6,6 +6,7 @@ import HeroSection from "../components/landing/HeroSection";
 import WhatIsWnodeSection from "../components/landing/WhatIsWnodeSection";
 import WhyItMattersSection from "../components/landing/WhyItMattersSection";
 import PersonasSection from "../components/landing/PersonasSection";
+import EcosystemRibbon from "../components/landing/EcosystemRibbon";
 import { ComparisonMinimal } from "../components/landing/ComparisonMinimal";
 import TrustSection from "../components/landing/TrustSection";
 import CTAModal, { ModalMode } from "../components/landing/CTAModal";
@@ -32,6 +33,7 @@ export default function LandingPage() {
                 <HeroSection onOpenModal={openModal} />
                 <WhatIsWnodeSection />
                 <WhyItMattersSection />
+                <EcosystemRibbon />
                 <PersonasSection onOpenModal={openModal} />
                 <ComparisonMinimal />
                 <div className="max-w-7xl mx-auto px-8 py-20 fade-in-section flex flex-col items-center">

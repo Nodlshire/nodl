@@ -20,6 +20,15 @@ const config: Config = {
                 "space-grotesk": ["var(--font-space-grotesk)", "sans-serif"],
                 mono: ["var(--font-jetbrains-mono)", "monospace"],
             },
+            keyframes: {
+                marquee: {
+                    '0%': { transform: 'translateX(0%)' },
+                    '100%': { transform: 'translateX(-50%)' },
+                }
+            },
+            animation: {
+                marquee: 'marquee 50s linear infinite',
+            }
         },
     },
     plugins: [],

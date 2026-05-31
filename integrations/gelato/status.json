@@ -1,0 +1,7 @@
+{
+  "platform": "Gelato Web3 Functions",
+  "integration": "Wnode",
+  "status": "coming_soon",
+  "capacity": "limited",
+  "notes": "Integration ready at the code level. Activation will follow once Wnode MVP capacity is online."
+}

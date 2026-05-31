@@ -1,3 +1,5 @@
+#This version is in Beta - Please expect bugs - We are working in realtime to fix.
+
 # 🌍 Wnode — The Planetary Compute Mesh
 ### Turn your idle devices into real daily income.
 

@@ -70,7 +70,6 @@ export default function Header({ onContactClick }: HeaderProps) {
             name: "Investors",
             isDropdown: true,
             subLinks: [
-                { name: "Investor Relations", href: "/investors/investor-relations", color: "text-slate-500" },
                 { name: "Data Room", href: "/investors/dr", color: "text-slate-500" }
             ]
         },

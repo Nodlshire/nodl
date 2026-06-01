@@ -1,17 +1,16 @@
-'use client';
-
 import React, { useState, useEffect } from 'react';
-import { Wallet, Leaf, Plus } from 'lucide-react';
+import { Wallet, Leaf, Plus, Play } from 'lucide-react';
 import { useBilling } from './BillingProvider';
 import { useAuth } from './AuthProvider';
 import { Basket } from './Basket';
 import { TopUpDialogue } from './TopUpDialogue';
 import { usePathname } from 'next/navigation';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import IdentityHeader from '@shared/components/IdentityHeader';
+import JobWizard from './JobWizard';
 
 const PAGE_TITLES: Record<string, string> = {
-    '/dashboard': 'MEMBER OVERVIEW',
+    '/dashboard': 'CUSTOMER DASHBOARD',
     '/catalog': 'COMPUTE CATALOG',
     '/jobs': 'JOB MANAGEMENT',
     '/billing': 'FINANCIAL LEDGER',
@@ -24,6 +23,7 @@ export function Header() {
     const { user: profile } = useAuth();
     const pathname = usePathname();
     const [carbonSaved, setCarbonSaved] = useState(0);
+    const [isJobWizardOpen, setIsJobWizardOpen] = useState(false);
 
     useEffect(() => {
         const updateCarbon = () => {
@@ -39,13 +39,23 @@ export function Header() {
 
     return (
         <header className="h-16 border-b border-white/10 flex items-center justify-between px-8 bg-[#080808]/80 backdrop-blur-md sticky top-0 z-40 font-sans">
-            {/* Left Section: Page Title & User Context */}
+            {/* Left Section: Logo & Page Title */}
             <div className="flex items-center gap-6 w-1/3">
-                <div className="flex flex-col">
-                    <h2 className="text-sm font-black text-white tracking-[0.2em] uppercase leading-none">
-                        {currentTitle}
-                    </h2>
+                <div className="flex items-center gap-3">
+                    <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" className="w-6 h-auto fill-white drop-shadow-sm">
+                        <path d="M 22 110 L 22 50 A 28 28 0 0 1 78 50 L 78 110" fill="none" stroke="white" strokeWidth="26" strokeLinecap="butt" />
+                        <circle cx="50" cy="72" r="16" />
+                    </svg>
+                    <span style={{ fontFamily: "'Roboto', sans-serif", fontSize: "14pt", fontWeight: "bold", color: "white", lineHeight: "1", letterSpacing: "0.02em" }}>wnode</span>
                 </div>
+                {currentTitle && (
+                    <>
+                        <div className="h-6 w-[1px] bg-white/10" />
+                        <h2 className="text-sm font-black text-white tracking-[0.2em] uppercase leading-none">
+                            {currentTitle}
+                        </h2>
+                    </>
+                )}
             </div>
 
             {/* Middle Section: Actions */}
@@ -56,6 +66,13 @@ export function Header() {
                 >
                     <Plus className="w-4 h-4" />
                     Top Up
+                </button>
+                <button 
+                    onClick={() => setIsJobWizardOpen(true)}
+                    className="flex items-center gap-2.5 text-sm uppercase font-black bg-[#EAB308] text-black border border-transparent px-8 py-3.5 transition-all rounded-[4px] shadow-[0_0_20px_rgba(234,179,8,0.4)] hover:bg-yellow-400"
+                >
+                    <Play className="w-4 h-4 fill-current" />
+                    Run a Job
                 </button>
             </div>
 
@@ -73,11 +90,23 @@ export function Header() {
                 <div className="h-6 w-[1px] bg-white/10 mx-1" />
 
                 <IdentityHeader account={profile} />
-
-
             </div>
 
             <TopUpDialogue />
+            <AnimatePresence>
+                {isJobWizardOpen && (
+                    <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 z-50 animate-in fade-in duration-300">
+                        <motion.div 
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.95 }}
+                            className="w-full max-w-4xl max-h-[90vh] overflow-y-auto"
+                        >
+                            <JobWizard onClose={() => setIsJobWizardOpen(false)} />
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
         </header>
     );
 }

@@ -38,12 +38,28 @@ async function handleProxy(req: NextRequest, method: string, subPath: string) {
             } catch (e) {}
         }
 
+        const fetchHeaders: Record<string, string> = {};
+        
+        req.headers.forEach((value, key) => {
+            const lowerKey = key.toLowerCase();
+            if (lowerKey !== 'host' && lowerKey !== 'cookie') {
+                fetchHeaders[key] = value;
+            }
+        });
+
+        fetchHeaders['X-Wnode-Domain'] = 'mesh';
+
+        const rawCookie = req.headers.get('cookie');
+        if (rawCookie) {
+            const meshCookie = rawCookie.split(';').find(c => c.trim().startsWith('mesh_session='));
+            if (meshCookie) {
+                fetchHeaders['Cookie'] = meshCookie.trim();
+            }
+        }
+
         const res = await fetch(targetUrl, {
             method,
-            headers: {
-                'Content-Type': req.headers.get('content-type') || 'application/json',
-                cookie: req.headers.get('cookie') ?? '',
-            },
+            headers: fetchHeaders,
             credentials: 'include',
             body: requestBody,
         });
@@ -70,10 +86,10 @@ async function handleProxy(req: NextRequest, method: string, subPath: string) {
 
         const response = NextResponse.json(jsonData, { status: res.status });
 
-        // Forward cookies back to client
-        const setCookie = res.headers.get('set-cookie');
-        if (setCookie) {
-            response.headers.set('set-cookie', setCookie);
+        // Forward cookies back to client properly using getSetCookie
+        const setCookies = res.headers.getSetCookie();
+        for (const cookieStr of setCookies) {
+            response.headers.append('set-cookie', cookieStr);
         }
 
         return response;

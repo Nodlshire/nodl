@@ -135,13 +135,7 @@ export default function BillingPage() {
                     >
                         <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin' : ''}`} /> Sync Ledger
                     </button>
-                    <button 
-                        onClick={handleAddCredits}
-                        disabled={isCheckoutLoading}
-                        className="flex items-center gap-3 bg-blue-600 hover:bg-blue-500 text-white px-6 py-4 font-bold text-xs tracking-widest transition-all shadow-lg shadow-blue-500/20 disabled:opacity-50 rounded-[4px]"
-                    >
-                        {isCheckoutLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />} Add Credits
-                    </button>
+
                     <button 
                         onClick={handleStripePortal}
                         className="flex items-center gap-3 bg-white/5 border border-white/10 hover:bg-white/10 text-white px-6 py-4 font-bold text-xs tracking-widest transition-all rounded-[4px]"
@@ -151,33 +145,20 @@ export default function BillingPage() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Balance Card */}
                 <div className="surface-card p-8 flex flex-col justify-between relative overflow-hidden group">
                     <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
                         <CreditCard className="w-12 h-12 text-mesh-emerald" />
                     </div>
-                    <span className="text-[10px] uppercase font-bold text-slate-500 tracking-widest">Marketplace Balance</span>
+                    <span className="text-[10px] uppercase font-bold text-slate-500 tracking-widest">Account Balance</span>
                     <div className="mt-4">
-                        <span className="text-5xl font-black text-white tracking-tighter">
+                        <span className="text-3xl font-light text-white tracking-tighter">
                             ${balance.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                         </span>
-                        <div className="mt-3 flex items-center gap-2">
-                            <div className="w-1.5 h-1.5 rounded-full bg-mesh-emerald shadow-[0_0_8px_#10b981]" />
-                            <span className="text-[10px] text-mesh-emerald font-bold uppercase">Authoritative Sync</span>
-                        </div>
                     </div>
                 </div>
 
-                <div className="surface-card p-8 flex flex-col justify-between">
-                    <span className=" text-[10px] uppercase font-bold text-slate-500 tracking-widest">Commission Earnings</span>
-                    <div className="mt-4">
-                        <span className="text-4xl font-normal text-white tracking-tighter">
-                            {formatCurrency(transactions.reduce((acc, tx) => acc + (tx.role === 'platform' ? tx.amount_cents : 0), 0))}
-                        </span>
-                        <p className="text-[10px] text-slate-500 uppercase mt-2">Active Affiliate Yield</p>
-                    </div>
-                </div>
 
                 {/* Auto Top-up */}
                 <div className={`surface-card p-8 flex flex-col justify-between transition-all duration-500 ${autoTopUp ? 'border-mesh-emerald/30 shadow-[0_0_30px_rgba(16,185,129,0.05)]' : 'border-white/5 opacity-80'}`}>
@@ -223,7 +204,7 @@ export default function BillingPage() {
                 <div className="p-8 border-b border-white/5 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                     <div className="flex items-center gap-3">
                         <History className="w-4 h-4 text-slate-500" />
-                        <h3 className=" text-xs uppercase font-bold text-white tracking-widest">Authoritative Ledger History</h3>
+                        <h3 className=" text-xs uppercase font-bold text-white tracking-widest">Ledger History</h3>
                     </div>
 
                     <div className="flex flex-wrap items-center gap-4">

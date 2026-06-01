@@ -12,12 +12,29 @@ interface MapProps {
 }
 
 export default function FleetMap({ nodes, nodlrs, loading, onNodeSelect }: MapProps) {
+    console.log('FLEETMAP RENDER START', { nodes, loading });
+
+    if (nodes === undefined || nodes === null) {
+        console.log('FLEETMAP BRANCH: NODES UNDEFINED');
+        return (
+            <div className="bg-yellow-500/20 text-yellow-400 p-4 border border-yellow-500 font-mono text-sm text-center">
+                FLEETMAP BRANCH: NODES UNDEFINED
+            </div>
+        );
+    }
+
     const mapRef = useRef<any>(null);
     const markersRef = useRef<any>(null);
 
     // Normalise: backend may return an object keyed by ID or an array
     const nodeList = Array.isArray(nodes) ? nodes : Object.values(nodes || {});
     const mappedNodes = nodeList.filter((n: any) => n.lat && n.lon);
+
+    if (Array.isArray(nodes) && nodes.length === 0 && !loading) {
+        console.log('FLEETMAP BRANCH: NODES EMPTY');
+    } else if (Array.isArray(nodes) && nodes.length > 0) {
+        console.log('FLEETMAP BRANCH: NODES PRESENT', { count: nodes.length });
+    }
 
     // Initialise Leaflet map
     useEffect(() => {
@@ -146,53 +163,50 @@ export default function FleetMap({ nodes, nodlrs, loading, onNodeSelect }: MapPr
                 </div>
             </div>
 
-            <div className="flex-1 relative bg-neutral-950 rounded-md overflow-hidden border border-neutral-800">
-                <div
-                    id="fleet-map"
-                    className="absolute inset-0 z-0"
-                    style={{ backgroundColor: "#080808" }}
-                />
-
-                {loading && (
-                    <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-                        <div className="flex flex-col items-center gap-4">
-                            <div className="w-8 h-8 border-2 border-t-cyan-400 border-white/10 rounded-full animate-spin" />
-                            <span className="text-[11px] text-neutral-400 uppercase tracking-[0.2em] font-medium">
-                                Synchronizing Registry...
+            {(!loading && mappedNodes.length === 0) ? (
+                <div className="flex-1 flex items-center justify-center bg-neutral-950 rounded-md border border-neutral-800 min-h-[400px] relative">
+                    <div className="absolute top-4 left-4 z-[9999] bg-orange-500/20 text-orange-400 p-2 text-xs font-mono border border-orange-500/50">
+                        FLEETMAP BRANCH: NODES EMPTY
+                    </div>
+                    <div className="flex flex-col items-center gap-4 p-6 bg-neutral-900/80 border border-neutral-700 rounded-lg max-w-sm">
+                        <div className="w-12 h-12 rounded-full bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center">
+                            <MapPin className="w-6 h-6 text-cyan-400/60" />
+                        </div>
+                        <div className="text-center space-y-2">
+                            <span className="text-[13px] text-neutral-100 uppercase tracking-wider font-semibold block">
+                                NO GEOCODED NODES AVAILABLE
+                            </span>
+                            <span className="text-[11px] text-neutral-400 font-mono tracking-wide block">
+                                {nodeList.length} node{nodeList.length !== 1 ? 's' : ''} registered — awaiting coordinate data
                             </span>
                         </div>
                     </div>
-                )}
+                </div>
+            ) : (
+                <div className="flex-1 relative bg-neutral-950 rounded-md overflow-hidden border border-neutral-800">
+                    {Array.isArray(nodes) && nodes.length > 0 && (
+                        <div className="absolute top-4 left-4 z-[9999] bg-green-500/20 text-green-400 p-2 text-xs font-mono border border-green-500/50 pointer-events-none">
+                            FLEETMAP BRANCH: NODES PRESENT
+                        </div>
+                    )}
+                    <div
+                        id="fleet-map"
+                        className="absolute inset-0 z-0"
+                        style={{ backgroundColor: "#080808" }}
+                    />
 
-                {!loading && mappedNodes.length === 0 && (
-                    <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
-                        <div className="flex flex-col items-center gap-4 p-6 bg-neutral-900/80 border border-neutral-700 rounded-lg max-w-sm">
-                            <div className="w-12 h-12 rounded-full bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center">
-                                <MapPin className="w-6 h-6 text-cyan-400/60" />
-                            </div>
-                            <div className="text-center space-y-2">
-                                <span className="text-[13px] text-neutral-100 uppercase tracking-wider font-semibold block">
-                                    No Geocoded Nodes Available
+                    {loading && (
+                        <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+                            <div className="flex flex-col items-center gap-4">
+                                <div className="w-8 h-8 border-2 border-t-cyan-400 border-white/10 rounded-full animate-spin" />
+                                <span className="text-[11px] text-neutral-400 uppercase tracking-[0.2em] font-medium">
+                                    Synchronizing Registry...
                                 </span>
-                                <span className="text-[11px] text-neutral-400 font-mono tracking-wide block">
-                                    {nodeList.length} node{nodeList.length !== 1 ? 's' : ''} registered — awaiting coordinate data
-                                </span>
-                            </div>
-                            <div className="flex flex-col items-center gap-2 mt-2 pointer-events-auto">
-                                <div className="flex items-center gap-2">
-                                    <Radio className="w-3 h-3 text-cyan-400 animate-pulse" />
-                                    <span className="text-[9px] text-neutral-500 uppercase tracking-widest font-mono">
-                                        Geo-lookup pending
-                                    </span>
-                                </div>
-                                <button className="mt-2 text-[10px] font-bold text-neutral-900 bg-neutral-100 hover:bg-white px-3 py-1.5 rounded uppercase tracking-wider transition-colors">
-                                    Mark nodes for geocoding
-                                </button>
                             </div>
                         </div>
-                    </div>
-                )}
-            </div>
+                    )}
+                </div>
+            )}
 
         </section>
     );

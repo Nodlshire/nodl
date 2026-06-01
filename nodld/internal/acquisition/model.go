@@ -2,6 +2,8 @@ package acquisition
 
 import (
 	"time"
+
+	"github.com/obregan/nodl/nodld/internal/account"
 )
 
 // ReferralNode represents a single vertex in the acquisition graph.
@@ -11,7 +13,7 @@ type ReferralNode struct {
 	ParentID  string    `json:"parentId"`
 	Level     int       `json:"level"`     // 1 (Direct), 2 (Indirect)
 	Revenue   int64     `json:"revenue"`   // Lifetime revenue for this referral in cents
-	Status    string    `json:"status"`    // active, pending, offline
+	Status    account.OpStatus `json:"status"`
 	CreatedAt time.Time `json:"createdAt"`
 }
 

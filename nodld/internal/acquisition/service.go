@@ -89,6 +89,18 @@ func (s *Service) GetReferralGraph(ctx context.Context, email string) ([]Referra
 
 	directs, indirects := s.resolveReferrals(op.ID)
 	result := []ReferralNode{}
+	
+	// Ensure the Root Node (the requested user) is in the graph as Level 0
+	rootRev, _, _, _ := s.accountStore.GetOperatorLedgerTotals(op.ID)
+	result = append(result, ReferralNode{
+		ID:        op.ID,
+		Email:     op.Email,
+		ParentID:  op.ParentID,
+		Level:     0,
+		Revenue:   rootRev,
+		Status:    op.Status,
+		CreatedAt: op.CreatedAt,
+	})
 
 	for _, r := range directs {
 		rev, _, _, _ := s.accountStore.GetOperatorLedgerTotals(r.ID)
@@ -188,7 +200,7 @@ func (s *Service) GetAffiliateTree(ctx context.Context) (*AffiliateTreeResponse,
 	resp.Summary.TotalNodes = len(allNodes)
 	
 	for _, n := range nodlrs {
-		if n.Status == "active" {
+		if n.Status.Active {
 			resp.Summary.ActiveAffiliates++
 		}
 	}
@@ -206,7 +218,7 @@ func (s *Service) GetAffiliateTree(ctx context.Context) (*AffiliateTreeResponse,
 				NodeCount: len(nodes),
 				L1Count:   len(l1),
 				L2Count:   len(l2),
-				Active:    n.Status == "active",
+				Active:    n.Status.Active,
 				Children:  []*AffiliateNode{}, // Lazy load later
 			})
 		}
@@ -229,7 +241,7 @@ func (s *Service) GetAffiliateChildren(ctx context.Context, parentID string) ([]
 				NodeCount: len(nodes),
 				L1Count:   len(l1),
 				L2Count:   len(l2),
-				Active:    n.Status == "active",
+				Active:    n.Status.Active,
 				Children:  []*AffiliateNode{}, // Recursive lazy load
 			})
 		}

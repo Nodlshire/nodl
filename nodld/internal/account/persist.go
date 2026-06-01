@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"sync/atomic"
+	"time"
 )
 
 // AuthState captures the entire authoritative ledger and balances.
@@ -27,14 +29,39 @@ type AuthState struct {
 	ReputationLedger    []*ReputationLedger            `json:"reputation_ledger,omitempty"`
 	OperatorIdentities  map[string]*OperatorIdentity   `json:"operator_identities,omitempty"`
 	IdentityLedger      []*IdentityLedgerEntry         `json:"identity_ledger,omitempty"`
+	Invite              *InviteState                   `json:"invite,omitempty"`
+	Founders            map[string]string              `json:"founders,omitempty"`
 }
 
 func (s *Store) SaveState() error {
+	batch := atomic.LoadInt64(&s.saveBatch)
+
+	s.saveMu.Lock()
+	defer s.saveMu.Unlock()
+
+	// If a save was already executed that included our request, skip writing
+	if atomic.LoadInt64(&s.saveBatch) > batch {
+		return nil
+	}
+
+	// Debounce period: 100ms
+	elapsed := time.Since(s.lastSave)
+	if elapsed < 100*time.Millisecond {
+		time.Sleep(100*time.Millisecond - elapsed)
+	}
+
 	s.mu.RLock()
 	defer s.mu.RUnlock()
 
 	if s.statePath == "" {
 		return nil
+	}
+
+	foundersMap := make(map[string]string)
+	for i := 0; i < 10; i++ {
+		if s.founders[i] != "" {
+			foundersMap[fmt.Sprintf("%d", i+1)] = s.founders[i]
+		}
 	}
 
 	state := AuthState{
@@ -56,6 +83,8 @@ func (s *Store) SaveState() error {
 		ReputationLedger:    s.reputationLedger,
 		OperatorIdentities:  s.operatorIdentities,
 		IdentityLedger:      s.identityLedger,
+		Invite:              s.inviteState,
+		Founders:            foundersMap,
 	}
 
 	data, err := json.MarshalIndent(state, "", "  ")
@@ -67,7 +96,10 @@ func (s *Store) SaveState() error {
 		return err
 	}
 
-	return os.WriteFile(s.statePath, data, 0644)
+	err = os.WriteFile(s.statePath, data, 0644)
+	s.lastSave = time.Now()
+	atomic.AddInt64(&s.saveBatch, 1)
+	return err
 }
 
 func (s *Store) LoadState() error {
@@ -179,6 +211,41 @@ func (s *Store) LoadState() error {
 	}
 	if s.identityLedger == nil {
 		s.identityLedger = make([]*IdentityLedgerEntry, 0)
+	}
+	if state.Invite != nil {
+		s.inviteState = state.Invite
+	}
+	if s.inviteState == nil {
+		s.initInviteState()
+	}
+
+	if state.Founders != nil {
+		for i := 0; i < 10; i++ {
+			if val, ok := state.Founders[fmt.Sprintf("%d", i+1)]; ok {
+				s.founders[i] = val
+			}
+		}
+	}
+
+	// Migration Hook: Scrub "Test User" mock data from persistent state
+	// Invariant: Never delete any identity that exists in any genuine SoT registry (cross-check rule).
+	// We only purge records that are provably synthetic mocks.
+	mockID := "100002-0426-01-AA"
+	isGenuine := false
+	if s.meshClients != nil {
+		if _, exists := s.meshClients[mockID]; exists {
+			isGenuine = true
+		}
+	}
+	// Add other cross-checks here if needed (e.g. check nodes)
+
+	if !isGenuine {
+		if s.nodlrs != nil {
+			delete(s.nodlrs, mockID)
+		}
+		if s.crmRecords != nil {
+			delete(s.crmRecords, mockID)
+		}
 	}
 
 	s.mu.Unlock()

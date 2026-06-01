@@ -9,6 +9,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"sync"
 	"time"
 
 	"github.com/gofiber/fiber/v2"
@@ -27,11 +28,13 @@ import (
 
 // Service wraps Stripe API calls with Nodl-specific business logic.
 type Service struct {
-	secretKey      string
-	webhookSecret  string
-	platformAcct   string
-	accountStore   *internalAccount.Store
-	log            *zap.Logger
+	secretKey       string
+	webhookSecret   string
+	platformAcct    string
+	accountStore    *internalAccount.Store
+	log             *zap.Logger
+	processedEvents map[string]bool // Idempotency: Stripe Event ID → processed
+	processedMu     sync.Mutex
 }
 
 // NewService creates a configured Stripe service.
@@ -39,11 +42,12 @@ type Service struct {
 func NewService(secretKey, webhookSecret, platformAcct string, accountStore *internalAccount.Store, log *zap.Logger) *Service {
 	stripe.Key = secretKey
 	return &Service{
-		secretKey:     secretKey,
-		webhookSecret: webhookSecret,
-		platformAcct:  platformAcct,
-		accountStore:  accountStore,
-		log:           log,
+		secretKey:       secretKey,
+		webhookSecret:   webhookSecret,
+		platformAcct:    platformAcct,
+		accountStore:    accountStore,
+		log:             log,
+		processedEvents: make(map[string]bool),
 	}
 }
 
@@ -457,11 +461,11 @@ func (s *Service) handleCreatePaymentIntent(c *fiber.Ctx) error {
 
 	pi, err := paymentintent.New(params)
 	if err != nil {
-		s.log.Error("payment intent creation failed", zap.Error(err))
+		s.log.Error("[STRIPE-DIAG] payment intent creation failed", zap.Error(err))
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
 	}
 
-	s.log.Info("payment intent created", zap.String("piID", pi.ID), zap.String("jobID", req.JobID))
+	s.log.Info("[STRIPE-DIAG] payment intent created successfully", zap.String("piID", pi.ID), zap.String("jobID", req.JobID))
 	return c.Status(fiber.StatusCreated).JSON(fiber.Map{
 		"clientSecret": pi.ClientSecret,
 		"paymentIntentID": pi.ID,
@@ -576,51 +580,155 @@ func (s *Service) handleWebhook(c *fiber.Ctx) error {
 
 	if mockHeader == "true" {
 		if err := json.Unmarshal(payload, &event); err != nil {
+			s.log.Error("[STRIPE-DIAG] invalid mock payload")
 			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid mock payload"})
 		}
 	} else {
 		event, err = webhook.ConstructEvent(payload, sigHeader, s.webhookSecret)
 		if err != nil {
-			s.log.Warn("webhook signature verification failed", zap.Error(err))
+			s.log.Warn("[STRIPE-DIAG] webhook signature verification failed", zap.Error(err))
 			return c.Status(http.StatusBadRequest).JSON(fiber.Map{"error": "invalid signature"})
 		}
 	}
 
-	s.log.Info("stripe webhook received", zap.String("type", string(event.Type)))
+	s.log.Info("[STRIPE-DIAG] stripe webhook received", zap.String("type", string(event.Type)), zap.String("eventID", event.ID))
+
+	// ── Idempotency Guard ──────────────────────────────────────────────────
+	s.processedMu.Lock()
+	if s.processedEvents[event.ID] {
+		s.processedMu.Unlock()
+		s.log.Info("[STRIPE-IDEMPOTENT] duplicate event skipped", zap.String("eventID", event.ID))
+		return c.JSON(fiber.Map{"received": true, "duplicate": true})
+	}
+	s.processedEvents[event.ID] = true
+	s.processedMu.Unlock()
 
 	switch event.Type {
-	case "account.updated":
+	case "account.updated", "account.application.authorized", "account.requirements.updated", "account.external_account.updated":
 		var acct stripe.Account
 		if err := json.Unmarshal(event.Data.Raw, &acct); err != nil {
-			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "parse error"})
+			// In case of external_account.updated it might be a bank account object. If parsing fails to account, ignore it,
+			// as we will get an account.updated event anyway.
+			s.log.Debug("failed to parse account from event, likely external_account", zap.String("type", string(event.Type)))
 		}
-		s.log.Info("connect account updated",
-			zap.String("accountID", acct.ID),
-			zap.Bool("detailsSubmitted", acct.DetailsSubmitted),
-		)
+		
+		// For all these events, we use event.Account or acct.ID
+		acctID := acct.ID
+		if acctID == "" && event.Account != "" {
+			acctID = event.Account
+		}
 
-		if acct.DetailsSubmitted {
-			// 1. Identify CRM User
+		if acctID != "" {
 			var existing *internalAccount.Nodlr
-			nodlrs := s.accountStore.ListNodlrs()
-			for _, n := range nodlrs {
-				if n.StripeConnectID == acct.ID || n.Email == acct.Email {
+			for _, n := range s.accountStore.ListNodlrs() {
+				if n.StripeConnectID == acctID || n.Email == acct.Email {
 					existing = n
 					break
 				}
 			}
 
-			// 2. Map OR Create
 			if existing != nil {
-				existing.StripeConnectID = acct.ID
-				existing.PayoutStatus = internalAccount.PayoutStatusActive
-				s.accountStore.PromoteEscrowToPending(existing.ID)
-				s.log.Info("nodlr identity verified and activated via stripe", zap.String("email", existing.Email), zap.String("stripeID", acct.ID))
-			} else {
-				s.log.Warn("Stripe account update received for unknown email/ID (skipping auto-creation)",
-					zap.String("email", acct.Email),
-					zap.String("stripeID", acct.ID))
+				// Evaluate Verification State
+				newVer := "pending"
+				reason := ""
+				
+				if acct.ChargesEnabled && acct.PayoutsEnabled && acct.Requirements != nil && len(acct.Requirements.CurrentlyDue) == 0 {
+					newVer = "verified"
+				} else if acct.Requirements != nil && len(acct.Requirements.PastDue) > 0 {
+					newVer = "error"
+					reason = "Information past due"
+				} else if acct.Requirements != nil && len(acct.Requirements.Errors) > 0 {
+					newVer = "error"
+					reason = acct.Requirements.Errors[0].Reason
+				} else if acct.Requirements != nil && len(acct.Requirements.CurrentlyDue) > 0 {
+					newVer = "pending"
+					reason = "Information required"
+				}
+
+				if acct.DetailsSubmitted && newVer == "verified" {
+					existing.PayoutStatus = internalAccount.PayoutStatusActive
+					s.accountStore.PromoteEscrowToPending(existing.ID)
+				} else {
+					existing.PayoutStatus = internalAccount.PayoutStatusPending
+				}
+
+				now := time.Now().UTC()
+				existing.Status.Verification = newVer
+				existing.Status.VerificationReason = reason
+				existing.Status.VerificationUpdatedAt = &now
+				existing.StripeConnectID = acctID
+
+				s.log.Info("synced stripe verification status", zap.String("wuid", existing.ID), zap.String("verification", newVer), zap.String("reason", reason))
 			}
+		}
+
+	case "account.application.deauthorized":
+		acctID := event.Account
+		if acctID != "" {
+			var existing *internalAccount.Nodlr
+			for _, n := range s.accountStore.ListNodlrs() {
+				if n.StripeConnectID == acctID {
+					existing = n
+					break
+				}
+			}
+			if existing != nil {
+				now := time.Now().UTC()
+				existing.Status.Verification = "error"
+				existing.Status.VerificationReason = "Stripe account deauthorized"
+				existing.Status.VerificationUpdatedAt = &now
+				existing.PayoutStatus = internalAccount.PayoutStatusIncomplete
+				s.log.Info("stripe account deauthorized", zap.String("wuid", existing.ID))
+			}
+		}
+
+	case "checkout.session.completed":
+		var cs stripe.CheckoutSession
+		if err := json.Unmarshal(event.Data.Raw, &cs); err != nil {
+			s.log.Error("[STRIPE-DIAG] failed to parse checkout session", zap.Error(err))
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "parse error"})
+		}
+
+		wuid := ""
+		meshClientID := ""
+		if cs.Metadata != nil {
+			wuid = cs.Metadata["wuid"]
+			if wuid == "" {
+				wuid = cs.Metadata["userID"]
+			}
+			meshClientID = cs.Metadata["meshClientId"]
+		}
+
+		amount := int64(0)
+		if cs.AmountTotal > 0 {
+			amount = cs.AmountTotal
+		}
+
+		s.log.Info("[STRIPE-DIAG] checkout session completed",
+			zap.String("sessionID", cs.ID),
+			zap.String("wuid", wuid),
+			zap.Int64("amount", amount),
+		)
+
+		// 1. Credit WalletBalance
+		if wuid != "" && amount > 0 {
+			if n, ok := s.accountStore.GetNodlr(wuid); ok {
+				n.WalletBalance += amount
+				s.log.Info("[STRIPE-DIAG] credited wallet from checkout", zap.String("wuid", wuid), zap.Int64("addedCents", amount), zap.Int64("newBalance", n.WalletBalance))
+			} else {
+				s.log.Warn("[STRIPE-DIAG] checkout completed but user not found", zap.String("wuid", wuid))
+			}
+		}
+
+		// 2. Write deterministic ledger splits (10/70/3/7/7/3)
+		if wuid != "" && amount > 0 {
+			records := s.accountStore.CalculateSplitsForAmount(amount, wuid, meshClientID)
+			s.accountStore.AddCommissions(records)
+			s.log.Info("[STRIPE-DIAG] ledger splits written for checkout",
+				zap.String("wuid", wuid),
+				zap.Int64("grossAmount", amount),
+				zap.Int("splitCount", len(records)),
+			)
 		}
 
 	case "payment_intent.succeeded":
@@ -641,6 +749,7 @@ func (s *Service) handleWebhook(c *fiber.Ctx) error {
 			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "WUID_REQUIRED"})
 		}
 
+		meshClientID := pi.Metadata["meshClientId"]
 		jobID := pi.Metadata["jobID"]
 		
 		s.log.Info("payment succeeded — funds being processed",
@@ -653,12 +762,23 @@ func (s *Service) handleWebhook(c *fiber.Ctx) error {
 		// 1. Credit User Balance
 		if n, ok := s.accountStore.GetNodlr(wuid); ok {
 			n.WalletBalance += pi.Amount
-			s.log.Info("credited user wallet balance", zap.String("wuid", wuid), zap.Int64("addedCents", pi.Amount), zap.Int64("newBalance", n.WalletBalance))
+			s.log.Info("[STRIPE-DIAG] credited user wallet balance", zap.String("wuid", wuid), zap.Int64("addedCents", pi.Amount), zap.Int64("newBalance", n.WalletBalance))
 		} else {
-			s.log.Warn("payment succeeded but user not found in store", zap.String("wuid", wuid))
+			s.log.Warn("[STRIPE-DIAG] payment succeeded but user not found in store", zap.String("wuid", wuid))
 		}
 
-		// 2. (Optional) Trigger job dispatch if jobID present
+		// 2. Write deterministic ledger splits (10/70/3/7/7/3)
+		if pi.Amount > 0 {
+			records := s.accountStore.CalculateSplitsForAmount(pi.Amount, wuid, meshClientID)
+			s.accountStore.AddCommissions(records)
+			s.log.Info("[STRIPE-DIAG] ledger splits written for payment_intent",
+				zap.String("wuid", wuid),
+				zap.Int64("grossAmount", pi.Amount),
+				zap.Int("splitCount", len(records)),
+			)
+		}
+
+		// 3. (Optional) Trigger job dispatch if jobID present
 		if jobID != "" {
 			// TODO: link pi to job and activate
 		}

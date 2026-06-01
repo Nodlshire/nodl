@@ -2,6 +2,8 @@ package institutional
 
 import (
 	"time"
+
+	"github.com/obregan/nodl/nodld/internal/account"
 )
 
 // InstitutionalOverview represents global system state.
@@ -43,7 +45,7 @@ type OperatorPerformance struct {
 	UptimePerformance float64   `json:"uptimePerformance"`
 	JoinDate          time.Time `json:"joinDate"`
 	Role              string    `json:"role"`
-	Status            string    `json:"status"`
+	Status            account.OpStatus    `json:"status"`
 	Ranking           int       `json:"ranking"`
 }
 

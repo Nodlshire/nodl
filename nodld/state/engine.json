@@ -22,56 +22,26 @@
       "escrowBalanceCents": 0,
       "isFounder": false,
       "payoutFrequency": "",
-      "status": "active",
+      "status": {
+        "active": true,
+        "verification": "verified"
+      },
       "isProtected": true,
       "isSuperAdmin": true,
       "onboardingComplete": true,
       "verified": true,
-      "createdAt": "2026-05-23T09:11:26.461350633+02:00"
-    },
-    "100002-0426-01-AA": {
-      "id": "100002-0426-01-AA",
-      "email": "test@user.com",
-      "password": "test",
-      "displayName": "Test User",
-      "meshClientId": "",
-      "stripeConnectId": "",
-      "stripeAccountId": "",
-      "founderStripeAccountId": null,
-      "nodlrStripeAccountId": null,
-      "role": "observer",
-      "permissions": [
-        "read_all",
-        "view_nodes",
-        "view_financials",
-        "view_affiliates",
-        "view_personnel",
-        "view_settings",
-        "view_system"
+      "labels": [
+        "FOUNDER",
+        "NODLR",
+        "MESH"
       ],
-      "payoutStatus": "",
-      "payoutsEnabled": false,
-      "verificationStatus": "",
-      "integrityScore": 0,
-      "isFrozen": false,
-      "accruedFounderBalance": 0,
-      "walletBalance": 0,
-      "pendingBalanceCents": 0,
-      "escrowBalanceCents": 0,
-      "isFounder": false,
-      "payoutFrequency": "",
-      "status": "active",
-      "isProtected": true,
-      "isSuperAdmin": false,
-      "onboardingComplete": true,
-      "verified": true,
-      "createdAt": "2026-05-23T10:12:16.766356833+02:00"
+      "createdAt": "2026-05-30T14:10:31.801214033+02:00"
     }
   },
   "pending_commissions": {},
   "organic_count": 0,
   "mesh_bucket": 0,
-  "mesh_sequence": 5,
+  "mesh_sequence": 8,
   "mesh_month_year": "0526",
   "crm_records": {
     "100001-0426-01-AA": {
@@ -79,33 +49,12 @@
       "businessName": "Wnode Sovereign Foundation",
       "phone": "+1-555-0199",
       "avatar": "",
-      "createdAt": "2026-05-24T03:37:35.962234214+02:00"
-    },
-    "100002-0426-01-AA": {
-      "nodlrId": "100002-0426-01-AA",
-      "businessName": "Test Operations LLC",
-      "phone": "+1-555-0100",
-      "avatar": "",
-      "createdAt": "2026-05-24T03:37:35.962234401+02:00"
-    }
-  },
-  "operator_reputations": {
-    "100001-0426-01-AA": {
-      "operatorId": "100001-0426-01-AA",
-      "score": 0.8013888888888889,
-      "reliability": 1,
-      "uptime": 1,
-      "successRate": 1,
-      "abandonmentRate": 0,
-      "slashes": 0,
-      "stakeLevel": 0,
-      "computeScore": 0,
-      "tier": 5,
-      "longevityDays": 5,
-      "updatedAt": "2026-05-29T03:37:35.961977689+02:00",
-      "assignedShards": 0,
-      "completedShards": 0,
-      "abandonedShards": 0
+      "labels": [
+        "FOUNDER",
+        "NODLR",
+        "MESH"
+      ],
+      "createdAt": "2026-05-30T14:10:31.801799224+02:00"
     }
   }
 }

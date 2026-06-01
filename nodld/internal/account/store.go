@@ -57,8 +57,16 @@ type Store struct {
 	operatorIdentities map[string]*OperatorIdentity
 	identityLedger     []*IdentityLedgerEntry
 
+	// Phase 8: Authoritative Invite State
+	inviteState *InviteState
+
 	// Passive Telemetry Ingestion
 	Telemetry          *TelemetryDispatcher
+
+	// SaveState debouncing
+	saveMu    sync.Mutex
+	lastSave  time.Time
+	saveBatch int64
 }
 
 type storeState struct {
@@ -93,6 +101,7 @@ func NewStore(forensics *forensics.Store, statePath string) *Store {
 		identityLedger:      make([]*IdentityLedgerEntry, 0),
 		Telemetry:           NewTelemetryDispatcher("http://127.0.0.1:3001/api/intelligence/event"),
 	}
+	s.initInviteState()
 	s.loadState()
 	s.SeedFoundationIdentities()
 	go s.runDowntimeWatchdog(10 * time.Second)
@@ -216,7 +225,8 @@ func (s *Store) SeedFoundationIdentities() {
 			Password:           "command",
 			OnboardingComplete: true,
 			Verified:           true,
-			Status:             "active",
+			Status:             OpStatus{Active: true, Verification: "verified"},
+			Labels:             []string{"FOUNDER", "NODLR", "MESH"},
 			CreatedAt:          time.Now(),
 		}
 	} else {
@@ -226,6 +236,7 @@ func (s *Store) SeedFoundationIdentities() {
 		n.IsProtected = true
 		n.OnboardingComplete = true
 		n.Verified = true
+		n.Labels = []string{"FOUNDER", "NODLR", "MESH"}
 		if n.Password == "" {
 			n.Password = "command"
 		}
@@ -236,37 +247,72 @@ func (s *Store) SeedFoundationIdentities() {
 		NodlrID:      ownerID,
 		BusinessName: "Wnode Sovereign Foundation",
 		Phone:        "+1-555-0199",
+		Labels:       []string{"FOUNDER", "NODLR", "MESH"},
 		CreatedAt:    time.Now(),
 	}
 
-	// 3. Test User
-	testID := "100002-0426-01-AA"
-	if n, ok := s.nodlrs[testID]; !ok {
-		s.nodlrs[testID] = &Nodlr{
-			ID:                 testID,
-			Email:              "test@user.com",
-			DisplayName:        "Test User",
-			Role:               RoleObserver,
-			Permissions:        ObserverPermissions,
-			Password:           "test",
-			IsProtected:        true,
-			OnboardingComplete: true,
-			Verified:           true,
-			Status:             "active",
-			CreatedAt:          time.Now(),
+	// Phase 8 Test Context: Initialize slot 1
+	if s.founders[0] == "" {
+		s.founders[0] = ownerID
+	}
+
+	// 3. Stephen's MeshClient record
+	s.meshClients[ownerID] = &MeshClient{
+		ID:            ownerID,
+		SalesSourceID: ownerID, // Founder acts as own perpetual growth agent
+		CreatedAt:     time.Now(),
+	}
+
+	// Note: Test User mock record was purged.
+}
+
+// AssignFounderSlot securely assigns a Nodlr to a specific Founder slot.
+func (s *Store) AssignFounderSlot(slot int, wuid string) error {
+	err := s.assignFounderSlotInternal(slot, wuid)
+	if err == nil {
+		s.SaveState()
+	}
+	return err
+}
+
+func (s *Store) assignFounderSlotInternal(slot int, wuid string) error {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	if slot < 1 || slot > 10 {
+		return fmt.Errorf("invalid founder/partner slot")
+	}
+
+	if s.founders[slot-1] != "" {
+		return fmt.Errorf("slot %d is already filled", slot)
+	}
+
+	s.founders[slot-1] = wuid
+
+	// Also upgrade the user's role
+	if n, ok := s.nodlrs[wuid]; ok {
+		if slot <= 4 {
+			n.Role = RoleFounder
+			n.IsFounder = true
+			n.Labels = append(n.Labels, "FOUNDER")
+		} else {
+			n.Role = RolePartner
+			n.Labels = append(n.Labels, "PARTNER")
 		}
-	} else {
-		n.DisplayName = "Test User"
-		n.Role = RoleObserver
-		n.Permissions = ObserverPermissions
-		n.IsProtected = true
 	}
-	s.crmRecords[testID] = &CRMRecord{
-		NodlrID:      testID,
-		BusinessName: "Test Operations LLC",
-		Phone:        "+1-555-0100",
-		CreatedAt:    time.Now(),
+
+	return nil
+}
+
+// GetFounderSlots returns a copy of the current founder slots.
+func (s *Store) GetFounderSlots() [4]string {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	var slots [4]string
+	for i := 0; i < 4; i++ {
+		slots[i] = s.founders[i]
 	}
+	return slots
 }
 
 func stringPtr(s string) *string {
@@ -295,23 +341,30 @@ func (s *Store) CreateNodlr(email, parentID string) (*Nodlr, error) {
 	index := len(s.nodlrs) + 1
 	id := fmt.Sprintf("1000%02d-0426-%02d-AA", index, index)
 	
-	// Round-robin for organic signups (Strict Genesis Rotation - Active Founders Only)
+	// Organic signups use the strict round-robin logic (1->2->3->4->1, NO skipping empty slots)
 	if parentID == "" {
-		activeFounders := []string{}
-		for _, fID := range s.founders {
-			if fID == "" {
-				continue
-			}
-			if f, ok := s.nodlrs[fID]; ok && f.Status == "active" {
-				activeFounders = append(activeFounders, fID)
-			}
+		index := s.inviteState.NextFounderIndex
+		s.inviteState.NextFounderIndex++
+		if s.inviteState.NextFounderIndex > 4 {
+			s.inviteState.NextFounderIndex = 1
 		}
+		
+		parentID = s.founders[index-1]
+		if parentID == "" {
+			parentID = fmt.Sprintf("FOUNDER-SLOT-%02d", index)
+		}
+		s.organicCount++
+		go s.SaveState()
+	}
 
-		if len(activeFounders) > 0 {
-			slotIndex := s.organicCount % len(activeFounders)
-			parentID = activeFounders[slotIndex]
-			s.organicCount++
-			s.saveState()
+	// Phase 8.1 CRM Population: ensure the parent slot (real or synthetic) has a CRM record
+	if parentID != "" {
+		if _, exists := s.crmRecords[parentID]; !exists {
+			s.crmRecords[parentID] = &CRMRecord{
+				NodlrID:      parentID,
+				BusinessName: parentID, // For synthetic visibility
+				CreatedAt:    time.Now(),
+			}
 		}
 	}
 
@@ -388,7 +441,7 @@ func (s *Store) UpdateFounderStatus(id string, status string) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	if n, ok := s.nodlrs[id]; ok {
-		n.Status = status
+		n.Status.Active = (status == "active")
 	}
 }
 
@@ -478,7 +531,7 @@ func (s *Store) ActivateFounder(actorID, actorRole, id string) error {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	if n, ok := s.nodlrs[id]; ok && n.IsFounder {
-		n.Status = "active"
+		n.Status.Active = true
 		if s.forensics != nil {
 			s.forensics.LogEvent(actorID, actorRole, forensics.ActionFounderActivated, map[string]string{"targetID": id}, "0.0.0.0")
 		}
@@ -1097,6 +1150,28 @@ func (s *Store) GetOperatorLedgerTotals(opID string) (totalCompute, totalPaid, t
 	return
 }
 
+// GetDetailedOperatorLedgerTotals returns detailed earnings for the CRM.
+func (s *Store) GetDetailedOperatorLedgerTotals(opID string) (totalEarned, l1Earned, l2Earned, unpaid int64) {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+
+	records := s.pendingCommissions[opID]
+	for _, r := range records {
+		totalEarned += r.AmountCents
+		
+		if r.Role == CommRoleLevel1 {
+			l1Earned += r.AmountCents
+		} else if r.Role == CommRoleLevel2 {
+			l2Earned += r.AmountCents
+		}
+		
+		if r.Status != "paid" {
+			unpaid += r.AmountCents
+		}
+	}
+	return
+}
+
 // AuditLedgerRecomputation performs a raw re-summation for internal audit verification.
 func (s *Store) AuditLedgerRecomputation() (rev, pay int64) {
 	s.mu.RLock()
@@ -1173,7 +1248,7 @@ func (s *Store) GetPayoutArchitecture(nodeID string) (*PayoutArchitecture, error
 	fID := s.getGenesisFounderNoLock(nodlr.ID)
 	if f, okf := s.nodlrs[fID]; okf && f.StripeConnectID != "" {
 		// Only Active founders participate in accrual
-		if f.Status == "active" {
+		if f.Status.Active {
 			arch.FounderID, arch.FounderStripe = f.ID, f.StripeConnectID
 		}
 	}
@@ -1478,4 +1553,118 @@ func (s *Store) UpdateCRMRecord(nodlrID string, businessName, phone string) erro
 
 	go s.SaveState()
 	return nil
+}
+
+// Phase 10: Governance Read-Only Aggregators
+
+func (s *Store) GetGovernanceSummary() *GovernanceSummary {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+
+	summary := &GovernanceSummary{
+		TotalNodes:         len(s.nodes),
+		TotalAffiliates:    len(s.nodlrs),
+		RoundRobinPosition: s.inviteState.NextFounderIndex,
+		IntegrityHealthy:   true,
+	}
+
+	for _, n := range s.nodlrs {
+		if n.Role == RoleFounder {
+			summary.TotalFounders++
+		} else if n.Role == RolePartner {
+			summary.TotalPartners++
+		}
+	}
+
+	return summary
+}
+
+func (s *Store) GetIntegritySnapshot() *IntegritySnapshot {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+
+	snap := &IntegritySnapshot{
+		LineageSummary: make(map[string]int),
+		SyntheticWUIDs: []string{"FOUNDER-SLOT-01", "FOUNDER-SLOT-02", "FOUNDER-SLOT-03", "FOUNDER-SLOT-04"},
+		CorruptionFlags: false,
+	}
+
+	for _, n := range s.nodlrs {
+		if n.ParentID != "" {
+			snap.LineageSummary[n.ParentID]++
+		}
+	}
+
+	for _, synth := range snap.SyntheticWUIDs {
+		if _, exists := s.nodlrs[synth]; exists {
+			snap.CorruptionFlags = true
+		}
+	}
+
+	return snap
+}
+
+func (s *Store) GetPartnerOverview() *PartnerOverview {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+
+	ov := &PartnerOverview{
+		PartnerList:    make([]PartnerStatus, 0),
+		PartnerInvites: make([]*AffiliateInvite, 0),
+	}
+
+	for i := 4; i < 10; i++ {
+		slot := i + 1
+		wuid := s.founders[i]
+		status := "empty"
+		if wuid != "" {
+			status = "filled"
+			ov.PartnerCount++
+		}
+		ov.PartnerList = append(ov.PartnerList, PartnerStatus{
+			Slot:   slot,
+			WUID:   wuid,
+			Status: status,
+		})
+	}
+
+	for _, inv := range s.inviteState.Registry {
+		if inv.Role == "partner" {
+			ov.PartnerInvites = append(ov.PartnerInvites, inv)
+		}
+	}
+
+	return ov
+}
+
+func (s *Store) GetFounderSlotsStatus() *FounderSlotsResponse {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+
+	resp := &FounderSlotsResponse{
+		Founders: make([]FounderSlotStatus, 0),
+		Invites:  make([]*AffiliateInvite, 0),
+	}
+
+	for i := 0; i < 4; i++ {
+		slot := i + 1
+		wuid := s.founders[i]
+		status := "empty"
+		if wuid != "" {
+			status = "filled"
+		}
+		resp.Founders = append(resp.Founders, FounderSlotStatus{
+			Slot:   slot,
+			WUID:   wuid,
+			Status: status,
+		})
+	}
+
+	for _, inv := range s.inviteState.Registry {
+		if inv.Role == "founder" {
+			resp.Invites = append(resp.Invites, inv)
+		}
+	}
+
+	return resp
 }

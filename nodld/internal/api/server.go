@@ -204,132 +204,147 @@ func (s *Server) registerRoutes() {
 
 	// Phase 12: Billing API
 	apiV1 := s.app.Group("/api/v1")
-	apiV1.Post("/billing/customer", s.handleBillingCreateCustomer)
-	apiV1.Get("/billing/history", s.handleBillingHistory)
-	apiV1.Get("/billing/job/:id", s.handleBillingJob)
+	apiV1.Post("/billing/customer", s.requireAccess(account.RoleManagement, "command"), s.handleBillingCreateCustomer)
+	apiV1.Get("/billing/history", s.requireAccess(account.RoleManagement, "command"), s.handleBillingHistory)
+	apiV1.Get("/billing/job/:id", s.requireAccess(account.RoleManagement, "command"), s.handleBillingJob)
 
 	// Phase 13: Operator Payouts
-	apiV1.Post("/operator/payouts/create-account", s.requireLevel(account.RoleStandard), s.handleOperatorCreateAccount)
-	apiV1.Post("/operator/payouts/refresh-link", s.requireLevel(account.RoleStandard), s.handleOperatorRefreshLink)
-	apiV1.Get("/operator/payouts/status", s.requireLevel(account.RoleStandard), s.handleOperatorStatus)
-	apiV1.Get("/operator/payouts/summary", s.requireLevel(account.RoleStandard), s.handleOperatorSummary)
-	apiV1.Post("/admin/payouts/trigger", s.handleAdminTriggerPayouts)
+	apiV1.Post("/operator/payouts/create-account", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleOperatorCreateAccount)
+	apiV1.Post("/operator/payouts/refresh-link", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleOperatorRefreshLink)
+	apiV1.Get("/operator/payouts/status", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleOperatorStatus)
+	apiV1.Get("/operator/payouts/summary", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleOperatorSummary)
+	apiV1.Post("/admin/payouts/trigger", s.requireAccess(account.RoleManagement, "command"), s.handleAdminTriggerPayouts)
 
 	// Phase 14: Off-Chain Tokens API
-	apiV1.Get("/tokens/balance", s.requireLevel(account.RoleStandard), s.handleGetTokenBalance)
-	apiV1.Get("/tokens/ledger", s.requireLevel(account.RoleStandard), s.handleGetTokenLedger)
-	apiV1.Get("/tokens/summary", s.requireLevel(account.RoleStandard), s.handleGetTokenSummary)
-	apiV1.Get("/tokens/leaderboard", s.requireLevel(account.RoleStandard), s.handleGetTokenLeaderboard)
+	apiV1.Get("/tokens/balance", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetTokenBalance)
+	apiV1.Get("/tokens/ledger", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetTokenLedger)
+	apiV1.Get("/tokens/summary", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetTokenSummary)
+	apiV1.Get("/tokens/leaderboard", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetTokenLeaderboard)
 
 	// Phase 15: Off-Chain Staking API
-	apiV1.Post("/stake/deposit", s.requireLevel(account.RoleStandard), s.handleStakeDeposit)
-	apiV1.Post("/stake/withdraw", s.requireLevel(account.RoleStandard), s.handleStakeWithdraw)
-	apiV1.Get("/stake/status", s.requireLevel(account.RoleStandard), s.handleGetStakeStatus)
+	apiV1.Post("/stake/deposit", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleStakeDeposit)
+	apiV1.Post("/stake/withdraw", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleStakeWithdraw)
+	apiV1.Get("/stake/status", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetStakeStatus)
 
 	// Phase 16: Reputation Engine API
-	apiV1.Get("/reputation/score", s.requireLevel(account.RoleStandard), s.handleGetReputationScore)
-	apiV1.Get("/reputation/ledger", s.requireLevel(account.RoleStandard), s.handleGetReputationLedger)
-	apiV1.Get("/reputation/leaderboard", s.requireLevel(account.RoleStandard), s.handleGetReputationLeaderboard)
-	apiV1.Post("/reputation/recalculate", s.requireLevel(account.RoleStandard), s.handleReputationRecalculate)
+	apiV1.Get("/reputation/score", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetReputationScore)
+	apiV1.Get("/reputation/ledger", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetReputationLedger)
+	apiV1.Get("/reputation/leaderboard", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetReputationLeaderboard)
+	apiV1.Post("/reputation/recalculate", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleReputationRecalculate)
 
 	// Phase 17: Operator Identity API
-	apiV1.Get("/identity/status", s.requireLevel(account.RoleStandard), s.handleGetIdentityStatus)
-	apiV1.Get("/identity/linked", s.requireLevel(account.RoleStandard), s.handleGetIdentityLinked)
-	apiV1.Get("/identity/sybil", s.requireLevel(account.RoleStandard), s.handleGetIdentitySybil)
-	apiV1.Get("/identity/ledger", s.requireLevel(account.RoleStandard), s.handleGetIdentityLedger)
-	apiV1.Post("/identity/recalculate", s.requireLevel(account.RoleStandard), s.handleRecalculateIdentity)
+	apiV1.Get("/identity/status", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetIdentityStatus)
+	apiV1.Get("/identity/linked", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetIdentityLinked)
+	apiV1.Get("/identity/sybil", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetIdentitySybil)
+	apiV1.Get("/identity/ledger", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetIdentityLedger)
+	apiV1.Post("/identity/recalculate", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleRecalculateIdentity)
 
 	// Job CRUD (Moved under /api/v1)
-	apiV1.Get("/jobs", s.handleListJobs)
-	apiV1.Post("/jobs", s.requireLevel(account.RoleStandard), s.handleSubmitJob)
-	apiV1.Post("/jobs/submit", s.requireLevel(account.RoleStandard), s.handleSubmitJob)
-	apiV1.Post("/jobs/distributed", s.handlePostDistributedJob)
-	apiV1.Get("/jobs/distributed", s.handleListDistributedJobs)
-	apiV1.Get("/jobs/:id", s.handleGetJob)
-	apiV1.Post("/jobs/stream", s.requireLevel(account.RoleStandard), s.handleStreamJob)
-	apiV1.Get("/jobs/:id/stream", s.handlePullJobStream)
+	apiV1.Get("/jobs", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handleListJobs)
+	apiV1.Post("/jobs", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handleSubmitJob)
+	apiV1.Post("/jobs/submit", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handleSubmitJob)
+	apiV1.Post("/jobs/distributed", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handlePostDistributedJob)
+	apiV1.Get("/jobs/distributed", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handleListDistributedJobs)
+	apiV1.Get("/jobs/:id", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handleGetJob)
+	apiV1.Post("/jobs/stream", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handleStreamJob)
+	apiV1.Get("/jobs/:id/stream", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handlePullJobStream)
 
 	// Pricing (Moved under /api/v1)
-	apiV1.Get("/pricing", s.handleGetPricing)
-	apiV1.Get("/pricing/history/:tier", s.handleGetPricingHistory)
-	apiV1.Get("/pricing/alerts", s.handleGetPricingAlerts)
+	apiV1.Get("/pricing", s.requireAccess(account.RoleVisitor, "nodlr", "mesh", "command"), s.handleGetPricing)
+	apiV1.Get("/pricing/history/:tier", s.requireAccess(account.RoleManagement, "command"), s.handleGetPricingHistory)
+	apiV1.Get("/pricing/alerts", s.requireAccess(account.RoleManagement, "command"), s.handleGetPricingAlerts)
 
 	// Account & Affiliates
-	apiV1.Get("/account/lookup", s.handleLookupAccount)
-	apiV1.Post("/account/create", s.handleCreateAccount)
-	apiV1.Get("/account/me", s.requireLevel(account.RoleVisitor), s.handleGetMyAccount)
-	apiV1.Put("/me/profile", s.requireLevel(account.RoleStandard), s.handleUpdateMyAccount)
-	apiV1.Get("/crm/account/me", s.requireLevel(account.RoleStandard), s.handleGetCRMMe)
-	apiV1.Put("/crm/account/me", s.requireLevel(account.RoleStandard), s.handleUpdateCRMMe)
-	apiV1.Get("/account/:id", s.requireLevel(account.RoleVisitor), s.handleGetAccount)
-	apiV1.Put("/account/:id", s.requireLevel(account.RoleCustomerService), s.handleUpdateAccount)
+	apiV1.Get("/account/lookup", s.requireAccess(account.RoleVisitor, "nodlr", "mesh", "command"), s.handleLookupAccount)
+	apiV1.Post("/account/create", s.requireAccess(account.RoleVisitor, "nodlr", "mesh", "command"), s.handleCreateAccount)
+	apiV1.Get("/account/me", s.requireAccess(account.RoleVisitor, "nodlr", "mesh", "command"), s.handleGetMyAccount)
+	apiV1.Put("/me/profile", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleUpdateMyAccount)
+	apiV1.Get("/crm/account/me", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetCRMMe)
+	apiV1.Put("/crm/account/me", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleUpdateCRMMe)
+	apiV1.Get("/account/:id", s.requireAccess(account.RoleVisitor, "nodlr", "mesh", "command"), s.handleGetAccount)
+	apiV1.Put("/account/:id", s.requireAccess(account.RoleCustomerService, "command"), s.handleUpdateAccount)
 	apiV1.Post("/account/onboard", s.handleOnboardAccount)
 
 	// Auth Aliases for Frontend (Phase 4 MVP)
+	apiV1.Post("/auth/login", s.handleHealth) // MVP Mock
 	apiV1.Post("/auth/signup", s.handleOnboardAccount)
 	apiV1.Post("/auth/magic-link", s.handleMagicLink)
 	apiV1.Post("/auth/verify", s.handleVerifyMagicLink)
+	
+	// Phase 8 & 9: CMD Invites
+	apiV1.Get("/admin/founder/slots", s.requireAccess(account.RoleManagement, "command"), s.handleGetFounderSlots)
+	apiV1.Post("/admin/founder/invite", s.requireAccess(account.RoleOwner, "command"), s.handleGenerateFounderInvite)
+	apiV1.Post("/admin/invite/generate", s.requireAccess(account.RoleManagement, "command"), s.handleGenerateAffiliateInvite)
+	apiV1.Post("/admin/invite/global", s.requireAccess(account.RoleManagement, "command"), s.handleGenerateGlobalInvite)
+
+	// Phase 10: Governance & Partners
+	apiV1.Get("/admin/governance/founders", s.requireAccess(account.RoleManagement, "command"), s.handleGetFounderSlotsStatus)
+	apiV1.Get("/admin/governance/partners", s.requireAccess(account.RoleManagement, "command"), s.handleGetPartnerOverview)
+	apiV1.Get("/admin/governance/summary", s.requireAccess(account.RoleManagement, "command"), s.handleGetGovernanceSummary)
+	apiV1.Get("/admin/governance/integrity", s.requireAccess(account.RoleOwner, "command"), s.handleGetIntegritySnapshot)
+	apiV1.Post("/admin/governance/partners/invite", s.requireAccess(account.RoleOwner, "command"), s.handleGeneratePartnerInvite)
+
 	apiV1.Post("/auth/debug-session", s.handleDebugSession)
 	apiV1.Post("/auth/logout", s.handleLogout)
 	apiV1.Post("/auth/invite", s.handleInvite) // Internal/Test only
 	apiV1.Post("/auth/onboard", s.handleOnboardWithInvite)
 	apiV1.Post("/auth/login", s.handleHealth)
-	apiV1.Get("/affiliates/tree/:id", s.requireLevel(account.RoleVisitor), s.handleGetAffiliateTree)
-	apiV1.Post("/affiliates/transfer", s.requireLevel(account.RoleStandard), s.handleTransferAffiliate)
-	apiV1.Post("/affiliates/genesis/activate", s.requireLevel(account.RoleOwner), s.handleActivateFounder)
-	apiV1.Post("/affiliates/genesis/toggle", s.requireLevel(account.RoleOwner), s.handleToggleFounderStatus)
-	apiV1.Post("/admin/accounts/freeze", s.requireLevel(account.RoleManagement), s.handleFreezeAccount)
-	apiV1.Post("/admin/accounts/unfreeze", s.requireLevel(account.RoleManagement), s.handleUnfreezeAccount)
-	apiV1.Post("/validate-id", s.validateMeshClientID)
-	apiV1.Get("/admin/economics/snapshot", s.requireLevel(account.RoleOwner), s.handleGetEconomicsSnapshot)
-	apiV1.Get("/admin/economics/save", s.requireLevel(account.RoleOwner), s.handleSaveEconomics)
-	apiV1.Get("/admin/economics/load", s.requireLevel(account.RoleOwner), s.handleLoadEconomics)
-	apiV1.Get("/admin/economics/integrity", s.requireLevel(account.RoleOwner), s.handleGetEconomicsIntegrity)
-	apiV1.Get("/admin/money/summary", s.requireLevel(account.RoleOwner), s.handleGetAdminMoneySummary)
-	apiV1.Get("/admin/money/transactions", s.requireLevel(account.RoleOwner), s.handleGetAdminMoneyTransactions)
-	apiV1.Get("/admin/money/transaction/:id", s.requireLevel(account.RoleOwner), s.handleGetAdminMoneyTransactionDetail)
-	apiV1.Get("/admin/money/export/csv", s.requireLevel(account.RoleOwner), s.handleExportAdminMoneyCSV)
-	apiV1.Get("/admin/money/export/pdf", s.requireLevel(account.RoleOwner), s.handleExportAdminMoneyPDF)
-	apiV1.Get("/earnings", s.handleGetEarnings)
-	apiV1.Get("/affiliates", s.handleGetAffiliatesSummary)
-	apiV1.Get("/rank", s.handleGetRank)
+	apiV1.Get("/affiliates/tree/:id", s.requireAccess(account.RoleVisitor, "nodlr", "command"), s.handleGetAffiliateTree)
+	apiV1.Post("/affiliates/transfer", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleTransferAffiliate)
+	apiV1.Post("/affiliates/genesis/activate", s.requireAccess(account.RoleOwner, "command"), s.handleActivateFounder)
+	apiV1.Post("/affiliates/genesis/toggle", s.requireAccess(account.RoleOwner, "command"), s.handleToggleFounderStatus)
+	apiV1.Post("/admin/accounts/freeze", s.requireAccess(account.RoleManagement, "command"), s.handleFreezeAccount)
+	apiV1.Post("/admin/accounts/unfreeze", s.requireAccess(account.RoleManagement, "command"), s.handleUnfreezeAccount)
+	apiV1.Post("/validate-id", s.requireAccess(account.RoleVisitor, "mesh", "command"), s.validateMeshClientID)
+	apiV1.Get("/admin/economics/snapshot", s.requireAccess(account.RoleOwner, "command"), s.handleGetEconomicsSnapshot)
+	apiV1.Get("/admin/economics/save", s.requireAccess(account.RoleOwner, "command"), s.handleSaveEconomics)
+	apiV1.Get("/admin/economics/load", s.requireAccess(account.RoleOwner, "command"), s.handleLoadEconomics)
+	apiV1.Get("/admin/economics/integrity", s.requireAccess(account.RoleOwner, "command"), s.handleGetEconomicsIntegrity)
+	apiV1.Get("/admin/money/summary", s.requireAccess(account.RoleOwner, "command"), s.handleGetAdminMoneySummary)
+	apiV1.Get("/admin/money/transactions", s.requireAccess(account.RoleOwner, "command"), s.handleGetAdminMoneyTransactions)
+	apiV1.Get("/admin/money/transaction/:id", s.requireAccess(account.RoleOwner, "command"), s.handleGetAdminMoneyTransactionDetail)
+	apiV1.Get("/admin/money/export/csv", s.requireAccess(account.RoleOwner, "command"), s.handleExportAdminMoneyCSV)
+	apiV1.Get("/admin/money/export/pdf", s.requireAccess(account.RoleOwner, "command"), s.handleExportAdminMoneyPDF)
+	apiV1.Get("/earnings", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetEarnings)
+	apiV1.Get("/affiliates", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetAffiliatesSummary)
+	apiV1.Get("/rank", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetRank)
 
 	// Business & RBAC
-	s.app.Post("/admin/business/profile", s.requireLevel(account.RoleOwner), s.handleUpdateBusinessProfile)
-	s.app.Post("/admin/role", s.requireLevel(account.RoleManagement), s.handleAssignRole)
+	s.app.Post("/admin/business/profile", s.requireAccess(account.RoleOwner, "command"), s.handleUpdateBusinessProfile)
+	s.app.Post("/admin/role", s.requireAccess(account.RoleManagement, "command"), s.handleAssignRole)
 
 	// Overrides
-	s.app.Post("/pricing/override", s.requireLevel(account.RoleManagement), s.handleUpdatePricingRule)
-	s.app.Get("/v1/meta/tiers", s.handleGetMetaTiers)
-	s.app.Patch("/v1/admin/tiers/:id", s.requireLevel(account.RoleManagement), s.handleUpdateAdminTier)
-	s.app.Post("/api/admin/resolve-flag", s.requireLevel(account.RoleManagement), s.handleResolveFlag)
+	s.app.Post("/pricing/override", s.requireAccess(account.RoleManagement, "command"), s.handleUpdatePricingRule)
+	s.app.Get("/v1/meta/tiers", s.requireAccess(account.RoleManagement, "command"), s.handleGetMetaTiers)
+	s.app.Patch("/v1/admin/tiers/:id", s.requireAccess(account.RoleManagement, "command"), s.handleUpdateAdminTier)
+	s.app.Post("/api/admin/resolve-flag", s.requireAccess(account.RoleManagement, "command"), s.handleResolveFlag)
 
 	// Registry
-	apiV1.Get("/registry", s.handleGetRegistry)
-	apiV1.Post("/registry/register", s.requireLevel(account.RoleCustomerService), s.handleRegisterHardware)
-	apiV1.Post("/registry/release", s.requireLevel(account.RoleCustomerService), s.handleReleaseHardware)
-	apiV1.Get("/account/opportunity", s.requireLevel(account.RoleStandard), s.handleGetOpportunityAudit)
-	apiV1.Get("/system/pulse", s.handleGetSystemPulse)
-	apiV1.Get("/impact", s.handleGetImpact)
-	apiV1.Get("/meta/tiers", s.handleGetMetaTiers)
-	apiV1.Post("/nodes/pairing-code/create", s.requireLevel(account.RoleStandard), s.handleCreatePairingCode)
-	apiV1.Post("/nodes/pairing-code/consume", s.requireLevel(account.RoleStandard), s.handleConsumePairingCode)
-	apiV1.Post("/nodes/register", s.requireLevel(account.RoleStandard), s.handleRegisterNode)
+	apiV1.Get("/registry", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handleGetRegistry)
+	apiV1.Post("/registry/register", s.requireAccess(account.RoleCustomerService, "command"), s.handleRegisterHardware)
+	apiV1.Post("/registry/release", s.requireAccess(account.RoleCustomerService, "command"), s.handleReleaseHardware)
+	apiV1.Get("/account/opportunity", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetOpportunityAudit)
+	apiV1.Get("/system/pulse", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handleGetSystemPulse)
+	apiV1.Get("/impact", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handleGetImpact)
+	apiV1.Get("/meta/tiers", s.requireAccess(account.RoleManagement, "command"), s.handleGetMetaTiers)
+	apiV1.Post("/nodes/pairing-code/create", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleCreatePairingCode)
+	apiV1.Post("/nodes/pairing-code/consume", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleConsumePairingCode)
+	apiV1.Post("/nodes/register", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleRegisterNode)
 	apiV1.Get("/nodes/verify-token", s.requireDeviceToken(), s.handleVerifyToken)
 	apiV1.Post("/nodes/heartbeat", s.requireDeviceToken(), s.handleHeartbeatNode)
 	apiV1.Get("/nodes/me", s.requireDeviceToken(), s.handleGetNodeMe)
 	apiV1.Get("/nodes/work", s.requireDeviceToken(), s.handleGetNodeWork)
 	apiV1.Post("/nodes/work/result", s.requireDeviceToken(), s.handlePostNodeWorkResult)
-	apiV1.Get("/nodes", s.handleListNodes)
-	apiV1.Get("/nodes/summary", s.handleNodesSummary)
+	apiV1.Get("/nodes", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handleListNodes)
+	apiV1.Get("/nodes/summary", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handleNodesSummary)
 
 	// Distributed Compute Engine (Phase 10)
-	apiV1.Post("/jobs/distributed", s.handlePostDistributedJob)
-	apiV1.Get("/jobs/distributed", s.handleListDistributedJobs)
+	apiV1.Post("/jobs/distributed", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handlePostDistributedJob)
+	apiV1.Get("/jobs/distributed", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handleListDistributedJobs)
 	
 	// CRM Registry
-	apiV1.Get("/nodlrs", s.handleListNodlrs)
-	apiV1.Get("/clients", s.handleListClients)
+	apiV1.Get("/nodlrs", s.requireAccess(account.RoleCustomerService, "command"), s.handleListNodlrs)
+	apiV1.Get("/clients", s.requireAccess(account.RoleCustomerService, "command"), s.handleListClients)
 	
 	// Stripe Routes
 	if s.stripeSvc != nil {
@@ -337,35 +352,35 @@ func (s *Server) registerRoutes() {
 	}
 
 	// Authoritative Stripe Onboarding (Session-Gated)
-	apiV1.Post("/stripe/connect/start", s.handleStripeConnectStart)
-	apiV1.Get("/stripe/connect/status", s.handleStripeConnectStatus)
-	apiV1.Post("/stripe/connect/v2/session", s.handleStripeV2AccountSession)
+	apiV1.Post("/stripe/connect/start", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleStripeConnectStart)
+	apiV1.Get("/stripe/connect/status", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleStripeConnectStatus)
+	apiV1.Post("/stripe/connect/v2/session", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleStripeV2AccountSession)
 
 	// Money Routes (Canonical 8080)
-	apiV1.Get("/money/overview", s.moneyHandler.HandleMoneyOverview)
-	apiV1.Get("/money/integrity", s.moneyHandler.HandleMoneyIntegrity)
-	apiV1.Get("/money/acquisition", s.moneyHandler.HandleMoneyAcquisition)
-	apiV1.Get("/money/transactions", s.moneyHandler.HandleMoneyTransactions)
-	apiV1.Get("/money/balance", s.moneyHandler.HandleMoneyBalance)
+	apiV1.Get("/money/overview", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.moneyHandler.HandleMoneyOverview)
+	apiV1.Get("/money/integrity", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.moneyHandler.HandleMoneyIntegrity)
+	apiV1.Get("/money/acquisition", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.moneyHandler.HandleMoneyAcquisition)
+	apiV1.Get("/money/transactions", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.moneyHandler.HandleMoneyTransactions)
+	apiV1.Get("/money/balance", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.moneyHandler.HandleMoneyBalance)
 
 	// Acquisition Routes (Canonical 8080)
-	apiV1.Get("/acquisition/overview", s.acqHandler.HandleOverview)
-	apiV1.Get("/acquisition/referrals", s.acqHandler.HandleReferrals)
-	apiV1.Get("/acquisition/graph", s.acqHandler.HandleGraph)
-	apiV1.Get("/acquisition/tree", s.acqHandler.HandleTree)
-	apiV1.Get("/acquisition/children", s.acqHandler.HandleChildren)
-	apiV1.Get("/acquisition/stats", s.acqHandler.HandleStats)
-	apiV1.Get("/acquisition/integrity", s.acqHandler.HandleIntegrity)
+	apiV1.Get("/acquisition/overview", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.acqHandler.HandleOverview)
+	apiV1.Get("/acquisition/referrals", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.acqHandler.HandleReferrals)
+	apiV1.Get("/acquisition/graph", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.acqHandler.HandleGraph)
+	apiV1.Get("/acquisition/tree", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.acqHandler.HandleTree)
+	apiV1.Get("/acquisition/children", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.acqHandler.HandleChildren)
+	apiV1.Get("/acquisition/stats", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.acqHandler.HandleStats)
+	apiV1.Get("/acquisition/integrity", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.acqHandler.HandleIntegrity)
 
 	// Affiliates Aliases (New Stable Contract)
-	apiV1.Get("/affiliates/tree", s.acqHandler.HandleTree)
-	apiV1.Get("/affiliates/children", s.acqHandler.HandleChildren)
+	apiV1.Get("/affiliates/tree", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.acqHandler.HandleTree)
+	apiV1.Get("/affiliates/children", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.acqHandler.HandleChildren)
 
 	// Institutional Routes (Canonical 8080)
-	s.instHandler.RegisterRoutes(apiV1, s.requireLevel(account.RoleOwner), s.requireLevel(account.RoleManagement))
+	s.instHandler.RegisterRoutes(apiV1, s.requireAccess(account.RoleOwner, "command"), s.requireAccess(account.RoleManagement, "command"))
 
 	// Governance Routes (RBAC Level 4+)
-	s.govHandler.RegisterRoutes(apiV1, s.requireLevel(account.RoleManagement))
+	s.govHandler.RegisterRoutes(apiV1, s.requireAccess(account.RoleManagement, "command"))
 
 	// Real-time event stream
 	s.app.Get("/ws", websocket.New(s.handleWebSocket))
@@ -838,7 +853,40 @@ func (s *Server) handleGetAccount(c *fiber.Ctx) error {
 	if !ok {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "account not found"})
 	}
-	return c.JSON(acc)
+	totalEarned, l1Earned, l2Earned, unpaid := s.accountStore.GetDetailedOperatorLedgerTotals(id)
+	
+	// Convert Nodlr struct to map so we can inject economics
+	// This maintains compatibility while adding CRM-specific data
+	return c.JSON(fiber.Map{
+		"id": acc.ID,
+		"email": acc.Email,
+		"status": acc.Status,
+		"verified": acc.Verified,
+		"onboardingComplete": acc.OnboardingComplete,
+		"role": acc.Role,
+		"permissions": acc.Permissions,
+		"firstName": acc.FirstName,
+		"lastName": acc.LastName,
+		"displayName": acc.DisplayName,
+		"isFounder": acc.IsFounder,
+		"createdAt": acc.CreatedAt,
+		"economics": fiber.Map{
+			"total_earned_usd": float64(totalEarned) / 100.0,
+			"l1_earnings_usd": float64(l1Earned) / 100.0,
+			"l2_earnings_usd": float64(l2Earned) / 100.0,
+			"unpaid_amounts_usd": float64(unpaid) / 100.0,
+		},
+		"payouts": fiber.Map{
+			"stripe_connect_status": acc.Status.Verification, // fallback
+			"unpaid_details": []fiber.Map{
+				{
+					"payout_id": "PENDING-CURRENT",
+					"reason": "Accumulating",
+					"expected_resolution": "Next cycle",
+				},
+			},
+		},
+	})
 }
 
 func (s *Server) handleGetOpportunityAudit(c *fiber.Ctx) error {
@@ -965,7 +1013,8 @@ func (s *Server) handleOnboardWithInvite(c *fiber.Ctx) error {
 	acc.Role = account.UserRole(it.Role)
 	acc.OnboardingComplete = true
 	acc.Verified = true
-	acc.Status = "active"
+	acc.Verified = true
+	acc.Status = account.OpStatus{Active: true, Verification: "verified"}
 
 	return c.JSON(fiber.Map{"status": "success", "wuid": acc.ID})
 }
@@ -993,8 +1042,9 @@ func (s *Server) handleUpdateAccount(c *fiber.Ctx) error {
 
 func (s *Server) handleOnboardAccount(c *fiber.Ctx) error {
 	var req struct {
-		Email    string `json:"email"`
-		ParentID string `json:"parentId"`
+		Email       string `json:"email"`
+		ParentID    string `json:"parentId"`
+		InviteToken string `json:"inviteToken"`
 	}
 	if err := c.BodyParser(&req); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid request"})
@@ -1006,13 +1056,97 @@ func (s *Server) handleOnboardAccount(c *fiber.Ctx) error {
 		req.ParentID = ref
 	}
 
+	var isFounderSignup bool
+	var founderSlot int
+
+	// Phase 8: Authoritative Invite Token validation
+	if req.InviteToken != "" {
+		invite, err := s.accountStore.ConsumeAffiliateInvite(req.InviteToken)
+		if err != nil {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err.Error()})
+		}
+		
+		if invite.Role == "founder" || invite.Role == "partner" {
+			isFounderSignup = true
+			founderSlot = invite.FounderSlot
+			req.ParentID = "" // Founders and Partners are root nodes
+		} else {
+			// If target is roundrobin, CreateNodlr handles it naturally if parentID is empty.
+			if invite.PlacementTargetWUID != "roundrobin" {
+				req.ParentID = invite.PlacementTargetWUID
+			} else {
+				req.ParentID = "" // Force organic round-robin
+			}
+		}
+	}
+
 	// Fallback to genesis rotation if still empty
 	acc, err := s.accountStore.CreateNodlr(req.Email, req.ParentID)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
 	}
 
+	if isFounderSignup {
+		if err := s.accountStore.AssignFounderSlot(founderSlot, acc.ID); err != nil {
+			// If assignment fails, we still created the nodlr, but log it
+			s.log.Error("failed to assign founder slot during signup", zap.Error(err))
+		}
+	}
+
 	return c.Status(fiber.StatusCreated).JSON(acc)
+}
+
+func (s *Server) handleGetFounderSlots(c *fiber.Ctx) error {
+	slots := s.accountStore.GetFounderSlots()
+	// Return as object { "1": WUID, "2": WUID, ... }
+	resp := make(map[string]string)
+	for i, wuid := range slots {
+		resp[fmt.Sprintf("%d", i+1)] = wuid
+	}
+	return c.JSON(resp)
+}
+
+func (s *Server) handleGenerateFounderInvite(c *fiber.Ctx) error {
+	var req struct {
+		Slot int `json:"slot"`
+	}
+	if err := c.BodyParser(&req); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid request"})
+	}
+
+	if req.Slot < 1 || req.Slot > 4 {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid slot"})
+	}
+
+	invite, err := s.accountStore.GenerateFounderInvite(req.Slot)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+	return c.JSON(fiber.Map{"token": invite.Token, "expiresAt": invite.ExpiresAt})
+}
+
+func (s *Server) handleGenerateAffiliateInvite(c *fiber.Ctx) error {
+	var req struct {
+		TargetWUID string `json:"targetWuid"`
+	}
+	if err := c.BodyParser(&req); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid request"})
+	}
+
+	inviterID := c.Locals("user_id").(string)
+	invite, err := s.accountStore.GenerateAffiliateInvite(inviterID, req.TargetWUID)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+	return c.JSON(fiber.Map{"token": invite.Token, "expiresAt": invite.ExpiresAt})
+}
+
+func (s *Server) handleGenerateGlobalInvite(c *fiber.Ctx) error {
+	invite, err := s.accountStore.GenerateGlobalInvite()
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+	return c.JSON(fiber.Map{"token": invite.Token, "expiresAt": invite.ExpiresAt})
 }
 
 func (s *Server) handleGetAffiliateTree(c *fiber.Ctx) error {
@@ -1039,7 +1173,7 @@ func (s *Server) handleGetAffiliateTree(c *fiber.Ctx) error {
 }
 
 // resolveIdentity extracts the user ID from session cookies or a development bypass.
-func (s *Server) resolveIdentity(c *fiber.Ctx) (string, string) {
+func (s *Server) resolveIdentity(c *fiber.Ctx) (string, string, string) {
 	// 1. Production Path: Domain-scoped Session Cookies
 	for _, cookieName := range []string{"cmd_session", "nodlr_session", "mesh_session"} {
 		if sessionID := c.Cookies(cookieName); sessionID != "" {
@@ -1058,27 +1192,27 @@ func (s *Server) resolveIdentity(c *fiber.Ctx) (string, string) {
 
 				if sess.Domain != expectedDomain {
 					s.log.Warn("[AUTH] Cross-domain session misuse attempt", zap.String("id", sess.WUID), zap.String("session_domain", sess.Domain), zap.String("request_domain", expectedDomain))
-					return "", ""
+					return "", "", ""
 				}
-				return sess.WUID, string(sess.Role)
+				return sess.WUID, string(sess.Role), sess.Domain
 			}
 		}
 	}
 
 	// 2. Developer/Proxy Path: Identity Headers (Phase 4 Legacy Support)
 	if uid := c.Get("X-Owner-ID"); uid != "" {
-		return uid, string(account.RoleOwner)
+		return uid, string(account.RoleOwner), "api"
 	}
 	if uid := c.Get("X-User-ID"); uid != "" {
-		return uid, c.Get("X-User-Role", "visitor")
+		return uid, c.Get("X-User-Role", "visitor"), "api"
 	}
 
-	return "", ""
+	return "", "", ""
 }
 
 // isOwner checks if the request is from the authoritative owner (Stephen).
 func (s *Server) isOwner(c *fiber.Ctx) bool {
-	id, _ := s.resolveIdentity(c)
+	id, _, _ := s.resolveIdentity(c)
 	return id == account.AuthoritativeOwnerID
 }
 // IsObserver checks if the account has the global read-only observer role.
@@ -1087,7 +1221,7 @@ func (s *Server) IsObserver(a *account.Nodlr) bool {
 }
 
 // requireLevel enforces the RBAC levels.
-func (s *Server) requireLevel(minLevel account.UserRole) fiber.Handler {
+func (s *Server) requireAccess(minLevel account.UserRole, allowedPortals ...string) fiber.Handler {
 	return func(c *fiber.Ctx) error {
 		// Owner bypass
 		if s.isOwner(c) {
@@ -1097,8 +1231,28 @@ func (s *Server) requireLevel(minLevel account.UserRole) fiber.Handler {
 		}
 
 		// Check the requester's identity via cookie-first resolution
-		requesterID, requesterRole := s.resolveIdentity(c)
+		requesterID, requesterRole, domain := s.resolveIdentity(c)
 		if requesterID == "" {
+			return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "missing authentication"})
+		}
+
+		// Enforce Portal Isolation
+		portalAllowed := false
+		if len(allowedPortals) == 0 {
+			portalAllowed = true
+		}
+		for _, p := range allowedPortals {
+			if domain == p || domain == "command" || domain == "api" {
+				portalAllowed = true
+				break
+			}
+		}
+		if !portalAllowed {
+			s.log.Warn("[AUTH] Strict portal isolation enforced", zap.String("id", requesterID), zap.String("session_domain", domain), zap.Strings("allowed", allowedPortals))
+			return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "cross-portal access denied"})
+		}
+
+		if requesterRole == "" {
 			return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "missing authentication"})
 		}
 
@@ -1711,7 +1865,7 @@ func (s *Server) handleCreateAccount(c *fiber.Ctx) error {
 		LastName:           req.LastName,
 		Role:               account.UserRole(req.Role),
 		Permissions:        req.Permissions,
-		Status:             req.Status,
+		Status:             account.OpStatus{Active: req.Status == "active", Verification: "verified"},
 		OnboardingComplete: true,
 		Verified:           true,
 		CreatedAt:          time.Now(),
@@ -1770,9 +1924,12 @@ func (s *Server) handleDebugSession(c *fiber.Ctx) error {
 
 	secureFlag := true
 	domainFlag := "wnode.one"
+	sameSiteFlag := "None"
+
 	if os.Getenv("DEVELOPMENT_MODE") == "true" {
 		secureFlag = false
 		domainFlag = ""
+		sameSiteFlag = "Lax"
 	}
 
 	c.Cookie(&fiber.Cookie{
@@ -1781,7 +1938,7 @@ func (s *Server) handleDebugSession(c *fiber.Ctx) error {
 		Expires:  time.Now().Add(24 * time.Hour),
 		HTTPOnly: true,
 		Secure:   secureFlag,
-		SameSite: "None",
+		SameSite: sameSiteFlag,
 		Domain:   domainFlag,
 		Path:     "/",
 	})
@@ -1821,7 +1978,7 @@ func (s *Server) handleLogout(c *fiber.Ctx) error {
 // --- Authoritative Stripe Wrappers ---
 
 func (s *Server) handleStripeConnectStart(c *fiber.Ctx) error {
-	wuid, _ := s.resolveIdentity(c)
+	wuid, _, _ := s.resolveIdentity(c)
 	if wuid == "" {
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "unauthorized"})
 	}
@@ -1829,7 +1986,7 @@ func (s *Server) handleStripeConnectStart(c *fiber.Ctx) error {
 }
 
 func (s *Server) handleStripeConnectStatus(c *fiber.Ctx) error {
-	wuid, _ := s.resolveIdentity(c)
+	wuid, _, _ := s.resolveIdentity(c)
 	if wuid == "" {
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "unauthorized"})
 	}
@@ -1837,7 +1994,7 @@ func (s *Server) handleStripeConnectStatus(c *fiber.Ctx) error {
 }
 
 func (s *Server) handleStripeV2AccountSession(c *fiber.Ctx) error {
-	wuid, _ := s.resolveIdentity(c)
+	wuid, _, _ := s.resolveIdentity(c)
 	if wuid == "" {
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "unauthorized"})
 	}
@@ -2372,3 +2529,36 @@ func (s *Server) handleRecalculateIdentity(c *fiber.Ctx) error {
 	return c.JSON(fiber.Map{"status": "success", "message": "recalculated and sybil consistency scan completed"})
 }
 
+// Phase 10: Governance Handlers
+
+func (s *Server) handleGetFounderSlotsStatus(c *fiber.Ctx) error {
+	return c.JSON(s.accountStore.GetFounderSlotsStatus())
+}
+
+func (s *Server) handleGetPartnerOverview(c *fiber.Ctx) error {
+	return c.JSON(s.accountStore.GetPartnerOverview())
+}
+
+func (s *Server) handleGetGovernanceSummary(c *fiber.Ctx) error {
+	return c.JSON(s.accountStore.GetGovernanceSummary())
+}
+
+func (s *Server) handleGetIntegritySnapshot(c *fiber.Ctx) error {
+	return c.JSON(s.accountStore.GetIntegritySnapshot())
+}
+
+func (s *Server) handleGeneratePartnerInvite(c *fiber.Ctx) error {
+	var req struct {
+		Slot int `json:"slot"`
+	}
+	if err := c.BodyParser(&req); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid request"})
+	}
+
+	invite, err := s.accountStore.GeneratePartnerInvite(req.Slot)
+	if err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	return c.Status(fiber.StatusCreated).JSON(invite)
+}

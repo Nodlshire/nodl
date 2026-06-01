@@ -228,33 +228,7 @@ export default function DashboardLayout({
                     </div>
                 </header>
                 
-                {/* Reminder Banner */}
-                {!loading && account && account.status !== 'active' && !isBannerDismissed && (
-                    <motion.div 
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        className="bg-[#9333ea]/10 border-b border-[#9333ea]/20 px-8 py-3 flex items-center justify-between"
-                    >
-                        <div className="flex items-center gap-3">
-                            <AlertCircle className="w-4 h-4 text-[#9333ea]" />
-                            <span className="text-sm text-slate-300">Complete your Universal Identity to unlock full earning capability.</span>
-                        </div>
-                        <div className="flex items-center gap-4">
-                            <button 
-                                onClick={handleCompleteNow}
-                                className="text-xs font-bold text-white hover:text-[#9333ea] transition-colors"
-                            >
-                                Complete Now
-                            </button>
-                            <button 
-                                onClick={handleDismissBanner}
-                                className="text-xs text-slate-500 hover:text-white transition-colors"
-                            >
-                                Dismiss
-                            </button>
-                        </div>
-                    </motion.div>
-                )}
+
 
                 {/* Content */}
                 <main className="flex-1 p-8">

@@ -45,6 +45,10 @@ export function JobsProvider({ children }: { children: ReactNode }) {
 
     const fetchJobs = useCallback(async () => {
         try {
+            // Check for user session to avoid 401 polling spam
+            const email = typeof window !== 'undefined' ? localStorage.getItem('nodl_user_email') : null;
+            if (!email) return;
+
             const resp = await fetch(`${API_BASE}/jobs`);
             if (!resp.ok) return;
             const data = await resp.json();

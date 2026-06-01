@@ -5,43 +5,44 @@ export const dynamic = 'force-dynamic';
 export async function GET(req: NextRequest) {
     try {
         const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8081";
+        const fetchHeaders: Record<string, string> = {};
+        
+        req.headers.forEach((value, key) => {
+            const lowerKey = key.toLowerCase();
+            if (lowerKey !== 'host' && lowerKey !== 'cookie') {
+                fetchHeaders[key] = value;
+            }
+        });
+
+        fetchHeaders['X-Wnode-Domain'] = 'mesh';
+
+        const rawCookie = req.headers.get('cookie');
+        if (rawCookie) {
+            const meshCookie = rawCookie.split(';').find(c => c.trim().startsWith('mesh_session='));
+            if (meshCookie) {
+                fetchHeaders['Cookie'] = meshCookie.trim();
+            }
+        }
+
         const res = await fetch(`${apiUrl}/api/v1/account/me`, {
             method: 'GET',
-            headers: {
-                cookie: req.headers.get('cookie') ?? '',
-            },
+            headers: fetchHeaders,
             credentials: 'include',
         });
 
-        const contentType = res.headers.get('content-type') || '';
-        const bodyText = await res.text();
-
-        // Safe JSON check to never return HTML
-        if (contentType.includes('text/html') || bodyText.trim().startsWith('<')) {
+        if (!res.ok) {
             return NextResponse.json(
-                { error: 'Backend returned HTML response', status: res.status },
-                { status: res.status >= 200 && res.status < 300 ? 502 : res.status }
+                { error: `Backend identity provider returned ${res.status}` },
+                { status: res.status }
             );
         }
 
-        let jsonData;
-        try {
-            jsonData = JSON.parse(bodyText);
-        } catch (e) {
-            return NextResponse.json(
-                { error: 'Backend response is not valid JSON', details: bodyText || `Status ${res.status}` },
-                { status: 502 }
-            );
-        }
-
-        // Return canonical backend avatar field directly
-        jsonData.avatar = jsonData.avatar || "";
-
-        return NextResponse.json(jsonData, { status: res.status });
+        const data = await res.json();
+        return NextResponse.json(data);
     } catch (error: any) {
         console.error('[Mesh Account/Me Proxy Error]:', error);
         return NextResponse.json(
-            { error: 'Identity provider unreachable', details: error?.message },
+            { error: 'Identity provider unreachable' },
             { status: 502 }
         );
     }

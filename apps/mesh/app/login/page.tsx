@@ -39,11 +39,17 @@ export default function LoginPage() {
                 })
             });
 
+            if (res.status === 401) {
+                setError('Invalid password');
+                setIsLoading(false);
+                return;
+            }
+
             if (res.ok) {
                 console.log('[Mesh Auth Debug] Session established');
                 localStorage.removeItem('nodl_auth_bypass');
                 localStorage.setItem('nodl_user_email', normalizedEmail);
-                router.push('/dashboard');
+                window.location.href = '/dashboard';
                 return;
             } else {
                 const data = await res.json();

@@ -15,6 +15,14 @@ const (
 	PayoutWeekly PayoutFrequency = "weekly"
 )
 
+// OpStatus defines operational and verification state for the CRM.
+type OpStatus struct {
+	Active                bool       `json:"active"`
+	Verification          string     `json:"verification"` // verified, pending, error
+	VerificationReason    string     `json:"verificationReason,omitempty"`
+	VerificationUpdatedAt *time.Time `json:"verificationUpdatedAt,omitempty"`
+}
+
 // PayoutStatus defines if a nodlr is ready to receive funds.
 type PayoutStatus string
 
@@ -34,7 +42,8 @@ const (
 	RoleManagement      UserRole = "management"       // Personnel/Operator managers
 	RoleCustomerService UserRole = "customer_service" // Support limited access
 	RoleVisitor         UserRole = "visitor"          // Read-only transparency
-	RoleFounder          UserRole = "founder"          // Economic override (3%)
+	RoleFounder         UserRole = "founder"          // Economic override (3%)
+	RolePartner         UserRole = "partner"          // Partner slot (Slots 5-10)
 	RoleFounderNodlr     UserRole = "founder_nodlr"    // Sovereign Foundation logic
 	RoleOperator         UserRole = "operator"         // Nodlr node provider (80%)
 	RoleBuyer           UserRole = "buyer"            // Mesh compute buyer
@@ -90,11 +99,12 @@ type Nodlr struct {
 	FounderIndex          int             `json:"founderIndex,omitempty"`
 	PayoutFrequency       PayoutFrequency `json:"payoutFrequency"`
 	ParentID              string          `json:"parentId,omitempty"`
-	Status                string          `json:"status"` // active or dormant
+	Status                OpStatus        `json:"status"`
 	IsProtected           bool            `json:"isProtected"`
 	IsSuperAdmin          bool            `json:"isSuperAdmin"`
 	OnboardingComplete    bool            `json:"onboardingComplete"`
 	Verified              bool            `json:"verified"`
+	Labels                []string        `json:"labels"`
 	CreatedAt             time.Time       `json:"createdAt"`
 }
 
@@ -318,6 +328,7 @@ type CRMRecord struct {
 	BusinessName string    `json:"businessName"`
 	Phone        string    `json:"phone"`
 	Avatar       string    `json:"avatar"`
+	Labels       []string  `json:"labels"`
 	CreatedAt    time.Time `json:"createdAt"`
 }
 
@@ -327,5 +338,62 @@ type CRMUpdate struct {
 	Phone        string `json:"phone"`
 }
 
+// AffiliateInvite represents a generated, single-use invite link payload and record.
+type AffiliateInvite struct {
+	ID                  string    `json:"id"`
+	InviterWUID         string    `json:"inviterWuid"` // WUID or "global" or "owner"
+	PlacementTargetWUID string    `json:"placementTargetWuid"` // WUID or "roundrobin" or ""
+	Role                string    `json:"role"`        // "affiliate", "founder"
+	FounderSlot         int       `json:"founderSlot,omitempty"` // 1-4
+	Token               string    `json:"token"`
+	Used                bool      `json:"used"`
+	ExpiresAt           time.Time `json:"expiresAt"`
+	CreatedAt           time.Time `json:"createdAt"`
+}
 
+// InviteState tracks the global round-robin pointer and valid tokens.
+type InviteState struct {
+	Secret           string                      `json:"secret"`
+	NextFounderIndex int                         `json:"nextFounderIndex"`
+	Registry         map[string]*AffiliateInvite `json:"registry"`
+}
 
+// Phase 10: Governance Read-Only DTOs
+
+type GovernanceSummary struct {
+	TotalNodes         int  `json:"totalNodes"`
+	TotalAffiliates    int  `json:"totalAffiliates"`
+	TotalPartners      int  `json:"totalPartners"`
+	TotalFounders      int  `json:"totalFounders"`
+	RoundRobinPosition int  `json:"roundRobinPosition"`
+	IntegrityHealthy   bool `json:"integrityHealthy"`
+}
+
+type IntegritySnapshot struct {
+	LineageSummary      map[string]int `json:"lineageSummary"`
+	SyntheticWUIDs      []string       `json:"syntheticWUIDs"`
+	CorruptionFlags     bool           `json:"corruptionFlags"`
+}
+
+type PartnerStatus struct {
+	Slot   int    `json:"slot"`
+	WUID   string `json:"wuid"`
+	Status string `json:"status"` // "empty", "filled"
+}
+
+type PartnerOverview struct {
+	PartnerCount   int               `json:"partnerCount"`
+	PartnerList    []PartnerStatus   `json:"partnerList"`
+	PartnerInvites []*AffiliateInvite `json:"partnerInvites"`
+}
+
+type FounderSlotStatus struct {
+	Slot   int    `json:"slot"`
+	WUID   string `json:"wuid"`
+	Status string `json:"status"` // "empty", "filled"
+}
+
+type FounderSlotsResponse struct {
+	Founders []FounderSlotStatus `json:"founders"`
+	Invites  []*AffiliateInvite  `json:"invites"`
+}

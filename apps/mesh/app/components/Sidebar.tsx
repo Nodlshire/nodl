@@ -37,7 +37,7 @@ export default function Sidebar() {
     ];
 
     return (
-        <aside className="w-64 border-r border-white/10 hidden md:flex flex-col bg-[#080808] shrink-0 relative z-20">
+        <aside className="w-64 border-r border-white/10 hidden md:flex flex-col bg-[#080808] shrink-0 relative z-[100]">
             <div className="pt-8 pl-8 mb-6 flex flex-col items-start gap-4 shrink-0">
                 <div className="flex flex-col items-start select-none gap-3">
                     <div className="flex flex-col items-center justify-center w-14">

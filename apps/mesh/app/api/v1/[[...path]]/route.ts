@@ -26,9 +26,17 @@ async function handleProxy(req: NextRequest, method: string, subPath: string) {
         return NextResponse.json(TRANSACTIONS, { status: 200 });
     }
 
-    // Proxy other api requests (like jobs, pricing, logout, etc.) directly to Go backend (8081)
+    // Determine upstream URL based on path domain
+    const isNodeRoute = subPath.startsWith('nodes') || subPath.startsWith('nodlrs');
+    const isAccountRoute = subPath.startsWith('money') || subPath.startsWith('jobs') || subPath.startsWith('account');
+
+    let apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8081";
+    if (isAccountRoute) {
+        apiUrl = process.env.ACCOUNT_SERVICE_URL || "http://localhost:3002";
+    }
+
+    // Proxy the request to the selected backend
     try {
-        const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8081";
         const targetUrl = `${apiUrl}/api/v1/${subPath}${req.nextUrl.search}`;
         
         let requestBody: any = undefined;
@@ -64,6 +72,16 @@ async function handleProxy(req: NextRequest, method: string, subPath: string) {
             body: requestBody,
         });
 
+        if (!res.ok) {
+            console.warn(`Backend returned ${res.status} for /api/v1/${subPath} from ${apiUrl}`);
+            // Mirror CMD/Nodlr pattern: fail gracefully by returning an empty list for nodes
+            if (isNodeRoute) {
+                return NextResponse.json([]);
+            }
+            // For other routes, we can just return empty JSON or let the frontend handle the status
+            return NextResponse.json({}, { status: res.status });
+        }
+
         const contentType = res.headers.get('content-type') || '';
         const bodyText = await res.text();
 
@@ -94,11 +112,12 @@ async function handleProxy(req: NextRequest, method: string, subPath: string) {
 
         return response;
     } catch (error: any) {
-        console.error(`[Mesh API/v1 Catch-All Proxy Error on ${method} /${subPath}]:`, error);
-        return NextResponse.json(
-            { error: 'Backend provider unreachable', details: error?.message },
-            { status: 502 }
-        );
+        console.error(`[Mesh API/v1 Proxy Error on ${method} /${subPath}]:`, error);
+        // Mirror CMD/Nodlr pattern: return empty array for node queries on network failure
+        if (isNodeRoute) {
+            return NextResponse.json([]);
+        }
+        return NextResponse.json({}, { status: 502 });
     }
 }
 

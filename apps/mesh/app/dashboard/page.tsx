@@ -9,56 +9,22 @@ import {
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useBilling } from '../components/BillingProvider';
-import dynamic from 'next/dynamic';
-
-const FleetMap = dynamic(() => import("@shared/components/FleetMap"), {
-    ssr: false,
-});
+import FleetMap from "@shared/components/FleetMap";
+import { useMeshNodes } from '../hooks/useMeshNodes';
 
 export default function MeshDashboard() {
     const { balance, setIsTopUpOpen } = useBilling();
     const [mounted, setMounted] = useState(false);
     const [rawJobs, setRawJobs] = useState<any[]>([]);
-    const [nodes, setNodes] = useState<any[]>([]);
-    const [nodlrs, setNodlrs] = useState<any[]>([]);
-    const [loading, setLoading] = useState(true);
+    
+    const { nodes, loading: nodesLoading } = useMeshNodes();
 
     const fetchSotData = async () => {
         try {
-            const [jobsResp, nodesResp] = await Promise.all([
-                fetch('/api/v1/jobs'),
-                fetch('/api/v1/nodes')
-            ]);
-            
-            if (jobsResp.ok) {
-                const jobsData = await jobsResp.json();
-                setRawJobs(jobsData);
-            }
-            if (nodesResp.ok) {
-                const nodesData = await nodesResp.json();
-                let normalized = nodesData.map((n: any) => ({
-                    ...n,
-                    lat: n.lat ?? n.latitude ?? n.location?.lat,
-                    lon: n.lon ?? n.longitude ?? n.location?.lon,
-                    id: n.id ?? n.node_id,
-                    status: n.status ?? 'active'
-                }));
-
-                if (normalized.length === 0) {
-                    const { SIM_MACHINES } = await import('@shared/lib/fixtures');
-                    normalized = SIM_MACHINES.map((m: any) => ({
-                        ...m,
-                        lat: m.latitude,
-                        lon: m.longitude
-                    }));
-                }
-                setNodes(normalized);
-            }
-            setNodlrs([]);
-        } catch (e) {
-            console.error('Failed to fetch data:', e);
-        } finally {
-            setLoading(false);
+            const jobsResp = await fetch('/api/v1/jobs');
+            if (jobsResp.ok) setRawJobs(await jobsResp.json());
+        } catch (err) {
+            console.warn("Dashboard jobs fetch failed:", err);
         }
     };
 
@@ -73,28 +39,27 @@ export default function MeshDashboard() {
 
     // Compute dynamic, real-time calculations from SOT jobs
     const totalJobs = rawJobs.length;
-    const completedJobs = rawJobs.filter(j => j.status === 'completed' || j.status === 'complete').length;
-    const runningJobs = rawJobs.filter(j => j.status === 'running').length;
-    const failedJobs = rawJobs.filter(j => j.status === 'failed').length;
-    const lastJobStatus = totalJobs > 0 ? rawJobs[0].status.toUpperCase() : 'NONE';
+    const completedJobs = Array.isArray(rawJobs) ? rawJobs.filter(j => j.status === 'completed' || j.status === 'complete').length : 0;
+    const runningJobs = Array.isArray(rawJobs) ? rawJobs.filter(j => j.status === 'running').length : 0;
+    const failedJobs = Array.isArray(rawJobs) ? rawJobs.filter(j => j.status === 'failed').length : 0;
+    const lastJobStatus = totalJobs > 0 && Array.isArray(rawJobs) ? rawJobs[0].status?.toUpperCase() || 'NONE' : 'NONE';
 
     // Average duration of completed jobs
-    const completedDurations = rawJobs
+    const completedDurations = Array.isArray(rawJobs) ? rawJobs
         .filter(j => j.status === 'completed' || j.status === 'complete')
         .map(j => {
             const start = new Date(j.createdAt).getTime();
             const end = new Date(j.updatedAt).getTime();
             return Math.max(0, (end - start) / 1000); // seconds
-        });
+        }) : [];
     const avgDuration = completedDurations.length > 0 
         ? (completedDurations.reduce((a, b) => a + b, 0) / completedDurations.length).toFixed(1) + 's'
         : '0.0s';
 
     return (
-        <div className="p-8 space-y-8 animate-in fade-in duration-700">
+        <div className="flex flex-col gap-6 p-8 animate-in fade-in duration-700 w-full">
             {/* Dashboard Panel Grid */}
-            {/* Compressed Metrics Header Line */}
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-4 relative z-50">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-6 relative z-50">
                 <div className="surface-card p-4 flex flex-col justify-between h-full hover:border-blue-500/20 transition-all">
                     <span className="text-[10px] uppercase text-slate-500 tracking-widest flex items-center justify-between">
                         Total Jobs <Server className="w-3 h-3 text-blue-500" />
@@ -137,13 +102,13 @@ export default function MeshDashboard() {
                 </div>
             </div>
 
-            {/* Global Node Map */}
-            <FleetMap 
-                nodes={nodes} 
-                nodlrs={nodlrs} 
-                loading={loading} 
-                onNodeSelect={() => {}} 
-            />
+            {/* Main Content */}
+            <div className="w-full flex flex-col gap-6">
+                {/* Fleet Map */}
+                <div className="w-full h-[520px] min-h-[400px] flex flex-col rounded-xl border border-neutral-800 bg-neutral-900 p-4">
+                    {mounted && <FleetMap nodes={nodes || []} nodlrs={[]} loading={nodesLoading} onNodeSelect={(id) => console.log('Selected node:', id)} />}
+                </div>
+            </div>
         </div>
     );
 }

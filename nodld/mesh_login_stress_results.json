@@ -1,0 +1,11 @@
+{
+  "total_attempts": 500,
+  "success": 450,
+  "failure": 50,
+  "status_codes": {
+    "401": 50,
+    "200": 450
+  },
+  "missing_cookies": 0,
+  "avg_latency": 253.60506010055542
+}

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function POST(req: NextRequest, props: { params: Promise<{ path: string[] }> }) {
-    const { path: pathSegments } = await props.params;
+export async function POST(req: NextRequest, { params }: { params: { path?: string[] } }) {
+    const pathSegments = await Promise.resolve(params.path || []);
     const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8081";
     
     // We need to await params in Next.js 15 before using properties.

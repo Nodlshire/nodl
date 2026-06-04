@@ -1,0 +1,8 @@
+{
+  "name": "ABC PoS Pool",
+  "category": "Uncategorized",
+  "description": "Integration for ABC PoS Pool",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Agent Ted",
+  "category": "Uncategorized",
+  "description": "Integration for Agent Ted",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

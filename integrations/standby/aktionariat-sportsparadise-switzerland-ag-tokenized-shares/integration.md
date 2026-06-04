@@ -1,0 +1,16 @@
+# Aktionariat Sportsparadise Switzerland AG Tokenized Shares Integration
+
+This integration connects Wnode to Aktionariat Sportsparadise Switzerland AG Tokenized Shares.
+
+## Status
+Standby — Pending Activation
+
+## Overview
+Integration pending full activation.
+
+## SDK Usage
+```ts
+import { int_aktionariat_sportsparadise_switzerland_ag_tokenized_shares } from "./sdk";
+
+int_aktionariat_sportsparadise_switzerland_ag_tokenized_shares.ping();
+```

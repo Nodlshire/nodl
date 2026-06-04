@@ -1,0 +1,8 @@
+{
+  "name": "Aave USDC (Linea)",
+  "category": "Uncategorized",
+  "description": "Integration for Aave USDC (Linea)",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

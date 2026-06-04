@@ -1,0 +1,8 @@
+{
+  "name": "Aave USDT",
+  "category": "Uncategorized",
+  "description": "Integration for Aave USDT",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

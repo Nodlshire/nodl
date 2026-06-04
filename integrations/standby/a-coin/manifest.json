@@ -1,0 +1,8 @@
+{
+  "name": "a coin",
+  "category": "Uncategorized",
+  "description": "Integration for a coin",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Aave Interest Bearing STETH",
+  "category": "Uncategorized",
+  "description": "Integration for Aave Interest Bearing STETH",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

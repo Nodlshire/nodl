@@ -1,0 +1,16 @@
+# ACryptoS Integration
+
+This integration connects Wnode to ACryptoS.
+
+## Status
+Standby — Pending Activation
+
+## Overview
+Integration pending full activation.
+
+## SDK Usage
+```ts
+import { int_acryptos_2 } from "./sdk";
+
+int_acryptos_2.ping();
+```

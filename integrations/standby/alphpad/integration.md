@@ -1,0 +1,16 @@
+# AlphPad Integration
+
+This integration connects Wnode to AlphPad.
+
+## Status
+Standby — Pending Activation
+
+## Overview
+Integration pending full activation.
+
+## SDK Usage
+```ts
+import { int_alphpad } from "./sdk";
+
+int_alphpad.ping();
+```

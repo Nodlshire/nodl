@@ -1,0 +1,8 @@
+{
+  "name": "Agent Conductor",
+  "category": "Uncategorized",
+  "description": "Integration for Agent Conductor",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

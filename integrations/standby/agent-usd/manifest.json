@@ -1,0 +1,8 @@
+{
+  "name": "Agent USD",
+  "category": "Uncategorized",
+  "description": "Integration for Agent USD",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

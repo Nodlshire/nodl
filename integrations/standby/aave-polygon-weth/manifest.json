@@ -1,0 +1,8 @@
+{
+  "name": "Aave Polygon WETH",
+  "category": "Uncategorized",
+  "description": "Integration for Aave Polygon WETH",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

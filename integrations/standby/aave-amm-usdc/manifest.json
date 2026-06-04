@@ -1,0 +1,8 @@
+{
+  "name": "Aave AMM USDC",
+  "category": "Uncategorized",
+  "description": "Integration for Aave AMM USDC",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

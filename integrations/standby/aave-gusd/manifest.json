@@ -1,0 +1,8 @@
+{
+  "name": "Aave GUSD",
+  "category": "Uncategorized",
+  "description": "Integration for Aave GUSD",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

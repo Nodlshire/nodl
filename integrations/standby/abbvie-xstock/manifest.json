@@ -1,0 +1,8 @@
+{
+  "name": "AbbVie xStock",
+  "category": "Uncategorized",
+  "description": "Integration for AbbVie xStock",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Aave TUSD",
+  "category": "Uncategorized",
+  "description": "Integration for Aave TUSD",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

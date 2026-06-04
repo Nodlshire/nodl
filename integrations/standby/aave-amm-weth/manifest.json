@@ -1,0 +1,8 @@
+{
+  "name": "Aave AMM WETH",
+  "category": "Uncategorized",
+  "description": "Integration for Aave AMM WETH",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Alpha WETH Vault",
+  "category": "Uncategorized",
+  "description": "Integration for Alpha WETH Vault",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

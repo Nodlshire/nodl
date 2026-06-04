@@ -1,0 +1,8 @@
+{
+  "name": "Aave v3 rETH",
+  "category": "Uncategorized",
+  "description": "Integration for Aave v3 rETH",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

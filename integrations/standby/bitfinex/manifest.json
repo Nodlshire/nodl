@@ -1,0 +1,8 @@
+{
+  "name": "Bitfinex",
+  "category": "Uncategorized",
+  "description": "Integration for Bitfinex",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

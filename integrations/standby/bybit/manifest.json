@@ -1,0 +1,8 @@
+{
+  "name": "Bybit",
+  "category": "Uncategorized",
+  "description": "Integration for Bybit",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

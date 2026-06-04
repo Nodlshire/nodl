@@ -1,0 +1,8 @@
+{
+  "name": "WBTC",
+  "category": "Uncategorized",
+  "description": "Integration for WBTC",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

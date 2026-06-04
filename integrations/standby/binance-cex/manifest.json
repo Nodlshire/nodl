@@ -1,0 +1,8 @@
+{
+  "name": "Binance CEX",
+  "category": "Uncategorized",
+  "description": "Integration for Binance CEX",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

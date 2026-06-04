@@ -1,0 +1,8 @@
+{
+  "name": "KuCoin",
+  "category": "Uncategorized",
+  "description": "Integration for KuCoin",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

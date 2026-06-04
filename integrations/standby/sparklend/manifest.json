@@ -1,0 +1,8 @@
+{
+  "name": "SparkLend",
+  "category": "Uncategorized",
+  "description": "Integration for SparkLend",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

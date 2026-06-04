@@ -1,0 +1,8 @@
+{
+  "name": "Binance staked ETH",
+  "category": "Uncategorized",
+  "description": "Integration for Binance staked ETH",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

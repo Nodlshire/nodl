@@ -1,0 +1,8 @@
+{
+  "name": "Binance Bitcoin",
+  "category": "Uncategorized",
+  "description": "Integration for Binance Bitcoin",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

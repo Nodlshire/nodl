@@ -1,3 +1,3 @@
 verida
-https://www.verida.lo
-Operates as a self-sovereign private data DePIN. Integrates personal data vaults with confidential compute enclaves using the VDA utility token. Infrastructure relies heavily on Trusted Execution Environments (TEEs) where execution is RAM-bound and operator-restricted.
+https://www.verida.io
+Verida structures decentralized self-sovereign identity protocols and private user data networks.

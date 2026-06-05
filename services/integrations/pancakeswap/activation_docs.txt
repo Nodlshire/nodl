@@ -1,3 +1,1 @@
-https://docs.pancakeswap.finance/developers/smart-contracts
-https://docs.pancakeswap.finance/developers/api
-https://docs.pancakeswap.finance/developers/smart-contracts/v3
+https://docs.pancakeswap.finance

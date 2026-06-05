@@ -1,1 +1,0 @@
-https://www.cointracker.io/api/v1/docs

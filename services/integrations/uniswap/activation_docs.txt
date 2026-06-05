@@ -1,3 +1,1 @@
-https://docs.uniswap.org/sdk/v3/overview
-https://docs.uniswap.org/api/v1/overview
-https://docs.uniswap.org/sdk/v3/guides/swaps/trading
+https://docs.uniswap.org

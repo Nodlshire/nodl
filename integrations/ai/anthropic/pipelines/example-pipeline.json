@@ -1,0 +1,8 @@
+{
+  "id": "anthropic-pipeline",
+  "steps": [
+    {
+      "action": "process"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "Google Cloud Run",
+  "slug": "gcp-cloud-run",
+  "provider": "gcp",
+  "service": "cloud-run",
+  "version": "1.0.0",
+  "category": "Serverless Compute",
+  "description": "Cloud Run runs containerized apps. Wnode acts as a compute backend for Cloud Run services.",
+  "auth": {
+    "type": "service-account",
+    "fields": [
+      "gcp_service_account_json"
+    ]
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/api/pipeline/invoke",
+      "description": "Receive Cloud Run payload"
+    }
+  ],
+  "capabilities": [
+    "http-trigger",
+    "container-handoff"
+  ],
+  "docs_url": "https://cloud.google.com/run/docs",
+  "logo": "logo.svg"
+}

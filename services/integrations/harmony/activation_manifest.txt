@@ -1,0 +1,3 @@
+harmony
+https://www.harmony.one
+Harmony is a fast and secure blockchain with key innovations in state sharding and peer-to-peer networking.

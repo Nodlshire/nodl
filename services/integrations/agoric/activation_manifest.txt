@@ -1,0 +1,3 @@
+agoric
+https://agoric.io
+Integration interface configuration metadata for the agoric infrastructure engine.

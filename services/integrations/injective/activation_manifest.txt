@@ -1,0 +1,3 @@
+injective
+https://injective.com
+Injective is a lightning-fast interoperable layer one blockchain optimized for building Web3 financial applications.

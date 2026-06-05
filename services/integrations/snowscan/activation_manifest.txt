@@ -1,0 +1,3 @@
+snowscan
+https://snowscan.io
+Integration interface configuration metadata for the snowscan infrastructure engine.

@@ -1,0 +1,3 @@
+newrelic
+https://newrelic.io
+Integration interface configuration metadata for the newrelic infrastructure engine.

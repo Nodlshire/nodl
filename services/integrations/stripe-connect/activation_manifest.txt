@@ -1,0 +1,3 @@
+stripe-connect
+https://stripe-connect.io
+Integration interface configuration metadata for the stripe-connect infrastructure engine.

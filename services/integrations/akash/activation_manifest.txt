@@ -1,0 +1,3 @@
+akash
+https://akash.io
+Integration interface configuration metadata for the akash infrastructure engine.

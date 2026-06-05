@@ -1,0 +1,3 @@
+salesforce
+https://www.salesforce.com
+Salesforce houses extensive multi-tenant cloud business management frameworks and CRM endpoints.

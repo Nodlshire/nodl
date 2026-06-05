@@ -1,0 +1,3 @@
+magento
+https://magento.io
+Integration interface configuration metadata for the magento infrastructure engine.

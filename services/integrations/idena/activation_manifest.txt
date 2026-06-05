@@ -1,0 +1,3 @@
+idena
+https://idena.io
+Integration interface configuration metadata for the idena infrastructure engine.

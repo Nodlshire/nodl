@@ -1,0 +1,3 @@
+woocommerce
+https://woocommerce.io
+Integration interface configuration metadata for the woocommerce infrastructure engine.

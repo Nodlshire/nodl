@@ -1,0 +1,3 @@
+okx-wallet
+https://okx-wallet.io
+Integration interface configuration metadata for the okx-wallet infrastructure engine.

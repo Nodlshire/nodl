@@ -1,0 +1,3 @@
+mux-protocol
+https://mux-protocol.io
+Integration interface configuration metadata for the mux-protocol infrastructure engine.

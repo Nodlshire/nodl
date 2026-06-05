@@ -1,0 +1,3 @@
+jupiter
+https://jup.ag
+Jupiter is a swap aggregation and liquidity infrastructure platform built on Solana.

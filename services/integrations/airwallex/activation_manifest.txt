@@ -1,0 +1,3 @@
+airwallex
+https://airwallex.io
+Integration interface configuration metadata for the airwallex infrastructure engine.

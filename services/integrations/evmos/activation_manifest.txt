@@ -1,0 +1,3 @@
+evmos
+https://evmos.org
+Evmos is a scalable, high-throughput Web3 network that is fully compatible and interoperable with Ethereum.

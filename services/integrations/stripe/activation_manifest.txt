@@ -1,0 +1,3 @@
+stripe
+https://stripe.com
+Stripe is a suite of global payment APIs and transactional commerce infrastructure tools.

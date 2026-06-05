@@ -1,0 +1,3 @@
+arcx
+https://arcx.io
+Integration interface configuration metadata for the arcx infrastructure engine.

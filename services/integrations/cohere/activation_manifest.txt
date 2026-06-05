@@ -1,0 +1,3 @@
+cohere
+https://cohere.com
+Cohere delivers enterprise natural language processing models and cognitive search endpoints.

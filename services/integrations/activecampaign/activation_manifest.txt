@@ -1,0 +1,3 @@
+activecampaign
+https://activecampaign.io
+Integration interface configuration metadata for the activecampaign infrastructure engine.

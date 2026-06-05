@@ -1,0 +1,3 @@
+filebase
+https://filebase.io
+Integration interface configuration metadata for the filebase infrastructure engine.

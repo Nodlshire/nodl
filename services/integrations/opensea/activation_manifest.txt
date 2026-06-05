@@ -1,0 +1,3 @@
+opensea
+https://opensea.io
+OpenSea is a peer-to-peer marketplace for cryptogoods and non-fungible tokens.

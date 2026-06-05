@@ -1,0 +1,3 @@
+quicknode-advanced
+https://quicknode-advanced.io
+Integration interface configuration metadata for the quicknode-advanced infrastructure engine.

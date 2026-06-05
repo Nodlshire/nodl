@@ -1,0 +1,3 @@
+goldfinch
+https://goldfinch.io
+Integration interface configuration metadata for the goldfinch infrastructure engine.

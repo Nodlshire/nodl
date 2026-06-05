@@ -1,0 +1,3 @@
+objkt
+https://objkt.io
+Integration interface configuration metadata for the objkt infrastructure engine.

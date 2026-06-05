@@ -1,0 +1,3 @@
+solscan
+https://solscan.io
+Integration interface configuration metadata for the solscan infrastructure engine.

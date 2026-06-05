@@ -1,0 +1,3 @@
+scroll-sepolia
+https://scroll-sepolia.io
+Integration interface configuration metadata for the scroll-sepolia infrastructure engine.

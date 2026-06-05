@@ -1,0 +1,3 @@
+qtum
+https://qtum.io
+Integration interface configuration metadata for the qtum infrastructure engine.

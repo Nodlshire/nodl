@@ -1,0 +1,3 @@
+slack
+https://slack.com
+Slack is a collaborative enterprise communication client and workspace messaging platform.

@@ -1,0 +1,3 @@
+modal-labs
+https://modal-labs.io
+Integration interface configuration metadata for the modal-labs infrastructure engine.

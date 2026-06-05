@@ -1,0 +1,3 @@
+github
+https://github.com
+GitHub hosting service handles distributed revision control, repository management, and continuous automation.

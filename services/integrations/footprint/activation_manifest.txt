@@ -1,0 +1,3 @@
+footprint
+https://footprint.io
+Integration interface configuration metadata for the footprint infrastructure engine.

@@ -1,0 +1,3 @@
+manta
+https://manta.io
+Integration interface configuration metadata for the manta infrastructure engine.

@@ -1,0 +1,3 @@
+sei
+https://www.sei.io
+Sei is an open-source, general-purpose Layer 1 blockchain optimized for digital asset trading.

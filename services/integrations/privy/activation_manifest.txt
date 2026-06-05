@@ -1,0 +1,3 @@
+privy
+https://privy.io
+Integration interface configuration metadata for the privy infrastructure engine.

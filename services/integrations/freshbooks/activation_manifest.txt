@@ -1,0 +1,3 @@
+freshbooks
+https://freshbooks.io
+Integration interface configuration metadata for the freshbooks infrastructure engine.

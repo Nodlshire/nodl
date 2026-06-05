@@ -1,0 +1,3 @@
+equilibrium
+https://equilibrium.io
+Integration interface configuration metadata for the equilibrium infrastructure engine.

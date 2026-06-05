@@ -1,0 +1,3 @@
+injective-exchange
+https://injective-exchange.io
+Integration interface configuration metadata for the injective-exchange infrastructure engine.

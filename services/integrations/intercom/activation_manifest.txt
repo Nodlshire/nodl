@@ -1,0 +1,3 @@
+intercom
+https://www.intercom.com
+Intercom provisions conversational messaging layers and direct live chat automation pipelines.

@@ -1,0 +1,3 @@
+cohere-command
+https://cohere-command.io
+Integration interface configuration metadata for the cohere-command infrastructure engine.

@@ -1,0 +1,3 @@
+sentry
+https://sentry.io
+Sentry provides real-time application monitoring and code error tracking tools.

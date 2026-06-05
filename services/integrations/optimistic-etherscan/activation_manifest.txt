@@ -1,0 +1,3 @@
+optimistic-etherscan
+https://optimistic-etherscan.io
+Integration interface configuration metadata for the optimistic-etherscan infrastructure engine.

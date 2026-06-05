@@ -1,0 +1,3 @@
+rarible
+https://rarible.io
+Integration interface configuration metadata for the rarible infrastructure engine.

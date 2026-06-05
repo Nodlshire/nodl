@@ -1,0 +1,3 @@
+huggingface-inference
+https://huggingface-inference.io
+Integration interface configuration metadata for the huggingface-inference infrastructure engine.

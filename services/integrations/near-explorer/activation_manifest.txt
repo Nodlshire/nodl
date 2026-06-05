@@ -1,0 +1,3 @@
+near-explorer
+https://near-explorer.io
+Integration interface configuration metadata for the near-explorer infrastructure engine.

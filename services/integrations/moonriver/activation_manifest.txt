@@ -1,0 +1,3 @@
+moonriver
+https://moonbeam.network/networks/moonriver
+Moonriver is an Ethereum-compatible blockchain platform running as a parachain on Kusama.

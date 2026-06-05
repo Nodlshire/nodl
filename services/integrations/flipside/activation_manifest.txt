@@ -1,0 +1,3 @@
+flipside
+https://flipside.io
+Integration interface configuration metadata for the flipside infrastructure engine.

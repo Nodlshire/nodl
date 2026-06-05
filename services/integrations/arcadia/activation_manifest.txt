@@ -1,0 +1,3 @@
+arcadia
+https://arcadia.io
+Integration interface configuration metadata for the arcadia infrastructure engine.

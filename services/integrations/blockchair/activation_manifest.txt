@@ -1,0 +1,3 @@
+blockchair
+https://blockchair.io
+Integration interface configuration metadata for the blockchair infrastructure engine.

@@ -1,0 +1,3 @@
+anchorage
+https://anchorage.io
+Integration interface configuration metadata for the anchorage infrastructure engine.

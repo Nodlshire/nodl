@@ -1,0 +1,3 @@
+phantom
+https://phantom.io
+Integration interface configuration metadata for the phantom infrastructure engine.

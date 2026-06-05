@@ -1,0 +1,3 @@
+gcp
+https://cloud.google.com
+Google Cloud Platform delivers enterprise cloud hosting, machine learning, and data suites.

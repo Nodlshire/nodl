@@ -1,0 +1,3 @@
+gearbox
+https://gearbox.io
+Integration interface configuration metadata for the gearbox infrastructure engine.

@@ -1,0 +1,3 @@
+zora
+https://zora.io
+Integration interface configuration metadata for the zora infrastructure engine.

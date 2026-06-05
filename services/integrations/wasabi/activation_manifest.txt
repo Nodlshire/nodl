@@ -1,0 +1,3 @@
+wasabi
+https://wasabi.io
+Integration interface configuration metadata for the wasabi infrastructure engine.

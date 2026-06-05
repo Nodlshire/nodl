@@ -1,0 +1,3 @@
+openai
+https://openai.com
+OpenAI builds scalable intelligence runtimes and foundational transformer language APIs.

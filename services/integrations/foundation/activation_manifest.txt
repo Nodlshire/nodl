@@ -1,0 +1,3 @@
+foundation
+https://foundation.io
+Integration interface configuration metadata for the foundation infrastructure engine.

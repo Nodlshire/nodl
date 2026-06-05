@@ -1,0 +1,3 @@
+juno
+https://juno.io
+Integration interface configuration metadata for the juno infrastructure engine.

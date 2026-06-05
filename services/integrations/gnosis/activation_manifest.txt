@@ -1,0 +1,3 @@
+gnosis
+https://gnosis.io
+Gnosis Chain is an EVM-equivalent stablecoin-native Layer 1 network.

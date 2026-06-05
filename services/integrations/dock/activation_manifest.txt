@@ -1,0 +1,3 @@
+dock
+https://dock.io
+Integration interface configuration metadata for the dock infrastructure engine.

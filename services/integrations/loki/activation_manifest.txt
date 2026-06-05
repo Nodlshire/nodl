@@ -1,0 +1,3 @@
+loki
+https://loki.io
+Integration interface configuration metadata for the loki infrastructure engine.

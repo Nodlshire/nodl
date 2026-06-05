@@ -1,0 +1,3 @@
+cosmos
+https://cosmos.network
+Cosmos is an ecosystem of independent, interconnected blockchains.

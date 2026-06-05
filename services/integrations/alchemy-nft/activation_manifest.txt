@@ -1,0 +1,3 @@
+alchemy-nft
+https://alchemy-nft.io
+Integration interface configuration metadata for the alchemy-nft infrastructure engine.

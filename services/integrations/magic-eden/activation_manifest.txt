@@ -1,0 +1,3 @@
+magic-eden
+https://magic-eden.io
+Integration interface configuration metadata for the magic-eden infrastructure engine.

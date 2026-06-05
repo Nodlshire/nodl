@@ -1,0 +1,3 @@
+brightid
+https://brightid.io
+Integration interface configuration metadata for the brightid infrastructure engine.

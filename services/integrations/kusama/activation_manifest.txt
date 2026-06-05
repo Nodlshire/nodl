@@ -1,0 +1,3 @@
+kusama
+https://kusama.network
+Kusama is a scalable network of specialized blockchains built using Substrate.

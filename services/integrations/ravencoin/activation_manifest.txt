@@ -1,0 +1,3 @@
+ravencoin
+https://ravencoin.io
+Integration interface configuration metadata for the ravencoin infrastructure engine.

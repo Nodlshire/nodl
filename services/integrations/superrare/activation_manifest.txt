@@ -1,0 +1,3 @@
+superrare
+https://superrare.io
+Integration interface configuration metadata for the superrare infrastructure engine.

@@ -1,0 +1,3 @@
+base
+https://base.org
+Base is a secure, low-cost, builder-friendly Ethereum L2 built on the OP Stack.

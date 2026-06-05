@@ -1,0 +1,3 @@
+conflux
+https://conflux.io
+Integration interface configuration metadata for the conflux infrastructure engine.

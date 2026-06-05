@@ -1,0 +1,3 @@
+bybit
+https://www.bybit.com
+Bybit is a specialized cryptocurrency trading and exchange architecture.

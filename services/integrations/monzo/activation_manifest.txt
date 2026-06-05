@@ -1,0 +1,3 @@
+monzo
+https://monzo.io
+Integration interface configuration metadata for the monzo infrastructure engine.

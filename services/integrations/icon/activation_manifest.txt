@@ -1,0 +1,3 @@
+icon
+https://icon.io
+Integration interface configuration metadata for the icon infrastructure engine.

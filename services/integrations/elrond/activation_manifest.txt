@@ -1,0 +1,3 @@
+elrond
+https://multiversx.com
+MultiversX (formerly Elrond) is a highly scalable, fast, and secure blockchain platform.

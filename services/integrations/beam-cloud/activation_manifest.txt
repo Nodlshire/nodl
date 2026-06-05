@@ -1,0 +1,3 @@
+beam-cloud
+https://beam-cloud.io
+Integration interface configuration metadata for the beam-cloud infrastructure engine.

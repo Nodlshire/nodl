@@ -1,0 +1,3 @@
+hyperliquid
+https://hyperliquid.io
+Integration interface configuration metadata for the hyperliquid infrastructure engine.

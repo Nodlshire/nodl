@@ -1,0 +1,3 @@
+ribbon
+https://ribbon.io
+Integration interface configuration metadata for the ribbon infrastructure engine.

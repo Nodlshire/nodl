@@ -1,0 +1,3 @@
+klarna
+https://klarna.io
+Integration interface configuration metadata for the klarna infrastructure engine.

@@ -1,0 +1,3 @@
+avalanche
+https://avax.network
+Avalanche is a smart contracts platform built to scale infinitely and finalize transactions in under a second.

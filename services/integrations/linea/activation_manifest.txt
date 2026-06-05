@@ -1,0 +1,3 @@
+linea
+https://linea.build
+Linea is a developer-ready zkEVM rollup network powered by Consensys.

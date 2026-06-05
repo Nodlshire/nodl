@@ -1,0 +1,3 @@
+google-vertex
+https://google-vertex.io
+Integration interface configuration metadata for the google-vertex infrastructure engine.

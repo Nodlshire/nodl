@@ -1,0 +1,3 @@
+linear
+https://linear.app
+Linear issue tracking architectures provide highly scannable engineering workflows.

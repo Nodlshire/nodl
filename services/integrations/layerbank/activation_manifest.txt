@@ -1,0 +1,3 @@
+layerbank
+https://layerbank.io
+Integration interface configuration metadata for the layerbank infrastructure engine.

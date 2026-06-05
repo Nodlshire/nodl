@@ -1,0 +1,3 @@
+workday
+https://workday.io
+Integration interface configuration metadata for the workday infrastructure engine.

@@ -1,0 +1,3 @@
+acala
+https://acala.network
+Acala is a decentralized finance network and liquidity hub powering the Polkadot ecosystem.

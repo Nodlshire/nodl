@@ -1,0 +1,3 @@
+oasis
+https://oasis.io
+Integration interface configuration metadata for the oasis infrastructure engine.

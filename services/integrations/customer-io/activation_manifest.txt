@@ -1,0 +1,3 @@
+customer-io
+https://customer-io.io
+Integration interface configuration metadata for the customer-io infrastructure engine.

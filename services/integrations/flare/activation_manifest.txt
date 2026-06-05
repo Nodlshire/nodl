@@ -1,0 +1,3 @@
+flare
+https://flare.network
+Flare is a data-centric Layer 1 blockchain with integrated oracles for secure data acquisition.

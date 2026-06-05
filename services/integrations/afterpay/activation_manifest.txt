@@ -1,0 +1,3 @@
+afterpay
+https://afterpay.io
+Integration interface configuration metadata for the afterpay infrastructure engine.

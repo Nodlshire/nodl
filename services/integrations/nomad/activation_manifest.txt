@@ -1,0 +1,3 @@
+nomad
+https://nomad.io
+Integration interface configuration metadata for the nomad infrastructure engine.

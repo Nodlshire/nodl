@@ -1,0 +1,3 @@
+tezos
+https://tezos.com
+Tezos is a self-upgradable open-source platform for constructing smart contracts and decentralized applications.

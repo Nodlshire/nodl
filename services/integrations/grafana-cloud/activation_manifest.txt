@@ -1,0 +1,3 @@
+grafana-cloud
+https://grafana-cloud.io
+Integration interface configuration metadata for the grafana-cloud infrastructure engine.

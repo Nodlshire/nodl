@@ -1,0 +1,3 @@
+stellar
+https://stellar.org
+Stellar is an open-source network for currencies and payments.

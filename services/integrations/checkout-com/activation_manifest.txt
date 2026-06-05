@@ -1,0 +1,3 @@
+checkout-com
+https://checkout-com.io
+Integration interface configuration metadata for the checkout-com infrastructure engine.

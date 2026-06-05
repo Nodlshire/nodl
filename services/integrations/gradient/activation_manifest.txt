@@ -1,0 +1,3 @@
+gradient
+https://gradient.io
+Integration interface configuration metadata for the gradient infrastructure engine.

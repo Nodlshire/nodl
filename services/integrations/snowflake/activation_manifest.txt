@@ -1,0 +1,3 @@
+snowflake
+https://www.snowflake.com
+Snowflake architecture provisions enterprise multi-cloud relational data warehousing.

@@ -1,0 +1,3 @@
+bitgo
+https://bitgo.io
+Integration interface configuration metadata for the bitgo infrastructure engine.

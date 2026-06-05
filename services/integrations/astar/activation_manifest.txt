@@ -1,0 +1,3 @@
+astar
+https://astar.network
+Astar Network is a multi-chain smart contract platform supporting EVM and WebAssembly environments.

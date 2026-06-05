@@ -1,0 +1,3 @@
+layerzero
+https://layerzero.network
+LayerZero is an omnichain interoperability protocol designed for lightweight messaging across chains.

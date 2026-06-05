@@ -1,0 +1,3 @@
+stride
+https://stride.io
+Integration interface configuration metadata for the stride infrastructure engine.

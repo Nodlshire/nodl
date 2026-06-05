@@ -1,0 +1,3 @@
+zilliqa
+https://zilliqa.io
+Integration interface configuration metadata for the zilliqa infrastructure engine.

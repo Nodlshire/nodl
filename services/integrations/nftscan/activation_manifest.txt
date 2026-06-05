@@ -1,0 +1,3 @@
+nftscan
+https://nftscan.io
+Integration interface configuration metadata for the nftscan infrastructure engine.

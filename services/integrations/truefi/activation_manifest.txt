@@ -1,0 +1,3 @@
+truefi
+https://truefi.io
+Integration interface configuration metadata for the truefi infrastructure engine.

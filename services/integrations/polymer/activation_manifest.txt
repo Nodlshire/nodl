@@ -1,0 +1,3 @@
+polymer
+https://polymer.io
+Integration interface configuration metadata for the polymer infrastructure engine.

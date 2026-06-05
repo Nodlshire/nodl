@@ -1,0 +1,3 @@
+arbitrum
+https://arbitrum.io
+An optimistic rollup suite providing scaling solutions for Ethereum.

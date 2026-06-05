@@ -1,0 +1,3 @@
+polygonscan
+https://polygonscan.io
+Integration interface configuration metadata for the polygonscan infrastructure engine.

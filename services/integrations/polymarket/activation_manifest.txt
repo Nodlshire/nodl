@@ -1,0 +1,3 @@
+polymarket
+https://polymarket.io
+Integration interface configuration metadata for the polymarket infrastructure engine.

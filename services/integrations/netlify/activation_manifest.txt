@@ -1,0 +1,3 @@
+netlify
+https://www.netlify.com
+Netlify facilitates web automation and hosting architecture for modern Jamstack pipelines.

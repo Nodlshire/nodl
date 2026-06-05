@@ -1,0 +1,3 @@
+messari
+https://messari.io
+Integration interface configuration metadata for the messari infrastructure engine.

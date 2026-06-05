@@ -1,0 +1,3 @@
+barnbridge
+https://barnbridge.io
+Integration interface configuration metadata for the barnbridge infrastructure engine.

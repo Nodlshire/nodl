@@ -1,0 +1,3 @@
+databricks
+https://www.databricks.com
+Databricks implements lakehouse data analytics and structured cloud processing.

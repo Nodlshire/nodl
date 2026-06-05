@@ -1,0 +1,3 @@
+superfluid
+https://www.superfluid.finance
+Superfluid is an asset streaming protocol for real-time finance on EVM networks.

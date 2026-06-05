@@ -1,0 +1,3 @@
+lightspeed
+https://lightspeed.io
+Integration interface configuration metadata for the lightspeed infrastructure engine.

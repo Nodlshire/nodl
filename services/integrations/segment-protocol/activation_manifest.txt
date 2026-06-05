@@ -1,0 +1,3 @@
+segment-protocol
+https://segment-protocol.io
+Integration interface configuration metadata for the segment-protocol infrastructure engine.

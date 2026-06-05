@@ -1,0 +1,3 @@
+cardano
+https://cardano.org
+Proof-of-stake blockchain utilizing the Ouroboros consensus mechanism. Built on peer-reviewed academic research, prioritizing long-term stability and high-assurance smart contracts.

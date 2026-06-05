@@ -1,0 +1,3 @@
+chainlink
+https://chain.link
+Decentralized Oracle Networks (DONs) function as an off-chain data interface layer for smart contracts. Network effect scales with over 500 integrations across blockchains, node operators, and DeFi protocols.

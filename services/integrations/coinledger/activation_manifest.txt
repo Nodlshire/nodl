@@ -1,0 +1,3 @@
+coinledger
+https://coinledger.io
+Supports over 500 integrations with reliable API connections. Integrates with 387 exchanges and 83 wallets, exporting tax outputs seamlessly to TurboTax and TaxAct.

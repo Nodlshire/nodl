@@ -1,0 +1,3 @@
+ripple
+https://ripple.com
+Focuses on cross-border payments for financial institutions using On-Demand Liquidity (ODL) to eliminate pre-funded foreign accounts and capital friction. High throughput and instant settlement cycles.

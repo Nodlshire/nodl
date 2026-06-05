@@ -1,0 +1,3 @@
+cointracker
+https://www.cointracker.io
+Supports extensive transaction types, including futures, options, and complex DeFi lending protocols. Integrates with 458 exchanges and 28 wallets.

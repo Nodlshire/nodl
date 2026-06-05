@@ -1,0 +1,3 @@
+ethereum-name-service
+https://ens.domains
+Decentralized registry mapping memorable.eth domains to hexadecimal addresses to eliminate copy-paste transcription errors. Managed via registrar smart contracts.

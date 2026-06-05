@@ -1,0 +1,3 @@
+fetch-ai
+https://fetch.ai
+Dedicated network infrastructure for autonomous Al agents, transitioning toward advanced tokenized orchestration. Relies on CosmJS for decentralized state query and verification.

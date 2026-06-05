@@ -63,6 +63,7 @@ export default function Sidebar() {
         { name: 'Affiliates', href: '/affiliates', icon: Share2, roles: ['owner', 'management', 'visitor'], iconColor: 'text-fuchsia-400' },
         { name: 'Money', href: '/ledger', icon: DollarSign, roles: ['owner', 'management', 'customer_service', 'visitor'], iconColor: 'text-emerald-400' },
         { name: 'Governance', href: '/governance', icon: Shield, roles: ['owner', 'management', 'customer_service', 'visitor'], iconColor: 'text-[#22D3EE]' },
+        { name: 'Integrations', href: '/integrations', icon: Sliders, roles: ['owner', 'management', 'customer_service', 'visitor'], iconColor: 'text-pink-400' },
         { name: 'Help', href: '/help', icon: HelpCircle, roles: ['owner', 'management', 'customer_service', 'visitor'], iconColor: 'text-yellow-400' },
     ];
 

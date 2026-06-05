@@ -1,0 +1,3 @@
+parastate
+https://parastate.io
+Integration interface configuration metadata for the parastate infrastructure engine.

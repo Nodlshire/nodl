@@ -1,0 +1,3 @@
+spruceid
+https://spruceid.io
+Integration interface configuration metadata for the spruceid infrastructure engine.

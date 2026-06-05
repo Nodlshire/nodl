@@ -1,0 +1,3 @@
+ledger-live
+https://ledger-live.io
+Integration interface configuration metadata for the ledger-live infrastructure engine.

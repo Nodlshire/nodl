@@ -1,0 +1,3 @@
+bandchain
+https://bandchain.io
+Integration interface configuration metadata for the bandchain infrastructure engine.

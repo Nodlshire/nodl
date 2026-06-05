@@ -1,0 +1,3 @@
+fly-io
+https://fly-io.io
+Integration interface configuration metadata for the fly-io infrastructure engine.

@@ -1,0 +1,3 @@
+umee
+https://umee.io
+Integration interface configuration metadata for the umee infrastructure engine.

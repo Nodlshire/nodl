@@ -1,0 +1,3 @@
+synapse
+https://synapseprotocol.com
+Synapse is an interoperability protocol for cross-chain data and asset transfers.

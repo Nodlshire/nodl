@@ -1,0 +1,3 @@
+google-drive
+https://www.google.com/drive/
+Google Drive API exposes structured interfaces for cloud file indexing and binary payload storage.

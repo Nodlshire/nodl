@@ -1,0 +1,3 @@
+reservoir
+https://reservoir.io
+Integration interface configuration metadata for the reservoir infrastructure engine.

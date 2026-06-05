@@ -1,0 +1,3 @@
+mantle
+https://mantle.io
+Integration interface configuration metadata for the mantle infrastructure engine.

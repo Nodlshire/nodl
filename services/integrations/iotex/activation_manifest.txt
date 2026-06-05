@@ -1,0 +1,3 @@
+iotex
+https://iotex.io
+IoTeX is a decentralized network for the Internet of Things powered by a privacy-centric blockchain.

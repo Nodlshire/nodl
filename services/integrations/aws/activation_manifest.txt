@@ -1,0 +1,3 @@
+aws
+https://aws.amazon.com
+Amazon Web Services provides comprehensive cloud compute, database, and infrastructure APIs.

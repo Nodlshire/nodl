@@ -1,0 +1,3 @@
+rudderstack
+https://rudderstack.io
+Integration interface configuration metadata for the rudderstack infrastructure engine.

@@ -1,0 +1,3 @@
+maple
+https://maple.io
+Integration interface configuration metadata for the maple infrastructure engine.

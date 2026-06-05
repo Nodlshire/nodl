@@ -1,0 +1,3 @@
+shopify
+https://www.shopify.com
+Shopify offers e-commerce application storefront architectures and headless commerce endpoints.

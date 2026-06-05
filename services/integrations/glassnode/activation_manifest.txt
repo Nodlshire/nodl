@@ -1,0 +1,3 @@
+glassnode
+https://glassnode.io
+Integration interface configuration metadata for the glassnode infrastructure engine.

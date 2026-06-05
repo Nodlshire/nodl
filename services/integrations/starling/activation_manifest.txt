@@ -1,0 +1,3 @@
+starling
+https://starling.io
+Integration interface configuration metadata for the starling infrastructure engine.

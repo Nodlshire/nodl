@@ -1,0 +1,3 @@
+thorchain
+https://thorchain.io
+Integration interface configuration metadata for the thorchain infrastructure engine.

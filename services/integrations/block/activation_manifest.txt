@@ -1,0 +1,3 @@
+block
+https://block.io
+Integration interface configuration metadata for the block infrastructure engine.

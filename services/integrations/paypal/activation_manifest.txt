@@ -1,0 +1,3 @@
+paypal
+https://www.paypal.com
+PayPal handles enterprise digital transaction processing and merchant gateway APIs.

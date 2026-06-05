@@ -1,0 +1,3 @@
+elastic
+https://www.elastic.co
+Elasticsearch acts as a highly distributed schema-free analytical search index engine.

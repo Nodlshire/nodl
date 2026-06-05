@@ -1,0 +1,3 @@
+credix
+https://credix.io
+Integration interface configuration metadata for the credix infrastructure engine.

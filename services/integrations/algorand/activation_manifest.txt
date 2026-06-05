@@ -1,0 +1,3 @@
+algorand
+https://algorand.co
+Algorand is a pure proof-of-stake layer-1 blockchain.

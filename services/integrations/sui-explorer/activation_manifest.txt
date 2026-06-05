@@ -1,0 +1,3 @@
+sui-explorer
+https://sui-explorer.io
+Integration interface configuration metadata for the sui-explorer infrastructure engine.

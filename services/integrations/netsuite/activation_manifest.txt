@@ -1,0 +1,3 @@
+netsuite
+https://netsuite.io
+Integration interface configuration metadata for the netsuite infrastructure engine.

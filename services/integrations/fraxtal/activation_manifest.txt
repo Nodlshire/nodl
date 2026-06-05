@@ -1,0 +1,3 @@
+fraxtal
+https://fraxtal.io
+Integration interface configuration metadata for the fraxtal infrastructure engine.

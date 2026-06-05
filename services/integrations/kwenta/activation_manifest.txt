@@ -1,0 +1,3 @@
+kwenta
+https://kwenta.io
+Integration interface configuration metadata for the kwenta infrastructure engine.

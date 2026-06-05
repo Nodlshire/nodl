@@ -1,0 +1,3 @@
+logrocket
+https://logrocket.io
+Integration interface configuration metadata for the logrocket infrastructure engine.

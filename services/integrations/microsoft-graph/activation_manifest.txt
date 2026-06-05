@@ -1,0 +1,3 @@
+microsoft-graph
+https://developer.microsoft.com/graph
+Microsoft Graph exposes unified access gateways into Microsoft 365 cloud tools.

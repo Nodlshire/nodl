@@ -1,0 +1,3 @@
+alchemy-supernode
+https://alchemy-supernode.io
+Integration interface configuration metadata for the alchemy-supernode infrastructure engine.

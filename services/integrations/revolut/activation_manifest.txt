@@ -1,0 +1,3 @@
+revolut
+https://revolut.io
+Integration interface configuration metadata for the revolut infrastructure engine.

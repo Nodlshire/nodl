@@ -1,0 +1,3 @@
+adyen
+https://adyen.io
+Integration interface configuration metadata for the adyen infrastructure engine.

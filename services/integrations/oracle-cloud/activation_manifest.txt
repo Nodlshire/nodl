@@ -1,0 +1,3 @@
+oracle-cloud
+https://www.oracle.com
+Integration interface configuration metadata for the oracle-cloud infrastructure engine.

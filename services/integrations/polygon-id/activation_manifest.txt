@@ -1,0 +1,3 @@
+polygon-id
+https://polygon-id.io
+Integration interface configuration metadata for the polygon-id infrastructure engine.

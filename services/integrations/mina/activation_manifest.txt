@@ -1,0 +1,3 @@
+mina
+https://mina.io
+Integration interface configuration metadata for the mina infrastructure engine.

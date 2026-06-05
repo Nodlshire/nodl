@@ -1,0 +1,3 @@
+web3auth
+https://web3auth.io
+Integration interface configuration metadata for the web3auth infrastructure engine.

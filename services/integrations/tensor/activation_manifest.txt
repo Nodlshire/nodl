@@ -1,0 +1,3 @@
+tensor
+https://tensor.io
+Integration interface configuration metadata for the tensor infrastructure engine.

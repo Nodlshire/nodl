@@ -1,0 +1,3 @@
+supabase
+https://supabase.com
+Supabase is an open-source Backend-as-a-Service layer built around Postgres databases.

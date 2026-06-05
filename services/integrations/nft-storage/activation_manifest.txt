@@ -1,0 +1,3 @@
+nft-storage
+https://nft-storage.io
+Integration interface configuration metadata for the nft-storage infrastructure engine.

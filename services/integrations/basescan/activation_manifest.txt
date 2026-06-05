@@ -1,0 +1,3 @@
+basescan
+https://basescan.io
+Integration interface configuration metadata for the basescan infrastructure engine.

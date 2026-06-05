@@ -1,0 +1,3 @@
+filecoin
+https://filecoin.io
+Filecoin is a decentralized storage network designed to store humanity’s most important information.

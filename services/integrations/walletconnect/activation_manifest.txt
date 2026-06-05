@@ -1,0 +1,3 @@
+walletconnect
+https://walletconnect.io
+Integration interface configuration metadata for the walletconnect infrastructure engine.

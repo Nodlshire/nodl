@@ -1,0 +1,3 @@
+lit-protocol
+https://litprotocol.com
+Lit Protocol provides decentralized cryptography for access control and key management.

@@ -1,0 +1,3 @@
+vast-ai
+https://vast-ai.io
+Integration interface configuration metadata for the vast-ai infrastructure engine.

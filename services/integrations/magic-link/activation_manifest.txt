@@ -1,0 +1,3 @@
+magic-link
+https://magic.link
+Magic provides web3-compatible passwordless cryptographic authentication flows.

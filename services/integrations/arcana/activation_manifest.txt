@@ -1,0 +1,3 @@
+arcana
+https://arcana.io
+Integration interface configuration metadata for the arcana infrastructure engine.

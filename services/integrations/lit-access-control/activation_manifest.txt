@@ -1,0 +1,3 @@
+lit-access-control
+https://lit-access-control.io
+Integration interface configuration metadata for the lit-access-control infrastructure engine.

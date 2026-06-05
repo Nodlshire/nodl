@@ -1,0 +1,3 @@
+ankr-advanced
+https://ankr-advanced.io
+Integration interface configuration metadata for the ankr-advanced infrastructure engine.

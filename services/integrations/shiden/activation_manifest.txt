@@ -1,0 +1,3 @@
+shiden
+https://shiden.io
+Integration interface configuration metadata for the shiden infrastructure engine.

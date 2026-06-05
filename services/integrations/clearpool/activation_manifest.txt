@@ -1,0 +1,3 @@
+clearpool
+https://clearpool.io
+Integration interface configuration metadata for the clearpool infrastructure engine.

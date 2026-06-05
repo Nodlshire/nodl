@@ -1,0 +1,3 @@
+songbird
+https://songbird.io
+Integration interface configuration metadata for the songbird infrastructure engine.

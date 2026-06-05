@@ -1,0 +1,3 @@
+hotjar
+https://hotjar.io
+Integration interface configuration metadata for the hotjar infrastructure engine.

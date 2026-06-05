@@ -1,0 +1,3 @@
+segment
+https://segment.com
+Twilio Segment handles customer data platform tracking and continuous telemetry routing pipelines.

@@ -1,0 +1,3 @@
+rabby
+https://rabby.io
+Integration interface configuration metadata for the rabby infrastructure engine.

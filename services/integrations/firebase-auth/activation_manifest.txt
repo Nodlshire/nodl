@@ -1,0 +1,3 @@
+firebase-auth
+https://firebase.google.com/docs/auth
+Firebase Authentication handles structured federated identity services and secure sign-in pipelines.

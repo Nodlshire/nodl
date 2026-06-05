@@ -1,0 +1,3 @@
+zora-market
+https://zora-market.io
+Integration interface configuration metadata for the zora-market infrastructure engine.

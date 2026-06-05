@@ -1,0 +1,3 @@
+fantom
+https://fantom.foundation
+Fantom is a high-performance, scalable, and secure smart contract platform.

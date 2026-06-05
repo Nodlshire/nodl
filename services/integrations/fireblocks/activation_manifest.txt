@@ -1,0 +1,3 @@
+fireblocks
+https://fireblocks.io
+Integration interface configuration metadata for the fireblocks infrastructure engine.

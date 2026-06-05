@@ -1,0 +1,3 @@
+anthropic-claude
+https://anthropic-claude.io
+Integration interface configuration metadata for the anthropic-claude infrastructure engine.

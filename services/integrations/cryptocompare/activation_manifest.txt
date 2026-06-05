@@ -1,0 +1,3 @@
+cryptocompare
+https://cryptocompare.io
+Integration interface configuration metadata for the cryptocompare infrastructure engine.

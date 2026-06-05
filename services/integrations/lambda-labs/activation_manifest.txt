@@ -1,0 +1,3 @@
+lambda-labs
+https://lambda-labs.io
+Integration interface configuration metadata for the lambda-labs infrastructure engine.

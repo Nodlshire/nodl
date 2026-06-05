@@ -1,0 +1,3 @@
+hydra-dx
+https://hydra-dx.io
+Integration interface configuration metadata for the hydra-dx infrastructure engine.

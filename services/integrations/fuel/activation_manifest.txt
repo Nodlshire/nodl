@@ -1,0 +1,3 @@
+fuel
+https://fuel.io
+Integration interface configuration metadata for the fuel infrastructure engine.

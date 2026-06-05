@@ -1,0 +1,3 @@
+aptos-explorer
+https://aptos-explorer.io
+Integration interface configuration metadata for the aptos-explorer infrastructure engine.

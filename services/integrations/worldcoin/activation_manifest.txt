@@ -1,0 +1,3 @@
+worldcoin
+https://worldcoin.io
+Integration interface configuration metadata for the worldcoin infrastructure engine.

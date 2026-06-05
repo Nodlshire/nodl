@@ -1,0 +1,3 @@
+across-protocol
+https://across-protocol.io
+Integration interface configuration metadata for the across-protocol infrastructure engine.

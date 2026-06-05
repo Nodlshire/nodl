@@ -1,0 +1,3 @@
+gelato
+https://www.gelato.network
+Gelato is a decentralized automation network for smart contract execution.

@@ -1,0 +1,3 @@
+kava
+https://www.kava.io
+Kava is a Layer-1 blockchain combining the speed and interoperability of Cosmos with the developer power of Ethereum.

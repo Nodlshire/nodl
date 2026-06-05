@@ -1,0 +1,3 @@
+infura-ipfs
+https://infura-ipfs.io
+Integration interface configuration metadata for the infura-ipfs infrastructure engine.

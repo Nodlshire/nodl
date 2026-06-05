@@ -1,0 +1,3 @@
+secret-network
+https://secret-network.io
+Integration interface configuration metadata for the secret-network infrastructure engine.

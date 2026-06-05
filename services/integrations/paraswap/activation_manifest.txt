@@ -1,0 +1,3 @@
+paraswap
+https://www.paraswap.io
+ParaSwap is a decentralized exchange aggregator optimizing route pricing for traders.

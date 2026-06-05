@@ -1,0 +1,3 @@
+manifold
+https://manifold.io
+Integration interface configuration metadata for the manifold infrastructure engine.

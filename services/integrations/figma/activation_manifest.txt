@@ -1,0 +1,3 @@
+figma
+https://www.figma.com
+Figma handles collaborative cloud user interface designs and asset extraction endpoints.

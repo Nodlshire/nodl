@@ -1,0 +1,3 @@
+huggingface
+https://huggingface.co
+Hugging Face hosts machine learning repositories and inference endpoints for open models.

@@ -1,0 +1,3 @@
+rollbar
+https://rollbar.io
+Integration interface configuration metadata for the rollbar infrastructure engine.

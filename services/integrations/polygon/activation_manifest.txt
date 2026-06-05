@@ -1,0 +1,3 @@
+polygon
+https://polygon.technology
+Polygon is a decentralized Ethereum scaling platform.

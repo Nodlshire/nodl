@@ -1,0 +1,3 @@
+zkpass
+https://zkpass.io
+Integration interface configuration metadata for the zkpass infrastructure engine.

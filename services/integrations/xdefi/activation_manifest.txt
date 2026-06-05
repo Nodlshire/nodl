@@ -1,0 +1,3 @@
+xdefi
+https://xdefi.io
+Integration interface configuration metadata for the xdefi infrastructure engine.

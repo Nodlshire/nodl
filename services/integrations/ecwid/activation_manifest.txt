@@ -1,0 +1,3 @@
+ecwid
+https://ecwid.io
+Integration interface configuration metadata for the ecwid infrastructure engine.

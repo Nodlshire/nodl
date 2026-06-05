@@ -1,0 +1,3 @@
+wave
+https://wave.io
+Integration interface configuration metadata for the wave infrastructure engine.

@@ -1,0 +1,3 @@
+mailchimp
+https://mailchimp.io
+Integration interface configuration metadata for the mailchimp infrastructure engine.

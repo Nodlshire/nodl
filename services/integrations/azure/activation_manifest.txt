@@ -1,0 +1,3 @@
+azure
+https://azure.microsoft.com
+Microsoft Azure delivers cloud-managed processing, deployment architectures, and developer services.

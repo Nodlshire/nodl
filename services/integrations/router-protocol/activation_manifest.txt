@@ -1,0 +1,3 @@
+router-protocol
+https://router-protocol.io
+Integration interface configuration metadata for the router-protocol infrastructure engine.

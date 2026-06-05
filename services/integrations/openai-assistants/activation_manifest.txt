@@ -1,0 +1,3 @@
+openai-assistants
+https://openai-assistants.io
+Integration interface configuration metadata for the openai-assistants infrastructure engine.

@@ -1,0 +1,3 @@
+persistence
+https://persistence.io
+Integration interface configuration metadata for the persistence infrastructure engine.

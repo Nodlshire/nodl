@@ -1,0 +1,3 @@
+centrifuge-credit
+https://centrifuge-credit.io
+Integration interface configuration metadata for the centrifuge-credit infrastructure engine.

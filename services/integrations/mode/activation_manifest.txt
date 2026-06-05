@@ -1,0 +1,3 @@
+mode
+https://mode.io
+Integration interface configuration metadata for the mode infrastructure engine.

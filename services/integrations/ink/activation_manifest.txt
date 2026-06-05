@@ -1,0 +1,3 @@
+ink
+https://ink.io
+Integration interface configuration metadata for the ink infrastructure engine.

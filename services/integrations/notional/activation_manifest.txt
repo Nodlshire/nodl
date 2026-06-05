@@ -1,0 +1,3 @@
+notional
+https://notional.io
+Integration interface configuration metadata for the notional infrastructure engine.

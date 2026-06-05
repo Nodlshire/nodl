@@ -1,0 +1,3 @@
+jaeger
+https://jaeger.io
+Integration interface configuration metadata for the jaeger infrastructure engine.

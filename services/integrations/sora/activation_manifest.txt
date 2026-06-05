@@ -1,0 +1,3 @@
+sora
+https://sora.io
+Integration interface configuration metadata for the sora infrastructure engine.

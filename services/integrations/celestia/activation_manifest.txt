@@ -1,0 +1,3 @@
+celestia
+https://celestia.org
+Celestia is a modular data availability network that scales with the number of users.

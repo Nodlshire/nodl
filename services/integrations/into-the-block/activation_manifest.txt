@@ -1,0 +1,3 @@
+into-the-block
+https://into-the-block.io
+Integration interface configuration metadata for the into-the-block infrastructure engine.

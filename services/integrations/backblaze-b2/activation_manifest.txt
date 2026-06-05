@@ -1,0 +1,3 @@
+backblaze-b2
+https://backblaze-b2.io
+Integration interface configuration metadata for the backblaze-b2 infrastructure engine.

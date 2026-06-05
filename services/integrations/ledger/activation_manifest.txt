@@ -1,0 +1,3 @@
+ledger
+https://ledger.io
+Integration interface configuration metadata for the ledger infrastructure engine.

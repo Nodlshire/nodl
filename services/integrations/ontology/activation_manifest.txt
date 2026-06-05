@@ -1,0 +1,3 @@
+ontology
+https://ontology.io
+Integration interface configuration metadata for the ontology infrastructure engine.

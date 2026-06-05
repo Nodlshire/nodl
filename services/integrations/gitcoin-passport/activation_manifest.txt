@@ -1,0 +1,3 @@
+gitcoin-passport
+https://gitcoin-passport.io
+Integration interface configuration metadata for the gitcoin-passport infrastructure engine.

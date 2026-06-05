@@ -1,0 +1,3 @@
+blast
+https://blast.io
+Integration interface configuration metadata for the blast infrastructure engine.

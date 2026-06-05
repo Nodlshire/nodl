@@ -1,0 +1,3 @@
+prestashop
+https://prestashop.io
+Integration interface configuration metadata for the prestashop infrastructure engine.

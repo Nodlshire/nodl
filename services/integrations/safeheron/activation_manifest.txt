@@ -1,0 +1,3 @@
+safeheron
+https://safeheron.io
+Integration interface configuration metadata for the safeheron infrastructure engine.

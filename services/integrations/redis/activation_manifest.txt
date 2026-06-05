@@ -1,0 +1,3 @@
+redis
+https://redis.io
+Redis is an in-memory data layout store deployed for low-latency caching and message broking.

@@ -1,0 +1,3 @@
+fullstory
+https://fullstory.io
+Integration interface configuration metadata for the fullstory infrastructure engine.

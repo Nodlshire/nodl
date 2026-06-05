@@ -1,0 +1,3 @@
+mintbase
+https://mintbase.io
+Integration interface configuration metadata for the mintbase infrastructure engine.

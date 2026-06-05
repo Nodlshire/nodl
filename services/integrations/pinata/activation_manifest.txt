@@ -1,0 +1,3 @@
+pinata
+https://www.pinata.cloud
+Pinata provides media distribution and IPFS pinning services for builders.

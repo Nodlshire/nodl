@@ -1,0 +1,3 @@
+coinmarketcap
+https://coinmarketcap.com
+CoinMarketCap provides cryptocurrency market caps, rankings, and structural transaction tracking.

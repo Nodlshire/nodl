@@ -1,0 +1,3 @@
+lido
+https://lido.fi
+Lido is a liquid staking solution for Ethereum and other proof-of-stake networks.

@@ -1,0 +1,3 @@
+subquery
+https://subquery.network
+SubQuery is a flexible data indexing tool for multi-chain ecosystems.

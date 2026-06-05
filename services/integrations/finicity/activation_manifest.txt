@@ -1,0 +1,3 @@
+finicity
+https://www.finicity.com
+Mastercard Finicity exposes open banking aggregation runtimes and asset verification services.

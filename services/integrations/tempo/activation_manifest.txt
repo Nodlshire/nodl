@@ -1,0 +1,3 @@
+tempo
+https://tempo.io
+Integration interface configuration metadata for the tempo infrastructure engine.

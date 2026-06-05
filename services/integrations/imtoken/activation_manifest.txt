@@ -1,0 +1,3 @@
+imtoken
+https://imtoken.io
+Integration interface configuration metadata for the imtoken infrastructure engine.

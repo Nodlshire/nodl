@@ -1,0 +1,3 @@
+terra-classic
+https://www.terra.money
+Terra Classic is a decentralized public blockchain protocol.

@@ -1,0 +1,3 @@
+xero
+https://xero.io
+Integration interface configuration metadata for the xero infrastructure engine.

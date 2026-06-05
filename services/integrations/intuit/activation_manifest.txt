@@ -1,0 +1,3 @@
+intuit
+https://intuit.io
+Integration interface configuration metadata for the intuit infrastructure engine.

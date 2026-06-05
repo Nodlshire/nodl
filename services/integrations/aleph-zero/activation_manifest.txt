@@ -1,0 +1,3 @@
+aleph-zero
+https://aleph-zero.io
+Integration interface configuration metadata for the aleph-zero infrastructure engine.

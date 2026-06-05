@@ -1,0 +1,3 @@
+bundlr
+https://bundlr.io
+Integration interface configuration metadata for the bundlr infrastructure engine.

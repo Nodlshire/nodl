@@ -1,0 +1,3 @@
+safe
+https://safe.global
+Safe is a modular smart account platform and multisig protocol.

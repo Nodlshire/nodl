@@ -1,0 +1,3 @@
+civic
+https://civic.io
+Integration interface configuration metadata for the civic infrastructure engine.

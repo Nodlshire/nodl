@@ -1,0 +1,3 @@
+coingecko
+https://www.coingecko.com
+CoinGecko is a cryptocurrency data aggregator tracking prices, volumes, and market cap.

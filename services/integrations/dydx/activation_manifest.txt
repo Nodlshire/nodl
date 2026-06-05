@@ -1,0 +1,3 @@
+dydx
+https://dydx.io
+Integration interface configuration metadata for the dydx infrastructure engine.

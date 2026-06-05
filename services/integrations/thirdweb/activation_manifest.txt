@@ -1,0 +1,3 @@
+thirdweb
+https://thirdweb.io
+Integration interface configuration metadata for the thirdweb infrastructure engine.

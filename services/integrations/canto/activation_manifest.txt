@@ -1,0 +1,3 @@
+canto
+https://canto.io
+Canto is a Layer-1 blockchain built with the Cosmos SDK and compatible with the Ethereum Virtual Machine.

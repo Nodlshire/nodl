@@ -1,0 +1,3 @@
+arbiscan
+https://arbiscan.io
+Integration interface configuration metadata for the arbiscan infrastructure engine.

@@ -1,0 +1,3 @@
+centrifuge
+https://centrifuge.io
+Integration interface configuration metadata for the centrifuge infrastructure engine.

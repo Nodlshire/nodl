@@ -1,0 +1,8 @@
+{
+  "name": "Maidsafecoin",
+  "category": "Ecosystem",
+  "description": "Integration with Maidsafecoin.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

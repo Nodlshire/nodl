@@ -1,0 +1,8 @@
+{
+  "name": "Neo",
+  "category": "Ecosystem",
+  "description": "Integration with Neo.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Peercoin",
+  "category": "Ecosystem",
+  "description": "Integration with Peercoin.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

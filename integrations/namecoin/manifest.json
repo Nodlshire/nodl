@@ -1,0 +1,8 @@
+{
+  "name": "Namecoin",
+  "category": "Ecosystem",
+  "description": "Integration with Namecoin.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

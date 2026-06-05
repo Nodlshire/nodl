@@ -1,0 +1,8 @@
+{
+  "name": "Status",
+  "category": "Ecosystem",
+  "description": "Integration with Status.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

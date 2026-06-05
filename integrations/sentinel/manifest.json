@@ -1,0 +1,8 @@
+{
+  "name": "Sentinel",
+  "category": "Ecosystem",
+  "description": "Integration with Sentinel.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

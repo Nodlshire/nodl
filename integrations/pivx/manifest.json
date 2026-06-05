@@ -1,0 +1,8 @@
+{
+  "name": "Pivx",
+  "category": "Ecosystem",
+  "description": "Integration with Pivx.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

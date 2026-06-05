@@ -1,0 +1,8 @@
+{
+  "name": "Factom",
+  "category": "Ecosystem",
+  "description": "Integration with Factom.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

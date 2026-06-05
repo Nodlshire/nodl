@@ -1,0 +1,8 @@
+{
+  "name": "Stratis",
+  "category": "Ecosystem",
+  "description": "Integration with Stratis.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Centrifuge",
+  "category": "Ecosystem",
+  "description": "Integration with Centrifuge.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

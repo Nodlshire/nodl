@@ -1,0 +1,8 @@
+{
+  "name": "Navcoin",
+  "category": "Ecosystem",
+  "description": "Integration with Navcoin.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

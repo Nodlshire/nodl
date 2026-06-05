@@ -1,0 +1,8 @@
+{
+  "name": "Shiden",
+  "category": "Ecosystem",
+  "description": "Integration with Shiden.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Tezos",
+  "category": "Ecosystem",
+  "description": "Integration with Tezos.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Starname",
+  "category": "Ecosystem",
+  "description": "Integration with Starname.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

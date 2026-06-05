@@ -1,0 +1,8 @@
+{
+  "name": "Bitshares",
+  "category": "Ecosystem",
+  "description": "Integration with Bitshares.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

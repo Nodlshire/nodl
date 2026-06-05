@@ -1,0 +1,3 @@
+https://docs.fetch.ai/developer/cosmjs/
+https://docs.fetch.ai
+https://docs.fetch.ai/developer/cosmjs/querying/

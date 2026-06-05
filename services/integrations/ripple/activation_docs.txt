@@ -1,0 +1,3 @@
+https://xrpl.org/docs.html
+https://xrpl.org/api
+https://xrpl.org/get-started-with-javascript.html

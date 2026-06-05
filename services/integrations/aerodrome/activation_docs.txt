@@ -1,0 +1,3 @@
+https://docs.aerodrome.finance
+https://docs.aerodrome.finance/developers/contracts
+https://docs.aerodrome.finance/developers/trading

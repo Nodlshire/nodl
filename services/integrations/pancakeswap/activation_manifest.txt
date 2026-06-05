@@ -1,0 +1,3 @@
+pancakeswap
+https://pancakeswap.finance
+Primary decentralized exchange and liquidity hub on the BNB Chain network, providing low-latency, low-fee swaps.

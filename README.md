@@ -99,6 +99,27 @@ Anything with a CPU or GPU:
 
 ---
 
+## Integrations
+
+Wnode maintains a rapidly expanding registry of integrations across Web3, AI, cloud, enterprise SaaS, developer tooling, and financial infrastructure.
+
+Each integration represents a potential compute consumer ready to activate on the Wnode sovereign compute network.
+
+- 435+ integrations live  
+- Hundreds more in the pipeline  
+- Fully structured activation metadata  
+- TEE‑ready execution pathways  
+- Automated agentic ingestion pipeline
+
+Explore the registry:
+
+➡️ services/integrations/  
+➡️ services/integrations/INTEGRATION_TYPES.md  
+➡️ services/integrations/COMPUTE_MARKETPLACE.md  
+➡️ services/integrations/INTEGRATION_DIAGRAM.md
+
+---
+
 ## 🚀 Getting Started (Beta)
 Ready to run your first node?
 *   → **Node Operator App** (coming soon)

@@ -1,0 +1,8 @@
+{
+  "id": "sns-pipeline",
+  "steps": [
+    {
+      "action": "parse_sns"
+    }
+  ]
+}

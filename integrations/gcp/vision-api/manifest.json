@@ -1,0 +1,43 @@
+{
+  "name": "Google Vision API",
+  "slug": "gcp-vision-api",
+  "provider": "gcp",
+  "service": "vision-api",
+  "version": "1.0.0",
+  "category": "AI & Machine Learning",
+  "description": "Pre-trained ML models for image analysis. Wnode acts as a pre- and post-processing layer — preparing images for Vision API recognition and consuming structured results for downstream pipelines.",
+  "auth": {
+    "type": "service-account",
+    "fields": [
+      "gcp_service_account_json",
+      "gcp_project_id"
+    ],
+    "requires_api_enabled": "vision.googleapis.com",
+    "supports_workload_identity": true
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/api/pipeline/invoke",
+      "description": "Submit image for Wnode preprocessing + Vision API analysis"
+    },
+    {
+      "method": "POST",
+      "path": "/api/vision/annotate",
+      "description": "Direct Vision API proxy with Wnode result caching"
+    }
+  ],
+  "capabilities": [
+    "label-detection",
+    "text-detection-ocr",
+    "face-detection",
+    "landmark-detection",
+    "logo-detection",
+    "safe-search",
+    "object-localization",
+    "batch-annotation"
+  ],
+  "wnode_role": "orchestrator",
+  "docs_url": "https://cloud.google.com/vision/docs",
+  "logo": "logo.svg"
+}

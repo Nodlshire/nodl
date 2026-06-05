@@ -1,0 +1,41 @@
+{
+  "name": "AWS Lambda",
+  "slug": "aws-lambda",
+  "provider": "aws",
+  "service": "lambda",
+  "version": "1.0.0",
+  "category": "Serverless Compute",
+  "description": "Serverless compute service that runs code in response to events. Wnode acts as an HTTP target for Lambda invocations, enabling decentralized compute pipelines triggered by any AWS event source.",
+  "auth": {
+    "type": "iam",
+    "fields": [
+      "aws_access_key_id",
+      "aws_secret_access_key",
+      "aws_region"
+    ],
+    "supports_role": true,
+    "role_arn_field": "aws_role_arn"
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/api/pipeline/invoke",
+      "description": "Receive Lambda event payload and invoke Wnode pipeline"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pipeline/status/:id",
+      "description": "Poll pipeline execution status"
+    }
+  ],
+  "capabilities": [
+    "event-driven",
+    "http-trigger",
+    "async-invocation",
+    "batch-processing",
+    "cold-start-offload"
+  ],
+  "wnode_role": "compute_target",
+  "docs_url": "https://docs.aws.amazon.com/lambda/",
+  "logo": "logo.svg"
+}

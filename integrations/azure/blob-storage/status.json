@@ -1,0 +1,12 @@
+{
+  "status": "stable",
+  "tested_endpoints": [
+    "/api/pipeline/invoke",
+    "/api/eventgrid/validate"
+  ],
+  "last_tested": "2026-06-05T14:39:43Z",
+  "known_issues": [],
+  "compatibility": {
+    "wnode_version": ">=1.0.0"
+  }
+}

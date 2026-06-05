@@ -1,0 +1,35 @@
+{
+  "name": "Google Cloud Storage",
+  "slug": "gcp-cloud-storage",
+  "provider": "gcp",
+  "service": "cloud-storage",
+  "version": "1.0.0",
+  "category": "Object Storage",
+  "description": "Unified object storage for unstructured data. GCS object lifecycle events trigger Wnode pipelines via Eventarc or Pub/Sub, enabling serverless data processing on sovereign compute.",
+  "auth": {
+    "type": "service-account",
+    "fields": [
+      "gcp_service_account_json",
+      "gcp_project_id"
+    ],
+    "supports_workload_identity": true
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/api/pipeline/invoke",
+      "description": "Receive GCS event notification and invoke Wnode pipeline"
+    }
+  ],
+  "capabilities": [
+    "event-driven",
+    "object-finalize",
+    "object-delete",
+    "object-archive",
+    "metadata-update",
+    "batch-processing"
+  ],
+  "wnode_role": "compute_target",
+  "docs_url": "https://cloud.google.com/storage/docs",
+  "logo": "logo.svg"
+}

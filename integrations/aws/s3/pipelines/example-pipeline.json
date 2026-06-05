@@ -1,0 +1,11 @@
+{
+  "id": "s3-pipeline",
+  "steps": [
+    {
+      "action": "download"
+    },
+    {
+      "action": "process"
+    }
+  ]
+}

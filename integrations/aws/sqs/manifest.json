@@ -1,0 +1,43 @@
+{
+  "name": "AWS SQS",
+  "slug": "aws-sqs",
+  "provider": "aws",
+  "service": "sqs",
+  "version": "1.0.0",
+  "category": "Message Queue",
+  "description": "Fully managed message queuing service. Wnode workers poll SQS queues for jobs, enabling reliable, decoupled, at-least-once processing of workloads across the compute mesh.",
+  "auth": {
+    "type": "iam",
+    "fields": [
+      "aws_access_key_id",
+      "aws_secret_access_key",
+      "aws_region"
+    ],
+    "supports_role": true,
+    "role_arn_field": "aws_role_arn"
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/api/pipeline/invoke",
+      "description": "Process SQS message via Wnode pipeline"
+    },
+    {
+      "method": "GET",
+      "path": "/api/queue/poll",
+      "description": "Internal: Wnode worker polls SQS for messages"
+    }
+  ],
+  "capabilities": [
+    "queue-polling",
+    "long-polling",
+    "batch-receive",
+    "visibility-timeout",
+    "dead-letter-queue",
+    "fifo-ordering",
+    "at-least-once-delivery"
+  ],
+  "wnode_role": "consumer",
+  "docs_url": "https://docs.aws.amazon.com/sqs/",
+  "logo": "logo.svg"
+}

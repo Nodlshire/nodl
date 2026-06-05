@@ -1,0 +1,8 @@
+{
+  "id": "gcs-pipeline",
+  "steps": [
+    {
+      "action": "process_gcs"
+    }
+  ]
+}

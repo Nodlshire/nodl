@@ -1,0 +1,8 @@
+{
+  "id": "pubsub-pipeline",
+  "steps": [
+    {
+      "action": "process_pubsub"
+    }
+  ]
+}

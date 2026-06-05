@@ -1,0 +1,42 @@
+{
+  "name": "AWS S3",
+  "slug": "aws-s3",
+  "provider": "aws",
+  "service": "s3",
+  "version": "1.0.0",
+  "category": "Object Storage",
+  "description": "Scalable object storage service. S3 event notifications trigger Wnode pipelines on object creation, deletion, or modification, enabling decentralized data processing workflows.",
+  "auth": {
+    "type": "iam",
+    "fields": [
+      "aws_access_key_id",
+      "aws_secret_access_key",
+      "aws_region"
+    ],
+    "supports_role": true,
+    "role_arn_field": "aws_role_arn"
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/api/pipeline/invoke",
+      "description": "Receive S3 event notification and invoke Wnode pipeline"
+    },
+    {
+      "method": "POST",
+      "path": "/api/storage/presign",
+      "description": "Generate presigned URL for direct S3 upload/download"
+    }
+  ],
+  "capabilities": [
+    "event-driven",
+    "object-created",
+    "object-deleted",
+    "object-restored",
+    "batch-processing",
+    "presigned-urls"
+  ],
+  "wnode_role": "compute_target",
+  "docs_url": "https://docs.aws.amazon.com/s3/",
+  "logo": "logo.svg"
+}

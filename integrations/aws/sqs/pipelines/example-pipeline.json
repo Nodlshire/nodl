@@ -1,0 +1,8 @@
+{
+  "id": "sqs-pipeline",
+  "steps": [
+    {
+      "action": "poll"
+    }
+  ]
+}

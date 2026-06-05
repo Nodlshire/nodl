@@ -1,0 +1,3 @@
+checkmarx
+https://checkmarx.com
+Checkmarx components handle vulnerability lifecycle discovery and software compilation scanning tasks.

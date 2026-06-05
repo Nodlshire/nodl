@@ -1,0 +1,3 @@
+sparkpost
+https://www.sparkpost.com
+SparkPost API manages enterprise programmatic analytics and fast email generation layers.

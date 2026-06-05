@@ -1,0 +1,3 @@
+gcp-cloudrun
+https://cloud.google.com/run
+Google Cloud Run runs serverless frontend and backend containerized stacks via simple HTTP invocation pathways.

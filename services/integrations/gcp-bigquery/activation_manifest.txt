@@ -1,0 +1,3 @@
+gcp-bigquery
+https://cloud.google.com/bigquery
+Google BigQuery manages petabyte-scale serverless data warehousing configurations for analytical searching tasks.

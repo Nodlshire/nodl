@@ -1,0 +1,3 @@
+bitwarden
+https://bitwarden.com
+Bitwarden Secrets CLI manages open-source container security configurations and token values.

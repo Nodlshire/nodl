@@ -1,0 +1,3 @@
+aws-glue
+https://aws.amazon.com/glue/
+Amazon Glue handles automated serverless server components for data transformation pipelines and data tracing.

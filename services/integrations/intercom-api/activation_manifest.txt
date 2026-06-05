@@ -1,0 +1,3 @@
+intercom-api
+https://www.intercom.com
+Intercom API manages behavioral user messaging feeds, helpdesk conversations, and customer identity indices.

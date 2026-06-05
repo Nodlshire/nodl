@@ -1,0 +1,3 @@
+lastpass
+https://www.lastpass.com
+LastPass Enterprise implementations manage centralized corporate key directories.

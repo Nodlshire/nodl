@@ -1,0 +1,3 @@
+google-docs
+https://docs.google.com
+Google Docs API enables reading and structural modification of rich document document entities.

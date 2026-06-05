@@ -1,0 +1,3 @@
+google-forms
+https://forms.google.com
+Google Forms API controls interactive collection structures, question configurations, and responses tracking.

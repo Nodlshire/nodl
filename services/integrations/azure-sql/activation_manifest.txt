@@ -1,0 +1,3 @@
+azure-sql
+https://azure.microsoft.com/services/azure-sql/
+Azure SQL Database platform implements fully managed relational database architectures.

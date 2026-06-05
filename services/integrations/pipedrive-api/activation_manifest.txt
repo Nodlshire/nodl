@@ -1,0 +1,3 @@
+pipedrive-api
+https://www.pipedrive.com
+Pipedrive API updates transaction pipeline definitions, target deals tracking, and activity tasks profiles.

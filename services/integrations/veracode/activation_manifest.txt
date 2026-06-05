@@ -1,0 +1,3 @@
+veracode
+https://www.veracode.com
+Veracode platform API manages code static analytics scans and application safety testing parameters.

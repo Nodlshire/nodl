@@ -1,0 +1,3 @@
+aws-athena
+https://aws.amazon.com/athena/
+Amazon Athena queries structured layout records stored inside file storage layers using standard SQL syntax.

@@ -1,0 +1,3 @@
+square-terminal
+https://squareup.com
+Square Terminal API routes transactional checkouts straight down onto hardware point-of-sale stations.

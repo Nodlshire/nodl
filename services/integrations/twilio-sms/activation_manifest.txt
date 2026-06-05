@@ -1,0 +1,3 @@
+twilio-sms
+https://www.twilio.com
+Twilio Programmable SMS API manages transactional global mobile message distribution and logging tasks.

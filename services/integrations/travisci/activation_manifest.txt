@@ -1,0 +1,3 @@
+travisci
+https://www.travis-ci.com
+Travis CI API manages continuous engineering builds and environmental pipeline logs.

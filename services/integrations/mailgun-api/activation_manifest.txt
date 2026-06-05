@@ -1,0 +1,3 @@
+mailgun-api
+https://www.mailgun.com
+Mailgun API exposes cloud tracking engines for automated outbound email distributions.

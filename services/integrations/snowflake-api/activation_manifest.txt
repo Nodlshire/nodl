@@ -1,0 +1,3 @@
+snowflake-api
+https://www.snowflake.com
+Snowflake SQL API enables programmatic query execution across enterprise data warehouse systems.

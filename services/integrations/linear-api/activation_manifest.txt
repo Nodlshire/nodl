@@ -1,0 +1,3 @@
+linear-api
+https://linear.app
+Linear API provides a flexible GraphQL endpoint to query and mutate issues, teams, projects, and cycles.

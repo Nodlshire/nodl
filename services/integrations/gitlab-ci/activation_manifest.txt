@@ -1,0 +1,3 @@
+gitlab-ci
+
+GitLab CI infrastructure maps code compilation runners and validation lifecycle jobs.

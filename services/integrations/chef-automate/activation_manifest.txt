@@ -1,0 +1,3 @@
+chef-automate
+https://www.chef.io
+Chef Automate offers centralized monitoring frameworks checking server cluster configurations.

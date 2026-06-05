@@ -1,0 +1,3 @@
+adyen-checkout
+https://www.adyen.com
+Adyen Checkout API handles localized banking gateways and multi-currency commercial charge networks.

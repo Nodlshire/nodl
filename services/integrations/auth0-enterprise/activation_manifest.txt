@@ -1,0 +1,3 @@
+auth0-enterprise
+https://auth0.com
+Auth0 Enterprise Management API updates corporate identity pools, SSO profiles, and permission logs.

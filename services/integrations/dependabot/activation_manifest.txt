@@ -1,0 +1,3 @@
+dependabot
+https://github.com/dependabot
+Dependabot engine automates out-of-date package scanning tasks and repository upgrade requests.

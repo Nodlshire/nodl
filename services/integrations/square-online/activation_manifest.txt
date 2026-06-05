@@ -1,0 +1,3 @@
+square-online
+https://squareup.com
+Square Online integrations manage web storefront inventories and ecommerce item data layouts.

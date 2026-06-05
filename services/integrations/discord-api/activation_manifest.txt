@@ -1,0 +1,3 @@
+discord-api
+[suspicious link removed]
+Discord Developer API manages bot communication parameters, custom server configurations, and message objects.

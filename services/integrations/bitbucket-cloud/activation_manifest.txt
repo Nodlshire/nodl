@@ -1,0 +1,3 @@
+bitbucket-cloud
+https://bitbucket.org
+Bitbucket Cloud REST API supports source code repository management, pull requests, and automation pipelines.

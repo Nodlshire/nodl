@@ -1,0 +1,3 @@
+dgraph
+https://dgraph.io
+Dgraph scales native transactional graph data models via standardized GraphQL integration pathways.

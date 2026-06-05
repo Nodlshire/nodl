@@ -1,0 +1,3 @@
+clickup-api
+https://clickup.com
+ClickUp API enables building custom applications and tracking items across teams, spaces, and tasks.

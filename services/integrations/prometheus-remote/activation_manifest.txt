@@ -1,0 +1,3 @@
+prometheus-remote
+https://prometheus.io
+Prometheus Remote Write protocol forwards technical metric time-series arrays onto long-term storage platforms.

@@ -1,0 +1,3 @@
+copper-crm
+https://www.copper.com
+Copper API manages workspace properties structured around standard Google Workspace communication tracks.

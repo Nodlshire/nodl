@@ -1,0 +1,3 @@
+google-slides
+https://slides.google.com
+Google Slides API automates presentation layout changes, visual shapes generation, and text formatting.

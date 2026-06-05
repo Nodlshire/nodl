@@ -1,0 +1,3 @@
+box-api
+https://www.box.com
+Box Content API supports secure file hosting, metadata management, and document metadata structures.

@@ -1,0 +1,3 @@
+freshsales
+https://www.freshworks.com/freshsales-crm/
+Freshsales API orchestrates customer connection records and corporate sales pipeline states.

@@ -1,0 +1,3 @@
+monday-api
+https://monday.com
+Monday.com API utilizes a GraphQL structure to control boards, items, columns, and workspace details.

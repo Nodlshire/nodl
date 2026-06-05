@@ -1,0 +1,3 @@
+clickhouse
+https://clickhouse.com
+ClickHouse implements columnar relational storage formats optimized for real-time analytical reporting.

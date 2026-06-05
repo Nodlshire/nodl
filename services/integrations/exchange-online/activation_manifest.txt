@@ -1,0 +1,3 @@
+exchange-online
+https://www.microsoft.com/en-us/microsoft-365/exchange/email
+Exchange Online integration handles enterprise message governance and administrative data routing.

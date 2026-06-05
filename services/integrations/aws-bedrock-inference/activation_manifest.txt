@@ -1,0 +1,3 @@
+aws-bedrock-inference
+https://aws.amazon.com/bedrock/
+Amazon Bedrock manages execution parameters and configuration pathways to interact with foundation language models.

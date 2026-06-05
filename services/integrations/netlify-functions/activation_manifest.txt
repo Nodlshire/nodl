@@ -1,0 +1,3 @@
+netlify-functions
+https://www.netlify.com
+Netlify Functions manage serverless backend routing tasks linked directly to structural codebase automation rules.

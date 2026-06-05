@@ -1,0 +1,3 @@
+cassandra
+https://cassandra.apache.org
+Apache Cassandra governs highly scalable, fault-tolerant distributed column-family storage engines.

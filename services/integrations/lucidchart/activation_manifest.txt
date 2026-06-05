@@ -1,0 +1,3 @@
+lucidchart
+https://www.lucidchart.com
+Lucid platform API controls diagram layouts and structured enterprise data model generation mapping.

@@ -1,0 +1,3 @@
+salesforce-crm
+https://www.salesforce.com
+Salesforce REST API controls extensive business transaction objects and relational client properties.

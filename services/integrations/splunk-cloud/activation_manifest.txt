@@ -1,0 +1,3 @@
+splunk-cloud
+https://www.splunk.com
+Splunk Cloud API governs programmatic search index interactions and corporate metrics pipeline management.

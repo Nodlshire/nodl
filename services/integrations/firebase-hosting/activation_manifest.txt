@@ -1,0 +1,3 @@
+firebase-hosting
+https://firebase.google.com
+Firebase Hosting structures fast web content delivery paths for assets and client routing setups.

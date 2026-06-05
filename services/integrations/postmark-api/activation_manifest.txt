@@ -1,0 +1,3 @@
+postmark-api
+https://postmarkapp.com
+Postmark Developer API ensures high-reliability delivery tracking for transactional application emails.

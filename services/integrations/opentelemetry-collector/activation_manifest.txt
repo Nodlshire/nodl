@@ -1,0 +1,3 @@
+opentelemetry-collector
+https://opentelemetry.io
+OpenTelemetry Collector manages proxy components that process, filter, and export tracking data logs.

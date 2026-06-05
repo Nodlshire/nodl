@@ -1,0 +1,3 @@
+aws-sqs
+https://aws.amazon.com/sqs/
+Amazon Simple Queue Service provisions distributed message queue structures for decoupled microservices.

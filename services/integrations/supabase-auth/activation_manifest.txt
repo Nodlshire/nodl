@@ -1,0 +1,3 @@
+supabase-auth
+https://supabase.com
+Supabase Auth components structure identity token validation pathways and OAuth protocol links.

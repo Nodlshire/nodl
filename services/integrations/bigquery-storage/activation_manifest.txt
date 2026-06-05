@@ -1,0 +1,3 @@
+bigquery-storage
+https://cloud.google.com/bigquery
+BigQuery Storage API uses gRPC protocols to execute fast, high-volume streaming data downloads from BigQuery clusters.

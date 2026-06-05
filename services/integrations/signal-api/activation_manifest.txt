@@ -1,0 +1,3 @@
+signal-api
+https://signal.org
+Signal communications platform manages secure end-to-end user encryption messaging paradigms.

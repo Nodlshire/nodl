@@ -1,0 +1,3 @@
+freshservice
+https://freshservice.com
+Freshservice API manages IT asset ticket queues, internal change records, and service components.

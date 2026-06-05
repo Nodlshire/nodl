@@ -1,0 +1,3 @@
+circleci
+https://circleci.com
+CircleCI API monitors automation pipeline parameters and software orchestration workflows.

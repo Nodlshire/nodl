@@ -1,0 +1,3 @@
+onenote
+https://www.microsoft.com/en-us/microsoft-365/onenote/learning-tools
+OneNote Graph integration structures cloud notebook partitions, note pages, and document sections.

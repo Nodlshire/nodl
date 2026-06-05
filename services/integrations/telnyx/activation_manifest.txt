@@ -1,0 +1,3 @@
+telnyx
+https://telnyx.com
+Telnyx API controls connectivity layers, phone records discovery, and messaging routing paradigms.

@@ -1,0 +1,3 @@
+azure-cosmosdb
+https://azure.microsoft.com/services/cosmos-db/
+Azure Cosmos DB offers highly distributed multi-model document storage layouts with global failover tracing.

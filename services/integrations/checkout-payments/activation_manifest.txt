@@ -1,0 +1,3 @@
+checkout-payments
+https://www.checkout.com
+Checkout.com Payments API accepts structural transaction events to clear multi-tenant global commerce records.

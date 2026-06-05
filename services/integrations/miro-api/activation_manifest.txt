@@ -1,0 +1,3 @@
+miro-api
+https://miro.com
+Miro API enables creating and editing widgets, boards, and interactive canvas components programmably.

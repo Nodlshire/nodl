@@ -1,0 +1,3 @@
+grafana-enterprise
+https://grafana.com
+Grafana Enterprise HTTP API automates data source settings, visualization dashboard layouts, and user group roles.

@@ -1,0 +1,3 @@
+zendesk-support
+https://www.zendesk.com
+Zendesk Support API structures customer conversation tickets, user profiles, and view configurations.

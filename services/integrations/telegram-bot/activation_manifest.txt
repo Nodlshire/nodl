@@ -1,0 +1,3 @@
+telegram-bot
+https://telegram.org
+Telegram Bot API utilizes an HTTP mechanism to execute chat automated bots and message actions.

@@ -1,0 +1,3 @@
+sendinblue
+https://www.brevo.com
+Brevo (formerly Sendinblue) REST API handles marketing message routing, automated contact sorting, and status parameters.

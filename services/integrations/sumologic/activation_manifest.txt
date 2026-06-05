@@ -1,0 +1,3 @@
+sumologic
+https://www.sumologic.com
+Sumo Logic API controls log data ingestion and security data tracking components.

@@ -1,0 +1,3 @@
+mailjet
+https://www.mailjet.com
+Mailjet API manages high-volume transactional emails and marketing message layout analytics.

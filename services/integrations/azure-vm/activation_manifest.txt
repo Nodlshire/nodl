@@ -1,0 +1,3 @@
+azure-vm
+https://azure.microsoft.com/services/virtual-machines/
+Azure Virtual Machines provide on-demand hypervisor container hosting infrastructures and computing nodes.

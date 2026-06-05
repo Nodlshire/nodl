@@ -1,0 +1,3 @@
+google-keep
+https://keep.google.com
+Google Keep API enables enterprise administrators to monitor and manage user workspace note assets.

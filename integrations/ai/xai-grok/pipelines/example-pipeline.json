@@ -1,0 +1,8 @@
+{
+  "id": "grok-pipeline",
+  "steps": [
+    {
+      "action": "process"
+    }
+  ]
+}

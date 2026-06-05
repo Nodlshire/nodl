@@ -1,3 +1,1 @@
-https://docs.verida.network
 https://docs.verida.io
-https://docs.verida.network/developers/evm-keys-and-signatures

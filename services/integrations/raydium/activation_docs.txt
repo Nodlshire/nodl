@@ -1,3 +1,0 @@
-https://docs.raydium.io/raydium/
-https://docs.raydium.io/raydium/developers/sdk
-https://docs.raydium.io/raydium/developers/sdk/swap

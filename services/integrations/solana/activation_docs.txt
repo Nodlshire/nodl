@@ -1,3 +1,2 @@
-https://docs.solana.com/developing/clients/jsonrpc-api
-https://docs.solana.com/api
-https://docs.solana.com/developing/clients/jsonrpc-api#getbalance
+https://solana.com/rpc
+https://solana.com/docs

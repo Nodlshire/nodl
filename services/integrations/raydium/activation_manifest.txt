@@ -1,3 +1,3 @@
 raydium
 https://raydium.io
-Solana-based automated market maker protocol. Demands high-performance serialization and direct integration with Solana's Web3.js clients.
+Raydium is an automated market maker and liquidity provider built on the Solana blockchain.

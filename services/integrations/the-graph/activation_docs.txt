@@ -1,3 +1,1 @@
 https://thegraph.com/docs
-https://thegraph.com/docs
-https://thegraph.com/docs/en/querying/querying-the-graph/

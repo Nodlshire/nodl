@@ -1,3 +1,3 @@
 the-graph
 https://thegraph.com
-Decentralized indexing protocol that structures blockchain data through subgraphs. Offers GraphQL APIs for multi-chain querying across Solana, NEAR, and Cosmos, as well as an AI agent data access layer.
+The Graph is a decentralized indexing protocol for querying blockchain data using GraphQL.

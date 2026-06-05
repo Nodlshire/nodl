@@ -1,0 +1,8 @@
+{
+  "id": "functions-pipeline",
+  "steps": [
+    {
+      "action": "process"
+    }
+  ]
+}

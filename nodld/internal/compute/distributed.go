@@ -643,7 +643,7 @@ func (e *DistributedEngine) SubmitResult(nodeToken string, parentTaskID string, 
 		job.TotalCost = aggregatedCost
 
 		// Phase 12: Trigger Stripe Billing if CustomerID exists
-		if job.CustomerID != "" {
+		if job.CustomerID != "" && job.CustomerID != "internal_bypass" {
 			invID, err := e.billingStore.InvoiceJob(job.ID, job.CustomerID, job.TotalCost)
 			if err != nil {
 				fmt.Printf("[Billing] Failed to invoice job %s: %v\n", job.ID, err)
@@ -651,6 +651,8 @@ func (e *DistributedEngine) SubmitResult(nodeToken string, parentTaskID string, 
 				job.StripeInvoiceID = invID
 				fmt.Printf("[Billing] Successfully invoiced job %s to %s (Inv: %s)\n", job.ID, job.CustomerID, invID)
 			}
+		} else if job.CustomerID == "internal_bypass" {
+			fmt.Printf("[Billing] Skipped invoicing job %s due to Phase 3c internal bypass.\n", job.ID)
 		}
 
 		e.accountStore.Telemetry.Publish(&account.TelemetryEvent{

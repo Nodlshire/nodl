@@ -3,6 +3,7 @@ package api
 import (
 	"encoding/json"
 	"fmt"
+	"os"
 	"time"
 
 	"github.com/gofiber/fiber/v2"
@@ -16,7 +17,16 @@ func (s *Server) handlePipelineInvoke(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "integration slug required"})
 	}
 
-	// 1. Authenticate Request
+	// Phase 3c: Internal-Only Trigger Mode
+	isExternalEnabled := os.Getenv("EXTERNAL_TRIGGERS_ENABLED") == "true"
+	isInternalCaller := c.Get("X-Internal-Invocation") == "true"
+
+	if !isExternalEnabled && !isInternalCaller {
+		return c.Status(fiber.StatusServiceUnavailable).JSON(fiber.Map{
+			"error": "External triggers are currently disabled in Phase 3c internal-only mode. Use X-Internal-Invocation for internal routing.",
+		})
+	}
+
 	var customerID string
 	authHeader := c.Get("Authorization")
 	// Note: In a real system we would validate the auth header against API keys.
@@ -26,6 +36,11 @@ func (s *Server) handlePipelineInvoke(c *fiber.Ctx) error {
 	} else {
 		// Use dev customer if none provided
 		customerID = "mock_cus_default"
+	}
+
+	// If disabled externally but accessed internally, bypass billing
+	if !isExternalEnabled && isInternalCaller {
+		customerID = "internal_bypass"
 	}
 
 	// 2. Extract payload to determine Work Units

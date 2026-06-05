@@ -1,0 +1,8 @@
+{
+  "id": "openai-pipeline",
+  "steps": [
+    {
+      "action": "process"
+    }
+  ]
+}

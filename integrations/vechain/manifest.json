@@ -1,0 +1,8 @@
+{
+  "name": "Vechain",
+  "category": "Ecosystem",
+  "description": "Integration with Vechain.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

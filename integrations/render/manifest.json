@@ -1,0 +1,8 @@
+{
+  "name": "Render",
+  "category": "Ecosystem",
+  "description": "Integration with Render.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

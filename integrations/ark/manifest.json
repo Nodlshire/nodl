@@ -1,0 +1,8 @@
+{
+  "name": "Ark",
+  "category": "Ecosystem",
+  "description": "Integration with Ark.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

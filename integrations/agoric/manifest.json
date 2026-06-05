@@ -1,0 +1,8 @@
+{
+  "name": "Agoric",
+  "category": "Ecosystem",
+  "description": "Integration with Agoric.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

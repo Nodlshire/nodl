@@ -1,0 +1,8 @@
+{
+  "name": "Decred",
+  "category": "Ecosystem",
+  "description": "Integration with Decred.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

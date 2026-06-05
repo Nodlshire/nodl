@@ -1,0 +1,8 @@
+{
+  "name": "Augur",
+  "category": "Ecosystem",
+  "description": "Integration with Augur.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

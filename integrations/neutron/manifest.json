@@ -1,0 +1,8 @@
+{
+  "name": "Neutron",
+  "category": "Ecosystem",
+  "description": "Integration with Neutron.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

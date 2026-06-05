@@ -1,0 +1,8 @@
+{
+  "name": "Chia",
+  "category": "Ecosystem",
+  "description": "Integration with Chia.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

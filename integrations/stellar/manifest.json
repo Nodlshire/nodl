@@ -1,0 +1,8 @@
+{
+  "name": "Stellar",
+  "category": "Ecosystem",
+  "description": "Integration with Stellar.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Steem",
+  "category": "Ecosystem",
+  "description": "Integration with Steem.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

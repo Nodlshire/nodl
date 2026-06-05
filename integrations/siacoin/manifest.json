@@ -1,0 +1,8 @@
+{
+  "name": "Siacoin",
+  "category": "Ecosystem",
+  "description": "Integration with Siacoin.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Ergo",
+  "category": "Ecosystem",
+  "description": "Integration with Ergo.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

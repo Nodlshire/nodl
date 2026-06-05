@@ -1,0 +1,8 @@
+{
+  "name": "Crab",
+  "category": "Ecosystem",
+  "description": "Integration with Crab.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

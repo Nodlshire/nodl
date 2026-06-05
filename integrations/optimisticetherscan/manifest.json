@@ -1,8 +1,0 @@
-{
-  "name": "Optimistic Etherscan",
-  "category": "Ecosystem",
-  "description": "Integration with Optimistic Etherscan.",
-  "endpoints": [],
-  "activation": "Pending",
-  "version": "1.0.0"
-}

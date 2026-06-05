@@ -1,0 +1,8 @@
+{
+  "name": "Bittensor",
+  "category": "Ecosystem",
+  "description": "Integration with Bittensor.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

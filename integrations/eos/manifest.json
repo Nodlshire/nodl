@@ -1,0 +1,8 @@
+{
+  "name": "Eos",
+  "category": "Ecosystem",
+  "description": "Integration with Eos.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

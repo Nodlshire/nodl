@@ -1,0 +1,8 @@
+{
+  "name": "Ton",
+  "category": "Ecosystem",
+  "description": "Integration with Ton.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

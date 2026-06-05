@@ -1,0 +1,8 @@
+{
+  "name": "Feathercoin",
+  "category": "Ecosystem",
+  "description": "Integration with Feathercoin.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

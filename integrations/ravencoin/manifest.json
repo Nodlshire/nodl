@@ -1,0 +1,8 @@
+{
+  "name": "Ravencoin",
+  "category": "Ecosystem",
+  "description": "Integration with Ravencoin.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

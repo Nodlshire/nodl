@@ -1,0 +1,8 @@
+{
+  "name": "Vertcoin",
+  "category": "Ecosystem",
+  "description": "Integration with Vertcoin.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Bytecoin",
+  "category": "Ecosystem",
+  "description": "Integration with Bytecoin.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

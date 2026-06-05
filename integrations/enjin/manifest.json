@@ -1,0 +1,8 @@
+{
+  "name": "Enjin",
+  "category": "Ecosystem",
+  "description": "Integration with Enjin.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

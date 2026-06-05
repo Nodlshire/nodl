@@ -1,0 +1,8 @@
+{
+  "id": "cloud-functions-pipeline",
+  "steps": [
+    {
+      "action": "process"
+    }
+  ]
+}

@@ -13,9 +13,9 @@ func TestAffiliateRoundRobin(t *testing.T) {
 	f2 := "FOUNDER-2-ACTIVE"
 	f3 := "FOUNDER-3-DORMANT"
 
-	s.AddNodlr(&Nodlr{ID: f1, Status: "active", IsFounder: true})
-	s.AddNodlr(&Nodlr{ID: f2, Status: "active", IsFounder: true})
-	s.AddNodlr(&Nodlr{ID: f3, Status: "dormant", IsFounder: true})
+	s.AddNodlr(&Nodlr{ID: f1, Status: OpStatus{Active: true, Verification: "verified"}, IsFounder: true})
+	s.AddNodlr(&Nodlr{ID: f2, Status: OpStatus{Active: true, Verification: "verified"}, IsFounder: true})
+	s.AddNodlr(&Nodlr{ID: f3, Status: OpStatus{Active: false, Verification: "verified"}, IsFounder: true})
 
 	s.SetFounder(1, f1)
 	s.SetFounder(2, f2)

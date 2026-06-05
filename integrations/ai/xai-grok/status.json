@@ -1,5 +1,5 @@
 {
-  "status": "stable",
+  "status": "ACTIVE",
   "tested_endpoints": [
     "/api/pipeline/invoke"
   ],

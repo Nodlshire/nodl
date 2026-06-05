@@ -63,6 +63,9 @@ type Store struct {
 	// Passive Telemetry Ingestion
 	Telemetry          *TelemetryDispatcher
 
+	// Phase 1: Integrations Registry
+	integrations       map[string]*Integration
+
 	// SaveState debouncing
 	saveMu    sync.Mutex
 	lastSave  time.Time
@@ -100,10 +103,12 @@ func NewStore(forensics *forensics.Store, statePath string) *Store {
 		operatorIdentities:  make(map[string]*OperatorIdentity),
 		identityLedger:      make([]*IdentityLedgerEntry, 0),
 		Telemetry:           NewTelemetryDispatcher("http://127.0.0.1:3001/api/intelligence/event"),
+		integrations:        make(map[string]*Integration),
 	}
 	s.initInviteState()
 	s.loadState()
 	s.SeedFoundationIdentities()
+	s.SeedIntegrations()
 	go s.runDowntimeWatchdog(10 * time.Second)
 	go s.runReputationRecalculation(24 * time.Hour)
 	return s

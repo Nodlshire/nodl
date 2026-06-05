@@ -382,6 +382,14 @@ func (s *Server) registerRoutes() {
 	// Governance Routes (RBAC Level 4+)
 	s.govHandler.RegisterRoutes(apiV1, s.requireAccess(account.RoleManagement, "command"))
 
+	// Integrations Registry
+	apiV1.Get("/integrations", s.requireAccess(account.RoleVisitor, "nodlr", "mesh", "command"), s.handleListIntegrations)
+	apiV1.Get("/integrations/:id", s.requireAccess(account.RoleVisitor, "nodlr", "mesh", "command"), s.handleGetIntegration)
+	apiV1.Post("/integrations", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleCreateIntegration)
+	apiV1.Patch("/integrations/:id", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handlePatchIntegration)
+	// Phase 3: Integration Pipeline Runner
+	apiV1.Post("/pipeline/invoke/:slug", s.handlePipelineInvoke)
+
 	// Real-time event stream
 	s.app.Get("/ws", websocket.New(s.handleWebSocket))
 }
@@ -2562,3 +2570,53 @@ func (s *Server) handleGeneratePartnerInvite(c *fiber.Ctx) error {
 
 	return c.Status(fiber.StatusCreated).JSON(invite)
 }
+
+func (s *Server) handleListIntegrations(c *fiber.Ctx) error {
+	integrations := s.accountStore.ListIntegrationsSorted()
+	return c.JSON(integrations)
+}
+
+func (s *Server) handleGetIntegration(c *fiber.Ctx) error {
+	id := c.Params("id")
+	integration, ok := s.accountStore.GetIntegration(id)
+	if !ok {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "integration not found"})
+	}
+	return c.JSON(integration)
+}
+
+func (s *Server) handleCreateIntegration(c *fiber.Ctx) error {
+	var integration account.Integration
+	if err := c.BodyParser(&integration); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid request body"})
+	}
+
+	if integration.Name == "" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "name is required"})
+	}
+	if integration.Slug == "" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "slug is required"})
+	}
+
+	if err := s.accountStore.CreateIntegration(&integration); err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	return c.Status(fiber.StatusCreated).JSON(integration)
+}
+
+func (s *Server) handlePatchIntegration(c *fiber.Ctx) error {
+	id := c.Params("id")
+	var updates map[string]interface{}
+	if err := c.BodyParser(&updates); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid request body"})
+	}
+
+	integration, err := s.accountStore.UpdateIntegration(id, updates)
+	if err != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	return c.JSON(integration)
+}
+

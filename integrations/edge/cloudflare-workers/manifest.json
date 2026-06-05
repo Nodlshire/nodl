@@ -1,0 +1,28 @@
+{
+  "name": "Cloudflare Workers",
+  "slug": "edge-cloudflare-workers",
+  "provider": "cloudflare",
+  "service": "workers",
+  "version": "1.0.0",
+  "category": "Edge Compute",
+  "description": "Cloudflare Workers provide serverless edge execution. Workers act as edge proxies routing complex requests to Wnode.",
+  "auth": {
+    "type": "api-token",
+    "fields": [
+      "cloudflare_api_token"
+    ]
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/api/pipeline/invoke",
+      "description": "Receive Worker payload"
+    }
+  ],
+  "capabilities": [
+    "edge-compute",
+    "http-proxy"
+  ],
+  "docs_url": "https://developers.cloudflare.com/workers/",
+  "logo": "logo.svg"
+}

@@ -1,0 +1,3 @@
+supabase-db
+https://supabase.com
+Supabase Database infrastructure maps relational data storage setups using PostgreSQL data clusters.

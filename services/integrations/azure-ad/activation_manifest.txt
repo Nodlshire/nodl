@@ -1,0 +1,3 @@
+azure-ad
+https://learn.microsoft.com/azure/active-directory/
+Microsoft Entra ID (formerly Azure AD) endpoints monitor group configurations and directory access tokens.

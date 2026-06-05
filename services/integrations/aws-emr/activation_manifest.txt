@@ -1,0 +1,3 @@
+aws-emr
+https://aws.amazon.com/emr/
+Amazon Elastic MapReduce coordinates large-scale big data cluster deployments using frameworks like Spark and Hadoop.

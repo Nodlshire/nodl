@@ -1,0 +1,3 @@
+linode
+https://www.linode.com
+Linode API (Akamai Cloud Computing) controls virtual hardware compute instances and cloud load balancer configurations.

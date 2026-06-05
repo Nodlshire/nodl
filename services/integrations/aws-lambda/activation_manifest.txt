@@ -1,0 +1,3 @@
+aws-lambda
+https://aws.amazon.com/lambda/
+Amazon Lambda handles execution routines for on-demand event-driven serverless code blocks.

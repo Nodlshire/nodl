@@ -1,0 +1,3 @@
+azure-eventhub
+https://azure.microsoft.com/services/event-hubs/
+Azure Event Hubs provides high-volume transactional data ingestion layers for real-time telemetry analytics.

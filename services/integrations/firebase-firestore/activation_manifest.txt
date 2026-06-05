@@ -1,0 +1,3 @@
+firebase-firestore
+https://firebase.google.com
+Cloud Firestore provides real-time document-based storage models for client setups.

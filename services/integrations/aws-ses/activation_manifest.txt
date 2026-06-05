@@ -1,0 +1,3 @@
+aws-ses
+https://aws.amazon.com/ses/
+Amazon Simple Email Service handles scalable text messaging loops and marketing verification tasks.

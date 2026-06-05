@@ -1,0 +1,3 @@
+couchbase
+https://www.couchbase.com
+Couchbase API controls scalable NoSQL storage environments and structured memory indexes.

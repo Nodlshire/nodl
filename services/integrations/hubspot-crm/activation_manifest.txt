@@ -1,0 +1,3 @@
+hubspot-crm
+https://www.hubspot.com
+HubSpot CRM APIs orchestrate contact tracking arrays, business company properties, and deal progress states.

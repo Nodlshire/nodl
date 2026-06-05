@@ -1,0 +1,3 @@
+okta-identity
+https://www.okta.com
+Okta Identity API governs enterprise access token verification structures and single sign-on parameters.

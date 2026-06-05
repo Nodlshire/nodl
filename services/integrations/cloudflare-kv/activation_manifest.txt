@@ -1,0 +1,3 @@
+cloudflare-kv
+https://www.cloudflare.com
+Cloudflare Workers KV provides low-latency edge key-value storage access rules.

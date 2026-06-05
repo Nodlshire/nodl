@@ -1,0 +1,3 @@
+hashicorp-consul
+https://www.consul.io
+HashiCorp Consul delivers network mesh discovery setups and localized service configuration registries.

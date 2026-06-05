@@ -1,0 +1,3 @@
+figma-api
+https://www.figma.com
+Figma API provides access to visual design files, version histories, and specific layout components.

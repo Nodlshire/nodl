@@ -1,3 +1,3 @@
 firebase-auth
-https://firebase.google.com/docs/auth
-Firebase Authentication handles structured federated identity services and secure sign-in pipelines.
+https://firebase.google.com
+Firebase Authentication maps client identity validations and multi-tenant token flows.

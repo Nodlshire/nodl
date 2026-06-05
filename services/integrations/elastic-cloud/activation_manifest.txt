@@ -1,0 +1,3 @@
+elastic-cloud
+https://www.elastic.co
+Elastic Cloud API manages hosted Elasticsearch instances, index mappings, and analytical processing parameters.

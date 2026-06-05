@@ -1,0 +1,3 @@
+bigin
+https://www.bigin.com
+Bigin API maps simple transaction tracking models tailored for lightweight team structures.

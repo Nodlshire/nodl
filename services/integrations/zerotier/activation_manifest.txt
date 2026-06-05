@@ -1,0 +1,3 @@
+zerotier
+https://www.zerotier.com
+ZeroTier Central API handles virtual cloud link paths and node authorizations.

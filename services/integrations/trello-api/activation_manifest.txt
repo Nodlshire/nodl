@@ -1,0 +1,3 @@
+trello-api
+https://trello.com
+Trello REST API gives programmatic control over boards, lists, cards, and automation actions.

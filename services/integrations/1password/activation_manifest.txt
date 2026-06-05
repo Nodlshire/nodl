@@ -1,0 +1,3 @@
+1password
+https://1password.com
+1Password Developer Tools deploy local secret manager daemons to feed secure runtime variables.

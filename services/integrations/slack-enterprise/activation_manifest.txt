@@ -1,0 +1,3 @@
+slack-enterprise
+https://slack.com
+Slack Enterprise API addresses large-scale multi-workspace security logging and structural channel deployment.

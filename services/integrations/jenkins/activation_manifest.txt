@@ -1,0 +1,3 @@
+jenkins
+https://www.jenkins.io
+Jenkins automation server exposes remote APIs to invoke test loops and check pipeline instances.

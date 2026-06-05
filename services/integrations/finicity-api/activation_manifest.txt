@@ -1,0 +1,3 @@
+finicity-api
+https://www.finicity.com
+Mastercard Finicity API provisions open banking aggregation tools and structural credit data verification layers.

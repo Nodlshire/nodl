@@ -1,0 +1,3 @@
+jira-cloud
+https://www.atlassian.com/software/jira
+Jira Cloud REST API enables programmatic interaction with Jira issues, workflows, and project structures.

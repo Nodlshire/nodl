@@ -1,0 +1,3 @@
+ansible-automation
+https://www.ansible.com
+Ansible platform environments automate remote task execution routines via playbook scripts.

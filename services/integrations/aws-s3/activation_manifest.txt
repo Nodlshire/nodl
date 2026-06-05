@@ -1,0 +1,3 @@
+aws-s3
+https://aws.amazon.com/s3/
+Amazon Simple Storage Service provides cloud object storage parameters and static binary data management.

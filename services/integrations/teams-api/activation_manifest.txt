@@ -1,0 +1,3 @@
+teams-api
+https://www.microsoft.com/en-us/microsoft-365/microsoft-teams
+Microsoft Teams API governs chat messaging streams, operational channel layouts, and user group options.

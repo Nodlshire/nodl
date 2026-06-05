@@ -1,0 +1,3 @@
+azure-servicebus
+https://azure.microsoft.com/services/service-bus/
+Azure Service Bus maintains reliable asynchronous cloud messaging cues and multi-tenant transaction buffers.

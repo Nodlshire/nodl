@@ -1,0 +1,3 @@
+vercel-edge
+https://vercel.com
+Vercel Edge Functions execute V8 computing runtime scripts inside low-latency edge nodes.

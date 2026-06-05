@@ -1,0 +1,3 @@
+paypal-payouts
+https://www.paypal.com
+PayPal Payouts API handles high-volume global balance distributions onto individual user accounts.

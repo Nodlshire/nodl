@@ -1,0 +1,3 @@
+close-com
+https://close.com
+Close API exposes lead profile fields, automated outbound phone calls metadata, and status events loops.

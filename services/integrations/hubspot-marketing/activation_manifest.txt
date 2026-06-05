@@ -1,0 +1,3 @@
+hubspot-marketing
+https://www.hubspot.com
+HubSpot Marketing platform interfaces update email campaigns, form configurations, and target landing list records.

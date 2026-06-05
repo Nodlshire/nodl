@@ -1,0 +1,3 @@
+google-identity
+https://developers.google.com/identity
+Google Identity Services manage secure open standard token authorization tracks and verification pathways.

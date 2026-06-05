@@ -1,0 +1,3 @@
+helpscout
+https://www.helpscout.com
+Help Scout REST API drives shared team mailbox structures and support contact profiles.

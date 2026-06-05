@@ -1,0 +1,3 @@
+fastly
+https://www.fastly.com
+Fastly API configures edge cache validation rules, content delivery parameters, and edge computing layers.

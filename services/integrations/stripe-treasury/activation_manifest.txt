@@ -1,0 +1,3 @@
+stripe-treasury
+https://stripe.com
+Stripe Treasury provides financial ledger configurations to build scalable money transit modules.

@@ -1,0 +1,3 @@
+google-sheets
+https://sheets.google.com
+Google Sheets API automates spreadsheet cellular modifications, layout updates, and data formatting.

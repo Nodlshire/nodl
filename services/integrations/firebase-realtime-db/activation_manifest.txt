@@ -1,0 +1,3 @@
+firebase-realtime-db
+https://firebase.google.com
+Firebase Realtime Database handles live transactional JSON data mapping across computing nodes.

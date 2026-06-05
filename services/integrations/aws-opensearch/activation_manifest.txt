@@ -1,0 +1,3 @@
+aws-opensearch
+https://aws.amazon.com/opensearch-service/
+Amazon OpenSearch Service provisions managed instances for real-time document search indexing tasks.

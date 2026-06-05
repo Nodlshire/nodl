@@ -1,0 +1,3 @@
+cloudflare-r2
+https://www.cloudflare.com
+Cloudflare R2 implements egress-fee-free object storage nodes compatible with the Amazon S3 standard.

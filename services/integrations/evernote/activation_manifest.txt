@@ -1,0 +1,3 @@
+evernote
+https://evernote.com
+Evernote developer interface utilizes Thrift definitions to create, index, and organize digital notes.

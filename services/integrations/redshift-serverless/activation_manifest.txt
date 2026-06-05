@@ -1,0 +1,3 @@
+redshift-serverless
+https://aws.amazon.com/redshift/
+Amazon Redshift Serverless handles elastic data warehouse query runs without computing instance maintenance.

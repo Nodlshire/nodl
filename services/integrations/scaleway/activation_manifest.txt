@@ -1,0 +1,3 @@
+scaleway
+https://www.scaleway.com
+Scaleway Developer API controls multi-tenant compute nodes, storage buckets, and load balancer setups.

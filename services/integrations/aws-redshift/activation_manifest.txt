@@ -1,0 +1,3 @@
+aws-redshift
+https://aws.amazon.com/redshift/
+Amazon Redshift controls enterprise-grade database arrays optimized for analytical tracking suites.

@@ -1,0 +1,3 @@
+statuspage
+https://www.statuspage.io
+Statuspage API updates infrastructure outage parameters and customer downtime notifications.

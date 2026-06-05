@@ -1,0 +1,3 @@
+gmail-api
+https://mail.google.com
+Gmail REST API provides access to user mailbox entities, message threads, labels, and draft templates.

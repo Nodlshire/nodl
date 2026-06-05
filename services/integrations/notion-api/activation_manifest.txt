@@ -1,0 +1,3 @@
+notion-api
+https://www.notion.so
+Notion API connects workspaces to external tools, managing databases, blocks, and page structures.

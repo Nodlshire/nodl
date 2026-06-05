@@ -1,0 +1,3 @@
+whimsical
+https://whimsical.com
+Whimsical integration manages structural diagram creation and enterprise collaborative canvas tasks.

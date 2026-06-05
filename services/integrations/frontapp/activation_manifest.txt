@@ -1,0 +1,3 @@
+frontapp
+https://front.com
+Front API handles collaborative customer inbox models and communication channel data tracking.

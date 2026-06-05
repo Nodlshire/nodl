@@ -1,0 +1,3 @@
+aws-sns
+https://aws.amazon.com/sns/
+Amazon Simple Notification Service manages high-throughput pub/sub system components.

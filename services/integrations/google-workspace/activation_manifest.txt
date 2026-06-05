@@ -1,0 +1,3 @@
+google-workspace
+https://workspace.google.com
+Google Workspace APIs map core enterprise directory options and unified application settings.

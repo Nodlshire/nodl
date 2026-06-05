@@ -1,0 +1,3 @@
+aws-kinesis
+https://aws.amazon.com/kinesis/
+Amazon Kinesis collects and monitors real-time streaming data sequences across decoupled messaging loops.

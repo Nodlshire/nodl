@@ -1,0 +1,3 @@
+outlook-calendar
+[suspicious link removed]
+Outlook Calendar API coordinates booking items, group meetings, and schedule layouts.

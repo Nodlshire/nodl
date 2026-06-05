@@ -1,0 +1,3 @@
+sharepoint-online
+https://www.microsoft.com/en-us/microsoft-365/sharepoint/collaboration
+SharePoint Online developer services govern internal web content structures and corporate data libraries.

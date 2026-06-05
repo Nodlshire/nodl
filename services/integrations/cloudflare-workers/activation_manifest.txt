@@ -1,0 +1,3 @@
+cloudflare-workers
+https://workers.cloudflare.com
+Cloudflare Workers platforms support serverless execution configurations directly across edge networking targets.

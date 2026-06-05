@@ -1,0 +1,3 @@
+loki-cloud
+https://grafana.com/oss/loki/
+Grafana Loki implements index-free log aggregation systems optimized for Prometheus metadata mapping.

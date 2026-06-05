@@ -1,0 +1,3 @@
+zendesk-chat
+https://www.zendesk.com
+Zendesk Chat routing rules control live agent communication channels and session metrics logs.

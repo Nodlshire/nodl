@@ -1,0 +1,3 @@
+marqeta
+https://www.marqeta.com
+Marqeta Core API provides modern card issuing solutions and programmatic payment authorization loops.

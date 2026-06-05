@@ -1,0 +1,3 @@
+sonarqube
+https://www.sonarqube.org
+SonarQube Web API checks structural code metrics, test tracking volumes, and continuous bugs parameters.

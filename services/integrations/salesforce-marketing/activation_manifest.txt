@@ -1,0 +1,3 @@
+salesforce-marketing
+https://www.salesforce.com
+Salesforce Marketing Cloud APIs handle dynamic messaging tracks and behavioral target group data models.

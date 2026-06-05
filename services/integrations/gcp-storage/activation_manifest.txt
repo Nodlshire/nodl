@@ -1,0 +1,3 @@
+gcp-storage
+https://cloud.google.com/storage
+Google Cloud Storage delivers unified object storage blocks for hosting big unstructured payloads.

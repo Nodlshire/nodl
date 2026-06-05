@@ -1,0 +1,11 @@
+{
+  "status": "stable",
+  "tested_endpoints": [
+    "/api/pipeline/invoke"
+  ],
+  "last_tested": "2026-06-05T15:01:45Z",
+  "known_issues": [],
+  "compatibility": {
+    "wnode_version": ">=1.0.0"
+  }
+}

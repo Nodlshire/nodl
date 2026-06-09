@@ -5,7 +5,7 @@
   "service": "cloud-storage",
   "version": "1.0.0",
   "category": "Object Storage",
-  "description": "Unified object storage for unstructured data. GCS object lifecycle events trigger Wnode pipelines via Eventarc or Pub/Sub, enabling serverless data processing on sovereign compute.",
+  "description": "Unified object storage for unstructured data. GCS object lifecycle events trigger Wnode pipelines via Eventarc or Pub/Sub, enabling serverless data processing on sovereign compute. Workloads invoked via this integration run on Wnode's Tier 6 DECC/TEE secure enclaves.",
   "auth": {
     "type": "service-account",
     "fields": [

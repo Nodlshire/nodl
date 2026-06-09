@@ -5,7 +5,7 @@
   "service": "grok",
   "version": "1.0.0",
   "category": "AI & Machine Learning",
-  "description": "xAI provides Grok models. Wnode securely integrates Grok inference into decentralized compute pipelines.",
+  "description": "xAI provides Grok models. Wnode securely integrates Grok inference into decentralized compute pipelines. Workloads invoked via this integration run on Wnode's Tier 6 DECC/TEE secure enclaves.",
   "auth": {
     "type": "api-key",
     "fields": [

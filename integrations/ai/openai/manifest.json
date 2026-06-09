@@ -5,7 +5,7 @@
   "service": "openai",
   "version": "1.0.0",
   "category": "AI & Machine Learning",
-  "description": "OpenAI provides advanced AI models for chat, embeddings, and images. Wnode acts as a secure compute orchestrator, proxying inference requests and caching results.",
+  "description": "OpenAI provides advanced AI models for chat, embeddings, and images. Wnode acts as a secure compute orchestrator, proxying inference requests and caching results. Workloads invoked via this integration run on Wnode's Tier 6 DECC/TEE secure enclaves.",
   "auth": {
     "type": "api-key",
     "fields": [

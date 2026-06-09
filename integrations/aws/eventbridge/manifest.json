@@ -5,7 +5,7 @@
   "service": "eventbridge",
   "version": "1.0.0",
   "category": "Event Routing",
-  "description": "EventBridge is a serverless event bus. EventBridge routes AWS and custom events to Wnode API destinations.",
+  "description": "EventBridge is a serverless event bus. EventBridge routes AWS and custom events to Wnode API destinations. Workloads invoked via this integration run on Wnode's Tier 6 DECC/TEE secure enclaves.",
   "auth": {
     "type": "iam",
     "fields": [

@@ -1,5 +1,10 @@
 # AWS SNS → Wnode Integration
 
+> [!IMPORTANT]
+> **DECC/TEE Sovereign Execution**
+> All workloads invoked via the AWS SNS integration are dynamically routed to Wnode's Tier 6 DECC/TEE instances (e.g. H100s). This guarantees that your proprietary data and AI inference payloads remain strictly confidential and are processed in hardware-backed secure enclaves.
+
+
 ## Overview
 
 Amazon Simple Notification Service (SNS) is a fully managed pub/sub messaging service. This integration configures Wnode as an HTTP/HTTPS subscription endpoint for SNS topics, enabling real-time event delivery from any AWS service that publishes to SNS.

@@ -1,5 +1,10 @@
 # AWS SQS → Wnode Integration
 
+> [!IMPORTANT]
+> **DECC/TEE Sovereign Execution**
+> All workloads invoked via the AWS SQS integration are dynamically routed to Wnode's Tier 6 DECC/TEE instances (e.g. H100s). This guarantees that your proprietary data and AI inference payloads remain strictly confidential and are processed in hardware-backed secure enclaves.
+
+
 ## Overview
 
 Amazon Simple Queue Service (SQS) is a fully managed message queuing service. This integration configures Wnode as a queue consumer — a Wnode worker polls SQS for messages, processes them on sovereign compute, and deletes them upon completion.

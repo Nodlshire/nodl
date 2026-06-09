@@ -35,3 +35,18 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ pat
         );
     }
 }
+
+export async function GET(req: NextRequest, { params }: { params: Promise<{ path: string[] }> }) {
+    const { path } = await params;
+    const pathString = path.join('/');
+
+    if (pathString === 'session') {
+        const hasSession = req.cookies.has('cmd_session');
+        if (hasSession) {
+            return NextResponse.json({ status: 'authenticated' }, { status: 200 });
+        }
+        return NextResponse.json({ status: 'unauthenticated' }, { status: 401 });
+    }
+
+    return NextResponse.json({ error: 'Method not allowed' }, { status: 405 });
+}

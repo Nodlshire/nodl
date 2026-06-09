@@ -5,7 +5,7 @@
   "service": "cloud-functions",
   "version": "1.0.0",
   "category": "Serverless Compute",
-  "description": "Cloud Functions provide event-driven serverless compute. Functions can route events directly into Wnode pipelines.",
+  "description": "Cloud Functions provide event-driven serverless compute. Functions can route events directly into Wnode pipelines. Workloads invoked via this integration run on Wnode's Tier 6 DECC/TEE secure enclaves.",
   "auth": {
     "type": "service-account",
     "fields": [

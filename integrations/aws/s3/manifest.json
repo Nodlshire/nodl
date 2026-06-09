@@ -5,7 +5,7 @@
   "service": "s3",
   "version": "1.0.0",
   "category": "Object Storage",
-  "description": "Scalable object storage service. S3 event notifications trigger Wnode pipelines on object creation, deletion, or modification, enabling decentralized data processing workflows.",
+  "description": "Scalable object storage service. S3 event notifications trigger Wnode pipelines on object creation, deletion, or modification, enabling decentralized data processing workflows. Workloads invoked via this integration run on Wnode's Tier 6 DECC/TEE secure enclaves.",
   "auth": {
     "type": "iam",
     "fields": [

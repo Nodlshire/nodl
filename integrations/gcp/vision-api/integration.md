@@ -1,5 +1,10 @@
 # Google Vision API → Wnode Integration
 
+> [!IMPORTANT]
+> **DECC/TEE Sovereign Execution**
+> All workloads invoked via the Google Vision API integration are dynamically routed to Wnode's Tier 6 DECC/TEE instances (e.g. H100s). This guarantees that your proprietary data and AI inference payloads remain strictly confidential and are processed in hardware-backed secure enclaves.
+
+
 ## Overview
 
 Google Cloud Vision API provides pre-trained ML models for image understanding. This integration positions Wnode as a pre- and post-processing orchestration layer: Wnode prepares images, sends them to Vision API for analysis, and consumes the structured results for downstream pipelines.

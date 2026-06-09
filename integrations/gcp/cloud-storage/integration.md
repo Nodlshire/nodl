@@ -1,5 +1,10 @@
 # Google Cloud Storage → Wnode Integration
 
+> [!IMPORTANT]
+> **DECC/TEE Sovereign Execution**
+> All workloads invoked via the Google Cloud Storage integration are dynamically routed to Wnode's Tier 6 DECC/TEE instances (e.g. H100s). This guarantees that your proprietary data and AI inference payloads remain strictly confidential and are processed in hardware-backed secure enclaves.
+
+
 ## Overview
 
 Google Cloud Storage (GCS) is a unified object storage service. This integration routes GCS object lifecycle events (finalize, delete, archive, metadata update) to Wnode pipelines via Eventarc or Pub/Sub, enabling decentralized data processing on sovereign compute.

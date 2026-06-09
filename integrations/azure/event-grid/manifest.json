@@ -5,7 +5,7 @@
   "service": "event-grid",
   "version": "1.0.0",
   "category": "Event Routing",
-  "description": "Fully managed event routing service. Wnode registers as an Event Grid webhook handler, receiving events from Blob Storage, custom topics, and Azure services for decentralized processing.",
+  "description": "Fully managed event routing service. Wnode registers as an Event Grid webhook handler, receiving events from Blob Storage, custom topics, and Azure services for decentralized processing. Workloads invoked via this integration run on Wnode's Tier 6 DECC/TEE secure enclaves.",
   "auth": {
     "type": "service-principal",
     "fields": [

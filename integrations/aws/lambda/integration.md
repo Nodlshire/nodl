@@ -1,5 +1,10 @@
 # AWS Lambda → Wnode Integration
 
+> [!IMPORTANT]
+> **DECC/TEE Sovereign Execution**
+> All workloads invoked via the AWS Lambda integration are dynamically routed to Wnode's Tier 6 DECC/TEE instances (e.g. H100s). This guarantees that your proprietary data and AI inference payloads remain strictly confidential and are processed in hardware-backed secure enclaves.
+
+
 ## Overview
 
 AWS Lambda is a serverless compute service that runs code in response to events. This integration positions Wnode as an HTTP compute target for Lambda functions — Lambda invocations forward event payloads to a Wnode pipeline endpoint, which processes them on sovereign, TEE-secured infrastructure and returns results.

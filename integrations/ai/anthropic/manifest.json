@@ -5,7 +5,7 @@
   "service": "anthropic",
   "version": "1.0.0",
   "category": "AI & Machine Learning",
-  "description": "Anthropic provides Claude models for chat and analysis. Wnode acts as an inference router for Claude workloads.",
+  "description": "Anthropic provides Claude models for chat and analysis. Wnode acts as an inference router for Claude workloads. Workloads invoked via this integration run on Wnode's Tier 6 DECC/TEE secure enclaves.",
   "auth": {
     "type": "api-key",
     "fields": [

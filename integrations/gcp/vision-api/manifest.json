@@ -5,7 +5,7 @@
   "service": "vision-api",
   "version": "1.0.0",
   "category": "AI & Machine Learning",
-  "description": "Pre-trained ML models for image analysis. Wnode acts as a pre- and post-processing layer — preparing images for Vision API recognition and consuming structured results for downstream pipelines.",
+  "description": "Pre-trained ML models for image analysis. Wnode acts as a pre- and post-processing layer \u2014 preparing images for Vision API recognition and consuming structured results for downstream pipelines. Workloads invoked via this integration run on Wnode's Tier 6 DECC/TEE secure enclaves.",
   "auth": {
     "type": "service-account",
     "fields": [

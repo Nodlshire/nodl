@@ -21,6 +21,7 @@ export interface CrmPerson {
   isNodlr: boolean;
   isMeshCustomer: boolean;
   isFounderOrPartner: boolean;
+  isMeshInt?: boolean;
 
   address?: string;
   phone1?: string;

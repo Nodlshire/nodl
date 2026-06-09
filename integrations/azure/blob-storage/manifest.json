@@ -5,7 +5,7 @@
   "service": "blob-storage",
   "version": "1.0.0",
   "category": "Object Storage",
-  "description": "Massively scalable object storage for unstructured data. Blob lifecycle events route through Event Grid to Wnode endpoints, enabling decentralized data processing on sovereign compute.",
+  "description": "Massively scalable object storage for unstructured data. Blob lifecycle events route through Event Grid to Wnode endpoints, enabling decentralized data processing on sovereign compute. Workloads invoked via this integration run on Wnode's Tier 6 DECC/TEE secure enclaves.",
   "auth": {
     "type": "service-principal",
     "fields": [

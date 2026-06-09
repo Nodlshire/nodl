@@ -1,5 +1,10 @@
 # Azure Event Grid → Wnode Integration
 
+> [!IMPORTANT]
+> **DECC/TEE Sovereign Execution**
+> All workloads invoked via the Azure Event Grid integration are dynamically routed to Wnode's Tier 6 DECC/TEE instances (e.g. H100s). This guarantees that your proprietary data and AI inference payloads remain strictly confidential and are processed in hardware-backed secure enclaves.
+
+
 ## Overview
 
 Azure Event Grid is a fully managed event routing service. Wnode registers as an Event Grid webhook handler, receiving events from Azure services (Blob Storage, Resource Manager, custom topics) and processing them on decentralized, TEE-secured compute.

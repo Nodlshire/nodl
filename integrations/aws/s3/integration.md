@@ -1,5 +1,10 @@
 # AWS S3 → Wnode Integration
 
+> [!IMPORTANT]
+> **DECC/TEE Sovereign Execution**
+> All workloads invoked via the AWS S3 integration are dynamically routed to Wnode's Tier 6 DECC/TEE instances (e.g. H100s). This guarantees that your proprietary data and AI inference payloads remain strictly confidential and are processed in hardware-backed secure enclaves.
+
+
 ## Overview
 
 Amazon S3 is a scalable object storage service. This integration enables S3 event notifications (object created, deleted, restored) to trigger Wnode pipelines automatically. When a file lands in S3, Wnode receives the event, processes the object, and optionally writes results back to S3.

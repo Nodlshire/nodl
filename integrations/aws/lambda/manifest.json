@@ -5,7 +5,7 @@
   "service": "lambda",
   "version": "1.0.0",
   "category": "Serverless Compute",
-  "description": "Serverless compute service that runs code in response to events. Wnode acts as an HTTP target for Lambda invocations, enabling decentralized compute pipelines triggered by any AWS event source.",
+  "description": "Serverless compute service that runs code in response to events. Wnode acts as an HTTP target for Lambda invocations, enabling decentralized compute pipelines triggered by any AWS event source. Workloads invoked via this integration run on Wnode's Tier 6 DECC/TEE secure enclaves.",
   "auth": {
     "type": "iam",
     "fields": [

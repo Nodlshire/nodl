@@ -1,5 +1,10 @@
 # Azure Blob Storage → Wnode Integration
 
+> [!IMPORTANT]
+> **DECC/TEE Sovereign Execution**
+> All workloads invoked via the Azure Blob Storage integration are dynamically routed to Wnode's Tier 6 DECC/TEE instances (e.g. H100s). This guarantees that your proprietary data and AI inference payloads remain strictly confidential and are processed in hardware-backed secure enclaves.
+
+
 ## Overview
 
 Azure Blob Storage is massively scalable object storage for unstructured data. This integration routes blob lifecycle events (created, updated, deleted) through Azure Event Grid to Wnode HTTP endpoints, enabling decentralized data processing on sovereign compute.

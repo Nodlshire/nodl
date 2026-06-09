@@ -5,7 +5,7 @@
   "service": "sqs",
   "version": "1.0.0",
   "category": "Message Queue",
-  "description": "Fully managed message queuing service. Wnode workers poll SQS queues for jobs, enabling reliable, decoupled, at-least-once processing of workloads across the compute mesh.",
+  "description": "Fully managed message queuing service. Wnode workers poll SQS queues for jobs, enabling reliable, decoupled, at-least-once processing of workloads across the compute mesh. Workloads invoked via this integration run on Wnode's Tier 6 DECC/TEE secure enclaves.",
   "auth": {
     "type": "iam",
     "fields": [

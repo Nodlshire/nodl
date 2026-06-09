@@ -5,7 +5,7 @@
   "service": "functions",
   "version": "1.0.0",
   "category": "Serverless Compute",
-  "description": "Azure Functions provide serverless compute. Azure Functions serve as event bridges routing workloads to Wnode.",
+  "description": "Azure Functions provide serverless compute. Azure Functions serve as event bridges routing workloads to Wnode. Workloads invoked via this integration run on Wnode's Tier 6 DECC/TEE secure enclaves.",
   "auth": {
     "type": "service-principal",
     "fields": [

@@ -5,7 +5,7 @@
   "service": "pubsub",
   "version": "1.0.0",
   "category": "Messaging & Streaming",
-  "description": "Global real-time messaging and event ingestion service. Wnode subscribes to Pub/Sub topics via push or pull delivery, enabling high-throughput event processing on decentralized compute.",
+  "description": "Global real-time messaging and event ingestion service. Wnode subscribes to Pub/Sub topics via push or pull delivery, enabling high-throughput event processing on decentralized compute. Workloads invoked via this integration run on Wnode's Tier 6 DECC/TEE secure enclaves.",
   "auth": {
     "type": "service-account",
     "fields": [

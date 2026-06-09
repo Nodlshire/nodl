@@ -5,7 +5,7 @@
   "service": "cloud-run",
   "version": "1.0.0",
   "category": "Serverless Compute",
-  "description": "Cloud Run runs containerized apps. Wnode acts as a compute backend for Cloud Run services.",
+  "description": "Cloud Run runs containerized apps. Wnode acts as a compute backend for Cloud Run services. Workloads invoked via this integration run on Wnode's Tier 6 DECC/TEE secure enclaves.",
   "auth": {
     "type": "service-account",
     "fields": [

@@ -15,6 +15,7 @@ export default function LandingPage() {
     const [modalMode, setModalMode] = useState<ModalMode>("beta_tester");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [mounted, setMounted] = useState(false);
+    const [isBannerVisible, setIsBannerVisible] = useState(true);
 
     useEffect(() => {
         setMounted(true);
@@ -29,6 +30,28 @@ export default function LandingPage() {
     
     return (
         <AppLayout>
+            {isBannerVisible && (
+                <a 
+                    href="https://www.indiegogo.com/projects/wnode/wnode--the-community-owned-planetary-compute-mesh"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-[#eb1478] text-white py-2 px-4 flex justify-between items-center z-50 relative hover:bg-[#eb1478]/90 transition-colors cursor-pointer block"
+                >
+                    <div className="flex-1 text-center text-sm font-medium">
+                        Wnode is now live on Indiegogo — <span className="underline">support the campaign</span>
+                    </div>
+                    <button 
+                        onClick={(e) => {
+                            e.preventDefault();
+                            setIsBannerVisible(false);
+                        }} 
+                        className="text-white hover:text-white/80"
+                    >
+                        <span className="sr-only">Dismiss</span>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </a>
+            )}
             <div className="bg-black text-white selection:bg-blue-500/30">
                 <HeroSection onOpenModal={openModal} />
                 <WhatIsWnodeSection />

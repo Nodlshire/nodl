@@ -1491,6 +1491,7 @@ func (s *Store) CreateSession(wuid, domain string, role UserRole) string {
 		ExpiresAt: time.Now().Add(24 * time.Hour),
 		CreatedAt: time.Now(),
 	}
+	go s.SaveState()
 	return sessionID
 }
 

@@ -255,10 +255,10 @@ func (s *Server) registerRoutes() {
 	apiV1.Get("/pricing/alerts", s.requireAccess(account.RoleManagement, "command"), s.handleGetPricingAlerts)
 
 	// Account & Affiliates
-	apiV1.Get("/account/lookup", s.requireAccess(account.RoleVisitor, "nodlr", "mesh", "command"), s.handleLookupAccount)
-	apiV1.Post("/account/create", s.requireAccess(account.RoleVisitor, "nodlr", "mesh", "command"), s.handleCreateAccount)
-	apiV1.Get("/account/me", s.requireAccess(account.RoleVisitor, "nodlr", "mesh", "command"), s.handleGetMyAccount)
-	apiV1.Put("/me/profile", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleUpdateMyAccount)
+	apiV1.Get("/account/lookup", s.requireLevel(account.RoleVisitor), s.handleLookupAccount)
+	apiV1.Post("/account/create", s.requireLevel(account.RoleVisitor), s.handleCreateAccount)
+	apiV1.Get("/account/me", s.requireLevel(account.RoleVisitor), s.handleGetMyAccount)
+	apiV1.Put("/me/profile", s.requireLevel(account.RoleStandard), s.handleUpdateMyAccount)
 	apiV1.Get("/crm/account/me", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetCRMMe)
 	apiV1.Put("/crm/account/me", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleUpdateCRMMe)
 	apiV1.Get("/account/:id", s.requireAccess(account.RoleVisitor, "nodlr", "mesh", "command"), s.handleGetAccount)
@@ -266,7 +266,7 @@ func (s *Server) registerRoutes() {
 	apiV1.Post("/account/onboard", s.handleOnboardAccount)
 
 	// Auth Aliases for Frontend (Phase 4 MVP)
-	apiV1.Post("/auth/login", s.handleHealth) // MVP Mock
+	// apiV1.Post("/auth/login", s.handleHealth) // MVP Mock
 	apiV1.Post("/auth/signup", s.handleOnboardAccount)
 	apiV1.Post("/auth/magic-link", s.handleMagicLink)
 	apiV1.Post("/auth/verify", s.handleVerifyMagicLink)
@@ -284,11 +284,11 @@ func (s *Server) registerRoutes() {
 	apiV1.Get("/admin/governance/integrity", s.requireAccess(account.RoleOwner, "command"), s.handleGetIntegritySnapshot)
 	apiV1.Post("/admin/governance/partners/invite", s.requireAccess(account.RoleOwner, "command"), s.handleGeneratePartnerInvite)
 
-	apiV1.Post("/auth/debug-session", s.handleDebugSession)
+	// apiV1.Post("/auth/debug-session", s.handleDebugSession)
 	apiV1.Post("/auth/logout", s.handleLogout)
 	apiV1.Post("/auth/invite", s.handleInvite) // Internal/Test only
 	apiV1.Post("/auth/onboard", s.handleOnboardWithInvite)
-	apiV1.Post("/auth/login", s.handleHealth)
+	apiV1.Post("/auth/login", s.handleLogin)
 	apiV1.Get("/affiliates/tree/:id", s.requireAccess(account.RoleVisitor, "nodlr", "command"), s.handleGetAffiliateTree)
 	apiV1.Post("/affiliates/transfer", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleTransferAffiliate)
 	apiV1.Post("/affiliates/genesis/activate", s.requireAccess(account.RoleOwner, "command"), s.handleActivateFounder)

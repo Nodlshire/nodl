@@ -31,6 +31,7 @@ type AuthState struct {
 	IdentityLedger      []*IdentityLedgerEntry         `json:"identity_ledger,omitempty"`
 	Invite              *InviteState                   `json:"invite,omitempty"`
 	Founders            map[string]string              `json:"founders,omitempty"`
+	DomainSessions      map[string]*DomainSession     `json:"domain_sessions,omitempty"`
 }
 
 func (s *Store) SaveState() error {
@@ -85,6 +86,7 @@ func (s *Store) SaveState() error {
 		IdentityLedger:      s.identityLedger,
 		Invite:              s.inviteState,
 		Founders:            foundersMap,
+		DomainSessions:      s.domainSessions,
 	}
 
 	data, err := json.MarshalIndent(state, "", "  ")
@@ -225,6 +227,10 @@ func (s *Store) LoadState() error {
 				s.founders[i] = val
 			}
 		}
+	}
+
+	if state.DomainSessions != nil {
+		s.domainSessions = state.DomainSessions
 	}
 
 	// Migration Hook: Scrub "Test User" mock data from persistent state

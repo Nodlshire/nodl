@@ -41,7 +41,7 @@ export default function TrustSection({ onOpenModal }: TrustSectionProps) {
                         onClick={() => onOpenModal("investor")}
                         className="w-full sm:w-auto sm:min-w-[280px] bg-purple-600 hover:bg-purple-500 text-white text-lg font-bold px-10 py-5 rounded-none transition-all shadow-[0_0_40px_rgba(168,85,247,0.4)] uppercase tracking-widest"
                     >
-                        Join Node Waitlist
+                        JOIN WNODE WAITLIST
                     </button>
                 </div>
 

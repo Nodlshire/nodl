@@ -88,17 +88,17 @@ async function handleProxy(req: NextRequest, method: string, pathSegments: strin
     }
 }
 
-export async function GET(req: NextRequest, { params }: { params: Promise<{ path?: string[] }> }) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ path?: string[] }> }) {
     const p = await params;
     return handleProxy(req, 'GET', p.path || []);
 }
 
-export async function POST(req: NextRequest, { params }: { params: Promise<{ path?: string[] }> }) {
+export async function POST(request: NextRequest, { params }: { params: Promise<{ path?: string[] }> }) {
     const p = await params;
     return handleProxy(req, 'POST', p.path || []);
 }
 
-export async function PATCH(req: NextRequest, { params }: { params: Promise<{ path?: string[] }> }) {
+export async function PATCH(request: NextRequest, { params }: { params: Promise<{ path?: string[] }> }) {
     const p = await params;
     return handleProxy(req, 'PATCH', p.path || []);
 }

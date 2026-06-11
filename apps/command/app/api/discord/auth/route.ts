@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(request: NextRequest) {
+export async function GET(requestuest: NextRequest) {
   const clientId = process.env.DISCORD_CLIENT_ID;
   const redirectUri = encodeURIComponent(`${request.nextUrl.origin}/api/discord/auth/callback`);
   

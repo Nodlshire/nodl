@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { resolveIdentityHeaders } from '@/app/lib/identity';
 
-export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
     const WNODER_URL = process.env.WNODER_URL || 'http://localhost:8080';
     try {

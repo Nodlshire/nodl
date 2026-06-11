@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function POST(req: NextRequest, { params }: { params: Promise<{ path: string[] }> }) {
+export async function POST(request: NextRequest, { params }: { params: Promise<{ path: string[] }> }) {
     const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8081";
     const { path } = await params;
     const pathString = path.join('/');
@@ -36,7 +36,7 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ pat
     }
 }
 
-export async function GET(req: NextRequest, { params }: { params: Promise<{ path: string[] }> }) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ path: string[] }> }) {
     const { path } = await params;
     const pathString = path.join('/');
 

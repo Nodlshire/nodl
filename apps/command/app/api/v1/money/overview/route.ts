@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(req: NextRequest) {
+export async function GET(request: NextRequest) {
     const WNODER_URL = process.env.WNODER_URL || 'http://localhost:8080';
     const email = req.nextUrl.searchParams.get('email');
     

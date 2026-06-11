@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { resolveIdentityHeaders } from '@/app/lib/identity';
 
-export async function GET(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     const BACKEND_URL = process.env.NODLD_API_URL || 'http://127.0.0.1:8081';
     
     try {
@@ -29,7 +29,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
     }
 }
 
-export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     const BACKEND_URL = process.env.NODLD_API_URL || 'http://127.0.0.1:8081';
     
     try {

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-export async function GET(request: Request) {
+export async function GET(requestuest: Request) {
     const { searchParams } = new URL(request.url);
     const parent = searchParams.get('parent');
     

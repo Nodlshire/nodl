@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { resolveIdentityHeaders } from '@/app/lib/identity';
 
-export async function POST(req: NextRequest) {
+export async function POST(request: NextRequest) {
     const WNODER_URL = process.env.WNODER_URL || 'http://localhost:8080';
     try {
         const body = await req.json();

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { simulationState } from '../../../../../lib/simulationState';
 
-export async function GET(req: NextRequest) {
+export async function GET(request: NextRequest) {
     const cookieStore = await cookies();
     const isSimulated = cookieStore.get('simulation')?.value === '1';
     

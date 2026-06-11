@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 const COORDINATOR_URL = process.env.MESH_API_URL || process.env.NEXT_PUBLIC_COORDINATOR_URL || 'http://localhost:8081';
 
-export async function GET(request: Request) {
+export async function GET(requestuest: Request) {
     const authHeader = request.headers.get('Authorization');
     
     try {

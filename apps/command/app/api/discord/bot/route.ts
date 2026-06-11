@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
   try {
     const response = await fetch('https://discord.com/api/v10/users/@me', {
       headers: {
-                'Authorization': req.headers.get('authorization') || '',
+                'Authorization': request.headers.get('authorization') || '',
         Authorization: `Bot ${botToken}`,
       },
     });

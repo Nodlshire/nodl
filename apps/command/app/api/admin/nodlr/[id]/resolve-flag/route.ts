@@ -15,7 +15,7 @@ export async function POST(
             method: 'POST',
             cache: 'no-store',
             headers: {
-                'Authorization': req.headers.get('authorization') || '', 
+                'Authorization': request.headers.get('authorization') || '', 
                 'Content-Type': 'application/json',
                 'Accept': 'application/json' 
             },

@@ -8,7 +8,6 @@ export async function GET(request: Request) {
     try {
         const res = await fetch(`${COORDINATOR_URL}/stats`, {
             headers: {
-                'Authorization': req.headers.get('authorization') || '',
                 ...(authHeader ? { 'Authorization': authHeader } : {})
             },
             cache: 'no-store'

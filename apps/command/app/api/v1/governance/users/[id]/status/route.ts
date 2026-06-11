@@ -9,7 +9,6 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
         const res = await fetch(`${WNODER_URL}/api/v1/governance/users/${id}/status`, {
             method: 'PATCH',
             headers: {
-                'Authorization': req.headers.get('authorization') || '', 
                 'Content-Type': 'application/json',
                 ...resolveIdentityHeaders(req)
             },

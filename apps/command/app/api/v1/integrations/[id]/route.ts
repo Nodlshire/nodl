@@ -38,7 +38,6 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
         const res = await fetch(`${BACKEND_URL}/api/v1/integrations/${id}`, {
             method: 'PATCH',
             headers: {
-                'Authorization': req.headers.get('authorization') || '',
                 ...resolveIdentityHeaders(req),
                 'Content-Type': 'application/json'
             },

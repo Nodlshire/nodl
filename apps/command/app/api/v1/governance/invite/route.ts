@@ -8,7 +8,6 @@ export async function POST(req: NextRequest) {
         const res = await fetch(`${WNODER_URL}/api/v1/governance/invite`, {
             method: 'POST',
             headers: {
-                'Authorization': req.headers.get('authorization') || '', 
                 'Content-Type': 'application/json',
                 ...resolveIdentityHeaders(req)
             },

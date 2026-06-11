@@ -42,10 +42,9 @@ async function handleProxy(req: NextRequest, method: string, pathSegments: strin
         const res = await fetch(targetUrl, {
             method,
             headers: {
-                'Content-Type': req.headers.get('content-type') || 'application/json',
-                cookie: req.headers.get('cookie') ?? '',
-                'Authorization': req.headers.get('authorization') || '',
-            },
+                'Content-Type': request.headers.get('content-type') || 'application/json',
+                cookie: request.headers.get('cookie') ?? '',
+                },
             credentials: 'include',
             body: requestBody,
         });

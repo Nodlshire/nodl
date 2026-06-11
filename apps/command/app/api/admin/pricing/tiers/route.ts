@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
         const res = await fetch(`${apiUrl}/api/v1/meta/tiers`, {
             cache: 'no-store',
             headers: {
-                'Authorization': req.headers.get('authorization') || '', 'Accept': 'application/json' }
+                'Accept': 'application/json' }
         });
 
         if (!res.ok) {

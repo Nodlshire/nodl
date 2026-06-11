@@ -10,9 +10,8 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ pat
         const res = await fetch(`${apiUrl}/api/v1/auth/${pathString}`, {
             method: 'POST',
             headers: {
-                'Authorization': req.headers.get('authorization') || '',
                 'Content-Type': 'application/json',
-                cookie: req.headers.get('cookie') ?? '',
+                cookie: request.headers.get('cookie') ?? '',
             },
             credentials: 'include',
             body: JSON.stringify(body),

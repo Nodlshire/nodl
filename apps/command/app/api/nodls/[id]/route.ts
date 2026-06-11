@@ -22,7 +22,7 @@ export async function GET(
         const res = await fetch(`${apiUrl}/api/nodes/all`, {
             cache: 'no-store',
             headers: {
-                'Authorization': req.headers.get('authorization') || '', 'Accept': 'application/json' }
+                'Authorization': request.headers.get('authorization') || '', 'Accept': 'application/json' }
         });
 
         if (!res.ok) {

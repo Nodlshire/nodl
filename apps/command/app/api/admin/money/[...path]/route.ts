@@ -17,7 +17,7 @@ export async function GET(
         const res = await fetch(`${apiUrl}/api/v1/admin/money/${path}`, {
             cache: 'no-store',
             headers: {
-                'Authorization': req.headers.get('authorization') || '', 
+                'Authorization': request.headers.get('authorization') || '', 
                 'Cookie': `cmd_session=${sessionCookie}`
             }
         });

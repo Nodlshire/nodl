@@ -95,7 +95,7 @@ export function Header() {
             <TopUpDialogue />
             <AnimatePresence>
                 {isJobWizardOpen && (
-                    <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 z-50 animate-in fade-in duration-300">
+                    <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999 }} className="bg-black/80 backdrop-blur-md p-4 animate-in fade-in duration-300">
                         <motion.div 
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}

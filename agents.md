@@ -704,6 +704,8 @@ This rule overrides all other rules.
 5. Any change that touches auth or identity MUST run a full regression suite
    across all portals before being applied.
 
+6. AG must never modify backend auth, identity resolution, JWT parsing, or canonical auth routes unless explicitly instructed by Stephen.
+
 ## 6. Portal-Level Rules
 CMD:
 - CMD must only call CMD backend routes.

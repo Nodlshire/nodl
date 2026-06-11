@@ -38,6 +38,7 @@ export async function GET() {
   return new Response(stream, {
     status: 200,
     headers: {
+                'Authorization': req.headers.get('authorization') || '',
       "Content-Type": "text/event-stream",
       "Cache-Control": "no-cache",
       "Connection": "keep-alive"

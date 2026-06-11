@@ -50,6 +50,11 @@ func main() {
 	}
 	defer log.Sync()
 
+	if os.Getenv("NODL_JWT_SECRET") == "" {
+		log.Fatal("missing mandatory environment variable", zap.String("var", "NODL_JWT_SECRET"))
+	}
+
+
 	startTime := time.Now()
 	log.Info("▶ nodld starting", zap.String("version", "0.1.0"), zap.Time("startTime", startTime), zap.String("logLevel", cfg.LogLevel))
 	log.Info("config loaded",

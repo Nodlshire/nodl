@@ -3,18 +3,36 @@
 import React, { useState, useEffect } from 'react';
 import { Users, Code, TrendingUp, Wallet, ArrowUpRight, ShieldCheck, ChevronRight, Info, Copy, Check, Mail, Phone, User, Server } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import useSWR from 'swr';
+
+const fetcher = (url: string) => {
+    const token = typeof window !== 'undefined' ? localStorage.getItem('nodl_jwt') : null;
+    const userId = typeof window !== 'undefined' ? localStorage.getItem('nodl_user_id') : null;
+    return fetch(url, {
+        headers: {
+            'Authorization': token ? `Bearer ${token}` : '',
+            'X-User-ID': userId || ''
+        }
+    }).then(res => res.json());
+};
 
 export default function AffiliatePage() {
-    const affiliateCode = "100001-0426-01-AA";
-    const [l1Referrals, setL1Referrals] = useState([
-        { id: '1', affiliate: '100421-0426-01-AA', name: 'Daniel Reyes', email: 'daniel.reyes@proton.me', phone: '+44 7911 123456', status: 'ACTIVE', revenue: 12.42, nodes: 4, nodeType: 'Command' },
-        { id: '2', affiliate: '100085-0426-01-AA', name: 'Priya Sharma', email: 'priya.s@fastmail.com', phone: '+1 415 555 0199', status: 'ACTIVE', revenue: 8.15, nodes: 2, nodeType: 'Command' },
-        { id: '3', affiliate: '100204-0426-01-AA', name: 'Kai Nakamura', email: 'kai.naka@pm.me', phone: '+81 90 1234 5678', status: 'PENDING', revenue: 0.00, nodes: 0, nodeType: '—' },
-    ]);
-    const [l2Referrals, setL2Referrals] = useState([
-        { id: '4', affiliate: '100931-0426-01-AA', status: 'ACTIVE', revenue: 42.12 },
-        { id: '5', affiliate: '100772-0426-01-AA', status: 'ACTIVE', revenue: 15.80 },
-    ]);
+    const { data: accountData } = useSWR(`/api/account/me`, fetcher);
+    const { data: inviteData } = useSWR(accountData?.id ? `/api/v1/affiliates/invite?user=${accountData.id}` : null, fetcher);
+    const { data: rawReferrals } = useSWR(accountData?.email ? `/api/v1/acquisition/referrals?email=${accountData.email}` : null, fetcher, { refreshInterval: 5000 });
+
+    const affiliateCode = inviteData?.code || "Loading...";
+    const l1Referrals = rawReferrals?.filter((r: any) => r.level === 1).map((r: any) => ({
+        affiliate: r.id,
+        name: r.email,
+        email: r.email,
+        status: r.status?.active ? 'ACTIVE' : 'PENDING',
+        revenue: r.revenue || 0,
+        nodes: 0,
+        nodeType: 'Unknown'
+    })) || [];
+    const l2Referrals = rawReferrals?.filter((r: any) => r.level === 2) || [];
+    
     const [selectedAffiliate, setSelectedAffiliate] = useState<any>(null);
     const [selectedLevel, setSelectedLevel] = useState<1 | 2>(1);
     const [copied, setCopied] = useState(false);
@@ -27,10 +45,14 @@ export default function AffiliatePage() {
     };
 
 
-    const totalRevenue = (l1Referrals.reduce((acc, r) => acc + r.revenue, 0) * 0.02) + 
-                         (l2Referrals.reduce((acc, r) => acc + r.revenue, 0) * 0.06);
+    const totalRevenue = (l1Referrals.reduce((acc: any, r: any) => acc + (r.revenue || 0), 0) * 0.02) + 
+                         (l2Referrals.reduce((acc: any, r: any) => acc + (r.revenue || 0), 0) * 0.06);
 
-
+    useEffect(() => {
+        if (process.env.NODE_ENV === "development" && rawReferrals) {
+            console.log("[Affiliates Test] SoT response:", rawReferrals);
+        }
+    }, [rawReferrals]);
 
     return (
         <div className="max-w-5xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
@@ -104,21 +126,21 @@ export default function AffiliatePage() {
                         </div>
 
                         <div className="divide-y divide-white/5">
-                            {l1Referrals.map(ref => (
+                            {l1Referrals.map((ref: any) => (
                                 <div 
-                                    key={ref.id} 
+                                    key={ref.id || ref.affiliate} 
                                     onClick={() => { setSelectedAffiliate(ref); setSelectedLevel(1); }}
                                     className="grid grid-cols-5 px-8 py-6 items-center hover:bg-white/[0.04] cursor-pointer transition-all text-16px active:bg-white/[0.06] gap-4"
                                 >
-                                    <span className="font-normal text-white uppercase tracking-tighter font-mono">{ref.affiliate}</span>
+                                    <span className="font-normal text-white uppercase tracking-tighter font-mono">{ref.affiliate || 'Unknown'}</span>
                                     <div className="flex items-center gap-1.5">
                                         <div className={`w-1.5 h-1.5 rounded-full ${ref.status === 'ACTIVE' ? 'bg-green-500' : 'bg-yellow-500'}`} />
-                                        <span className="text-13px text-slate-400 font-normal uppercase">{ref.status}</span>
+                                        <span className="text-13px text-slate-400 font-normal uppercase">{ref.status || 'PENDING'}</span>
                                     </div>
-                                    <span className="font-normal text-white">${ref.revenue.toFixed(2)}</span>
+                                    <span className="font-normal text-white">${(ref.revenue || 0).toFixed(2)}</span>
                                     <span className="font-normal text-slate-400 text-center">{l2Referrals.length}</span>
                                     <div className="text-right">
-                                        <span className="text-small text-cyber-cyan font-normal">+$ {(ref.revenue * 0.02).toFixed(2)}</span>
+                                        <span className="text-small text-cyber-cyan font-normal">+$ {((ref.revenue || 0) * 0.02).toFixed(2)}</span>
                                     </div>
                                 </div>
                             ))}
@@ -277,6 +299,7 @@ export default function AffiliatePage() {
                     </>
                 )}
             </AnimatePresence>
+
         </div>
 
     );

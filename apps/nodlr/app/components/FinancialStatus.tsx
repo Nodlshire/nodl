@@ -5,7 +5,12 @@ import { ShieldCheck, RefreshCw, AlertCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import useSWR from 'swr';
 
-const fetcher = (url: string) => fetch(url).then(res => res.json());
+const fetcher = (url: string) => {
+    const jwt = typeof window !== 'undefined' ? localStorage.getItem('nodl_jwt') : null;
+    const headers: HeadersInit = {};
+    if (jwt) headers['Authorization'] = `Bearer ${jwt}`;
+    return fetch(url, { headers, credentials: 'include' }).then(res => res.json());
+};
 
 export default function FinancialStatus() {
     const apiBase = '';

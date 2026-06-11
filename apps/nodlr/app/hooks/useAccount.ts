@@ -24,7 +24,12 @@ export function useAccount() {
     useEffect(() => {
         const fetchAccount = async () => {
             try {
-                const res = await fetch('/api/account/me');
+                const jwt = typeof window !== "undefined" ? localStorage.getItem("nodl_jwt") : null;
+                const headers: HeadersInit = {};
+                if (jwt) {
+                    headers['Authorization'] = `Bearer ${jwt}`;
+                }
+                const res = await fetch('/api/account/me', { headers });
 
                 if (res.ok) {
                     const data = await res.json();

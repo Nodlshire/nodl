@@ -3,7 +3,7 @@ const http = require('http');
 async function testLogin() {
     console.log("Starting test...");
     try {
-        const res = await fetch('http://localhost:3002/api/auth/debug-session', {
+        const res = await fetch('http://localhost:3002/api/auth/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: 'stephen@wnode.one', password: 'command', domain: 'nodlr' })

@@ -24,10 +24,10 @@ type DebugSessionResponse struct {
 	Error     string `json:"error,omitempty"`
 }
 
-// Authenticate attempts to log in against the CMD API debug-session endpoint.
+// Authenticate attempts to log in against the CMD API login endpoint.
 // It stores the resulting session token in the local state.
 func Authenticate(apiBase, email, password string, state *platform.State) error {
-	url := fmt.Sprintf("%s/api/cmd/auth/debug-session", strings.TrimRight(apiBase, "/"))
+	url := fmt.Sprintf("%s/api/cmd/auth/login", strings.TrimRight(apiBase, "/"))
 
 	reqBody := DebugSessionRequest{
 		Email:    email,
@@ -77,7 +77,7 @@ func Authenticate(apiBase, email, password string, state *platform.State) error 
 		return fmt.Errorf("server did not return a session_id")
 	}
 
-	// For debug-session, the operator ID isn't returned directly in the response body.
+	// For login, the operator ID isn't returned directly in the response body.
 	// But it returns a cookie. The session ID is the UUID.
 	state.SessionToken = successResp.SessionID
 	state.AuthenticatedAt = time.Now().UTC().Format(time.RFC3339)

@@ -30,14 +30,7 @@ export default function LoginPage() {
                 password: normalizedPassword,
                 domain: 'command' 
             };
-            console.log('[DEBUG-SESSION-REQ]', {
-                url: '/api/auth/debug-session',
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: body
-            });
-
-            const res = await fetch('/api/auth/debug-session', {
+            const res = await fetch('/api/auth/login', {
                 method: 'POST',
                 credentials: 'include',
                 headers: { 'Content-Type': 'application/json' },
@@ -45,15 +38,13 @@ export default function LoginPage() {
             });
 
             const data = await res.json();
-            console.log('[DEBUG-SESSION-RES]', {
-                status: res.status,
-                ok: res.ok,
-                data: data
-            });
 
             if (res.ok) {
                 if (data) {
                     localStorage.setItem("nodl_user", JSON.stringify(data.user || data));
+                    if (data.token) localStorage.setItem("nodl_jwt", data.token);
+                    const uid = data.user_id || data.id || data.session_id;
+                    if (uid) localStorage.setItem("nodl_user_id", uid);
                 }
                 router.push('/');
                 return;

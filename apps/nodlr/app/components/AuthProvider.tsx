@@ -41,7 +41,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // 2. Call /api/account/me in background
         const fetchSession = async () => {
             try {
-                const res = await fetch('/api/account/me', { credentials: 'include' });
+                const jwt = typeof window !== 'undefined' ? localStorage.getItem('nodl_jwt') : null;
+                const headers: HeadersInit = {};
+                if (jwt) {
+                    headers['Authorization'] = `Bearer ${jwt}`;
+                }
+                const res = await fetch('/api/account/me', { headers, credentials: 'include' });
                 if (res.ok) {
                     const data = await res.json();
                     data.id = data.id || data.ID || data.wuid || data.WnodeID;

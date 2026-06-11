@@ -32,9 +32,11 @@ export default function DashboardPage() {
     
     const apiBase = '';
     const { data: accountData } = useSWR(`/api/account/me`, fetcher);
-    const { data: earningsData } = useSWR(`/api/v1/earnings`, fetcher, { refreshInterval: 5000 });
-    const { data: affiliatesData } = useSWR(`/api/v1/affiliates`, fetcher, { refreshInterval: 5000 });
+    const { data: moneyOverview } = useSWR(`/api/v1/money/overview`, fetcher, { refreshInterval: 5000 });
+    const { data: affiliatesTree } = useSWR(`/api/v1/affiliates/tree`, fetcher, { refreshInterval: 5000 });
     const { data: rankData } = useSWR(`/api/v1/rank`, fetcher, { refreshInterval: 5000 });
+    const { data: nodesSummary } = useSWR(`/api/v1/nodes/summary`, fetcher, { refreshInterval: 5000 });
+    const { data: impactData } = useSWR(`/api/v1/impact`, fetcher, { refreshInterval: 5000 });
 
     const [showWizard, setShowWizard] = useState(false);
     const [hasSkipped, setHasSkipped] = useState(false);
@@ -46,8 +48,8 @@ export default function DashboardPage() {
     const activeNodes = nodes?.filter((n: any) => n.status?.toLowerCase() === 'active') || [];
     const inactiveNodes = nodes?.filter((n: any) => n.status?.toLowerCase() !== 'active') || [];
 
-    const totalEarnings = earningsData?.totalEarnings ?? 0;
-    const affiliateRevenue = affiliatesData?.affiliateRevenue ?? 0;
+    const totalEarnings = moneyOverview?.balance ?? 0;
+    const affiliateRevenue = affiliatesTree?.summary?.totalRevenue ?? 0;
     const globalRank = rankData?.globalRank ?? 0;
 
     useEffect(() => {
@@ -63,14 +65,10 @@ export default function DashboardPage() {
     }, [accountData]);
 
     useEffect(() => {
-        const updateCarbon = () => {
-            const val = Number(localStorage.getItem('carbonSaved') || 0);
-            setCarbonSaved(val);
-        };
-        updateCarbon();
-        window.addEventListener('mesh_carbon_updated', updateCarbon);
-        return () => window.removeEventListener('mesh_carbon_updated', updateCarbon);
-    }, []);
+        if (impactData?.carbonSaved) {
+            setCarbonSaved(impactData.carbonSaved);
+        }
+    }, [impactData]);
 
     useEffect(() => {
         let interval: any;
@@ -81,12 +79,7 @@ export default function DashboardPage() {
                     gpu: Math.min(98, prev.gpu + Math.random() * 8),
                     ram: Math.min(64, prev.ram + Math.random() * 2)
                 }));
-                // Real-time carbon savings calculator increment:
-                // Let's add 0.00025 kg CO2 every second during active node work!
-                const current = Number(localStorage.getItem('carbonSaved') || 0);
-                const next = current + 0.00025;
-                localStorage.setItem('carbonSaved', next.toString());
-                window.dispatchEvent(new Event('mesh_carbon_updated'));
+                // Removed local simulation for SoT derived metrics
             }, 1000);
         } else {
             interval = setInterval(() => {
@@ -197,10 +190,10 @@ export default function DashboardPage() {
                         </div>
                         <div className="space-y-4">
                             {[
-                                { label: 'CPU Cores', value: '112 Cores' },
-                                { label: 'VRAM Pool', value: '128GB' },
-                                { label: 'System RAM', value: '512GB' },
-                                { label: 'Network', value: '10 Gbps' }
+                                { label: 'CPU Cores', value: nodesSummary?.totalCores ? `${nodesSummary.totalCores} Cores` : '0 Cores' },
+                                { label: 'VRAM Pool', value: nodesSummary?.totalVram ? `${nodesSummary.totalVram}GB` : '0GB' },
+                                { label: 'System RAM', value: nodesSummary?.totalRam ? `${nodesSummary.totalRam}GB` : '0GB' },
+                                { label: 'Network', value: nodesSummary?.totalNetwork ? `${nodesSummary.totalNetwork} Gbps` : '0 Gbps' }
                             ].map(stat => (
                                 <div key={stat.label} className="flex justify-between items-center">
                                     <span className="text-[11px] text-slate-500 uppercase tracking-tight font-normal">{stat.label}</span>
@@ -210,6 +203,10 @@ export default function DashboardPage() {
                         </div>
                     </div>
 
+                    <div className="p-4 mt-8 bg-black border border-white/10 font-mono text-xs text-slate-400 break-words">
+                        <p className="text-cyber-cyan font-bold mb-2">[Impact Test] SoT response:</p>
+                        <pre className="whitespace-pre-wrap">{JSON.stringify(impactData, null, 2) || 'Loading...'}</pre>
+                    </div>
 
                 </div>
             </div>

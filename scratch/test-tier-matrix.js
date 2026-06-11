@@ -3,7 +3,7 @@ const fs = require('fs');
 async function run() {
     try {
         console.log('1. Logging in...');
-        const loginRes = await fetch('http://localhost:3001/api/auth/debug-session', {
+        const loginRes = await fetch('http://localhost:3001/api/auth/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: 'stephen@wnode.one', password: 'command', domain: 'command' })

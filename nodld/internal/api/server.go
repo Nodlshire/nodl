@@ -17,7 +17,9 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/recover"
+	"github.com/golang-jwt/jwt/v5"
 	"go.uber.org/zap"
+
 
 	"github.com/obregan/nodl/nodld/internal/jobs"
 	"github.com/obregan/nodl/nodld/internal/p2p"
@@ -255,10 +257,10 @@ func (s *Server) registerRoutes() {
 	apiV1.Get("/pricing/alerts", s.requireAccess(account.RoleManagement, "command"), s.handleGetPricingAlerts)
 
 	// Account & Affiliates
-	apiV1.Get("/account/lookup", s.requireLevel(account.RoleVisitor), s.handleLookupAccount)
-	apiV1.Post("/account/create", s.requireLevel(account.RoleVisitor), s.handleCreateAccount)
-	apiV1.Get("/account/me", s.requireLevel(account.RoleVisitor), s.handleGetMyAccount)
-	apiV1.Put("/me/profile", s.requireLevel(account.RoleStandard), s.handleUpdateMyAccount)
+	apiV1.Get("/account/lookup", s.requireAccess(account.RoleVisitor), s.handleLookupAccount)
+	apiV1.Post("/account/create", s.requireAccess(account.RoleVisitor), s.handleCreateAccount)
+	apiV1.Get("/account/me", s.requireAccess(account.RoleVisitor), s.handleGetMyAccount)
+	apiV1.Put("/me/profile", s.requireAccess(account.RoleStandard), s.handleUpdateMyAccount)
 	apiV1.Get("/crm/account/me", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetCRMMe)
 	apiV1.Put("/crm/account/me", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleUpdateCRMMe)
 	apiV1.Get("/account/:id", s.requireAccess(account.RoleVisitor, "nodlr", "mesh", "command"), s.handleGetAccount)
@@ -270,6 +272,11 @@ func (s *Server) registerRoutes() {
 	apiV1.Post("/auth/signup", s.handleOnboardAccount)
 	apiV1.Post("/auth/magic-link", s.handleMagicLink)
 	apiV1.Post("/auth/verify", s.handleVerifyMagicLink)
+
+	// Discord Integration
+	apiV1.Get("/auth/discord/login", s.handleDiscordLogin)
+	apiV1.Get("/auth/discord/callback", s.handleDiscordCallback)
+	apiV1.Get("/governance/discord/status", s.handleGetDiscordStatus)
 	
 	// Phase 8 & 9: CMD Invites
 	apiV1.Get("/admin/founder/slots", s.requireAccess(account.RoleManagement, "command"), s.handleGetFounderSlots)
@@ -936,6 +943,10 @@ func (s *Server) handleVerifyMagicLink(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "account not found"})
 	}
 
+	acc.Status.Active = true
+	acc.Status.Verification = "verified"
+	s.accountStore.SaveState()
+
 	sessionID := s.accountStore.CreateSession(acc.ID, mt.Domain, acc.Role)
 	
 	cookieName := ""
@@ -1205,6 +1216,35 @@ func (s *Server) resolveIdentity(c *fiber.Ctx) (string, string, string) {
 	}
 	if uid := c.Get("X-User-ID"); uid != "" {
 		return uid, c.Get("X-User-Role", "visitor"), "api"
+	}
+
+	// 3. Fallback: JWT / Bearer Token from Authorization header
+	authHeader := c.Get("Authorization")
+	if len(authHeader) > 7 && authHeader[:7] == "Bearer " {
+		tokenString := authHeader[7:]
+		
+		secret := os.Getenv("NODL_JWT_SECRET")
+		if secret == "" {
+			secret = "fallback-secret"
+		}
+		
+		token, _ := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+			if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+				return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
+			}
+			return []byte(secret), nil
+		})
+		
+		if token != nil && token.Valid {
+			if claims, ok := token.Claims.(jwt.MapClaims); ok {
+				if sid, ok := claims["session_id"].(string); ok {
+					// Verify session is still valid in state
+					if sess, valid := s.accountStore.GetSession(sid); valid {
+						return sess.WUID, string(sess.Role), sess.Domain
+					}
+				}
+			}
+		}
 	}
 
 	return "", "", ""
@@ -1944,6 +1984,69 @@ func (s *Server) handleDebugSession(c *fiber.Ctx) error {
 	})
 
 	return c.JSON(fiber.Map{"status": "success", "session_id": sessionID})
+}
+
+func (s *Server) handleLogin(c *fiber.Ctx) error {
+	var req struct {
+		Email    string `json:"email"`
+		Password string `json:"password"`
+		Domain   string `json:"domain"`
+	}
+	if err := c.BodyParser(&req); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid request"})
+	}
+
+	normalizedEmail := strings.ToLower(strings.TrimSpace(req.Email))
+	acc, ok := s.accountStore.GetNodlrByEmail(normalizedEmail)
+	if !ok {
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "invalid credentials"})
+	}
+
+	// Verify password
+	if acc.Password != "" && req.Password != acc.Password {
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "invalid credentials"})
+	}
+
+	domain := req.Domain
+	if domain == "" {
+		domain = "nodlr"
+	}
+
+	sessionJWT := s.accountStore.CreateSession(acc.ID, domain, acc.Role)
+
+	cookieName := "cmd_session"
+	if domain == "nodlr" {
+		cookieName = "nodlr_session"
+	} else if domain == "mesh" {
+		cookieName = "mesh_session"
+	}
+
+	secureFlag := true
+	domainFlag := "wnode.one"
+	sameSiteFlag := "None"
+
+	if os.Getenv("DEVELOPMENT_MODE") == "true" {
+		secureFlag = false
+		domainFlag = ""
+		sameSiteFlag = "Lax"
+	}
+
+	c.Cookie(&fiber.Cookie{
+		Name:     cookieName,
+		Value:    sessionJWT,
+		Expires:  time.Now().Add(24 * time.Hour),
+		HTTPOnly: true,
+		Secure:   secureFlag,
+		SameSite: sameSiteFlag,
+		Domain:   domainFlag,
+		Path:     "/",
+	})
+
+	return c.JSON(fiber.Map{
+		"status":     "success",
+		"session_id": sessionJWT,
+		"token":      sessionJWT,
+	})
 }
 
 func (s *Server) handleLogout(c *fiber.Ctx) error {

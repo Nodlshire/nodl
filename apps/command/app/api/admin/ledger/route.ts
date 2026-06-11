@@ -1,8 +1,8 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { simulationState } from '../../../../lib/simulationState';
 
-export async function GET() {
+export async function GET(req: NextRequest) {
     const cookieStore = await cookies();
     const isSimulated = cookieStore.get('simulation')?.value === '1';
     
@@ -26,7 +26,8 @@ export async function GET() {
     try {
         const res = await fetch(`${apiUrl}/api/admin/ledger`, {
             cache: 'no-store',
-            headers: { 'Accept': 'application/json' }
+            headers: {
+                'Authorization': req.headers.get('authorization') || '', 'Accept': 'application/json' }
         });
 
         if (!res.ok) {

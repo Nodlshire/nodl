@@ -14,7 +14,8 @@ export async function POST(
         const backendRes = await fetch(`${apiUrl}/api/admin/resolve-flag`, {
             method: 'POST',
             cache: 'no-store',
-            headers: { 
+            headers: {
+                'Authorization': req.headers.get('authorization') || '', 
                 'Content-Type': 'application/json',
                 'Accept': 'application/json' 
             },

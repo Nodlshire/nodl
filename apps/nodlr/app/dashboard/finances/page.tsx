@@ -4,6 +4,18 @@ import React, { useState } from 'react';
 import { DollarSign, ArrowUpRight, ArrowDownRight, CreditCard, Building, History, Download, Plus, X, Shield } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import FinancialStatus from '../../components/FinancialStatus';
+import useSWR from 'swr';
+
+const fetcher = (url: string) => {
+    const token = typeof window !== 'undefined' ? localStorage.getItem('nodl_jwt') : null;
+    const userId = typeof window !== 'undefined' ? localStorage.getItem('nodl_user_id') : null;
+    return fetch(url, {
+        headers: {
+            'Authorization': token ? `Bearer ${token}` : '',
+            'X-User-ID': userId || ''
+        }
+    }).then(res => res.json());
+};
 
 const REVENUE_STREAMS = [
     { source: 'Hardware Yield', amount: '$482.10', change: '+12.4%', trend: 'up' },
@@ -54,7 +66,16 @@ const SUMMARY_LEDGER = [
 ];
 
 export default function FinancesPage() {
-    const [selectedTimeframe, setSelectedTimeframe] = useState<typeof SUMMARY_LEDGER[0] | null>(null);
+    const { data: moneyOverview } = useSWR(`/api/v1/money/overview`, fetcher, { refreshInterval: 5000 });
+    const { data: transactions } = useSWR(`/api/v1/money/transactions`, fetcher, { refreshInterval: 5000 });
+    const [selectedTimeframe, setSelectedTimeframe] = useState<any>(null);
+
+    const revenueStreams = moneyOverview?.revenueStreams || [
+        { source: 'Hardware Yield', amount: '$0.00', change: '0%', trend: 'up' },
+        { source: 'Affiliate Earnings', amount: '$0.00', change: '0%', trend: 'up' },
+    ];
+    
+    const summaryLedger = transactions?.slice(0, 4) || [];
 
     return (
         <div className="max-w-6xl mx-auto space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
@@ -74,7 +95,7 @@ export default function FinancesPage() {
 
             {/* Snapshots - Balanced Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                {REVENUE_STREAMS.map((stream) => (
+                {revenueStreams.map((stream: any) => (
                     <div key={stream.source} className="surface-card p-8 space-y-4 rounded-[5px]">
                         <span className="text-16px text-slate-500 font-normal">{stream.source}</span>
                         <div className="flex items-baseline justify-between">
@@ -172,17 +193,17 @@ export default function FinancesPage() {
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-white/5">
-                                    {SUMMARY_LEDGER.map((row) => (
+                                    {summaryLedger.map((row: any, i: number) => (
                                         <tr 
-                                            key={row.timeframe} 
+                                            key={row.timeframe || i} 
                                             className="group hover:bg-white/[0.04] transition-colors cursor-pointer"
                                             onClick={() => setSelectedTimeframe(row)}
                                         >
-                                            <td className="px-8 py-6 text-slate-400 font-mono italic">{row.timeframe}</td>
-                                            <td className="px-8 py-6 text-right text-white font-bold font-mono">{row.total}</td>
+                                            <td className="px-8 py-6 text-slate-400 font-mono italic">{row.timeframe || 'Unknown'}</td>
+                                            <td className="px-8 py-6 text-right text-white font-bold font-mono">{row.total || '$0.00'}</td>
                                             <td className="px-8 py-6 text-right">
                                                 <span className={`text-[12px] px-3 py-1.5 rounded-[3px] border font-bold uppercase tracking-widest ${row.status === 'Settled' ? 'border-green-500/20 text-green-500 bg-green-500/5' : 'border-yellow-500/20 text-yellow-500 bg-yellow-500/5'}`}>
-                                                    {row.status}
+                                                    {row.status || 'Pending'}
                                                 </span>
                                             </td>
                                         </tr>
@@ -264,6 +285,16 @@ export default function FinancesPage() {
                     </>
                 )}
             </AnimatePresence>
+
+            <div className="p-4 mt-8 bg-black border border-white/10 font-mono text-xs text-slate-400 break-words">
+                <p className="text-cyber-cyan font-bold mb-2">[Finances Test] SoT response (Overview):</p>
+                <pre className="whitespace-pre-wrap">{JSON.stringify(moneyOverview, null, 2) || 'Loading...'}</pre>
+            </div>
+            <div className="p-4 mt-4 bg-black border border-white/10 font-mono text-xs text-slate-400 break-words">
+                <p className="text-cyber-cyan font-bold mb-2">[Finances Test] SoT response (Transactions):</p>
+                <pre className="whitespace-pre-wrap">{JSON.stringify(transactions, null, 2) || 'Loading...'}</pre>
+            </div>
+
         </div>
     );
 }

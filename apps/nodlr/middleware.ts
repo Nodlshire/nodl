@@ -3,6 +3,9 @@ import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
   const session = request.cookies.get('nodlr_session')?.value;
+  const authHeader = request.headers.get('Authorization') || request.headers.get('authorization');
+  const hasAuthToken = authHeader && authHeader.toLowerCase().startsWith('bearer ');
+  
   const isAuthPage = request.nextUrl.pathname.startsWith('/auth') || request.nextUrl.pathname === '/login';
   const isApiPage = request.nextUrl.pathname.startsWith('/api');
 
@@ -12,8 +15,8 @@ export function middleware(request: NextRequest) {
                        request.nextUrl.pathname.endsWith('.png') ||
                        request.nextUrl.pathname.endsWith('.svg');
 
-  // If no session and trying to access protected page
-  if (!session && !isAuthPage && !isPublicFile) {
+  // If no session and no auth token and trying to access protected page
+  if (!session && !hasAuthToken && !isAuthPage && !isPublicFile) {
     if (isApiPage) {
       // Allow the identity and auth endpoints to be handled by the proxy/handler
       if (request.nextUrl.pathname === '/api/account/me' || request.nextUrl.pathname.startsWith('/api/auth')) {

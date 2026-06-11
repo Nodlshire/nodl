@@ -1,6 +1,9 @@
 package money
 
-import "time"
+import (
+	"time"
+	"github.com/obregan/nodl/nodld/internal/account"
+)
 
 // MoneyOverview is the top-level aggregation of financial data for the Command layer.
 type MoneyOverview struct {
@@ -11,6 +14,15 @@ type MoneyOverview struct {
 	TreasurySimulation TreasurySimulationView `json:"treasury_simulation"`
 	Alerts             FinancialAlertsView    `json:"alerts"`
 	Integrity          IntegritySnapshot      `json:"integrity"`
+	RevenueStreams     []RevenueStream        `json:"revenueStreams"`
+	Opportunity        *account.OpportunityAudit `json:"opportunity,omitempty"`
+}
+
+type RevenueStream struct {
+	Source string `json:"source"`
+	Amount string `json:"amount"`
+	Change string `json:"change"`
+	Trend  string `json:"trend"`
 }
 
 // OperatorMoneyView provides a read-only perspective on an operator's earnings.

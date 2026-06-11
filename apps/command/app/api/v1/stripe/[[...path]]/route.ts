@@ -25,6 +25,7 @@ async function handleProxy(req: NextRequest, method: string, pathSegments: strin
             headers: {
                 'Content-Type': req.headers.get('content-type') || 'application/json',
                 cookie: req.headers.get('cookie') ?? '',
+                'Authorization': req.headers.get('authorization') || '',
             },
             credentials: 'include',
             body: requestBody,

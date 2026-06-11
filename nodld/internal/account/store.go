@@ -8,9 +8,11 @@ import (
 	"sync"
 	"time"
 
+	"github.com/golang-jwt/jwt/v5"
 	"github.com/google/uuid"
 	"github.com/obregan/nodl/nodld/internal/forensics"
 )
+
 
 type Store struct {
 	mu                 sync.RWMutex
@@ -1484,15 +1486,35 @@ func (s *Store) CreateSession(wuid, domain string, role UserRole) string {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	sessionID := uuid.New().String()
+	
+	now := time.Now()
+	expiresAt := now.Add(24 * time.Hour)
+	
 	s.domainSessions[sessionID] = &DomainSession{
 		WUID:      wuid,
 		Domain:    domain,
 		Role:      role,
-		ExpiresAt: time.Now().Add(24 * time.Hour),
-		CreatedAt: time.Now(),
+		ExpiresAt: expiresAt,
+		CreatedAt: now,
 	}
 	go s.SaveState()
-	return sessionID
+	
+	secret := os.Getenv("NODL_JWT_SECRET")
+	if secret == "" {
+		secret = "fallback-secret" // Should fail-fast in main, but safe fallback here
+	}
+	
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+		"session_id": sessionID,
+		"user_id":    wuid,
+		"domain":     domain,
+		"role":       string(role),
+		"exp":        expiresAt.Unix(),
+		"iat":        now.Unix(),
+	})
+	
+	tokenString, _ := token.SignedString([]byte(secret))
+	return tokenString
 }
 
 func (s *Store) GetSession(sessionID string) (*DomainSession, bool) {

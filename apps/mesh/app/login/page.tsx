@@ -29,7 +29,7 @@ export default function LoginPage() {
         const normalizedPassword = password.trim();
 
         try {
-            const res = await fetch('/api/auth/debug-session', {
+            const res = await fetch('/api/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
@@ -45,14 +45,17 @@ export default function LoginPage() {
                 return;
             }
 
+            const data = await res.json();
             if (res.ok) {
                 console.log('[Mesh Auth Debug] Session established');
                 localStorage.removeItem('nodl_auth_bypass');
                 localStorage.setItem('nodl_user_email', normalizedEmail);
+                if (data.token) localStorage.setItem('nodl_jwt', data.token);
+                const uid = data.user_id || data.session_id || data.id;
+                if (uid) localStorage.setItem('nodl_user_id', uid);
                 window.location.href = '/dashboard';
                 return;
             } else {
-                const data = await res.json();
                 setError(data.error || 'Invalid credentials.');
             }
         } catch (e) {

@@ -14,6 +14,7 @@ export async function GET(
   try {
     const response = await fetch(`https://discord.com/api/v10/guilds/${guildId}/channels`, {
       headers: {
+                'Authorization': req.headers.get('authorization') || '',
         Authorization: `Bot ${botToken}`,
       },
     });

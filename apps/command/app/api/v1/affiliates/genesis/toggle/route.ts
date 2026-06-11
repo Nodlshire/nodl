@@ -8,7 +8,8 @@ export async function POST(req: NextRequest) {
         const body = await req.json();
         const res = await fetch(`${WNODER_URL}/affiliates/genesis/toggle`, {
             method: 'POST',
-            headers: { 
+            headers: {
+                'Authorization': req.headers.get('authorization') || '', 
                 'Content-Type': 'application/json',
                 ...resolveIdentityHeaders(req)
             },

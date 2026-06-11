@@ -36,13 +36,141 @@
         "MESH"
       ],
       "createdAt": "2026-05-30T14:10:31.801214033+02:00"
+    },
+    "100002-0426-02-AA": {
+      "id": "100002-0426-02-AA",
+      "email": "newuser2@example.com",
+      "meshClientId": "M0-000001-0626",
+      "stripeConnectId": "",
+      "stripeAccountId": "",
+      "founderStripeAccountId": null,
+      "nodlrStripeAccountId": null,
+      "role": "",
+      "payoutStatus": "incomplete",
+      "payoutsEnabled": false,
+      "verificationStatus": "",
+      "integrityScore": 600,
+      "isFrozen": false,
+      "accruedFounderBalance": 0,
+      "walletBalance": 0,
+      "pendingBalanceCents": 0,
+      "escrowBalanceCents": 0,
+      "isFounder": false,
+      "payoutFrequency": "daily",
+      "parentId": "100001-0426-01-AA",
+      "status": {
+        "active": false,
+        "verification": ""
+      },
+      "isProtected": false,
+      "isSuperAdmin": false,
+      "onboardingComplete": false,
+      "verified": false,
+      "labels": null,
+      "createdAt": "2026-06-10T09:37:37.025459662+02:00"
+    },
+    "100003-0426-03-AA": {
+      "id": "100003-0426-03-AA",
+      "email": "invitee_test@example.com",
+      "meshClientId": "M0-000002-0626",
+      "stripeConnectId": "",
+      "stripeAccountId": "",
+      "founderStripeAccountId": null,
+      "nodlrStripeAccountId": null,
+      "role": "",
+      "payoutStatus": "incomplete",
+      "payoutsEnabled": false,
+      "verificationStatus": "",
+      "integrityScore": 600,
+      "isFrozen": false,
+      "accruedFounderBalance": 0,
+      "walletBalance": 0,
+      "pendingBalanceCents": 0,
+      "escrowBalanceCents": 0,
+      "isFounder": false,
+      "payoutFrequency": "daily",
+      "parentId": "100001-0426-01-AA",
+      "status": {
+        "active": false,
+        "verification": ""
+      },
+      "isProtected": false,
+      "isSuperAdmin": false,
+      "onboardingComplete": false,
+      "verified": false,
+      "labels": null,
+      "createdAt": "2026-06-10T09:41:01.966974303+02:00"
+    },
+    "100004-0426-04-AA": {
+      "id": "100004-0426-04-AA",
+      "email": "invitee_test2@example.com",
+      "meshClientId": "M0-000003-0626",
+      "stripeConnectId": "",
+      "stripeAccountId": "",
+      "founderStripeAccountId": null,
+      "nodlrStripeAccountId": null,
+      "role": "",
+      "payoutStatus": "incomplete",
+      "payoutsEnabled": false,
+      "verificationStatus": "",
+      "integrityScore": 600,
+      "isFrozen": false,
+      "accruedFounderBalance": 0,
+      "walletBalance": 0,
+      "pendingBalanceCents": 0,
+      "escrowBalanceCents": 0,
+      "isFounder": false,
+      "payoutFrequency": "daily",
+      "parentId": "100001-0426-01-AA",
+      "status": {
+        "active": false,
+        "verification": ""
+      },
+      "isProtected": false,
+      "isSuperAdmin": false,
+      "onboardingComplete": false,
+      "verified": false,
+      "labels": null,
+      "createdAt": "2026-06-10T09:47:47.113334675+02:00"
+    },
+    "100005-0426-05-AA": {
+      "id": "100005-0426-05-AA",
+      "email": "test-verify2@wnode.one",
+      "meshClientId": "M0-000004-0626",
+      "stripeConnectId": "",
+      "stripeAccountId": "",
+      "founderStripeAccountId": null,
+      "nodlrStripeAccountId": null,
+      "role": "",
+      "payoutStatus": "incomplete",
+      "payoutsEnabled": false,
+      "verificationStatus": "",
+      "integrityScore": 600,
+      "isFrozen": false,
+      "accruedFounderBalance": 0,
+      "walletBalance": 0,
+      "pendingBalanceCents": 0,
+      "escrowBalanceCents": 0,
+      "isFounder": false,
+      "payoutFrequency": "daily",
+      "parentId": "FOUNDER-SLOT-02",
+      "status": {
+        "active": true,
+        "verification": "verified"
+      },
+      "isProtected": false,
+      "isSuperAdmin": false,
+      "onboardingComplete": false,
+      "verified": false,
+      "labels": null,
+      "createdAt": "2026-06-10T12:22:03.935216845+02:00"
     }
   },
   "pending_commissions": {},
-  "organic_count": 0,
+  "organic_count": 2,
   "mesh_bucket": 0,
-  "mesh_sequence": 8,
-  "mesh_month_year": "0526",
+  "mesh_sequence": 4,
+  "mesh_month_year": "0626",
   "crm_records": {
     "100001-0426-01-AA": {
       "nodlrId": "100001-0426-01-AA",
@@ -54,7 +182,494 @@
         "NODLR",
         "MESH"
       ],
-      "createdAt": "2026-05-30T14:10:31.801799224+02:00"
+      "createdAt": "2026-06-11T04:05:13.222346341+02:00"
+    },
+    "FOUNDER-SLOT-02": {
+      "nodlrId": "FOUNDER-SLOT-02",
+      "businessName": "FOUNDER-SLOT-02",
+      "phone": "",
+      "avatar": "",
+      "labels": null,
+      "createdAt": "2026-06-10T12:22:03.934960727+02:00"
+    }
+  },
+  "invite": {
+    "secret": "8783a432af8969eb060b761a02f5275d265c21a340bff0a5576086c81dccc31bf3e9a42735c8aab58ae964b376ff1b041f183e16e915172c1e852294a0b36b81",
+    "nextFounderIndex": 3,
+    "registry": {}
+  },
+  "founders": {
+    "1": "100001-0426-01-AA"
+  },
+  "domain_sessions": {
+    "0022dbd2-ab4c-4eba-9aeb-55cd842f432b": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "expiresAt": "2026-06-11T18:18:12.535076018+02:00",
+      "createdAt": "2026-06-10T18:18:12.535076018+02:00"
+    },
+    "027d1929-8620-438d-b611-f00552ffe26e": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "expiresAt": "2026-06-11T15:34:20.853151322+02:00",
+      "createdAt": "2026-06-10T15:34:20.853151322+02:00"
+    },
+    "036f2a11-13aa-47db-ac61-665bb0c2ffa7": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "expiresAt": "2026-06-11T09:24:27.051782259+02:00",
+      "createdAt": "2026-06-10T09:24:27.051782618+02:00"
+    },
+    "06b92dd3-58b5-4857-940e-baea047c407b": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "mesh",
+      "role": "owner",
+      "expiresAt": "2026-06-12T05:32:26.088743634+02:00",
+      "createdAt": "2026-06-11T05:32:26.088743634+02:00"
+    },
+    "0c738a15-5ee9-4a55-aa85-7abec266675c": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "mesh",
+      "role": "owner",
+      "expiresAt": "2026-06-11T15:29:32.017983538+02:00",
+      "createdAt": "2026-06-10T15:29:32.017983538+02:00"
+    },
+    "0d32ce36-bb53-401f-8180-421e0e835b1d": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "expiresAt": "2026-06-11T13:12:31.923320602+02:00",
+      "createdAt": "2026-06-10T13:12:31.923320602+02:00"
+    },
+    "0e1d7293-4206-4987-bb1e-aa56445ad9d1": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "expiresAt": "2026-06-11T15:40:42.520519234+02:00",
+      "createdAt": "2026-06-10T15:40:42.520519234+02:00"
+    },
+    "0f3ff5c9-0bc9-4983-b2bc-b0ed2ecdc376": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "expiresAt": "2026-06-11T09:48:38.607196433+02:00",
+      "createdAt": "2026-06-10T09:48:38.607196841+02:00"
+    },
+    "155e0500-3b17-4795-be21-b5c857ca2332": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "expiresAt": "2026-06-11T14:12:02.901630825+02:00",
+      "createdAt": "2026-06-10T14:12:02.901630825+02:00"
+    },
+    "1c21255b-4a15-46cb-93c5-0d7787caddcf": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "expiresAt": "2026-06-11T09:08:40.43364463+02:00",
+      "createdAt": "2026-06-10T09:08:40.43364497+02:00"
+    },
+    "1fee6677-2b56-4666-adc7-c2765c702a23": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "expiresAt": "2026-06-11T15:30:29.985486654+02:00",
+      "createdAt": "2026-06-10T15:30:29.985486654+02:00"
+    },
+    "33e19368-0a56-4a11-a3be-1feac836ec52": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "expiresAt": "2026-06-11T14:15:40.021397728+02:00",
+      "createdAt": "2026-06-10T14:15:40.021397728+02:00"
+    },
+    "39506cad-b80c-4d96-b6c0-96fe5737147d": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "expiresAt": "2026-06-12T04:56:52.210756385+02:00",
+      "createdAt": "2026-06-11T04:56:52.210756385+02:00"
+    },
+    "39ffb590-56b5-4004-b2f2-7a3db8b92f7f": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "expiresAt": "2026-06-11T15:29:10.322184588+02:00",
+      "createdAt": "2026-06-10T15:29:10.322184588+02:00"
+    },
+    "403ccaa6-a814-4546-8ece-842acd365db7": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "expiresAt": "2026-06-11T15:30:47.226454241+02:00",
+      "createdAt": "2026-06-10T15:30:47.226454241+02:00"
+    },
+    "428dadd3-a228-4028-b02e-35fcf3c57ac2": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "mesh",
+      "role": "owner",
+      "expiresAt": "2026-06-11T05:02:48.227785702+02:00",
+      "createdAt": "2026-06-10T05:02:48.227786047+02:00"
+    },
+    "42a48253-49fe-4973-a1b3-038b560aaa02": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "expiresAt": "2026-06-11T05:01:59.775437005+02:00",
+      "createdAt": "2026-06-10T05:01:59.775437495+02:00"
+    },
+    "442d6b22-de1e-4ae1-905c-08908e1a2eaf": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "expiresAt": "2026-06-11T09:44:09.721825136+02:00",
+      "createdAt": "2026-06-10T09:44:09.721825454+02:00"
+    },
+    "50ee36bc-4267-4d4e-b6a7-90904ee2eaf3": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "expiresAt": "2026-06-11T09:09:31.292828715+02:00",
+      "createdAt": "2026-06-10T09:09:31.292829024+02:00"
+    },
+    "54e26dbb-8494-4ac3-8505-b4276e3a38aa": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "expiresAt": "2026-06-11T15:29:20.763122398+02:00",
+      "createdAt": "2026-06-10T15:29:20.763122398+02:00"
+    },
+    "55f77260-c893-4f83-9186-e144c79de019": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "expiresAt": "2026-06-12T04:57:34.19256957+02:00",
+      "createdAt": "2026-06-11T04:57:34.19256957+02:00"
+    },
+    "57a6ac5a-435e-4552-b112-59fd556a9463": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "expiresAt": "2026-06-11T13:14:27.560328606+02:00",
+      "createdAt": "2026-06-10T13:14:27.560328606+02:00"
+    },
+    "5ceb6eb7-5e01-4806-b4f0-79edf8fe971d": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "expiresAt": "2026-06-11T15:34:23.861550065+02:00",
+      "createdAt": "2026-06-10T15:34:23.861550065+02:00"
+    },
+    "62560567-9f7e-497b-8e66-2fb74d255819": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "expiresAt": "2026-06-11T14:03:55.278110676+02:00",
+      "createdAt": "2026-06-10T14:03:55.278110676+02:00"
+    },
+    "67dccdf0-b665-4bd7-9d19-acd0907dc4c6": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "expiresAt": "2026-06-11T03:33:57.686061161+02:00",
+      "createdAt": "2026-06-10T03:33:57.6860617+02:00"
+    },
+    "68ea7d44-79e0-446d-91e3-69568811861d": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "expiresAt": "2026-06-11T18:44:35.6997046+02:00",
+      "createdAt": "2026-06-10T18:44:35.6997046+02:00"
+    },
+    "6d63d667-e3b7-4dc6-bb95-bdeb79560ea5": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "expiresAt": "2026-06-12T05:31:59.725363809+02:00",
+      "createdAt": "2026-06-11T05:31:59.725363809+02:00"
+    },
+    "7263618a-bb1a-4cbf-987a-6070643434d8": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "expiresAt": "2026-06-11T05:02:43.502881074+02:00",
+      "createdAt": "2026-06-10T05:02:43.50288193+02:00"
+    },
+    "7370f4d8-816e-42c6-9cdf-3591817d2cf9": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "expiresAt": "2026-06-11T13:14:58.726930264+02:00",
+      "createdAt": "2026-06-10T13:14:58.726930264+02:00"
+    },
+    "76cc5a34-bc05-4538-91df-d6a1e84bb2e6": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "expiresAt": "2026-06-11T14:08:15.108505569+02:00",
+      "createdAt": "2026-06-10T14:08:15.108505569+02:00"
+    },
+    "794d81be-ff01-4689-854e-ebf398f5cf7c": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "expiresAt": "2026-06-11T13:14:45.701550718+02:00",
+      "createdAt": "2026-06-10T13:14:45.701550718+02:00"
+    },
+    "7ab4ff1f-9308-4098-b5b9-393a20762352": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "expiresAt": "2026-06-11T14:15:24.859114264+02:00",
+      "createdAt": "2026-06-10T14:15:24.859114264+02:00"
+    },
+    "84349979-55b6-446b-aae7-b4fe0e9cf061": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "expiresAt": "2026-06-11T13:53:05.771831781+02:00",
+      "createdAt": "2026-06-10T13:53:05.771831781+02:00"
+    },
+    "87883f8d-fc03-46bd-b4a9-fa5af2fcf40e": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "mesh",
+      "role": "owner",
+      "expiresAt": "2026-06-11T15:30:17.847521369+02:00",
+      "createdAt": "2026-06-10T15:30:17.847521369+02:00"
+    },
+    "87a54d88-6d08-4973-8273-2c7ae53ca4ea": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "expiresAt": "2026-06-11T03:39:45.91749038+02:00",
+      "createdAt": "2026-06-10T03:39:45.917490877+02:00"
+    },
+    "882a50c0-39d0-4b77-8b4a-613fea689493": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "expiresAt": "2026-06-11T15:35:25.296341962+02:00",
+      "createdAt": "2026-06-10T15:35:25.296341962+02:00"
+    },
+    "8b155e85-c50b-4330-a75a-a74322705882": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "expiresAt": "2026-06-11T07:38:31.43739868+02:00",
+      "createdAt": "2026-06-10T07:38:31.437399072+02:00"
+    },
+    "8bf78b13-fbbd-430f-bb64-5eea8e9dbeaa": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "",
+      "role": "owner",
+      "expiresAt": "2026-06-11T05:01:32.495382178+02:00",
+      "createdAt": "2026-06-10T05:01:32.495382252+02:00"
+    },
+    "9280f158-5c5a-4218-81f6-07589d249249": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "expiresAt": "2026-06-11T13:14:49.25710228+02:00",
+      "createdAt": "2026-06-10T13:14:49.25710228+02:00"
+    },
+    "97503811-8751-469f-9ae1-b52e74a14210": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "mesh",
+      "role": "owner",
+      "expiresAt": "2026-06-11T15:33:43.356537399+02:00",
+      "createdAt": "2026-06-10T15:33:43.356537399+02:00"
+    },
+    "975e6087-b4b5-4122-a9b8-476bf1320fd7": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "expiresAt": "2026-06-11T08:10:47.165208002+02:00",
+      "createdAt": "2026-06-10T08:10:47.165208381+02:00"
+    },
+    "a1924dda-764d-4864-aa97-b28cbd8e9471": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "expiresAt": "2026-06-12T05:32:14.234165347+02:00",
+      "createdAt": "2026-06-11T05:32:14.234165347+02:00"
+    },
+    "a70f621e-7809-43e8-960a-e89775bb7848": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "expiresAt": "2026-06-11T13:58:39.685967586+02:00",
+      "createdAt": "2026-06-10T13:58:39.685967586+02:00"
+    },
+    "a7a95d4d-faea-4721-8f38-ced32bc6c6fc": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "expiresAt": "2026-06-11T09:46:01.178729119+02:00",
+      "createdAt": "2026-06-10T09:46:01.178730169+02:00"
+    },
+    "a8a1092e-19c9-4b9f-8669-18cd7ce7ea2a": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "expiresAt": "2026-06-11T15:29:02.898516203+02:00",
+      "createdAt": "2026-06-10T15:29:02.898516203+02:00"
+    },
+    "afb1bfb6-06a4-4785-8f4c-de73141bce6f": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "expiresAt": "2026-06-11T07:33:06.951828352+02:00",
+      "createdAt": "2026-06-10T07:33:06.95182891+02:00"
+    },
+    "bbc4e1d9-47aa-44ae-940e-362fe88f21f4": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "expiresAt": "2026-06-11T13:52:59.604729925+02:00",
+      "createdAt": "2026-06-10T13:52:59.604729925+02:00"
+    },
+    "c2db07b8-a844-44e2-94b3-7319396f631e": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "mesh",
+      "role": "owner",
+      "expiresAt": "2026-06-11T15:29:36.798998039+02:00",
+      "createdAt": "2026-06-10T15:29:36.798998039+02:00"
+    },
+    "c7db2bda-4c2b-4ca8-a94d-53fcff19fe35": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "mesh",
+      "role": "owner",
+      "expiresAt": "2026-06-11T15:30:23.828171554+02:00",
+      "createdAt": "2026-06-10T15:30:23.828171554+02:00"
+    },
+    "cb712fc1-39fb-401c-a8aa-7c3bf3ed7077": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "mesh",
+      "role": "owner",
+      "expiresAt": "2026-06-12T05:30:50.283820948+02:00",
+      "createdAt": "2026-06-11T05:30:50.283820948+02:00"
+    },
+    "d01ec215-e7b0-483a-8c0c-5809785195d3": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "expiresAt": "2026-06-11T17:40:11.246368269+02:00",
+      "createdAt": "2026-06-10T17:40:11.246368269+02:00"
+    },
+    "d16a4ae4-4845-43ad-927c-dda26ce4d983": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "expiresAt": "2026-06-11T15:35:12.906685207+02:00",
+      "createdAt": "2026-06-10T15:35:12.906685207+02:00"
+    },
+    "d6b41c70-6a02-424a-b8ec-d97eef190653": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "expiresAt": "2026-06-11T15:30:40.190884343+02:00",
+      "createdAt": "2026-06-10T15:30:40.190884343+02:00"
+    },
+    "d6f8bad8-bcee-44d3-93e1-390cf40230f1": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "expiresAt": "2026-06-12T04:57:44.280130068+02:00",
+      "createdAt": "2026-06-11T04:57:44.280130068+02:00"
+    },
+    "d7ba71a2-e4b6-47ec-901c-3e92d170bd6d": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "expiresAt": "2026-06-11T19:25:11.140316308+02:00",
+      "createdAt": "2026-06-10T19:25:11.140316308+02:00"
+    },
+    "d8323234-d58f-4ab8-9219-b8914d315667": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "expiresAt": "2026-06-11T15:31:41.42104271+02:00",
+      "createdAt": "2026-06-10T15:31:41.42104271+02:00"
+    },
+    "e0b705d6-1ec2-4baf-b658-38c0e30ff893": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "mesh",
+      "role": "owner",
+      "expiresAt": "2026-06-11T15:30:07.445909034+02:00",
+      "createdAt": "2026-06-10T15:30:07.445909034+02:00"
+    },
+    "e58662b9-ddf1-4e17-9fa2-456f7b568b36": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "expiresAt": "2026-06-11T18:19:00.264396535+02:00",
+      "createdAt": "2026-06-10T18:19:00.264396535+02:00"
+    },
+    "e716681c-157e-40ae-b2fc-669ae31edb21": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "expiresAt": "2026-06-12T04:57:06.570972602+02:00",
+      "createdAt": "2026-06-11T04:57:06.570972602+02:00"
+    },
+    "e9f7e413-0f7b-4349-a8a6-4a3a84fa25d1": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "expiresAt": "2026-06-11T18:44:43.091002902+02:00",
+      "createdAt": "2026-06-10T18:44:43.091002902+02:00"
+    },
+    "eba50f72-f4c2-4c2e-a6da-1b539e00d4a2": {
+      "wuid": "100005-0426-05-AA",
+      "domain": "nodlr",
+      "role": "",
+      "expiresAt": "2026-06-11T12:22:11.37238939+02:00",
+      "createdAt": "2026-06-10T12:22:11.372389764+02:00"
+    },
+    "ebdbc2eb-d948-417c-a9c6-1c89ca0400b1": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "mesh",
+      "role": "owner",
+      "expiresAt": "2026-06-11T15:29:51.561220928+02:00",
+      "createdAt": "2026-06-10T15:29:51.561220928+02:00"
+    },
+    "efced687-ce27-4dcd-894e-9ef1e73c818a": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "expiresAt": "2026-06-11T15:35:15.682527095+02:00",
+      "createdAt": "2026-06-10T15:35:15.682527095+02:00"
+    },
+    "f27bff87-b7f3-4a8c-a4e0-9673d437b24a": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "expiresAt": "2026-06-10T13:23:19.496100137+02:00",
+      "createdAt": "2026-06-09T13:23:19.496100292+02:00"
+    },
+    "f6058c44-efc8-4385-8551-f7321202ee1c": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "mesh",
+      "role": "owner",
+      "expiresAt": "2026-06-11T15:29:46.814037843+02:00",
+      "createdAt": "2026-06-10T15:29:46.814037843+02:00"
+    },
+    "f76c5945-6ae4-4e6b-8ce0-3e077fd05724": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "mesh",
+      "role": "owner",
+      "expiresAt": "2026-06-11T17:40:22.883487906+02:00",
+      "createdAt": "2026-06-10T17:40:22.883487906+02:00"
+    },
+    "fae880d5-6ea3-4eaf-954c-7467606464bf": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "expiresAt": "2026-06-11T13:53:19.928919318+02:00",
+      "createdAt": "2026-06-10T13:53:19.928919318+02:00"
     }
   }
 }

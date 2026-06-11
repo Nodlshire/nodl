@@ -49,7 +49,7 @@ export default function MeshSalesPage() {
 
             try {
                 // Synchronizing with the active nodld service on port 8082
-                const res = await fetch('/api/v1/account/opportunity', {
+                const res = await fetch('/api/v1/money/overview', {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                         'X-User-ID': account?.nodlrId || '' // Authorized RBAC identity
@@ -57,7 +57,7 @@ export default function MeshSalesPage() {
                 });
                 if (res.ok) {
                     const data = await res.json();
-                    setAudit(data);
+                    setAudit(data.opportunity);
                 }
             } catch (err) {
                 console.error("Failed to fetch opportunity audit:", err);

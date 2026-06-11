@@ -4,7 +4,7 @@ async function testApp(port, domain, cookieName, pricingRoute) {
     console.log(`\n=== Testing Port ${port} (${domain}) ===`);
     try {
         // 1. Test Login
-        const loginRes = await fetch(`http://localhost:${port}/api/auth/debug-session`, {
+        const loginRes = await fetch(`http://localhost:${port}/api/auth/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: 'stephen@wnode.one', password: 'command', domain })

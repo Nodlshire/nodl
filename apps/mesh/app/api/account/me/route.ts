@@ -9,12 +9,13 @@ export async function GET(req: NextRequest) {
         
         req.headers.forEach((value, key) => {
             const lowerKey = key.toLowerCase();
-            if (lowerKey !== 'host' && lowerKey !== 'cookie') {
+            if (lowerKey !== 'host' && lowerKey !== 'cookie' && lowerKey !== 'authorization') {
                 fetchHeaders[key] = value;
             }
         });
 
         fetchHeaders['X-Wnode-Domain'] = 'mesh';
+        fetchHeaders['Authorization'] = req.headers.get('authorization') || '';
 
         const rawCookie = req.headers.get('cookie');
         if (rawCookie) {

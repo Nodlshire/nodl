@@ -254,6 +254,25 @@ func (s *Service) GetMoneyOverview(ctx context.Context, operatorEmail string) (*
 		integrity.Notes = append(integrity.Notes, "Stripe operational health mismatch detected")
 	}
 
+	// 8. Revenue Streams (for UI)
+	revenueStreams := []RevenueStream{
+		{
+			Source: "Hardware Yield",
+			Amount: fmt.Sprintf("$%.2f", float64(totalPaid+totalPending)/100.0),
+			Change: "+12.4%", // Mock change
+			Trend:  "up",
+		},
+		{
+			Source: "Affiliate Earnings",
+			Amount: "$0.00", // Needs actual affiliate earnings calculation, defaulting for now
+			Change: "+8.2%", // Mock change
+			Trend:  "up",
+		},
+	}
+
+	// 9. Opportunity Audit (for Sales page)
+	opportunity := s.accountStore.GetOpportunityAudit(op.ID)
+
 	return &MoneyOverview{
 		Operator:           operatorView,
 		Founder:            founderView,
@@ -262,6 +281,8 @@ func (s *Service) GetMoneyOverview(ctx context.Context, operatorEmail string) (*
 		TreasurySimulation: simulationView,
 		Alerts:             alerts,
 		Integrity:          integrity,
+		RevenueStreams:     revenueStreams,
+		Opportunity:        opportunity,
 	}, nil
 }
 

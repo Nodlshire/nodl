@@ -16,6 +16,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ path
             method: 'GET',
             cache: 'no-store',
             headers: {
+                'Authorization': req.headers.get('authorization') || '',
                 'Accept': 'application/json',
                 'Cookie': sessionCookie ? `cmd_session=${sessionCookie}` : '',
             },

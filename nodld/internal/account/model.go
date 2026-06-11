@@ -106,6 +106,11 @@ type Nodlr struct {
 	Verified              bool            `json:"verified"`
 	Labels                []string        `json:"labels"`
 	CreatedAt             time.Time       `json:"createdAt"`
+	DiscordID             string          `json:"discordId,omitempty"`
+	DiscordUsername       string          `json:"discordUsername,omitempty"`
+	DiscordAccessToken    string          `json:"discordAccessToken,omitempty"`
+	DiscordRefreshToken   string          `json:"discordRefreshToken,omitempty"`
+	DiscordTokenExpiry    *time.Time      `json:"discordTokenExpiry,omitempty"`
 }
 
 // AffiliateRelation represents a link in the tree.

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(req: NextRequest) {
+export async function GET(request: NextRequest) {
     const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8081";
 
     try {

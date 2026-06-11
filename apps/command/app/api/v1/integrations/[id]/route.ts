@@ -7,7 +7,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     try {
         const { id } = await params;
         const res = await fetch(`${BACKEND_URL}/api/v1/integrations/${id}`, { 
-            headers: resolveIdentityHeaders(req),
+            headers: resolveIdentityHeaders(request),
             cache: 'no-store' 
         });
         
@@ -34,11 +34,11 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     
     try {
         const { id } = await params;
-        const body = await req.json();
+        const body = await request.json();
         const res = await fetch(`${BACKEND_URL}/api/v1/integrations/${id}`, {
             method: 'PATCH',
             headers: {
-                ...resolveIdentityHeaders(req),
+                ...resolveIdentityHeaders(request),
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(body)

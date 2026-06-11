@@ -3,7 +3,7 @@ import { resolveIdentityHeaders } from '@/app/lib/identity';
 
 export async function GET(request: NextRequest) {
     const BACKEND_URL = process.env.NODLD_API_URL || 'http://127.0.0.1:8081';
-    const headers = resolveIdentityHeaders(req);
+    const headers = resolveIdentityHeaders(request);
     
     try {
         const res = await fetch(`${BACKEND_URL}/stats`, { 

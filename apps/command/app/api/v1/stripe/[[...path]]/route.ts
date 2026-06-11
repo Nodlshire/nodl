@@ -2,13 +2,13 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
 
-async function handleProxy(req: NextRequest, method: string, pathSegments: string[]) {
+async function handleProxy(request: NextRequest, method: string, pathSegments: string[]) {
     try {
         const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8081";
         const path = pathSegments.join('/');
         let targetUrl = `${apiUrl}/api/v1/stripe/${path}`;
         
-        const searchParams = req.nextUrl.searchParams.toString();
+        const searchParams = request.nextUrl.searchParams.toString();
         if (searchParams) {
             targetUrl += `?${searchParams}`;
         }
@@ -16,7 +16,7 @@ async function handleProxy(req: NextRequest, method: string, pathSegments: strin
         let requestBody: any = undefined;
         if (method !== 'GET' && method !== 'HEAD') {
             try {
-                requestBody = await req.text();
+                requestBody = await request.text();
             } catch (e) {}
         }
 
@@ -71,10 +71,10 @@ async function handleProxy(req: NextRequest, method: string, pathSegments: strin
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ path?: string[] }> }) {
     const p = await params;
-    return handleProxy(req, 'GET', p.path || []);
+    return handleProxy(request, 'GET', p.path || []);
 }
 
 export async function POST(request: NextRequest, { params }: { params: Promise<{ path?: string[] }> }) {
     const p = await params;
-    return handleProxy(req, 'POST', p.path || []);
+    return handleProxy(request, 'POST', p.path || []);
 }

@@ -6,12 +6,12 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     const pathString = path.join('/');
 
     try {
-        const body = await req.json();
+        const body = await request.json();
         const res = await fetch(`${apiUrl}/api/v1/auth/${pathString}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                cookie: req.headers.get('cookie') ?? '',
+                cookie: request.headers.get('cookie') ?? '',
             },
             credentials: 'include',
             body: JSON.stringify(body),
@@ -41,7 +41,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     const pathString = path.join('/');
 
     if (pathString === 'session') {
-        const hasSession = req.cookies.has('cmd_session');
+        const hasSession = request.cookies.has('cmd_session');
         if (hasSession) {
             return NextResponse.json({ status: 'authenticated' }, { status: 200 });
         }

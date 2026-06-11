@@ -8,7 +8,7 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     try {
         const res = await fetch(`${WNODER_URL}/api/v1/governance/users/${id}/resend-invite`, {
             method: 'POST',
-            headers: resolveIdentityHeaders(req),
+            headers: resolveIdentityHeaders(request),
             cache: 'no-store'
         });
         

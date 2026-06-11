@@ -6,7 +6,7 @@ export async function GET(request: NextRequest) {
     
     try {
         const res = await fetch(`${BACKEND_URL}/api/v1/integrations`, { 
-            headers: resolveIdentityHeaders(req),
+            headers: resolveIdentityHeaders(request),
             cache: 'no-store' 
         });
         

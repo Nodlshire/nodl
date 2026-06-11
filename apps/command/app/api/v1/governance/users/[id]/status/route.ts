@@ -5,12 +5,12 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     const { id } = await params;
     const WNODER_URL = process.env.WNODER_URL || 'http://localhost:8080';
     try {
-        const body = await req.json();
+        const body = await request.json();
         const res = await fetch(`${WNODER_URL}/api/v1/governance/users/${id}/status`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
-                ...resolveIdentityHeaders(req)
+                ...resolveIdentityHeaders(request)
             },
             body: JSON.stringify(body),
             cache: 'no-store'

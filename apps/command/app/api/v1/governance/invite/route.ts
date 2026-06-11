@@ -4,12 +4,12 @@ import { resolveIdentityHeaders } from '@/app/lib/identity';
 export async function POST(request: NextRequest) {
     const WNODER_URL = process.env.WNODER_URL || 'http://localhost:8080';
     try {
-        const body = await req.json();
+        const body = await request.json();
         const res = await fetch(`${WNODER_URL}/api/v1/governance/invite`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                ...resolveIdentityHeaders(req)
+                ...resolveIdentityHeaders(request)
             },
             body: JSON.stringify(body),
             cache: 'no-store'

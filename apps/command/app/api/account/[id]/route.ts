@@ -7,7 +7,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     
     try {
         const res = await fetch(`${WNODER_URL}/account/${id}`, {
-            headers: resolveIdentityHeaders(req),
+            headers: resolveIdentityHeaders(request),
             cache: 'no-store'
         });
         

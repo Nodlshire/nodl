@@ -40,7 +40,7 @@ export async function GET(
         return new Response(buffer, {
             status: 200,
             headers: {
-                'Authorization': req.headers.get('authorization') || '',
+                'Authorization': request.headers.get('authorization') || '',
                 'Content-Type': contentType,
                 'Content-Disposition': res.headers.get('content-disposition') || ''
             }

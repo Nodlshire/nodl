@@ -83,3 +83,4 @@ wnoded/
 **/nodld-old
 **/build-cache
 apps/web/storage/*.json
+rebrand_temp/

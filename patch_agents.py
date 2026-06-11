@@ -6,7 +6,7 @@ agent_files = []
 agent_files.append(os.path.join(base, "agents.md"))
 agent_files.append(os.path.join(base, "nodld", "agents.md"))
 agent_files.append(os.path.join(base, "node-operator", "agents.md"))
-for app in ["command", "mesh", "nodlr", "wnoder"]:
+for app in ["command", "mesh", "nodlr"]:
     agent_files.append(os.path.join(base, "apps", app, "agents.md"))
 
 auth_rules = """
@@ -16,7 +16,7 @@ auth_rules = """
 3. **Cookie Rules**: Frontend manipulation of cookies for login/logout is forbidden. Let the backend manage `Set-Cookie`.
 4. **Session Models**: 
    - Command: `cmd_session`
-   - Nodlr/Wnoder: `nodlr_session`
+   - Nodlr: `nodlr_session`
    - Mesh: `mesh_session`
 """
 

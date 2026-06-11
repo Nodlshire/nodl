@@ -4,7 +4,7 @@ import glob
 base = "/home/obregan/wnode/apps"
 
 # 1. Update login/page.tsx for all portals
-for app in ["command", "mesh", "nodlr", "wnoder"]:
+for app in ["command", "mesh", "nodlr"]:
     login_path = os.path.join(base, app, "app/login/page.tsx")
     if not os.path.exists(login_path):
         login_path = os.path.join(base, app, "app/auth/login/page.tsx")
@@ -18,7 +18,7 @@ for app in ["command", "mesh", "nodlr", "wnoder"]:
             f.write(content)
 
 # 2. Update auth proxies
-for app in ["command", "nodlr", "wnoder"]:
+for app in ["command", "nodlr"]:
     proxy_path = os.path.join(base, app, "app/api/auth/[...path]/route.ts")
     if os.path.exists(proxy_path):
         with open(proxy_path, "r") as f:

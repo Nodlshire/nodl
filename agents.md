@@ -617,23 +617,6 @@ Root directory for Wnode Monorepo.
 - `walkthrough.md`
 - `web.pid`
 - `wnode_layout.tsx`
-- `wnoder.pid`
-- `wnoder_final.log`
-- `wnoder_final_attempt.log`
-- `wnoder_final_final.log`
-- `wnoder_final_fix.log`
-- `wnoder_fix_assets.log`
-- `wnoder_fresh.log`
-- `wnoder_ip.log`
-- `wnoder_login_style.log`
-- `wnoder_mesh_disabled.log`
-- `wnoder_mesh_fix.log`
-- `wnoder_reboot_3.log`
-- `wnoder_runtime_fix.log`
-- `wnoder_style.log`
-- `wnoder_style_fix.log`
-- `wnoder_vfinal.log`
-- `wnoder_vfinal_2.log`
 
 ## Local Rules
 

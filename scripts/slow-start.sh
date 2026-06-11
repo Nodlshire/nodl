@@ -20,12 +20,6 @@ nohup go run cmd/nodld/main.go > "$LOG_DIR/nodld.log" 2>&1 &
 sleep 20
 
 
-# 4. wnoder
-echo "[4/7] Starting wnoder..."
-cd /home/obregan/Documents/nodl/apps/wnoder
-nohup npm run dev > "$LOG_DIR/wnoder.log" 2>&1 &
-sleep 20
-
 # 5. mesh
 echo "[5/7] Starting mesh..."
 cd /home/obregan/Documents/nodl/apps/mesh

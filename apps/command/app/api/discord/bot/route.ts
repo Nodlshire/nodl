@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(requestuest: NextRequest) {
+export async function GET(request: NextRequest) {
   const botToken = process.env.DISCORD_BOT_TOKEN;
   
   if (!botToken) {

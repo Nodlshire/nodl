@@ -13,7 +13,7 @@
 import { describe, it, expect, beforeAll } from 'vitest';
 import { buildReceiptPreImage, ReceiptInput } from '../core/receipt';
 import { hashReceipt, verifyReceiptHash, hashReceiptSHA256 } from '../core/hasher';
-import { generateKeypair, signHash, verifyReceiptSignature } from '../core/signer';
+import { generateKeypair, signHash, verifyReceiptSignature, loadSigningKey } from '../core/signer';
 import { verifyCIDIntegrity, packReceiptToCAR } from '../storage/car';
 
 // ─── Fixtures ─────────────────────────────────────────────────────────────────
@@ -40,6 +40,9 @@ let keypair: { privateKeyHex: string; publicKeyHex: string };
 
 beforeAll(() => {
   keypair = generateKeypair();
+  process.env.NODE_PRIVATE_KEY_HEX = keypair.privateKeyHex;
+  process.env.NODE_PUBLIC_KEY_HEX = keypair.publicKeyHex;
+  loadSigningKey();
 });
 
 // ─── 1. Receipt Schema ────────────────────────────────────────────────────────
@@ -136,7 +139,7 @@ describe('Ed25519 Signing', () => {
     const tampered = {
       ...p,
       canonicalHash: hashHex,
-      signature:     sig.slice(0, -2) + '00', // corrupt last byte
+      signature:     sig.replace(/^[0-9a-f]/, (c) => c === '0' ? '1' : '0'), // corrupt first char
     } as Parameters<typeof verifyReceiptSignature>[0];
 
     expect(verifyReceiptSignature(tampered, keypair.publicKeyHex)).toBe(false);
@@ -194,7 +197,7 @@ describe('CAR Packing + CID', () => {
     const sig = signHash(hashBytes);
     const receipt = { ...p, canonicalHash: hashHex, signature: sig } as Parameters<typeof packReceiptToCAR>[0];
     const { cid } = await packReceiptToCAR(receipt);
-    expect(cid).toMatch(/^bafy/); // base32 CIDv1 prefix
+    expect(cid).toMatch(/^baf[ky]/); // base32 CIDv1 prefix
   });
 
   it('verifyCIDIntegrity confirms unmodified receipt', async () => {

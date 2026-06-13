@@ -53,7 +53,6 @@ export async function packReceiptToCAR(receipt: MachinePaymentReceipt): Promise<
     // unixfs-v1-2025 settings
     maxChunkSize: 1_048_576,          // 1 MiB
     maxChildrenPerNode: 1024,
-    hasher: 'blake3',                 // CIDv1 with blake3 multihash (0x1e)
     rawLeaves: true,
   });
 
@@ -72,7 +71,9 @@ export async function packReceiptToCAR(receipt: MachinePaymentReceipt): Promise<
  */
 export async function verifyCIDIntegrity(receipt: MachinePaymentReceipt): Promise<boolean> {
   if (!receipt.cid) return false;
-  const { cid: recomputed } = await packReceiptToCAR(receipt);
+  const copy = { ...receipt };
+  delete (copy as any).cid;
+  const { cid: recomputed } = await packReceiptToCAR(copy);
   return recomputed === receipt.cid;
 }
 

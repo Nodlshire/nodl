@@ -13,11 +13,11 @@
  */
 
 import * as ed from '@noble/ed25519';
-import { sha512 } from '@noble/hashes/sha512';
+import { sha512 } from '@noble/hashes/sha2.js';
 import { MachinePaymentReceipt } from './receipt';
 
 // noble/ed25519 requires a SHA-512 implementation to be wired in
-ed.etc.sha512Sync = (...msgs) => sha512(ed.etc.concatBytes(...msgs));
+ed.hashes.sha512 = (msg) => sha512(msg);
 
 // ─── Key Loading ──────────────────────────────────────────────────────────────
 
@@ -96,7 +96,7 @@ export function verifyReceiptSignature(
  * For testing and initial node provisioning only — never call in production hot path.
  */
 export function generateKeypair(): { privateKeyHex: string; publicKeyHex: string } {
-  const privBytes = ed.utils.randomPrivateKey();
+  const privBytes = ed.utils.randomSecretKey();
   const pubBytes  = ed.getPublicKey(privBytes);
   return {
     privateKeyHex: Buffer.from(privBytes).toString('hex'),

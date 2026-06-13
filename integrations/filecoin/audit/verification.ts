@@ -13,12 +13,12 @@
  */
 
 import express, { Request, Response, NextFunction } from 'express';
-import { findReceiptByCID, findReceiptsByPayer } from '../index/receipt-index';
-import { verifyReceiptHash }     from '../core/hasher';
-import { verifyReceiptSignature } from '../core/signer';
-import { verifyCIDIntegrity }    from '../storage/car';
-import { pollDealStatus, verifyPDPProof } from '../storage/filecoin';
-import { MachinePaymentReceipt } from '../core/receipt';
+import { findReceiptByCID, findReceiptsByPayer } from './index/receipt-index';
+import { verifyReceiptHash }     from './core/hasher';
+import { verifyReceiptSignature } from './core/signer';
+import { verifyCIDIntegrity }    from './storage/car';
+import { pollDealStatus, verifyPDPProof } from './storage/filecoin';
+import { MachinePaymentReceipt } from './core/receipt';
 
 // ─── Router ───────────────────────────────────────────────────────────────────
 

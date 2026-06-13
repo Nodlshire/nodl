@@ -15,6 +15,14 @@
         "concurrently": "^8.2.2"
     },
     "dependencies": {
+        "@lighthouse-web3/sdk": "^0.4.5",
+        "@noble/ed25519": "^3.1.0",
+        "@noble/hashes": "^2.2.0",
+        "@types/express": "^5.0.6",
+        "ethers": "^6.16.0",
+        "express": "^5.2.1",
+        "ipfs-car": "^0.9.1",
+        "multiformats": "^14.0.0",
         "onnxruntime-node": "^1.25.1"
     }
 }

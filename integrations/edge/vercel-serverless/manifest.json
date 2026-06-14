@@ -1,0 +1,28 @@
+{
+  "name": "Vercel Serverless Functions",
+  "slug": "edge-vercel-serverless",
+  "provider": "vercel",
+  "service": "serverless",
+  "version": "1.0.0",
+  "category": "Edge Compute",
+  "description": "Vercel Serverless Functions provide compute for Next.js and frontend apps. They bridge frontend events to Wnode backends. Workloads invoked via this integration run on Wnode's Tier 6 DECC/TEE secure enclaves.",
+  "auth": {
+    "type": "api-token",
+    "fields": [
+      "vercel_api_token"
+    ]
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/api/pipeline/invoke",
+      "description": "Receive Vercel function payload"
+    }
+  ],
+  "capabilities": [
+    "frontend-bridge",
+    "api-routes"
+  ],
+  "docs_url": "https://vercel.com/docs/functions",
+  "logo": "logo.svg"
+}

@@ -1,0 +1,41 @@
+{
+  "name": "Google Pub/Sub",
+  "slug": "gcp-pubsub",
+  "provider": "gcp",
+  "service": "pubsub",
+  "version": "1.0.0",
+  "category": "Messaging & Streaming",
+  "description": "Global real-time messaging and event ingestion service. Wnode subscribes to Pub/Sub topics via push or pull delivery, enabling high-throughput event processing on decentralized compute. Workloads invoked via this integration run on Wnode's Tier 6 DECC/TEE secure enclaves.",
+  "auth": {
+    "type": "service-account",
+    "fields": [
+      "gcp_service_account_json",
+      "gcp_project_id"
+    ],
+    "supports_workload_identity": true
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/api/pipeline/invoke",
+      "description": "Receive Pub/Sub push message and invoke Wnode pipeline"
+    },
+    {
+      "method": "GET",
+      "path": "/api/pubsub/pull",
+      "description": "Internal: Wnode worker pulls messages from subscription"
+    }
+  ],
+  "capabilities": [
+    "push-delivery",
+    "pull-delivery",
+    "message-ordering",
+    "dead-letter-topics",
+    "message-filtering",
+    "exactly-once-delivery",
+    "fan-out"
+  ],
+  "wnode_role": "consumer",
+  "docs_url": "https://cloud.google.com/pubsub/docs",
+  "logo": "logo.svg"
+}

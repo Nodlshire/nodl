@@ -1,0 +1,8 @@
+{
+  "id": "cloud-run-pipeline",
+  "steps": [
+    {
+      "action": "process"
+    }
+  ]
+}

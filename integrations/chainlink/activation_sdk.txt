@@ -1,0 +1,6 @@
+import { ethers } from 'ethers';
+import aggregatorV3InterfaceABI from '@chainlink/contracts/abi/v0.8/AggregatorV3Interface.json';
+
+export function getPriceFeed(address: string, provider: ethers.providers.Provider) {
+  return new ethers.Contract(address, aggregatorV3InterfaceABI, provider);
+}

@@ -1,0 +1,9 @@
+{
+  "id": "lambda-to-wnode",
+  "steps": [
+    {
+      "action": "log",
+      "message": "Received from Lambda"
+    }
+  ]
+}

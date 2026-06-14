@@ -1,0 +1,7 @@
+{
+  "name": "MEV",
+  "version": "1.0",
+  "domain": "block-builder / relay / searcher",
+  "networks": ["Ethereum Mainnet", "L2s where applicable"],
+  "capabilities": ["bundle submission", "relay health", "builder selection"]
+}

@@ -1,0 +1,3 @@
+service: pactus_agent
+queue: pactus_tasks
+activate: true

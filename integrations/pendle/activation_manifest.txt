@@ -1,0 +1,3 @@
+service: pendle_agent
+queue: pendle_tasks
+activate: true

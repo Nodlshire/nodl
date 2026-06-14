@@ -1,0 +1,29 @@
+{
+  "name": "AWS EventBridge",
+  "slug": "aws-eventbridge",
+  "provider": "aws",
+  "service": "eventbridge",
+  "version": "1.0.0",
+  "category": "Event Routing",
+  "description": "EventBridge is a serverless event bus. EventBridge routes AWS and custom events to Wnode API destinations. Workloads invoked via this integration run on Wnode's Tier 6 DECC/TEE secure enclaves.",
+  "auth": {
+    "type": "iam",
+    "fields": [
+      "aws_access_key_id"
+    ]
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/api/pipeline/invoke",
+      "description": "Receive EventBridge payload"
+    }
+  ],
+  "capabilities": [
+    "event-bus",
+    "rule-matching",
+    "api-destinations"
+  ],
+  "docs_url": "https://docs.aws.amazon.com/eventbridge/",
+  "logo": "logo.svg"
+}

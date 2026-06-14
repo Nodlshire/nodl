@@ -1,0 +1,22 @@
+# Stripe M2M Integration
+
+## Purpose
+Enables automated billing and payment orchestration for the Wnode ecosystem, directly handling fiat off-ramps, subscription management, and M2M billing events.
+
+## API Endpoints Used
+- `POST /v1/customers`
+- `POST /v1/payment_intents`
+- `POST /v1/refunds`
+
+## Webhook Setup
+Webhooks must be configured in the Stripe Dashboard to point to `https://api.wnode.one/v1/stripe/webhook`. The `verifyWebhookSignature` function ensures payload integrity using the signing secret.
+
+## Billing Flows
+1. Customer is created and attached to a Nodlr ID.
+2. A Payment Intent is created when a compute job is dispatched.
+3. Funds are captured `manual`ly upon job completion.
+4. If a job fails, the funds are refunded.
+
+## Official Documentation
+- Stripe Node.js SDK: https://github.com/stripe/stripe-node
+- Payment Intents: https://docs.stripe.com/api/payment_intents

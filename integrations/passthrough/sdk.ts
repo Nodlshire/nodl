@@ -1,5 +1,7 @@
-export const passthrough = {
-  ping() {
-    return "Passthrough integration stub loaded.";
+export class PassthroughClient {
+  constructor(private apiKey?: string) {}
+  
+  async connect() {
+    console.log("Connecting to passthrough...");
   }
-};
+}

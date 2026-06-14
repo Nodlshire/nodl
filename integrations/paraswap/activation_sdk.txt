@@ -1,0 +1,4 @@
+SDK Usage Notes for paraswap
+
+Available Methods:
+- defaultClient()

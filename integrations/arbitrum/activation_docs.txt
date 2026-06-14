@@ -1,0 +1,9 @@
+# Arbitrum Integration
+
+Uses `@arbitrum/sdk` for cross-chain messages.
+Official documentation: https://developer.arbitrum.io/sdk
+
+Example:
+```typescript
+import { L2TransactionReceipt } from '@arbitrum/sdk';
+```

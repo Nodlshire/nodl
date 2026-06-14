@@ -1,5 +1,7 @@
-export const phoenix = {
-  ping() {
-    return "Phoenix integration stub loaded.";
+export class PhoenixClient {
+  constructor(private apiKey?: string) {}
+  
+  async connect() {
+    console.log("Connecting to phoenix...");
   }
-};
+}

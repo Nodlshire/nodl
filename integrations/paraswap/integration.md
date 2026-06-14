@@ -1,16 +1,14 @@
-# Paraswap Integration
+# Technical Integration Spec: paraswap
 
-This integration connects Wnode to Paraswap.
+## Endpoints
+REST: https://api.paraswap.io
+RPC: N/A
 
-## Status
-Integrated — Activation Coming Online
+## Flows
+Supported Chains: Ethereum, Polygon, Avalanche, Arbitrum, Optimism, Base
+Supported Assets: USDC, USDT, ETH, DAI
 
-## Overview
-Paraswap integration allows Wnode operators to seamlessly connect with Paraswap.
-
-## SDK Usage
-```ts
-import { paraswap } from "./sdk";
-
-paraswap.ping();
-```
+## Security & Idempotency
+Auth: API key for rate limits
+Idempotency: None
+Security Model: EVM smart contract-based trade dispatching with slippage bounds

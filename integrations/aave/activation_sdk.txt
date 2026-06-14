@@ -1,0 +1,6 @@
+import { UiPoolDataProvider } from '@aave/math-utils';
+import { ethers } from 'ethers';
+
+export function getReserves(provider: ethers.providers.Provider, uiPoolAddress: string, poolAddressProvider: string) {
+  return new UiPoolDataProvider({ uiPoolDataProviderAddress: uiPoolAddress, provider });
+}

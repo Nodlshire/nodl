@@ -1,0 +1,7 @@
+# Coinbase Commerce Business Integration
+
+## Purpose
+Enables automated billing and M2M orchestration. Fully aligned with the AP4M protocol.
+
+## Official Documentation
+https://docs.cloud.coinbase.com/commerce/docs

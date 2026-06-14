@@ -1,5 +1,7 @@
-export const pantherprotocol = {
-  ping() {
-    return "Pantherprotocol integration stub loaded.";
+export class PantherprotocolClient {
+  constructor(private apiKey?: string) {}
+  
+  async connect() {
+    console.log("Connecting to pantherprotocol...");
   }
-};
+}

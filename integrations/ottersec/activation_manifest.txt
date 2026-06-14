@@ -1,0 +1,3 @@
+service: ottersec_agent
+queue: ottersec_tasks
+activate: true

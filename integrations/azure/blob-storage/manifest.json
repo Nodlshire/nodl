@@ -1,0 +1,44 @@
+{
+  "name": "Azure Blob Storage",
+  "slug": "azure-blob-storage",
+  "provider": "azure",
+  "service": "blob-storage",
+  "version": "1.0.0",
+  "category": "Object Storage",
+  "description": "Massively scalable object storage for unstructured data. Blob lifecycle events route through Event Grid to Wnode endpoints, enabling decentralized data processing on sovereign compute. Workloads invoked via this integration run on Wnode's Tier 6 DECC/TEE secure enclaves.",
+  "auth": {
+    "type": "service-principal",
+    "fields": [
+      "azure_tenant_id",
+      "azure_client_id",
+      "azure_client_secret",
+      "azure_subscription_id",
+      "azure_resource_group"
+    ],
+    "supports_managed_identity": true
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/api/pipeline/invoke",
+      "description": "Receive Blob event via Event Grid and invoke Wnode pipeline"
+    },
+    {
+      "method": "POST",
+      "path": "/api/eventgrid/validate",
+      "description": "Handle Event Grid subscription validation handshake"
+    }
+  ],
+  "capabilities": [
+    "event-driven",
+    "blob-created",
+    "blob-deleted",
+    "blob-tier-changed",
+    "snapshot-created",
+    "batch-processing",
+    "sas-token-access"
+  ],
+  "wnode_role": "compute_target",
+  "docs_url": "https://learn.microsoft.com/en-us/azure/storage/blobs/",
+  "logo": "logo.svg"
+}

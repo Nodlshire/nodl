@@ -1,0 +1,3 @@
+service: phala_agent
+queue: phala_tasks
+activate: true

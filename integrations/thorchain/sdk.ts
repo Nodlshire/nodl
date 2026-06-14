@@ -1,39 +1,23 @@
-import { with_flash_liquidity } from '../mev/core/liquidity';
-import { submit_bundle } from '../mev/core/bundler';
-import { ArbitrageAgent, PriceCorrectionAgent, BackrunAgent } from '../mev/core/agents';
-import { optimizationEngine } from '../mev/engine/optimization';
-import { monitoringEngine } from '../mev/engine/monitoring';
+// Thorchain Wnode Integration SDK
+import { BaseIntegrationClient } from '../shared/base-client';
 
-export const thorchain = {
-  get_opportunities() {
-    // Returns price spreads, cross-pool arbitrage, mispriced routes
-    return [];
-  },
-  
-  simulate(opportunity: any) {
-    // Estimates expected profit, gas/fees, slippage, latency, success probability
-    return { score: 0, executeParams: {} };
-  },
-  
-  async execute(opportunity: any, params: any) {
-    // Construct and submit the optimal transaction or bundle
-    return await submit_bundle('ethereum', [], 10);
-  }
+export class ThorchainClient extends BaseIntegrationClient {
+    constructor(config: any) {
+        super('thorchain', config);
+    }
+
+    async sendPayment(amount: string, destination: string, idempotencyKey: string) {
+        // Wired to M2M billing layer and 10 PSPs (Stripe, Coinbase, etc)
+        return this.executeM2MPayment({ amount, destination, idempotencyKey });
+    }
+
+    async getStatus() {
+        return this.request('GET', '/status');
+    }
+}
+
+export const defaultThorchainConfig = {
+    name: 'thorchain',
+    auth: '',
+    rateLimits: ''
 };
-
-// Attach MEV Agents
-const agents = [
-  new ArbitrageAgent(),
-  new PriceCorrectionAgent(),
-  new BackrunAgent(),
-];
-
-// Wire into Recursive Optimisation Engine
-optimizationEngine.register('thorchain', {
-  get_opportunities: thorchain.get_opportunities,
-  simulate: thorchain.simulate,
-  execute: thorchain.execute
-}, agents);
-
-// Enable Real-Time Monitoring and Alerting
-monitoringEngine.enable('thorchain', 'SpotDEX');

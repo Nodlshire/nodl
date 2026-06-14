@@ -1,0 +1,213 @@
+[2026-06-13T12:52:22.133Z] Failed calling stripe for UPO test-17813551421320.4066740711406671: Cannot find module '../stripe/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.135Z] Failed calling checkout for UPO test-17813551421320.4066740711406671: Cannot find module '../checkout/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.135Z] Failed calling adyen for UPO test-17813551421320.4066740711406671: Cannot find module '../adyen/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.136Z] Failed calling coinbase_business for UPO test-17813551421320.4066740711406671: Cannot find module '../coinbase_business/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.136Z] Failed calling bvnk for UPO test-17813551421320.4066740711406671: Cannot find module '../bvnk/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.136Z] Failed calling okx for UPO test-17813551421320.4066740711406671: Cannot find module '../okx/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.137Z] FATAL: All failover PSPs exhausted for UPO test-17813551421320.4066740711406671
+[2026-06-13T12:52:22.137Z] Failed calling stripe for UPO test-17813551421320.6612794689950827: Cannot find module '../stripe/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.137Z] Failed calling checkout for UPO test-17813551421320.6612794689950827: Cannot find module '../checkout/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.138Z] Failed calling adyen for UPO test-17813551421320.6612794689950827: Cannot find module '../adyen/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.138Z] Failed calling coinbase_business for UPO test-17813551421320.6612794689950827: Cannot find module '../coinbase_business/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.138Z] Failed calling bvnk for UPO test-17813551421320.6612794689950827: Cannot find module '../bvnk/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.139Z] Failed calling okx for UPO test-17813551421320.6612794689950827: Cannot find module '../okx/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.139Z] FATAL: All failover PSPs exhausted for UPO test-17813551421320.6612794689950827
+[2026-06-13T12:52:22.139Z] Failed calling bridge for UPO test-17813551421320.4058581174838809: Cannot find module '../bridge/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.139Z] Failed calling coinbase_business for UPO test-17813551421320.4058581174838809: Cannot find module '../coinbase_business/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.140Z] Failed calling stripe for UPO test-17813551421320.4058581174838809: Cannot find module '../stripe/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.140Z] Failed calling checkout for UPO test-17813551421320.4058581174838809: Cannot find module '../checkout/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.140Z] Failed calling adyen for UPO test-17813551421320.4058581174838809: Cannot find module '../adyen/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.140Z] Failed calling bvnk for UPO test-17813551421320.4058581174838809: Cannot find module '../bvnk/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.142Z] Failed calling okx for UPO test-17813551421320.4058581174838809: Cannot find module '../okx/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.142Z] FATAL: All failover PSPs exhausted for UPO test-17813551421320.4058581174838809
+[2026-06-13T12:52:22.143Z] Failed calling bridge for UPO test-17813551421320.9196324524284747: Cannot find module '../bridge/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.143Z] Failed calling coinbase_business for UPO test-17813551421320.9196324524284747: Cannot find module '../coinbase_business/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.145Z] Failed calling stripe for UPO test-17813551421320.9196324524284747: Cannot find module '../stripe/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.145Z] Failed calling checkout for UPO test-17813551421320.9196324524284747: Cannot find module '../checkout/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.146Z] Failed calling adyen for UPO test-17813551421320.9196324524284747: Cannot find module '../adyen/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.146Z] Failed calling bvnk for UPO test-17813551421320.9196324524284747: Cannot find module '../bvnk/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.147Z] Failed calling okx for UPO test-17813551421320.9196324524284747: Cannot find module '../okx/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.147Z] FATAL: All failover PSPs exhausted for UPO test-17813551421320.9196324524284747
+[2026-06-13T12:52:22.147Z] Failed calling okx for UPO test-17813551421320.11483986020398862: Cannot find module '../okx/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.147Z] Failed calling coinbase_business for UPO test-17813551421320.11483986020398862: Cannot find module '../coinbase_business/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.147Z] Failed calling bvnk for UPO test-17813551421320.11483986020398862: Cannot find module '../bvnk/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.148Z] Failed calling stripe for UPO test-17813551421320.11483986020398862: Cannot find module '../stripe/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.148Z] Failed calling checkout for UPO test-17813551421320.11483986020398862: Cannot find module '../checkout/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.149Z] Failed calling adyen for UPO test-17813551421320.11483986020398862: Cannot find module '../adyen/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.149Z] FATAL: All failover PSPs exhausted for UPO test-17813551421320.11483986020398862
+[2026-06-13T12:52:22.149Z] Failed calling eco for UPO test-17813551421320.9528245953388703: Cannot find module '../eco/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.149Z] Failed calling coinbase_business for UPO test-17813551421320.9528245953388703: Cannot find module '../coinbase_business/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.150Z] Failed calling okx for UPO test-17813551421320.9528245953388703: Cannot find module '../okx/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.151Z] Failed calling stripe for UPO test-17813551421320.9528245953388703: Cannot find module '../stripe/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.151Z] Failed calling checkout for UPO test-17813551421320.9528245953388703: Cannot find module '../checkout/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.151Z] Failed calling adyen for UPO test-17813551421320.9528245953388703: Cannot find module '../adyen/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.152Z] Failed calling bvnk for UPO test-17813551421320.9528245953388703: Cannot find module '../bvnk/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.152Z] FATAL: All failover PSPs exhausted for UPO test-17813551421320.9528245953388703
+[2026-06-13T12:52:22.152Z] Failed calling bridge for UPO test-17813551421320.9005298651811859: Cannot find module '../bridge/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.153Z] Failed calling coinbase_business for UPO test-17813551421320.9005298651811859: Cannot find module '../coinbase_business/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.153Z] Failed calling stripe for UPO test-17813551421320.9005298651811859: Cannot find module '../stripe/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.153Z] Failed calling checkout for UPO test-17813551421320.9005298651811859: Cannot find module '../checkout/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.153Z] Failed calling adyen for UPO test-17813551421320.9005298651811859: Cannot find module '../adyen/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.154Z] Failed calling bvnk for UPO test-17813551421320.9005298651811859: Cannot find module '../bvnk/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.155Z] Failed calling okx for UPO test-17813551421320.9005298651811859: Cannot find module '../okx/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.155Z] FATAL: All failover PSPs exhausted for UPO test-17813551421320.9005298651811859
+[2026-06-13T12:52:22.155Z] Failed calling stripe for UPO test-17813551421550.33841505822627527: Simulated failure for testing
+[2026-06-13T12:52:22.155Z] Failed calling checkout for UPO test-17813551421550.33841505822627527: Cannot find module '../checkout/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.155Z] Failed calling adyen for UPO test-17813551421550.33841505822627527: Cannot find module '../adyen/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.156Z] Failed calling coinbase_business for UPO test-17813551421550.33841505822627527: Cannot find module '../coinbase_business/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.157Z] Failed calling bvnk for UPO test-17813551421550.33841505822627527: Cannot find module '../bvnk/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.157Z] Failed calling okx for UPO test-17813551421550.33841505822627527: Cannot find module '../okx/activation_sdk'
+Require stack:
+- /home/obregan/Documents/nodl/integrations/m2m/psp_dispatcher.js
+- /home/obregan/Documents/nodl/integrations/m2m/test_routing.js
+[2026-06-13T12:52:22.157Z] FATAL: All failover PSPs exhausted for UPO test-17813551421550.33841505822627527

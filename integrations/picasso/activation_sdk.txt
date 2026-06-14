@@ -1,0 +1,4 @@
+SDK Usage Notes for picasso
+
+Available Methods:
+- defaultClient()

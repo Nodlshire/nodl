@@ -1,0 +1,9 @@
+# Solana Integration
+
+Uses the official `@solana/web3.js` library.
+Official documentation: https://docs.solana.com
+
+Example:
+```typescript
+const connection = new Connection('https://api.mainnet-beta.solana.com');
+```

@@ -1,0 +1,3 @@
+service: passthrough_agent
+queue: passthrough_tasks
+activate: true

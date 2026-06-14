@@ -1,0 +1,42 @@
+{
+  "name": "AWS SNS",
+  "slug": "aws-sns",
+  "provider": "aws",
+  "service": "sns",
+  "version": "1.0.0",
+  "category": "Messaging & Notifications",
+  "description": "Fully managed pub/sub messaging service. SNS topics push HTTP notifications to Wnode endpoints, enabling fan-out event processing across decentralized compute nodes. Workloads invoked via this integration run on Wnode's Tier 6 DECC/TEE secure enclaves.",
+  "auth": {
+    "type": "iam",
+    "fields": [
+      "aws_access_key_id",
+      "aws_secret_access_key",
+      "aws_region"
+    ],
+    "supports_role": true,
+    "role_arn_field": "aws_role_arn"
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/api/pipeline/invoke",
+      "description": "Receive SNS notification and invoke Wnode pipeline"
+    },
+    {
+      "method": "POST",
+      "path": "/api/sns/confirm",
+      "description": "Handle SNS subscription confirmation"
+    }
+  ],
+  "capabilities": [
+    "event-driven",
+    "http-push",
+    "fan-out",
+    "message-filtering",
+    "subscription-confirmation",
+    "raw-message-delivery"
+  ],
+  "wnode_role": "consumer",
+  "docs_url": "https://docs.aws.amazon.com/sns/",
+  "logo": "logo.svg"
+}

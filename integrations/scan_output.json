@@ -1,0 +1,1507 @@
+{
+  "batch_number": 3,
+  "scanned": 100,
+  "missing_directories": [],
+  "protocols": [
+    {
+      "protocol": "evmos",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "exorde",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "factom",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "fantom",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "farcaster",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "farcasterframes",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "farcasterhubs",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "farcasterwarpcast",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "feathercoin",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "fhenix",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "filebase",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "filecoin",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "flare",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "flashbots",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "fluencelabs",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "forta",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "foundry",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "frax",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "fuel",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "fuse",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "galadriel",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "galxe",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "gateio",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "gcp",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "absent",
+        "sdk_ts": "absent"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "gelato",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "absent"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "gelatoops",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "geminis",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "genlayer",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "genshiro",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "gitcoin",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "glif",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "gmx",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "gnolang",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "gnosis",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "gnosischain",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "gnosissafe",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "gnosissafeapps",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "goldfinch",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "goldsky",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "golem",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "gravitybridge",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "griptape",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "gro",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "groestlcoin",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "gton",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "harmony",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "hashflow",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "hedera",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "helius",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "herodotus",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "hive",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "hivemapper",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "holograph",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "hopprotocol",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "hopr",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "hydradx",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "hyperlane",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "hyperliquid",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "icon",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "icp",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "immunefi",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "immutablex",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "indexcoop",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "infstones",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "infura",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "injective",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "ink",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "integritee",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "interchain",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "interlay",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "io.net",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "iota",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "iotex",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "ipfs",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "irisnet",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "ironfish",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "jito",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "joystream",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "jumperexchange",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "juno",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "kadena",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "kakarot",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "karura",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "kaspa",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "kava",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "kelpdao",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "khala",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "ki",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "kilt",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "kinto",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "kintsugi",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "klaytn",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "koinos",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "komodo",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "kroma",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "kusama",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "kwenta",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "kyber",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "kyve",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    },
+    {
+      "protocol": "layerzero",
+      "directory_exists": true,
+      "files": {
+        "validation_report_md": "present",
+        "integration_synopsis_md": "present",
+        "activation_manifest_txt": "absent",
+        "activation_sdk_txt": "absent",
+        "activation_docs_txt": "absent",
+        "integration_md": "present",
+        "sdk_ts": "present"
+      },
+      "directory_empty": false,
+      "notes": ""
+    }
+  ]
+}

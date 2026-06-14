@@ -1,16 +1,14 @@
-# Osmosis Integration
+# Technical Integration Spec: osmosis
 
-This integration connects Wnode to Osmosis.
+## Endpoints
+REST: https://lcd.osmosis.zone
+RPC: grpc.osmosis.zone:9090, https://rpc.osmosis.zone
 
-## Status
-Integrated — Activation Coming Online
+## Flows
+Supported Chains: Osmosis
+Supported Assets: OSMO, ATOM
 
-## Overview
-Integration pending full activation.
-
-## SDK Usage
-```ts
-import { osmosis } from "./sdk";
-
-osmosis.ping();
-```
+## Security & Idempotency
+Auth: None
+Idempotency: None
+Security Model: Proof of Stake

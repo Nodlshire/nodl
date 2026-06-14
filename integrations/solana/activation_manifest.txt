@@ -1,0 +1,7 @@
+{
+  "name": "Solana",
+  "version": "1.0",
+  "rpc_endpoints": [
+    "https://api.mainnet-beta.solana.com"
+  ]
+}

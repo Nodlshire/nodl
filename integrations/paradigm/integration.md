@@ -1,16 +1,14 @@
-# Paradigm Integration
+# Technical Integration Spec: paradigm
 
-This integration connects Wnode to Paradigm.
+## Endpoints
+REST: N/A
+RPC: N/A
 
-## Status
-Integrated — Activation Coming Online
+## Flows
+Supported Chains: Ethereum Mainnet, OP Stack, Arbitrum, Base
+Supported Assets: N/A
 
-## Overview
-Integration pending full activation.
-
-## SDK Usage
-```ts
-import { paradigm } from "./sdk";
-
-paradigm.ping();
-```
+## Security & Idempotency
+Auth: None
+Idempotency: None
+Security Model: Formally audited, memory-safe Rust codebase

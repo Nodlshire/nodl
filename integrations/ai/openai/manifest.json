@@ -1,0 +1,30 @@
+{
+  "name": "OpenAI API",
+  "slug": "ai-openai",
+  "provider": "openai",
+  "service": "openai",
+  "version": "1.0.0",
+  "category": "AI & Machine Learning",
+  "description": "OpenAI provides advanced AI models for chat, embeddings, and images. Wnode acts as a secure compute orchestrator, proxying inference requests and caching results. Workloads invoked via this integration run on Wnode's Tier 6 DECC/TEE secure enclaves.",
+  "auth": {
+    "type": "api-key",
+    "fields": [
+      "openai_api_key"
+    ]
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/api/pipeline/invoke",
+      "description": "Trigger Wnode pipeline which calls OpenAI"
+    }
+  ],
+  "capabilities": [
+    "chat-completions",
+    "embeddings",
+    "image-generation",
+    "function-calling"
+  ],
+  "docs_url": "https://platform.openai.com/docs/",
+  "logo": "logo.svg"
+}

@@ -1,0 +1,3 @@
+service: pantherprotocol_agent
+queue: pantherprotocol_tasks
+activate: true

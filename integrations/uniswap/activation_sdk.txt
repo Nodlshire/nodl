@@ -1,0 +1,6 @@
+import { Route, Trade } from '@uniswap/v3-sdk';
+import { Token, CurrencyAmount, TradeType } from '@uniswap/sdk-core';
+
+export function createTrade(route: Route<any, any>, amount: CurrencyAmount<any>) {
+  return Trade.createUncheckedTrade({ route, inputAmount: amount, tradeType: TradeType.EXACT_INPUT });
+}

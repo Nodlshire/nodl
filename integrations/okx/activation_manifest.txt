@@ -1,0 +1,6 @@
+{
+  "name": "OKX Pay",
+  "version": "1.0",
+  "domain": "payments / billing",
+  "capabilities": ["M2M payments", "stablecoin rails"]
+}

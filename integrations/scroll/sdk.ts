@@ -1,5 +1,23 @@
-export const scroll = {
-  ping() {
-    return "Scroll integration stub loaded.";
-  }
+// Scroll Wnode Integration SDK
+import { BaseIntegrationClient } from '../shared/base-client';
+
+export class ScrollClient extends BaseIntegrationClient {
+    constructor(config: any) {
+        super('scroll', config);
+    }
+
+    async sendPayment(amount: string, destination: string, idempotencyKey: string) {
+        // Wired to M2M billing layer and 10 PSPs (Stripe, Coinbase, etc)
+        return this.executeM2MPayment({ amount, destination, idempotencyKey });
+    }
+
+    async getStatus() {
+        return this.request('GET', '/status');
+    }
+}
+
+export const defaultScrollConfig = {
+    name: 'scroll',
+    auth: '',
+    rateLimits: ''
 };

@@ -1,0 +1,5 @@
+{
+  "name": "Aave",
+  "version": "V3",
+  "market": "Mainnet"
+}

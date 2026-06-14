@@ -1,0 +1,9 @@
+# Aave V3 Integration
+
+Uses `@aave/math-utils` for reserve data.
+Official documentation: https://docs.aave.com/developers/v/2.0/the-core-protocol/ui-pool-data-provider
+
+Example:
+```typescript
+const dataProvider = new UiPoolDataProvider({ provider });
+```

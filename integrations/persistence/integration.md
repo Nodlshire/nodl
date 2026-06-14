@@ -1,16 +1,14 @@
-# Persistence Integration
+# Technical Integration Spec: persistence
 
-This integration connects Wnode to Persistence.
+## Endpoints
+REST: N/A
+RPC: N/A
 
-## Status
-Integrated — Activation Coming Online
+## Flows
+Supported Chains: Persistence Core
+Supported Assets: XPRT, stkATOM
 
-## Overview
-Integration pending full activation.
-
-## SDK Usage
-```ts
-import { persistence } from "./sdk";
-
-persistence.ping();
-```
+## Security & Idempotency
+Auth: None
+Idempotency: None
+Security Model: Staked security via validator delegation

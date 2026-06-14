@@ -1,0 +1,9 @@
+{
+  "name": "Zcash",
+  "category": "Ecosystem",
+  "description": "Integration with Zcash.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0",
+  "id": "190006-0626-65-IN"
+}

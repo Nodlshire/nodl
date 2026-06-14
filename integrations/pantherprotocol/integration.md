@@ -1,16 +1,14 @@
-# Pantherprotocol Integration
+# Technical Integration Spec: pantherprotocol
 
-This integration connects Wnode to Pantherprotocol.
+## Endpoints
+REST: N/A
+RPC: N/A
 
-## Status
-Integrated — Activation Coming Online
+## Flows
+Supported Chains: Ethereum, Polygon, Arbitrum
+Supported Assets: ZKP, USDC, USDT
 
-## Overview
-Integration pending full activation.
-
-## SDK Usage
-```ts
-import { pantherprotocol } from "./sdk";
-
-pantherprotocol.ping();
-```
+## Security & Idempotency
+Auth: ZK proof compliance generation
+Idempotency: None
+Security Model: Non-custodial collateralized privacy-protecting vaults

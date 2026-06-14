@@ -1,0 +1,5 @@
+Runbook for paraswap
+
+1. Bring up: Start the paraswap_agent service.
+2. Monitor: Check logs for rate limit issues (20 requests per second (dependent on key level)).
+3. Rollback: Disable the agent and clear the paraswap_tasks queue.

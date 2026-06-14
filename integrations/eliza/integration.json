@@ -1,0 +1,12 @@
+{
+  "name": "Eliza (ai16z) × Wnode",
+  "slug": "eliza-wnode",
+  "category": "agents",
+  "platform": "Eliza",
+  "status": "coming_soon",
+  "description": "Allows Eliza agents to offload heavy or long-running tasks to the Wnode decentralized execution mesh.",
+  "wnodeEndpoint": "https://gateway.wnode.network/v1/tasks/run",
+  "docsUrl": "https://wnode.network/docs/integrations/eliza",
+  "sdkExample": "./sdk-example.ts",
+  "id": "190002-0626-76-IN"
+}

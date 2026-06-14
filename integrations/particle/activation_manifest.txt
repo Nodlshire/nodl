@@ -1,0 +1,3 @@
+service: particle_agent
+queue: particle_tasks
+activate: true

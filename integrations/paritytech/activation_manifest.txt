@@ -1,0 +1,3 @@
+service: paritytech_agent
+queue: paritytech_tasks
+activate: true

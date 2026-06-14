@@ -1,39 +1,23 @@
-import { with_flash_liquidity } from '../mev/core/liquidity';
-import { submit_bundle } from '../mev/core/bundler';
-import { BackrunAgent, ArbitrageAgent, PriceCorrectionAgent } from '../mev/core/agents';
-import { optimizationEngine } from '../mev/engine/optimization';
-import { monitoringEngine } from '../mev/engine/monitoring';
+// Zksync Wnode Integration SDK
+import { BaseIntegrationClient } from '../shared/base-client';
 
-export const zksync = {
-  get_opportunities() {
-    // Returns backrunnable transactions, profitable bundle candidates
-    return [];
-  },
-  
-  simulate(opportunity: any) {
-    // Estimates expected profit, gas/fees, slippage, latency, success probability
-    return { score: 0, executeParams: {} };
-  },
-  
-  async execute(opportunity: any, params: any) {
-    // Construct and submit the optimal transaction or bundle
-    return await submit_bundle('ethereum', [], 10);
-  }
+export class ZksyncClient extends BaseIntegrationClient {
+    constructor(config: any) {
+        super('zksync', config);
+    }
+
+    async sendPayment(amount: string, destination: string, idempotencyKey: string) {
+        // Wired to M2M billing layer and 10 PSPs (Stripe, Coinbase, etc)
+        return this.executeM2MPayment({ amount, destination, idempotencyKey });
+    }
+
+    async getStatus() {
+        return this.request('GET', '/status');
+    }
+}
+
+export const defaultZksyncConfig = {
+    name: 'zksync',
+    auth: '',
+    rateLimits: ''
 };
-
-// Attach MEV Agents
-const agents = [
-  new BackrunAgent(),
-  new ArbitrageAgent(),
-  new PriceCorrectionAgent(),
-];
-
-// Wire into Recursive Optimisation Engine
-optimizationEngine.register('zksync', {
-  get_opportunities: zksync.get_opportunities,
-  simulate: zksync.simulate,
-  execute: zksync.execute
-}, agents);
-
-// Enable Real-Time Monitoring and Alerting
-monitoringEngine.enable('zksync', 'Builders');

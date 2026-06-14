@@ -1,0 +1,3 @@
+service: paradigm_agent
+queue: paradigm_tasks
+activate: true

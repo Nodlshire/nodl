@@ -1,0 +1,4 @@
+SDK Usage Notes for ottersec
+
+Available Methods:
+- defaultClient()

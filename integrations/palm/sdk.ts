@@ -1,5 +1,7 @@
-export const palm = {
-  ping() {
-    return "Palm integration stub loaded.";
+export class PalmClient {
+  constructor(private apiKey?: string) {}
+  
+  async connect() {
+    console.log("Connecting to palm...");
   }
-};
+}

@@ -1,0 +1,28 @@
+{
+  "name": "xAI Grok API",
+  "slug": "ai-xai-grok",
+  "provider": "xai",
+  "service": "grok",
+  "version": "1.0.0",
+  "category": "AI & Machine Learning",
+  "description": "xAI provides Grok models. Wnode securely integrates Grok inference into decentralized compute pipelines. Workloads invoked via this integration run on Wnode's Tier 6 DECC/TEE secure enclaves.",
+  "auth": {
+    "type": "api-key",
+    "fields": [
+      "xai_api_key"
+    ]
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/api/pipeline/invoke",
+      "description": "Trigger Wnode pipeline which calls Grok"
+    }
+  ],
+  "capabilities": [
+    "chat-completions",
+    "real-time-knowledge"
+  ],
+  "docs_url": "https://docs.x.ai/",
+  "logo": "logo.svg"
+}

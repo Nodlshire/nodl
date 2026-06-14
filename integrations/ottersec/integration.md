@@ -1,16 +1,14 @@
-# Ottersec Integration
+# Technical Integration Spec: ottersec
 
-This integration connects Wnode to Ottersec.
+## Endpoints
+REST: N/A
+RPC: N/A
 
-## Status
-Integrated — Activation Coming Online
+## Flows
+Supported Chains: Solana, Sui, Aptos, Ethereum, Near
+Supported Assets: N/A
 
-## Overview
-Integration pending full activation.
-
-## SDK Usage
-```ts
-import { ottersec } from "./sdk";
-
-ottersec.ping();
-```
+## Security & Idempotency
+Auth: None
+Idempotency: None
+Security Model: Invariant formal verification

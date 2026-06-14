@@ -1,0 +1,5 @@
+Runbook for paradigm
+
+1. Bring up: Start the paradigm_agent service.
+2. Monitor: Check logs for rate limit issues (no strict limits defined).
+3. Rollback: Disable the agent and clear the paradigm_tasks queue.

@@ -1,0 +1,8 @@
+{
+  "id": "vision-pipeline",
+  "steps": [
+    {
+      "action": "vision_annotate"
+    }
+  ]
+}

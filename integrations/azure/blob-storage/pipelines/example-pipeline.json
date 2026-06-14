@@ -1,0 +1,8 @@
+{
+  "id": "azure-blob-pipeline",
+  "steps": [
+    {
+      "action": "process_blob"
+    }
+  ]
+}

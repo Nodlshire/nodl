@@ -1,0 +1,4 @@
+SDK Usage Notes for paritytech
+
+Available Methods:
+- defaultClient()

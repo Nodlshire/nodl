@@ -1,0 +1,4 @@
+SDK Usage Notes for passthrough
+
+Available Methods:
+- defaultClient()

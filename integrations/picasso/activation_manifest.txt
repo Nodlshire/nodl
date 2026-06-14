@@ -1,0 +1,3 @@
+service: picasso_agent
+queue: picasso_tasks
+activate: true

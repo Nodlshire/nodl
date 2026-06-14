@@ -1,0 +1,6 @@
+{
+  "name": "Stripe M2M",
+  "version": "1.0",
+  "domain": "payments / billing",
+  "scopes": ["customers", "payment_intents", "subscriptions", "webhooks"]
+}

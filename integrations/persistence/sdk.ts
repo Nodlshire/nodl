@@ -1,5 +1,7 @@
-export const persistence = {
-  ping() {
-    return "Persistence integration stub loaded.";
+export class PersistenceClient {
+  constructor(private apiKey?: string) {}
+  
+  async connect() {
+    console.log("Connecting to persistence...");
   }
-};
+}

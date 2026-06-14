@@ -1,0 +1,4 @@
+SDK Usage Notes for perpetualprotocol
+
+Available Methods:
+- defaultClient()

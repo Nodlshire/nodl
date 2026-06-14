@@ -1,0 +1,29 @@
+# M2M Core Integration
+
+## Architecture
+M2M (Machine-to-Machine) Core is the foundational orchestration layer for autonomous agents within the Wnode ecosystem. It provides the standardized interface for service registration, discovery, authenticated routing, and telemetry parsing across the decentralized mesh.
+
+## Integration Plugs
+- **Stripe M2M (Primary Phase 1 PSP)**: Connects to the M2M Core via `m2m_stripe_adapter.ts` to handle fiat and stablecoin payment requests dispatched by autonomous compute nodes using the AP4M protocol. It natively maps UniversalPaymentObjects to Stripe PaymentIntents.
+- **Aave M2M**: Utilizes M2M routing to execute automated liquidations and reserve queries.
+
+## Agent Usage
+Wnode agents register their compute endpoints with the M2M registry. When a job is scheduled, the M2M Core issues an HMAC-signed token, which the receiving agent validates before provisioning the execution environment.
+
+## M2M Routing Layer & UPO Matrix
+The Universal Payment Object (UPO) normalizes all payment requests across the mesh. The `psp_router.ts` engine evaluates UPOs and deterministically routes them according to the following AP4M standards:
+
+- **Stripe**: Default for Card rails, SEPA Instant, AP4M micropayments, Fiat settlement (US/EU).
+- **Coinbase Business**: Default for x402 onchain -> stablecoin settlement.
+- **BVNK**: Default for high-volume stablecoin treasury payouts.
+- **Checkout.com**: High-volume card acquiring, US/UK/EU card fallback.
+- **Adyen**: Enterprise EU acquiring, SEPA direct debit, strict KYC flows.
+- **OKX**: APAC crypto flows and native regional rails.
+- **Bridge**: USD to USDC onramping and cross-border routing.
+- **Eco**: Cross-chain intent settlement / multi-chain routing.
+
+### Failover Logic
+If the primary selected PSP fails, the dispatcher automatically cascades through `fallbackCandidates`. If those fail, it iterates through a global failover list (`stripe`, `checkout`, `adyen`, `coinbase_business`, `bvnk`, `okx`) to maximize payment success rates. Failures are logged to `failover_log.txt`.
+
+### Revenue Attribution Model
+Wnode's intelligent routing ensures maximum margin retention by routing payments directly to the lowest-fee provider for a given geographic region and payment medium (e.g., bypassing credit card processors for APAC crypto volume by routing to OKX).

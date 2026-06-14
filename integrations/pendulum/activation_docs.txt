@@ -1,0 +1,5 @@
+Runbook for pendulum
+
+1. Bring up: Start the pendulum_agent service.
+2. Monitor: Check logs for rate limit issues (no strict limits defined).
+3. Rollback: Disable the agent and clear the pendulum_tasks queue.

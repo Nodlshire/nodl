@@ -1,0 +1,1069 @@
+[
+  {
+    "protocol_name": "osmosis",
+    "official_docs": ["https://docs.osmosis.zone"],
+    "github_repos": ["https://github.com/osmosis-labs/osmosis"],
+    "whitepapers": [],
+    "api_endpoints": {
+      "rest": ["https://lcd.osmosis.zone"],
+      "rpc": ["grpc.osmosis.zone:9090", "https://rpc.osmosis.zone"],
+      "graphql": [],
+      "websocket": [],
+      "other": ["sqs.osmosis.zone"]
+    },
+    "sdk_methods": [],
+    "core_functions": [],
+    "architecture": {
+      "components": ["x/concentrated-liquidity", "ProtoRev", "Sidecar Query Server"],
+      "data_flows": [],
+      "execution_model": "Sovereign Layer 1 Appchain",
+      "consensus_or_validation": "CometBFT",
+      "security_model": "Proof of Stake",
+      "rate_limits": "",
+      "auth_model": ""
+    },
+    "mev_interactions": {
+      "supports_mev": true,
+      "builder_or_relay_endpoints": [],
+      "bundle_or_order_flow": "ProtoRev module routes arbitrage on-chain",
+      "protection_or_risk": "Reclaims backrunning/arbitrage MEV to protocol treasury"
+    },
+    "m2m_relevance": {
+      "machine_payments": false,
+      "automatable_endpoints": [],
+      "idempotency_requirements": "",
+      "webhook_or_event_streams": []
+    },
+    "revenue_model": {
+      "direct": ["Swap fees", "ProtoRev arbitrage revenue"],
+      "indirect": [],
+      "fee_structures": [],
+      "tokenomics": "OSMO utility and governance token",
+      "economic_security": ""
+    },
+    "integration_requirements": {
+      "auth": "",
+      "keys_or_credentials": "",
+      "rate_limits": "",
+      "network_requirements": "Cosmos SDK compatible keypair/node",
+      "supported_chains": ["Osmosis"],
+      "supported_assets": ["OSMO", "ATOM"]
+    },
+    "sources": {
+      "docs": ["https://docs.osmosis.zone/"],
+      "github": ["https://github.com/osmosis-labs"],
+      "whitepapers": [],
+      "research": []
+    }
+  },
+  {
+    "protocol_name": "ottersec",
+    "official_docs": ["https://osec.io"],
+    "github_repos": [
+      "https://github.com/otter-sec/bn-ebpf-solana",
+      "https://github.com/otter-sec/otter-verify",
+      "https://github.com/otter-sec/sol-ctf-framework"
+    ],
+    "whitepapers": [],
+    "api_endpoints": {
+      "rest": [],
+      "rpc": [],
+      "graphql": [],
+      "websocket": [],
+      "other": []
+    },
+    "sdk_methods": [],
+    "core_functions": [],
+    "architecture": {
+      "components": ["Symbolic Execution framework", "Kani Rust Verifier wrappers"],
+      "data_flows": [],
+      "execution_model": "",
+      "consensus_or_validation": "Bounded Model Checking (BMC)",
+      "security_model": "Invariant formal verification",
+      "rate_limits": "",
+      "auth_model": ""
+    },
+    "mev_interactions": {
+      "supports_mev": false,
+      "builder_or_relay_endpoints": [],
+      "bundle_or_order_flow": "",
+      "protection_or_risk": ""
+    },
+    "m2m_relevance": {
+      "machine_payments": false,
+      "automatable_endpoints": [],
+      "idempotency_requirements": "",
+      "webhook_or_event_streams": []
+    },
+    "revenue_model": {
+      "direct": ["Security auditing and formal verification services"],
+      "indirect": [],
+      "fee_structures": [],
+      "tokenomics": "",
+      "economic_security": ""
+    },
+    "integration_requirements": {
+      "auth": "",
+      "keys_or_credentials": "",
+      "rate_limits": "",
+      "network_requirements": "",
+      "supported_chains": ["Solana", "Sui", "Aptos", "Ethereum", "Near"],
+      "supported_assets": []
+    },
+    "sources": {
+      "docs": ["https://osec.io/"],
+      "github": ["https://github.com/otter-sec"],
+      "whitepapers": [],
+      "research": []
+    }
+  },
+  {
+    "protocol_name": "pactus",
+    "official_docs": ["https://pactus.org/"],
+    "github_repos": ["https://github.com/pactus-project/pactus"],
+    "whitepapers": [],
+    "api_endpoints": {
+      "rest": ["localhost:8080"],
+      "rpc": ["localhost:50051"],
+      "graphql": [],
+      "websocket": [],
+      "other": []
+    },
+    "sdk_methods": [],
+    "core_functions": [],
+    "architecture": {
+      "components": ["libp2p engine", "Sync module", "Consensus Engine"],
+      "data_flows": [],
+      "execution_model": "Sovereign Layer 1 Blockchain",
+      "consensus_or_validation": "Solidified Proof of Stake (SPoS)",
+      "security_model": "Decentralized validators utilizing libp2p",
+      "rate_limits": "Message rate limiting configured at sync module level",
+      "auth_model": ""
+    },
+    "mev_interactions": {
+      "supports_mev": false,
+      "builder_or_relay_endpoints": [],
+      "bundle_or_order_flow": "",
+      "protection_or_risk": ""
+    },
+    "m2m_relevance": {
+      "machine_payments": false,
+      "automatable_endpoints": [],
+      "idempotency_requirements": "",
+      "webhook_or_event_streams": []
+    },
+    "revenue_model": {
+      "direct": ["Transaction fees", "Staking validator yield"],
+      "indirect": [],
+      "fee_structures": [],
+      "tokenomics": "PAC utility and staking token",
+      "economic_security": ""
+    },
+    "integration_requirements": {
+      "auth": "",
+      "keys_or_credentials": "",
+      "rate_limits": "",
+      "network_requirements": "gRPC client interface",
+      "supported_chains": ["Pactus MainNet", "Pactus DevNet"],
+      "supported_assets": ["PAC"]
+    },
+    "sources": {
+      "docs": ["https://pactus.org/"],
+      "github": ["https://github.com/pactus-project/pactus"],
+      "whitepapers": [],
+      "research": []
+    }
+  },
+  {
+    "protocol_name": "palm",
+    "official_docs": ["https://docs.palm.io"],
+    "github_repos": [],
+    "whitepapers": [],
+    "api_endpoints": {
+      "rest": [],
+      "rpc": [],
+      "graphql": [],
+      "websocket": [],
+      "other": []
+    },
+    "sdk_methods": [],
+    "core_functions": [],
+    "architecture": {
+      "components": ["Ethereum Bridge", "EVM Engine"],
+      "data_flows": [],
+      "execution_model": "EVM-compatible Ethereum sidechain",
+      "consensus_or_validation": "IBFT-2 Rotating Proof of Authority (PoA)",
+      "security_model": "Permissioned validators run by key stakeholders",
+      "rate_limits": "",
+      "auth_model": ""
+    },
+    "mev_interactions": {
+      "supports_mev": false,
+      "builder_or_relay_endpoints": [],
+      "bundle_or_order_flow": "",
+      "protection_or_risk": ""
+    },
+    "m2m_relevance": {
+      "machine_payments": false,
+      "automatable_endpoints": [],
+      "idempotency_requirements": "",
+      "webhook_or_event_streams": []
+    },
+    "revenue_model": {
+      "direct": ["Gas fees in PALM/DAI"],
+      "indirect": [],
+      "fee_structures": [],
+      "tokenomics": "PALM native currency",
+      "economic_security": ""
+    },
+    "integration_requirements": {
+      "auth": "",
+      "keys_or_credentials": "",
+      "rate_limits": "",
+      "network_requirements": "EVM JSON-RPC interface",
+      "supported_chains": ["Palm Network", "Ethereum"],
+      "supported_assets": ["PALM", "DAI", "WETH"]
+    },
+    "sources": {
+      "docs": ["https://docs.palm.io"],
+      "github": [],
+      "whitepapers": [],
+      "research": []
+    }
+  },
+  {
+    "protocol_name": "pantherprotocol",
+    "official_docs": ["https://docs.pantherprotocol.io"],
+    "github_repos": ["https://github.com/panther-protocol"],
+    "whitepapers": [],
+    "api_endpoints": {
+      "rest": [],
+      "rpc": [],
+      "graphql": [],
+      "websocket": [],
+      "other": []
+    },
+    "sdk_methods": [],
+    "core_functions": [],
+    "architecture": {
+      "components": ["Panther Vaults", "zAssets", "zk-SNARK Proving Engine"],
+      "data_flows": [],
+      "execution_model": "Multi-chain privacy architecture utilizing zero-knowledge compliance disclosures",
+      "consensus_or_validation": "",
+      "security_model": "Non-custodial collateralized privacy-protecting vaults",
+      "rate_limits": "",
+      "auth_model": "Zero-Knowledge disclosures for regulatory compliance"
+    },
+    "mev_interactions": {
+      "supports_mev": false,
+      "builder_or_relay_endpoints": [],
+      "bundle_or_order_flow": "",
+      "protection_or_risk": "Protects strategy execution from frontrunning via shielded transactions"
+    },
+    "m2m_relevance": {
+      "machine_payments": true,
+      "automatable_endpoints": [],
+      "idempotency_requirements": "",
+      "webhook_or_event_streams": []
+    },
+    "revenue_model": {
+      "direct": ["Mint and burn fees of zAssets"],
+      "indirect": [],
+      "fee_structures": [],
+      "tokenomics": "ZKP utility and governance token",
+      "economic_security": ""
+    },
+    "integration_requirements": {
+      "auth": "ZK proof compliance generation",
+      "keys_or_credentials": "",
+      "rate_limits": "",
+      "network_requirements": "EVM Smart Contract support",
+      "supported_chains": ["Ethereum", "Polygon", "Arbitrum"],
+      "supported_assets": ["ZKP", "USDC", "USDT"]
+    },
+    "sources": {
+      "docs": ["https://docs.pantherprotocol.io"],
+      "github": ["https://github.com/panther-protocol"],
+      "whitepapers": [],
+      "research": []
+    }
+  },
+  {
+    "protocol_name": "paradigm",
+    "official_docs": [],
+    "github_repos": [
+      "https://github.com/paradigmxyz/reth",
+      "https://github.com/paradigmxyz/alloy",
+      "https://github.com/foundry-rs/foundry",
+      "https://github.com/bluealloy/revm"
+    ],
+    "whitepapers": [],
+    "api_endpoints": {
+      "rest": [],
+      "rpc": [],
+      "graphql": [],
+      "websocket": [],
+      "other": []
+    },
+    "sdk_methods": [],
+    "core_functions": [],
+    "architecture": {
+      "components": [
+        "Reth (Rust Ethereum Client)",
+        "Alloy (EVM SDK)",
+        "Foundry (Development Toolkit)",
+        "Revm (Rust EVM interpreter)"
+      ],
+      "data_flows": [],
+      "execution_model": "EVM Execution Layer client and core infrastructure libraries",
+      "consensus_or_validation": "",
+      "security_model": "Formally audited, memory-safe Rust codebase",
+      "rate_limits": "",
+      "auth_model": ""
+    },
+    "mev_interactions": {
+      "supports_mev": true,
+      "builder_or_relay_endpoints": [],
+      "bundle_or_order_flow": "Supports standard EVM transaction ordering and Flashbots integrations",
+      "protection_or_risk": "High-performance RPC simulation interfaces in Reth"
+    },
+    "m2m_relevance": {
+      "machine_payments": false,
+      "automatable_endpoints": [],
+      "idempotency_requirements": "",
+      "webhook_or_event_streams": []
+    },
+    "revenue_model": {
+      "direct": [],
+      "indirect": [],
+      "fee_structures": [],
+      "tokenomics": "",
+      "economic_security": ""
+    },
+    "integration_requirements": {
+      "auth": "",
+      "keys_or_credentials": "",
+      "rate_limits": "",
+      "network_requirements": "Rust Toolchain for libraries integration",
+      "supported_chains": ["Ethereum Mainnet", "OP Stack", "Arbitrum", "Base"],
+      "supported_assets": []
+    },
+    "sources": {
+      "docs": [],
+      "github": ["https://github.com/paradigmxyz"],
+      "whitepapers": [],
+      "research": []
+    }
+  },
+  {
+    "protocol_name": "paraswap",
+    "official_docs": ["https://docs.paraswap.sh"],
+    "github_repos": ["https://github.com/paraswap"],
+    "whitepapers": [],
+    "api_endpoints": {
+      "rest": ["https://api.paraswap.io"],
+      "rpc": [],
+      "graphql": [],
+      "websocket": [],
+      "other": []
+    },
+    "sdk_methods": [],
+    "core_functions": [],
+    "architecture": {
+      "components": [
+        "ParaSwap Router",
+        "Euler V2 Order Flow Router integration",
+        "Liquidity aggregation aggregator"
+      ],
+      "data_flows": [],
+      "execution_model": "Off-chain aggregation price-routing with on-chain executor settlement",
+      "consensus_or_validation": "",
+      "security_model": "EVM smart contract-based trade dispatching with slippage bounds",
+      "rate_limits": "API endpoints require Partner API Key for production tiers",
+      "auth_model": "Partner Token Authentication"
+    },
+    "mev_interactions": {
+      "supports_mev": true,
+      "builder_or_relay_endpoints": [],
+      "bundle_or_order_flow": "Routed swaps bypass standard public mempools through protected channels where applicable",
+      "protection_or_risk": "Slippage limits and private routing models minimize sandwich attacks"
+    },
+    "m2m_relevance": {
+      "machine_payments": true,
+      "automatable_endpoints": [
+        "https://api.paraswap.io/prices",
+        "https://api.paraswap.io/transactions"
+      ],
+      "idempotency_requirements": "",
+      "webhook_or_event_streams": []
+    },
+    "revenue_model": {
+      "direct": ["Positive slippage sharing mechanism", "Partner API access monetization"],
+      "indirect": [],
+      "fee_structures": [],
+      "tokenomics": "PSP utility token",
+      "economic_security": ""
+    },
+    "integration_requirements": {
+      "auth": "API key for rate limits",
+      "keys_or_credentials": "Bearer token",
+      "rate_limits": "20 requests per second (dependent on key level)",
+      "network_requirements": "EVM JSON-RPC endpoints",
+      "supported_chains": ["Ethereum", "Polygon", "Avalanche", "Arbitrum", "Optimism", "Base"],
+      "supported_assets": ["USDC", "USDT", "ETH", "DAI"]
+    },
+    "sources": {
+      "docs": ["https://docs.paraswap.sh"],
+      "github": ["https://github.com/paraswap"],
+      "whitepapers": [],
+      "research": []
+    }
+  },
+  {
+    "protocol_name": "paritytech",
+    "official_docs": ["https://paritytech.github.io/xcm-docs/"],
+    "github_repos": [
+      "https://github.com/paritytech/polkadot-sdk",
+      "https://github.com/paritytech/smoldot"
+    ],
+    "whitepapers": [],
+    "api_endpoints": {
+      "rest": [],
+      "rpc": [],
+      "graphql": [],
+      "websocket": [],
+      "other": []
+    },
+    "sdk_methods": [],
+    "core_functions": [],
+    "architecture": {
+      "components": ["Substrate", "FRAME Modules", "Cumulus", "XCM Executor", "Smoldot Client"],
+      "data_flows": [],
+      "execution_model": "Substrate Wasm/PolkaVM sandboxed runtime",
+      "consensus_or_validation": "BABE block production, GRANDPA finality gadget",
+      "security_model": "Relay Chain shared validator security model",
+      "rate_limits": "",
+      "auth_model": ""
+    },
+    "mev_interactions": {
+      "supports_mev": false,
+      "builder_or_relay_endpoints": [],
+      "bundle_or_order_flow": "",
+      "protection_or_risk": ""
+    },
+    "m2m_relevance": {
+      "machine_payments": false,
+      "automatable_endpoints": [],
+      "idempotency_requirements": "",
+      "webhook_or_event_streams": []
+    },
+    "revenue_model": {
+      "direct": [],
+      "indirect": [],
+      "fee_structures": [],
+      "tokenomics": "DOT and associated Parachain tokens",
+      "economic_security": ""
+    },
+    "integration_requirements": {
+      "auth": "",
+      "keys_or_credentials": "",
+      "rate_limits": "",
+      "network_requirements": "Wasm or native Substrate JSON-RPC / WebSocket interface",
+      "supported_chains": ["Polkadot", "Kusama", "Substrate networks"],
+      "supported_assets": ["DOT", "KSM"]
+    },
+    "sources": {
+      "docs": ["https://paritytech.github.io/xcm-docs/"],
+      "github": ["https://github.com/paritytech"],
+      "whitepapers": [],
+      "research": []
+    }
+  },
+  {
+    "protocol_name": "particle",
+    "official_docs": ["https://developers.particle.network"],
+    "github_repos": [
+      "https://github.com/Particle-Network/particle-unity",
+      "https://github.com/Particle-Network/aa-sdk"
+    ],
+    "whitepapers": [],
+    "api_endpoints": {
+      "rest": ["https://api.particle.network"],
+      "rpc": [],
+      "graphql": [],
+      "websocket": [],
+      "other": []
+    },
+    "sdk_methods": ["UniversalAccount()", "SmartAccount()", "OmnichainPaymaster()"],
+    "core_functions": [],
+    "architecture": {
+      "components": [
+        "Universal Account SDK",
+        "Account Abstraction Manager (ERC-4337)",
+        "Social Login (MPC-TSS)",
+        "Omnichain Paymaster"
+      ],
+      "data_flows": [],
+      "execution_model": "Universal gas abstraction and smart account transaction routing based on EIP-7702",
+      "consensus_or_validation": "",
+      "security_model": "Multi-Party Computation (MPC-TSS) key management",
+      "rate_limits": "",
+      "auth_model": "OAuth 2.0 Web2 logins mapped to Web3 wallets"
+    },
+    "mev_interactions": {
+      "supports_mev": false,
+      "builder_or_relay_endpoints": [],
+      "bundle_or_order_flow": "Constructed userOperations are routed directly to Particle Bundler gateways",
+      "protection_or_risk": "Private bundler routes prevent simple sandbox frontrunning on supported chains"
+    },
+    "m2m_relevance": {
+      "machine_payments": true,
+      "automatable_endpoints": [],
+      "idempotency_requirements": "Signature-based transaction tracking prevents duplicate executions",
+      "webhook_or_event_streams": []
+    },
+    "revenue_model": {
+      "direct": ["Bundler transaction fees", "Social login integration subscription tiers"],
+      "indirect": [],
+      "fee_structures": [],
+      "tokenomics": "",
+      "economic_security": ""
+    },
+    "integration_requirements": {
+      "auth": "Particle Dashboard app ID, Client Key, Project ID",
+      "keys_or_credentials": "API Keys",
+      "rate_limits": "",
+      "network_requirements": "Node 18+",
+      "supported_chains": ["Ethereum", "Polygon", "Base", "Arbitrum", "Optimism", "Solana"],
+      "supported_assets": ["USDT", "USDC", "ETH", "POL"]
+    },
+    "sources": {
+      "docs": ["https://developers.particle.network/"],
+      "github": ["https://github.com/Particle-Network"],
+      "whitepapers": [],
+      "research": []
+    }
+  },
+  {
+    "protocol_name": "passthrough",
+    "official_docs": [],
+    "github_repos": ["https://github.com/Dicklesworthstone/flywheel connectors"],
+    "whitepapers": [],
+    "api_endpoints": {
+      "rest": [],
+      "rpc": [],
+      "graphql": [],
+      "websocket": [],
+      "other": []
+    },
+    "sdk_methods": [],
+    "core_functions": [],
+    "architecture": {
+      "components": ["FCP Engine", "RaptorQ Symbol Encoder", "Monotonic Audit Chain"],
+      "data_flows": [],
+      "execution_model": "Flywheel Connector Protocol (FCP) Spec V3",
+      "consensus_or_validation": "Typestate-enforced Capabilities",
+      "security_model": "Default deny with secure sandboxing and symbol-first data distribution",
+      "rate_limits": "",
+      "auth_model": "CapabilityToken-bound execution paths"
+    },
+    "mev_interactions": {
+      "supports_mev": false,
+      "builder_or_relay_endpoints": [],
+      "bundle_or_order_flow": "",
+      "protection_or_risk": ""
+    },
+    "m2m_relevance": {
+      "machine_payments": true,
+      "automatable_endpoints": [],
+      "idempotency_requirements": "HLC-stamped monotonic sequence receipt matching for transaction duplication safety",
+      "webhook_or_event_streams": []
+    },
+    "revenue_model": {
+      "direct": [],
+      "indirect": [],
+      "fee_structures": [],
+      "tokenomics": "",
+      "economic_security": ""
+    },
+    "integration_requirements": {
+      "auth": "Capability token verification",
+      "keys_or_credentials": "",
+      "rate_limits": "",
+      "network_requirements": "Rust runtime for native FCP connectors",
+      "supported_chains": [],
+      "supported_assets": []
+    },
+    "sources": {
+      "docs": [],
+      "github": ["https://github.com/Dicklesworthstone/flywheel connectors"],
+      "whitepapers": [],
+      "research": []
+    }
+  },
+  {
+    "protocol_name": "peercoin",
+    "official_docs": ["https://peercoin.net/"],
+    "github_repos": ["https://github.com/peercoin/peercoin"],
+    "whitepapers": ["https://peercoin.net/assets/paper/peercoin-paper.pdf"],
+    "api_endpoints": {
+      "rest": [],
+      "rpc": [],
+      "graphql": [],
+      "websocket": [],
+      "other": []
+    },
+    "sdk_methods": [],
+    "core_functions": [],
+    "architecture": {
+      "components": ["peercoind", "PoS Minting Engine"],
+      "data_flows": [],
+      "execution_model": "Sovereign Proof-of-Stake / Proof-of-Work blockchain",
+      "consensus_or_validation": "Hybrid PoW/PoS using Coin-Age calculation",
+      "security_model": "Staking coin-age validation mechanism",
+      "rate_limits": "",
+      "auth_model": ""
+    },
+    "mev_interactions": {
+      "supports_mev": false,
+      "builder_or_relay_endpoints": [],
+      "bundle_or_order_flow": "",
+      "protection_or_risk": ""
+    },
+    "m2m_relevance": {
+      "machine_payments": true,
+      "automatable_endpoints": [],
+      "idempotency_requirements": "",
+      "webhook_or_event_streams": []
+    },
+    "revenue_model": {
+      "direct": ["Transaction fees"],
+      "indirect": [],
+      "fee_structures": [],
+      "tokenomics": "PPC utility and block rewards",
+      "economic_security": ""
+    },
+    "integration_requirements": {
+      "auth": "RPC Credentials",
+      "keys_or_credentials": "username/password for peercoind RPC server",
+      "rate_limits": "",
+      "network_requirements": "Sovereign daemon instance",
+      "supported_chains": ["Peercoin Mainnet"],
+      "supported_assets": ["PPC"]
+    },
+    "sources": {
+      "docs": ["https://peercoin.net/"],
+      "github": ["https://github.com/peercoin"],
+      "whitepapers": ["https://peercoin.net/assets/paper/peercoin-paper.pdf"],
+      "research": []
+    }
+  },
+  {
+    "protocol_name": "pendle",
+    "official_docs": ["https://docs.pendle.finance/"],
+    "github_repos": ["https://github.com/pendle-finance"],
+    "whitepapers": ["https://docs.pendle.finance/resources/lite-paper"],
+    "api_endpoints": {
+      "rest": [],
+      "rpc": [],
+      "graphql": [],
+      "websocket": [],
+      "other": []
+    },
+    "sdk_methods": [],
+    "core_functions": [],
+    "architecture": {
+      "components": ["Yield Tokenization contract", "Pendle Custom Yield-optimized AMM"],
+      "data_flows": [],
+      "execution_model": "Yield splitting (Principal Tokens / Yield Tokens)",
+      "consensus_or_validation": "",
+      "security_model": "EVM smart contract security based on vePENDLE governance controls",
+      "rate_limits": "",
+      "auth_model": ""
+    },
+    "mev_interactions": {
+      "supports_mev": true,
+      "builder_or_relay_endpoints": [],
+      "bundle_or_order_flow": "Dynamic pricing based on maturity decay is vulnerable to sandwiching during high volume swap events",
+      "protection_or_risk": "Inherent protection limits inside custom AMM invariant bounds"
+    },
+    "m2m_relevance": {
+      "machine_payments": false,
+      "automatable_endpoints": [],
+      "idempotency_requirements": "",
+      "webhook_or_event_streams": []
+    },
+    "revenue_model": {
+      "direct": ["Swap fees", "Yield fee extraction"],
+      "indirect": [],
+      "fee_structures": [],
+      "tokenomics": "PENDLE utility and vePENDLE lockups",
+      "economic_security": ""
+    },
+    "integration_requirements": {
+      "auth": "",
+      "keys_or_credentials": "",
+      "rate_limits": "",
+      "network_requirements": "EVM Smart Contract access",
+      "supported_chains": ["Ethereum", "Arbitrum", "Optimism", "Avalanche"],
+      "supported_assets": ["PENDLE", "pufETH", "stETH"]
+    },
+    "sources": {
+      "docs": ["https://docs.pendle.finance/"],
+      "github": ["https://github.com/pendle-finance"],
+      "whitepapers": ["https://docs.pendle.finance/resources/lite-paper"],
+      "research": []
+    }
+  },
+  {
+    "protocol_name": "pendulum",
+    "official_docs": ["https://docs.pendulum.co"],
+    "github_repos": ["https://github.com/pendulum-chain"],
+    "whitepapers": [],
+    "api_endpoints": {
+      "rest": [],
+      "rpc": ["wss://api-pendulum.dwellir.com"],
+      "graphql": [],
+      "websocket": [],
+      "other": []
+    },
+    "sdk_methods": [],
+    "core_functions": [],
+    "architecture": {
+      "components": ["Substrate Runtime Module", "Wasm smart contract environment"],
+      "data_flows": [],
+      "execution_model": "Sovereign Layer-1 optimization for Forex/Fiat routing",
+      "consensus_or_validation": "Polkadot Parachain validation mechanics",
+      "security_model": "Inherited security from Polkadot relay validation",
+      "rate_limits": "",
+      "auth_model": ""
+    },
+    "mev_interactions": {
+      "supports_mev": false,
+      "builder_or_relay_endpoints": [],
+      "bundle_or_order_flow": "",
+      "protection_or_risk": ""
+    },
+    "m2m_relevance": {
+      "machine_payments": true,
+      "automatable_endpoints": [],
+      "idempotency_requirements": "",
+      "webhook_or_event_streams": []
+    },
+    "revenue_model": {
+      "direct": ["Transaction fees in native fiat stablecoins or native PEN token"],
+      "indirect": [],
+      "fee_structures": [],
+      "tokenomics": "PEN native utility token",
+      "economic_security": ""
+    },
+    "integration_requirements": {
+      "auth": "",
+      "keys_or_credentials": "",
+      "rate_limits": "",
+      "network_requirements": "Substrate JSON-RPC interface",
+      "supported_chains": ["Polkadot"],
+      "supported_assets": ["PEN"]
+    },
+    "sources": {
+      "docs": ["https://docs.pendulum.co"],
+      "github": ["https://github.com/pendulum-chain"],
+      "whitepapers": [],
+      "research": []
+    }
+  },
+  {
+    "protocol_name": "perpetualprotocol",
+    "official_docs": ["https://docs.perp.com"],
+    "github_repos": ["https://github.com/perpetual-protocol/perp-curie-contract"],
+    "whitepapers": [],
+    "api_endpoints": {
+      "rest": [],
+      "rpc": [],
+      "graphql": [],
+      "websocket": [],
+      "other": []
+    },
+    "sdk_methods": [],
+    "core_functions": [],
+    "architecture": {
+      "components": ["vAMM (Virtual Automated Market Maker) engine", "Clearing House contract", "Collateral Vault"],
+      "data_flows": [],
+      "execution_model": "On-chain leveraged derivative trading with margin ratio liquidation boundaries",
+      "consensus_or_validation": "",
+      "security_model": "Smart contract collateral boundaries; maintenance margin liquidations at 6.25%",
+      "rate_limits": "",
+      "auth_model": ""
+    },
+    "mev_interactions": {
+      "supports_mev": true,
+      "builder_or_relay_endpoints": [],
+      "bundle_or_order_flow": "Subject to frontrunning/slippage exploit on vAMM state adjustments",
+      "protection_or_risk": "Hourly funding rate adjustments align vAMM price back to Spot index"
+    },
+    "m2m_relevance": {
+      "machine_payments": true,
+      "automatable_endpoints": [],
+      "idempotency_requirements": "",
+      "webhook_or_event_streams": []
+    },
+    "revenue_model": {
+      "direct": ["Trading commissions", "Liquidation bounty sharing"],
+      "indirect": [],
+      "fee_structures": [],
+      "tokenomics": "PERP utility and locking token",
+      "economic_security": ""
+    },
+    "integration_requirements": {
+      "auth": "",
+      "keys_or_credentials": "",
+      "rate_limits": "",
+      "network_requirements": "EVM RPC access",
+      "supported_chains": ["Optimism", "Arbitrum"],
+      "supported_assets": ["USDC", "PERP"]
+    },
+    "sources": {
+      "docs": ["https://docs.perp.com"],
+      "github": ["https://github.com/perpetual-protocol"],
+      "whitepapers": [],
+      "research": []
+    }
+  },
+  {
+    "protocol_name": "persistence",
+    "official_docs": ["https://docs.persistence.one"],
+    "github_repos": ["https://github.com/persistenceOne"],
+    "whitepapers": [],
+    "api_endpoints": {
+      "rest": [],
+      "rpc": [],
+      "graphql": [],
+      "websocket": [],
+      "other": []
+    },
+    "sdk_methods": [],
+    "core_functions": [],
+    "architecture": {
+      "components": ["Cosmos SDK runtime", "Liquid Staking Module (LST)"],
+      "data_flows": [],
+      "execution_model": "Sovereign Cosmos-SDK Hub App Chain",
+      "consensus_or_validation": "CometBFT Delegated Proof of Stake",
+      "security_model": "Staked security via validator delegation",
+      "rate_limits": "",
+      "auth_model": ""
+    },
+    "mev_interactions": {
+      "supports_mev": false,
+      "builder_or_relay_endpoints": [],
+      "bundle_or_order_flow": "",
+      "protection_or_risk": ""
+    },
+    "m2m_relevance": {
+      "machine_payments": false,
+      "automatable_endpoints": [],
+      "idempotency_requirements": "",
+      "webhook_or_event_streams": []
+    },
+    "revenue_model": {
+      "direct": ["Protocol commission on liquid staking assets", "LST wrapping fees"],
+      "indirect": [],
+      "fee_structures": [],
+      "tokenomics": "XPRT native utility token",
+      "economic_security": ""
+    },
+    "integration_requirements": {
+      "auth": "",
+      "keys_or_credentials": "",
+      "rate_limits": "",
+      "network_requirements": "Cosmos RPC Node connection",
+      "supported_chains": ["Persistence Core"],
+      "supported_assets": ["XPRT", "stkATOM"]
+    },
+    "sources": {
+      "docs": ["https://docs.persistence.one"],
+      "github": ["https://github.com/persistenceOne"],
+      "whitepapers": [],
+      "research": []
+    }
+  },
+  {
+    "protocol_name": "phala",
+    "official_docs": ["https://docs.phala.network"],
+    "github_repos": ["https://github.com/Phala-Network/awesome-phat-contracts"],
+    "whitepapers": [],
+    "api_endpoints": {
+      "rest": [],
+      "rpc": ["wss://poc5.phala.network/ws"],
+      "graphql": [],
+      "websocket": [],
+      "other": ["https://poc5.phala.network/tee-api-1"]
+    },
+    "sdk_methods": ["pink.httpRequest()", "pink.invokeContract()"],
+    "core_functions": [],
+    "architecture": {
+      "components": [
+        "Trusted Execution Environments (TEEs/Intel SGX)",
+        "PRuntime API Engine",
+        "Phat Contracts ink! WASM compilation"
+      ],
+      "data_flows": [],
+      "execution_model": "Off-chain verifiable confidential computation",
+      "consensus_or_validation": "TEE remote hardware attestations",
+      "security_model": "Hardware enclave-enforced transaction data secrecy",
+      "rate_limits": "",
+      "auth_model": "On-chain keys generated inside the enclave (submit_key)"
+    },
+    "mev_interactions": {
+      "supports_mev": false,
+      "builder_or_relay_endpoints": [],
+      "bundle_or_order_flow": "Enclave execution isolates state transitions completely from public mempool observations",
+      "protection_or_risk": "Inherent protection against sandwich attacks through encrypted enclave state"
+    },
+    "m2m_relevance": {
+      "machine_payments": true,
+      "automatable_endpoints": [],
+      "idempotency_requirements": "",
+      "webhook_or_event_streams": []
+    },
+    "revenue_model": {
+      "direct": ["Gas-free execution options", "Enclave computing resources paid in PHA"],
+      "indirect": [],
+      "fee_structures": [],
+      "tokenomics": "PHA utility and staking token",
+      "economic_security": ""
+    },
+    "integration_requirements": {
+      "auth": "Polkadot wallet account key or mnemonic wallet",
+      "keys_or_credentials": "POLKADOT_WALLET_SURI",
+      "rate_limits": "Phat Contract execution resource limits",
+      "network_requirements": "Node.js >= 18; @phala/fn CLI tool",
+      "supported_chains": ["Polkadot", "Kusama", "EVM bridges"],
+      "supported_assets": ["PHA"]
+    },
+    "sources": {
+      "docs": ["https://docs.phala.network"],
+      "github": ["https://github.com/Phala-Network"],
+      "whitepapers": [],
+      "research": []
+    }
+  },
+  {
+    "protocol_name": "phoenix",
+    "official_docs": ["https://docs.phoenix.trade"],
+    "github_repos": ["https://github.com/Ellipsis-Labs/rise-public"],
+    "whitepapers": [],
+    "api_endpoints": {
+      "rest": [],
+      "rpc": [],
+      "graphql": [],
+      "websocket": [],
+      "other": []
+    },
+    "sdk_methods": [
+      "PhoenixHttpClient()",
+      "createPhoenixClient()",
+      "createPhoenixWsClient()",
+      "PhoenixTxBuilder()"
+    ],
+    "core_functions": [],
+    "architecture": {
+      "components": ["Central Limit Order Book", "Solana Program", "Vulcan CLI"],
+      "data_flows": [],
+      "execution_model": "On-chain high-frequency order book execution",
+      "consensus_or_validation": "Solana Sealevel Proof of History",
+      "security_model": "Non-custodial direct programmatic ledger matching",
+      "rate_limits": "",
+      "auth_model": "Ed25519 Solana wallet signatures"
+    },
+    "mev_interactions": {
+      "supports_mev": true,
+      "builder_or_relay_endpoints": [],
+      "bundle_or_order_flow": "Order routing matches directly against the on-chain Solana state machine",
+      "protection_or_risk": "Protected by Solana's rapid slot validation boundaries"
+    },
+    "m2m_relevance": {
+      "machine_payments": true,
+      "automatable_endpoints": [],
+      "idempotency_requirements": "",
+      "webhook_or_event_streams": []
+    },
+    "revenue_model": {
+      "direct": ["Order matching fees", "Collateral spread"],
+      "indirect": [],
+      "fee_structures": [],
+      "tokenomics": "",
+      "economic_security": ""
+    },
+    "integration_requirements": {
+      "auth": "Solana wallet key pair",
+      "keys_or_credentials": "POLYMARKET_PK equivalent or Solana wallet secret",
+      "rate_limits": "",
+      "network_requirements": "Solana RPC endpoint connection",
+      "supported_chains": ["Solana"],
+      "supported_assets": ["USDC", "SOL"]
+    },
+    "sources": {
+      "docs": ["https://docs.phoenix.trade"],
+      "github": ["https://github.com/Ellipsis-Labs"],
+      "whitepapers": [],
+      "research": []
+    }
+  },
+  {
+    "protocol_name": "picasso",
+    "official_docs": ["https://docs.composable.finance/"],
+    "github_repos": ["https://github.com/ComposableFi"],
+    "whitepapers": [],
+    "api_endpoints": {
+      "rest": [],
+      "rpc": [],
+      "graphql": [],
+      "websocket": [],
+      "other": []
+    },
+    "sdk_methods": [],
+    "core_functions": [],
+    "architecture": {
+      "components": ["IBC Relayer Hermes integration", "Centauri Cross-chain bridge"],
+      "data_flows": [],
+      "execution_model": "Multi-ecosystem cross-chain asset translation",
+      "consensus_or_validation": "Polkadot Parachain validated infrastructure",
+      "security_model": "IBC trustless bridge cryptographic proofs",
+      "rate_limits": "",
+      "auth_model": ""
+    },
+    "mev_interactions": {
+      "supports_mev": false,
+      "builder_or_relay_endpoints": [],
+      "bundle_or_order_flow": "",
+      "protection_or_risk": ""
+    },
+    "m2m_relevance": {
+      "machine_payments": true,
+      "automatable_endpoints": [],
+      "idempotency_requirements": "",
+      "webhook_or_event_streams": []
+    },
+    "revenue_model": {
+      "direct": ["Cross-chain routing fees", "IBC transfer execution payouts"],
+      "indirect": [],
+      "fee_structures": [],
+      "tokenomics": "PICA utility and governance token",
+      "economic_security": ""
+    },
+    "integration_requirements": {
+      "auth": "",
+      "keys_or_credentials": "",
+      "rate_limits": "",
+      "network_requirements": "IBC connection node and SDK configurations",
+      "supported_chains": ["Polkadot", "Kusama", "Cosmos Hub", "Solana", "Ethereum"],
+      "supported_assets": ["PICA", "DOT", "OSMO", "SOL", "ETH"]
+    },
+    "sources": {
+      "docs": ["https://docs.composable.finance/"],
+      "github": ["https://github.com/ComposableFi"],
+      "whitepapers": [],
+      "research": []
+    }
+  }
+]

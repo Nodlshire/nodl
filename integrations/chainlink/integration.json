@@ -1,0 +1,9 @@
+{
+  "name": "Chainlink",
+  "category": "Oracle",
+  "description": "Decentralized oracle network providing reliable, tamper-proof inputs, outputs, and computations.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0",
+  "id": "190001-0626-94-IN"
+}

@@ -1,16 +1,14 @@
-# Palm Integration
+# Technical Integration Spec: palm
 
-This integration connects Wnode to Palm.
+## Endpoints
+REST: N/A
+RPC: N/A
 
-## Status
-Integrated — Activation Coming Online
+## Flows
+Supported Chains: Palm Network, Ethereum
+Supported Assets: PALM, DAI, WETH
 
-## Overview
-Integration pending full activation.
-
-## SDK Usage
-```ts
-import { palm } from "./sdk";
-
-palm.ping();
-```
+## Security & Idempotency
+Auth: None
+Idempotency: None
+Security Model: Permissioned validators run by key stakeholders

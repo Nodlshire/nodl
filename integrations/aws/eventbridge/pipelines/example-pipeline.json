@@ -1,0 +1,8 @@
+{
+  "id": "eventbridge-pipeline",
+  "steps": [
+    {
+      "action": "process"
+    }
+  ]
+}

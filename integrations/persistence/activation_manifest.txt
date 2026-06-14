@@ -1,0 +1,3 @@
+service: persistence_agent
+queue: persistence_tasks
+activate: true

@@ -1,0 +1,3 @@
+service: phoenix_agent
+queue: phoenix_tasks
+activate: true

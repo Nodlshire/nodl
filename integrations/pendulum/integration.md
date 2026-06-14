@@ -1,16 +1,14 @@
-# Pendulum Integration
+# Technical Integration Spec: pendulum
 
-This integration connects Wnode to Pendulum.
+## Endpoints
+REST: N/A
+RPC: wss://api-pendulum.dwellir.com
 
-## Status
-Integrated — Activation Coming Online
+## Flows
+Supported Chains: Polkadot
+Supported Assets: PEN
 
-## Overview
-Pendulum integration allows Wnode operators to seamlessly connect with Pendulum.
-
-## SDK Usage
-```ts
-import { pendulum } from "./sdk";
-
-pendulum.ping();
-```
+## Security & Idempotency
+Auth: None
+Idempotency: None
+Security Model: Inherited security from Polkadot relay validation

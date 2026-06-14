@@ -1,0 +1,6 @@
+{
+  "name": "M2M Core",
+  "version": "1.0",
+  "purpose": "machine-to-machine orchestration",
+  "capabilities": ["auth", "routing", "telemetry"]
+}

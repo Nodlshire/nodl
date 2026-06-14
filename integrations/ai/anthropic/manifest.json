@@ -1,0 +1,29 @@
+{
+  "name": "Anthropic API",
+  "slug": "ai-anthropic",
+  "provider": "anthropic",
+  "service": "anthropic",
+  "version": "1.0.0",
+  "category": "AI & Machine Learning",
+  "description": "Anthropic provides Claude models for chat and analysis. Wnode acts as an inference router for Claude workloads. Workloads invoked via this integration run on Wnode's Tier 6 DECC/TEE secure enclaves.",
+  "auth": {
+    "type": "api-key",
+    "fields": [
+      "anthropic_api_key"
+    ]
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/api/pipeline/invoke",
+      "description": "Trigger Wnode pipeline which calls Anthropic"
+    }
+  ],
+  "capabilities": [
+    "claude-models",
+    "large-context-windows",
+    "reasoning"
+  ],
+  "docs_url": "https://docs.anthropic.com/",
+  "logo": "logo.svg"
+}

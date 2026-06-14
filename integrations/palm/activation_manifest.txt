@@ -1,0 +1,3 @@
+service: palm_agent
+queue: palm_tasks
+activate: true

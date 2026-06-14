@@ -1,0 +1,7 @@
+{
+  "name": "Arbitrum",
+  "version": "Nitro",
+  "rpc_endpoints": [
+    "https://arb1.arbitrum.io/rpc"
+  ]
+}

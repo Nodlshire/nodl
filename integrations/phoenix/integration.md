@@ -1,16 +1,14 @@
-# Phoenix Integration
+# Technical Integration Spec: phoenix
 
-This integration connects Wnode to Phoenix.
+## Endpoints
+REST: N/A
+RPC: N/A
 
-## Status
-Integrated — Activation Coming Online
+## Flows
+Supported Chains: Solana
+Supported Assets: USDC, SOL
 
-## Overview
-Integration pending full activation.
-
-## SDK Usage
-```ts
-import { phoenix } from "./sdk";
-
-phoenix.ping();
-```
+## Security & Idempotency
+Auth: Solana wallet key pair
+Idempotency: None
+Security Model: Non-custodial direct programmatic ledger matching

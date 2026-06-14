@@ -1,0 +1,8 @@
+{
+  "id": "workers-pipeline",
+  "steps": [
+    {
+      "action": "process"
+    }
+  ]
+}

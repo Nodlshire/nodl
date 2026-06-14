@@ -1,16 +1,14 @@
-# Perpetual Protocol Integration
+# Technical Integration Spec: perpetualprotocol
 
-This integration connects Wnode to Perpetual Protocol.
+## Endpoints
+REST: N/A
+RPC: N/A
 
-## Status
-Integrated — Activation Coming Online
+## Flows
+Supported Chains: Optimism, Arbitrum
+Supported Assets: USDC, PERP
 
-## Overview
-Perpetual Protocol integration allows Wnode operators to seamlessly connect with Perpetual Protocol.
-
-## SDK Usage
-```ts
-import { perpetualprotocol } from "./sdk";
-
-perpetualprotocol.ping();
-```
+## Security & Idempotency
+Auth: None
+Idempotency: None
+Security Model: Smart contract collateral boundaries; maintenance margin liquidations at 6.25%

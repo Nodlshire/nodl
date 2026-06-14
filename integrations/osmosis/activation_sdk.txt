@@ -1,0 +1,4 @@
+SDK Usage Notes for osmosis
+
+Available Methods:
+- defaultClient()

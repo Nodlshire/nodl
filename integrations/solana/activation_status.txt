@@ -1,0 +1,4 @@
+async function checkStatus() {
+  const res = await fetch('https://api.mainnet-beta.solana.com', { method: 'POST', body: JSON.stringify({jsonrpc:'2.0', id:1, method:'getHealth'})});
+  return res.ok;
+}

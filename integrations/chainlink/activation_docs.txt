@@ -1,0 +1,9 @@
+# Chainlink Integration
+
+Uses `@chainlink/contracts` to read price feeds.
+Official documentation: https://docs.chain.link
+
+Example:
+```typescript
+const priceFeed = new ethers.Contract(addr, abi, provider);
+```

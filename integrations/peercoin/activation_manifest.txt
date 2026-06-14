@@ -1,0 +1,3 @@
+service: peercoin_agent
+queue: peercoin_tasks
+activate: true

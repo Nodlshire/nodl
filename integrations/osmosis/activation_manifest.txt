@@ -1,0 +1,3 @@
+service: osmosis_agent
+queue: osmosis_tasks
+activate: true

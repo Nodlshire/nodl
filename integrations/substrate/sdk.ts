@@ -1,5 +1,23 @@
-export const substrate = {
-  ping() {
-    return "Substrate integration stub loaded.";
-  }
+// Substrate Wnode Integration SDK
+import { BaseIntegrationClient } from '../shared/base-client';
+
+export class SubstrateClient extends BaseIntegrationClient {
+    constructor(config: any) {
+        super('substrate', config);
+    }
+
+    async sendPayment(amount: string, destination: string, idempotencyKey: string) {
+        // Wired to M2M billing layer and 10 PSPs (Stripe, Coinbase, etc)
+        return this.executeM2MPayment({ amount, destination, idempotencyKey });
+    }
+
+    async getStatus() {
+        return this.request('GET', '/status');
+    }
+}
+
+export const defaultSubstrateConfig = {
+    name: 'substrate',
+    auth: '',
+    rateLimits: ''
 };

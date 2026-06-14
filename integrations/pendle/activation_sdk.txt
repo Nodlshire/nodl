@@ -1,0 +1,4 @@
+SDK Usage Notes for pendle
+
+Available Methods:
+- defaultClient()

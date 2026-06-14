@@ -1,0 +1,7 @@
+{
+  "name": "Chainlink",
+  "version": "1.0",
+  "contracts": [
+    "AggregatorV3Interface"
+  ]
+}

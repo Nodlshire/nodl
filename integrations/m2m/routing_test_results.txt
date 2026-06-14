@@ -1,0 +1,34 @@
+--- ROUTING TEST RESULTS ---
+
+Test: EU card -> Stripe
+Expected: stripe | Got: null
+Result: FAIL (undefined)
+
+Test: US card -> Stripe
+Expected: stripe | Got: null
+Result: FAIL (undefined)
+
+Test: Onchain USDC -> Coinbase
+Expected: coinbase_business | Got: null
+Result: FAIL (undefined)
+
+Test: High-volume payout -> BVNK
+Expected: bvnk | Got: null
+Result: FAIL (undefined)
+
+Test: APAC crypto -> OKX
+Expected: okx | Got: null
+Result: FAIL (undefined)
+
+Test: Multi-chain agent -> Eco
+Expected: eco | Got: null
+Result: FAIL (undefined)
+
+Test: Cross-border stablecoin -> Bridge
+Expected: bridge | Got: null
+Result: FAIL (undefined)
+
+Test: Stripe failure -> Checkout fallback
+Expected: checkout | Got: null
+Result: FAIL (undefined)
+

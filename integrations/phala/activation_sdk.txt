@@ -1,0 +1,4 @@
+SDK Usage Notes for phala
+
+Available Methods:
+- pink.httpRequest()\n- pink.invokeContract()

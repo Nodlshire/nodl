@@ -1,16 +1,14 @@
-# Pactus Integration
+# Technical Integration Spec: pactus
 
-This integration connects Wnode to Pactus.
+## Endpoints
+REST: localhost:8080
+RPC: localhost:50051
 
-## Status
-Integrated — Activation Coming Online
+## Flows
+Supported Chains: Pactus MainNet, Pactus DevNet
+Supported Assets: PAC
 
-## Overview
-Integration pending full activation.
-
-## SDK Usage
-```ts
-import { pactus } from "./sdk";
-
-pactus.ping();
-```
+## Security & Idempotency
+Auth: None
+Idempotency: None
+Security Model: Decentralized validators utilizing libp2p

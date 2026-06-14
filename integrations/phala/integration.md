@@ -1,16 +1,14 @@
-# Phala Integration
+# Technical Integration Spec: phala
 
-This integration connects Wnode to Phala.
+## Endpoints
+REST: N/A
+RPC: wss://poc5.phala.network/ws
 
-## Status
-Integrated — Activation Coming Online
+## Flows
+Supported Chains: Polkadot, Kusama, EVM bridges
+Supported Assets: PHA
 
-## Overview
-Integration pending full activation.
-
-## SDK Usage
-```ts
-import { phala } from "./sdk";
-
-phala.ping();
-```
+## Security & Idempotency
+Auth: Polkadot wallet account key or mnemonic wallet
+Idempotency: None
+Security Model: Hardware enclave-enforced transaction data secrecy

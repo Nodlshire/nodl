@@ -1,16 +1,14 @@
-# Particle Integration
+# Technical Integration Spec: particle
 
-This integration connects Wnode to Particle.
+## Endpoints
+REST: https://api.particle.network
+RPC: N/A
 
-## Status
-Integrated — Activation Coming Online
+## Flows
+Supported Chains: Ethereum, Polygon, Base, Arbitrum, Optimism, Solana
+Supported Assets: USDT, USDC, ETH, POL
 
-## Overview
-Integration pending full activation.
-
-## SDK Usage
-```ts
-import { particle } from "./sdk";
-
-particle.ping();
-```
+## Security & Idempotency
+Auth: Particle Dashboard app ID, Client Key, Project ID
+Idempotency: Signature-based transaction tracking prevents duplicate executions
+Security Model: Multi-Party Computation (MPC-TSS) key management

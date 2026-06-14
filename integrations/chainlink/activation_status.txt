@@ -1,0 +1,4 @@
+async function checkStatus(provider) {
+  const network = await provider.getNetwork();
+  return network.chainId > 0;
+}

@@ -1,0 +1,110 @@
+[
+  {
+    "protocol_name": "osmosis",
+    "activation_ready": true,
+    "revenue_validated": true,
+    "notes": ""
+  },
+  {
+    "protocol_name": "ottersec",
+    "activation_ready": true,
+    "revenue_validated": true,
+    "notes": ""
+  },
+  {
+    "protocol_name": "pactus",
+    "activation_ready": true,
+    "revenue_validated": true,
+    "notes": ""
+  },
+  {
+    "protocol_name": "palm",
+    "activation_ready": true,
+    "revenue_validated": true,
+    "notes": ""
+  },
+  {
+    "protocol_name": "pantherprotocol",
+    "activation_ready": true,
+    "revenue_validated": true,
+    "notes": ""
+  },
+  {
+    "protocol_name": "paradigm",
+    "activation_ready": true,
+    "revenue_validated": false,
+    "notes": ""
+  },
+  {
+    "protocol_name": "paraswap",
+    "activation_ready": true,
+    "revenue_validated": true,
+    "notes": ""
+  },
+  {
+    "protocol_name": "paritytech",
+    "activation_ready": true,
+    "revenue_validated": false,
+    "notes": ""
+  },
+  {
+    "protocol_name": "particle",
+    "activation_ready": true,
+    "revenue_validated": true,
+    "notes": ""
+  },
+  {
+    "protocol_name": "passthrough",
+    "activation_ready": true,
+    "revenue_validated": false,
+    "notes": ""
+  },
+  {
+    "protocol_name": "peercoin",
+    "activation_ready": true,
+    "revenue_validated": true,
+    "notes": ""
+  },
+  {
+    "protocol_name": "pendle",
+    "activation_ready": true,
+    "revenue_validated": true,
+    "notes": ""
+  },
+  {
+    "protocol_name": "pendulum",
+    "activation_ready": true,
+    "revenue_validated": true,
+    "notes": ""
+  },
+  {
+    "protocol_name": "perpetualprotocol",
+    "activation_ready": true,
+    "revenue_validated": true,
+    "notes": ""
+  },
+  {
+    "protocol_name": "persistence",
+    "activation_ready": true,
+    "revenue_validated": true,
+    "notes": ""
+  },
+  {
+    "protocol_name": "phala",
+    "activation_ready": true,
+    "revenue_validated": true,
+    "notes": ""
+  },
+  {
+    "protocol_name": "phoenix",
+    "activation_ready": true,
+    "revenue_validated": true,
+    "notes": ""
+  },
+  {
+    "protocol_name": "picasso",
+    "activation_ready": true,
+    "revenue_validated": true,
+    "notes": ""
+  }
+]

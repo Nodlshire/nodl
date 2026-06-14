@@ -1,16 +1,14 @@
-# Peercoin Integration
+# Technical Integration Spec: peercoin
 
-This integration connects Wnode to Peercoin.
+## Endpoints
+REST: N/A
+RPC: N/A
 
-## Status
-Integrated — Activation Coming Online
+## Flows
+Supported Chains: Peercoin Mainnet
+Supported Assets: PPC
 
-## Overview
-Peercoin integration allows Wnode operators to seamlessly connect with Peercoin.
-
-## SDK Usage
-```ts
-import { peercoin } from "./sdk";
-
-peercoin.ping();
-```
+## Security & Idempotency
+Auth: RPC Credentials
+Idempotency: None
+Security Model: Staking coin-age validation mechanism

@@ -1,16 +1,14 @@
-# Picasso Integration
+# Technical Integration Spec: picasso
 
-This integration connects Wnode to Picasso.
+## Endpoints
+REST: N/A
+RPC: N/A
 
-## Status
-Integrated — Activation Coming Online
+## Flows
+Supported Chains: Polkadot, Kusama, Cosmos Hub, Solana, Ethereum
+Supported Assets: PICA, DOT, OSMO, SOL, ETH
 
-## Overview
-Picasso integration allows Wnode operators to seamlessly connect with Picasso.
-
-## SDK Usage
-```ts
-import { picasso } from "./sdk";
-
-picasso.ping();
-```
+## Security & Idempotency
+Auth: None
+Idempotency: None
+Security Model: IBC trustless bridge cryptographic proofs

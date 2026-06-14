@@ -1,0 +1,13 @@
+{
+  "protocol": "stellar",
+  "supported_chains": [
+    "Public",
+    "Testnet",
+    "Futurenet"
+  ],
+  "supported_assets": [
+    "XLM",
+    "Custom Issued Assets"
+  ],
+  "m2m_enabled": true
+}

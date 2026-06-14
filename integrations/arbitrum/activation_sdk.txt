@@ -1,0 +1,7 @@
+import { L2TransactionReceipt } from '@arbitrum/sdk';
+import { providers } from 'ethers';
+
+export async function getReceipt(l2TxHash: string, l2Provider: providers.Provider) {
+  const receipt = await l2Provider.getTransactionReceipt(l2TxHash);
+  return new L2TransactionReceipt(receipt);
+}

@@ -1,0 +1,50 @@
+{
+  "name": "Azure Event Grid",
+  "slug": "azure-event-grid",
+  "provider": "azure",
+  "service": "event-grid",
+  "version": "1.0.0",
+  "category": "Event Routing",
+  "description": "Fully managed event routing service. Wnode registers as an Event Grid webhook handler, receiving events from Blob Storage, custom topics, and Azure services for decentralized processing. Workloads invoked via this integration run on Wnode's Tier 6 DECC/TEE secure enclaves.",
+  "auth": {
+    "type": "service-principal",
+    "fields": [
+      "azure_tenant_id",
+      "azure_client_id",
+      "azure_client_secret",
+      "azure_subscription_id",
+      "azure_resource_group"
+    ],
+    "supports_managed_identity": true
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/api/pipeline/invoke",
+      "description": "Receive Event Grid event and invoke Wnode pipeline"
+    },
+    {
+      "method": "OPTIONS",
+      "path": "/api/eventgrid/validate",
+      "description": "Handle Event Grid webhook validation handshake"
+    },
+    {
+      "method": "POST",
+      "path": "/api/eventgrid/validate",
+      "description": "Handle SubscriptionValidation event type"
+    }
+  ],
+  "capabilities": [
+    "event-driven",
+    "webhook-handler",
+    "custom-topics",
+    "system-topics",
+    "event-filtering",
+    "dead-lettering",
+    "retry-policies",
+    "cloudevents-schema"
+  ],
+  "wnode_role": "event_handler",
+  "docs_url": "https://learn.microsoft.com/en-us/azure/event-grid/",
+  "logo": "logo.svg"
+}

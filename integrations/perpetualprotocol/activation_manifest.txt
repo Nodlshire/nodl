@@ -1,0 +1,3 @@
+service: perpetualprotocol_agent
+queue: perpetualprotocol_tasks
+activate: true

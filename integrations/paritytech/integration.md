@@ -1,16 +1,14 @@
-# Paritytech Integration
+# Technical Integration Spec: paritytech
 
-This integration connects Wnode to Paritytech.
+## Endpoints
+REST: N/A
+RPC: N/A
 
-## Status
-Integrated — Activation Coming Online
+## Flows
+Supported Chains: Polkadot, Kusama, Substrate networks
+Supported Assets: DOT, KSM
 
-## Overview
-Integration pending full activation.
-
-## SDK Usage
-```ts
-import { paritytech } from "./sdk";
-
-paritytech.ping();
-```
+## Security & Idempotency
+Auth: None
+Idempotency: None
+Security Model: Relay Chain shared validator security model

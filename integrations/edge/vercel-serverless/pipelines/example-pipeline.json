@@ -1,0 +1,8 @@
+{
+  "id": "serverless-pipeline",
+  "steps": [
+    {
+      "action": "process"
+    }
+  ]
+}

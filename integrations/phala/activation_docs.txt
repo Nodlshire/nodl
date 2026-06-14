@@ -1,0 +1,5 @@
+Runbook for phala
+
+1. Bring up: Start the phala_agent service.
+2. Monitor: Check logs for rate limit issues (Phat Contract execution resource limits).
+3. Rollback: Disable the agent and clear the phala_tasks queue.

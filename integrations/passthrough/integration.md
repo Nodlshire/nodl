@@ -1,16 +1,14 @@
-# Passthrough Integration
+# Technical Integration Spec: passthrough
 
-This integration connects Wnode to Passthrough.
+## Endpoints
+REST: N/A
+RPC: N/A
 
-## Status
-Integrated — Activation Coming Online
+## Flows
+Supported Chains: N/A
+Supported Assets: N/A
 
-## Overview
-Integration pending full activation.
-
-## SDK Usage
-```ts
-import { passthrough } from "./sdk";
-
-passthrough.ping();
-```
+## Security & Idempotency
+Auth: Capability token verification
+Idempotency: HLC-stamped monotonic sequence receipt matching for transaction duplication safety
+Security Model: Default deny with secure sandboxing and symbol-first data distribution

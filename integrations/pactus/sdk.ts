@@ -1,5 +1,7 @@
-export const pactus = {
-  ping() {
-    return "Pactus integration stub loaded.";
+export class PactusClient {
+  constructor(private apiKey?: string) {}
+  
+  async connect() {
+    console.log("Connecting to pactus...");
   }
-};
+}

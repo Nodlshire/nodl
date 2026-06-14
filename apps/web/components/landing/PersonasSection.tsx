@@ -71,7 +71,7 @@ export default function PersonasSection({ onOpenModal }: PersonasSectionProps) {
         {
             title: "Node Owners",
             description: "Secure your place in the future of the compute economy. Institutional-grade vision.",
-            cta: "JOIN WNODE WAITLIST",
+            cta: "Join Node Waitlist",
             mode: "investor" as ModalMode,
             icon: Icons.Server,
             borderColor: "border-fuchsia-500/50",

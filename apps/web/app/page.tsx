@@ -32,13 +32,13 @@ export default function LandingPage() {
         <AppLayout>
             {isBannerVisible && (
                 <a 
-                    href="https://juicebox.money/v5/base:155"
+                    href="https://www.indiegogo.com/projects/wnode/wnode--the-community-owned-planetary-compute-mesh"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-[#eb1478] text-white py-2 px-4 flex justify-between items-center z-[100] relative hover:bg-[#eb1478]/90 transition-colors cursor-pointer block"
                 >
                     <div className="flex-1 text-center text-sm font-medium">
-                        We are crowdfunding – Donate to your Community DePIN and get perks & early access
+                        Wnode is now live on Indiegogo — <span className="underline">support the campaign</span>
                     </div>
                     <button 
                         onClick={(e) => {

@@ -1,0 +1,53 @@
+
+> nodlr@0.1.0 dev
+> next dev -H 0.0.0.0 -p 3002 -p 3002
+
+   ▲ Next.js 15.1.0
+   - Local:        http://localhost:3002
+   - Network:      http://0.0.0.0:3002
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 3.9s
+ ○ Compiling / ...
+ ✓ Compiled / in 7.4s (2582 modules)
+ GET / 200 in 9554ms
+ ✓ Compiled in 1572ms (1259 modules)
+ ○ Compiling /login ...
+ ✓ Compiled /login in 4.1s (2583 modules)
+ GET /login 200 in 4497ms
+ GET /login 200 in 56ms
+ GET /login 200 in 106ms
+ ✓ Compiled in 2.8s (1265 modules)
+ GET /login 200 in 140ms
+ ✓ Compiled in 671ms (1265 modules)
+ GET /login 200 in 41ms
+ ✓ Compiled in 845ms (1265 modules)
+ GET /login 200 in 29ms
+ ○ Compiling /dashboard ...
+ ✓ Compiled /dashboard in 3.6s (2670 modules)
+ GET /dashboard 200 in 3890ms
+ GET /login 200 in 55ms
+ GET /dashboard 200 in 16ms
+ ✓ Compiled in 2.5s (2684 modules)
+ GET /dashboard 200 in 150ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /dashboard 200 in 280ms
+ ✓ Compiled in 957ms (2684 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /dashboard 200 in 482ms
+ ✓ Compiled in 1663ms (2684 modules)
+ GET /dashboard 200 in 56ms
+ ○ Compiling / ...
+ ✓ Compiled / in 624ms (1389 modules)
+ GET / 200 in 942ms
+ GET /login 200 in 40ms
+ GET /login 200 in 25ms
+ GET /dashboard 200 in 373ms
+ GET /dashboard 200 in 298ms
+ GET /login 200 in 65ms
+ GET /dashboard 200 in 703ms
+ GET /dashboard 200 in 218ms
+ GET /login 200 in 141ms
+ GET /dashboard 200 in 154ms
+ GET /dashboard 200 in 411ms

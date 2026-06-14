@@ -16,7 +16,7 @@ func TestPhase3StripeMappingAndEscrow(t *testing.T) {
 		ID:              "SS_001",
 		Email:           "ss@wnode.one",
 		StripeAccountID: "acct_PHASE3_MAPPING_SUCCESS", // New mapping field
-		Status:          "active",
+		Status:          OpStatus{Active: true, Verification: "verified"},
 		CreatedAt:       time.Now(),
 	}
 	s.AddNodlr(salesSource)
@@ -25,7 +25,7 @@ func TestPhase3StripeMappingAndEscrow(t *testing.T) {
 	escrowSource := &Nodlr{
 		ID:        "SS_ESCROW",
 		Email:     "escrow@wnode.one",
-		Status:    "active",
+		Status:    OpStatus{Active: true, Verification: "verified"},
 		CreatedAt: time.Now(),
 	}
 	s.AddNodlr(escrowSource)

@@ -59,9 +59,40 @@ async function handleProxy(req: NextRequest, method: string, subPath: string) {
 
         const rawCookie = req.headers.get('cookie');
         if (rawCookie) {
-            const meshCookie = rawCookie.split(';').find(c => c.trim().startsWith('mesh_session='));
-            if (meshCookie) {
-                fetchHeaders['Cookie'] = meshCookie.trim();
+            // Parse into key-value pairs
+            const cookies = rawCookie.split(';').map(c => {
+                const parts = c.split('=');
+                return {
+                    name: parts[0].trim(),
+                    value: parts.slice(1).join('=').trim()
+                };
+            }).filter(c => c.name);
+
+            let sessionToken = '';
+            let matchedCookieName = '';
+            const targetCookies = ['__Host-mesh_session', '__Secure-mesh_session', 'mesh_session'];
+
+            for (const target of targetCookies) {
+                const found = cookies.find(c => c.name === target);
+                if (found) {
+                    sessionToken = found.value;
+                    matchedCookieName = target;
+                    break;
+                }
+            }
+
+            if (sessionToken) {
+                // Filter out all variant keys and append normalized mesh_session
+                const cleanedCookies = cookies.filter(c => !targetCookies.includes(c.name));
+                cleanedCookies.push({ name: 'mesh_session', value: sessionToken });
+                fetchHeaders['Cookie'] = cleanedCookies.map(c => `${c.name}=${c.value}`).join('; ');
+                
+                if (matchedCookieName !== 'mesh_session') {
+                    console.log(`[API/V1/PROXY] Normalized prefixed cookie (${matchedCookieName}) to mesh_session for path /${subPath}`);
+                }
+            } else {
+                fetchHeaders['Cookie'] = rawCookie;
+                console.log(`[API/V1/PROXY] No session cookie found in request for path /${subPath}.`);
             }
         }
 

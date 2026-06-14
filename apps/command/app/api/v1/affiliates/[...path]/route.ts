@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 
-export async function GET(request: NextRequest, { params }: { params: Promise<{ path: string[] }> }) {
+export async function GET(req: NextRequest, { params }: { params: Promise<{ path: string[] }> }) {
     const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8081";
     const { path } = await params;
     const pathString = path.join('/');
-    const searchParams = request.nextUrl.searchParams.toString();
+    const searchParams = req.nextUrl.searchParams.toString();
     const cookieStore = await cookies();
     const sessionCookie = cookieStore.get('cmd_session')?.value;
 

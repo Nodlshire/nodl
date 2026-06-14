@@ -1,0 +1,131 @@
+
+> nodlr@0.1.0 start /home/obregan/Documents/nodl/apps/nodlr
+> next start -H 0.0.0.0 -p 3002
+
+   ▲ Next.js 15.1.0
+   - Local:        http://localhost:3002
+   - Network:      http://0.0.0.0:3002
+
+ ✓ Starting...
+ ✓ Ready in 672ms
+ ⨯ [Error: Cannot find module './305.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/nodlr/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/nodlr/.next/server/pages/_document.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/next-server.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/next.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/lib/start-server.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/cli/next-start.js] {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ [Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/nodlr/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/nodlr/.next/server/pages/_document.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/next-server.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/next.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/lib/start-server.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/cli/next-start.js] {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ [Error: Cannot find module './vendor-chunks/@swc+helpers@0.5.15.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/nodlr/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/nodlr/.next/server/pages/_document.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/next-server.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/next.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/lib/start-server.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/cli/next-start.js] {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ [Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/nodlr/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/nodlr/.next/server/pages/_document.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/next-server.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/next.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/lib/start-server.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/cli/next-start.js] {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ [Error: Cannot find module './305.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/nodlr/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/nodlr/.next/server/pages/_document.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/next-server.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/next.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/lib/start-server.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/cli/next-start.js] {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ [Error: Cannot find module './305.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/nodlr/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/nodlr/.next/server/pages/_document.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/next-server.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/next.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/lib/start-server.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/cli/next-start.js] {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ [Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/nodlr/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/nodlr/.next/server/pages/_document.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/next-server.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/next.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/lib/start-server.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/cli/next-start.js] {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ [Error: Cannot find module './305.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/nodlr/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/nodlr/.next/server/pages/_document.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/next-server.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/next.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/lib/start-server.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/cli/next-start.js] {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ [Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/nodlr/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/nodlr/.next/server/pages/_document.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/next-server.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/next.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/lib/start-server.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/cli/next-start.js] {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ [Error: Cannot find module './305.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/nodlr/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/nodlr/.next/server/pages/_document.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/next-server.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/next.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/server/lib/start-server.js
+- /home/obregan/Documents/nodl/node_modules/.pnpm/next@15.1.0_react-dom@19.2.4_react@19.2.4__react@19.2.4/node_modules/next/dist/cli/next-start.js] {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+/home/obregan/.local/share/pnpm/pnpm: line 12: 56412 Killed                     "$basedir/.tools/pnpm-exe/10.33.0/pnpm" "$@"

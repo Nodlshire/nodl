@@ -24,7 +24,6 @@ export function middleware(request: NextRequest) {
           request.nextUrl.pathname.startsWith('/api/v1/jobs/distributed') ||
           request.nextUrl.pathname.startsWith('/api/v1/billing') ||
           request.nextUrl.pathname.startsWith('/api/discord') ||
-          request.nextUrl.pathname.startsWith('/api/v1/meta/tiers') ||
           request.nextUrl.pathname.startsWith('/api/intelligence/event')) {
         return NextResponse.next();
       }

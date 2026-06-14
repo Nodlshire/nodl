@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
 
-async function handleProxy(request: NextRequest, method: string, pathSegments: string[]) {
+async function handleProxy(req: NextRequest, method: string, pathSegments: string[]) {
     try {
         const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8081";
         
@@ -27,7 +27,7 @@ async function handleProxy(request: NextRequest, method: string, pathSegments: s
         }
         
         // append search params
-        const searchParams = request.nextUrl.searchParams.toString();
+        const searchParams = req.nextUrl.searchParams.toString();
         if (searchParams) {
             targetUrl += `?${searchParams}`;
         }
@@ -35,16 +35,16 @@ async function handleProxy(request: NextRequest, method: string, pathSegments: s
         let requestBody: any = undefined;
         if (method !== 'GET' && method !== 'HEAD') {
             try {
-                requestBody = await request.text();
+                requestBody = await req.text();
             } catch (e) {}
         }
 
         const res = await fetch(targetUrl, {
             method,
             headers: {
-                'Content-Type': request.headers.get('content-type') || 'application/json',
-                cookie: request.headers.get('cookie') ?? '',
-                },
+                'Content-Type': req.headers.get('content-type') || 'application/json',
+                cookie: req.headers.get('cookie') ?? '',
+            },
             credentials: 'include',
             body: requestBody,
         });
@@ -88,17 +88,17 @@ async function handleProxy(request: NextRequest, method: string, pathSegments: s
     }
 }
 
-export async function GET(request: NextRequest, { params }: { params: Promise<{ path?: string[] }> }) {
+export async function GET(req: NextRequest, { params }: { params: Promise<{ path?: string[] }> }) {
     const p = await params;
-    return handleProxy(request, 'GET', p.path || []);
+    return handleProxy(req, 'GET', p.path || []);
 }
 
-export async function POST(request: NextRequest, { params }: { params: Promise<{ path?: string[] }> }) {
+export async function POST(req: NextRequest, { params }: { params: Promise<{ path?: string[] }> }) {
     const p = await params;
-    return handleProxy(request, 'POST', p.path || []);
+    return handleProxy(req, 'POST', p.path || []);
 }
 
-export async function PATCH(request: NextRequest, { params }: { params: Promise<{ path?: string[] }> }) {
+export async function PATCH(req: NextRequest, { params }: { params: Promise<{ path?: string[] }> }) {
     const p = await params;
-    return handleProxy(request, 'PATCH', p.path || []);
+    return handleProxy(req, 'PATCH', p.path || []);
 }

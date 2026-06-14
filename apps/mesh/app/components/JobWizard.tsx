@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Upload, Zap, Loader2, Info, CheckCircle2, AlertCircle, Play, Sparkles, X } from 'lucide-react';
+import { Upload, Zap, Loader2, Info, CheckCircle2, AlertCircle, Play, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useJobs } from './JobsProvider';
 import { useBilling } from './BillingProvider';
@@ -107,12 +107,10 @@ export default function JobWizard({ onClose }: { onClose?: () => void }) {
         <div className="surface-card min-h-[500px] flex flex-col relative overflow-hidden rounded-xl border border-white/10 shadow-2xl">
             {onClose && (
                 <button 
-                    type="button"
                     onClick={onClose}
-                    className="absolute top-6 right-6 z-10 p-2 bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white border border-white/10 hover:border-white/20 transition-all rounded-full flex items-center justify-center"
-                    aria-label="Close modal"
+                    className="absolute top-4 right-4 z-10 px-3 py-1.5 bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white border border-white/10 hover:border-white/20 transition-all rounded text-[10px] font-bold uppercase tracking-widest"
                 >
-                    <X className="w-4.5 h-4.5" />
+                    Close
                 </button>
             )}
             <AnimatePresence mode="wait">

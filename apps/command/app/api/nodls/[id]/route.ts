@@ -21,8 +21,7 @@ export async function GET(
         // Fetch all nodes and filter by ID to simulate a detail endpoint
         const res = await fetch(`${apiUrl}/api/nodes/all`, {
             cache: 'no-store',
-            headers: {
-                'Authorization': request.headers.get('authorization') || '', 'Accept': 'application/json' }
+            headers: { 'Accept': 'application/json' }
         });
 
         if (!res.ok) {

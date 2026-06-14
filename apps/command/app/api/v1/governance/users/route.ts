@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { resolveIdentityHeaders } from '@/app/lib/identity';
 
-export async function GET(request: NextRequest) {
+export async function GET(req: NextRequest) {
     const WNODER_URL = process.env.WNODER_URL || 'http://localhost:8080';
     
     try {
         const res = await fetch(`${WNODER_URL}/api/v1/governance/users`, { 
-            headers: resolveIdentityHeaders(request),
+            headers: resolveIdentityHeaders(req),
             cache: 'no-store' 
         });
         const data = await res.json();

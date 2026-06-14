@@ -45,6 +45,7 @@ export default function Header({ onContactClick }: HeaderProps) {
 
     const navLinks = [
         { name: "Home", href: "/" },
+        { name: "Indiegogo", href: "/indiegogo" },
         {
             name: "About",
             isDropdown: true,
@@ -91,7 +92,7 @@ export default function Header({ onContactClick }: HeaderProps) {
 
     return (
         <>
-            <header className={`fixed top-0 left-0 right-0 z-[80] ${
+            <header className={`fixed top-0 left-0 right-0 z-[75] ${
                 scrolled ? "py-4 bg-black/80 backdrop-blur-xl border-b border-white/25" : "py-10 bg-transparent"
             } ${
                 isVisible ? "block" : "hidden"

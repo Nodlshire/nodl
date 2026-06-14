@@ -17,9 +17,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/recover"
-	"github.com/golang-jwt/jwt/v5"
 	"go.uber.org/zap"
-
 
 	"github.com/obregan/nodl/nodld/internal/jobs"
 	"github.com/obregan/nodl/nodld/internal/p2p"
@@ -252,18 +250,18 @@ func (s *Server) registerRoutes() {
 	apiV1.Get("/jobs/:id/stream", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handlePullJobStream)
 
 	// Pricing (Moved under /api/v1)
-	apiV1.Get("/pricing", s.requireAccess(account.RoleVisitor, "nodlr", "mesh", "command"), s.handleGetPricing)
+	apiV1.Get("/pricing", s.requireLevel(account.RoleVisitor), s.handleGetPricing)
 	apiV1.Get("/pricing/history/:tier", s.requireAccess(account.RoleManagement, "command"), s.handleGetPricingHistory)
 	apiV1.Get("/pricing/alerts", s.requireAccess(account.RoleManagement, "command"), s.handleGetPricingAlerts)
 
 	// Account & Affiliates
-	apiV1.Get("/account/lookup", s.requireAccess(account.RoleVisitor), s.handleLookupAccount)
-	apiV1.Post("/account/create", s.requireAccess(account.RoleVisitor), s.handleCreateAccount)
-	apiV1.Get("/account/me", s.requireAccess(account.RoleVisitor), s.handleGetMyAccount)
-	apiV1.Put("/me/profile", s.requireAccess(account.RoleStandard), s.handleUpdateMyAccount)
+	apiV1.Get("/account/lookup", s.requireLevel(account.RoleVisitor), s.handleLookupAccount)
+	apiV1.Post("/account/create", s.requireLevel(account.RoleVisitor), s.handleCreateAccount)
+	apiV1.Get("/account/me", s.requireLevel(account.RoleVisitor), s.handleGetMyAccount)
+	apiV1.Put("/me/profile", s.requireLevel(account.RoleStandard), s.handleUpdateMyAccount)
 	apiV1.Get("/crm/account/me", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetCRMMe)
 	apiV1.Put("/crm/account/me", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleUpdateCRMMe)
-	apiV1.Get("/account/:id", s.requireAccess(account.RoleVisitor, "nodlr", "mesh", "command"), s.handleGetAccount)
+	apiV1.Get("/account/:id", s.requireLevel(account.RoleVisitor), s.handleGetAccount)
 	apiV1.Put("/account/:id", s.requireAccess(account.RoleCustomerService, "command"), s.handleUpdateAccount)
 	apiV1.Post("/account/onboard", s.handleOnboardAccount)
 
@@ -272,11 +270,6 @@ func (s *Server) registerRoutes() {
 	apiV1.Post("/auth/signup", s.handleOnboardAccount)
 	apiV1.Post("/auth/magic-link", s.handleMagicLink)
 	apiV1.Post("/auth/verify", s.handleVerifyMagicLink)
-
-	// Discord Integration
-	apiV1.Get("/auth/discord/login", s.handleDiscordLogin)
-	apiV1.Get("/auth/discord/callback", s.handleDiscordCallback)
-	apiV1.Get("/governance/discord/status", s.handleGetDiscordStatus)
 	
 	// Phase 8 & 9: CMD Invites
 	apiV1.Get("/admin/founder/slots", s.requireAccess(account.RoleManagement, "command"), s.handleGetFounderSlots)
@@ -388,6 +381,14 @@ func (s *Server) registerRoutes() {
 
 	// Governance Routes (RBAC Level 4+)
 	s.govHandler.RegisterRoutes(apiV1, s.requireAccess(account.RoleManagement, "command"))
+
+	// Integrations Registry
+	apiV1.Get("/integrations", s.requireAccess(account.RoleVisitor, "nodlr", "mesh", "command"), s.handleListIntegrations)
+	apiV1.Get("/integrations/:id", s.requireAccess(account.RoleVisitor, "nodlr", "mesh", "command"), s.handleGetIntegration)
+	apiV1.Post("/integrations", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleCreateIntegration)
+	apiV1.Patch("/integrations/:id", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handlePatchIntegration)
+	// Phase 3: Integration Pipeline Runner
+	apiV1.Post("/pipeline/invoke/:slug", s.handlePipelineInvoke)
 
 	// Real-time event stream
 	s.app.Get("/ws", websocket.New(s.handleWebSocket))
@@ -943,10 +944,6 @@ func (s *Server) handleVerifyMagicLink(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "account not found"})
 	}
 
-	acc.Status.Active = true
-	acc.Status.Verification = "verified"
-	s.accountStore.SaveState()
-
 	sessionID := s.accountStore.CreateSession(acc.ID, mt.Domain, acc.Role)
 	
 	cookieName := ""
@@ -960,7 +957,7 @@ func (s *Server) handleVerifyMagicLink(c *fiber.Ctx) error {
 	}
 
 	magicSecure := true
-	magicDomain := "wnode.one"
+	magicDomain := ".wnode.one"
 	if os.Getenv("DEVELOPMENT_MODE") == "true" {
 		magicSecure = false
 		magicDomain = ""
@@ -1218,35 +1215,6 @@ func (s *Server) resolveIdentity(c *fiber.Ctx) (string, string, string) {
 		return uid, c.Get("X-User-Role", "visitor"), "api"
 	}
 
-	// 3. Fallback: JWT / Bearer Token from Authorization header
-	authHeader := c.Get("Authorization")
-	if len(authHeader) > 7 && authHeader[:7] == "Bearer " {
-		tokenString := authHeader[7:]
-		
-		secret := os.Getenv("NODL_JWT_SECRET")
-		if secret == "" {
-			secret = "fallback-secret"
-		}
-		
-		token, _ := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
-			if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-				return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
-			}
-			return []byte(secret), nil
-		})
-		
-		if token != nil && token.Valid {
-			if claims, ok := token.Claims.(jwt.MapClaims); ok {
-				if sid, ok := claims["session_id"].(string); ok {
-					// Verify session is still valid in state
-					if sess, valid := s.accountStore.GetSession(sid); valid {
-						return sess.WUID, string(sess.Role), sess.Domain
-					}
-				}
-			}
-		}
-	}
-
 	return "", "", ""
 }
 
@@ -1260,7 +1228,12 @@ func (s *Server) IsObserver(a *account.Nodlr) bool {
 	return a.Role == account.RoleObserver
 }
 
-// requireLevel enforces the RBAC levels.
+// requireLevel enforces the RBAC levels without domain isolation.
+func (s *Server) requireLevel(minLevel account.UserRole) fiber.Handler {
+	return s.requireAccess(minLevel)
+}
+
+// requireAccess enforces RBAC levels AND domain-scoped portal isolation.
 func (s *Server) requireAccess(minLevel account.UserRole, allowedPortals ...string) fiber.Handler {
 	return func(c *fiber.Ctx) error {
 		// Owner bypass
@@ -1277,19 +1250,18 @@ func (s *Server) requireAccess(minLevel account.UserRole, allowedPortals ...stri
 		}
 
 		// Enforce Portal Isolation
-		portalAllowed := false
-		if len(allowedPortals) == 0 {
-			portalAllowed = true
-		}
-		for _, p := range allowedPortals {
-			if domain == p || domain == "command" || domain == "api" {
-				portalAllowed = true
-				break
+		if len(allowedPortals) > 0 {
+			portalAllowed := false
+			for _, p := range allowedPortals {
+				if domain == p || domain == "api" { // api domain is proxy pass-through
+					portalAllowed = true
+					break
+				}
 			}
-		}
-		if !portalAllowed {
-			s.log.Warn("[AUTH] Strict portal isolation enforced", zap.String("id", requesterID), zap.String("session_domain", domain), zap.Strings("allowed", allowedPortals))
-			return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "cross-portal access denied"})
+			if !portalAllowed {
+				s.log.Warn("[AUTH] Strict portal isolation enforced", zap.String("id", requesterID), zap.String("session_domain", domain), zap.Strings("allowed", allowedPortals))
+				return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "cross-portal access denied"})
+			}
 		}
 
 		if requesterRole == "" {
@@ -1916,11 +1888,7 @@ func (s *Server) handleCreateAccount(c *fiber.Ctx) error {
 	return c.Status(fiber.StatusCreated).JSON(newAcc)
 }
 
-func (s *Server) handleDebugSession(c *fiber.Ctx) error {
-	if os.Getenv("DEVELOPMENT_MODE") != "true" {
-		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "debug_disabled"})
-	}
-
+func (s *Server) handleLogin(c *fiber.Ctx) error {
 	var req struct {
 		WUID     string `json:"wuid"`
 		Email    string `json:"email"`
@@ -1963,7 +1931,7 @@ func (s *Server) handleDebugSession(c *fiber.Ctx) error {
 	}
 
 	secureFlag := true
-	domainFlag := "wnode.one"
+	domainFlag := ".wnode.one"
 	sameSiteFlag := "None"
 
 	if os.Getenv("DEVELOPMENT_MODE") == "true" {
@@ -1986,69 +1954,6 @@ func (s *Server) handleDebugSession(c *fiber.Ctx) error {
 	return c.JSON(fiber.Map{"status": "success", "session_id": sessionID})
 }
 
-func (s *Server) handleLogin(c *fiber.Ctx) error {
-	var req struct {
-		Email    string `json:"email"`
-		Password string `json:"password"`
-		Domain   string `json:"domain"`
-	}
-	if err := c.BodyParser(&req); err != nil {
-		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid request"})
-	}
-
-	normalizedEmail := strings.ToLower(strings.TrimSpace(req.Email))
-	acc, ok := s.accountStore.GetNodlrByEmail(normalizedEmail)
-	if !ok {
-		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "invalid credentials"})
-	}
-
-	// Verify password
-	if acc.Password != "" && req.Password != acc.Password {
-		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "invalid credentials"})
-	}
-
-	domain := req.Domain
-	if domain == "" {
-		domain = "nodlr"
-	}
-
-	sessionJWT := s.accountStore.CreateSession(acc.ID, domain, acc.Role)
-
-	cookieName := "cmd_session"
-	if domain == "nodlr" {
-		cookieName = "nodlr_session"
-	} else if domain == "mesh" {
-		cookieName = "mesh_session"
-	}
-
-	secureFlag := true
-	domainFlag := "wnode.one"
-	sameSiteFlag := "None"
-
-	if os.Getenv("DEVELOPMENT_MODE") == "true" {
-		secureFlag = false
-		domainFlag = ""
-		sameSiteFlag = "Lax"
-	}
-
-	c.Cookie(&fiber.Cookie{
-		Name:     cookieName,
-		Value:    sessionJWT,
-		Expires:  time.Now().Add(24 * time.Hour),
-		HTTPOnly: true,
-		Secure:   secureFlag,
-		SameSite: sameSiteFlag,
-		Domain:   domainFlag,
-		Path:     "/",
-	})
-
-	return c.JSON(fiber.Map{
-		"status":     "success",
-		"session_id": sessionJWT,
-		"token":      sessionJWT,
-	})
-}
-
 func (s *Server) handleLogout(c *fiber.Ctx) error {
 	for _, cookieName := range []string{"cmd_session", "nodlr_session", "mesh_session"} {
 		if sessionID := c.Cookies(cookieName); sessionID != "" {
@@ -2056,7 +1961,7 @@ func (s *Server) handleLogout(c *fiber.Ctx) error {
 		}
 
 		secureFlag := true
-		domainFlag := "wnode.one"
+		domainFlag := ".wnode.one"
 		if os.Getenv("DEVELOPMENT_MODE") == "true" {
 			secureFlag = false
 			domainFlag = ""
@@ -2665,3 +2570,53 @@ func (s *Server) handleGeneratePartnerInvite(c *fiber.Ctx) error {
 
 	return c.Status(fiber.StatusCreated).JSON(invite)
 }
+
+func (s *Server) handleListIntegrations(c *fiber.Ctx) error {
+	integrations := s.accountStore.ListIntegrationsSorted()
+	return c.JSON(integrations)
+}
+
+func (s *Server) handleGetIntegration(c *fiber.Ctx) error {
+	id := c.Params("id")
+	integration, ok := s.accountStore.GetIntegration(id)
+	if !ok {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "integration not found"})
+	}
+	return c.JSON(integration)
+}
+
+func (s *Server) handleCreateIntegration(c *fiber.Ctx) error {
+	var integration account.Integration
+	if err := c.BodyParser(&integration); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid request body"})
+	}
+
+	if integration.Name == "" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "name is required"})
+	}
+	if integration.Slug == "" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "slug is required"})
+	}
+
+	if err := s.accountStore.CreateIntegration(&integration); err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	return c.Status(fiber.StatusCreated).JSON(integration)
+}
+
+func (s *Server) handlePatchIntegration(c *fiber.Ctx) error {
+	id := c.Params("id")
+	var updates map[string]interface{}
+	if err := c.BodyParser(&updates); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid request body"})
+	}
+
+	integration, err := s.accountStore.UpdateIntegration(id, updates)
+	if err != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	return c.JSON(integration)
+}
+

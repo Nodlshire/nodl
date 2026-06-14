@@ -18,15 +18,10 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
             }
 
             try {
-                const jwt = localStorage.getItem("nodl_jwt");
-                const headers: HeadersInit = {};
-                if (jwt) {
-                    headers['Authorization'] = `Bearer ${jwt}`;
-                }
-
+                // Verify session with backend identity provider (via proxy)
+                // We no longer rely on localStorage JWTs or bypass flags.
                 const res = await fetch("/api/account/me", {
                     cache: "no-store",
-                    headers
                 });
 
                 if (res.ok) {

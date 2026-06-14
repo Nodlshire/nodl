@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { resolveIdentityHeaders } from '@/app/lib/identity';
 
-export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
     const WNODER_URL = process.env.WNODER_URL || 'http://localhost:8080';
     try {
         const res = await fetch(`${WNODER_URL}/api/v1/governance/users/${id}`, {
             method: 'DELETE',
-            headers: resolveIdentityHeaders(request),
+            headers: resolveIdentityHeaders(req),
             cache: 'no-store'
         });
         const data = await res.json();

@@ -21,11 +21,7 @@ export default function MeshDashboard() {
 
     const fetchSotData = async () => {
         try {
-            const jwt = typeof window !== 'undefined' ? localStorage.getItem('nodl_jwt') : null;
-            const headers: HeadersInit = {};
-            if (jwt) headers['Authorization'] = `Bearer ${jwt}`;
-            
-            const jobsResp = await fetch('/api/v1/jobs', { headers });
+            const jobsResp = await fetch('/api/v1/jobs');
             if (jobsResp.ok) setRawJobs(await jobsResp.json());
         } catch (err) {
             console.warn("Dashboard jobs fetch failed:", err);

@@ -28,12 +28,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
         const syncSession = async () => {
             try {
-                const jwt = typeof window !== "undefined" ? localStorage.getItem("nodl_jwt") : null;
-                const headers: HeadersInit = {};
-                if (jwt) {
-                    headers['Authorization'] = `Bearer ${jwt}`;
-                }
-                const res = await fetch('/api/account/me', { headers });
+                const res = await fetch('/api/account/me');
                 if (res.ok) {
                     const data = await res.json();
                     data.id = data.id || data.ID || data.wuid || data.WnodeID;
@@ -51,32 +46,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                 console.error("Background session validation failed", err);
             }
         };
-        
-        // Intercept fetch for specific routes to attach JWT
-        if (typeof window !== "undefined" && !(window as any).__fetchIntercepted) {
-            (window as any).__fetchIntercepted = true;
-            const originalFetch = window.fetch;
-            window.fetch = async (...args) => {
-                const url = typeof args[0] === 'string' ? args[0] : (args[0] instanceof URL ? args[0].href : (args[0] ? (args[0] as Request).url : ''));
-                
-                if (url.includes('/api/account/me') || 
-                    url.includes('/api/v1/system/pulse') || 
-                    url.includes('/api/v1/money/balance') || 
-                    url.includes('/api/v1/jobs')) {
-                    
-                    const jwt = localStorage.getItem('nodl_jwt');
-                    if (jwt) {
-                        let options = (args[1] || {}) as RequestInit;
-                        options.headers = {
-                            ...options.headers,
-                            'Authorization': `Bearer ${jwt}`
-                        };
-                        args[1] = options;
-                    }
-                }
-                return originalFetch.apply(window, args);
-            };
-        }
 
         syncSession();
     }, []);

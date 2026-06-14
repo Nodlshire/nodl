@@ -19,6 +19,7 @@ export default function UserCrmPage() {
     usePageTitle("COMMAND CENTRE OPERATIONS → User CRM Database", "Authoritative identity and financial ledger registry.");
     
     const [searchQuery, setSearchQuery] = useState("");
+    const [identityFilter, setIdentityFilter] = useState("All");
     const [selectedPerson, setSelectedPerson] = useState<CrmPerson | null>(null);
     const [crmRecords, setCrmRecords] = useState<CrmPerson[]>([]);
     const [navigationHistory, setNavigationHistory] = useState<string[]>([]);
@@ -61,13 +62,15 @@ export default function UserCrmPage() {
     const fetchData = async () => {
         setIsLoading(true);
         try {
-            const [nodlrsRes, clientsRes] = await Promise.all([
+            const [nodlrsRes, clientsRes, integrationsRes] = await Promise.all([
                 fetch('/api/nodlrs/all'),
-                fetch('/api/clients/all')
+                fetch('/api/clients/all'),
+                fetch('/api/integrations/all')
             ]);
             
             let nodlrs: CrmPerson[] = [];
             let clients: CrmPerson[] = [];
+            let integrations: CrmPerson[] = [];
             
             if (nodlrsRes.ok) {
                 const data = await nodlrsRes.json();
@@ -81,6 +84,7 @@ export default function UserCrmPage() {
                     isNodlr: true,
                     isMeshCustomer: !!r.isMeshCustomer,
                     isFounderOrPartner: !!r.isFounder,
+                    isMeshInt: !!r.integration_path || !!r.isIntegration || !!r.isMeshInt,
                     activeNodes: Number(r.nodeCount || 0),
                     l1Affiliates: 0,
                     l2Affiliates: 0,
@@ -102,6 +106,7 @@ export default function UserCrmPage() {
                     isNodlr: !!r.isNodlr,
                     isMeshCustomer: true,
                     isFounderOrPartner: !!r.isFounder,
+                    isMeshInt: !!r.integration_path || !!r.isIntegration || !!r.isMeshInt,
                     activeNodes: 0,
                     l1Affiliates: 0,
                     l2Affiliates: 0,
@@ -111,15 +116,38 @@ export default function UserCrmPage() {
                 }));
             }
 
+            if (integrationsRes.ok) {
+                const data = await integrationsRes.json();
+                const raw = Array.isArray(data) ? data : (data?.integrations || data?.data || []);
+                integrations = raw.map((r: any) => ({
+                    wuid: r.id || r.slug || "W-UNKNOWN",
+                    name: r.name || r.integration_path || r.slug || "Integration",
+                    email: undefined,
+                    createdAt: r.joinedAt || r.createdAt || new Date().toISOString(),
+                    lastContact: r.activatedAt || r.updatedAt || new Date().toISOString(),
+                    isNodlr: false,
+                    isMeshCustomer: false,
+                    isFounderOrPartner: false,
+                    isMeshInt: true,
+                    activeNodes: 0,
+                    l1Affiliates: 0,
+                    l2Affiliates: 0,
+                    affiliateReferrer: "System",
+                    events: [],
+                    notes: []
+                }));
+            }
+
             const unifiedMap = new Map<string, CrmPerson>();
-            [...nodlrs, ...clients].forEach(p => {
+            [...nodlrs, ...clients, ...integrations].forEach(p => {
                 if (unifiedMap.has(p.wuid)) {
                     const existing = unifiedMap.get(p.wuid)!;
                     unifiedMap.set(p.wuid, {
                         ...existing,
                         isNodlr: existing.isNodlr || p.isNodlr,
                         isMeshCustomer: existing.isMeshCustomer || p.isMeshCustomer,
-                        isFounderOrPartner: existing.isFounderOrPartner || p.isFounderOrPartner
+                        isFounderOrPartner: existing.isFounderOrPartner || p.isFounderOrPartner,
+                        isMeshInt: existing.isMeshInt || p.isMeshInt
                     });
                 } else {
                     unifiedMap.set(p.wuid, p);
@@ -142,12 +170,24 @@ export default function UserCrmPage() {
     }, []);
 
     const filteredRecords = useMemo(() => {
-        return crmRecords.filter(r => 
-            r.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-            (r.email || "").toLowerCase().includes(searchQuery.toLowerCase()) || 
-            r.wuid.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-    }, [crmRecords, searchQuery]);
+        return crmRecords.filter(r => {
+            const matchesSearch = r.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                (r.email || "").toLowerCase().includes(searchQuery.toLowerCase()) || 
+                r.wuid.toLowerCase().includes(searchQuery.toLowerCase());
+            
+            if (!matchesSearch) return false;
+
+            switch(identityFilter) {
+                case "Nodlr": return r.isNodlr && !r.isMeshCustomer;
+                case "Mesh": return r.isMeshCustomer && !r.isMeshInt && !r.isNodlr;
+                case "Mesh Int": return !!r.isMeshInt;
+                case "Nodlr/Mesh": return r.isNodlr && r.isMeshCustomer;
+                case "All":
+                default:
+                    return true;
+            }
+        });
+    }, [crmRecords, searchQuery, identityFilter]);
 
     const dashboardStats = useMemo(() => {
         const now = new Date();
@@ -247,16 +287,29 @@ export default function UserCrmPage() {
                 />
             </div>
 
-            <div className="card-sovereign p-6 flex items-center gap-6 mb-8">
-                <div className="flex-1 relative group">
+            <div className="card-sovereign p-6 flex flex-col md:flex-row items-center gap-6 mb-8">
+                <div className="flex-1 w-full relative group">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 group-focus-within:text-[#22D3EE] transition-colors" />
                     <input 
                         type="text" 
                         placeholder="Search Unified Database: Name, Email, or WUID..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="max-w-[400px] w-full bg-black/50 border border-white/10 rounded-[5px] pl-12 pr-4 py-3 text-[14px] text-white focus:outline-none focus:border-[#22D3EE]/50 transition-all placeholder:text-slate-700 font-normal"
+                        className="w-full bg-black/50 border border-white/10 rounded-[5px] pl-12 pr-4 py-3 text-[14px] text-white focus:outline-none focus:border-[#22D3EE]/50 transition-all placeholder:text-slate-700 font-normal"
                     />
+                </div>
+                <div className="flex items-center gap-3 w-full md:w-auto">
+                    <select 
+                        value={identityFilter}
+                        onChange={(e) => setIdentityFilter(e.target.value)}
+                        className="bg-black/50 border border-white/10 rounded-[5px] px-4 py-3 text-[13px] text-white focus:outline-none focus:border-[#22D3EE]/50 transition-all outline-none"
+                    >
+                        <option value="All">All</option>
+                        <option value="Nodlr">Nodlr</option>
+                        <option value="Mesh">Mesh</option>
+                        <option value="Mesh Int">Mesh Int</option>
+                        <option value="Nodlr/Mesh">Nodlr/Mesh</option>
+                    </select>
                 </div>
                 <div className="flex items-center gap-3">
                     <button className="bg-[#22D3EE] hover:bg-[#22D3EE]/80 text-black px-8 py-3 rounded-[5px] flex items-center gap-3 text-[13px] font-bold uppercase tracking-widest transition-all shadow-[0_0_15px_rgba(34,211,238,0.2)]">
@@ -287,10 +340,16 @@ export default function UserCrmPage() {
                             <div className="flex items-center gap-4 overflow-hidden">
                                 <span className="text-[14px] text-white font-medium truncate">{person.name}</span>
                                 <div className="flex items-center gap-1.5 shrink-0">
-                                    {person.isNodlr && (
+                                    {person.isNodlr && person.isMeshCustomer && !person.isMeshInt && (
+                                        <div className="px-1.5 py-0.5 rounded-[2px] bg-purple-500/10 border border-purple-500/20 text-purple-400 text-[8px] font-bold uppercase tracking-widest">NODLR/MESH</div>
+                                    )}
+                                    {person.isNodlr && (!person.isMeshCustomer || person.isMeshInt) && (
                                         <div className="px-1.5 py-0.5 rounded-[2px] bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[8px] font-bold uppercase tracking-widest">NODLR</div>
                                     )}
-                                    {person.isMeshCustomer && (
+                                    {person.isMeshInt && (
+                                        <div className="px-1.5 py-0.5 rounded-[2px] bg-[#f7c6ff]/10 border border-[#f7c6ff]/20 text-[#f7c6ff] text-[8px] font-bold uppercase tracking-widest">MESH INT</div>
+                                    )}
+                                    {person.isMeshCustomer && !person.isNodlr && !person.isMeshInt && (
                                         <div className="px-1.5 py-0.5 rounded-[2px] bg-green-500/10 border border-green-500/20 text-green-400 text-[8px] font-bold uppercase tracking-widest">MESH</div>
                                     )}
                                     {person.isFounderOrPartner && (

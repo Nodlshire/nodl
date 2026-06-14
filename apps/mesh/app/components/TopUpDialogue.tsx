@@ -27,7 +27,7 @@ export function TopUpDialogue() {
 
     return (
         <AnimatePresence>
-            <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999 }} className="p-6">
+            <div className="fixed inset-0 z-[500] flex items-center justify-center p-6">
                 <motion.div 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -42,14 +42,9 @@ export function TopUpDialogue() {
                     className="relative w-full max-w-md bg-[#0a0a0b] border border-white/20 p-8 shadow-[0_0_50px_rgba(255,255,255,0.05)] rounded-2xl"
                 >
                     <div className="flex justify-between items-center mb-8">
-                        <h2 className="text-xl font-bold text-white tracking-tighter">Quick Top-Up</h2>
-                        <button 
-                            type="button"
-                            onClick={() => setIsTopUpOpen(false)} 
-                            className="p-2 hover:bg-white/5 rounded-full transition-colors"
-                            aria-label="Close modal"
-                        >
-                            <X className="w-5 h-5 text-slate-400 hover:text-white transition-colors" />
+                        <h2 className="text-xl font-bold text-white   tracking-tighter  ">Quick Top-Up</h2>
+                        <button onClick={() => setIsTopUpOpen(false)} className="p-2 hover:bg-white/5 rounded-full transition-colors">
+                            <X className="w-5 h-5 text-slate-500" />
                         </button>
                     </div>
 

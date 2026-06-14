@@ -18,13 +18,13 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface Tier {
-    tier_id: string;
+    id: string;
     name: string;
-    total_vcpu: number;
-    total_memory: number;
-    gpu_count: number;
-    node_count: number;
-    price: number;
+    effectiveRate: number;
+    liveMarket: number;
+    cpu_cores: number;
+    gpu_model: string;
+    ram_gb: number;
     description: string;
 }
 
@@ -36,47 +36,20 @@ export default function CatalogPage() {
 
     const fetchTiers = async () => {
         try {
-            const jwt = typeof window !== 'undefined' ? localStorage.getItem('nodl_jwt') : null;
-            const headers: HeadersInit = {};
-            if (jwt) {
-                headers['Authorization'] = `Bearer ${jwt}`;
-            }
-
-            let res = null;
-            
-            // Try Command canonical tier aggregation endpoint first
-            try {
-                res = await fetch(`http://localhost:3001/api/v1/meta/tiers`, { headers });
-            } catch (err) {
-                // Ignore and proceed to fallback
-            }
-
-            // Fallback to relative meta/tiers proxy route
-            if (!res || !res.ok) {
-                try {
-                    res = await fetch(`/api/v1/meta/tiers`, { headers });
-                } catch (err) {
-                    // Ignore and proceed to final fallback
-                }
-            }
-
-            // Fallback directly to canonical backend tiers endpoint
-            if (!res || !res.ok) {
-                try {
-                    res = await fetch(`http://localhost:8081/api/v1/meta/tiers`, { headers });
-                } catch (err) {
-                    // Fail gracefully
-                }
-            }
+            const res = await fetch(`/api/v1/meta/tiers`).catch(err => {
+                // Internal catch to prevent bubbling to Next.js Dev Overlay
+                return null;
+            });
             
             if (!res || !res.ok) {
-                setTiers([]);
+                setTiers([]); // Clear or keep previous
                 return;
             }
             
             const data = await res.json();
             setTiers(Array.isArray(data) ? data : []);
         } catch (err) {
+            // Final safety catch
             setTiers([]);
         } finally {
             setLoading(false);
@@ -137,7 +110,7 @@ export default function CatalogPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {tiers.map((tier) => (
                         <div 
-                            key={tier.tier_id} 
+                            key={tier.id} 
                             onClick={() => setSelectedTier(tier)}
                             className="bg-[#080808] border border-white p-4 group hover:border-mesh-emerald/30 transition-all cursor-pointer relative overflow-hidden rounded-2xl"
                         >
@@ -150,7 +123,8 @@ export default function CatalogPage() {
                                     </div>
                                     <div className="text-right">
                                         <span className="text-xl font-bold text-white tracking-tighter group-hover:text-mesh-emerald transition-colors">
-                                            {tier.price > 0 ? `$${tier.price.toFixed(4)}` : 'Market Rate'}
+                                            {tier.effectiveRate > 0 ? `$${tier.effectiveRate.toFixed(4)}` : 
+                                             tier.liveMarket > 0 ? `$${tier.liveMarket.toFixed(4)}` : 'Market Rate'}
                                         </span>
                                         <span className="block text-[9px] text-slate-500 tracking-widest font-bold mt-1">/th second</span>
                                     </div>
@@ -160,12 +134,12 @@ export default function CatalogPage() {
                                     <h3 className="text-lg font-bold text-white tracking-tight italic px-1">{tier.name}</h3>
                                     <p className="text-[12px] text-slate-400 leading-relaxed mt-2 font-medium line-clamp-2 px-1">
                                         {tier.description || (
-                                            tier.tier_id === 'standard' ? 'Balanced performance for general-purpose workloads.' :
-                                            tier.tier_id === 'boost' ? 'High-performance GPU compute for AI/ML tasks.' :
-                                            tier.tier_id === 'ultra' ? 'Extreme multi-GPU performance for massive processing.' :
-                                            tier.tier_id === 'decc-tee' ? 'Secure confidential compute with TEE protection.' :
-                                            tier.tier_id === 'gpu-pro' ? 'Professional grade GPU clusters (A100).' :
-                                            tier.tier_id === 'gpu-max' ? 'Maximum enterprise cluster density (H100).' :
+                                            tier.id === 'standard' ? 'Balanced performance for general-purpose workloads.' :
+                                            tier.id === 'boost' ? 'High-performance GPU compute for AI/ML tasks.' :
+                                            tier.id === 'ultra' ? 'Extreme multi-GPU performance for massive processing.' :
+                                            tier.id === 'decc' ? 'Secure confidential compute with TEE protection.' :
+                                            tier.id === 'gpu-pro' ? 'Professional grade GPU clusters (A100).' :
+                                            tier.id === 'gpu-max' ? 'Maximum enterprise cluster density (H100).' :
                                             'High-efficiency compute resource.'
                                         )}
                                     </p>
@@ -174,16 +148,15 @@ export default function CatalogPage() {
                                 <div className="pt-4 border-t border-white/5 grid grid-cols-2 gap-4">
                                     <div className="flex flex-col gap-1">
                                         <span className="text-[9px] text-slate-600 font-bold tracking-widest">Compute</span>
-                                        <span className="text-sm font-bold text-white">{tier.total_vcpu} vCPU</span>
+                                        <span className="text-sm font-bold text-white">{tier.cpu_cores} vCPU</span>
                                     </div>
                                     <div className="flex flex-col gap-1 text-right">
                                         <span className="text-[9px] text-slate-600 font-bold tracking-widest">Memory</span>
-                                        <span className="text-sm font-bold text-white">{tier.total_memory} GB</span>
+                                        <span className="text-sm font-bold text-white">{tier.ram_gb} GB</span>
                                     </div>
                                 </div>
-                                <div className="pt-2 flex justify-between items-center">
-                                     <span className="text-[10px] font-bold tracking-widest text-slate-500">GPUs: <span className="text-mesh-emerald">{tier.gpu_count}</span></span>
-                                     <span className="text-[10px] font-bold tracking-widest text-slate-500">Nodes: <span className="text-mesh-emerald">{tier.node_count}</span></span>
+                                <div className="pt-2">
+                                     <span className="text-[10px] font-bold tracking-widest text-slate-500">GPU: <span className="text-mesh-emerald">{tier.gpu_model}</span></span>
                                 </div>
                             </div>
                         </div>
@@ -248,15 +221,15 @@ export default function CatalogPage() {
                                     <div className="grid grid-cols-2 gap-4">
                                         <div className="p-4 bg-white/5 border border-white/5 rounded-2xl space-y-1">
                                             <span className="text-[8px] text-slate-600 uppercase font-black tracking-widest block">Processing</span>
-                                            <span className="text-sm font-bold text-white uppercase">{selectedTier.total_vcpu} vCPU</span>
+                                            <span className="text-sm font-bold text-white uppercase">{selectedTier.cpu_cores} vCPU</span>
                                         </div>
                                         <div className="p-4 bg-white/5 border border-white/5 rounded-2xl space-y-1">
                                             <span className="text-[8px] text-slate-600 uppercase font-black tracking-widest block">Memory</span>
-                                            <span className="text-sm font-bold text-white uppercase">{selectedTier.total_memory} GB RAM</span>
+                                            <span className="text-sm font-bold text-white uppercase">{selectedTier.ram_gb} GB RAM</span>
                                         </div>
                                         <div className="p-4 bg-white/5 border border-white/5 rounded-2xl space-y-1 col-span-2">
-                                            <span className="text-[8px] text-slate-600 uppercase font-black tracking-widest block">Graphics & Nodes</span>
-                                            <span className="text-sm font-bold text-white uppercase">{selectedTier.gpu_count} GPUs across {selectedTier.node_count} nodes</span>
+                                            <span className="text-[8px] text-slate-600 uppercase font-black tracking-widest block">Graphics</span>
+                                            <span className="text-sm font-bold text-white uppercase">{selectedTier.gpu_model}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -271,7 +244,7 @@ export default function CatalogPage() {
                                         <div className="flex justify-between items-center">
                                             <span className="text-[10px] text-slate-500 uppercase font-black">Live Market Rate</span>
                                             <span className="text-xs font-black text-white">
-                                                ${(selectedTier.price || 0).toFixed(4)}/TH
+                                                ${(selectedTier.effectiveRate || selectedTier.liveMarket || 0).toFixed(4)}/TH
                                             </span>
                                         </div>
                                     </div>

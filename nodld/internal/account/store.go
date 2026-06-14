@@ -8,11 +8,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/golang-jwt/jwt/v5"
 	"github.com/google/uuid"
 	"github.com/obregan/nodl/nodld/internal/forensics"
 )
-
 
 type Store struct {
 	mu                 sync.RWMutex
@@ -65,6 +63,9 @@ type Store struct {
 	// Passive Telemetry Ingestion
 	Telemetry          *TelemetryDispatcher
 
+	// Phase 1: Integrations Registry
+	integrations       map[string]*Integration
+
 	// SaveState debouncing
 	saveMu    sync.Mutex
 	lastSave  time.Time
@@ -102,10 +103,12 @@ func NewStore(forensics *forensics.Store, statePath string) *Store {
 		operatorIdentities:  make(map[string]*OperatorIdentity),
 		identityLedger:      make([]*IdentityLedgerEntry, 0),
 		Telemetry:           NewTelemetryDispatcher("http://127.0.0.1:3001/api/intelligence/event"),
+		integrations:        make(map[string]*Integration),
 	}
 	s.initInviteState()
 	s.loadState()
 	s.SeedFoundationIdentities()
+	s.SeedIntegrations()
 	go s.runDowntimeWatchdog(10 * time.Second)
 	go s.runReputationRecalculation(24 * time.Hour)
 	return s
@@ -1486,35 +1489,15 @@ func (s *Store) CreateSession(wuid, domain string, role UserRole) string {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	sessionID := uuid.New().String()
-	
-	now := time.Now()
-	expiresAt := now.Add(24 * time.Hour)
-	
 	s.domainSessions[sessionID] = &DomainSession{
 		WUID:      wuid,
 		Domain:    domain,
 		Role:      role,
-		ExpiresAt: expiresAt,
-		CreatedAt: now,
+		ExpiresAt: time.Now().Add(24 * time.Hour),
+		CreatedAt: time.Now(),
 	}
 	go s.SaveState()
-	
-	secret := os.Getenv("NODL_JWT_SECRET")
-	if secret == "" {
-		secret = "fallback-secret" // Should fail-fast in main, but safe fallback here
-	}
-	
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-		"session_id": sessionID,
-		"user_id":    wuid,
-		"domain":     domain,
-		"role":       string(role),
-		"exp":        expiresAt.Unix(),
-		"iat":        now.Unix(),
-	})
-	
-	tokenString, _ := token.SignedString([]byte(secret))
-	return tokenString
+	return sessionID
 }
 
 func (s *Store) GetSession(sessionID string) (*DomainSession, bool) {

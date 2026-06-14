@@ -1,14 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(request: NextRequest) {
+export async function GET(req: NextRequest) {
     const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8081";
 
     try {
         const res = await fetch(`${apiUrl}/api/v1/account/me`, {
             method: 'GET',
             headers: {
-                'Cookie': request.headers.get('cookie') ?? '',
-                'Authorization': request.headers.get('authorization') ?? '',
+                cookie: req.headers.get('cookie') ?? '',
             },
             credentials: 'include',
         });

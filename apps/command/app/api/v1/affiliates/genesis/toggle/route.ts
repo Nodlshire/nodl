@@ -1,16 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { resolveIdentityHeaders } from '@/app/lib/identity';
 
-export async function POST(request: NextRequest) {
+export async function POST(req: NextRequest) {
     const WNODER_URL = process.env.WNODER_URL || 'http://localhost:8080';
     
     try {
-        const body = await request.json();
+        const body = await req.json();
         const res = await fetch(`${WNODER_URL}/affiliates/genesis/toggle`, {
             method: 'POST',
-            headers: {
+            headers: { 
                 'Content-Type': 'application/json',
-                ...resolveIdentityHeaders(request)
+                ...resolveIdentityHeaders(req)
             },
             body: JSON.stringify(body),
             cache: 'no-store'

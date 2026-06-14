@@ -31,7 +31,8 @@ type AuthState struct {
 	IdentityLedger      []*IdentityLedgerEntry         `json:"identity_ledger,omitempty"`
 	Invite              *InviteState                   `json:"invite,omitempty"`
 	Founders            map[string]string              `json:"founders,omitempty"`
-	DomainSessions      map[string]*DomainSession     `json:"domain_sessions,omitempty"`
+	Integrations        map[string]*Integration        `json:"integrations,omitempty"`
+	DomainSessions      map[string]*DomainSession      `json:"domain_sessions,omitempty"`
 }
 
 func (s *Store) SaveState() error {
@@ -86,6 +87,7 @@ func (s *Store) SaveState() error {
 		IdentityLedger:      s.identityLedger,
 		Invite:              s.inviteState,
 		Founders:            foundersMap,
+		Integrations:        s.integrations,
 		DomainSessions:      s.domainSessions,
 	}
 
@@ -163,6 +165,14 @@ func (s *Store) LoadState() error {
 	if s.nodes == nil {
 		s.nodes = make(map[string]*WnodeNode)
 	}
+	if state.Integrations != nil {
+		s.integrations = state.Integrations
+	} else {
+		s.integrations = make(map[string]*Integration)
+	}
+	if state.DomainSessions != nil {
+		s.domainSessions = state.DomainSessions
+	}
 	if state.OperatorEarnings != nil {
 		s.operatorEarnings = state.OperatorEarnings
 	}
@@ -227,10 +237,6 @@ func (s *Store) LoadState() error {
 				s.founders[i] = val
 			}
 		}
-	}
-
-	if state.DomainSessions != nil {
-		s.domainSessions = state.DomainSessions
 	}
 
 	// Migration Hook: Scrub "Test User" mock data from persistent state

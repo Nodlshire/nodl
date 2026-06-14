@@ -53,7 +53,7 @@ export default function LoginPage() {
         }
 
         try {
-            const res = await fetch('/api/auth/login', {
+            const res = await fetch('/api/auth/debug-session', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
@@ -63,16 +63,16 @@ export default function LoginPage() {
                 })
             });
 
-            const data = await res.json();
             if (res.ok) {
                 console.log('[Auth Debug] Session established');
                 localStorage.removeItem('nodl_auth_bypass');
-                if (data.token) localStorage.setItem('nodl_jwt', data.token);
-                const uid = data.user_id || data.session_id || data.id;
-                if (uid) localStorage.setItem('nodl_user_id', uid);
+                localStorage.removeItem('nodl_jwt');
+                localStorage.removeItem('nodl_user_email');
+                localStorage.removeItem('nodl_user_id');
                 router.push('/dashboard');
                 return;
             } else {
+                const data = await res.json();
                 setError(data.error || 'Invalid credentials.');
             }
         } catch (e) {

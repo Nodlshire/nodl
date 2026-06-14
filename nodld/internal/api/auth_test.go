@@ -36,6 +36,7 @@ func setupTestServer() (*Server, *account.Store) {
 	apiV1.Post("/auth/verify", s.handleVerifyMagicLink)
 	apiV1.Post("/auth/invite", s.handleInvite)
 	apiV1.Post("/auth/onboard", s.handleOnboardWithInvite)
+	apiV1.Post("/auth/login", s.handleLogin)
 
 	return s, accStore
 }
@@ -67,6 +68,7 @@ func TestCrossDomainIsolation(t *testing.T) {
 	req := httptest.NewRequest("GET", "/api/v1/account/me", nil)
 	req.AddCookie(&http.Cookie{Name: "cmd_session", Value: sessID})
 	resp, _ := s.app.Test(req)
+	
 	assert.Equal(t, http.StatusOK, resp.StatusCode)
 
 	// 2. Invalid Access to Nodlr with Command Cookie
@@ -91,6 +93,7 @@ func TestInviteFlow(t *testing.T) {
 	req := httptest.NewRequest("POST", "/api/v1/auth/onboard", bytes.NewBuffer(onboardBody))
 	req.Header.Set("Content-Type", "application/json")
 	resp, _ := s.app.Test(req)
+	
 	assert.Equal(t, http.StatusOK, resp.StatusCode)
 
 	// 2. Reused Invite
@@ -158,3 +161,60 @@ func TestMagicLink(t *testing.T) {
 	resp, _ = s.app.Test(req)
 	assert.Equal(t, http.StatusUnauthorized, resp.StatusCode)
 }
+
+func TestLoginFlow(t *testing.T) {
+	s, accStore := setupTestServer()
+
+	// Create test account
+	accStore.AddNodlr(&account.Nodlr{
+		ID:    "100001-0426-01-AA",
+		Email: "stephen@wnode.one",
+		Role:  account.RoleOwner,
+	})
+
+	// 1. Successful Login
+	loginBody, _ := json.Marshal(map[string]string{
+		"email":    "stephen@wnode.one",
+		"password": "command", // Uses developer override in mock
+		"domain":   "command",
+	})
+	req := httptest.NewRequest("POST", "/api/v1/auth/login", bytes.NewBuffer(loginBody))
+	req.Header.Set("Content-Type", "application/json")
+	resp, _ := s.app.Test(req)
+	
+	assert.Equal(t, http.StatusOK, resp.StatusCode)
+
+	// Verify Session Cookie
+	var sessionCookie *http.Cookie
+	for _, cookie := range resp.Cookies() {
+		if cookie.Name == "cmd_session" {
+			sessionCookie = cookie
+			break
+		}
+	}
+	assert.NotNil(t, sessionCookie, "Session cookie must be set")
+
+	// 2. Failed Login
+	badLoginBody, _ := json.Marshal(map[string]string{
+		"email":    "unknown@wnode.one",
+		"password": "wrong",
+		"domain":   "command",
+	})
+	req2 := httptest.NewRequest("POST", "/api/v1/auth/login", bytes.NewBuffer(badLoginBody))
+	req2.Header.Set("Content-Type", "application/json")
+	resp2, _ := s.app.Test(req2)
+	assert.Equal(t, http.StatusUnauthorized, resp2.StatusCode)
+
+	// 3. Authenticated /account/me request
+	req3 := httptest.NewRequest("GET", "/api/v1/account/me", nil)
+	req3.AddCookie(sessionCookie)
+	resp3, _ := s.app.Test(req3)
+	assert.Equal(t, http.StatusOK, resp3.StatusCode)
+
+	var meResp struct {
+		Email string `json:"email"`
+	}
+	json.NewDecoder(resp3.Body).Decode(&meResp)
+	assert.Equal(t, "stephen@wnode.one", meResp.Email)
+}
+

@@ -32,13 +32,9 @@ export function BillingProvider({ children }: { children: ReactNode }) {
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), 2000);
 
-            const jwt = typeof window !== 'undefined' ? localStorage.getItem('nodl_jwt') : null;
-            const headers: HeadersInit = {};
-            if (jwt) headers['Authorization'] = `Bearer ${jwt}`;
-
             const res = await fetch(`${apiBase}/api/v1/money/balance?email=${encodeURIComponent(email)}`, {
-                headers,
                 signal: controller.signal,
+                // Ensure we don't trigger browser basic auth prompts if the backend requires it
                 credentials: 'omit'
             });
             

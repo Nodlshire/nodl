@@ -175,10 +175,16 @@ export default function CrmDetailPanel({
                                         <div className="flex items-center gap-3 flex-wrap">
                                             <h3 className="text-2xl font-medium text-white">{person.name}</h3>
                                             <div className="flex items-center gap-1.5">
-                                                {person.isNodlr && (
+                                                {person.isNodlr && person.isMeshCustomer && !person.isMeshInt && (
+                                                    <div className="px-1.5 py-0.5 rounded-[2px] bg-purple-500/10 border border-purple-500/20 text-purple-400 text-[8px] font-bold uppercase tracking-widest">NODLR/MESH</div>
+                                                )}
+                                                {person.isNodlr && (!person.isMeshCustomer || person.isMeshInt) && (
                                                     <div className="px-1.5 py-0.5 rounded-[2px] bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[8px] font-bold uppercase tracking-widest">NODLR</div>
                                                 )}
-                                                {person.isMeshCustomer && (
+                                                {person.isMeshInt && (
+                                                    <div className="px-1.5 py-0.5 rounded-[2px] bg-[#f7c6ff]/10 border border-[#f7c6ff]/20 text-[#f7c6ff] text-[8px] font-bold uppercase tracking-widest">MESH INT</div>
+                                                )}
+                                                {person.isMeshCustomer && !person.isNodlr && !person.isMeshInt && (
                                                     <div className="px-1.5 py-0.5 rounded-[2px] bg-green-500/10 border border-green-500/20 text-green-400 text-[8px] font-bold uppercase tracking-widest">MESH</div>
                                                 )}
                                                 {person.isFounderOrPartner && (

@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(request: NextRequest) {
+export async function GET(req: NextRequest) {
     const WNODER_URL = process.env.WNODER_URL || 'http://localhost:8080';
-    const email = request.nextUrl.searchParams.get('email');
+    const email = req.nextUrl.searchParams.get('email');
     
     try {
         const res = await fetch(`${WNODER_URL}/api/v1/money/overview?email=${email}`, { cache: 'no-store' });

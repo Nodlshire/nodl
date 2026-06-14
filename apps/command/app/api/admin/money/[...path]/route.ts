@@ -16,8 +16,7 @@ export async function GET(
     try {
         const res = await fetch(`${apiUrl}/api/v1/admin/money/${path}`, {
             cache: 'no-store',
-            headers: {
-                'Authorization': request.headers.get('authorization') || '', 
+            headers: { 
                 'Cookie': `cmd_session=${sessionCookie}`
             }
         });
@@ -40,7 +39,6 @@ export async function GET(
         return new Response(buffer, {
             status: 200,
             headers: {
-                'Authorization': request.headers.get('authorization') || '',
                 'Content-Type': contentType,
                 'Content-Disposition': res.headers.get('content-disposition') || ''
             }

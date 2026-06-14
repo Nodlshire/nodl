@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { resolveIdentityHeaders } from '@/app/lib/identity';
 
-export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function POST(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     const { id } = await params;
     const WNODER_URL = process.env.WNODER_URL || 'http://localhost:8080';
     
     try {
         const res = await fetch(`${WNODER_URL}/api/v1/governance/users/${id}/resend-invite`, {
             method: 'POST',
-            headers: resolveIdentityHeaders(request),
+            headers: resolveIdentityHeaders(req),
             cache: 'no-store'
         });
         

@@ -9,8 +9,7 @@ export async function GET(req: NextRequest) {
         const res = await fetch(`${apiUrl}/api/v1/account/me`, {
             method: "GET",
             headers: {
-                'Cookie': req.headers.get("cookie") ?? "",
-                'Authorization': req.headers.get('authorization') ?? "",
+                cookie: req.headers.get("cookie") ?? "",
             },
             credentials: "include",
         });

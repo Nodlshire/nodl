@@ -1,0 +1,21 @@
+{
+  "/api/stripe/webhook/route": "app/api/stripe/webhook/route.js",
+  "/api/avatar/route": "app/api/avatar/route.js",
+  "/api/account/me/route": "app/api/account/me/route.js",
+  "/api/auth/debug-session/route": "app/api/auth/debug-session/route.js",
+  "/api/v1/money/balance/route": "app/api/v1/money/balance/route.js",
+  "/api/v1/money/transactions/route": "app/api/v1/money/transactions/route.js",
+  "/api/v1/jobs/route": "app/api/v1/jobs/route.js",
+  "/api/v1/[[...path]]/route": "app/api/v1/[[...path]]/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api-docs/page": "app/api-docs/page.js",
+  "/billing/page": "app/billing/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/catalog/page": "app/catalog/page.js",
+  "/page": "app/page.js",
+  "/help/marketplace/page": "app/help/marketplace/page.js",
+  "/jobs/page": "app/jobs/page.js",
+  "/help/page": "app/help/page.js",
+  "/login/page": "app/login/page.js",
+  "/settings/page": "app/settings/page.js"
+}

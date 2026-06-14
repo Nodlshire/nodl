@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { resolveIdentityHeaders } from '@/app/lib/identity';
 
-export async function GET(request: NextRequest) {
+export async function GET(req: NextRequest) {
     const BACKEND_URL = process.env.NODLD_API_URL || 'http://127.0.0.1:8081';
     
     try {
         const res = await fetch(`${BACKEND_URL}/api/v1/integrations`, { 
-            headers: resolveIdentityHeaders(request),
+            headers: resolveIdentityHeaders(req),
             cache: 'no-store' 
         });
         

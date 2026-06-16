@@ -14,3 +14,9 @@ Wnode replaces traditional cloud dependencies (AWS, GCP) for enterprises using t
 - **Tamper-Proof Compute**: Enterprise logic is deployed as Wasm canisters, secured by subnet-level orthogonal persistence and threshold relay consensus.
 - **Programmatic Treasuries**: Deploy multi-signature treasury logic via the NNS to manage core operational funds and governance rules automatically.
 - **External Integration**: Canisters use HTTPS Outcalls to query standard Web2 enterprise APIs without introducing third-party oracles.
+
+## Verifiable Institutional Execution (Cardano)
+Cardano provides an unmatched level of mathematical security and execution determinism required by institutional and enterprise clients.
+- **Predictable Automation**: Enterprise execution logic built in Plutus or Aiken is immune to MEV, failed transactions, and unpredictable gas spikes.
+- **Decentralized Treasuries**: Enterprise multisig rules are aligned with CIP-1694 governance structures, enforcing strict mathematical access to operational capital.
+- **Secure State Verification**: Mithril allows institutional auditors to rapidly verify global state snapshots cryptographically, bypassing complex node hosting.

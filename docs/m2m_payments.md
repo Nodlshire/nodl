@@ -15,3 +15,9 @@ For massive-scale, high-frequency M2M pipelines, Wnode deploys the Internet Comp
 - **Reverse-Gas Model**: ICP canisters are pre-funded with Cycles (pegged to XDR), ensuring that the end-user or machine agent pays zero fluctuating gas fees.
 - **Sub-Second Finality**: M2M clearance happens at sub-second subnet consensus speeds.
 - **Autonomous Triggers**: Utilizing HTTPS Outcalls, M2M ledgers can query external real-world APIs to trigger deterministic payments across hardware networks natively.
+
+## Streaming M2M State Channels: Cardano Hydra
+To support streaming micro-payments for autonomous devices, Wnode integrates Cardano's Hydra L2 scaling solution.
+- **Isomorphic State Channels**: Hydra provides sub-second finality and near-zero fees by running parallel EUTXO ledger instances off-chain.
+- **Batch Processing**: For L1 settlement, thousands of machine payouts can be bundled into a single predictable-fee transaction using the UTXO model.
+- **Edge Device Verification**: Hardware devices utilize Mithril light clients to independently verify incoming payments mathematically without heavy indexing requirements.

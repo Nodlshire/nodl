@@ -14,3 +14,8 @@ Tether Gold (XAUt) represents a cornerstone of Wnode's RWA strategy.
 Wnode also utilizes the Internet Computer (ICP) Network Nervous System (NNS) to construct robust, algorithmic models for managing protocol assets.
 - **Neuron Staking**: Onchain RWA and utility token treasuries can be locked as governance neurons, yielding compounding rewards while securing network consensus.
 - **Automated Disbursement**: Persistent canister logic evaluates network telemetry to automatically distribute RWA yields to node operators across the Wnode mesh.
+
+## Deterministic RWA Governance (Cardano)
+Cardano’s CIP-1694 governance framework provides an institutional-grade architecture for managing and securing Real-World Assets.
+- **On-Chain Governance**: RWA parameters and treasury distributions can be governed directly by on-chain voting via DReps and Constitutional Committees.
+- **Script-Locked UTXOs**: RWA collateral is secured within highly deterministic Plutus smart contracts, eliminating unpredictable execution risks common in account-based models.

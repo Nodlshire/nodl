@@ -18,3 +18,12 @@ Wnode leverages ICP to provide trustless, persistent execution environments for 
 - **Serverless Compute**: Wasm-based canister smart contracts with orthogonal persistence and reverse-gas cycle models.
 - **Cross-Chain Outcalls**: Native HTTPS outcalls and threshold ECDSA signing to securely trigger external state changes.
 - **MULTI/DEX Architecture**: Subnet-scaled limit order books and automated market makers supporting high-frequency M2M rebalancing.
+
+## Featured Protocol: Cardano (ADA)
+Wnode integrates Cardano as a mathematically proven, secure settlement layer, leveraging its unique EUTXO architecture for deterministic M2M interactions and decentralized governance.
+
+### Capabilities
+- **Deterministic Execution**: Predictable fees and execution paths preventing MEV via the Extended UTXO model.
+- **L2 State Channels**: Hydra heads allowing massive, parallel micro-transaction throughput for autonomous machines.
+- **Cryptographic Light Clients**: Mithril ATMS signatures allowing low-power edge nodes to verify state instantly.
+- **Bridging & Sidechains**: Decentralized relays (like Rosen Bridge) and Plutus SECP/BLS verification primitives.

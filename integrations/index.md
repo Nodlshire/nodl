@@ -17,4 +17,11 @@ ICP is integrated to provide a serverless, persistent sovereign compute mesh via
 - **Native Cross-Chain Signatures**: Bridgeless threshold ECDSA/Schnorr routing enabling AI agents to sign transactions natively on Bitcoin and EVM networks.
 - **NNS Governance**: Integration with the Network Nervous System (NNS) algorithmic DAO for transparent, decentralized parameter adjustments and treasury staking.
 
+### Cardano (ADA)
+Cardano is integrated as a deterministically secure Layer 1 settlement base utilizing the EUTXO model.
+- **Plutus Smart Contracts**: Highly secure, mathematically verifiable execution environments for complex DeFi and DePIN logic.
+- **Hydra State Channels**: Isomorphic L2 scaling providing sub-second finality and near-zero fees for high-frequency AI agent negotiations.
+- **Mithril Light Clients**: Cryptographic state aggregation enabling edge hardware to verify the ledger trustlessly without syncing.
+- **CIP-1694 Governance**: Native on-chain voting and treasury control structures directly integrated into protocol workflows.
+
 *For detailed execution models, SDK wrappers, and RPC adapter documentation, see the respective protocol directories.*

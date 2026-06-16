@@ -14,3 +14,9 @@ To manage complex treasury allocations safely, Wnode integrates the Internet Com
 - **Neuron Staking**: Treasuries can lock operational capital into NNS neurons, utilizing age premiums and compounding maturity to grow the treasury trustlessly.
 - **Liquid Democracy**: Treasury multi-sig structures implement automated vote delegation (following) and decentralized consensus voting to adapt to dynamic network conditions.
 - **MULTI/DEX Routing**: Utilizing advanced ICP-native decentralised exchanges, treasuries can algorithmically rebalance portfolios across native and `ckToken` assets securely stored in persistent canister stable memory.
+
+## Constitutional DAO Treasuries (Cardano)
+For projects requiring institutional-grade capital security, Wnode supports Cardano’s native governance and treasury architecture.
+- **CIP-1694 Integration**: Treasuries leverage the formal three-body voting consensus (DReps, SPOs, and Constitutional Committee) to govern large-scale asset distributions.
+- **Deterministic Escrow**: Plutus V3 guarantees execution paths for multi-sig operations, completely eliminating unexpected reentrancy attacks or concurrent state failures.
+- **Hydra Budgeting**: Treasuries can deploy active capital into Hydra channels for rapid, localized distribution before finalizing the overarching audit trail on L1.

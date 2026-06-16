@@ -30,7 +30,6 @@ anthropic
 anthropic-claude
 aptos
 aptos-explorer
-ar.io
 arangodb
 arbiscan
 arbitrum
@@ -40,6 +39,7 @@ arcx
 argent
 argo-events
 argo-workflows
+ar.io
 arweave
 asana
 asana-api
@@ -83,8 +83,8 @@ azure-storage
 azure-vm
 backblaze-b2
 balancer
-band-protocol
 bandchain
+band-protocol
 barnbridge
 base
 basescan
@@ -330,8 +330,8 @@ linear
 linear-api
 linode
 lit-access-control
-lit-protocol
 litentry
+lit-protocol
 logrocket
 logz
 loki
@@ -352,8 +352,8 @@ mango
 manifold
 manta
 mantle
-map-protocol
 maple
+map-protocol
 marqeta
 matcha
 messari
@@ -390,12 +390,12 @@ netlify
 netlify-functions
 netsuite
 newrelic
-nft-storage
 nftscan
+nft-storage
 nomad
 notion
-notion-api
 notional
+notion-api
 oasis
 objkt
 okta
@@ -431,6 +431,7 @@ paraswap
 parity
 paypal
 paypal-payouts
+peaq
 pendle
 perpetual-protocol
 persistence
@@ -625,8 +626,8 @@ walletconnect
 wasabi
 wave
 waves
-web3-storage
 web3auth
+web3-storage
 webex
 whatsapp-business
 whimsical

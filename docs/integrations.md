@@ -10,6 +10,7 @@ To connect the sovereign compute network with external DeFi, Web3, and AI protoc
 Integrations are built as modular agents within the Wnode runtime, executing automatically when triggers are met.
 
 ## Integration Narratives
+- **peaq**: The peaq integration is complete. Wnode now supports multi-chain compute, DID workflows, M2M payment flows, dual-RPC, SDKs, peaqOS, and XCM.
 - **MEV**: Extracts value from blockchain mempools by ordering transactions profitably. It matters because it provides the highest yield per compute unit.
 - **M2M**: General machine-to-machine task execution, providing reliable baseline compute revenue.
 - **Aave**: Automated liquidations and yield strategies. Wnode nodes monitor health factors and execute liquidations for a bounty.

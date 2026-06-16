@@ -305,6 +305,7 @@ paraswap
 paritytech
 particle
 passthrough
+peaq
 pendle
 perpetualprotocol
 persistence
@@ -340,9 +341,9 @@ quipuswap
 radiant
 rainbowkit
 rari
-rarible
 rari‑agent
 rari‑api
+rarible
 rari‑bridge
 rari‑bridge10
 rari‑bridge11

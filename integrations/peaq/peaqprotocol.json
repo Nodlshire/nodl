@@ -1,0 +1,572 @@
+[
+  {
+    "protocol": "peaq",
+    "category": "Network Architecture",
+    "title": "peaq Modular Layer-1 Architecture & Substrate Parachain Core",
+    "description": "peaq is a purpose-built Layer-1 blockchain optimized specifically for Decentralized Physical Infrastructure Networks (DePIN) and the Machine Economy. Built on the Substrate framework and operating natively as a Polkadot parachain, it utilizes parallelized block production and asynchronous backing. The core architecture includes dual runtime execution layers: a native Substrate runtime containing highly optimized system pallets and a fully compatible EVM execution framework.",
+    "api_endpoints": [
+      "/rpc"
+    ],
+    "sdk_methods": [],
+    "architecture": "Substrate-based parachain processing layer leveraging dual-engine runtimes (Wasm/Substrate & EVM). Transactions are batched and executed concurrently via parallel block production, utilizing asynchronous backing mechanisms for optimal block space consumption. Connected to the Polkadot Relay Chain for shared network security and consensus finalization.",
+    "dependencies": [
+      "Substrate Framework",
+      "Polkadot Relay Chain Consensus",
+      "Cumulus",
+      "Frontier EVM Layer"
+    ],
+    "security_model": "Shared pooling security model via Polkadot. Block production is maintained by specialized Collator nodes on the peaq network, while transaction finality is validated and secured by the global Polkadot Relay Chain validator set via GRANDPA consensus.",
+    "integration_patterns": [
+      "Parachain-to-Parachain communication",
+      "Substrate RPC-based network state access",
+      "EVM JSON-RPC contract integration"
+    ],
+    "recommended_usage": "Core infrastructure layer for scaling cross-industry DePIN projects requiring multi-environment compatibility and high throughput execution.",
+    "official_sources": [
+      "https://docs.peaq.network",
+      "https://docs.peaq.xyz/home"
+    ],
+    "github_repos": [
+      "https://github.com/peaqnetwork/peaq-node"
+    ],
+    "whitepapers": [
+      "https://www.peaq.network/whitepaper"
+    ],
+    "limitations": [
+      "Block generation is bound by the consensus throughput and timing constraints of the underlying Polkadot Relay Chain system.",
+      "Requires bridging infrastructure or native XCM routing configurations to access assets outside the Dotsama ecosystem."
+    ],
+    "risks": [
+      "Dependency on Polkadot Relay Chain availability and runtime security parameters.",
+      "Economic security vulnerabilities if collators become concentrated or centralized."
+    ],
+    "notes": "Handles up to 10,000 transactions per second natively using optimized configurations, with future roadmap estimates targeting over 100,000 TPS via asynchronous backing enhancements."
+  },
+  {
+    "protocol": "peaq",
+    "category": "Consensus, Runtime, and Pallets",
+    "title": "peaq Native Pallet Ecosystem & Multi-Runtime Execution",
+    "description": "The peaq native runtime exposes customized Substrate modules (pallets) designed explicitly to serve machine-specific logic and infrastructure configurations. These pallets exist as low-level primitives built natively in Rust, offering optimal execution efficiency. Key architectural modules include peaq-pallet-did for decentralized identities, peaq-pallet-storage for persistent on-chain data hashes, and peaq-pallet-rbac for granular machine-to-owner access control matrices.",
+    "api_endpoints": [],
+    "sdk_methods": [],
+    "architecture": "Low-level system runtime pallets integrated directly inside the Substrate runtime binary execution tree (`runtime/src/lib.rs`). These bypass EVM gas fee overhead by utilizing native Substrate dispatchables and extrinsics.",
+    "dependencies": [
+      "FRAME Primitives",
+      "pallet_timestamp",
+      "pallet_balances"
+    ],
+    "security_model": "Protected via Substrate native cryptographic primitives (sr25519 and ed25519). Access to administrative extrinsics is managed via runtime root origin checks and multi-signature validation barriers.",
+    "integration_patterns": [
+      "Direct pallet injection inside custom Substrate execution engines",
+      "Extrinsic submission via Polkadot-JS API structures"
+    ],
+    "recommended_usage": "Utilized when building low-latency, machine-native operations that require micro-gas optimizations or direct core storage access on the peaq blockchain.",
+    "official_sources": [
+      "https://docs.peaq.xyz/home"
+    ],
+    "github_repos": [
+      "https://github.com/peaqnetwork/peaq-pallet-did",
+      "https://github.com/peaqnetwork/peaq-pallet-storage",
+      "https://github.com/peaqnetwork/peaq-pallet-rbac"
+    ],
+    "whitepapers": [],
+    "limitations": [
+      "Pallet modifications require comprehensive network-wide runtime upgrades via governance actions.",
+      "Non-EVM compatible wallets cannot directly read or interact with Substrate pallet storage fields without custom serialization tools."
+    ],
+    "risks": [
+      "Runtime panics due to unchecked arithmetic inside custom pallets can disrupt block validation loops across all active collators."
+    ],
+    "notes": "Developers can declare pallet dependencies in their `Cargo.toml` configurations using the official `peaq-pallet-*` repositories to create custom specialized runtimes."
+  },
+  {
+    "protocol": "peaq",
+    "category": "EVM Compatibility and RPC",
+    "title": "peaq EVM Execution Layer and Dual-Engine RPC Engine",
+    "description": "peaq provides full Ethereum Virtual Machine (EVM) compatibility through the Frontier emulation layer. This framework enables standard Ethereum development toolsets (including Hardhat, Foundry, Remix, and ethers.js) to function natively on peaq. The blockchain exposes two separate RPC boundaries on identical node configurations: the standard Polkadot JSON-RPC interface for Substrate native calls and the Ethereum JSON-RPC standard for EVM transactions.",
+    "api_endpoints": [
+      "eth_blockNumber",
+      "eth_sendRawTransaction",
+      "eth_call",
+      "eth_getBalance",
+      "eth_getTransactionReceipt",
+      "rpc_methods"
+    ],
+    "sdk_methods": [],
+    "architecture": "The Frontier EVM bridge architecture maps Ethereum accounts and state changes directly into Substrate's key-value database storage layout. It converts Substrate block attributes into standard Ethereum block headers, allowing MetaMask and associated tooling to operate cleanly using Chain ID 3338.",
+    "dependencies": [
+      "Frontier Pallet EVM",
+      "Frontier Pallet Ethereum"
+    ],
+    "security_model": "Transactions are signed via ECDSA (secp256k1 keys) matching standard Ethereum specifications. These entries are processed in isolated sandboxed EVM environments, preventing state pollution within core Substrate runtime mechanics.",
+    "integration_patterns": [
+      "Standard Web3 JSON-RPC provider patterns",
+      "Ethers/Viem smart contract binding connections"
+    ],
+    "recommended_usage": "Deploying Solidity-based decentralized applications, machine marketplace smart contracts, and interfacing with consumer Web3 applications.",
+    "official_sources": [
+      "https://www.quicknode.com/docs/peaq"
+    ],
+    "github_repos": [
+      "https://github.com/peaqnetwork/peaq-node"
+    ],
+    "whitepapers": [],
+    "limitations": [
+      "Gas estimation mechanics can occasionally fluctuate when translating internal Substrate execution weights directly into EVM gas parameters.",
+      "Precompiled contract address availability is restricted to specific core operational tools."
+    ],
+    "risks": [
+      "Smart contract vulnerabilities in Solidity files deployed to the EVM layer can expose user funds to exploit vectors.",
+      "Differences in transaction ordering between Substrate pools and Ethereum transaction structures can lead to unique execution edge cases."
+    ],
+    "notes": "Mainnet works reliably on Chain ID 3338. Precompiled addresses are actively maintained to bridge native Substrate features (such as DIDs) into the EVM execution context."
+  },
+  {
+    "protocol": "peaq",
+    "category": "peaq SDKs",
+    "title": "peaq Cross-Language Multi-SDK Suite",
+    "description": "peaq provides specialized software development kits (SDKs) in Python, JavaScript, and Rust to simplify blockchain integrations for devices and servers. The SDKs unify interaction loops by wrapping raw Substrate RPC payloads and EVM smart contract executions into intuitive, high-level developer interfaces. They provide built-in modules for managing DIDs, reading and writing to on-chain storage, handling native or ERC-20 token transfers, and orchestrating Role-Based Access Control (RBAC) layers.",
+    "api_endpoints": [],
+    "sdk_methods": [
+      "Sdk.create_instance",
+      "sdk.storage.add_item",
+      "sdk.did.create",
+      "sdk.did.update",
+      "msf_sdk.deploy_machine_smart_account",
+      "msf_sdk.admin_sign_machine_transaction"
+    ],
+    "architecture": "Abstracted wrapper layer that routes commands either through Substrate RPC node connections or an EVM JSON-RPC provider base, dynamically adapting according to the developer's chosen `ChainType` configuration.",
+    "dependencies": [
+      "polkadot-js/api",
+      "eth_account",
+      "web3.js",
+      "substrate-interface"
+    ],
+    "security_model": "All sensitive private keys are processed locally on-device. Transactions are generated and cryptographically signed within the client-side execution container prior to being broadcast across the public RPC nodes.",
+    "integration_patterns": [
+      "Asynchronous backend scripts executing machine automation loops",
+      "Embedded client agents handling hardware interaction cycles"
+    ],
+    "recommended_usage": "Primary development interface for connecting peripheral hardware systems, IoT gateways, backend scripts, and user applications directly to the peaq ecosystem.",
+    "official_sources": [
+      "https://github.com/peaqnetwork/peaq-sdk-py"
+    ],
+    "github_repos": [
+      "https://github.com/peaqnetwork/peaq-sdk-py",
+      "https://github.com/peaqnetwork/peaq.js"
+    ],
+    "whitepapers": [],
+    "limitations": [
+      "Feature parity can occasionally lag behind direct low-level runtime pallet capability expansions.",
+      "Requires active memory footprints and runtime environments that might exceed the physical constraints of highly resource-limited microcontrollers."
+    ],
+    "risks": [
+      "Insecure local storage configurations for private keys on-device can lead to absolute compromised control of connected physical hardware assets."
+    ],
+    "notes": "Supports customized confirmation styles (`ConfirmationMode.FAST`, `ConfirmationMode.CUSTOM`, and `ConfirmationMode.FINAL`) to fine-tune trade-offs between processing speed and absolute transaction finality."
+  },
+  {
+    "protocol": "peaq",
+    "category": "peaq Identity (DID)",
+    "title": "peaq Self-Sovereign Machine Decentralized Identifiers (peaq ID)",
+    "description": "peaq ID is a specialized Self-Sovereign Identity framework engineered explicitly for physical hardware, robots, and edge devices. It adheres strictly to the W3C Decentralized Identifier (DID) standard specifications. The framework creates a globally unique identifier formatted as `did:peaq:<id-string>`. This on-chain asset lets machines independently prove ownership configurations, verify cryptographic claims, establish secure peer-to-peer communication tunnels, and interact safely with external entities without relying on centralized single points of authority.",
+    "api_endpoints": [],
+    "sdk_methods": [
+      "peaq_pallet_did::add_attribute",
+      "peaq_pallet_did::update_attribute",
+      "peaq_pallet_did::remove_attribute"
+    ],
+    "architecture": "An on-chain decentralized mapping schema controlled natively by `peaq-pallet-did`. The DID document structure utilizes Protobuf-encoded binary formats to track critical hardware metadata schemas, public verification keys, and multi-signature payment gateway endpoints.",
+    "dependencies": [
+      "W3C DID Core Specification",
+      "Protobuf Encoding",
+      "sp_runtime::MultiSigner"
+    ],
+    "security_model": "Protected against intercept vectors by utilizing immutable ledger records. It relies on advanced cryptographic primitives (`ed25519` and `sr25519`) which provide strong side-channel resilience. These algorithms ensure all DID document mutations require direct verification from the verified signing key controller.",
+    "integration_patterns": [
+      "Verifiable Credential exchange architectures",
+      "Cryptographic handshake establishment over libp2p structures"
+    ],
+    "recommended_usage": "Generating unique, sovereign identities for cars, power grids, sensors, and hardware nodes to enable authenticated machine-to-machine transactions.",
+    "official_sources": [
+      "https://github.com/peaqnetwork/peaq-did-specifications"
+    ],
+    "github_repos": [
+      "https://github.com/peaqnetwork/peaq-did-specifications",
+      "https://github.com/peaqnetwork/peaq-pallet-did"
+    ],
+    "whitepapers": [],
+    "limitations": [
+      "The ongoing draft specification mandates precise format checks to guarantee full compliance across disparate execution environments.",
+      "Parsing complex Protobuf metadata objects on highly constrained microcontrollers requires specialized client-side decoding configurations."
+    ],
+    "risks": [
+      "Losing access to the underlying controller key blocks a machine's ability to update its identity documents, rendering the associated hardware asset permanently unmodifiable on-chain."
+    ],
+    "notes": "The metadata system contains distinct, multi-functional service declarations. These allow third-party participants to dynamically resolve peer-to-peer endpoint addresses, payment gateways, and data verification streams."
+  },
+  {
+    "protocol": "peaq",
+    "category": "peaqOS DePIN Frameworks and Tooling",
+    "title": "peaqOS Machine Economy Operating Layer",
+    "description": "peaqOS functions as an abstracted, modular software layer and development kit that acts as an operating system for the machine economy. It simplifies transforming legacy physical hardware and fleets into sovereign on-chain Web3 assets. The system organizes its features into modular, plug-and-play functional horizons: Activate (on-chain provisioning), Qualify (reputation and credit tracking), Scale (AI agent pairing frameworks), Verify (hardware cryptoprocessor attestations), Monetize (marketplace discovery), and Tokenize (fractional ownership structures via financial rails).",
+    "api_endpoints": [
+      "/v1/machine/mcr",
+      "/v1/market/services"
+    ],
+    "sdk_methods": [
+      "peaqos.activate_machine",
+      "peaqos.query_mcr",
+      "peaqos.submit_event"
+    ],
+    "architecture": "An integration framework bridging local device runtimes (such as Robot Operating System 2 - ROS 2) with backend data pipelines and peaq's core blockchain architecture. It utilizes unique Machine NFTs to anchor physical assets directly into liquidity layers.",
+    "dependencies": [
+      "ROS 2 Runtimes",
+      "ERC-3643 Security Token Standards",
+      "peaq-os-cli"
+    ],
+    "security_model": "Enforces economic skin-in-the-game by requiring an upfront token deposit (e.g., 1 PEAQ) via a binding on-chain machine bond. System authenticity is protected using secure enclave environments and hardware attestation verification layers.",
+    "integration_patterns": [
+      "Proxy Operator configurations managing large peripheral hardware fleets",
+      "AI Agent workflows accessing programmatic machine interfaces"
+    ],
+    "recommended_usage": "Standard software stack for DePIN project operators who need to provision hardware fleets, compute credit scores, and manage decentralized service marketplaces.",
+    "official_sources": [
+      "https://docs.peaq.xyz/home"
+    ],
+    "github_repos": [],
+    "whitepapers": [],
+    "limitations": [
+      "Advanced modules like Verify, Monetize, and Tokenize are iteratively rolling out across target target environments.",
+      "Computing accurate Machine Credit Ratings (MCR) requires collecting continuous streams of historical revenue data."
+    ],
+    "risks": [
+      "Malfunctioning off-chain proxy software layers can break data pipelines, reporting inaccurate availability statuses for dependent physical machine fleets.",
+      "Hardware tokenization designs must comply with regional security token laws and regulatory compliance standards."
+    ],
+    "notes": "Features a specialized command line interface tool alongside an AI Agent skill pack (`peaqnetwork/peaq-os-skills`) to let developers easily orchestrate fleet deployment routines."
+  },
+  {
+    "protocol": "peaq",
+    "category": "M2M Payments, Machine Economy, and Economic Model",
+    "title": "x402 Protocol & Autonomous Machine Payments Infrastructure",
+    "description": "peaq enables programmatic machine-to-machine (M2M) micro-transactions through optimized system designs and specialized economic standards like x402. The x402 framework builds on standard Web payment primitives, utilizing the '402 Payment Required' HTTP status code to automate network resource access. Devices can independently settle invoices, purchase data payloads, and pay for utilities like energy recharges or software upgrades over standard HTTPS connections without manual user intervention.",
+    "api_endpoints": [],
+    "sdk_methods": [
+      "peaq_pay.initiate_payment",
+      "peaq_pay.settle_channel"
+    ],
+    "architecture": "Ultra-low-cost transactional pipeline that executes multi-party settlements with sub-second finality. It converts HTTP network requests directly into on-chain balance movements or off-chain state channel update routines.",
+    "dependencies": [
+      "HTTP Standard Status Codes Protocol",
+      "peaq-pallet-balances"
+    ],
+    "security_model": "Payments are secured through cryptographic multi-signature escrows and off-chain payment channel architectures. This ensures funds are only released upon delivering verifiable digital or physical service proofs.",
+    "integration_patterns": [
+      "Automated HTTP API metering gateways",
+      "Direct machine-to-charging-station micro-payment loops"
+    ],
+    "recommended_usage": "Highly efficient micro-payment architecture designed for low-margin IoT networks requiring automated, high-frequency physical asset settlement.",
+    "official_sources": [
+      "https://bingx.com/en/learn/article/what-is-peaq-backbone-of-machine-economy-how-does-it-work"
+    ],
+    "github_repos": [],
+    "whitepapers": [],
+    "limitations": [
+      "Requires consistent, low-latency network connections on physical devices to sign and broadcast transactional updates.",
+      "Highly reliant on stablecoin liquidity frameworks to protect business operations from asset price volatility."
+    ],
+    "risks": [
+      "Programming bugs or loop logic errors in autonomous machine agent scripts can accidentally drain connected wallet balance reserves."
+    ],
+    "notes": "Transaction fees are highly optimized, averaging around $0.00025 under standard conditions. This structural advantage makes the network highly competitive for processing high-volume micro-transaction streams."
+  },
+  {
+    "protocol": "peaq",
+    "category": "Staking, Rewards, and Tokenomics",
+    "title": "PEAQ Disinflationary Tokenomics and Nominated Proof-of-Stake Model",
+    "description": "The PEAQ native utility token forms the core economic engine of the network. It handles transaction fee payments, provides network security via staking, and powers decentralized governance voting. The token follows a strict disinflationary economic path, launching with an initial annual inflation rate of 3.5%. This rate automatically decreases by 10% each year until it hits a permanent, structural floor of 1% inflation. This model ensures long-term predictability for infrastructure providers.",
+    "api_endpoints": [
+      "pallet_staking::validators",
+      "pallet_staking::ledger"
+    ],
+    "sdk_methods": [
+      "sdk.staking.delegate",
+      "sdk.staking.claim_rewards"
+    ],
+    "architecture": "Nominated Proof-of-Stake (NPoS) architectural framework. The design coordinates a multi-tier node landscape consisting of Collators (responsible for block production), Validators (the Polkadot Relay layer confirming finality), and Delegators (token holders backing elite node operators).",
+    "dependencies": [
+      "pallet_staking",
+      "pallet_democracy"
+    ],
+    "security_model": "Enforces strict capital penalties via slashing mechanics for malicious actions or extended node downtime. A minimum entry bond of 50,000 PEAQ tokens is required to activate and maintain validator node positions.",
+    "integration_patterns": [
+      "Decentralized governance portal components",
+      "Automated staking yield optimization programs"
+    ],
+    "recommended_usage": "Securing network validation pipelines while distributing predictable incentive yields back to infrastructure operators.",
+    "official_sources": [
+      "https://www.bitget.com/es/academy/12560603880118",
+      "https://coinmarketcap.com/cmc-ai/peaq/what-is/"
+    ],
+    "github_repos": [],
+    "whitepapers": [],
+    "limitations": [
+      "Staked tokens are locked during active delegation, requiring an unbonding cooling-off period before assets can be transferred.",
+      "Reward distributions fluctuate based on global network staking ratios and overall collator node performance."
+    ],
+    "risks": [
+      "Poor infrastructure maintenance by collators can trigger automatic slashing events, penalizing the capital of all associated delegators.",
+      "High concentrations of voting power in early treasury tranches can impact the decentralization of community governance votes."
+    ],
+    "notes": "The total initial supply cap is fixed at 4.22 billion tokens, with allocations distributed across community incentives, ecosystem growth reserves, and team vesting schedules."
+  },
+  {
+    "protocol": "peaq",
+    "category": "Cross-Chain Bridges and Interoperability",
+    "title": "peaq XCM Integration and Cross-Chain Connectivity",
+    "description": "peaq uses Polkadot’s Cross-Consensus Messaging (XCM) protocol to establish highly secure, trustless interoperability connections. This design lets peaq exchange arbitrary data, native assets, and specialized smart contract messages with other parachains across the ecosystem without relying on risky third-party bridging services. Additionally, peaq integrates with external multichain routing networks to connect with independent Layer-1 chains like Ethereum, Solana, and Cosmos.",
+    "api_endpoints": [],
+    "sdk_methods": [
+      "sdk.xcm.initiate_transfer",
+      "sdk.xcm.query_delivery_status"
+    ],
+    "architecture": "Native XCMP (Cross-Parachain Message Passing) channel architecture. Messages are routed directly through the shared Polkadot Relay Chain validation layer, completely eliminating the smart-contract bridge risks common in traditional cross-chain solutions.",
+    "dependencies": [
+      "Polkadot XCM Format",
+      "Cumulus XCM Pallets"
+    ],
+    "security_model": "Inherits the comprehensive shared security properties of the Polkadot Relay Chain, eliminating traditional wrapper token minting vulnerabilities.",
+    "integration_patterns": [
+      "Cross-chain asset transfers via reserve deposit architectures",
+      "Remote contract execution calls across parachains"
+    ],
+    "recommended_usage": "Moving data and liquidity trustlessly between isolated DePIN execution networks and larger DeFi hubs across the Polkadot ecosystem.",
+    "official_sources": [
+      "https://www.quicknode.com/docs/peaq"
+    ],
+    "github_repos": [],
+    "whitepapers": [],
+    "limitations": [
+      "Target destination blockchains must have active, open HRMP communication channels configured with peaq.",
+      "XCM multi-location configurations require deep understanding of Substrate asset ID mapping layouts."
+    ],
+    "risks": [
+      "Misconfigured asset mapping definitions during runtime upgrades can accidentally freeze cross-chain asset routing pathways.",
+      "External smart contract bridges connecting to non-parachain environments introduce distinct code-level exploit vulnerabilities."
+    ],
+    "notes": "Dual compatibility with EVM and Substrate formats makes peaq an ideal cross-chain routing nexus for physical device telemetry data."
+  },
+  {
+    "protocol": "peaq",
+    "category": "DePIN Use Cases & Reference Architectures",
+    "title": "Enterprise DePIN Use Case Blueprints (ELOOP, Silencio, Wicrypt)",
+    "description": "peaq serves as the primary technical foundation for dozens of live DePIN applications across diverse industries like mobility, energy, and decentralized connectivity. Real-world implementation models demonstrate how tokenized physical hardware can successfully bootstrap real economies. Examples include ELOOP (tokenizing and distributing live revenue shares from connected electric vehicle fleets), Silencio (crowdsourcing global noise pollution metrics via mobile devices), and Wicrypt (building decentralized Wi-Fi hotspot access networks).",
+    "api_endpoints": [],
+    "sdk_methods": [],
+    "architecture": "A multi-layered technical stack. Physical hardware devices generate telemetry data, cryptographically sign it using local device keys, and broadcast it to peaq's on-chain data registry. On-chain reward distribution engines then instantly divide earnings among token holders based on real hardware output metrics.",
+    "dependencies": [
+      "peaq-pallet-did",
+      "peaq-pallet-storage",
+      "Custom Oracle Data Feeds"
+    ],
+    "security_model": "Secured using verifiable physical data audits and transparent on-chain processing rails. This approach mitigates common spoofing vectors by cross-referencing localized machine signatures with real, audited hardware fleet distributions.",
+    "integration_patterns": [
+      "Hardware-to-Web3 data collection models",
+      "Automated revenue sharing distribution designs"
+    ],
+    "recommended_usage": "Reference implementation blueprints for teams launching hardware-based decentralized physical infrastructure networks.",
+    "official_sources": [
+      "https://earnpark.com/en/posts/peaq-network-why-depin-investors-are-watching/"
+    ],
+    "github_repos": [],
+    "whitepapers": [],
+    "limitations": [
+      "Validating the rollout and scale of physical hardware nodes in remote regions requires ongoing, intensive auditing protocols.",
+      "End-user reward stability can be highly sensitive to broader crypto asset market cycles."
+    ],
+    "risks": [
+      "Sybil attack vectors where bad actors deploy spoofed data collection feeds to unfairly drain token rewards.",
+      "Local regulatory compliance hurdles when managing shared tokenized fractional ownership models for physical vehicles."
+    ],
+    "notes": "ELOOP has successfully processed over 2 million euros in vehicle ride revenue entirely via on-chain smart contract systems, proving the viability of peaq's economic design."
+  }
+]
+
+# Integration Mapping
+
+[
+  {
+    "protocol": "peaq",
+    "category": "Network Architecture",
+    "title": "peaq Modular Layer-1 Architecture & Substrate Parachain Core",
+    "description": "peaq is a purpose-built Layer-1 blockchain optimized specifically for Decentralized Physical Infrastructure Networks (DePIN) and the Machine Economy. Built on the Substrate framework and operating natively as a Polkadot parachain, it utilizes parallelized block production and asynchronous backing. The core architecture includes dual runtime execution layers: a native Substrate runtime containing highly optimized system pallets and a fully compatible EVM execution framework.",
+    "api_endpoints": [
+      "/rpc"
+    ],
+    "sdk_methods": [],
+    "architecture": "Substrate-based parachain processing layer leveraging dual-engine runtimes (Wasm/Substrate & EVM). Transactions are batched and executed concurrently via parallel block production, utilizing asynchronous backing mechanisms for optimal block space consumption. Connected to the Polkadot Relay Chain for shared network security and consensus finalization.",
+    "dependencies": [
+      "Substrate Framework",
+      "Polkadot Relay Chain Consensus",
+      "Cumulus",
+      "Frontier EVM Layer"
+    ],
+    "security_model": "Shared pooling security model via Polkadot. Block production is maintained by specialized Collator nodes on the peaq network, while transaction finality is validated and secured by the global Polkadot Relay Chain validator set via GRANDPA consensus.",
+    "integration_patterns": [
+      "Parachain-to-Parachain communication",
+      "Substrate RPC-based network state access",
+      "EVM JSON-RPC contract integration"
+    ],
+    "recommended_usage": "Core infrastructure layer for scaling cross-industry DePIN projects requiring multi-environment compatibility and high throughput execution.",
+    "official_sources": [
+      "https://docs.peaq.network",
+      "https://docs.peaq.xyz/home"
+    ],
+    "github_repos": [
+      "https://github.com/peaqnetwork/peaq-node"
+    ],
+    "whitepapers": [
+      "https://www.peaq.network/whitepaper"
+    ],
+    "limitations": [
+      "Block generation is bound by the consensus throughput and timing constraints of the underlying Polkadot Relay Chain system.",
+      "Requires bridging infrastructure or native XCM routing configurations to access assets outside the Dotsama ecosystem."
+    ],
+    "risks": [
+      "Dependency on Polkadot Relay Chain availability and runtime security parameters.",
+      "Economic security vulnerabilities if collators become concentrated or centralized."
+    ],
+    "notes": "Handles up to 10,000 transactions per second natively using optimized configurations, with future roadmap estimates targeting over 100,000 TPS via asynchronous backing enhancements."
+  },
+  {
+    "protocol": "peaq",
+    "category": "EVM Compatibility and RPC",
+    "title": "peaq EVM Execution Layer and Dual-Engine RPC Engine",
+    "description": "peaq provides full Ethereum Virtual Machine (EVM) compatibility through the Frontier emulation layer. This framework enables standard Ethereum development toolsets (including Hardhat, Foundry, Remix, and ethers.js) to function natively on peaq. The blockchain exposes two separate RPC boundaries on identical node configurations: the standard Polkadot JSON-RPC interface for Substrate native calls and the Ethereum JSON-RPC standard for EVM transactions.",
+    "api_endpoints": [
+      "eth_blockNumber",
+      "eth_sendRawTransaction",
+      "eth_call",
+      "eth_getBalance",
+      "eth_getTransactionReceipt",
+      "rpc_methods"
+    ],
+    "sdk_methods": [],
+    "architecture": "The Frontier EVM bridge architecture maps Ethereum accounts and state changes directly into Substrate's key-value database storage layout. It converts Substrate block attributes into standard Ethereum block headers, allowing MetaMask and associated tooling to operate cleanly using Chain ID 3338.",
+    "dependencies": [
+      "Frontier Pallet EVM",
+      "Frontier Pallet Ethereum"
+    ],
+    "security_model": "Transactions are signed via ECDSA (secp256k1 keys) matching standard Ethereum specifications. These entries are processed in isolated sandboxed EVM environments, preventing state pollution within core Substrate runtime mechanics.",
+    "integration_patterns": [
+      "Standard Web3 JSON-RPC provider patterns",
+      "Ethers/Viem smart contract binding connections"
+    ],
+    "recommended_usage": "Deploying Solidity-based decentralized applications, machine marketplace smart contracts, and interfacing with consumer Web3 applications.",
+    "official_sources": [
+      "https://www.quicknode.com/docs/peaq"
+    ],
+    "github_repos": [
+      "https://github.com/peaqnetwork/peaq-node"
+    ],
+    "whitepapers": [],
+    "limitations": [
+      "Gas estimation mechanics can occasionally fluctuate when translating internal Substrate execution weights directly into EVM gas parameters.",
+      "Precompiled contract address availability is restricted to specific core operational tools."
+    ],
+    "risks": [
+      "Smart contract vulnerabilities in Solidity files deployed to the EVM layer can expose user funds to exploit vectors.",
+      "Differences in transaction ordering between Substrate pools and Ethereum transaction structures can lead to unique execution edge cases."
+    ],
+    "notes": "Mainnet works reliably on Chain ID 3338. Precompiled addresses are actively maintained to bridge native Substrate features (such as DIDs) into the EVM execution context."
+  },
+  {
+    "protocol": "peaq",
+    "category": "peaq SDKs",
+    "title": "peaq Cross-Language Multi-SDK Suite",
+    "description": "peaq provides specialized software development kits (SDKs) in Python, JavaScript, and Rust to simplify blockchain integrations for devices and servers. The SDKs unify interaction loops by wrapping raw Substrate RPC payloads and EVM smart contract executions into intuitive, high-level developer interfaces. They provide built-in modules for managing DIDs, reading and writing to on-chain storage, handling native or ERC-20 token transfers, and orchestrating Role-Based Access Control (RBAC) layers.",
+    "api_endpoints": [],
+    "sdk_methods": [
+      "Sdk.create_instance",
+      "sdk.storage.add_item",
+      "sdk.did.create",
+      "sdk.did.update",
+      "msf_sdk.deploy_machine_smart_account",
+      "msf_sdk.admin_sign_machine_transaction"
+    ],
+    "architecture": "Abstracted wrapper layer that routes commands either through Substrate RPC node connections or an EVM JSON-RPC provider base, dynamically adapting according to the developer's chosen `ChainType` configuration.",
+    "dependencies": [
+      "polkadot-js/api",
+      "eth_account",
+      "web3.js",
+      "substrate-interface"
+    ],
+    "security_model": "All sensitive private keys are processed locally on-device. Transactions are generated and cryptographically signed within the client-side execution container prior to being broadcast across the public RPC nodes.",
+    "integration_patterns": [
+      "Asynchronous backend scripts executing machine automation loops",
+      "Embedded client agents handling hardware interaction cycles"
+    ],
+    "recommended_usage": "Primary development interface for connecting peripheral hardware systems, IoT gateways, backend scripts, and user applications directly to the peaq ecosystem.",
+    "official_sources": [
+      "https://github.com/peaqnetwork/peaq-sdk-py"
+    ],
+    "github_repos": [
+      "https://github.com/peaqnetwork/peaq-sdk-py",
+      "https://github.com/peaqnetwork/peaq.js"
+    ],
+    "whitepapers": [],
+    "limitations": [
+      "Feature parity can occasionally lag behind direct low-level runtime pallet capability expansions.",
+      "Requires active memory footprints and runtime environments that might exceed the physical constraints of highly resource-limited microcontrollers."
+    ],
+    "risks": [
+      "Insecure local storage configurations for private keys on-device can lead to absolute compromised control of connected physical hardware assets."
+    ],
+    "notes": "Supports customized confirmation styles (`ConfirmationMode.FAST`, `ConfirmationMode.CUSTOM`, and `ConfirmationMode.FINAL`) to fine-tune trade-offs between processing speed and absolute transaction finality."
+  },
+  {
+    "protocol": "peaq",
+    "category": "peaq API surface (REST, RPC, GraphQL, SDK methods)",
+    "title": "peaq Dual-RPC Node API Surface",
+    "description": "peaq exposes an active multi-protocol entrypoint endpoint strategy to interface natively with node endpoints. This provides both the typical substrate-compatible frame protocol surfaces for runtime metadata queries, storage trie proofs, and parachain extrinsic updates, alongside full compliance with Ethereum JSON-RPC 1.0 specifications allowing existing node software infrastructure to poll balances, listen to evm logs, and trace transaction loops directly via common configurations.",
+    "api_endpoints": [
+      "eth_blockNumber",
+      "eth_call",
+      "eth_sendRawTransaction",
+      "eth_getLogs",
+      "author_submitExtrinsic",
+      "chain_subscribeNewHeads",
+      "state_getStorage"
+    ],
+    "sdk_methods": [],
+    "architecture": "A unified dual-engine communication architecture. Inbound HTTP/WebSocket traffic is parsed by internal dispatch router threads, which selectively map standard Ethereum structures onto Substrate runtime execution primitives.",
+    "dependencies": [
+      "jsonrpsee",
+      "substrate-rpc-api",
+      "fc-rpc"
+    ],
+    "security_model": "Transport Layer Security (TLS) protection over public node architecture endpoints. Request pacing is controlled via server-side reverse proxy rate limit configurations to defend against execution layer denial-of-service attempts.",
+    "integration_patterns": [
+      "WebSocket streaming connection layers for real-time transaction event detection",
+      "Batch JSON-RPC payload transfers to optimize heavy state polling flows"
+    ],
+    "recommended_usage": "Connecting core infrastructure clients, execution relays, indexers, and distributed nodes to coordinate synchronized real-time interactions with peaq network state layers.",
+    "official_sources": [
+      "https://docs.peaq.network",
+      "https://www.quicknode.com/docs/peaq"
+    ],
+    "github_repos": [
+      "https://github.com/peaqnetwork/peaq-node"
+    ],
+    "whitepapers": [],
+    "limitations": [
+      "Executing highly complex historical storage trie queries relies on interacting directly with nodes configured specifically for full state archiving.",
+      "Concurrent WebSocket subscription limits vary depending on individual public endpoint provider resource rules."
+    ],
+    "risks": [
+      "Network routing interruptions or localized node infrastructure drops can block real-time state synchronization or trigger delayed transaction relay states."
+    ],
+    "notes": "Provides native integration compatibility with standard node tracking applications and automated telemetry monitors used throughout the broader Substrate and Ethereum ecosystem topologies."
+  }
+]

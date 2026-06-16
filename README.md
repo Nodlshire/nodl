@@ -103,6 +103,8 @@ Anything with a CPU or GPU:
 
 Wnode maintains a rapidly expanding registry of integrations across Web3, AI, cloud, enterprise SaaS, developer tooling, and financial infrastructure.
 
+**UPDATE:** The peaq integration is now complete. Wnode now supports multi-chain compute featuring DID, M2M, dual-RPC, SDKs, peaqOS, and XCM connectivity.
+
 Each integration represents a potential compute consumer ready to activate on the Wnode sovereign compute network.
 
 - 435+ integrations live  

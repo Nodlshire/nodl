@@ -1,0 +1,131 @@
+You are performing Phase 7A: Deep Research Extraction for Wnode.
+
+Context:
+Wnode is a sovereign compute mesh for AI agents, DePIN, and M2M financial workflows.
+We already integrate tether-gold (XAUt). We now want a complete, protocol-level view of Tether:
+- USDT on major chains
+- Tether Gold (XAUt)
+- Tether’s infra, attestations, and compliance surface
+- any emerging M2M / machine payment rails
+
+Your task:
+Produce a COMPLETE, HIGHLY DETAILED JSON dataset describing Tether for integration into Wnode.
+
+Do NOT summarize.
+Do NOT compress.
+Do NOT omit fields.
+If something is unknown, set the field to null but keep the key.
+
+Structure:
+Return a JSON array with one object per major Tether rail or product:
+- USDT (Ethereum)
+- USDT (Tron)
+- USDT (Base, if applicable)
+- USDT (Polygon / other major chains)
+- Tether Gold (XAUt)
+- Any machine-payment or infra products (if they exist)
+
+For EACH object, include at least the following fields:
+
+- protocol_name
+- symbol
+- category
+  - e.g. "fiat-backed stablecoin", "gold-backed token", "settlement rail", "M2M payments"
+- chains_supported
+  - list of chains, with chain_id, chain_name, and contract_address
+- architecture:
+  - backing_model
+    - how reserves are structured (cash, T-bills, other assets)
+    - for XAUt: how physical gold is stored, vaulted, and allocated
+  - issuance_model
+    - how minting works
+    - who can mint
+    - what the on/off-ramp process looks like
+  - redemption_model
+    - how redemption works
+    - minimum redemption sizes
+    - settlement timelines
+  - attestation_and_audits
+    - who attests reserves
+    - frequency
+    - how onchain users can verify backing
+- execution_model:
+  - how transfers work on each chain
+  - any chain-specific constraints
+  - typical settlement patterns for high-frequency flows
+- rpc_surface:
+  - standard onchain calls (balanceOf, totalSupply, etc.)
+  - any Tether-specific APIs or endpoints (offchain) for:
+    - issuance
+    - redemption
+    - compliance
+    - attestations
+- sdks:
+  - official SDKs (if any)
+  - recommended ecosystem SDKs (ethers.js, viem, web3.py, etc.)
+  - any examples of programmatic integration patterns
+- identity_compliance:
+  - KYC / KYB requirements for:
+    - direct issuance/redemption
+    - large flows
+  - blacklisting / freezing capabilities
+  - how sanctions and compliance are enforced onchain
+- payments_m2m:
+  - how USDT and XAUt are used in:
+    - DePIN
+    - AI agents
+    - M2M payments
+    - cross-border settlement
+  - any known patterns or case studies of automated or agent-driven flows
+  - constraints on M2M usage (compliance, rate limits, etc.)
+- gas_fees:
+  - typical fee environment per chain
+  - impact on high-frequency M2M flows
+- cross_chain_capabilities:
+  - how USDT moves between chains (bridges, burn/mint, custodial routing)
+  - any official Tether-supported bridging mechanisms
+  - risks and constraints of cross-chain USDT flows
+- integration_patterns:
+  - how infra, agents, and DeFi protocols typically integrate USDT/XAUt
+  - common patterns for:
+    - treasuries
+    - yield strategies
+    - collateral usage
+    - payment rails
+- recommended_usage_for_wnode:
+  - ideal use cases for Wnode’s sovereign compute mesh:
+    - AI agents
+    - DePIN networks
+    - M2M settlement
+    - onchain treasuries
+    - cross-border flows
+  - how USDT and XAUt can be combined with other RWAs and stablecoins
+- limitations:
+  - regulatory
+  - jurisdictional
+  - technical
+  - liquidity-related
+- risks:
+  - compliance risk
+  - reserve risk
+  - chain-specific risk (e.g., Tron vs Ethereum)
+  - UX risk (blacklisting, freezes, etc.)
+- official_sources:
+  - docs
+  - transparency pages
+  - attestations
+  - legal / policy docs
+- repos:
+  - any relevant GitHub repos (contracts, infra, tooling)
+- notes:
+  - anything relevant for Wnode’s Machine Economy narrative
+  - anything relevant for Dubai / DMCC context
+  - anything relevant for AI agents and automated systems
+
+Formatting rules:
+- Return a single JSON array.
+- Each element is a full object for one Tether rail/product.
+- Do NOT include comments.
+- Do NOT include prose outside the JSON.
+- Do NOT summarize; include as much concrete, structured detail as possible.
+

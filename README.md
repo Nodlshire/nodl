@@ -103,7 +103,7 @@ Anything with a CPU or GPU:
 
 Wnode maintains a rapidly expanding registry of integrations across Web3, AI, cloud, enterprise SaaS, developer tooling, and financial infrastructure.
 
-**UPDATE:** The peaq integration is now complete. Wnode now supports multi-chain compute featuring DID, M2M, dual-RPC, SDKs, peaqOS, and XCM connectivity.
+**UPDATE:** The peaq and Sui integrations are now complete. Wnode now supports multi-chain compute featuring DID, M2M, dual-RPC, SDKs, peaqOS, object-centric processing, and robust cross-chain routing (XCM, Wormhole, LayerZero). Supported chains now include Ethereum, Polkadot/peaq, and Sui.
 
 Each integration represents a potential compute consumer ready to activate on the Wnode sovereign compute network.
 
@@ -148,6 +148,7 @@ We welcome contributions across code, architecture, testing, and documentation.
 ## 🗺️ Roadmap
 *   **MVP Beta** (current) 📍
 *   **Stability improvements** & expanded device support
+*   **MVP Launch Integrations**: Activating peaq and Sui multi-chain compute pipelines
 *   **DAO activation**
 *   **Expanded workloads**
 *   **Robotics & EV optimisation**

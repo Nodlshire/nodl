@@ -1,0 +1,126 @@
+[
+{
+"protocol_name": "Sui",
+"category": "Layer 1 Blockchain",
+"architecture": {
+"data_model": "Object-centric storage model where global state is a collection of programmable objects with globally unique IDs, contrasting with standard EVM or account-based state trees.",
+"object_types": [
+"Owned objects: Owned by a specific address, can only be mutated by transactions signed by that owner.",
+"Shared objects: Mutable objects with no single owner, accessible by any user, requiring consensus for sequencing.",
+"Immutable objects: Read-only objects that cannot be modified or deleted after creation (e.g., published Move packages)."
+],
+"consensus_engine": "Mysticeti (latest evolution replacing Bullshark/Narwhal), a DAG-based consensus protocol optimizing for ultra-low latency and consensus decoupling for single-owner transactions.",
+"scaling_mechanism": "Horizontal scaling via intra-validator sharding where validators can add worker nodes to scale storage and throughput proportionally with hardware."
+},
+"execution_model": {
+"transaction_processing": "Dual-path execution engine.",
+"single_owner_path": "Bypasses total-order consensus using Byzantine Consistent Broadcast. Achieves near-instant finality for independent actions like simple transfers.",
+"shared_object_path": "Requires sequencing through the Mysticeti consensus engine to determine a total order of mutations, preventing race conditions.",
+"concurrency": "Static parallelism through upfront declaration of object dependencies in inputs. Conflicts are detected prior to execution, allowing non-interfering transactions to process concurrently across multiple CPU cores.",
+"programmable_transaction_blocks": "PTBs allow batching of up to 1024 commands (e.g., move calls, object construction, splits, transfers) into a single atomic transaction execution path, sharing inputs and outputs across calls."
+},
+"rpc_surface": {
+"status": "Legacy JSON-RPC interface is deprecated in favor of high-performance transport-agnostic client architectures.",
+"current_standards": [
+"Core API / SuiGrpcClient: High-throughput Protobuf binary over gRPC for direct state reads, node ingestion, and raw transaction simulation.",
+"SuiGraphQLClient: Read surface designed for complex state querying, transaction filtering, checkpoint data retrieval, and indexing history."
+],
+"example_endpoints": {
+"mainnet_graphql": "[https://sui-mainnet.mystenlabs.com/graphql](https://sui-mainnet.mystenlabs.com/graphql)",
+"mainnet_grpc_json_fallback": "[https://fullnode.mainnet.sui.io:443](https://fullnode.mainnet.sui.io:443)"
+}
+},
+"sdks": {
+"official": [
+"@mysten/sui (TypeScript/JavaScript SDK supporting fully modular packages for transaction construction, BCS serialization, and GraphQL/gRPC transport layers)",
+"sui-rust-sdk (Native Rust integration optimized for core infrastructure and gRPC streaming)"
+],
+"community_and_ecosystem": [
+"Python SDK",
+"Go SDK",
+"C++ / Unity / Unreal Engine integrations for native gaming environments"
+]
+},
+"did_identity": {
+"mechanisms": [
+"zkLogin: Cryptographic primitive allowing users to generate native Sui addresses and sign transactions using standard OpenID Connect (OIDC) credentials (e.g., Google, Apple, Facebook) via zero-knowledge proofs without displaying web2 credentials on-chain.",
+"Sui Name Service (SuiNS): Native identification protocol mapping human-readable names to object IDs and Sui addresses.",
+"Decentralized Identifiers (DIDs): Native structures using Move resource properties to attach verifiable credentials to owned object states."
+]
+},
+"m2m_payments": {
+"capabilities": "Sub-second single-owner transaction execution paths enable low-overhead, high-frequency Machine-to-Machine (M2M) micro-payments and micro-metered settlement channels. Programmable Transaction Blocks permit conditional multi-party payment chaining within a single atomic round-trip."
+},
+"stablecoin_flows": {
+"native_issuances": [
+"USDC (Native deployment via Circle Omni-channel token protocols)",
+"AUSD (Agora native stablecoin integration)",
+"USDT (Ecosystem bridging and synthetics)"
+],
+"liquidity_routing": "DeepBook (V3 architecture), the native on-chain Central Limit Order Book (CLOB), acts as an infrastructure layer providing deep liquidity routing and near zero-slippage wholesale stablecoin conversions."
+},
+"gas_model": {
+"structure": "Gas fees are split into two explicit components: Computation Units and Storage Units.",
+"gas_price_mechanism": "Determined on an epoch-by-epoch basis through a validator survey process (Gas Price Survey), establishing a stable reference price to isolate end-users from sudden congestion spikes.",
+"storage_fund": "Users pay a storage fee up front when creating or modifying objects. This fee is deposited into a global Storage Fund to incentivize future validators for maintaining historical state. When an object is deleted, a storage rebate is returned to the transaction submitter.",
+"zero_fee_transfers": "Achieved programmatically through Gas Sponsored Transactions. A dApp operator or secondary account can sign a transaction as the 'sponsor' supplying the gas object inputs, allowing end-users to interact with smart contracts or transfer assets with zero native token balances."
+},
+"move_vm_details": {
+"flavor": "Sui Move (a modified variant of the original Diem Move architecture).",
+"key_differences_from_core_move": "Sui uses its own object-centric global storage instead of account-based global storage. It eliminates global storage operations like 'move_to', 'move_from', and 'borrow_global', replacing them with explicit object passing via function arguments.",
+"abilities": [
+"key: Allows a struct to serve as a Sui object with a globally unique, immutable UID.",
+"store: Enables a struct to be wrapped or embedded inside another object structure.",
+"copy: Permits the duplication of values within the struct context.",
+"drop: Permits the implicit discarding or destruction of a struct instance upon scope termination."
+],
+"safety_guarantees": "Strict bytecode verifier ensures structural resource safety at runtime, preventing reentrancy attacks, double-spending, and asset duplication by forcing explicit handling of resources lacking the copy or drop abilities."
+},
+"cross_chain_capabilities": {
+"native_bridge": "Sui Bridge (Built-in canonical cryptographic bridge enabling secure communication and asset transfers between Ethereum and Sui managed by the active validator set).",
+"third_party_protocols": [
+"Wormhole",
+"LayerZero"
+],
+"interoperability": "Facilitated by cryptographic primitives supporting secp256k1, secp256r1, and ed25519 signatures, matching the standards used across traditional networks and other alternative L1/L2 architectures."
+},
+"integration_patterns": {
+"state_tracking": "Applications track state by watching for individual Object Mutations and structural Event emissions rather than listening for raw sequential block numbers.",
+"transaction_construction": "Construct all user actions via Programmable Transaction Blocks to optimize multiple execution tasks into a single transaction envelope.",
+"storage_layering": "Utilize Walrus (decentralized blob storage network) for large-scale application media, historical data, and metadata, keeping the on-chain Sui object state lean and performant."
+},
+"recommended_usage": {
+"ideal_use_cases": [
+"High-frequency DeFi implementations requiring Central Limit Order Books (e.g., DeepBook) and sub-second settlement.",
+"Web3 Gaming featuring highly dynamic, multi-owner on-chain assets (Dynamic NFTs) mutated continuously via parallel execution streams.",
+"Mass-market consumer applications utilizing zkLogin to remove web3 onboarding friction for non-crypto-native audiences.",
+"High-throughput enterprise supply chains and real-time asset settlement architectures."
+]
+},
+"limitations": {
+"code_portability": "Non-trivial code modification required when moving apps to/from EVM or standard Aptos Core Move networks due to unique object-centric storage paradigms.",
+"rate_limits": "Public public-tier RPC nodes are strictly throttled (~100 requests per 30 seconds), necessitating dedicated infrastructure or gRPC streaming for production-grade software deployments.",
+"historical_queries": "Sui's checkpoint architecture prunes historical state quickly on standard nodes; deep analytical historical querying requires dedicated Archive nodes or specialized GraphQL indexers."
+},
+"risks": {
+"validator_hardware_centralization": "The requirement for high computation speeds and multi-worker intra-validator horizontal scaling structures demands enterprise-grade hardware, limiting individual or hobbyist validator node operations.",
+"ecosystem_dependency": "Heavy structural dependency on Mysten Labs tooling and core services during rapid infrastructure upgrade phases.",
+"consensus_complexity": "The multi-path design (Mysticeti + Fast-pay style Byzantine Consistent Broadcast) introduces execution edge cases if dependency trees for objects are misconfigured by developers."
+},
+"official_sources": [
+"[https://sui.io](https://sui.io)",
+"[https://docs.sui.io](https://docs.sui.io)",
+"[https://docs.sui.io/sui-api-ref](https://docs.sui.io/sui-api-ref)"
+],
+"repos": [
+"[https://github.com/MystenLabs/sui](https://github.com/MystenLabs/sui)",
+"[https://github.com/MystenLabs/ts-sdks](https://github.com/MystenLabs/ts-sdks)"
+],
+"whitepapers": [
+"The Sui Smart Contracts Platform (Core Architecture Whitepaper)",
+"The Sui Smart Contracts Platform: Economics and Incentives",
+"Mysticeti: Low-Latency DAG-based Consensus Engine for Sui"
+],
+"notes": "Sui represents a complete break from account-based ledger systems. The implementation of Mysticeti in recent cycles has solidified its execution velocity. Teams integrating with Wnode must orient data pipelines around Object IDs (`0x...`) and structural Checkpoints rather than historical block heights."
+}
+]

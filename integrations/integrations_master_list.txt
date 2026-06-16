@@ -430,6 +430,7 @@ snowtrace
 solana
 starknet
 subquery
+sui
 superfluid
 sushi
 synapse

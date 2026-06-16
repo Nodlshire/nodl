@@ -1,7 +1,7 @@
 # M2M Compute Layer
 
 ## Overview
-Machine-to-Machine (M2M) represents the foundational compute layer of Wnode.
+Machine-to-Machine (M2M) represents the foundational compute layer of Wnode, enabling trustless hardware coordination. This includes integrations with high-frequency, sub-second single-owner architectures like Sui for micro-metered settlement.
 
 ## Purpose
 To allow trustless off-chain compute tasks to be verified and executed on decentralized hardware.

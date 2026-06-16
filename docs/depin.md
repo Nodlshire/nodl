@@ -8,3 +8,9 @@ DePIN networks require frictionless, universally accepted payment rails to rewar
 - **USDT Settlements**: Wnode routes hardware compute rewards directly in USDT over low-cost networks like Tron and Base, maximizing margins for operators.
 - **XAUt Treasuries**: DePIN protocols can retain network earnings in Tether Gold (XAUt), preserving hardware capital expenditure value in physical commodities.
 - **Global Reach**: By leveraging Tether's cross-border settlement capabilities, Wnode ensures that a node operating in Dubai can seamlessly settle compute tasks for an AI firm in Singapore, instantly and compliantly.
+
+## Coordination & Telemetry via ICP
+DePIN networks require highly scalable, persistent state storage for hardware telemetry verification. Wnode leverages the Internet Computer (ICP) for this orchestration.
+- **Light Client Verification**: Deploy canisters as decentralized light clients to process physical node hardware proof-of-work autonomously.
+- **Data Availability**: Telemetry and device logs are replicated across globally distributed, sovereign data centers running ICP nodes.
+- **Automated Conversions**: Utilizing ICP's MULTI/DEX architectures, hardware native rewards can be automatically converted into stable liquid assets (like USDT) within a trustless execution environment.

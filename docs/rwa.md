@@ -9,3 +9,8 @@ Tether Gold (XAUt) represents a cornerstone of Wnode's RWA strategy.
 - **Machine Treasuries**: Autonomous AI agents and DePIN hardware fleets can utilize XAUt to hedge against fiat volatility, maintaining long-term purchasing power.
 - **Jurisdictional Relevance**: Highly synergistic with the Dubai / DMCC economic strategies, positioning Wnode at the intersection of digital innovation and traditional commodities.
 - **Attestations**: Wnode's integration ensures that all XAUt reserves can be verified onchain, maintaining institutional-grade transparency.
+
+## Algorithmic Treasuries (ICP)
+Wnode also utilizes the Internet Computer (ICP) Network Nervous System (NNS) to construct robust, algorithmic models for managing protocol assets.
+- **Neuron Staking**: Onchain RWA and utility token treasuries can be locked as governance neurons, yielding compounding rewards while securing network consensus.
+- **Automated Disbursement**: Persistent canister logic evaluates network telemetry to automatically distribute RWA yields to node operators across the Wnode mesh.

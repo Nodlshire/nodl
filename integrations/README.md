@@ -10,3 +10,11 @@ As Wnode scales its sovereign compute mesh across Dubai, the DMCC, and global ju
 - **Commodity Treasuries**: XAUt integration for physical gold-backed machine treasuries.
 - **M2M Payments**: Optimized for high-frequency DePIN and AI agent workflows.
 - **Cross-Chain Routing**: Official bridging, custodial routing, and burn/mint cross-chain execution models.
+
+## Featured Protocol: Internet Computer (ICP)
+Wnode leverages ICP to provide trustless, persistent execution environments for AI agents and DePIN networks, removing the reliance on centralized cloud providers like AWS or GCP.
+
+### Capabilities
+- **Serverless Compute**: Wasm-based canister smart contracts with orthogonal persistence and reverse-gas cycle models.
+- **Cross-Chain Outcalls**: Native HTTPS outcalls and threshold ECDSA signing to securely trigger external state changes.
+- **MULTI/DEX Architecture**: Subnet-scaled limit order books and automated market makers supporting high-frequency M2M rebalancing.

@@ -11,4 +11,10 @@ Tether is integrated as a first-class protocol within the Wnode ecosystem, servi
 - **Tether Gold (XAUt)**: Integrated as a premier Real-World Asset (RWA) backed by physically vaulted gold, providing a stable, inflation-resistant treasury asset for autonomous machine networks.
 - **Compliance & Attestations**: Full support for identity compliance, including KYC/KYB issuance, onchain sanction enforcement, and transparent reserve attestations.
 
+### Internet Computer (ICP)
+ICP is integrated to provide a serverless, persistent sovereign compute mesh via WebAssembly (Wasm) canisters.
+- **Canister Execution Model**: Stateful compute units utilizing orthogonal persistence, eliminating the need for traditional databases.
+- **Native Cross-Chain Signatures**: Bridgeless threshold ECDSA/Schnorr routing enabling AI agents to sign transactions natively on Bitcoin and EVM networks.
+- **NNS Governance**: Integration with the Network Nervous System (NNS) algorithmic DAO for transparent, decentralized parameter adjustments and treasury staking.
+
 *For detailed execution models, SDK wrappers, and RPC adapter documentation, see the respective protocol directories.*

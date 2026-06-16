@@ -8,3 +8,9 @@ To function effectively in the Machine Economy, AI agents require stable, liquid
 - **Programmatic Execution**: Using ecosystem SDKs (ethers.js, viem) and bespoke Wnode wrappers, AI agents can autonomously trigger USDT transactions.
 - **Yield Strategies**: Agents can programmatically allocate idle USDT into yield strategies or purchase XAUt for collateral usage and long-term treasury holding.
 - **Constraint Awareness**: Agents are programmed to recognize and navigate compliance constraints, ensuring that automated cross-border settlements respect Tether's onchain freezing and sanction mechanisms.
+
+## Persistent Agent Brains (ICP)
+Wnode provides AI agents with serverless, persistent environments using the Internet Computer (ICP) execution layer.
+- **Orthogonal Persistence**: Agents are deployed directly into Wasm canisters, utilizing stable memory maps (up to 400GB+) to persist their internal state and context without external database costs.
+- **Cross-Chain Autonomy**: Through native threshold ECDSA routing, an AI agent hosted on ICP can sign transactions on Ethereum or Bitcoin natively, eliminating the risk of exposed private key files.
+- **Trustless Automation**: Agents interact with Web2 data sources directly via consensus-validated HTTPS outcalls to execute real-time market or operational decisions.

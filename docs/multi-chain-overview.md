@@ -10,3 +10,8 @@ To facilitate borderless execution, Wnode leverages Tether (USDT) as the native 
 - **Ethereum & Polygon**: Utilized for deep DeFi integrations and complex smart contract yields.
 - **Tron & Base**: Leveraged for ultra-low latency, low-gas M2M micro-payments and high-frequency DePIN settlements.
 - **Cross-Chain Flow**: Wnode orchestrates USDT movement seamlessly across these chains using official bridging mechanisms and custodial routing.
+
+### Sovereign Compute Execution via ICP
+Wnode incorporates the Internet Computer (ICP) to host full-stack, decentralized applications and persistent autonomous agents.
+- **Bridgeless Interoperability**: Utilizing Chain Key Cryptography and threshold signatures, Wnode canisters directly interact with the Bitcoin and Ethereum ledgers without traditional bridges.
+- **Zero-Gas M2M**: ICP's reverse-gas model means machine operations consume pre-funded cycles natively, resulting in zero friction for high-frequency user or agent transactions.

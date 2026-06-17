@@ -660,3 +660,4 @@ zora-market
 | Base | base | L2 / OP Stack / Ethereum Rollup | 190009-0617-26-IN | Secure, low-cost, developer-friendly Ethereum L2 scaling network built on the open-source OP Stack by Optimism. |
 | Flutterwave | flutterwave | Payments / Fintech / M2M Settlement | 190010-0617-26-IN | Enterprise-grade unified digital payment infrastructure rail abstracting cross-border liquidity fragmentation. |
 | Ripple | ripple | Payments / Cross-Border / Liquidity & CBDC | 190011-0617-26-IN | Global financial messaging, liquidity, and settlement protocol for cross-border payments and asset tokenization. |
+| ZeroFS | zerofs | Storage / Ephemeral I/O / POSIX Abstraction | 190012-0617-26-IN | High-performance POSIX filesystem and block-device abstraction layer for ephemeral stateless I/O. |

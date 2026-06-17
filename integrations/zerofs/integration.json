@@ -1,0 +1,11 @@
+{
+  "name": "ZeroFS",
+  "category": "Storage / Ephemeral I/O / POSIX Abstraction",
+  "description": "High-performance POSIX filesystem and block-device abstraction layer for ephemeral stateless I/O.",
+  "endpoints": [
+    "zerofs://mount"
+  ],
+  "activation": "Pending",
+  "version": "1.0.0",
+  "id": "190012-0617-26-IN"
+}

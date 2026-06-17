@@ -1,0 +1,9 @@
+{
+  "name": "ZeroFS",
+  "type": "protocol",
+  "version": "1.0.0",
+  "wuid": "190012-0617-26-IN",
+  "dependencies": [
+    "zerofs-client"
+  ]
+}

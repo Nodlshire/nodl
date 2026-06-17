@@ -612,3 +612,4 @@ This document tracks all 100+ protocol integrations within Wnode Sovereign Compu
 All integrations actively route volume through the Sovereign Mesh, capturing value across compute, API relay, MEV, and cross-chain operations.
 
 | Helium | DePIN / IoT / Mobile (Solana) | 190008-0617-26-IN | [View](./integrations/helium/) |
+| Base | L2 / OP Stack / Ethereum Rollup | 190009-0617-26-IN | [View](./integrations/base/) |

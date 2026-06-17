@@ -1,9 +1,14 @@
 {
   "name": "Base",
-  "category": "Layer 2",
-  "description": "Secure, low-cost, builder-friendly Ethereum L2 built to bring the next billion users on-chain.",
-  "endpoints": [],
+  "category": "L2 / OP Stack / Ethereum Rollup",
+  "description": "Secure, low-cost, developer-friendly Ethereum L2 scaling network built on the open-source OP Stack by Optimism.",
+  "endpoints": [
+    "https://mainnet.base.org",
+    "https://api.basescan.org/api",
+    "https://api.studio.thegraph.com/query/base-mainnet",
+    "https://mainnet-sequencer.base.org"
+  ],
   "activation": "Pending",
   "version": "1.0.0",
-  "id": "190001-0626-54-IN"
+  "id": "190009-0617-26-IN"
 }

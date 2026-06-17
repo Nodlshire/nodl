@@ -658,3 +658,4 @@ zora-market
 
 | Helium | helium | DePIN / IoT / Mobile (Solana) | 190008-0617-26-IN | Decentralized physical infrastructure network (DePIN) on Solana for IoT and Mobile coverage. |
 | Base | base | L2 / OP Stack / Ethereum Rollup | 190009-0617-26-IN | Secure, low-cost, developer-friendly Ethereum L2 scaling network built on the open-source OP Stack by Optimism. |
+| Flutterwave | flutterwave | Payments / Fintech / M2M Settlement | 190010-0617-26-IN | Enterprise-grade unified digital payment infrastructure rail abstracting cross-border liquidity fragmentation. |

@@ -1,0 +1,60 @@
+{
+"protocol": {
+"name": "Flutterwave",
+"summary": "Flutterwave is a standard, enterprise-grade unified digital payment infrastructure rail that abstracts cross-border liquidity fragmentation by aggregating banks, mobile money operators, card networks, and local payment systems into a single programmatic API core interface.",
+"capabilities": [
+"Cross-border payments",
+"Card processing",
+"Bank transfers",
+"Mobile money",
+"Payouts",
+"Multi-currency settlement",
+"Enterprise payment APIs"
+],
+"geography": "Operating directly across more than 30 African nations (including Nigeria, Kenya, South Africa, Ghana, and Egypt), with strategic payment processing capabilities, licensing, and outbound remittance corridors expanding into the United Kingdom, European Union, and the United States."
+},
+"integration": {
+"type": "RESTful API-based HTTPS data transfer, secure asymmetric webhook callback signatures, automated clearing house (ACH) settlement rails, and high-frequency bulk payout distribution protocols.",
+"data_flows": [
+"Wnode sovereign compute nodes initiate payment actions by dispatching structured, signed JSON payloads containing transaction parameters to the Flutterwave v3 endpoint architecture.",
+"Flutterwave returns instantaneous HTTP transaction statuses containing unique reference IDs, while downstream fulfillment changes trigger asynchronous Webhook callbacks verified by HMAC SHA256 signatures.",
+"Settlements are swept automatically into localized clearing accounts or stablecoin pools, and payouts are initiated programmatically via the Flutterwave /transfers endpoint array."
+],
+"security": [
+"PCI-DSS Level 1 compliance alignment ensuring maximum infrastructure handling security.",
+"Tokenized card data schemas preventing the exposure or leakage of raw primary account numbers (PAN).",
+"Encrypted payloads with mandatory Transport Layer Security (TLS 1.3) wrapping on all connection paths.",
+"Wnode stores no sensitive payment data, delegating all cardholder data environment (CDE) actions to Flutterwave's isolated token vaults."
+]
+},
+"value_to_wnode": {
+"m2m_settlement": "Enables completely autonomous machine-to-machine micro-settlement patterns where software agents pay other computational nodes for execution time based on precise telemetry meters.",
+"fiat_on_off_ramps": "Provides a programmatic bridge allowing clients to fund localized or global compute nodes using standard regional bank accounts or local cards while settling into stable digital assets.",
+"enterprise_payments": "Supports large enterprise tenants through dedicated virtual account routing, batch processing arrays, and deterministic compliance reporting for multi-million dollar volume operations.",
+"emerging_markets": "Unlocks high-growth frontier tech ecosystems across the African continent, giving local developers direct access to Wnode resources without requiring foreign banking credit lines."
+},
+"value_to_flutterwave": {
+"new_volume": "Captures automated, programmatic transaction flows generated entirely by machine agents, independent of traditional human-initiated retail volumes.",
+"developer_usage": "Drives compounding developer interactions and high-frequency programmatic API call volume to Flutterwave endpoints via distributed autonomous software loops.",
+"positioning": "Establishes Flutterwave as the dominant, infrastructure-critical financial routing pipeline bridging sovereign decentralized compute architectures with frontier market banking institutions."
+},
+"agent_execution_layer": {
+"agent_capabilities": [
+"Agents can pay for compute jobs in local currency",
+"Agents can trigger payouts to node operators",
+"Agents can manage recurring or subscription payments"
+],
+"workflow_examples": [
+"A Wnode data analytics agent finishes an execution round, calculates the resource cost, calls the Flutterwave transfer API, and instantly delivers the fiat payout to the underlying hardware node operator's bank account.",
+"An enterprise customer provisions a dedicated virtual account via Flutterwave, which programmatically updates an on-chain credit ledger that autonomous agents spend against to consume live cloud workloads."
+]
+},
+"revenue_model": {
+"annual_potential_usd": "15000000.00",
+"drivers": [
+"Enterprise payment volume scaling across newly onboarded regional developer nodes.",
+"Average transaction size calculated across continuous server compute cycles and hardware lease profiles.",
+"Take-rate or margin assumptions modeled between 1.4% and 3.8% based on the geographical payment mix (local bank transfers vs. international card processing networks)."
+]
+}
+}

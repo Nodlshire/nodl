@@ -613,3 +613,4 @@ All integrations actively route volume through the Sovereign Mesh, capturing val
 
 | Helium | DePIN / IoT / Mobile (Solana) | 190008-0617-26-IN | [View](./integrations/helium/) |
 | Base | L2 / OP Stack / Ethereum Rollup | 190009-0617-26-IN | [View](./integrations/base/) |
+| Flutterwave | Payments / Fintech / M2M Settlement | 190010-0617-26-IN | [View](./integrations/flutterwave/) |

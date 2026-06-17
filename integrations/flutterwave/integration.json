@@ -1,0 +1,11 @@
+{
+  "name": "Flutterwave",
+  "category": "Payments / Fintech / M2M Settlement",
+  "description": "Enterprise-grade unified digital payment infrastructure rail abstracting cross-border liquidity fragmentation.",
+  "endpoints": [
+    "https://api.flutterwave.com/v3"
+  ],
+  "activation": "Pending",
+  "version": "1.0.0",
+  "id": "190010-0617-26-IN"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Flutterwave",
+  "type": "protocol",
+  "version": "1.0.0",
+  "wuid": "190010-0617-26-IN",
+  "dependencies": [
+    "axios",
+    "crypto"
+  ]
+}

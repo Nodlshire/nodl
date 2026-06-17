@@ -1,23 +1,30 @@
-// Ripple Wnode Integration SDK
-import { BaseIntegrationClient } from '../shared/base-client';
+import { Client, Wallet } from 'xrpl';
 
-export class RippleClient extends BaseIntegrationClient {
-    constructor(config: any) {
-        super('ripple', config);
+export class RippleIntegration {
+    private client: Client;
+    private wallet: Wallet;
+
+    constructor(serverUrl: string, secret: string) {
+        this.client = new Client(serverUrl);
+        this.wallet = Wallet.fromSeed(secret);
     }
 
-    async sendPayment(amount: string, destination: string, idempotencyKey: string) {
-        // Wired to M2M billing layer and 10 PSPs (Stripe, Coinbase, etc)
-        return this.executeM2MPayment({ amount, destination, idempotencyKey });
+    async connect() {
+        await this.client.connect();
     }
 
-    async getStatus() {
-        return this.request('GET', '/status');
+    async disconnect() {
+        await this.client.disconnect();
+    }
+
+    async sendXrp(destination: string, amount: string) {
+        const tx = await this.client.autofill({
+            TransactionType: "Payment",
+            Account: this.wallet.address,
+            Amount: amount,
+            Destination: destination
+        });
+        const signed = this.wallet.sign(tx);
+        return await this.client.submitAndWait(signed.tx_blob);
     }
 }
-
-export const defaultRippleConfig = {
-    name: 'ripple',
-    auth: '',
-    rateLimits: ''
-};

@@ -1,0 +1,10 @@
+{
+  "name": "Ripple",
+  "type": "protocol",
+  "version": "1.0.0",
+  "wuid": "190011-0617-26-IN",
+  "dependencies": [
+    "xrpl",
+    "axios"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "Bitso",
+  "category": "Payments / LATAM Corridors / Stablecoin Settlement",
+  "description": "Regulated LATAM-focused cryptocurrency platform and institutional liquidity clearinghouse for stablecoin and cross-border settlement.",
+  "endpoints": [
+    "https://api.bitso.com/v3"
+  ],
+  "activation": "Pending",
+  "version": "1.0.0",
+  "id": "190013-0617-26-IN"
+}

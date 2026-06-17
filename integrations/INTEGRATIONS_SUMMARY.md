@@ -616,3 +616,4 @@ All integrations actively route volume through the Sovereign Mesh, capturing val
 | Flutterwave | Payments / Fintech / M2M Settlement | 190010-0617-26-IN | [View](./integrations/flutterwave/) |
 | Ripple | Payments / Cross-Border / Liquidity & CBDC | 190011-0617-26-IN | [View](./integrations/ripple/) |
 | ZeroFS | Storage / Ephemeral I/O / POSIX Abstraction | 190012-0617-26-IN | [View](./integrations/zerofs/) |
+| Bitso | Payments / LATAM Corridors / Stablecoin Settlement | 190013-0617-26-IN | [View](./integrations/bitso/) |

@@ -661,3 +661,4 @@ zora-market
 | Flutterwave | flutterwave | Payments / Fintech / M2M Settlement | 190010-0617-26-IN | Enterprise-grade unified digital payment infrastructure rail abstracting cross-border liquidity fragmentation. |
 | Ripple | ripple | Payments / Cross-Border / Liquidity & CBDC | 190011-0617-26-IN | Global financial messaging, liquidity, and settlement protocol for cross-border payments and asset tokenization. |
 | ZeroFS | zerofs | Storage / Ephemeral I/O / POSIX Abstraction | 190012-0617-26-IN | High-performance POSIX filesystem and block-device abstraction layer for ephemeral stateless I/O. |
+| Bitso | bitso | Payments / LATAM Corridors / Stablecoin Settlement | 190013-0617-26-IN | Regulated LATAM-focused cryptocurrency platform and institutional liquidity clearinghouse for stablecoin and cross-border settlement. |

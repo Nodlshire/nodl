@@ -1,0 +1,10 @@
+{
+  "name": "Bitso",
+  "type": "protocol",
+  "version": "1.0.0",
+  "wuid": "190013-0617-26-IN",
+  "dependencies": [
+    "axios",
+    "crypto"
+  ]
+}

@@ -655,3 +655,5 @@ zoom
 zoom-api
 zora
 zora-market
+
+| Helium | helium | DePIN / IoT / Mobile (Solana) | 190008-0617-26-IN | Decentralized physical infrastructure network (DePIN) on Solana for IoT and Mobile coverage. |

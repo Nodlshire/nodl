@@ -28,3 +28,5 @@ Working/Tested
 
 ## Screenshots
 ![Placeholder: Integrations Hub]()
+
+| Helium | DePIN / IoT / Mobile (Solana) | 190008-0617-26-IN | [View](./integrations/helium/) |

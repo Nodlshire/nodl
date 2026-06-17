@@ -1,0 +1,10 @@
+{
+  "name": "Helium",
+  "type": "protocol",
+  "version": "1.0.0",
+  "wuid": "190008-0617-26-IN",
+  "dependencies": [
+    "@solana/web3.js",
+    "axios"
+  ]
+}

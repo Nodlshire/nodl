@@ -1,0 +1,14 @@
+{
+  "name": "Helium",
+  "category": "DePIN / IoT / Mobile (Solana)",
+  "description": "Decentralized physical infrastructure network (DePIN) on Solana for IoT and Mobile coverage.",
+  "endpoints": [
+    "https://api.heliumgeek.com/v0/gateways",
+    "https://api.relaywireless.com/v1/iot",
+    "https://api.heliumgeek.com/v0/mobile",
+    "https://mainnet.helium.oracle.solana.com/v1"
+  ],
+  "activation": "Pending",
+  "version": "1.0.0",
+  "id": "190008-0617-26-IN"
+}

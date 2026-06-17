@@ -1,0 +1,250 @@
+{
+"protocol": "helium",
+"overview": {
+"summary": "Full architectural integration between Wnode (sovereign compute network) and the Helium Network deployed on the Solana blockchain. This configuration enables deterministic, trust-minimized off-chain computing resources (Wnodes) to interface with Helium's real-world decentralized physical infrastructure network (DePIN), spanning IoT (LoRaWAN) and Mobile (5G/CBRS) subnetworks.",
+"why_it_matters": "Following critical network evolutions—including the migration to Solana and structural transitions such as HIP-138—Helium relies intensely on decoupled Oracles to track Proof-of-Coverage (PoC), process data transfer packets, and execute emissions rules. Integrating Wnode ensures that processing network health metrics, carrier offload operations, and automation layers execute with verifiable, deterministic logic isolated from localized infrastructure failures.",
+"integration_value": "By establishing unified, cryptographically secure data pipelines, Wnode agents can ingest real-time state telemetry directly from Solana RPC nodes and distributed Helium oracles. This bridges verified network coverage data, localized data credit (DC) burn performance, and hotspot activity logs with highly automated, self-executing off-chain operational architectures."
+},
+"technical": {
+"apis": {
+"hotspot_api": "[https://api.heliumgeek.com/v0/gateways](https://www.google.com/search?q=https://api.heliumgeek.com/v0/gateways)",
+"iot_api": "[https://api.relaywireless.com/v1/iot](https://www.google.com/search?q=https://api.relaywireless.com/v1/iot)",
+"mobile_api": "[https://api.heliumgeek.com/v0/mobile](https://www.google.com/search?q=https://api.heliumgeek.com/v0/mobile)",
+"coverage_api": "[https://api.relaywireless.com/v1/coverage](https://www.google.com/search?q=https://api.relaywireless.com/v1/coverage)",
+"oracle_api": "[https://mainnet.helium.oracle.solana.com/v1](https://www.google.com/search?q=https://mainnet.helium.oracle.solana.com/v1)",
+"blockchain_api": "[https://api.mainnet-beta.solana.com](https://api.mainnet-beta.solana.com)"
+},
+"endpoints": [
+{
+"name": "get_hotspot_details",
+"method": "GET",
+"url": "[https://api.heliumgeek.com/v0/gateways/](https://www.google.com/search?q=https://api.heliumgeek.com/v0/gateways/){hotspot_address}",
+"params": "hotspot_address (string, Required) - The Solana mint address or legacy b58 address of the Hotspot NFT.",
+"returns": "JSON object outlining ownership, asserted location hex (H3 index), operational status, online/offline heartbeats, and subDAO registration."
+},
+{
+"name": "get_iot_device_sessions",
+"method": "GET",
+"url": "[https://api.relaywireless.com/v1/iot/devices/](https://www.google.com/search?q=https://api.relaywireless.com/v1/iot/devices/){dev_eui}/activity",
+"params": "dev_eui (string, Required) - Device EUI; limit (number, Optional) - Pagination frame constraint; cursor (string, Optional).",
+"returns": "Array of data packet metadata transmissions detailing frame count, data credit (DC) expenditure, and routing OUI properties."
+},
+{
+"name": "get_mobile_offload_stats",
+"method": "GET",
+"url": "[https://api.heliumgeek.com/v0/mobile/gateways/](https://www.google.com/search?q=https://api.heliumgeek.com/v0/mobile/gateways/){hotspot_address}/usage",
+"params": "hotspot_address (string, Required); min_time (string, ISO8601 Optional); max_time (string, ISO8601 Optional).",
+"returns": "Time-series data tracking total mobile megabytes routed, carrier offload validations, and corresponding expected reward shares."
+},
+{
+"name": "get_oracle_rewards_epoch",
+"method": "GET",
+"url": "[https://mainnet.helium.oracle.solana.com/v1/rewards/epochs/](https://www.google.com/search?q=https://mainnet.helium.oracle.solana.com/v1/rewards/epochs/){epoch_id}",
+"params": "epoch_id (number, Required) - The target 24-hour network epoch identifier.",
+"returns": "Merkle roots and allocation tables verifying computed rewards per hotspot based on transmit/witness scales and data transfers."
+},
+{
+"name": "get_solana_program_accounts",
+"method": "POST",
+"url": "[https://api.mainnet-beta.solana.com](https://api.mainnet-beta.solana.com)",
+"params": "JSON-RPC request body containing method 'getProgramAccounts', Helium Program ID, filters for account layout or mint matching.",
+"returns": "Raw or parsed on-chain account data containing token balances, escrow locations, and hotspot entity configs."
+}
+],
+"data_models": {
+"hotspot": {
+"type": "object",
+"properties": {
+"hotspot_address": { "type": "string", "example": "112t...xxxx" },
+"owner_wallet": { "type": "string", "example": "Sol111...xxxx" },
+"h3_index": { "type": "string", "example": "8826856235fffff" },
+"subnetworks": { "type": "array", "items": { "type": "string" }, "example": ["IOT", "MOBILE"] },
+"is_active": { "type": "boolean", "example": true },
+"gain": { "type": "integer", "example": 12 },
+"elevation": { "type": "integer", "example": 5 }
+},
+"required": ["hotspot_address", "owner_wallet", "h3_index", "is_active"]
+},
+"device": {
+"type": "object",
+"properties": {
+"dev_eui": { "type": "string", "example": "A840...xxxx" },
+"app_eui": { "type": "string", "example": "0000...xxxx" },
+"oui": { "type": "integer", "example": 1 },
+"total_dc_burned": { "type": "integer", "example": 45100 },
+"last_packet_timestamp": { "type": "string", "format": "date-time", "example": "2026-06-17T08:12:00Z" }
+},
+"required": ["dev_eui", "oui", "total_dc_burned"]
+},
+"coverage": {
+"type": "object",
+"properties": {
+"hex_id": { "type": "string", "example": "8826856235fffff" },
+"signal_strength_rssi": { "type": "number", "example": -115.2 },
+"snr": { "type": "number", "example": -7.5 },
+"witness_count": { "type": "integer", "example": 14 },
+"subdao_multiplier": { "type": "number", "example": 1.0 }
+},
+"required": ["hex_id", "signal_strength_rssi", "witness_count"]
+},
+"reward": {
+"type": "object",
+"properties": {
+"epoch": { "type": "integer", "example": 1104 },
+"entity_address": { "type": "string", "example": "112t...xxxx" },
+"hnt_amount_raw": { "type": "string", "example": "12500000" },
+"hnt_formatted": { "type": "number", "example": 0.125 },
+"reward_type": { "type": "string", "enum": ["poc", "data_transfer"], "example": "data_transfer" }
+},
+"required": ["epoch", "entity_address", "hnt_amount_raw", "reward_type"]
+},
+"oracle": {
+"type": "object",
+"properties": {
+"oracle_name": { "type": "string", "example": "iot_subdao_oracle_0" },
+"version": { "type": "string", "example": "v2.1.0" },
+"last_calculated_epoch": { "type": "integer", "example": 1104 },
+"merkle_root_hash": { "type": "string", "example": "0x7f8c...3a1b" }
+},
+"required": ["oracle_name", "last_calculated_epoch", "merkle_root_hash"]
+}
+},
+"event_streams": [
+{
+"event": "hotspot_heartbeat_lost",
+"description": "Triggered instantly when a registered IoT or Mobile hotspot misses consecutive standard ping or speedtest cycles.",
+"payload_schema": {
+"type": "object",
+"properties": {
+"hotspot_address": { "type": "string" },
+"last_seen": { "type": "string", "format": "date-time" },
+"subnetwork": { "type": "string" },
+"consecutive_failures": { "type": "integer" }
+}
+}
+},
+{
+"event": "high_volume_dc_burn",
+"description": "Fired when an enterprise OUI spikes in packet routing consumption within a defined sliding time window.",
+"payload_schema": {
+"type": "object",
+"properties": {
+"oui": { "type": "integer" },
+"dc_burned_window": { "type": "integer" },
+"window_duration_seconds": { "type": "integer" }
+}
+}
+}
+],
+"auth": {
+"method": "Header API Authentication & Solana Keypair Transaction Signing",
+"keys_required": "x-api-key (for third-party indexers like HeliumGeek/RelayWireless) and Ed25519 Solana Private Key (for on-chain operations like claiming rewards or modifying configurations).",
+"rate_limits": "100 requests per minute for Community endpoints; up to 5,000 requests per minute via premium RPC/indexer channels."
+}
+},
+"wnode_integration": {
+"agent_capabilities": [
+"fetch_hotspot_data",
+"fetch_device_metrics",
+"monitor_coverage",
+"ingest_oracle_prices",
+"run_reward_analysis",
+"trigger_automation_on_events"
+],
+"pipelines": [
+{
+"name": "automated_reward_harvester_and_swap",
+"description": "Identifies accrued uncollected HNT mining rewards for a managed fleet across oracles, executes automated Solana claims, and calculates optimized yield distribution.",
+"inputs": "fleet_hotspot_addresses (array of strings), minimum_claim_threshold_hnt (number)",
+"outputs": "claim_transaction_signatures (array of strings), aggregate_hnt_harvested (number)",
+"steps": [
+"Query Helium Oracle API for pending claimable balances matching the hotspot list.",
+"Filter out nodes returning values lower than minimum_claim_threshold_hnt.",
+"Generate individual or batch 'ClaimRewards' Solana instructions mapping to Helium's Lazy Distributor program.",
+"Sign the constructed transactions in a secure Wnode execution runtime using the delegated deployment key.",
+"Broadcast transactions to a high-performance Solana RPC endpoint (e.g., Helius/Alchemy).",
+"Verify on-chain settlement and log final ledger confirmations."
+]
+},
+{
+"name": "realfield_incident_response_pipeline",
+"description": "Listens for telemetry drops across specific localized coverage hexes, cross-references with oracle health logs, and adjusts alternative network asset priority lists dynamically.",
+"inputs": "monitored_hex_regions (array of strings), downtime_tolerance_minutes (integer)",
+"outputs": "incident_alerts (array), automated_backup_routing_state (object)",
+"steps": [
+"Subscribe to real-time event stream 'hotspot_heartbeat_lost'.",
+"Verify if the failing hotspot falls inside the target monitored_hex_regions.",
+"Assess structural coverage degradation via the Coverage API to verify if overlapping hotspots cover the missing node's footprint.",
+"If absolute degradation surpasses the allowed threshold, flag an incident alert.",
+"Dynamically execute an external Webhook payload to re-route primary IoT device profiles to secondary network providers or fallback cellular bridges."
+]
+}
+],
+"sovereign_compute_usage": {
+"trust_minimized_flows": "Wnode nodes parse off-chain oracle data using zero-knowledge or multi-party execution consensus frameworks. This guarantees that parameters used for performance checks or SLA governance agreements cannot be manipulated by individual infrastructure providers.",
+"deterministic_execution": "Logic steps mapping out-of-band IoT sensors to actual on-chain balances are processed inside sandboxed WebAssembly (Wasm) containers on Wnode. Input variables such as historical DC expenditure translate into execution outcomes that match precisely across all verification nodes.",
+"agent_mesh_patterns": "Autonomous Wnode agents run tasks in parallel: one agent monitors physical packet delivery over LoRaWAN, another tracks carrier offload validation signatures, and a coordinator agent calculates balance strategies. These nodes communicate over an encrypted, peer-to-peer messaging mesh to make unified operational decisions."
+}
+},
+"use_cases": [
+{
+"title": "Automated DePIN Fleet Optimization",
+"description": "Large-scale commercial operators managing thousands of Helium hotspots leverage Wnode agents to continuously analyze real-time data transfer metrics versus power costs. Optimization models pinpoint underperforming locations to streamline real-world field maintenance.",
+"value": "Maximizes net hardware profitability by isolating offline nodes or bad hex setups instantly, cutting field troubleshooting cycles from days down to minutes."
+},
+{
+"title": "Smart City Dynamic IoT SLA Enforcement",
+"description": "Municipal sensors monitoring critical public infrastructure use Helium for connectivity. Wnode agents trace critical parameters like delivery speed and packet loss to automatically verify service-level agreements (SLAs).",
+"value": "Guarantees data network uptime targets through verifiable, open data audits, executing automated fine collections or performance bonus payouts via smart contracts without human intervention."
+}
+],
+"testing": {
+"mock_data": {
+"mock_hotspot_payload": {
+"hotspot_address": "112t8sM5...MOCK_DATA",
+"owner_wallet": "SolM0ck...VSt4",
+"h3_index": "8826856235fffff",
+"subnetworks": ["IOT"],
+"is_active": true,
+"gain": 58,
+"elevation": 10
+},
+"mock_reward_payload": {
+"epoch": 1104,
+"entity_address": "112t8sM5...MOCK_DATA",
+"hnt_amount_raw": "5000000",
+"hnt_formatted": 0.05,
+"reward_type": "poc"
+}
+},
+"test_vectors": [
+{
+"input_scenario": "Hotspot goes offline unexpectedly mid-epoch.",
+"expected_pipeline_behavior": "The Wnode monitoring agent captures a missing heartbeat within 15 minutes, fires 'hotspot_heartbeat_lost', stops counting PoC rewards for that sector, and leaves the rest of the fleet running uninterrupted."
+},
+{
+"input_scenario": "A sudden burst of 1,000,000 invalid witness events is sent to the data pipeline.",
+"expected_pipeline_behavior": "The filtering rules flag and reject anomalies that violate standard spatial constraints (such as invalid distances or impossible RSSI/SNR bounds) before sending records to the analytical pipeline."
+}
+],
+"edge_cases": [
+"Solana network congestion causing transaction timing delays or dropouts while broadcasting reward claims.",
+"Oracle data updates changing data formats or structural layouts mid-epoch during minor protocol upgrades.",
+"Rapidly fluctuating transmission scales in dense metropolitan areas affecting the expected balance calculation models."
+]
+},
+"deployment": {
+"requirements": "Wnode sovereign compute engine image v2.4+ containing the Solana Web3 SDK core suite, an active premium JSON-RPC endpoint connection to Solana Mainnet-Beta, and a valid HeliumGeek developer API authorization key.",
+"config": {
+"network": "helium_solana_mainnet",
+"target_subdaos": ["IOT", "MOBILE"],
+"wnode_verification_threshold": "0.67",
+"retry_policy": {
+"max_attempts": 5,
+"backoff_factor": 2.0,
+"initial_delay_seconds": 3
+}
+},
+"versioning": "v1.0.0-integrated-production"
+}
+}

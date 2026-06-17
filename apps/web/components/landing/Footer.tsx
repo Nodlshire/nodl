@@ -50,7 +50,6 @@ export default function Footer({ onContactClick }: FooterProps) {
                                 <a href="/governance/constitution" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Constitution</a>
                                 <a href="/governance/roles" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Roles & Responsibilities</a>
                                 <a href="/governance/treasury" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Treasury Transparency</a>
-                                <a href="/governance/whitepaper" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Whitepaper</a>
                                 <a href="/governance/dao" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">DAO Mechanics</a>
                                 <a href="/governance/tokenomics" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Tokenomics</a>
                             </div>
@@ -63,6 +62,7 @@ export default function Footer({ onContactClick }: FooterProps) {
                             </button>
                             <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-full h-8 pointer-events-none group-hover:pointer-events-auto" />
                             <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 bg-black border border-white/25 p-6 rounded-2xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all flex flex-col gap-4 min-w-[220px] shadow-[0_-20px_50px_rgba(0,0,0,0.5)] backdrop-blur-xl">
+                                <a href="/investors/whitepaper" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Whitepaper</a>
                                 <a href="/investors/dr" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Data Room</a>
                             </div>
                         </div>
@@ -81,6 +81,7 @@ export default function Footer({ onContactClick }: FooterProps) {
                         </div>
 
                         <a href="/partners" className="text-white/40 hover:text-white transition-colors text-xs uppercase tracking-[0.2em]">Partners</a>
+                        <a href="/chp" className="text-white/40 hover:text-white transition-colors text-xs uppercase tracking-[0.2em]">VIP 合作伙伴</a>
                         <button 
                             onClick={(e) => {
                                 if (onContactClick) {

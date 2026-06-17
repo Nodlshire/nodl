@@ -45,7 +45,6 @@ export default function Header({ onContactClick }: HeaderProps) {
 
     const navLinks = [
         { name: "Home", href: "/" },
-        { name: "Indiegogo", href: "/indiegogo" },
         {
             name: "About",
             isDropdown: true,
@@ -62,7 +61,6 @@ export default function Header({ onContactClick }: HeaderProps) {
                 { name: "Constitution", href: "/governance/constitution", color: "text-slate-500" },
                 { name: "Roles & Responsibilities", href: "/governance/roles", color: "text-slate-500" },
                 { name: "Treasury Transparency", href: "/governance/treasury", color: "text-slate-500" },
-                { name: "Whitepaper", href: "/governance/whitepaper", color: "text-slate-500" },
                 { name: "DAO Mechanics", href: "/governance/dao", color: "text-slate-500" },
                 { name: "Tokenomics", href: "/governance/tokenomics", color: "text-slate-500" }
             ]
@@ -71,6 +69,7 @@ export default function Header({ onContactClick }: HeaderProps) {
             name: "Investors",
             isDropdown: true,
             subLinks: [
+                { name: "Whitepaper", href: "/investors/whitepaper", color: "text-slate-500" },
                 { name: "Data Room", href: "/investors/dr", color: "text-slate-500" }
             ]
         },
@@ -84,6 +83,7 @@ export default function Header({ onContactClick }: HeaderProps) {
             ]
         },
         { name: "Partners", href: "/partners" },
+        { name: "VIP 合作伙伴", href: "/chp" },
     ];
 
     const toggleDropdown = (name: string) => {
@@ -92,7 +92,7 @@ export default function Header({ onContactClick }: HeaderProps) {
 
     return (
         <>
-            <header className={`fixed top-0 left-0 right-0 z-[75] ${
+            <header className={`fixed top-0 left-0 right-0 z-[80] ${
                 scrolled ? "py-4 bg-black/80 backdrop-blur-xl border-b border-white/25" : "py-10 bg-transparent"
             } ${
                 isVisible ? "block" : "hidden"

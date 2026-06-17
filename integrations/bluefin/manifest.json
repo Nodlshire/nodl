@@ -1,0 +1,9 @@
+{
+  "name": "Bluefin",
+  "type": "protocol",
+  "version": "1.0.0",
+  "wuid": "190007-0617-26-IN",
+  "dependencies": [
+    "@firefly-exchange/bluefin-v2-client-ts"
+  ]
+}

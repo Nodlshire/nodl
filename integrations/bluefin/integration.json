@@ -1,0 +1,12 @@
+{
+  "name": "Bluefin",
+  "category": "Derivatives / Concentrated Liquidity DEX",
+  "description": "Sui derivatives DEX and concentrated liquidity AMM.",
+  "endpoints": [
+    "https://dapi.api.sui-prod.bluefin.io",
+    "wss://dapi.api.sui-prod.bluefin.io"
+  ],
+  "activation": "Pending",
+  "version": "1.0.0",
+  "id": "190007-0617-26-IN"
+}

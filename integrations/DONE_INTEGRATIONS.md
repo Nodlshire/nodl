@@ -148,6 +148,7 @@ coda-api
 cohere
 cohere-command
 coinbase
+coinbase_tokenize
 coingecko
 coinledger
 coinmarketcap

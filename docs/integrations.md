@@ -15,6 +15,7 @@ Integrations are built as modular agents within the Wnode runtime, executing aut
 - **Aave**: Automated liquidations and yield strategies. Wnode nodes monitor health factors and execute liquidations for a bounty.
 - **Gelato**: Smart contract automation. Wnode acts as a decentralized executor for Gelato network tasks.
 - **Eliza**: AI-driven narrative and logic agents executing securely in Wnode TEEs.
+- **Coinbase Tokenize / Base Tokenized Stocks**: Integration with Coinbase Tokenize / Base Tokenized Stocks. (WUID: 190006-0626-76-IN) [Link](./integrations/coinbase_tokenize/)
 
 ## Revenue path
 Bounties, arbitrage profits, and execution fees.

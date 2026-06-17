@@ -1,0 +1,157 @@
+[
+  {
+    "protocol_name": "Bluefin",
+    "category": "Derivatives / Concentrated Liquidity DEX",
+    "official_docs": [
+      "https://docs.bluefin.io"
+    ],
+    "github_repos": [
+      "https://github.com/fireflyprotocol/bluefin-v2-client-ts",
+      "https://github.com/fireflyprotocol/bluefin-client-python-sui"
+    ],
+    "api_endpoints": {
+      "rest": [
+        "https://dapi.api.sui-prod.bluefin.io"
+      ],
+      "graphql": [],
+      "websocket": [
+        "wss://dapi.api.sui-prod.bluefin.io",
+        "wss://notifications.api.sui-prod.bluefin.io"
+      ]
+    },
+    "sdk": {
+      "languages": [
+        "TypeScript",
+        "Python"
+      ],
+      "install_commands": [
+        "npm install @firefly-exchange/bluefin-v2-client-ts",
+        "pip install bluefin_client_sui"
+      ],
+      "core_methods": [
+        "BluefinClient.init()",
+        "BluefinClient.create_signed_order()",
+        "BluefinClient.post_order()",
+        "BluefinClient.cancel_order()",
+        "BluefinClient.get_user_position()",
+        "BluefinClient.get_orderbook()"
+      ]
+    },
+    "smart_contracts": {
+      "addresses": [
+        "0x3492c874c1e3b3e2984e8c41b589e642d4d0a5d6459e5a9cfc2d52fd7c89c267"
+      ],
+      "modules": [
+        "bluefin_spot",
+        "position",
+        "tick",
+        "oracle",
+        "pool"
+      ],
+      "functions": [
+        "swap",
+        "get_liquidity_by_amount",
+        "flash_swap",
+        "initialize_pool"
+      ]
+    },
+    "architecture": {
+      "execution_model": "Off-chain orderbook with on-chain settlement layer / Concentrated liquidity AMM",
+      "settlement_layer": "Sui Blockchain",
+      "security_model": "Multi-level access control with hot potato pattern for flash swaps, real-time threat monitoring and oracles",
+      "dependencies": [
+        "0x2::sui::SUI",
+        "0x2::coin"
+      ]
+    },
+    "integration_requirements": {
+      "authentication": "Sui Wallet Keypair Signing, zkLogin",
+      "rate_limits": "",
+      "required_headers": [
+        "Content-Type: application/json"
+      ],
+      "signing_flow": "Cryptographic signing of generalized order structures via Ed25519/Secp256k1 before transmitting to the off-chain orderbook",
+      "transaction_flow": "Orders matched off-chain are submitted to Sui smart contracts for on-chain validation, settlement, and asset exchange",
+      "permissions": [
+        "Protocol Admin",
+        "Pool Managers",
+        "Reward Managers"
+      ]
+    },
+    "data_feeds": {
+      "market_data": [
+        "Orderbook depth",
+        "Recent trades",
+        "Candlestick data"
+      ],
+      "oracle_sources": [
+        "Pyth Network",
+        "Internal Oracle Module"
+      ],
+      "indexing_options": [
+        "Sui RPC indexing",
+        "Bluefin Data Streams"
+      ]
+    },
+    "supported_assets": [
+      "SUI",
+      "USDC",
+      "USDT"
+    ],
+    "supported_chains": [
+      "Sui"
+    ],
+    "revenue_model": {
+      "fees": "Maker/Taker fee structure on perpetual and spot volume swap execution",
+      "tokenomics": "BLUE token utility",
+      "incentives": "Liquidity provider rewards, trade mining incentives"
+    },
+    "agent_use_cases": {
+      "trade_execution": [
+        "Automated market making",
+        "Arbitrage execution between DEXs",
+        "Algorithmic limit and market order routing"
+      ],
+      "portfolio_automation": [
+        "Automated rebalancing",
+        "Yield compounding via LP positioning"
+      ],
+      "risk_management": [
+        "Automated position liquidation protection",
+        "Dynamic hedging via perpetual positions"
+      ],
+      "data_consumption": [
+        "Real-time orderbook analytics ingestion",
+        "Funding rate tracking",
+        "Oracle price feeds tracking"
+      ]
+    },
+    "sample_code": {
+      "typescript": "import { BluefinClient, Networks } from '@firefly-exchange/bluefin-v2-client-ts';\nconst client = new BluefinClient(Networks.PRODUCTION_SUI, privateKey);\nawait client.init();\nconst order = client.createSignedOrder({ market: 'BTC-PERP', side: 'BUY', price: 60000, quantity: 0.1 });\nawait client.postOrder(order);",
+      "python": "from bluefin_client_sui import BluefinClient, Networks\nclient = BluefinClient(Networks.PRODUCTION_SUI, private_key)\nclient.init()\norder = client.create_signed_order(market='BTC-PERP', side='BUY', price=60000, quantity=0.1)\nclient.post_order(order)",
+      "rust": ""
+    },
+    "testing": {
+      "sandbox_urls": [
+        "https://dapi.api.sui-stage.bluefin.io"
+      ],
+      "faucet": "https://faucet.testnet.sui.io",
+      "testnet_contracts": []
+    },
+    "sources": {
+      "docs": [
+        "https://docs.bluefin.io"
+      ],
+      "github": [
+        "https://github.com/fireflyprotocol"
+      ],
+      "explorers": [
+        "https://suivision.xyz",
+        "https://suiscan.xyz"
+      ],
+      "other": [
+        "https://blog.sui.io"
+      ]
+    }
+  }
+]

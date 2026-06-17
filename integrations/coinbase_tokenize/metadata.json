@@ -1,0 +1,68 @@
+{
+  "protocol_name": "Coinbase Tokenize / Base Tokenized Stocks",
+  "category": "RWA / Tokenized Equities / Exchange Infrastructure",
+  "architecture": {
+    "how_1_1_backing_works": "Every tokenized stock issued on Base represents a 1:1 beneficial ownership interest in a corresponding share of the underlying traditional U.S. stock or ETF. The physical equities are bought and held in a dedicated Special Purpose Vehicle (SPV) or underlying corporate structure. This legal wrapper prevents co-mingling with issuer assets and guarantees that the token pool exactly matches the shares held in the traditional brokerage/clearing system.",
+    "custody_and_redemption_mechanics": "The underlying traditional shares are held securely by a regulated custodian (such as Apex Clearing Corporation or a similar institutional brokerage framework) on behalf of the token issuer/wrapper entity. Token creation (minting) occurs after fiat/stablecoin is received and the equivalent stock is purchased in the traditional market. Redemption works in reverse: the user burns the token on Base via a compliant interface, triggering the automated sale of the underlying stock at the traditional brokerage layer, and proceeds are settled back to the user's account.",
+    "dividend_distribution": "Dividends are managed using a total-return tracker model or via programmable distribution. Because tokens represent beneficial interests, when the underlying stock pays a dividend to the custodian, the proceeds are either automatically reinvested to increase the intrinsic value of the token (accumulating asset model), or distributed programmatically to verified token holders onchain using snapshot mechanisms in the form of compliant stablecoins (e.g., USDC).",
+    "onchain_representation_of_shares": "Shares are deployed on the Base network using permissioned token frameworks, such as the ERC-3643 or highly compliant ERC-20 extensions. These smart contracts use an integrated 'allowlist' system to control execution, ensuring that standard ERC-20 functions (`transfer`, `transferFrom`) can only execute between fully verified, compliant wallet addresses."
+  },
+  "execution_model": {
+    "trade_hold_redemption_processing": "Trades are executed via onchain liquidity pools (DeX applications on Base) or through dedicated peer-to-peer compliant swap systems. Standard holds are passive and require no gas beyond holding the asset in an allowlisted wallet. Redemptions are initiated via an offchain-to-onchain gateway where the token is sent to a redemption/burn contract, which sends an API event trigger to the legacy brokerage execution layer.",
+    "settlement_guarantees": "Onchain trades feature atomic settlement, removing the counterparty settlement windows (T+1 or T+2) seen in traditional markets. However, the initial minting and final redemption cycles are bound by the operating hours and settlement schedules of the traditional U.S. equity markets (9:30 AM \u2013 4:00 PM EST, Monday through Friday)."
+  },
+  "rpc_surface": {
+    "apis_endpoints": [
+      "eth_call (invoking contract read methods such as `balanceOf(address)`, `totalSupply()`, `identityRegistry()`)",
+      "Base Node RPC endpoints for historical log parsing (`eth_getLogs` filtered by `Transfer`, `DividendDistributed`, or `IdentityApproved` topics)",
+      "Coinbase Developer Platform (CDP) Asset Tokenization APIs for querying real-time legal backing, underlying CUSIP identifiers, and NAV (Net Asset Value) status",
+      "Oracle data feeds (e.g., Chainlink Proof of Reserves) readable onchain to query current share quantities at the traditional custodian layer"
+    ]
+  },
+  "sdks": {
+    "official_and_ecosystem": [
+      "Coinbase Developer Platform (CDP) SDK (TypeScript, Python) with hooks for identity verification and smart contract interaction",
+      "Base Web3 Engine SDKs for token balance monitoring and programmatic transfers",
+      "Ethers.js / Viem standard libraries pre-configured with the permissioned token standard ABIs"
+    ]
+  },
+  "identity_compliance": {
+    "kyc_jurisdiction_limits": "Strict onboarding requiring a valid legal ID and proof of address. Due to U.S. securities regulations and SEC/FINRA frameworks, direct onchain retail distribution of tokenized equity tokens often restricts U.S. citizens from permissionless trading, focusing heavily on EEA and non-U.S. compliant jurisdictions under specific regulatory frameworks like Regulation S.",
+    "non_us_user_focus": "The architecture is optimized to grant global, non-U.S. investors seamless, fractional 24/7 access to the financial value of U.S. capital markets without needing a traditional overseas brokerage account.",
+    "did_wallet_identity_hooks": "The architecture heavily relies on decentralized identity systems or ERC-3643 ONCHAINID frameworks. Wallets must hold a valid, non-transferable compliance credential token (or be explicitly added to an Identity Registry contract) to pass the contract-level `isVerified()` hook required for any transaction to succeed."
+  },
+  "payments_m2m": {
+    "automated_agent_workflows": "Because the equities exist as ERC-20-compliant tokens on Base, AI agents equipped with Web3 wallets can hold, trade, and use tokenized stocks as collateral for autonomous resource management and machine-to-machine value exchange.",
+    "constraints_on_m2m": "Agent wallets must be linked to a legally verified entity or master controller account that has completed the compliance onboarding. High-frequency or algorithmic M2M trading is constrained by onchain liquidity depth and the sync delay during non-U.S. market hours when the underlying 1:1 asset backing cannot be actively arbitraged."
+  },
+  "gas_fees": {
+    "fee_model_on_base": "Transactions utilize standard Base gas fees paid in ETH, benefiting from ultra-low, sub-cent transaction costs brought by Ethereum L2 bedrock/Ecotone data availability architecture.",
+    "special_handling": "The permissioned token contracts introduce slightly higher gas costs than standard ERC-20 tokens due to the required identity registry and allowlist checks executed internally on every transfer. Platform-level swap or redemption service fees (e.g., a percentage-based fee on mint/burn) may be programmatically collected by the issuer contract."
+  },
+  "cross_chain_capabilities": {
+    "bridges_wrapping_interoperability": "The native tokenized asset resides on Base. Cross-chain movement is strictly limited by compliance rules. It cannot be passed through standard permissionless bridges. Interoperability requires permissioned cross-chain infrastructure (such as CCIP with identity passing or native Coinbase-managed mint-and-burn bridging mechanisms) ensuring the target chain wallet is also fully allowlisted."
+  },
+  "integration_patterns": {
+    "infra_agents_defi_integration": "DeFi protocols can integrate these tokens by deploying permissioned lending pools or automated asset management vaults that explicitly query the token's identity registry before allowing user interaction. AI agents interface with the stack by invoking standard EVM wallet execution calls via an identity-approved proxy contract."
+  },
+  "recommended_usage": {
+    "ideal_wnode_use_cases": "Providing autonomous agent workflows with stable, productive equity asset exposure; managing long-term decentralized treasury portfolios directly onchain; automated algorithmic rebalancing strategies; and serving as low-volatility, real-value-backed collateral within sovereign compute mesh operations."
+  },
+  "limitations": {
+    "regulatory_jurisdictional_technical": "Strictly limited by securities laws; prohibited in sanctioned regions and restricted for default U.S. retail investors without specific qualifications. Technical limitations include a reliance on traditional market hours for hard primary-market redemptions and potential oracle latency during periods of intense offchain market volatility."
+  },
+  "risks": {
+    "compliance_custody_liquidity_ux": "Regulatory risk includes sudden adjustments to compliance requirements forcing localized contract freezes. Custody risk stems from a reliance on the solvency and operational integrity of the legacy custodian holding the actual shares. Liquidity risk features widening spreads on secondary decentralized exchanges when the primary market is closed. UX risk involves transactions failing opaquely due to expired identity credentials."
+  },
+  "official_sources": [
+    "[https://www.coinbase.com/public-policy/advocacy/documents/what-is-tokenization](https://www.coinbase.com/public-policy/advocacy/documents/what-is-tokenization)",
+    "[https://www.coinbase.com/public-policy/advocacy/documents/tokenizing-assets](https://www.coinbase.com/public-policy/advocacy/documents/tokenizing-assets)",
+    "[https://base.org](https://base.org)",
+    "[https://help.coinbase.com/en/stocks-funds](https://help.coinbase.com/en/stocks-funds)"
+  ],
+  "repos": [
+    "[https://github.com/base-org](https://github.com/base-org)",
+    "[https://github.com/coinbase](https://github.com/coinbase)"
+  ],
+  "notes": "For Wnode's sovereign compute mesh, this infrastructure introduces a programmatic bridge to traditional financial equity markets. By combining the low fees of Base with strict digital identity constraints, autonomous agent nodes can manage real-world asset portfolios with predictable compliance parameters built entirely at the ledger layer."
+}

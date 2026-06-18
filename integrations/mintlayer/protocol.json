@@ -1,0 +1,65 @@
+{
+  "protocol": {
+    "name": "Mintlayer",
+    "summary": "Mintlayer is a Bitcoin-native sidechain providing smart contracts, asset tokenization, and DeFi execution anchored to Bitcoin’s security model without adding UTXO bloat.",
+    "capabilities": [
+      "Bitcoin-native smart contracts",
+      "Token issuance and management (MLS-01, MLS-02)",
+      "DeFi and liquidity routing",
+      "Cross-chain interoperability",
+      "Secure and scalable infrastructure"
+    ],
+    "constraints": "Wnode remains stateless and non-custodial. All Mintlayer interactions must be ephemeral, signed in-memory, executed, and cleared without retention. No private keys, logs, or cryptographic state persist after execution."
+  },
+
+  "integration": {
+    "type": "Stateless RPC and WebSocket protocol mapping for Mintlayer’s UTXO-based execution environment, including atomic swaps and contract calls.",
+    "data_flows": [
+      "Agents dispatch raw unsigned Mintlayer transaction payloads into ephemeral memory for contract execution.",
+      "Settlement flows route through Mintlayer’s tokenization and liquidity layer using HTLC-based atomic swap logic.",
+      "All transaction metadata is processed in RAM and wiped immediately after block-finality confirmation."
+    ],
+    "security": [
+      "Ephemeral signing keys generated per execution cycle.",
+      "No custody or persistent state; Wnode acts only as a transient compute substrate.",
+      "Encrypted in-memory processing with immediate memory wipe on settlement confirmation."
+    ]
+  },
+
+  "value_to_wnode": {
+    "bitcoin_anchor": "Extends Wnode’s agent workflows directly into Bitcoin’s liquidity base and collateral structures.",
+    "defi_expansion": "Adds Bitcoin-native DeFi, token issuance, and programmable financial primitives to the agent capability set.",
+    "scalability": "Provides a high-throughput execution layer aligned with Wnode’s sovereign compute model, bypassing Bitcoin’s scripting limits."
+  },
+
+  "value_to_mintlayer": {
+    "volume": "Generates continuous machine-driven execution volume and block-space demand.",
+    "distribution": "Expands Mintlayer’s reach into autonomous agent networks and automated liquidity routing.",
+    "positioning": "Positions Mintlayer as a core Bitcoin-native settlement and DeFi rail inside sovereign compute ecosystems."
+  },
+
+  "agent_execution_layer": {
+    "agent_capabilities": [
+      "Execute Bitcoin-native smart contracts",
+      "Trigger token issuance workflows",
+      "Route liquidity across Mintlayer rails",
+      "Automate DeFi settlement and swaps"
+    ],
+    "workflow_examples": [
+      "An agent constructs and signs a Mintlayer atomic swap transaction, submits it, verifies block confirmation, and wipes its session state.",
+      "Agents rebalance Mintlayer liquidity pools based on market data, executing swaps and contract calls without storing user data.",
+      "A compute agent issues an MLS-01 token, settles liquidity, and clears all intermediate memory after execution."
+    ]
+  },
+
+  "revenue_model": {
+    "annual_potential_usd": "25000000 - 40000000",
+    "drivers": [
+      "Bitcoin-native DeFi transaction volume",
+      "Token issuance and asset tokenization flows",
+      "Cross-chain atomic swaps and liquidity routing",
+      "Continuous agent-driven execution and automation fees"
+    ]
+  }
+}
+

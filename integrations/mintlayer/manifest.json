@@ -1,0 +1,9 @@
+{
+  "protocol": "Mintlayer",
+  "type": "Stateless RPC and WebSocket protocol mapping for Mintlayer’s UTXO-based execution environment, including atomic swaps and contract calls.",
+  "security": [
+    "Ephemeral signing keys generated per execution cycle.",
+    "No custody or persistent state; Wnode acts only as a transient compute substrate.",
+    "Encrypted in-memory processing with immediate memory wipe on settlement confirmation."
+  ]
+}

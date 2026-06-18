@@ -1,0 +1,14 @@
+{
+  "name": "Mintlayer",
+  "category": "Bitcoin-Native / Smart Contracts / Tokenization",
+  "version": "1.0.0",
+  "status": "Production",
+  "description": "Mintlayer is a Bitcoin-native sidechain providing smart contracts, asset tokenization, and DeFi execution anchored to Bitcoin’s security model without adding UTXO bloat.",
+  "capabilities": [
+    "Bitcoin-native smart contracts",
+    "Token issuance and management (MLS-01, MLS-02)",
+    "DeFi and liquidity routing",
+    "Cross-chain interoperability",
+    "Secure and scalable infrastructure"
+  ]
+}

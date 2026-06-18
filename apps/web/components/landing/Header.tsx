@@ -50,7 +50,8 @@ export default function Header({ onContactClick }: HeaderProps) {
             isDropdown: true,
             subLinks: [
                 { name: "Founder's Bio & Note", href: "/about/founders-bio-note", color: "text-slate-500" },
-                { name: "Node Operator", href: "/about/node-operator", color: "text-slate-500" }
+                { name: "Node Operator", href: "/about/node-operator", color: "text-slate-500" },
+                { name: "Space Mesh", href: "/about/space-mesh", color: "text-slate-500" }
             ]
         },
         {
@@ -102,7 +103,7 @@ export default function Header({ onContactClick }: HeaderProps) {
                         <img src="/logo.png" alt="WeNode" className="w-10 h-10 transition-transform group-hover:scale-110" />
                         <div className="flex flex-col">
                             <span className="font-space-grotesk text-2xl tracking-tighter font-bold text-white leading-none">WeNode</span>
-                            <span className="text-[10px] uppercase tracking-widest text-blue-500 font-bold mt-1">Planetary Compute Mesh</span>
+                            <span className="text-[10px] uppercase tracking-widest text-blue-500 font-bold mt-1">AI Powered Planetary & Orbital Compute Mesh</span>
                         </div>
                     </a>
 

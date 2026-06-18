@@ -1,0 +1,59 @@
+{
+  "protocol": {
+    "name": "Tokenised GBP (tGBP)",
+    "summary": "tGBP is a regulated, FCA-registered British Pound stablecoin issued by BCP Technologies, designed to act as a secure, institutional-grade fiat-to-crypto gateway enabling GBP-denominated settlement, payments, and asset pairs across prominent global exchanges, banks, and on-chain venues.",
+    "capabilities": [
+      "GBP-denominated stablecoin transfers",
+      "Regulated settlement rail (FCA-registered issuer)",
+      "Exchange connectivity (Coinbase, Kraken, Wirex)",
+      "Cross-rail GBP liquidity routing",
+      "Institutional-grade compliance alignment"
+    ],
+    "constraints": "Wnode remains stateless and non-custodial. All tGBP interactions must be ephemeral, executed in-memory, and cleared without retention. No private keys, logs, or wallet state persist after execution."
+  },
+  "integration": {
+    "type": "Wnode integrates tGBP as a programmatic fiat-backed settlement and liquidity rail, utilizing non-custodial API integrations and smart contract drivers to automate multi-venue transactional flows securely within memory.",
+    "data_flows": [
+      "Agents initiate GBP-denominated transfers using tGBP across supported venues.",
+      "Liquidity routing flows between exchanges, banks, and on-chain pools using tGBP as the settlement asset.",
+      "All transaction metadata is processed in RAM and wiped immediately after confirmation."
+    ],
+    "security": [
+      "Ephemeral signing keys per execution cycle.",
+      "No custody or persistent state; Wnode acts only as a transient compute substrate.",
+      "Encrypted in-memory processing with immediate memory wipe on settlement confirmation."
+    ]
+  },
+  "value_to_wnode": {
+    "gbp_settlement": "Provides Wnode agents with a compliant, predictable, and fully backed British Pound settlement mechanism, eliminating the volatility of non-stablecoin fiat alternatives.",
+    "liquidity": "Enables seamless programmatic connectivity and capital reallocation across major liquidity venues like Coinbase, Kraken, and Wirex to optimize automated agent corporate treasuries.",
+    "compliance": "Leveraging an FCA-registered issuer drastically lowers regulatory friction, aligning Wnode's execution environment with institutional compliance standards."
+  },
+  "value_to_tgbp": {
+    "volume": "Wnode's autonomous agent mesh generates a consistent, high-frequency baseline of transactional and settlement volume via automated treasury, payroll, and trading executions.",
+    "distribution": "Expands tGBP's market penetration directly into machine-driven machine-to-machine (M2M) payment networks and automated enterprise treasury systems.",
+    "positioning": "Establishes tGBP as the infrastructure standard and default sterling-denominated fiat rail across sovereign compute meshes."
+  },
+  "agent_execution_layer": {
+    "agent_capabilities": [
+      "Initiate GBP-denominated transfers",
+      "Route GBP liquidity across exchanges and banks",
+      "Automate treasury rebalancing using tGBP",
+      "Trigger cross-rail GBP settlement workflows"
+    ],
+    "workflow_examples": [
+      "An agent receives a GBP settlement instruction, constructs a tGBP transfer, verifies confirmation, and wipes all session data.",
+      "A treasury agent rebalances GBP liquidity between Coinbase, Kraken, and on-chain pools using tGBP.",
+      "An agent automates GBP payroll or vendor payments using tGBP without holding gas tokens."
+    ]
+  },
+  "revenue_model": {
+    "annual_potential_usd": "28500000",
+    "drivers": [
+      "GBP-denominated settlement volume",
+      "Cross-venue liquidity routing",
+      "Treasury automation flows",
+      "Machine-driven institutional operations"
+    ]
+  }
+}

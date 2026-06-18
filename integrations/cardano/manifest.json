@@ -1,0 +1,8 @@
+{
+  "name": "Cardano",
+  "category": "Ecosystem",
+  "description": "Integration with Cardano.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

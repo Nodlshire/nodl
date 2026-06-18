@@ -1,0 +1,8 @@
+{
+  "name": "Discord",
+  "category": "Ecosystem",
+  "description": "Integration with Discord.",
+  "endpoints": [],
+  "activation": "Pending",
+  "version": "1.0.0"
+}

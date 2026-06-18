@@ -64,7 +64,7 @@ export default function EcosystemRibbon() {
                         The Unifying Infrastructure Layer for Everything Web3
                     </h2>
                     <p className="text-lg text-blue-500 font-medium leading-relaxed max-w-4xl mx-auto">
-                        Connecting Every Compute Network, Agent, and web 3 Protocol into One Unified Layer.
+                        Connecting Every Compute Network, Agent, and Protocol into One Unified Layer.
                     </p>
                 </div>
             </div>

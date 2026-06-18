@@ -26,16 +26,16 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
 
                     <div className="flex flex-col sm:flex-row items-center gap-6">
                         <button 
-                            onClick={() => onOpenModal("developer")}
+                            onClick={() => onOpenModal("beta_tester")}
                             className="w-full sm:w-auto sm:min-w-[280px] bg-blue-600 hover:bg-blue-500 text-white text-lg font-bold px-10 py-5 rounded-none transition-all shadow-[0_0_40px_rgba(59,130,246,0.3)] uppercase tracking-widest"
                         >
-                            Become a Beta Developer
+                            Become A Beta Tester
                         </button>
                         <button 
                             onClick={() => onOpenModal("investor")}
                             className="w-full sm:w-auto sm:min-w-[280px] bg-purple-600 hover:bg-purple-500 text-white text-lg font-bold px-10 py-5 rounded-none transition-all shadow-[0_0_40px_rgba(168,85,247,0.4)] uppercase tracking-widest"
                         >
-                            Join Node Waitlist
+                            JOIN WNODE WAITLIST
                         </button>
                     </div>
                 </div>

@@ -72,22 +72,47 @@ Product Range: ${formData.productRange}
                     <p className="text-lg md:text-2xl text-slate-300 font-light mb-8 md:mb-10 px-2 md:px-0">
                         与全球最先进的机器人、智能设备与新能源企业共同构建主权计算网络
                     </p>
+                </div>
+
+                <div className="space-y-8 md:space-y-12">
                     
-                    <div className="w-full max-w-full md:max-w-4xl mx-auto rounded-xl overflow-hidden shadow-2xl shadow-blue-500/10 border border-slate-800">
+                    <section className="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 md:p-8 hover:border-blue-500/30 transition-all duration-300">
+                        <h2 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6 text-blue-400">Wnode：机器经济的互操作路由器（Machine‑Economy Router）</h2>
+                        <div className="space-y-4 md:space-y-6 text-sm md:text-base text-slate-300 leading-relaxed">
+                            <p>全球企业正加速迈向自动化，但现实是：<br/>计算在一个系统里，支付在另一个系统里，存储在第三个系统里，流动性散落在不同链上，数据分布在无数平台中。<br/>一切都是割裂的，没有任何系统真正互通。</p>
+                            
+                            <p className="font-bold text-blue-300 text-lg">Wnode 解决这一切。</p>
+                            
+                            <p>Wnode 是一个主权计算网络（Sovereign Compute Mesh），让自主智能体（Agents）能够在同一执行层中完成：</p>
+                            <ul className="list-disc pl-5 md:pl-6 space-y-2 text-slate-400">
+                                <li>运行计算任务</li>
+                                <li>跨境流动性路由</li>
+                                <li>稳定币与法币结算</li>
+                                <li>挂载瞬时 POSIX 存储</li>
+                                <li>访问真实世界数据</li>
+                                <li>与任意链、任意支付轨道交互</li>
+                            </ul>
+                            <div className="pt-4 text-blue-300 font-medium space-y-1">
+                                <p>我们不是链。</p>
+                                <p>我们不是云。</p>
+                                <p>我们是连接所有系统的“路由器”。</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div className="w-full max-w-full md:max-w-4xl mx-auto rounded-xl overflow-hidden shadow-2xl shadow-blue-500/10 border border-slate-800 my-12">
                         <img 
                             src="/machinefi-topology.png" 
                             alt="MachineFi Topology" 
                             className="w-full h-auto max-w-full object-contain"
                         />
                     </div>
-                </div>
 
-                <div className="space-y-8 md:space-y-12">
                     <section className="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 md:p-8 hover:border-blue-500/30 transition-all duration-300">
                         <h2 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6 text-blue-400">创始级技术合作伙伴概述</h2>
                         <div className="space-y-4 md:space-y-6 text-sm md:text-base text-slate-300 leading-relaxed">
                             <p>
-                                创始级技术合作伙伴（Founder‑Tech Partners）是全球最领先的硬件制造商，他们的设备已经内置强大的 CPU、GPU、ARM 控制器或嵌入式 Linux 系统。这些设备——机器人、充电桩、智能家电、工业车辆——都拥有大量闲置的计算能力。Wnode 将这些闲置算力转化为可产生收益的节点，为制造商及其客户创造全新的收入来源。
+                                创始级技术合作伙伴（Founder‑Tech Partners）是全球最领先的硬件制造商，他们的设备已经内置强大的 CPU、GPU、ARM 控制器或嵌入式 Linux 系统。这些设备——机器人、充电桩、智能家电、工业车辆——都拥有大量闲置的计算能力。Wnode 将这些闲置算力转化为可产生收益的节点，为制造商及其客户创造全新的收入来源，并让这些设备成为机器经济中的基础算力单元。
                             </p>
                         </div>
                     </section>
@@ -107,7 +132,7 @@ Product Range: ${formData.productRange}
                     </section>
 
                     <section className="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 md:p-8 hover:border-blue-500/30 transition-all duration-300">
-                        <h2 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6 text-blue-400">为什么与Wnode合作既简单又免费</h2>
+                        <h2 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6 text-blue-400">为什么与 Wnode 合作既简单又免费</h2>
                         <div className="space-y-4 text-sm md:text-base text-slate-300 leading-relaxed">
                             <p>Wnode 不需要任何硬件修改、固件修改或工程投入。合作伙伴只需允许 Wnode 在其现有的 Linux 控制器上部署一个安全的沙盒容器。</p>
                             <ul className="list-disc pl-5 md:pl-6 space-y-2 text-slate-400">
@@ -116,6 +141,91 @@ Product Range: ${formData.productRange}
                                 <li>不影响安全系统</li>
                                 <li>不影响现有产品线</li>
                             </ul>
+                            <p className="pt-4">同时，Wnode 的架构是完全无状态、无托管、无风险的：</p>
+                            <p>Wnode 永不保存：</p>
+                            <ul className="list-disc pl-5 md:pl-6 space-y-1 text-slate-400">
+                                <li>私钥</li>
+                                <li>用户余额</li>
+                                <li>托管资产</li>
+                                <li>长期凭证</li>
+                                <li>日志</li>
+                                <li>合规数据</li>
+                            </ul>
+                            <p className="pt-4">
+                                所有执行均在内存中完成，并在任务结束后立即清除。<br/>
+                                这意味着零监管风险、零安全负担、零攻击面扩张。
+                            </p>
+                        </div>
+                    </section>
+
+                    <section className="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 md:p-8 hover:border-blue-500/30 transition-all duration-300">
+                        <h2 className="text-xl md:text-2xl font-semibold mb-6 text-blue-400">Wnode 为合作伙伴带来的价值</h2>
+                        <div className="space-y-8 text-sm md:text-base text-slate-300 leading-relaxed">
+                            
+                            <div>
+                                <h3 className="text-lg md:text-xl font-bold text-slate-200 mb-3">1. 全新的机器驱动交易量（Machine‑Driven Volume）</h3>
+                                <p className="mb-3">Wnode 的自主智能体会持续产生高频交易量，包括：</p>
+                                <ul className="list-disc pl-5 md:pl-6 space-y-1 text-slate-400 mb-4 grid grid-cols-1 md:grid-cols-2 gap-x-4">
+                                    <li>计算任务执行</li>
+                                    <li>跨境结算</li>
+                                    <li>Token 化与资产发行</li>
+                                    <li>流动性路由</li>
+                                    <li>MPC 托管与资金调度</li>
+                                    <li>稳定币 ↔ 法币转换</li>
+                                    <li>存储读写</li>
+                                    <li>数据采集与处理</li>
+                                </ul>
+                                <p>
+                                    这些交易量不依赖用户、不依赖人工、不依赖前端。<br/>
+                                    它们 24/7 自动运行，无停机、无周末、无人工延迟。
+                                </p>
+                            </div>
+
+                            <div className="border-t border-slate-800 pt-6">
+                                <h3 className="text-lg md:text-xl font-bold text-slate-200 mb-3">2. 一次接入，加入全球跨链跨轨道执行网络</h3>
+                                <p className="mb-3">当合作伙伴接入 Wnode，不仅仅是接入我们——<br/>而是接入我们已经整合的所有全球基础设施：</p>
+                                <ul className="list-none space-y-1 text-slate-400 mb-4 grid grid-cols-2 md:grid-cols-3 gap-x-4">
+                                    <li>Ripple</li>
+                                    <li>Bitso</li>
+                                    <li>Flutterwave</li>
+                                    <li>Fireblocks</li>
+                                    <li>Base</li>
+                                    <li>Polygon</li>
+                                    <li>Filecoin</li>
+                                    <li>ZeroFS</li>
+                                    <li>Helium</li>
+                                    <li>Bluefin</li>
+                                    <li>Mintlayer</li>
+                                </ul>
+                                <p className="text-slate-400 mb-4">以及更多正在加入的全球网络</p>
+                                <p>
+                                    合作伙伴的设备与系统将自动成为全球跨链、跨支付轨道、跨数据源的执行节点。
+                                </p>
+                            </div>
+
+                            <div className="border-t border-slate-800 pt-6">
+                                <h3 className="text-lg md:text-xl font-bold text-slate-200 mb-3">3. 无需改变任何现有系统，却能获得更高价值</h3>
+                                <p className="mb-3">合作伙伴无需：</p>
+                                <ul className="list-disc pl-5 md:pl-6 space-y-1 text-slate-400 mb-4">
+                                    <li>修改硬件</li>
+                                    <li>修改固件</li>
+                                    <li>修改 API</li>
+                                    <li>修改产品架构</li>
+                                </ul>
+                                <p className="mb-3">Wnode 的智能体会自动使用合作伙伴现有的能力来：</p>
+                                <ul className="list-disc pl-5 md:pl-6 space-y-1 text-slate-400 mb-4 grid grid-cols-2 gap-x-4">
+                                    <li>结算</li>
+                                    <li>路由</li>
+                                    <li>计算</li>
+                                    <li>存储</li>
+                                    <li>签名</li>
+                                    <li>执行</li>
+                                </ul>
+                                <p>
+                                    合作伙伴获得新的使用量、新的分发渠道、新的收益来源，且零工程投入。
+                                </p>
+                            </div>
+
                         </div>
                     </section>
 
@@ -123,7 +233,7 @@ Product Range: ${formData.productRange}
                         <h2 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6 text-blue-400">环境与经济效益</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 text-sm md:text-base text-slate-300 leading-relaxed">
                             <div>
-                                <p className="mb-3 md:mb-4 text-slate-200"><strong>Wnode 能够减少：</strong></p>
+                                <p className="mb-3 md:mb-4">Wnode 能够减少：</p>
                                 <ul className="list-disc pl-5 md:pl-6 space-y-2 text-slate-400">
                                     <li>电子垃圾</li>
                                     <li>垃圾填埋压力</li>
@@ -132,7 +242,7 @@ Product Range: ${formData.productRange}
                                 </ul>
                             </div>
                             <div>
-                                <p className="mb-3 md:mb-4 text-slate-200"><strong>并提升：</strong></p>
+                                <p className="mb-3 md:mb-4">并提升：</p>
                                 <ul className="list-disc pl-5 md:pl-6 space-y-2 text-slate-400">
                                     <li>设备寿命</li>
                                     <li>客户投资回报</li>
@@ -141,12 +251,17 @@ Product Range: ${formData.productRange}
                                 </ul>
                             </div>
                         </div>
+                        <div className="pt-8 mt-6 border-t border-slate-800">
+                            <p className="text-lg md:text-xl font-medium text-blue-300 italic text-center">
+                                “为科技注入新生命，让每一台设备成为可持续增长的收益资产。”
+                            </p>
+                        </div>
                     </section>
 
                     <section className="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 md:p-8 hover:border-blue-500/30 transition-all duration-300">
                         <h2 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6 text-blue-400">我们希望合作的原因</h2>
                         <div className="space-y-4 text-sm md:text-base text-slate-300 leading-relaxed">
-                            <p>我们希望与这些中国企业合作，因为：</p>
+                            <p>我们希望与中国企业合作，因为：</p>
                             <ul className="list-disc pl-5 md:pl-6 space-y-2 text-slate-400">
                                 <li>他们的设备已经具备强大的计算能力</li>
                                 <li>他们的产品部署量巨大</li>
@@ -160,37 +275,19 @@ Product Range: ${formData.productRange}
                     <section className="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 md:p-8 hover:border-blue-500/30 transition-all duration-300">
                         <h2 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6 text-blue-400">新收益渠道</h2>
                         <div className="space-y-6 text-sm md:text-base text-slate-300 leading-relaxed">
-                            <div>
-                                <h3 className="text-lg md:text-xl font-bold text-slate-200 mb-2">1. 自主机器算力收益</h3>
-                                <p>设备在闲置时自动运行去中心化计算任务，形成终身持续的算力收益，无需人工干预。</p>
-                            </div>
-                            <div>
-                                <h3 className="text-lg md:text-xl font-bold text-slate-200 mb-2">2. M2M 高速结算收益</h3>
-                                <p>通过机器与机器之间的实时支付网络，设备可在毫秒级完成任务结算，形成高速增长的收益流。</p>
-                            </div>
-                            <div>
-                                <h3 className="text-lg md:text-xl font-bold text-slate-200 mb-2">3. 边缘虚拟化托管收益</h3>
-                                <p>设备作为本地微型数据中心，为企业、家庭和工业客户提供安全的边缘计算托管服务。</p>
-                            </div>
-                            <div>
-                                <h3 className="text-lg md:text-xl font-bold text-slate-200 mb-2">4. 长期不可篡改的算力资产增值</h3>
-                                <p>每台设备在 Wnode 网络中形成一个永久存在的算力资产，随着网络规模增长而自动升值。</p>
-                            </div>
-                            <div>
-                                <h3 className="text-lg md:text-xl font-bold text-slate-200 mb-2">5. 绿色节能算力回收收益</h3>
-                                <p>通过利用闲置硬件算力，减少对新数据中心的需求，设备可获得绿色算力补贴与生态收益。</p>
-                            </div>
-                            <div className="pt-4 mt-6 border-t border-slate-800">
-                                <p className="text-lg md:text-xl font-medium text-blue-300 italic">
-                                    “为科技注入新生命，让每一台设备成为可持续增长的收益资产。”
-                                </p>
-                            </div>
+                            <ul className="list-none space-y-4 text-slate-200">
+                                <li>1. 自主机器算力收益</li>
+                                <li>2. M2M 高速结算收益</li>
+                                <li>3. 边缘虚拟化托管收益</li>
+                                <li>4. 长期不可篡改的算力资产增值</li>
+                                <li>5. 绿色节能算力回收收益</li>
+                            </ul>
                         </div>
                     </section>
 
                     <section className="bg-blue-600/20 border border-blue-500/50 rounded-2xl p-6 md:p-10 text-center hover:bg-blue-600/30 transition-all duration-300">
                         <h2 className="text-2xl md:text-3xl font-bold mb-4 text-white">行动呼吁</h2>
-                        <p className="text-base md:text-xl text-blue-200 mb-6 md:mb-8">
+                        <p className="text-base md:text-xl text-blue-200 mb-6 md:mb-8 leading-relaxed">
                             加入 Wnode 创始级技术合作伙伴计划，让您的设备在全球范围内创造持续收益。
                         </p>
                         <button 
@@ -205,7 +302,7 @@ Product Range: ${formData.productRange}
 
             {isModalOpen && (
                 <div className="fixed inset-0 z-[100] flex items-start md:items-center justify-center bg-black/90 md:bg-black/80 backdrop-blur-sm pt-[10vh] md:pt-0 px-0 md:px-4">
-                    <div className="bg-slate-900 border-t border-slate-800 md:border md:rounded-2xl p-6 md:p-8 w-full md:max-w-lg relative h-[90vh] md:h-auto overflow-y-auto rounded-t-2xl md:rounded-2xl">
+                    <div className="bg-slate-900 border-t border-slate-800 md:border md:rounded-2xl p-6 md:p-8 w-full md:max-w-lg relative h-[90vh] md:h-auto overflow-y-auto rounded-t-2xl md:rounded-2xl shadow-2xl">
                         <button 
                             onClick={() => setIsModalOpen(false)}
                             className="absolute top-4 right-4 md:top-6 md:right-6 w-8 h-8 flex items-center justify-center rounded-full bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 transition-colors z-10"

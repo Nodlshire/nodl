@@ -1,0 +1,9 @@
+{
+  "protocol": "Fireblocks",
+  "type": "Stateless programmatic orchestration integration via Fireblocks REST API v1 and WebSocket streams, utilizing asymmetric RSA request signing and the Fireblocks Transaction Approval Policy (TAP) engine.",
+  "security": [
+    "All signing is performed by Fireblocks’ MPC infrastructure; Wnode never holds raw private keys.",
+    "Short-lived API credentials and ephemeral session tokens are used for each execution window.",
+    "Encrypted in-memory processing with zero persistence of transaction payloads, policies, or credentials."
+  ]
+}

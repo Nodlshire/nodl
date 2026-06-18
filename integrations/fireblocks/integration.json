@@ -1,0 +1,14 @@
+{
+  "name": "Fireblocks",
+  "category": "Custody / MPC Signing / Treasury Orchestration",
+  "version": "1.0.0",
+  "status": "Production",
+  "description": "Fireblocks is an institutional-grade MPC custody, digital asset wallet, and network settlement platform that acts as a secure cryptographic signing and transaction orchestration layer. It utilizes multi-party computation (MPC-CMP) to eliminate single points of failure for private keys while enforcing institutional security policies across multi-rail on-chain networks, centralized exchanges, and banking rails.",
+  "capabilities": [
+    "MPC-based key management and signing",
+    "Institutional custody and wallet orchestration",
+    "Policy-based transaction approvals and workflows",
+    "Multi-rail settlement (exchanges, banks, on-chain)",
+    "Treasury, liquidity, and omnibus account management"
+  ]
+}

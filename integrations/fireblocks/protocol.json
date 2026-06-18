@@ -1,0 +1,59 @@
+{
+"protocol": {
+"name": "Fireblocks",
+"summary": "Fireblocks is an institutional-grade MPC custody, digital asset wallet, and network settlement platform that acts as a secure cryptographic signing and transaction orchestration layer. It utilizes multi-party computation (MPC-CMP) to eliminate single points of failure for private keys while enforcing institutional security policies across multi-rail on-chain networks, centralized exchanges, and banking rails.",
+"capabilities": [
+"MPC-based key management and signing",
+"Institutional custody and wallet orchestration",
+"Policy-based transaction approvals and workflows",
+"Multi-rail settlement (exchanges, banks, on-chain)",
+"Treasury, liquidity, and omnibus account management"
+],
+"constraints": "Wnode remains stateless and non-custodial. All Fireblocks interactions must be ephemeral, executed via API, and cleared without retention. No private keys, wallet seeds, or long-lived credentials are stored inside Wnode. All API calls are signed locally within transient Wnode enclaves using an ephemeral RSA key paired with the Fireblocks API User profile, preventing any persistence of operational custody assets."
+},
+"integration": {
+"type": "Stateless programmatic orchestration integration via Fireblocks REST API v1 and WebSocket streams, utilizing asymmetric RSA request signing and the Fireblocks Transaction Approval Policy (TAP) engine.",
+"data_flows": [
+"Agents construct transaction intents (asset, amount, destination, policy tags) and submit them to Fireblocks via stateless API calls.",
+"Fireblocks performs MPC signing, policy checks, and routing to exchanges, banks, or on-chain destinations.",
+"Wnode processes only transient metadata (status, tx hash, reference IDs) in memory and wipes it after completion."
+],
+"security": [
+"All signing is performed by Fireblocks’ MPC infrastructure; Wnode never holds raw private keys.",
+"Short-lived API credentials and ephemeral session tokens are used for each execution window.",
+"Encrypted in-memory processing with zero persistence of transaction payloads, policies, or credentials."
+]
+},
+"value_to_wnode": {
+"custody": "Gives Wnode agents secure access to enterprise-grade, institutional-vetted digital asset custody and multi-layered MPC-CMP signing capabilities without violating Wnode's strict non-custodial software mandate.",
+"orchestration": "Enables agents to abstract and route transactions seamlessly between isolated layer-1/layer-2 networks, liquidity pools, centralized exchange sub-accounts, and fiat banking systems using a single unified API core interface.",
+"risk_management": "Leverages Fireblocks' hardware-isolated transaction approval policies to hardcode strict execution limits, whitelists, and velocity boundaries, reducing systemic risk and operational key-management vulnerabilities in autonomous software loops."
+},
+"value_to_fireblocks": {
+"volume": "Drives continuous, algorithmic transaction and settlement volume across the Fireblocks Network by connecting autonomous, machine-driven compute pipelines directly to liquidity venues.",
+"distribution": "Expands Fireblocks' operational distribution into automated B2B treasury rebalancing, machine-to-machine payment settlements, and decentralized cloud resource clearinghouses.",
+"positioning": "Establishes Fireblocks as the standard, trusted security infrastructure and cryptographic transaction signing architecture supporting sovereign decentralized compute meshes and AI agent economies."
+},
+"agent_execution_layer": {
+"agent_capabilities": [
+"Initiate Fireblocks transactions with policy tags and routing hints",
+"Trigger MPC-signed transfers to exchanges, banks, and on-chain addresses",
+"Automate treasury rebalancing and liquidity movements",
+"Monitor transaction status and react to confirmations or failures"
+],
+"workflow_examples": [
+"An agent receives a cross-rail settlement instruction, constructs a Fireblocks transaction with policy tags, triggers MPC signing, routes funds to an exchange, and clears all in-memory state after confirmation.",
+"A treasury agent periodically rebalances liquidity between custodial wallets, exchanges, and on-chain pools via Fireblocks, using policy-based approvals and stateless execution.",
+"An agent monitors corridor demand and uses Fireblocks to move assets between stablecoin rails, banks, and on-chain venues without ever handling raw keys."
+]
+},
+"revenue_model": {
+"annual_potential_usd": "45000000.00",
+"drivers": [
+"Agent-driven transaction and settlement volume across Fireblocks-connected venues",
+"Automated treasury and liquidity management flows",
+"Cross-rail and cross-venue routing activity",
+"High-frequency, policy-controlled machine-to-machine operations"
+]
+}
+}

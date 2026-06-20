@@ -40,3 +40,6 @@ export { AssemblyBuffer } from './assembly-buffer';
 
 // Manifest Control Plane
 export { buildManifest, serializeManifest, parseManifest, dispatchAction } from './manifest';
+
+// LLM Connector
+export { buildLLMPayload, sendToLLM, validateActionResponse, orchestrate } from './llm-connector';

@@ -396,6 +396,55 @@ func (s *Store) CreateNodlr(email, parentID string) (*Nodlr, error) {
 	return n, nil
 }
 
+// CreateSpaceNode generates a headless Space Provider node.
+func (s *Store) CreateSpaceNode() (*Nodlr, string, error) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	index := len(s.nodlrs) + 1
+	id := fmt.Sprintf("SP-%05d-%s", index, uuid.New().String()[:8])
+	
+	n := &Nodlr{
+		ID:              id,
+		Email:           fmt.Sprintf("space-%s@internal.wnode.one", id),
+		MeshClientID:    s.GenerateMeshClientID(),
+		PayoutFrequency: PayoutDaily,
+		PayoutStatus:    PayoutStatusActive,
+		IntegrityScore:  1000,
+		CreatedAt:       time.Now(),
+		Archetype:       ArchetypeAASP,
+		Labels:          []string{"Nodlr IN"},
+		Role:            RoleOperator,
+		OnboardingComplete: true,
+		Verified:        true,
+		Status:          OpStatus{Active: true, Verification: "verified"},
+	}
+
+	s.nodlrs[id] = n
+	s.crmRecords[id] = &CRMRecord{
+		NodlrID:      id,
+		BusinessName: "Space Node " + id,
+		Labels:       []string{"Nodlr IN"},
+		CreatedAt:    time.Now(),
+	}
+
+	deviceToken := uuid.New().String()
+	s.nodes[id] = &WnodeNode{
+		ID:          id,
+		UserID:      id,
+		DeviceToken: deviceToken,
+		Status:      "active",
+		CreatedAt:   time.Now(),
+		LastSeen:    time.Now(),
+		IsWASM:      false,
+		Tier:        1,
+	}
+
+	go s.SaveState()
+	return n, deviceToken, nil
+}
+
+
 // GenerateMeshClientID creates a globally unique, sequential Mesh Client ID.
 // Format: M{bucket}-{sequence}-{MMYY}
 // It assumes s.mu is already locked by the caller.

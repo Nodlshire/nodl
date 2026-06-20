@@ -150,8 +150,13 @@ func New(dispatcher *jobs.Dispatcher, store *jobs.Store, pricingStore *pricing.S
 	})
 
 	app.Use(recover.New())
+	allowOrigins := os.Getenv("ALLOWED_ORIGINS")
+	if allowOrigins == "" {
+		allowOrigins = "http://localhost:3000, http://localhost:3004, http://localhost:3005"
+	}
+
 	app.Use(cors.New(cors.Config{
-		AllowOrigins:     os.Getenv("ALLOWED_ORIGINS"),
+		AllowOrigins:     allowOrigins,
 		AllowHeaders:     "Origin, Content-Type, Accept, Authorization, X-User-ID, X-Owner-ID, X-Owner-Email",
 		AllowCredentials: true,
 	}))
@@ -283,6 +288,9 @@ func (s *Server) registerRoutes() {
 	apiV1.Get("/admin/governance/summary", s.requireAccess(account.RoleManagement, "command"), s.handleGetGovernanceSummary)
 	apiV1.Get("/admin/governance/integrity", s.requireAccess(account.RoleOwner, "command"), s.handleGetIntegritySnapshot)
 	apiV1.Post("/admin/governance/partners/invite", s.requireAccess(account.RoleOwner, "command"), s.handleGeneratePartnerInvite)
+
+	// Space Node (Phase 3 Backend)
+	apiV1.Post("/admin/space-node/payload", s.requireAccess(account.RoleManagement, "command"), s.handleGenerateSpaceNodePayload)
 
 	// apiV1.Post("/auth/debug-session", s.handleDebugSession)
 	apiV1.Post("/auth/logout", s.handleLogout)
@@ -1794,7 +1802,48 @@ func (s *Server) handleHeartbeatNode(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
 	}
 
-	return c.JSON(fiber.Map{"status": "success"})
+	// Space Node Telemetry returns an earnings summary
+	var earningsSummary fiber.Map
+	nodeAcc, ok := s.accountStore.GetNodlr(nodeId)
+	if ok && nodeAcc.Archetype == account.ArchetypeAASP {
+		// Mock calculation for earnings/bonus
+		baseEarnings := float64(req.Metrics.TasksCompleted) * 0.05
+		bonusEarnings := float64(req.Metrics.Uptime) / 3600.0 * 0.10
+		earningsSummary = fiber.Map{
+			"totalEarnings": baseEarnings + bonusEarnings,
+			"bonus":         bonusEarnings,
+		}
+	}
+
+	res := fiber.Map{"status": "success"}
+	if earningsSummary != nil {
+		res["earningsSummary"] = earningsSummary
+	}
+
+	return c.JSON(res)
+}
+
+func (s *Server) handleGenerateSpaceNodePayload(c *fiber.Ctx) error {
+	nodeAcc, deviceToken, err := s.accountStore.CreateSpaceNode()
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	payload := fiber.Map{
+		"config": fiber.Map{
+			"wuid":      nodeAcc.ID,
+			"archetype": nodeAcc.Archetype,
+			"auth_token": deviceToken,
+			"endpoints": fiber.Map{
+				"orchestrator": "wss://orchestrator.wnode.one",
+				"telemetry":    "https://api.wnode.one/api/v1/nodes/heartbeat",
+				"auth":         "https://api.wnode.one/api/v1/auth",
+			},
+		},
+		"message": "Deployment/Installation open for partner",
+	}
+
+	return c.Status(fiber.StatusCreated).JSON(payload)
 }
 func (s *Server) validateMeshClientID(c *fiber.Ctx) error {
 	var req struct {

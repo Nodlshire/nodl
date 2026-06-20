@@ -70,6 +70,15 @@ const (
 	PctFounderOverride = 0.03 // Genesis lineage benefit (Founder)
 )
 
+// Archetype defines the specific functional class of an identity or node.
+type Archetype string
+
+const (
+	ArchetypeStandard Archetype = "standard"
+	ArchetypeAASP     Archetype = "AA:SP" // Autonomous Agent: Space Provider
+)
+
+
 // Nodlr represents a participant in the Nodl network.
 type Nodlr struct {
 	ID                    string          `json:"id"`
@@ -105,6 +114,7 @@ type Nodlr struct {
 	OnboardingComplete    bool            `json:"onboardingComplete"`
 	Verified              bool            `json:"verified"`
 	Labels                []string        `json:"labels"`
+	Archetype             Archetype       `json:"archetype,omitempty"`
 	CreatedAt             time.Time       `json:"createdAt"`
 }
 
@@ -212,6 +222,7 @@ type NodeHealthMetrics struct {
 	GPUScore     float64            `json:"gpuScore"`
 	MemoryScore  float64            `json:"memoryScore"`
 	IsWASM       bool               `json:"isWasm"`
+	TasksCompleted int              `json:"tasksCompleted,omitempty"`
 }
 
 // NodeMetadata captures hardware or environment specs.

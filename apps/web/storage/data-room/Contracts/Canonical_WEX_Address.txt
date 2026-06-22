@@ -1,0 +1,5 @@
+Canonical WEX token (WENODE) — Polygon
+Contract address: 0x2b81AD43852b7226196EDd6B9E641F6E2A6F0D8a
+Polygonscan: https://polygonscan.com/address/0x2b81AD43852b7226196EDd6B9E641F6E2A6F0D8a
+Note: This is the only official WEX/WENODE contract. Any other WEX/WENODE addresses are test or deprecated.
+

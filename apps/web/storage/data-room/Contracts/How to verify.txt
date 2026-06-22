@@ -1,0 +1,31 @@
+How to verify the canonical WEX contract on Polygonscan
+
+1. Open the canonical URL:
+   https://polygonscan.com/address/0x2b81AD43852b7226196EDd6B9E641F6E2A6F0D8a
+
+2. Confirm header details:
+   - Contract address matches exactly.
+   - Token name/symbol show WENODE / WEX.
+   - Total supply and token tracker (if present) match Tokenomics.
+
+3. Check the Contract tab:
+   - Look for the label "Contract Source Code Verified".
+   - If verified, capture a screenshot of the Contract tab showing the verification banner and the contract name.
+   - If not verified, note "source verification pending" and prioritize verification.
+
+4. Check Token Transfers and Transactions:
+   - Confirm any expected mint or distribution txs.
+   - Capture a screenshot of the Token Tracker or recent token transfers if relevant.
+
+5. Download ABI:
+   - From the Contract tab, copy the Contract ABI and save as contract_abi.json.
+   - Upload contract_abi.json to the Contracts folder.
+
+6. Save evidence:
+   - Save screenshots and ABI to the Contracts folder.
+   - In Canonical_WEX_Address.txt, add a one-line note referencing the uploaded screenshots and ABI.
+
+7. If anything differs:
+   - Do not publish any other address as canonical.
+   - Post a short dataroom notice explaining the discrepancy and next steps.
+

@@ -42,26 +42,8 @@ const Icons = {
 export default function PersonasSection({ onOpenModal }: PersonasSectionProps) {
     const personas = [
         {
-            title: "Developers",
-            description: "Deploy to a mesh that respects your autonomy. Low latency, high uptime, zero storage.",
-            cta: "Become a Beta Developer",
-            mode: "developer" as ModalMode,
-            icon: Icons.Terminal,
-            borderColor: "border-blue-500/50",
-            iconColor: "text-blue-500"
-        },
-        {
-            title: "Beta Testers",
-            description: "Join the Sovereign Beta. Be the first to operate nodes and shape the protocol's future.",
-            cta: "Join the Beta",
-            mode: "beta_tester" as ModalMode,
-            icon: Icons.Beaker,
-            borderColor: "border-purple-500/50",
-            iconColor: "text-purple-500"
-        },
-        {
             title: "Evangelists",
-            description: "Help build the wnode movement. Spread the vision of decentralized compute sovereignty.",
+            description: "Help build the wnode movement. Spread the vision of decentralised compute sovereignty",
             cta: "Join as Evangelist",
             mode: "waitlist" as ModalMode,
             icon: Icons.Megaphone,
@@ -70,7 +52,7 @@ export default function PersonasSection({ onOpenModal }: PersonasSectionProps) {
         },
         {
             title: "Node Owners",
-            description: "Secure your place in the future of the compute economy. Institutional-grade vision.",
+            description: "Secure your place in the future of the compute and machine economy. Be one of the first to join & earn",
             cta: "JOIN WNODE WAITLIST",
             mode: "investor" as ModalMode,
             icon: Icons.Server,

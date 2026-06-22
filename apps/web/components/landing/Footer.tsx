@@ -7,82 +7,66 @@ export default function Footer({ onContactClick }: FooterProps) {
     return (
         <footer className="py-20 bg-black border-t border-white/15">
             <div className="max-w-7xl mx-auto px-8 flex flex-col items-center gap-16">
-                <div className="w-full flex flex-col md:flex-row items-center justify-between gap-8 relative z-50">
-                    <div className="flex flex-col md:items-start items-center gap-4">
-                        <div className="flex items-center gap-4">
-                            <img src="/logo.png" alt="WeNode" className="w-10 h-10" />
-                            <div className="flex flex-col text-left">
-                                <span className="font-space-grotesk text-2xl tracking-tighter font-bold text-white leading-none">WeNode</span>
-                                <span className="text-[10px] uppercase tracking-widest text-blue-500 font-bold mt-1">AI Powered Planetary & Orbital Compute Mesh</span>
-                            </div>
-                        </div>
-                        <div className="text-white/60 text-[10px] tracking-widest text-center md:text-left leading-relaxed">
-                            Unit A 82 James Carter Road<br />
-                            Mildenhall Industrial Estate<br />
-                            Suffolk, United Kingdom<br />
-                            IP28 7DE
-                        </div>
+                
+                {/* 1. Logo and Text at Top Center */}
+                <div className="flex flex-col items-center gap-4">
+                    <img src="/logo.png" alt="WeNode" className="w-12 h-12" />
+                    <div className="flex flex-col text-center">
+                        <span className="font-space-grotesk text-3xl tracking-tighter font-bold text-white leading-none">WeNode</span>
+                        <span className="text-[10px] uppercase tracking-widest text-blue-500 font-bold mt-2">AI Powered Planetary & Orbital Compute Mesh</span>
+                    </div>
+                </div>
+                
+                {/* 2. Menu Columns (Evenly Spread) */}
+                <div className="w-full grid grid-cols-2 md:grid-cols-4 lg:flex lg:flex-row lg:justify-between gap-8 text-center md:text-left">
+                    {/* Home */}
+                    <div className="flex flex-col gap-4">
+                        <a href="/" className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-2">Home</a>
                     </div>
                     
-                    <div className="flex flex-wrap justify-center items-center gap-10 relative z-50">
-                        <a href="/" className="text-white/40 hover:text-white transition-colors text-xs uppercase tracking-[0.2em]">Home</a>
-                        
-                        <div className="relative group py-2 -my-2">
-                            <button className="text-white/40 group-hover:text-white transition-colors text-xs uppercase tracking-[0.2em] cursor-default flex items-center gap-2">
-                                About
-                                <span className="text-[10px] opacity-30 group-hover:opacity-100 transition-opacity">↑</span>
-                            </button>
-                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-full h-8 pointer-events-none group-hover:pointer-events-auto" />
-                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 bg-black border border-white/25 p-6 rounded-2xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all flex flex-col gap-4 min-w-[200px] shadow-[0_-20px_50px_rgba(0,0,0,0.5)] backdrop-blur-xl">
-                                <a href="/about/founders-bio-note" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Founder's Bio & Note</a>
-                                <a href="/about/node-operator" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Node Operator</a>
-                                <a href="/about/space-mesh" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Space Mesh</a>
-                            </div>
-                        </div>
+                    {/* About */}
+                    <div className="flex flex-col gap-4">
+                        <span className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-2">About</span>
+                        <a href="/about/founders-bio-note" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Founder's Bio & Note</a>
+                        <a href="/about/node-operator" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Earth Mesh</a>
+                        <a href="/about/space-mesh" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Space Mesh</a>
+                    </div>
+                    
+                    {/* Governance */}
+                    <div className="flex flex-col gap-4">
+                        <span className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-2">Governance</span>
+                        <a href="/governance/overview" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Governance Overview</a>
+                        <a href="/governance/constitution" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Constitution</a>
+                        <a href="/governance/roles" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Roles & Responsibilities</a>
+                        <a href="/governance/treasury" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Treasury Transparency</a>
+                        <a href="/governance/dao" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">DAO Mechanics</a>
+                        <a href="/governance/tokenomics" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Tokenomics</a>
+                    </div>
 
-                        <div className="relative group py-2 -my-2">
-                            <button className="text-white/40 group-hover:text-white transition-colors text-xs uppercase tracking-[0.2em] cursor-default flex items-center gap-2">
-                                Governance
-                                <span className="text-[10px] opacity-30 group-hover:opacity-100 transition-opacity">↑</span>
-                            </button>
-                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-full h-8 pointer-events-none group-hover:pointer-events-auto" />
-                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 bg-black border border-white/25 p-6 rounded-2xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all flex flex-col gap-4 min-w-[280px] shadow-[0_-20px_50px_rgba(0,0,0,0.5)] backdrop-blur-xl">
-                                <a href="/governance/overview" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Governance Overview</a>
-                                <a href="/governance/constitution" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Constitution</a>
-                                <a href="/governance/roles" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Roles & Responsibilities</a>
-                                <a href="/governance/treasury" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Treasury Transparency</a>
-                                <a href="/governance/dao" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">DAO Mechanics</a>
-                                <a href="/governance/tokenomics" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Tokenomics</a>
-                            </div>
-                        </div>
+                    {/* Partners */}
+                    <div className="flex flex-col gap-4">
+                        <span className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-2">Partners</span>
+                        <a href="/partners" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">All Partners</a>
+                        <a href="/chp" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">VIP 合作伙伴</a>
+                    </div>
 
-                        <div className="relative group py-2 -my-2">
-                            <button className="text-white/40 group-hover:text-white transition-colors text-xs uppercase tracking-[0.2em] cursor-default flex items-center gap-2">
-                                Investors
-                                <span className="text-[10px] opacity-30 group-hover:opacity-100 transition-opacity">↑</span>
-                            </button>
-                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-full h-8 pointer-events-none group-hover:pointer-events-auto" />
-                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 bg-black border border-white/25 p-6 rounded-2xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all flex flex-col gap-4 min-w-[220px] shadow-[0_-20px_50px_rgba(0,0,0,0.5)] backdrop-blur-xl">
-                                <a href="/investors/whitepaper" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Whitepaper</a>
-                                <a href="/investors/dr" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Data Room</a>
-                            </div>
-                        </div>
+                    {/* Investors */}
+                    <div className="flex flex-col gap-4">
+                        <span className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-2">Investors</span>
+                        <a href="/investors/whitepaper" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Whitepaper</a>
+                        <a href="/investors/dr" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Data Room</a>
+                    </div>
 
-                        <div className="relative group py-2 -my-2">
-                            <button className="text-white/40 group-hover:text-white transition-colors text-xs uppercase tracking-[0.2em] cursor-default flex items-center gap-2">
-                                Legal
-                                <span className="text-[10px] opacity-30 group-hover:opacity-100 transition-opacity">↑</span>
-                            </button>
-                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 w-full h-8 pointer-events-none group-hover:pointer-events-auto" />
-                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 bg-black border border-white/25 p-6 rounded-2xl opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all flex flex-col gap-4 min-w-[220px] shadow-[0_-20px_50px_rgba(0,0,0,0.5)] backdrop-blur-xl">
-                                <a href="/terms" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Terms</a>
-                                <a href="/privacy" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Privacy</a>
-                                <a href="/cookies" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Cookies</a>
-                            </div>
-                        </div>
+                    {/* Legal */}
+                    <div className="flex flex-col gap-4">
+                        <span className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-2">Legal</span>
+                        <a href="/terms" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Terms</a>
+                        <a href="/privacy" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Privacy</a>
+                        <a href="/cookies" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Cookies</a>
+                    </div>
 
-                        <a href="/partners" className="text-white/40 hover:text-white transition-colors text-xs uppercase tracking-[0.2em]">Partners</a>
-                        <a href="/chp" className="text-white/40 hover:text-white transition-colors text-xs uppercase tracking-[0.2em]">VIP 合作伙伴</a>
+                    {/* Contact */}
+                    <div className="flex flex-col gap-4">
                         <button 
                             onClick={(e) => {
                                 if (onContactClick) {
@@ -90,14 +74,15 @@ export default function Footer({ onContactClick }: FooterProps) {
                                     onContactClick();
                                 }
                             }}
-                            className="text-white/40 hover:text-white transition-colors text-xs uppercase tracking-[0.2em]"
+                            className="text-white text-left md:text-left text-xs font-bold uppercase tracking-[0.2em] mb-2 hover:text-white/80 transition-colors"
                         >
                             Contact
                         </button>
                     </div>
                 </div>
 
-                <div className="flex flex-col items-center gap-10">
+                {/* Bottom Section: Socials, Address, Copyright */}
+                <div className="flex flex-col items-center gap-6 w-full pt-10 border-t border-white/10">
                     <div className="flex items-center gap-6">
                         <a href="https://x.com/wnodemesh" target="_blank" rel="noopener noreferrer" className="inline-block hover:drop-shadow-[0_0_20px_#3b82f6] hover:scale-110 transition-all duration-300">
                             <img src="/icons/x_neon.png" alt="X (Twitter)" className="h-14 w-auto brightness-125" />
@@ -118,8 +103,12 @@ export default function Footer({ onContactClick }: FooterProps) {
                             <img src="/icons/gitlogo.png" alt="GitHub" className="h-8 w-auto brightness-125" />
                         </a>
                     </div>
+                    
+                    <div className="text-white/40 text-[10px] tracking-widest text-center mt-2">
+                        Unit A 82 James Carter Road, Mildenhall Industrial Estate, Suffolk, United Kingdom, IP28 7DE
+                    </div>
 
-                    <div className="text-white/20 font-bold uppercase tracking-widest text-[10px]">
+                    <div className="text-white/20 font-bold uppercase tracking-widest text-[10px] mt-2">
                         WeNode © 2026
                     </div>
                 </div>

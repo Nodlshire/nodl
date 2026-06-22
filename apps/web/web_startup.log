@@ -1,0 +1,165 @@
+
+> web@0.1.0 dev
+> next dev -H 0.0.0.0 -p 3004
+
+   ▲ Next.js 15.1.0
+   - Local:        http://localhost:3004
+   - Network:      http://0.0.0.0:3004
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 4.5s
+ ○ Compiling / ...
+ ✓ Compiled / in 3.5s (622 modules)
+ GET / 200 in 4122ms
+ GET / 200 in 65ms
+ ○ Compiling /about/founders-note ...
+ ✓ Compiled /about/founders-note in 2s (628 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /about/founders-note 200 in 2361ms
+ ✓ Compiled in 7.1s (642 modules)
+ GET /about/founders-note 200 in 247ms
+ ⨯ ./app/about/founders-note/page.tsx
+Error:   [31mx[0m Unexpected token `AppLayout`. Expected jsx identifier
+   ,-[[36;1;4m/home/obregan/Documents/nodl/apps/web/app/about/founders-note/page.tsx[0m:5:1]
+ [2m2[0m | 
+ [2m3[0m | export default function FoundersNotePage() {
+ [2m4[0m |     return (
+ [2m5[0m |         <AppLayout>
+   : [35;1m         ^^^^^^^^^[0m
+ [2m6[0m |             <div className="relative pt-40 pb-24 px-8">
+ [2m7[0m |                 {/* Logo and Brand - Replicated from Hero */}
+ [2m8[0m |                 <div className="absolute top-12 left-12 flex items-center gap-4 z-20">
+   `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/about/founders-note/page.tsx
+ ○ Compiling /_error ...
+ ⨯ ./app/about/founders-note/page.tsx
+Error:   [31mx[0m Unexpected token `AppLayout`. Expected jsx identifier
+   ,-[[36;1;4m/home/obregan/Documents/nodl/apps/web/app/about/founders-note/page.tsx[0m:5:1]
+ [2m2[0m | 
+ [2m3[0m | export default function FoundersNotePage() {
+ [2m4[0m |     return (
+ [2m5[0m |         <AppLayout>
+   : [35;1m         ^^^^^^^^^[0m
+ [2m6[0m |             <div className="relative pt-40 pb-24 px-8">
+ [2m7[0m |                 {/* Logo and Brand - Replicated from Hero */}
+ [2m8[0m |                 <div className="absolute top-12 left-12 flex items-center gap-4 z-20">
+   `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/about/founders-note/page.tsx
+ GET /about/founders-note 500 in 2978ms
+ GET /about/founders-note 500 in 123ms
+ GET /about/founders-note 500 in 30ms
+ GET /about/founders-note 500 in 31ms
+ ⨯ ./app/about/founders-note/page.tsx
+Error:   [31mx[0m Unexpected token `AppLayout`. Expected jsx identifier
+   ,-[[36;1;4m/home/obregan/Documents/nodl/apps/web/app/about/founders-note/page.tsx[0m:5:1]
+ [2m2[0m | 
+ [2m3[0m | export default function FoundersNotePage() {
+ [2m4[0m |     return (
+ [2m5[0m |         <AppLayout>
+   : [35;1m         ^^^^^^^^^[0m
+ [2m6[0m |             <div className="relative pt-40 pb-24 px-8">
+ [2m7[0m |                 {/* Logo and Brand - Replicated from Hero */}
+ [2m8[0m |                 <div className="absolute top-12 left-12 flex items-center gap-4 z-20">
+   `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/about/founders-note/page.tsx
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /_next/static/webpack/b63d17cb89e6f420.webpack.hot-update.json 500 in 1466ms
+ GET /about/founders-note 500 in 46ms
+ GET /about/founders-note 500 in 58ms
+ ✓ Compiled /_not-found in 1200ms (874 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /about/founders-note 200 in 415ms
+ GET /_next/static/webpack/b63d17cb89e6f420.webpack.hot-update.json 404 in 1231ms
+ GET /about/founders-note 200 in 33ms
+ ✓ Compiled in 2.2s (884 modules)
+ GET /about/founders-note 200 in 210ms
+ GET / 200 in 134ms
+ ○ Compiling /about/planetary-mesh ...
+ ✓ Compiled /about/planetary-mesh in 1541ms (872 modules)
+ GET /about/planetary-mesh 200 in 1873ms
+ ✓ Compiled in 2.2s (886 modules)
+ GET /about/planetary-mesh 200 in 179ms
+ ✓ Compiled in 1205ms (886 modules)
+ GET /about/planetary-mesh 200 in 135ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 2.5s (874 modules)
+ GET /about/planetary-mesh 404 in 2294ms
+ GET /about/planetary-mesh 404 in 25ms
+ GET /about/planetary-mesh 404 in 142ms
+ ✓ Compiled in 1134ms (888 modules)
+ GET /about/planetary-mesh 404 in 301ms
+ GET /about/planetary-mesh 404 in 83ms
+ GET /about/founders-note 200 in 167ms
+ ✓ Compiled in 1071ms (888 modules)
+ GET /about/founders-note 200 in 177ms
+ ✓ Compiled in 1188ms (888 modules)
+ GET /about/founders-note 200 in 81ms
+ GET / 200 in 192ms
+ ✓ Compiled in 835ms (888 modules)
+ GET / 200 in 96ms
+ GET /about/founders-note 200 in 171ms
+ ○ Compiling /governance/mesh ...
+ ✓ Compiled /governance/mesh in 2.2s (877 modules)
+ GET /governance/mesh 200 in 2844ms
+ ○ Compiling /governance/management ...
+ ✓ Compiled /governance/management in 2.6s (884 modules)
+ GET /governance/management 200 in 2928ms
+ ✓ Compiled in 1940ms (898 modules)
+ GET /governance/management 200 in 90ms
+ GET /governance/mesh 200 in 156ms
+ ✓ Compiled in 2s (898 modules)
+ GET /governance/mesh 200 in 212ms
+ ✓ Compiled in 2.7s (898 modules)
+ GET /governance/mesh 200 in 138ms
+ GET /governance/management 200 in 478ms
+ ✓ Compiled in 2.2s (898 modules)
+ GET /governance/management 200 in 185ms
+ ○ Compiling /cookies ...
+ ✓ Compiled /cookies in 1671ms (886 modules)
+ GET /cookies 200 in 2638ms
+ ✓ Compiled in 1672ms (900 modules)
+ GET /governance/management 200 in 350ms
+ GET /cookies 200 in 89ms
+ ✓ Compiled in 3s (874 modules)
+ GET /cookies 200 in 184ms
+ ✓ Compiled in 641ms (522 modules)
+ GET /cookies 200 in 25ms
+ ✓ Compiled in 896ms (874 modules)
+ GET /cookies 200 in 83ms
+ ✓ Compiled in 512ms (522 modules)
+ GET /cookies 200 in 32ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1327ms (378 modules)
+ GET / 200 in 1667ms
+ ○ Compiling /partners ...
+ ✓ Compiled /partners in 4.6s (891 modules)
+ GET /partners 200 in 5123ms
+ ✓ Compiled in 18s (927 modules)
+ GET /partners 200 in 17446ms
+ GET /partners 200 in 90ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 2.4s (917 modules)
+ GET /_next/static/css/app/layout.css?v=1777370379620 404 in 2935ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /partners 200 in 966ms
+ GET /_next/static/css/app/layout.css?v=1777370751170 404 in 316ms
+ GET /_next/static/chunks/main-app.js?v=1777370751170 404 in 351ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 335ms
+ GET /_next/static/chunks/app/partners/page.js 404 in 334ms
+ GET / 200 in 153ms

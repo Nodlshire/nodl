@@ -1,0 +1,1239 @@
+
+> web@0.1.0 dev
+> next dev -H 0.0.0.0 -p 3004
+
+   ▲ Next.js 15.1.0
+   - Local:        http://localhost:3004
+   - Network:      http://0.0.0.0:3004
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 2.5s
+ ○ Compiling / ...
+ ✓ Compiled / in 4.3s (658 modules)
+ GET / 200 in 4909ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 623ms (353 modules)
+ GET /favicon.ico 200 in 827ms
+ ✓ Compiled in 1159ms (658 modules)
+ GET / 200 in 215ms
+ ⨯ ./components/landing/Footer.tsx
+Error:   [31mx[0m Unexpected token `footer`. Expected jsx identifier
+    ,-[[36;1;4m/home/obregan/Documents/nodl/apps/web/components/landing/Footer.tsx[0m:7:1]
+ [2m 4[0m | 
+ [2m 5[0m | export default function Footer({ onContactClick }: FooterProps) {
+ [2m 6[0m |     return (
+ [2m 7[0m |         <footer className="py-20 bg-black border-t border-white/15">
+    : [35;1m         ^^^^^^[0m
+ [2m 8[0m |             <div className="max-w-7xl mx-auto px-8 flex flex-col items-center gap-16">
+ [2m 9[0m |                 <div className="w-full flex flex-col md:flex-row items-center justify-between gap-8">
+ [2m10[0m |                     <div className="flex items-center gap-4">
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/landing/Footer.tsx
+./components/layout/AppLayout.tsx
+./app/page.tsx
+ ⨯ ./components/landing/Footer.tsx
+Error:   [31mx[0m Unexpected token `footer`. Expected jsx identifier
+    ,-[[36;1;4m/home/obregan/Documents/nodl/apps/web/components/landing/Footer.tsx[0m:7:1]
+ [2m 4[0m | 
+ [2m 5[0m | export default function Footer({ onContactClick }: FooterProps) {
+ [2m 6[0m |     return (
+ [2m 7[0m |         <footer className="py-20 bg-black border-t border-white/15">
+    : [35;1m         ^^^^^^[0m
+ [2m 8[0m |             <div className="max-w-7xl mx-auto px-8 flex flex-col items-center gap-16">
+ [2m 9[0m |                 <div className="w-full flex flex-col md:flex-row items-center justify-between gap-8">
+ [2m10[0m |                     <div className="flex items-center gap-4">
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/landing/Footer.tsx
+./components/layout/AppLayout.tsx
+./app/page.tsx
+ ⨯ ./components/landing/Footer.tsx
+Error:   [31mx[0m Unexpected token `footer`. Expected jsx identifier
+    ,-[[36;1;4m/home/obregan/Documents/nodl/apps/web/components/landing/Footer.tsx[0m:7:1]
+ [2m 4[0m | 
+ [2m 5[0m | export default function Footer({ onContactClick }: FooterProps) {
+ [2m 6[0m |     return (
+ [2m 7[0m |         <footer className="py-20 bg-black border-t border-white/15">
+    : [35;1m         ^^^^^^[0m
+ [2m 8[0m |             <div className="max-w-7xl mx-auto px-8 flex flex-col items-center gap-16">
+ [2m 9[0m |                 <div className="w-full flex flex-col md:flex-row items-center justify-between gap-8">
+ [2m10[0m |                     <div className="flex items-center gap-4">
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/landing/Footer.tsx
+./components/layout/AppLayout.tsx
+./app/page.tsx
+ ○ Compiling /_error ...
+ ⨯ ./components/landing/Footer.tsx
+Error:   [31mx[0m Unexpected token `footer`. Expected jsx identifier
+    ,-[[36;1;4m/home/obregan/Documents/nodl/apps/web/components/landing/Footer.tsx[0m:7:1]
+ [2m 4[0m | 
+ [2m 5[0m | export default function Footer({ onContactClick }: FooterProps) {
+ [2m 6[0m |     return (
+ [2m 7[0m |         <footer className="py-20 bg-black border-t border-white/15">
+    : [35;1m         ^^^^^^[0m
+ [2m 8[0m |             <div className="max-w-7xl mx-auto px-8 flex flex-col items-center gap-16">
+ [2m 9[0m |                 <div className="w-full flex flex-col md:flex-row items-center justify-between gap-8">
+ [2m10[0m |                     <div className="flex items-center gap-4">
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/landing/Footer.tsx
+./components/layout/AppLayout.tsx
+./app/page.tsx
+ GET / 500 in 2721ms
+ GET / 200 in 973ms
+ GET / 500 in 44ms
+ ⨯ ./components/landing/Footer.tsx
+Error:   [31mx[0m Unexpected token `footer`. Expected jsx identifier
+    ,-[[36;1;4m/home/obregan/Documents/nodl/apps/web/components/landing/Footer.tsx[0m:7:1]
+ [2m 4[0m | 
+ [2m 5[0m | export default function Footer({ onContactClick }: FooterProps) {
+ [2m 6[0m |     return (
+ [2m 7[0m |         <footer className="py-20 bg-black border-t border-white/15">
+    : [35;1m         ^^^^^^[0m
+ [2m 8[0m |             <div className="max-w-7xl mx-auto px-8 flex flex-col items-center gap-16">
+ [2m 9[0m |                 <div className="w-full flex flex-col md:flex-row items-center justify-between gap-8">
+ [2m10[0m |                     <div className="flex items-center gap-4">
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/landing/Footer.tsx
+./components/layout/AppLayout.tsx
+./app/page.tsx
+ ⨯ ./components/landing/Footer.tsx
+Error:   [31mx[0m Unexpected token `footer`. Expected jsx identifier
+    ,-[[36;1;4m/home/obregan/Documents/nodl/apps/web/components/landing/Footer.tsx[0m:7:1]
+ [2m 4[0m | 
+ [2m 5[0m | export default function Footer({ onContactClick }: FooterProps) {
+ [2m 6[0m |     return (
+ [2m 7[0m |         <footer className="py-20 bg-black border-t border-white/15">
+    : [35;1m         ^^^^^^[0m
+ [2m 8[0m |             <div className="max-w-7xl mx-auto px-8 flex flex-col items-center gap-16">
+ [2m 9[0m |                 <div className="w-full flex flex-col md:flex-row items-center justify-between gap-8">
+ [2m10[0m |                     <div className="flex items-center gap-4">
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/landing/Footer.tsx
+./components/layout/AppLayout.tsx
+./app/page.tsx
+ ✓ Compiled /_not-found in 3.7s (905 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /_next/static/webpack/b63d17cb89e6f420.webpack.hot-update.json 404 in 3205ms
+ GET / 200 in 108ms
+ ✓ Compiled in 1330ms (900 modules)
+ GET / 200 in 215ms
+ ✓ Compiled in 706ms (900 modules)
+ GET / 200 in 149ms
+ GET / 200 in 167ms
+ GET / 200 in 51ms
+ GET / 200 in 36ms
+ ✓ Compiled /favicon.ico in 426ms (398 modules)
+ GET /favicon.ico 200 in 588ms
+ ○ Compiling /governance/overview ...
+ ✓ Compiled /governance/overview in 593ms (908 modules)
+ GET /governance/overview 200 in 859ms
+ GET / 200 in 71ms
+ GET /governance/overview 200 in 108ms
+ ✓ Compiled in 1404ms (907 modules)
+ GET /governance/overview 200 in 196ms
+ ○ Compiling /governance/whitepaper ...
+ ✓ Compiled /governance/whitepaper in 536ms (900 modules)
+ GET /governance/whitepaper 200 in 748ms
+ ✓ Compiled in 2.5s (914 modules)
+ GET /governance/whitepaper 200 in 187ms
+ GET /governance/whitepaper 200 in 411ms
+ ✓ Compiled in 2.9s (900 modules)
+ GET /governance/whitepaper 200 in 183ms
+ GET / 200 in 192ms
+ GET / 200 in 46ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 666ms (408 modules)
+ GET /favicon.ico 200 in 897ms
+ ○ Compiling /governance/investors/investor-1-pager ...
+ ✓ Compiled /governance/investors/investor-1-pager in 1258ms (922 modules)
+ GET /governance/investors/investor-1-pager 200 in 1537ms
+ ✓ Compiled in 1351ms (921 modules)
+ GET /governance/whitepaper 200 in 266ms
+ GET / 200 in 265ms
+ ✓ Compiled in 1092ms (921 modules)
+ GET /governance/whitepaper 200 in 225ms
+ GET / 200 in 226ms
+ GET / 200 in 199ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 601ms (413 modules)
+ GET /favicon.ico 200 in 827ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 786ms (926 modules)
+ GET /governance/investors/investor-relations 404 in 988ms
+ GET / 200 in 85ms
+ GET /governance/investors/investor-1-pager 200 in 58ms
+ GET / 200 in 36ms
+ GET /governance/investors/investor-relations 404 in 42ms
+ GET /governance/investors/investor-relations 404 in 34ms
+ GET /favicon.ico 200 in 63ms
+ ○ Compiling /governance/investors/investor-relations ...
+ ✓ Compiled /governance/investors/investor-relations in 3.3s (933 modules)
+ GET /governance/whitepaper 200 in 2317ms
+ GET /governance/investors/investor-relations 200 in 2323ms
+ GET /governance/whitepaper 200 in 30ms
+ GET /governance/investors/investor-relations 200 in 42ms
+ GET /favicon.ico 200 in 17ms
+ ✓ Compiled in 1860ms (928 modules)
+ GET /governance/whitepaper 200 in 272ms
+ GET /governance/investors/investor-relations 200 in 275ms
+ ✓ Compiled in 1190ms (928 modules)
+ GET /governance/whitepaper 200 in 207ms
+ GET /governance/investors/investor-relations 200 in 214ms
+ GET /governance/investors/investor-1-pager 200 in 228ms
+ GET /governance/investors/investor-relations 200 in 44ms
+ ✓ Compiled in 1478ms (928 modules)
+ GET /governance/investors/investor-relations 200 in 188ms
+ GET /governance/investors/investor-relations 200 in 29ms
+ GET /governance/investors/investor-relations 200 in 364ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 1732ms (418 modules)
+ GET /favicon.ico 200 in 2129ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1680ms (933 modules)
+ GET /docs/governance/slide%20deck%201.pdf 404 in 2143ms
+ GET /governance/investors/pitchdeck 404 in 79ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 4.1s (918 modules)
+ GET /governance/investors/investor-relations 200 in 3346ms
+ GET /docs/governance/slide%20deck%201.pdf 404 in 2940ms
+ GET /governance/investors/investor-relations 200 in 60ms
+ GET /docs/governance/slide%20deck%201.pdf 404 in 30ms
+ GET /governance/investors/investor-relations 200 in 28ms
+ GET /governance/investors/investor-relations 200 in 26ms
+ GET /docs/governance/slide%20deck%201.pdf 404 in 750ms
+ ✓ Compiled in 1703ms (932 modules)
+ GET /docs/governance/slide%20deck%201.pdf 404 in 194ms
+ GET /governance/investors/investor-relations 200 in 212ms
+ GET /docs/governance/slide%20deck%201.pdf 404 in 116ms
+ GET /governance/investors/investor-relations 200 in 137ms
+ ✓ Compiled in 1029ms (932 modules)
+ GET /docs/governance/slide%20deck%201.pdf 404 in 141ms
+ GET /governance/investors/investor-relations 200 in 188ms
+ GET /docs/governance/slide%20deck%201.pdf 404 in 65ms
+ GET /governance/investors/investor-relations 200 in 63ms
+ GET /docs/governance 404 in 37ms
+ GET / 200 in 374ms
+ ○ Compiling /governance/investors/pitchdeck ...
+ ✓ Compiled /governance/investors/pitchdeck in 1793ms (925 modules)
+ GET /governance/investors/pitchdeck 200 in 2080ms
+ ✓ Compiled in 1307ms (909 modules)
+ GET /governance/investors/investor-relations 200 in 117ms
+ GET /governance/investors/investor-relations 200 in 29ms
+ GET /governance/investors/pitchdeck 200 in 117ms
+ ✓ Compiled in 3s (909 modules)
+ GET /governance/investors/investor-relations 200 in 147ms
+ GET /governance/investors/pitchdeck 200 in 145ms
+ ✓ Compiled in 1019ms (909 modules)
+ GET /governance/investors/investor-relations 200 in 134ms
+ GET /governance/investors/pitchdeck 200 in 135ms
+ ✓ Compiled / in 388ms (408 modules)
+ GET / 200 in 581ms
+ ✓ Compiled in 977ms (930 modules)
+ GET /governance/investors/investor-relations 200 in 149ms
+ GET / 200 in 150ms
+ ✓ Compiled in 1752ms (930 modules)
+ GET /governance/investors/investor-relations 200 in 115ms
+ GET / 200 in 114ms
+ ✓ Compiled in 917ms (930 modules)
+ GET /governance/investors/investor-relations 200 in 97ms
+ GET / 200 in 99ms
+ ✓ Compiled in 1524ms (930 modules)
+ GET /governance/investors/investor-relations 200 in 256ms
+ GET / 200 in 257ms
+ ✓ Compiled in 859ms (930 modules)
+ GET /governance/investors/investor-relations 200 in 166ms
+ GET / 200 in 168ms
+ ✓ Compiled in 646ms (930 modules)
+ GET / 200 in 193ms
+ GET /governance/investors/investor-relations 200 in 239ms
+ ✓ Compiled in 1201ms (930 modules)
+ GET / 200 in 90ms
+ GET /governance/investors/investor-relations 200 in 90ms
+ ✓ Compiled in 1797ms (930 modules)
+ GET /governance/investors/investor-relations 200 in 206ms
+ GET / 200 in 205ms
+ ✓ Compiled in 781ms (930 modules)
+ GET / 200 in 95ms
+ GET /governance/investors/investor-relations 200 in 102ms
+ ✓ Compiled in 1061ms (930 modules)
+ GET / 200 in 140ms
+ GET /governance/investors/investor-relations 200 in 142ms
+ ✓ Compiled in 673ms (930 modules)
+ GET / 200 in 90ms
+ GET /governance/investors/investor-relations 200 in 92ms
+ GET / 200 in 215ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 1444ms (418 modules)
+ GET /favicon.ico 200 in 1653ms
+ ✓ Compiled in 3.1s (930 modules)
+ GET / 200 in 2507ms
+ GET /governance/investors/investor-relations 200 in 1980ms
+ GET /governance/investors/investor-relations 200 in 31ms
+ GET / 200 in 32ms
+ ✓ Compiled in 1516ms (930 modules)
+ GET /governance/investors/investor-relations 200 in 109ms
+ GET / 200 in 108ms
+ ✓ Compiled in 1032ms (930 modules)
+ GET /governance/investors/investor-relations 200 in 97ms
+ GET / 200 in 98ms
+ ○ Compiling /governance/tokenomics ...
+ ✓ Compiled /governance/tokenomics in 1143ms (923 modules)
+ GET /governance/tokenomics 200 in 1391ms
+ ✓ Compiled in 1280ms (932 modules)
+ GET /governance/investors/investor-relations 200 in 291ms
+ GET /governance/tokenomics 200 in 277ms
+ ✓ Compiled in 463ms (529 modules)
+ GET /governance/investors/investor-relations 200 in 59ms
+ GET /governance/tokenomics 200 in 56ms
+ GET /governance/investors/investor-relations 200 in 1698ms
+ GET /governance/tokenomics 200 in 1724ms
+ ✓ Compiled in 5s (918 modules)
+ GET /governance/tokenomics 200 in 128ms
+ ✓ Compiled in 1435ms (932 modules)
+ GET /governance/tokenomics 200 in 210ms
+ ✓ Compiled in 1019ms (932 modules)
+ GET /governance/tokenomics 200 in 77ms
+ ○ Compiling /about/node-operator ...
+ ✓ Compiled /about/node-operator in 1514ms (925 modules)
+ GET /about/node-operator 200 in 1912ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 2.1s (934 modules)
+ GET /about/node-operator 200 in 162ms
+ ✓ Compiled in 1516ms (934 modules)
+ GET /about/node-operator 200 in 198ms
+ ✓ Compiled in 943ms (934 modules)
+ GET /about/node-operator 200 in 64ms
+ ✓ Compiled in 861ms (934 modules)
+ GET /about/node-operator 200 in 72ms
+ ✓ Compiled in 1274ms (934 modules)
+ GET /about/node-operator 200 in 73ms
+ ⨯ ./app/about/node-operator/page.tsx
+Error:   [31mx[0m Unexpected token `AppLayout`. Expected jsx identifier
+     ,-[[36;1;4m/home/obregan/Documents/nodl/apps/web/app/about/node-operator/page.tsx[0m:118:1]
+ [2m115[0m |     if (!mounted) return null;
+ [2m116[0m | 
+ [2m117[0m |     return (
+ [2m118[0m |         <AppLayout>
+     : [35;1m         ^^^^^^^^^[0m
+ [2m119[0m |             <div className="bg-black text-white min-h-screen pt-40 pb-40 px-6 md:px-12">
+ [2m120[0m |                 <div className="max-w-4xl mx-auto">
+ [2m121[0m |                     
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/about/node-operator/page.tsx
+ GET /about/node-operator 500 in 132ms
+ GET /about/node-operator 500 in 52ms
+ GET /about/node-operator 500 in 35ms
+ ○ Compiling /_not-found ...
+ ⨯ ./app/about/node-operator/page.tsx
+Error:   [31mx[0m Unexpected token `AppLayout`. Expected jsx identifier
+     ,-[[36;1;4m/home/obregan/Documents/nodl/apps/web/app/about/node-operator/page.tsx[0m:118:1]
+ [2m115[0m |     if (!mounted) return null;
+ [2m116[0m | 
+ [2m117[0m |     return (
+ [2m118[0m |         <AppLayout>
+     : [35;1m         ^^^^^^^^^[0m
+ [2m119[0m |             <div className="bg-black text-white min-h-screen pt-40 pb-40 px-6 md:px-12">
+ [2m120[0m |                 <div className="max-w-4xl mx-auto">
+ [2m121[0m |                     
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/about/node-operator/page.tsx
+ GET /_next/static/webpack/b63d17cb89e6f420.webpack.hot-update.json 500 in 1245ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /about/node-operator 500 in 35ms
+ ✓ Compiled /_not-found in 1399ms (939 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /about/node-operator 200 in 532ms
+ ✓ Compiled in 1696ms (934 modules)
+ GET /about/node-operator 200 in 549ms
+ ✓ Compiled /_not-found in 437ms (924 modules)
+ ⨯ Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/_not-found/page.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:198:28)
+    at <unknown> (.next/server/webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:162:22)
+    at <unknown> (.next/server/app/_not-found/page.js:1:3263)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:1:3308) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /_next/static/css/app/layout.css?v=1778847883807 500 in 592ms
+ ⨯ Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/_not-found/page.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:198:28)
+    at <unknown> (.next/server/webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:162:22)
+    at <unknown> (.next/server/app/governance/investors/pitchdeck/page.js:1:5640)
+    at Object.<anonymous> (.next/server/app/governance/investors/pitchdeck/page.js:1:5692) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/governance/investors/pitchdeck'
+}
+ ⨯ Error: Cannot find module './295.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/_not-found/page.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:198:28)
+    at <unknown> (.next/server/webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:162:22)
+    at <unknown> (.next/server/pages/_document.js:1:335)
+    at Object.<anonymous> (.next/server/pages/_document.js:1:376) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /governance/investors/pitchdeck 500 in 268ms
+ ⨯ Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/_not-found/page.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:198:28)
+    at <unknown> (.next/server/webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:162:22)
+    at <unknown> (.next/server/app/_not-found/page.js:1:3263)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:1:3308) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/_not-found/page.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:198:28)
+    at <unknown> (.next/server/webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:162:22)
+    at <unknown> (.next/server/app/_not-found/page.js:1:3263)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:1:3308) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/_not-found/page.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:198:28)
+    at <unknown> (.next/server/webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:162:22)
+    at <unknown> (.next/server/app/_not-found/page.js:1:3263)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:1:3308) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /_next/static/chunks/fallback/webpack.js 500 in 213ms
+ GET /_next/static/chunks/fallback/react-refresh.js 500 in 210ms
+ GET /_next/static/chunks/fallback/main.js 500 in 206ms
+ ⨯ Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/_not-found/page.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:198:28)
+    at <unknown> (.next/server/webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:162:22)
+    at <unknown> (.next/server/app/_not-found/page.js:1:3263)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:1:3308) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/_not-found/page.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:198:28)
+    at <unknown> (.next/server/webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:162:22)
+    at <unknown> (.next/server/app/_not-found/page.js:1:3263)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:1:3308) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /_next/static/chunks/fallback/pages/_app.js 500 in 120ms
+ GET /_next/static/chunks/fallback/pages/_error.js 500 in 117ms
+ GET /about/node-operator 200 in 318ms
+ ⨯ Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/_not-found/page.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:198:28)
+    at <unknown> (.next/server/webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:162:22)
+    at <unknown> (.next/server/app/_not-found/page.js:1:3263)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:1:3308) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /_next/static/css/app/layout.css?v=1778847961053 500 in 131ms
+ ⨯ Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/_not-found/page.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:198:28)
+    at <unknown> (.next/server/webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:162:22)
+    at <unknown> (.next/server/app/_not-found/page.js:1:3263)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:1:3308) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/_not-found/page.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:198:28)
+    at <unknown> (.next/server/webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:162:22)
+    at <unknown> (.next/server/app/_not-found/page.js:1:3263)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:1:3308) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /_next/static/chunks/main-app.js?v=1778847961053 500 in 147ms
+ GET /_next/static/chunks/app-pages-internals.js 500 in 141ms
+ GET /about/node-operator 200 in 136ms
+ ⨯ Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/_not-found/page.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:198:28)
+    at <unknown> (.next/server/webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:162:22)
+    at <unknown> (.next/server/app/_not-found/page.js:1:3263)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:1:3308) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /_next/static/css/app/layout.css?v=1778847992799 500 in 110ms
+ ⨯ Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/_not-found/page.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:198:28)
+    at <unknown> (.next/server/webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:162:22)
+    at <unknown> (.next/server/app/_not-found/page.js:1:3263)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:1:3308) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/_not-found/page.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:198:28)
+    at <unknown> (.next/server/webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:162:22)
+    at <unknown> (.next/server/app/_not-found/page.js:1:3263)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:1:3308) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /_next/static/chunks/main-app.js?v=1778847992799 500 in 113ms
+ GET /_next/static/chunks/app-pages-internals.js 500 in 111ms
+ ⨯ Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/_not-found/page.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:198:28)
+    at <unknown> (.next/server/webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:162:22)
+    at <unknown> (.next/server/app/page.js:1:34564)
+    at Object.<anonymous> (.next/server/app/page.js:1:34616) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module './295.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/_not-found/page.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:198:28)
+    at <unknown> (.next/server/webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:162:22)
+    at <unknown> (.next/server/pages/_document.js:1:335)
+    at Object.<anonymous> (.next/server/pages/_document.js:1:376) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET / 500 in 227ms
+ ⨯ Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/_not-found/page.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:198:28)
+    at <unknown> (.next/server/webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:162:22)
+    at <unknown> (.next/server/app/_not-found/page.js:1:3263)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:1:3308) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /_next/static/chunks/fallback/webpack.js 500 in 127ms
+ ⨯ Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/_not-found/page.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:198:28)
+    at <unknown> (.next/server/webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:162:22)
+    at <unknown> (.next/server/app/_not-found/page.js:1:3263)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:1:3308) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/_not-found/page.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:198:28)
+    at <unknown> (.next/server/webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:162:22)
+    at <unknown> (.next/server/app/_not-found/page.js:1:3263)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:1:3308) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /_next/static/chunks/fallback/main.js 500 in 141ms
+ GET /_next/static/chunks/fallback/react-refresh.js 500 in 140ms
+ ⨯ Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/_not-found/page.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:198:28)
+    at <unknown> (.next/server/webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:162:22)
+    at <unknown> (.next/server/app/_not-found/page.js:1:3263)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:1:3308) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/_not-found/page.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:198:28)
+    at <unknown> (.next/server/webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:162:22)
+    at <unknown> (.next/server/app/_not-found/page.js:1:3263)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:1:3308) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /_next/static/chunks/fallback/pages/_app.js 500 in 128ms
+ GET /_next/static/chunks/fallback/pages/_error.js 500 in 123ms
+ ✓ Compiled in 2.6s (934 modules)
+ GET /about/node-operator 200 in 131ms
+ ✓ Compiled /_not-found in 330ms (924 modules)
+ ⨯ Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/_not-found/page.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:198:28)
+    at <unknown> (.next/server/webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:162:22)
+    at <unknown> (.next/server/app/_not-found/page.js:1:3263)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:1:3308) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /_next/static/css/app/layout.css?v=1778848114781 500 in 421ms
+ ✓ Compiled in 1410ms (938 modules)
+ GET /about/node-operator 200 in 87ms
+ ⨯ Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/about/node-operator/page.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:198:28)
+    at <unknown> (.next/server/webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:162:22)
+    at <unknown> (.next/server/app/_not-found/page.js:1:3263)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:1:3308) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /_next/static/css/app/layout.css?v=1778848120231 500 in 49ms
+ ✓ Compiled in 12.3s (950 modules)
+ GET /about/node-operator 200 in 205ms
+ ✓ Compiled in 3.6s (536 modules)
+ GET /about/node-operator 200 in 106ms
+ GET /about/node-operator 200 in 354ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 106ms
+ GET /_next/static/chunks/main-app.js?v=1778848254816 404 in 155ms
+ GET /about/node-operator 200 in 43ms
+ GET /_next/static/chunks/main-app.js?v=1778848265932 404 in 84ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 80ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 51ms
+ ✓ Compiled in 2s (938 modules)
+ ✓ Compiled in 727ms (938 modules)
+ ✓ Compiled in 1185ms (534 modules)
+ ✓ Compiled in 3.2s (938 modules)
+ ✓ Compiled in 1562ms (937 modules)
+ ✓ Compiled in 1912ms (937 modules)
+ ✓ Compiled in 882ms (937 modules)
+ GET /about/node-operator 200 in 527ms
+ ✓ Compiled /_not-found in 477ms (924 modules)
+ GET /_next/static/chunks/main-app.js?v=1778848421362 404 in 685ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 682ms
+ ✓ Compiled in 1668ms (938 modules)
+ ✓ Compiled in 1350ms (938 modules)
+ ✓ Compiled in 1014ms (938 modules)
+ ✓ Compiled in 1454ms (934 modules)
+ ✓ Compiled in 1614ms (934 modules)
+ ✓ Compiled in 2.2s (937 modules)
+ ✓ Compiled in 719ms (937 modules)
+ ✓ Compiled in 1199ms (533 modules)
+ ✓ Compiled in 1044ms (937 modules)
+ ✓ Compiled in 696ms (937 modules)
+ ✓ Compiled in 623ms (937 modules)
+ ✓ Compiled in 704ms (937 modules)
+ ✓ Compiled in 696ms (937 modules)
+ ✓ Compiled in 855ms (937 modules)
+ GET /about/node-operator 200 in 1236ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 860ms (927 modules)
+ GET /_next/static/chunks/main-app.js?v=1778848591522 404 in 1048ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 1045ms
+ GET / 200 in 114ms
+ GET /_next/static/chunks/main-app.js?v=1778848607323 404 in 60ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 64ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 56ms
+ GET / 200 in 69ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 92ms
+ GET /_next/static/css/app/layout.css?v=1778850191382 404 in 173ms
+ GET /_next/static/chunks/webpack.js?v=1778850191382 404 in 126ms
+ GET /_next/static/chunks/main-app.js?v=1778850191382 404 in 188ms
+ GET /_next/static/chunks/app/page.js 404 in 151ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 156ms
+ GET / 200 in 36ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 119ms
+ GET /_next/static/css/app/layout.css?v=1778850253123 404 in 103ms
+ GET /_next/static/chunks/webpack.js?v=1778850253123 404 in 98ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 34ms
+ GET /_next/static/chunks/main-app.js?v=1778850253123 404 in 89ms
+ GET /_next/static/chunks/app/page.js 404 in 89ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 1491ms (420 modules)
+ GET /favicon.ico 200 in 1679ms
+ ⨯ Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/favicon.ico/route.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:203:28)
+    at <unknown> (.next/server/webpack-runtime.js:116:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:115:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:167:22)
+    at <unknown> (.next/server/app/governance/investors/investor-relations/page.js:1:8574)
+    at Object.<anonymous> (.next/server/app/governance/investors/investor-relations/page.js:1:8627) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/governance/investors/investor-relations'
+}
+ ⨯ Error: Cannot find module './295.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/favicon.ico/route.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:203:28)
+    at <unknown> (.next/server/webpack-runtime.js:116:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:115:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:167:22)
+    at <unknown> (.next/server/pages/_document.js:1:335)
+    at Object.<anonymous> (.next/server/pages/_document.js:1:376) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /governance/investors/investor-relations 500 in 222ms
+ ⨯ Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/favicon.ico/route.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:203:28)
+    at <unknown> (.next/server/webpack-runtime.js:116:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:115:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:167:22)
+    at <unknown> (.next/server/app/_not-found/page.js:1:3310)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:1:3355) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/favicon.ico/route.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:203:28)
+    at <unknown> (.next/server/webpack-runtime.js:116:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:115:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:167:22)
+    at <unknown> (.next/server/app/_not-found/page.js:1:3310)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:1:3355) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/favicon.ico/route.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:203:28)
+    at <unknown> (.next/server/webpack-runtime.js:116:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:115:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:167:22)
+    at <unknown> (.next/server/app/_not-found/page.js:1:3310)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:1:3355) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /_next/static/chunks/fallback/webpack.js 500 in 169ms
+ GET /_next/static/chunks/fallback/main.js 500 in 164ms
+ GET /_next/static/chunks/fallback/react-refresh.js 500 in 163ms
+ ⨯ Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/favicon.ico/route.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:203:28)
+    at <unknown> (.next/server/webpack-runtime.js:116:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:115:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:167:22)
+    at <unknown> (.next/server/app/_not-found/page.js:1:3310)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:1:3355) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /_next/static/chunks/fallback/pages/_app.js 500 in 87ms
+ ⨯ Error: Cannot find module './207.js'
+Require stack:
+- /home/obregan/Documents/nodl/apps/web/.next/server/webpack-runtime.js
+- /home/obregan/Documents/nodl/apps/web/.next/server/app/favicon.ico/route.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/require.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/load-components.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/utils.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/options.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/swc/index.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/parse-module.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/build/analysis/get-page-static-info.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/router-server.js
+- /home/obregan/Documents/nodl/node_modules/next/dist/server/lib/start-server.js
+    at __webpack_require__.f.require (.next/server/webpack-runtime.js:203:28)
+    at <unknown> (.next/server/webpack-runtime.js:116:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (.next/server/webpack-runtime.js:115:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (.next/server/webpack-runtime.js:167:22)
+    at <unknown> (.next/server/app/_not-found/page.js:1:3310)
+    at Object.<anonymous> (.next/server/app/_not-found/page.js:1:3355) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /_next/static/chunks/fallback/pages/_error.js 500 in 61ms
+ GET /favicon.ico 200 in 14ms
+[?25h

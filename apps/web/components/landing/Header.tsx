@@ -50,7 +50,7 @@ export default function Header({ onContactClick }: HeaderProps) {
             isDropdown: true,
             subLinks: [
                 { name: "Founder's Bio & Note", href: "/about/founders-bio-note", color: "text-slate-500" },
-                { name: "Node Operator", href: "/about/node-operator", color: "text-slate-500" },
+                { name: "Earth Mesh", href: "/about/node-operator", color: "text-slate-500" },
                 { name: "Space Mesh", href: "/about/space-mesh", color: "text-slate-500" }
             ]
         },

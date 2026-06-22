@@ -1,0 +1,21 @@
+
+> web@0.1.0 dev
+> next dev -H 0.0.0.0 -p 3004 -p 3004
+
+   ▲ Next.js 15.1.0
+   - Local:        http://localhost:3004
+   - Network:      http://0.0.0.0:3004
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 3.2s
+ ○ Compiling / ...
+ ✓ Compiled / in 1829ms (637 modules)
+ HEAD / 200 in 2386ms
+ GET / 200 in 95ms
+ ○ Compiling /privacy ...
+ ✓ Compiled /privacy in 1083ms (645 modules)
+ GET /privacy 200 in 1275ms
+ ✓ Compiled in 2.6s (659 modules)
+ GET /privacy 200 in 167ms
+ GET / 200 in 229ms

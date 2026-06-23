@@ -30,6 +30,7 @@ export default function Footer({ onContactClick }: FooterProps) {
                         <a href="/about/founders-bio-note" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Founder's Bio & Note</a>
                         <a href="/about/node-operator" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Earth Mesh</a>
                         <a href="/about/space-mesh" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Space Mesh</a>
+                        <a href="/docs" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Documentation</a>
                     </div>
                     
                     {/* Governance */}

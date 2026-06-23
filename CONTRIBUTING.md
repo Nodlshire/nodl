@@ -1,45 +1,13 @@
-# Contributing to wnode
+# Contributing to the Sovereign Mesh Specification
 
-First off, thank you for considering contributing to wnode! It's people like you that make wnode a great decentralized compute mesh.
+All changes to the Wnode Sovereign Mesh architecture, execution semantics, or tokenomics must undergo strict peer review.
 
-## Code of Conduct
+## Proposal Process
+1. **Open a Discussion**: Raise an issue describing the limitation in the current v1.0 specification.
+2. **Draft a Formal PR**: All pull requests must respect the following constraints:
+   - Modifications to state invariants must prove adherence to `S(n+1) = f(S(n), P)`.
+   - Threat model additions must classify under the established adversarial models.
+   - Any architectural SVGs must adhere to the 1.5px monochrome (`#111`, `#444`, `#888`) standard.
+3. **Governance Review**: Your PR must be submitted for a DAO timelock review as defined in [GOVERNANCE.md](GOVERNANCE.md).
 
-By participating in this project, you are expected to uphold our commitment to fairness, transparency, and technical excellence.
-
-## How Can I Contribute?
-
-### Reporting Bugs
-* Check the existing issues before opening a new one.
-* Use a clear and descriptive title.
-* Provide a step-by-step reproduction guide.
-
-### Suggesting Enhancements
-* Open an issue with the "enhancement" tag.
-* Explain why the feature would be useful to the community.
-
-### Pull Requests
-1. Fork the repo and create your branch from `main`.
-2. Ensure your code follows the existing style (Go: `gofmt`, TS: `prettier`).
-3. Update the documentation in `/docs` if your change modifies network behavior.
-4. All security-related changes must adhere to the **[Steward Update Policy](docs/steward-update-policy.md)**.
-5. Ensure tests pass (`go test ./...` in `nodld`).
-
-## Development Process
-
-### Backend (`nodld`)
-The core daemon is written in Go.
-- Use `zap` for logging.
-- Ensure concurrency safety in the `registry` and `store`.
-- Never introduce dependencies that require `CGO` to maintain our pure-Go WASM runtime guarantees.
-
-### Frontend (`apps/`)
-Our portals are built with Next.js and TypeScript.
-- Use shared components from `apps/shared`.
-- Ensure all API calls are proxied through the appropriate route handlers for identity hydration.
-
-## Financial & Economic Changes
-Any changes to the commission splits (`economics.go`) or the 120-day compliance hold are considered **Constitutional Updates** and require a high-level governance audit.
-
----
-
-Thank you for building the future of sovereign compute with us!
+*Direct, unverified pushes to the `/docs/v1.0/` specification tree are strictly prohibited.*

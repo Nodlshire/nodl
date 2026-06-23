@@ -27,43 +27,43 @@ export default function Footer({ onContactClick }: FooterProps) {
                     {/* About */}
                     <div className="flex flex-col gap-4">
                         <span className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-2">About</span>
-                        <a href="/about/founders-bio-note" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Founder's Bio & Note</a>
-                        <a href="/about/node-operator" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Earth Mesh</a>
-                        <a href="/about/space-mesh" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Space Mesh</a>
-                        <a href="/docs" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Documentation</a>
+                        <a href="/about/founders-bio-note" className="text-white/70 hover:text-white text-xs transition-colors">Founder's Bio & Note</a>
+                        <a href="/about/node-operator" className="text-white/70 hover:text-white text-xs transition-colors">Earth Mesh</a>
+                        <a href="/about/space-mesh" className="text-white/70 hover:text-white text-xs transition-colors">Space Mesh</a>
+                        <a href="/docs" className="text-white/70 hover:text-white text-xs transition-colors">Documentation</a>
                     </div>
                     
                     {/* Governance */}
                     <div className="flex flex-col gap-4">
                         <span className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-2">Governance</span>
-                        <a href="/governance/overview" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Governance Overview</a>
-                        <a href="/governance/constitution" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Constitution</a>
-                        <a href="/governance/roles" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Roles & Responsibilities</a>
-                        <a href="/governance/treasury" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Treasury Transparency</a>
-                        <a href="/governance/dao" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">DAO Mechanics</a>
-                        <a href="/governance/tokenomics" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Tokenomics</a>
+                        <a href="/governance/overview" className="text-white/70 hover:text-white text-xs transition-colors">Governance Overview</a>
+                        <a href="/governance/constitution" className="text-white/70 hover:text-white text-xs transition-colors">Constitution</a>
+                        <a href="/governance/roles" className="text-white/70 hover:text-white text-xs transition-colors">Roles & Responsibilities</a>
+                        <a href="/governance/treasury" className="text-white/70 hover:text-white text-xs transition-colors">Treasury Transparency</a>
+                        <a href="/governance/dao" className="text-white/70 hover:text-white text-xs transition-colors">DAO Mechanics</a>
+                        <a href="/governance/tokenomics" className="text-white/70 hover:text-white text-xs transition-colors">Tokenomics</a>
                     </div>
 
                     {/* Partners */}
                     <div className="flex flex-col gap-4">
                         <span className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-2">Partners</span>
-                        <a href="/partners" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">All Partners</a>
-                        <a href="/chp" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">VIP 合作伙伴</a>
+                        <a href="/partners" className="text-white/70 hover:text-white text-xs transition-colors">Tech Partners</a>
+                        <a href="/chp" className="text-white/70 hover:text-white text-xs transition-colors">VIP 合作伙伴</a>
                     </div>
 
                     {/* Investors */}
                     <div className="flex flex-col gap-4">
                         <span className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-2">Investors</span>
-                        <a href="/investors/whitepaper" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Whitepaper</a>
-                        <a href="/investors/dr" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Data Room</a>
+                        <a href="/investors/whitepaper" className="text-white/70 hover:text-white text-xs transition-colors">Whitepaper</a>
+                        <a href="/investors/dr" className="text-white/70 hover:text-white text-xs transition-colors">Data Room</a>
                     </div>
 
                     {/* Legal */}
                     <div className="flex flex-col gap-4">
                         <span className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-2">Legal</span>
-                        <a href="/terms" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Terms</a>
-                        <a href="/privacy" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Privacy</a>
-                        <a href="/cookies" className="text-white/40 hover:text-white text-[10px] uppercase tracking-widest transition-colors">Cookies</a>
+                        <a href="/terms" className="text-white/70 hover:text-white text-xs transition-colors">Terms</a>
+                        <a href="/privacy" className="text-white/70 hover:text-white text-xs transition-colors">Privacy</a>
+                        <a href="/cookies" className="text-white/70 hover:text-white text-xs transition-colors">Cookies</a>
                     </div>
 
                     {/* Contact */}

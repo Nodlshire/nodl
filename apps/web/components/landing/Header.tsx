@@ -84,7 +84,7 @@ export default function Header({ onContactClick }: HeaderProps) {
                 { name: "Cookies", href: "/cookies", color: "text-slate-500" }
             ]
         },
-        { name: "Partners", href: "/partners" },
+        { name: "Tech Partners", href: "/partners" },
         { name: "VIP 合作伙伴", href: "/chp" },
     ];
 

@@ -3,7 +3,7 @@ import React from 'react';
 export default function Page() {
     return (
         <div className="w-full pb-24">
-            <h1 className="text-[28px] md:text-[32px] font-bold text-[#f9fafb] mb-[12px] leading-tight tracking-tight">{`Execution: Determinism`}</h1>
+            <h1 className="text-[28px] md:text-[32px] font-bold text-[#f9fafb] mb-[12px] leading-tight tracking-tight">{`The Generative Substrate Rationale`}</h1>
             
             {/* 1. At a Glance */}
             <div className="bg-slate-800/50 border border-slate-700 p-[12px] md:p-[16px] rounded-lg mb-[32px]">
@@ -17,11 +17,11 @@ export default function Page() {
 
             {/* 2. Rationale */}
             <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Rationale</h2>
-            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">Wnode utilizes Wazero for zero-dependency, pure-function deterministic sandboxing. Panic trapping ensures the daemon never crashes.</p>
+            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">Nodes must never run arbitrary or mutable imperative code. The network demands absolute determinism, which is achieved by compiling strictly defined declarative YAML schemas into WASM using TinyGo.</p>
 
             {/* 3. Flow */}
             <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Flow</h2>
-            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">Hot-load WASM -&gt; Init in &lt; 10ms -&gt; Execute -&gt; Flush 64 pages of linear memory. Warning: mem::forget is critical for sandbox isolation and deterministic cleanup.</p>
+            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">spec.yaml is committed -&gt; CI validates -&gt; `generate_all` creates Go stubs -&gt; compiled to WASM -&gt; deployed to network.</p>
 
             {/* 4. Core Code */}
             <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Core Code</h2>
@@ -35,7 +35,11 @@ export default function Page() {
                         </button>
                     </div>
                     <div className="p-4 overflow-x-auto">
-                        <pre className="text-[14px] font-mono text-[#e5e7eb] leading-[1.5]"><code>{`module, err := wazero.Instantiate(ctx, binary)`}</code></pre>
+                        <pre className="text-[14px] font-mono text-[#e5e7eb] leading-[1.5]"><code>{`// Declarative schema structure
+type Spec struct {
+  Name string \`yaml:"name"\`
+  Limits ResourceLimits \`yaml:"limits"\`
+}`}</code></pre>
                     </div>
                 </div>
             </div>
@@ -43,7 +47,7 @@ export default function Page() {
 
             {/* 5. Failure Modes */}
             <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Failure Modes</h2>
-            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">Panic in WASM traps to the host, returning a 422 Unprocessable Entity payload to the Orchestrator.</p>
+            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">Non-deterministic logic (e.g. relying on host time or RNG) will cause Quorum rejection.</p>
             
             <div className="my-[24px] p-[12px] bg-amber-500/10 border-l-4 border-amber-500 rounded-r-lg">
                 <h4 className="text-[14px] font-bold text-amber-500 mb-[4px] uppercase tracking-wider">Warning</h4>
@@ -53,7 +57,7 @@ export default function Page() {
 
             {/* 6. Invariants */}
             <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Invariants</h2>
-            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">64 pages (4MB) memory limit. 2MB binary limit. Strict execution timeout.</p>
+            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">The spec.yaml is the single source of truth. Manual modifications to the generated WASM are mathematically impossible to forge due to Ed25519 signatures.</p>
             
             <div className="my-[24px] p-[12px] bg-[#3b82f6]/10 border-l-4 border-[#3b82f6] rounded-r-lg">
                 <h4 className="text-[14px] font-bold text-[#3b82f6] mb-[4px] uppercase tracking-wider">Info</h4>
@@ -74,8 +78,9 @@ export default function Page() {
                     </div>
                     <div className="p-4 overflow-x-auto">
                         <pre className="text-[14px] font-mono text-[#e5e7eb] leading-[1.5]"><code>{`{
-  "event": "wasm_trap",
-  "reason": "out_of_memory"
+  "event": "spec_compiled",
+  "status": "success",
+  "size_kb": 450
 }`}</code></pre>
                     </div>
                 </div>

@@ -3,7 +3,7 @@ import React from 'react';
 export default function Page() {
     return (
         <div className="w-full pb-24">
-            <h1 className="text-[28px] md:text-[32px] font-bold text-[#f9fafb] mb-[12px] leading-tight tracking-tight">{`Execution: Determinism`}</h1>
+            <h1 className="text-[28px] md:text-[32px] font-bold text-[#f9fafb] mb-[12px] leading-tight tracking-tight">{`Execution: Failure Modes`}</h1>
             
             {/* 1. At a Glance */}
             <div className="bg-slate-800/50 border border-slate-700 p-[12px] md:p-[16px] rounded-lg mb-[32px]">
@@ -21,7 +21,7 @@ export default function Page() {
 
             {/* 3. Flow */}
             <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Flow</h2>
-            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">Hot-load WASM -&gt; Init in &lt; 10ms -&gt; Execute -&gt; Flush 64 pages of linear memory. Warning: mem::forget is critical for sandbox isolation and deterministic cleanup.</p>
+            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">Hot-load WASM -&gt; Init in &lt; 10ms -&gt; Execute -&gt; Flush 64 pages of linear memory.</p>
 
             {/* 4. Core Code */}
             <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Core Code</h2>

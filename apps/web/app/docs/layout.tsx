@@ -7,7 +7,7 @@ import TableOfContents from "../../components/docs/TableOfContents";
 
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
     return (
-        <div className="bg-black min-h-screen text-slate-300 font-sans selection:bg-blue-500/30">
+        <div className="bg-[#0f1117] min-h-screen text-[#e5e7eb] font-sans selection:bg-[#3b82f6]/30">
             {/* Minimal Header instance without interactive Contact modal for docs to keep it simple, or we can just use the standard one with a dummy or functional prop if needed. Since Header expects onContactClick, we will provide a no-op for now. */}
             <Header onContactClick={() => {}} />
 
@@ -30,43 +30,103 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                         <nav className="flex flex-col gap-6">
                             <div className="flex flex-col gap-2">
                                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-2">Overview</span>
-                                <a href="/docs" className="text-sm font-medium hover:text-white transition-colors">Architecture Overview</a>
-                                <a href="/docs/lifecycle" className="text-sm font-medium hover:text-white transition-colors">Integration Lifecycle</a>
+                                <a href="/docs/v1.0/overview" className="text-sm font-medium hover:text-white transition-colors">Overview</a>
+                                <a href="/docs/v1.0/overview/rationale" className="text-sm font-medium hover:text-white transition-colors">Rationale</a>
+                                <a href="/docs/v1.0/overview/flow" className="text-sm font-medium hover:text-white transition-colors">Flow</a>
+                                <a href="/docs/v1.0/overview/core-code" className="text-sm font-medium hover:text-white transition-colors">Core Code</a>
+                                <a href="/docs/v1.0/overview/failure-modes" className="text-sm font-medium hover:text-white transition-colors">Failure Modes</a>
+                                <a href="/docs/v1.0/overview/invariants" className="text-sm font-medium hover:text-white transition-colors">Invariants</a>
+                                <a href="/docs/v1.0/overview/telemetry" className="text-sm font-medium hover:text-white transition-colors">Telemetry</a>
                             </div>
 
                             <div className="flex flex-col gap-2">
-                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-2">Core Concepts</span>
-                                <a href="/docs/substrate" className="text-sm font-medium hover:text-white transition-colors">Substrate Generators</a>
-                                <a href="/docs/specifications" className="text-sm font-medium hover:text-white transition-colors">Integration Specifications</a>
-                                <a href="/docs/execution" className="text-sm font-medium hover:text-white transition-colors">Execution Model</a>
-                                <a href="/docs/security" className="text-sm font-medium hover:text-white transition-colors">Security Model</a>
+                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-2">Architecture</span>
+                                <a href="/docs/v1.0/architecture" className="text-sm font-medium hover:text-white transition-colors">Architecture</a>
+                                <a href="/docs/v1.0/architecture/earth-mesh" className="text-sm font-medium hover:text-white transition-colors">Earth Mesh</a>
+                                <a href="/docs/v1.0/architecture/space-mesh" className="text-sm font-medium hover:text-white transition-colors">Space Mesh</a>
+                                <a href="/docs/v1.0/architecture/orchestrator" className="text-sm font-medium hover:text-white transition-colors">Orchestrator</a>
+                                <a href="/docs/v1.0/architecture/mesh-routing" className="text-sm font-medium hover:text-white transition-colors">Mesh Routing</a>
+                                <a href="/docs/v1.0/architecture/ingestion-pipeline" className="text-sm font-medium hover:text-white transition-colors">Ingestion Pipeline</a>
+                                <a href="/docs/v1.0/architecture/tinygo-pipeline" className="text-sm font-medium hover:text-white transition-colors">TinyGo Pipeline</a>
+                                <a href="/docs/v1.0/architecture/wasm-constraints" className="text-sm font-medium hover:text-white transition-colors">WASM Constraints</a>
+                                <a href="/docs/v1.0/architecture/hot-load-lifecycle" className="text-sm font-medium hover:text-white transition-colors">Hot Load Lifecycle</a>
+                                <a href="/docs/v1.0/architecture/security-envelope" className="text-sm font-medium hover:text-white transition-colors">Security Envelope</a>
                             </div>
 
                             <div className="flex flex-col gap-2">
-                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-2">Operations</span>
-                                <a href="/docs/testing" className="text-sm font-medium hover:text-white transition-colors">Testing & Verification</a>
-                                <a href="/docs/telemetry" className="text-sm font-medium hover:text-white transition-colors">Runtime Telemetry</a>
-                                <a href="/docs/operator-guide" className="text-sm font-medium hover:text-white transition-colors">Node Operator Guide</a>
+                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-2">Integrations</span>
+                                <a href="/docs/v1.0/integrations" className="text-sm font-medium hover:text-white transition-colors">Integrations</a>
+                                <a href="/docs/v1.0/integrations/spec-yaml" className="text-sm font-medium hover:text-white transition-colors">Spec YAML</a>
+                                <a href="/docs/v1.0/integrations/generate-all" className="text-sm font-medium hover:text-white transition-colors">Generate All</a>
+                                <a href="/docs/v1.0/integrations/ci-flow" className="text-sm font-medium hover:text-white transition-colors">CI Flow</a>
+                                <a href="/docs/v1.0/integrations/versioning" className="text-sm font-medium hover:text-white transition-colors">Versioning</a>
+                                <a href="/docs/v1.0/integrations/anti-patterns" className="text-sm font-medium hover:text-white transition-colors">Anti Patterns</a>
                             </div>
 
                             <div className="flex flex-col gap-2">
-                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-2">Developers</span>
-                                <a href="/docs/developer-guide" className="text-sm font-medium hover:text-white transition-colors">Developer Guide</a>
-                                <a href="/docs/sdk-wasm" className="text-sm font-medium hover:text-white transition-colors">SDK & WASM Stubs</a>
-                                <a href="/docs/api" className="text-sm font-medium hover:text-white transition-colors">API Reference</a>
+                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-2">Execution</span>
+                                <a href="/docs/v1.0/execution" className="text-sm font-medium hover:text-white transition-colors">Execution</a>
+                                <a href="/docs/v1.0/execution/wasm-runtime" className="text-sm font-medium hover:text-white transition-colors">WASM Runtime</a>
+                                <a href="/docs/v1.0/execution/pure-functions" className="text-sm font-medium hover:text-white transition-colors">Pure Functions</a>
+                                <a href="/docs/v1.0/execution/panic-handling" className="text-sm font-medium hover:text-white transition-colors">Panic Handling</a>
+                                <a href="/docs/v1.0/execution/timeouts" className="text-sm font-medium hover:text-white transition-colors">Timeouts</a>
+                                <a href="/docs/v1.0/execution/resource-bounds" className="text-sm font-medium hover:text-white transition-colors">Resource Bounds</a>
+                                <a href="/docs/v1.0/execution/determinism" className="text-sm font-medium hover:text-white transition-colors">Determinism</a>
+                                <a href="/docs/v1.0/execution/failure-modes" className="text-sm font-medium hover:text-white transition-colors">Failure Modes</a>
                             </div>
 
                             <div className="flex flex-col gap-2">
-                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-2">CTO-Grade Additions</span>
-                                <a href="/docs/determinism" className="text-sm font-medium hover:text-white transition-colors">Determinism & Reproducibility</a>
-                                <a href="/docs/threat-model" className="text-sm font-medium hover:text-white transition-colors">Threat Model & Guarantees</a>
-                                <a href="/docs/diagrams" className="text-sm font-medium hover:text-white transition-colors">Diagram Library</a>
-                                <a href="/docs/principles" className="text-sm font-medium hover:text-white transition-colors">Design Principles</a>
+                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-2">Operator</span>
+                                <a href="/docs/v1.0/operator" className="text-sm font-medium hover:text-white transition-colors">Operator</a>
+                                <a href="/docs/v1.0/operator/archetypes" className="text-sm font-medium hover:text-white transition-colors">Archetypes</a>
+                                <a href="/docs/v1.0/operator/earth-mesh" className="text-sm font-medium hover:text-white transition-colors">Earth Mesh</a>
+                                <a href="/docs/v1.0/operator/space-mesh" className="text-sm font-medium hover:text-white transition-colors">Space Mesh</a>
+                                <a href="/docs/v1.0/operator/security" className="text-sm font-medium hover:text-white transition-colors">Security</a>
+                                <a href="/docs/v1.0/operator/telemetry" className="text-sm font-medium hover:text-white transition-colors">Telemetry</a>
                             </div>
 
                             <div className="flex flex-col gap-2">
-                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-2">Reference</span>
-                                <a href="/docs/glossary" className="text-sm font-medium hover:text-white transition-colors">Glossary</a>
+                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-2">Developer</span>
+                                <a href="/docs/v1.0/developer" className="text-sm font-medium hover:text-white transition-colors">Developer</a>
+                                <a href="/docs/v1.0/developer/tinygo" className="text-sm font-medium hover:text-white transition-colors">TinyGo</a>
+                                <a href="/docs/v1.0/developer/testing" className="text-sm font-medium hover:text-white transition-colors">Testing</a>
+                                <a href="/docs/v1.0/developer/determinism" className="text-sm font-medium hover:text-white transition-colors">Determinism</a>
+                                <a href="/docs/v1.0/developer/anti-patterns" className="text-sm font-medium hover:text-white transition-colors">Anti Patterns</a>
+                            </div>
+
+                            <div className="flex flex-col gap-2">
+                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-2">Governance</span>
+                                <a href="/docs/v1.0/governance" className="text-sm font-medium hover:text-white transition-colors">Governance</a>
+                                <a href="/docs/v1.0/governance/security-envelope" className="text-sm font-medium hover:text-white transition-colors">Security Envelope</a>
+                                <a href="/docs/v1.0/governance/quorum" className="text-sm font-medium hover:text-white transition-colors">Quorum</a>
+                                <a href="/docs/v1.0/governance/signatures" className="text-sm font-medium hover:text-white transition-colors">Signatures</a>
+                                <a href="/docs/v1.0/governance/upgrades" className="text-sm font-medium hover:text-white transition-colors">Upgrades</a>
+                            </div>
+
+                            <div className="flex flex-col gap-2">
+                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-2">Economics</span>
+                                <a href="/docs/v1.0/economics" className="text-sm font-medium hover:text-white transition-colors">Economics</a>
+                                <a href="/docs/v1.0/economics/proof-of-compute" className="text-sm font-medium hover:text-white transition-colors">Proof Of Compute</a>
+                                <a href="/docs/v1.0/economics/pricing" className="text-sm font-medium hover:text-white transition-colors">Pricing</a>
+                                <a href="/docs/v1.0/economics/retries" className="text-sm font-medium hover:text-white transition-colors">Retries</a>
+                                <a href="/docs/v1.0/economics/bloat-limits" className="text-sm font-medium hover:text-white transition-colors">Bloat Limits</a>
+                            </div>
+
+                            <div className="flex flex-col gap-2">
+                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-2">Appendix</span>
+                                <a href="/docs/v1.0/appendix" className="text-sm font-medium hover:text-white transition-colors">Appendix</a>
+                                <a href="/docs/v1.0/appendix/host-functions" className="text-sm font-medium hover:text-white transition-colors">Host Functions</a>
+                                <a href="/docs/v1.0/appendix/manifest-schema" className="text-sm font-medium hover:text-white transition-colors">Manifest Schema</a>
+                                <a href="/docs/v1.0/appendix/telemetry-examples" className="text-sm font-medium hover:text-white transition-colors">Telemetry Examples</a>
+                                <a href="/docs/v1.0/appendix/spec-examples" className="text-sm font-medium hover:text-white transition-colors">Spec Examples</a>
+                            </div>
+
+                            <div className="flex flex-col gap-2 mt-4">
+                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#10b981] mb-2">CTO-Grade Additions</span>
+                                <a href="/docs/v1.0/cto-grade/quorum-slashing" className="text-sm font-medium hover:text-white transition-colors">Quorum & Slashing</a>
+                                <a href="/docs/v1.0/cto-grade/orchestrator-resilience" className="text-sm font-medium hover:text-white transition-colors">Orchestrator Resilience</a>
+                                <a href="/docs/v1.0/cto-grade/tokenomics-integration" className="text-sm font-medium hover:text-white transition-colors">Tokenomics Integration</a>
+                                <a href="/docs/v1.0/cto-grade/mesh-economics" className="text-sm font-medium hover:text-white transition-colors">Mesh Economics</a>
                             </div>
                         </nav>
                     </div>
@@ -74,7 +134,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
 
                 {/* Main Content Area */}
                 <main className="flex-1 min-w-0 flex flex-col lg:flex-row gap-12">
-                    <div className="flex-1 prose prose-invert prose-slate max-w-none prose-headings:font-space-grotesk prose-headings:tracking-tight prose-a:text-blue-400 hover:prose-a:text-blue-300 prose-code:text-blue-300 prose-code:bg-blue-500/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-pre:bg-slate-900 prose-pre:border prose-pre:border-slate-800">
+                    <div className="flex-1 w-full max-w-[880px] mx-auto text-[#e5e7eb]">
                         {children}
                     </div>
 

@@ -1,201 +1,127 @@
-import { Metadata } from 'next';
+import React from 'react';
 
-export const metadata: Metadata = {
-    title: 'Earth Mesh | WeNode',
-    description: 'Formal architectural specification of the terrestrial execution node layer.',
-};
-
-export default function EarthMeshPage() {
+export default function Page() {
     return (
-        <>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Earth Mesh</h1>
-            <p className="text-xl text-slate-400 mb-8 border-b border-white/10 pb-8">
-                The primary, high-throughput terrestrial execution tier of the sovereign compute matrix.
-            </p>
+        <div className="w-full pb-24">
+            <h1 className="text-[28px] md:text-[32px] font-bold text-[#f9fafb] mb-[12px] leading-tight tracking-tight">{`Architecture: Earth Mesh`}</h1>
+            
+            {/* 1. At a Glance */}
+            <div className="bg-slate-800/50 border border-slate-700 p-[12px] md:p-[16px] rounded-lg mb-[32px]">
+                <h4 className="text-[12px] font-bold uppercase tracking-widest text-slate-400 mb-[12px]">At a Glance</h4>
+                <ul className="text-[16px] leading-[1.6] text-slate-300 space-y-[8px] list-disc list-inside m-0">
+                    <li>Strict deterministic isolation.</li>
+                    <li>Zero-compilation node rule.</li>
+                    <li>Sub-10ms initialization maximum.</li>
+                </ul>
+            </div>
 
-            <h2 id="formal-execution-semantics">1. Formal Execution Semantics</h2>
-            <p>
-                The Earth Mesh serves as the primary terrestrial execution tier. Execution semantics mandate absolute synchronous determinism bounded by a 50ms watchdog limit. Nodes do not maintain global state; they receive a serialized input state pointer, execute the transition via Wazero, and return the modified state pointer. Memory is strictly linear and isolated per invocation, preventing cross-request contamination. The mesh enforces a single linear memory model for all WASM substrates where calls are processed in DAG topological order. The execution is strictly isolated with no WASI, no syscalls, no network, no filesystem access, and adheres to <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>. All execution faults use a standardized trap-on-fault behavior and propagate error codes uniformly.
-            </p>
+            {/* 2. Rationale */}
+            <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Rationale</h2>
+            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">Deep dive into the architecture of earth-mesh.</p>
 
-            <h2 id="invariants">2. Core Invariants</h2>
-            <div className="overflow-x-auto my-8 border border-white/10 rounded-lg">
-                <table className="w-full text-left text-sm m-0">
-                    <thead className="bg-white/5 border-b border-white/10 text-slate-300">
-                        <tr>
-                            <th className="p-4 font-semibold tracking-wider uppercase text-xs">Name</th>
-                            <th className="p-4 font-semibold tracking-wider uppercase text-xs">Description</th>
-                            <th className="p-4 font-semibold tracking-wider uppercase text-xs">Enforcement Rule</th>
+            {/* 3. Flow */}
+            <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Flow</h2>
+            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">Pipeline transitions from declarative intent to executed deterministic artifact.</p>
+
+            {/* 4. Core Code */}
+            <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Core Code</h2>
+            
+            <div className="mt-[20px] mb-[20px]">
+                <div className="bg-[#0d1117] border border-slate-800 rounded-xl overflow-hidden shadow-2xl">
+                    <div className="px-4 py-2 border-b border-slate-800 bg-[#0f1117] flex justify-between items-center">
+                        <span className="text-[10px] uppercase tracking-widest text-slate-500 font-bold">go</span>
+                        <button className="text-slate-500 hover:text-white transition-colors" aria-label="Copy code">
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                        </button>
+                    </div>
+                    <div className="p-4 overflow-x-auto">
+                        <pre className="text-[14px] font-mono text-[#e5e7eb] leading-[1.5]"><code>{`// earth-mesh code
+func Init() {}`}</code></pre>
+                    </div>
+                </div>
+            </div>
+    
+
+            {/* 5. Failure Modes */}
+            <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Failure Modes</h2>
+            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">Signature mismatch results in immediate execution halt.</p>
+            
+            <div className="my-[24px] p-[12px] bg-amber-500/10 border-l-4 border-amber-500 rounded-r-lg">
+                <h4 className="text-[14px] font-bold text-amber-500 mb-[4px] uppercase tracking-wider">Warning</h4>
+                <p className="text-[14px] text-slate-300 leading-[1.6] m-0">Uncaught panics yield an immediate 422 Quorum Rejection and Operator slashing [TBD: Reputation score reduction + cooldown periods].</p>
+            </div>
+        
+
+            {/* 6. Invariants */}
+            <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Invariants</h2>
+            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">Artifacts capped at 2MB. 10ms cold start initialization limit.</p>
+            
+            <div className="my-[24px] p-[12px] bg-[#3b82f6]/10 border-l-4 border-[#3b82f6] rounded-r-lg">
+                <h4 className="text-[14px] font-bold text-[#3b82f6] mb-[4px] uppercase tracking-wider">Info</h4>
+                <p className="text-[14px] text-slate-300 leading-[1.6] m-0">64-page memory bounds and 2MB artifact limits apply universally across the Sovereign Mesh.</p>
+            </div>
+        
+
+            {/* 7. Telemetry */}
+            <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Telemetry</h2>
+            
+            <div className="mt-[20px] mb-[20px]">
+                <div className="bg-[#0d1117] border border-slate-800 rounded-xl overflow-hidden shadow-2xl">
+                    <div className="px-4 py-2 border-b border-slate-800 bg-[#0f1117] flex justify-between items-center">
+                        <span className="text-[10px] uppercase tracking-widest text-slate-500 font-bold">json</span>
+                        <button className="text-slate-500 hover:text-white transition-colors" aria-label="Copy code">
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                        </button>
+                    </div>
+                    <div className="p-4 overflow-x-auto">
+                        <pre className="text-[14px] font-mono text-[#e5e7eb] leading-[1.5]"><code>{`{
+  "component": "architecture",
+  "status": "healthy"
+}`}</code></pre>
+                    </div>
+                </div>
+            </div>
+    
+
+            {/* 8. Cross-Component Interactions */}
+            <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Cross-Component Interactions</h2>
+            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">Interaction with Orchestrator over WSS multiplex channels. Execution RAM is strictly zeroed post-execution via mem::forget; telemetry is cached transiently and persisted selectively by Orchestrator. P2P operator communication is disabled to prevent Sybil attacks.</p>
+
+            {/* 9. Best Practices */}
+            <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Best Practices</h2>
+            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">Always utilize the CI pipeline's `generate_all` rather than manually constructing payloads.</p>
+
+            {/* 10. Appendix (Global Constraints) */}
+            <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Appendix: Global Constraints</h2>
+            <div className="mt-[24px] mb-[24px] overflow-hidden rounded-xl border border-slate-800 bg-[#0d1117]">
+                <table className="w-full text-left border-collapse">
+                    <thead>
+                        <tr className="bg-slate-800">
+                            <th className="p-[12px] font-semibold text-[#f9fafb] text-[14px]">Constraint Vector</th>
+                            <th className="p-[12px] font-semibold text-[#f9fafb] text-[14px]">Bound/Policy</th>
                         </tr>
                     </thead>
-                    <tbody className="divide-y divide-white/10 text-slate-400">
-                        <tr className="hover:bg-white/[0.02]">
-                            <td className="p-4 font-mono text-blue-400">Execution Timeout</td>
-                            <td className="p-4">ExecTime &le; 50ms</td>
-                            <td className="p-4">Watchdog eviction.</td>
+                    <tbody className="text-[14px] text-slate-300 divide-y divide-slate-800">
+                        <tr className="bg-[#0f1117] hover:bg-slate-900/50">
+                            <td className="p-[12px]">WASM Sandbox</td>
+                            <td className="p-[12px]">WASM binary size = 2MB max. WASM memory = 64-pages (4MB). Cold start &lt;10ms. Execution timeout = declared in spec.yaml.</td>
                         </tr>
-                        <tr className="hover:bg-white/[0.02]">
-                            <td className="p-4 font-mono text-blue-400">State Transition</td>
-                            <td className="p-4">S(n+1) = f(S(n), P)</td>
-                            <td className="p-4">Single-threaded execution without nondeterminism.</td>
+                        <tr className="bg-slate-900/30 hover:bg-slate-900/50">
+                            <td className="p-[12px]">Determinism</td>
+                            <td className="p-[12px]">No network access (ErrNoSys). No RNG, no time, no syscalls.</td>
                         </tr>
-                        <tr className="hover:bg-white/[0.02]">
-                            <td className="p-4 font-mono text-blue-400">Consensus</td>
-                            <td className="p-4">Q = ceil(2/3 * N)</td>
-                            <td className="p-4">Quorum divergence slashing.</td>
+                        <tr className="bg-[#0f1117] hover:bg-slate-900/50">
+                            <td className="p-[12px]">Security Envelope</td>
+                            <td className="p-[12px]">Ed25519 payload signatures, HMAC ingress</td>
                         </tr>
-                        <tr className="hover:bg-white/[0.02]">
-                            <td className="p-4 font-mono text-blue-400">Sandbox Isolation</td>
-                            <td className="p-4">Strict pointer bounds</td>
-                            <td className="p-4">No external entropy, no syscalls.</td>
+                        <tr className="bg-slate-900/30 hover:bg-slate-900/50">
+                            <td className="p-[12px]">Node Operations</td>
+                            <td className="p-[12px]">Zero-compilation rule, cgroups required</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-
-            <h2 id="formal-interfaces">3. Formal Interface Definitions</h2>
-            <p>
-                Earth Mesh nodes communicate exclusively with the Orchestrator via persistent `WebSocket Secure (WSS)` connections, utilizing protobuf schemas for minimal overhead.
-            </p>
-            <div className="bg-[#0f172a] rounded-lg p-6 border border-white/10 font-mono text-sm mb-8 text-emerald-300">
-<pre className="m-0 bg-transparent border-0">{`// protobuf: Earth Mesh Invocation
-message ExecutionJob {
-  bytes tx_hash = 1;
-  bytes state_buffer = 2;
-  bytes event_payload = 3;
-  uint64 gas_limit = 4;
-}
-
-message ExecutionResult {
-  bytes tx_hash = 1;
-  bytes state_diff = 2;
-  uint64 gas_consumed = 3;
-  bool trapped = 4;
-}`}</pre>
-            </div>
-
-            <h2 id="state-transition">4. State Transition Examples (Earth Mesh Execution)</h2>
-            <div className="overflow-x-auto my-8 border border-white/10 rounded-lg">
-                <table className="w-full text-left text-sm m-0">
-                    <thead className="bg-white/5 border-b border-white/10 text-slate-300">
-                        <tr>
-                            <th className="p-4 font-semibold uppercase text-xs">Phase</th>
-                            <th className="p-4 font-semibold uppercase text-xs">Data Artifact</th>
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y divide-white/10 text-slate-400 font-mono text-xs">
-                        <tr className="hover:bg-white/[0.02]">
-                            <td className="p-4 text-slate-300">WSS Receive</td>
-                            <td className="p-4">ExecutionJob(0x1a2b...)</td>
-                        </tr>
-                        <tr className="hover:bg-white/[0.02]">
-                            <td className="p-4 text-slate-300">Heap Injection</td>
-                            <td className="p-4">Linear Memory Map (0-64KB)</td>
-                        </tr>
-                        <tr className="hover:bg-white/[0.02]">
-                            <td className="p-4 text-emerald-400">Execution</td>
-                            <td className="p-4">CPU Core 3 (1.2ms)</td>
-                        </tr>
-                        <tr className="hover:bg-white/[0.02]">
-                            <td className="p-4 text-blue-400">Yield</td>
-                            <td className="p-4">ExecutionResult(diff_hash)</td>
-                        </tr>
-                        <tr className="hover:bg-white/[0.02]">
-                            <td className="p-4 text-purple-400">Consensus</td>
-                            <td className="p-4">Orchestrator ACKs 12/15 matching hashes</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <h2 id="threat-model">5. Threat Model Detail</h2>
-            <div className="mb-6">
-                <strong>Adversary Classes:</strong>
-                <ul className="list-disc pl-6 mt-2 text-slate-300">
-                    <li>Passive Observer</li>
-                    <li>Active Network Adversary</li>
-                    <li>Malicious Operator</li>
-                    <li>Byzantine Orchestrator</li>
-                </ul>
-            </div>
-            <div className="mb-6">
-                <strong>Attack Surfaces:</strong>
-                <ul className="list-disc pl-6 mt-2 text-slate-300">
-                    <li>Network-level: Earth Mesh partition and BFT stalling.</li>
-                    <li>Execution-level: Altering local state transition outputs.</li>
-                    <li>Economic-level: Priority fee manipulation.</li>
-                    <li>Governance-level: Malicious quorum configuration upgrades.</li>
-                    <li>Telemetry-level: Forged WSS latency responses.</li>
-                </ul>
-            </div>
-            <div className="mb-6">
-                <strong>Mitigation Structure:</strong>
-                <ul className="list-disc pl-6 mt-2 text-slate-300">
-                    <li>Cryptographic Guarantees: blake3 hashing for state validation and ed25519 signatures.</li>
-                    <li>Deterministic Execution Rules: Strict pointer bounds, single linear memory, no syscalls, and no external entropy.</li>
-                    <li>Economic Disincentives: Instant slashing for Byzantine divergence.</li>
-                </ul>
-            </div>
-            <p className="text-slate-300 mb-8">
-                The <strong>Operator</strong> is subject to strict slashing rules, quorum assumptions, uptime guarantees, and telemetry verification rules. The <strong>Orchestrator</strong> remains untrusted, fully verifiable, and bounded by deterministic rules. The <strong>Substrate</strong> explicitly enforces no syscalls, no nondeterminism, no external entropy, and strict pointer bounds.
-            </p>
-
-            <h2 id="operator-lifecycle">6. Operator Lifecycle within the Earth Mesh</h2>
-            <p>
-                To join the Earth Mesh, operators must stake WNODE and undergo cryptographic attestation via an Orchestrator handshake. Once active, the node is assigned to specific execution shards. Failure to maintain 99.99% uptime or consistently delivering late execution results (&gt; 50ms) results in demotion from Tier-1 and partial slashing.
-            </p>
-
-            <h2 id="economic-model">7. Economic Model</h2>
-            <p>
-                Earth Mesh nodes capture `Base_Fee + Priority_Fee` for every transaction they process within their shard. Revenue is streamed deterministically per epoch based on the volume of gas consumed by the node's successful BFT contributions.
-            </p>
-
-            <h2 id="governance-model">8. Governance Model</h2>
-            <p>
-                The DAO manages the Earth Mesh admission parameters. A `DAO_OPERATOR_CONFIG` vote dictates the minimum WNODE stake required to operate an Earth Mesh node and defines the slashing parameters for latency violations and hash mismatches.
-            </p>
-
-            <h2 id="performance">9. Performance Envelopes</h2>
-            <ul className="list-disc pl-6 mb-6 text-slate-300">
-                <li><strong>Latency Bounds:</strong> Strict <code>ExecTime &le; 50ms</code>.</li>
-                <li><strong>Throughput Metrics:</strong> &gt; 10,000 <code>ops_per_sec</code> per shard.</li>
-                <li><strong>Resource Pressure:</strong> Monitored <code>cpu_pressure_pct</code> to prevent stalling.</li>
-                <li><strong>Warm vs Cold Start:</strong> Fast <code>ColdStart</code> via pre-downloaded modules.</li>
-            </ul>
-
-            <h2 id="cross-component">10. Cross-Component Contracts</h2>
-            <p>
-                Earth Mesh directly interfaces with the Orchestrator via strictly asynchronous WebSocket (<code>WSS</code>) or multiplexed mTLS streams for exchanging <code>ExecutionJob</code> and <code>ExecutionResult</code> payloads. In the event of catastrophic global partition where the Earth Mesh cannot reach BFT quorum on a <code>SyncManifest</code>, the Orchestrator's contract mandates immediate failover to the Space Mesh.
-            </p>
-
-            <h2 id="formal-diagrams">11. Formal Earth Mesh DAG</h2>
-            <div className="my-10 bg-[#111] border border-[#444] rounded-xl p-8 overflow-hidden">
-                <svg viewBox="0 0 800 300" className="w-full h-auto">
-                    <defs>
-                        <marker id="arrowSolid" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                            <path d="M 0 0 L 10 5 L 0 10 z" fill="#444" />
-                        </marker>
-                    </defs>
-                    <rect x="50" y="100" width="120" height="100" rx="8" fill="#111" stroke="#444" strokeWidth="1.5" />
-                    <text x="110" y="155" fill="#ccc" fontSize="14" textAnchor="middle" fontWeight="bold">Orchestrator</text>
-
-                    <line x1="170" y1="130" x2="330" y2="100" stroke="#444" strokeWidth="1.5" markerEnd="url(#arrowSolid)" />
-                    <line x1="170" y1="150" x2="330" y2="150" stroke="#444" strokeWidth="1.5" markerEnd="url(#arrowSolid)" />
-                    <line x1="170" y1="170" x2="330" y2="200" stroke="#444" strokeWidth="1.5" markerEnd="url(#arrowSolid)" />
-
-                    <rect x="340" y="70" width="150" height="40" rx="8" fill="#111" stroke="#444" strokeWidth="1.5" />
-                    <text x="415" y="95" fill="#888" fontSize="11" textAnchor="middle">Node A (WSS)</text>
-
-                    <rect x="340" y="130" width="150" height="40" rx="8" fill="#111" stroke="#444" strokeWidth="1.5" />
-                    <text x="415" y="155" fill="#888" fontSize="11" textAnchor="middle">Node B (WSS)</text>
-
-                    <rect x="340" y="190" width="150" height="40" rx="8" fill="#111" stroke="#444" strokeWidth="1.5" />
-                    <text x="415" y="215" fill="#888" fontSize="11" textAnchor="middle">Node C (WSS)</text>
-                    
-                    <rect x="320" y="50" width="190" height="200" rx="8" fill="none" stroke="#444" strokeWidth="1.5" strokeDasharray="4 4" />
-                    <text x="415" y="40" fill="#ccc" fontSize="14" textAnchor="middle" fontWeight="bold">Quorum Verification Zone</text>
-                </svg>
-            </div>
-        </>
+    
+        </div>
     );
 }

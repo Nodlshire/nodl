@@ -3,7 +3,7 @@ import React from 'react';
 export default function Page() {
     return (
         <div className="w-full pb-24">
-            <h1 className="text-[28px] md:text-[32px] font-bold text-[#f9fafb] mb-[12px] leading-tight tracking-tight">{`Execution: Determinism`}</h1>
+            <h1 className="text-[28px] md:text-[32px] font-bold text-[#f9fafb] mb-[12px] leading-tight tracking-tight">{`Integrations: Spec Yaml`}</h1>
             
             {/* 1. At a Glance */}
             <div className="bg-slate-800/50 border border-slate-700 p-[12px] md:p-[16px] rounded-lg mb-[32px]">
@@ -17,11 +17,11 @@ export default function Page() {
 
             {/* 2. Rationale */}
             <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Rationale</h2>
-            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">Wnode utilizes Wazero for zero-dependency, pure-function deterministic sandboxing. Panic trapping ensures the daemon never crashes.</p>
+            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">Integrations are built on a strictly generative substrate. The `spec.yaml` is the only source of truth.</p>
 
             {/* 3. Flow */}
             <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Flow</h2>
-            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">Hot-load WASM -&gt; Init in &lt; 10ms -&gt; Execute -&gt; Flush 64 pages of linear memory. Warning: mem::forget is critical for sandbox isolation and deterministic cleanup.</p>
+            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">YAML -&gt; `generate_all` -&gt; Go stubs -&gt; TinyGo -&gt; WASM.</p>
 
             {/* 4. Core Code */}
             <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Core Code</h2>
@@ -35,7 +35,7 @@ export default function Page() {
                         </button>
                     </div>
                     <div className="p-4 overflow-x-auto">
-                        <pre className="text-[14px] font-mono text-[#e5e7eb] leading-[1.5]"><code>{`module, err := wazero.Instantiate(ctx, binary)`}</code></pre>
+                        <pre className="text-[14px] font-mono text-[#e5e7eb] leading-[1.5]"><code>{`generate_all --target ./integrations/aave`}</code></pre>
                     </div>
                 </div>
             </div>
@@ -43,7 +43,7 @@ export default function Page() {
 
             {/* 5. Failure Modes */}
             <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Failure Modes</h2>
-            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">Panic in WASM traps to the host, returning a 422 Unprocessable Entity payload to the Orchestrator.</p>
+            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">Syntax error in YAML fails CI. Unsupported Go standard library usage fails TinyGo compilation.</p>
             
             <div className="my-[24px] p-[12px] bg-amber-500/10 border-l-4 border-amber-500 rounded-r-lg">
                 <h4 className="text-[14px] font-bold text-amber-500 mb-[4px] uppercase tracking-wider">Warning</h4>
@@ -53,7 +53,7 @@ export default function Page() {
 
             {/* 6. Invariants */}
             <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Invariants</h2>
-            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">64 pages (4MB) memory limit. 2MB binary limit. Strict execution timeout.</p>
+            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">No network IO during execution. Wazero enforces ErrNoSys for all system calls.</p>
             
             <div className="my-[24px] p-[12px] bg-[#3b82f6]/10 border-l-4 border-[#3b82f6] rounded-r-lg">
                 <h4 className="text-[14px] font-bold text-[#3b82f6] mb-[4px] uppercase tracking-wider">Info</h4>
@@ -74,8 +74,8 @@ export default function Page() {
                     </div>
                     <div className="p-4 overflow-x-auto">
                         <pre className="text-[14px] font-mono text-[#e5e7eb] leading-[1.5]"><code>{`{
-  "event": "wasm_trap",
-  "reason": "out_of_memory"
+  "event": "integration_loaded",
+  "spec": "aave"
 }`}</code></pre>
                     </div>
                 </div>

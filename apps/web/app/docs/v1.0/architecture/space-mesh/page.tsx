@@ -1,203 +1,127 @@
-import { Metadata } from 'next';
+import React from 'react';
 
-export const metadata: Metadata = {
-    title: 'Space Mesh | WeNode',
-    description: 'Formal architectural specification of the orbital execution fallback and execution nodes.',
-};
-
-export default function SpaceMeshPage() {
+export default function Page() {
     return (
-        <>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Space Mesh</h1>
-            <p className="text-xl text-slate-400 mb-8 border-b border-white/10 pb-8">
-                The high-latency, disaster-recovery Tier-3 orbital execution matrix guaranteeing global state liveness.
-            </p>
+        <div className="w-full pb-24">
+            <h1 className="text-[28px] md:text-[32px] font-bold text-[#f9fafb] mb-[12px] leading-tight tracking-tight">{`Architecture: Space Mesh`}</h1>
+            
+            {/* 1. At a Glance */}
+            <div className="bg-slate-800/50 border border-slate-700 p-[12px] md:p-[16px] rounded-lg mb-[32px]">
+                <h4 className="text-[12px] font-bold uppercase tracking-widest text-slate-400 mb-[12px]">At a Glance</h4>
+                <ul className="text-[16px] leading-[1.6] text-slate-300 space-y-[8px] list-disc list-inside m-0">
+                    <li>Strict deterministic isolation.</li>
+                    <li>Zero-compilation node rule.</li>
+                    <li>Sub-10ms initialization maximum.</li>
+                </ul>
+            </div>
 
-            <h2 id="formal-execution-semantics">1. Formal Execution Semantics</h2>
-            <p>
-                The Space Mesh provides high-latency, asynchronous execution liveness when Earth Mesh quorum cannot be reached. Satellites run highly restricted Wazero sandboxes tailored for low-memory overhead (`spacegen`). Execution semantics require payloads to be bundled with Forward Error Correction (FEC) codes to mathematically recover from bit flips caused by radiation. Output determinism relies on prolonged asynchronous BFT voting rather than sub-second synchrony. All orbital substrates execute in a single linear memory model enforcing strict WASM sandboxing (no WASI, no syscalls, no network, no filesystem). Substrate calls MUST be processed in DAG topological order, and memory adheres to standardized pointer bounds: <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>. Faults propagate via standardized trap codes deterministically.
-            </p>
+            {/* 2. Rationale */}
+            <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Rationale</h2>
+            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">Deep dive into the architecture of space-mesh.</p>
 
-            <h2 id="invariants">2. Core Invariants</h2>
-            <div className="overflow-x-auto my-8 border border-white/10 rounded-lg">
-                <table className="w-full text-left text-sm m-0">
-                    <thead className="bg-white/5 border-b border-white/10 text-slate-300">
-                        <tr>
-                            <th className="p-4 font-semibold tracking-wider uppercase text-xs">Name</th>
-                            <th className="p-4 font-semibold tracking-wider uppercase text-xs">Description</th>
-                            <th className="p-4 font-semibold tracking-wider uppercase text-xs">Enforcement Rule</th>
+            {/* 3. Flow */}
+            <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Flow</h2>
+            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">Pipeline transitions from declarative intent to executed deterministic artifact.</p>
+
+            {/* 4. Core Code */}
+            <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Core Code</h2>
+            
+            <div className="mt-[20px] mb-[20px]">
+                <div className="bg-[#0d1117] border border-slate-800 rounded-xl overflow-hidden shadow-2xl">
+                    <div className="px-4 py-2 border-b border-slate-800 bg-[#0f1117] flex justify-between items-center">
+                        <span className="text-[10px] uppercase tracking-widest text-slate-500 font-bold">go</span>
+                        <button className="text-slate-500 hover:text-white transition-colors" aria-label="Copy code">
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                        </button>
+                    </div>
+                    <div className="p-4 overflow-x-auto">
+                        <pre className="text-[14px] font-mono text-[#e5e7eb] leading-[1.5]"><code>{`// space-mesh code
+func Init() {}`}</code></pre>
+                    </div>
+                </div>
+            </div>
+    
+
+            {/* 5. Failure Modes */}
+            <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Failure Modes</h2>
+            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">Signature mismatch results in immediate execution halt.</p>
+            
+            <div className="my-[24px] p-[12px] bg-amber-500/10 border-l-4 border-amber-500 rounded-r-lg">
+                <h4 className="text-[14px] font-bold text-amber-500 mb-[4px] uppercase tracking-wider">Warning</h4>
+                <p className="text-[14px] text-slate-300 leading-[1.6] m-0">Uncaught panics yield an immediate 422 Quorum Rejection and Operator slashing [TBD: Reputation score reduction + cooldown periods].</p>
+            </div>
+        
+
+            {/* 6. Invariants */}
+            <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Invariants</h2>
+            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">Artifacts capped at 2MB. 10ms cold start initialization limit.</p>
+            
+            <div className="my-[24px] p-[12px] bg-[#3b82f6]/10 border-l-4 border-[#3b82f6] rounded-r-lg">
+                <h4 className="text-[14px] font-bold text-[#3b82f6] mb-[4px] uppercase tracking-wider">Info</h4>
+                <p className="text-[14px] text-slate-300 leading-[1.6] m-0">64-page memory bounds and 2MB artifact limits apply universally across the Sovereign Mesh.</p>
+            </div>
+        
+
+            {/* 7. Telemetry */}
+            <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Telemetry</h2>
+            
+            <div className="mt-[20px] mb-[20px]">
+                <div className="bg-[#0d1117] border border-slate-800 rounded-xl overflow-hidden shadow-2xl">
+                    <div className="px-4 py-2 border-b border-slate-800 bg-[#0f1117] flex justify-between items-center">
+                        <span className="text-[10px] uppercase tracking-widest text-slate-500 font-bold">json</span>
+                        <button className="text-slate-500 hover:text-white transition-colors" aria-label="Copy code">
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                        </button>
+                    </div>
+                    <div className="p-4 overflow-x-auto">
+                        <pre className="text-[14px] font-mono text-[#e5e7eb] leading-[1.5]"><code>{`{
+  "component": "architecture",
+  "status": "healthy"
+}`}</code></pre>
+                    </div>
+                </div>
+            </div>
+    
+
+            {/* 8. Cross-Component Interactions */}
+            <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Cross-Component Interactions</h2>
+            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">Interaction with Orchestrator over WSS multiplex channels. Execution RAM is strictly zeroed post-execution via mem::forget; telemetry is cached transiently and persisted selectively by Orchestrator. P2P operator communication is disabled to prevent Sybil attacks.</p>
+
+            {/* 9. Best Practices */}
+            <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Best Practices</h2>
+            <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">Always utilize the CI pipeline's `generate_all` rather than manually constructing payloads.</p>
+
+            {/* 10. Appendix (Global Constraints) */}
+            <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Appendix: Global Constraints</h2>
+            <div className="mt-[24px] mb-[24px] overflow-hidden rounded-xl border border-slate-800 bg-[#0d1117]">
+                <table className="w-full text-left border-collapse">
+                    <thead>
+                        <tr className="bg-slate-800">
+                            <th className="p-[12px] font-semibold text-[#f9fafb] text-[14px]">Constraint Vector</th>
+                            <th className="p-[12px] font-semibold text-[#f9fafb] text-[14px]">Bound/Policy</th>
                         </tr>
                     </thead>
-                    <tbody className="divide-y divide-white/10 text-slate-400">
-                        <tr className="hover:bg-white/[0.02]">
-                            <td className="p-4 font-mono text-purple-400">High Latency</td>
-                            <td className="p-4">RTT &ge; 500ms</td>
-                            <td className="p-4">Orbital physics bounding.</td>
+                    <tbody className="text-[14px] text-slate-300 divide-y divide-slate-800">
+                        <tr className="bg-[#0f1117] hover:bg-slate-900/50">
+                            <td className="p-[12px]">WASM Sandbox</td>
+                            <td className="p-[12px]">WASM binary size = 2MB max. WASM memory = 64-pages (4MB). Cold start &lt;10ms. Execution timeout = declared in spec.yaml.</td>
                         </tr>
-                        <tr className="hover:bg-white/[0.02]">
-                            <td className="p-4 font-mono text-purple-400">State Transition</td>
-                            <td className="p-4">S(n+1) = f(S(n), P)</td>
-                            <td className="p-4">Single-threaded execution without nondeterminism.</td>
+                        <tr className="bg-slate-900/30 hover:bg-slate-900/50">
+                            <td className="p-[12px]">Determinism</td>
+                            <td className="p-[12px]">No network access (ErrNoSys). No RNG, no time, no syscalls.</td>
                         </tr>
-                        <tr className="hover:bg-white/[0.02]">
-                            <td className="p-4 font-mono text-purple-400">Consensus</td>
-                            <td className="p-4">Q = ceil(2/3 * N)</td>
-                            <td className="p-4">Quorum divergence slashing.</td>
+                        <tr className="bg-[#0f1117] hover:bg-slate-900/50">
+                            <td className="p-[12px]">Security Envelope</td>
+                            <td className="p-[12px]">Ed25519 payload signatures, HMAC ingress</td>
                         </tr>
-                        <tr className="hover:bg-white/[0.02]">
-                            <td className="p-4 font-mono text-purple-400">Sandbox Isolation</td>
-                            <td className="p-4">Strict pointer bounds</td>
-                            <td className="p-4">No external entropy, no syscalls.</td>
+                        <tr className="bg-slate-900/30 hover:bg-slate-900/50">
+                            <td className="p-[12px]">Node Operations</td>
+                            <td className="p-[12px]">Zero-compilation rule, cgroups required</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-
-            <h2 id="formal-interfaces">3. Formal Interface Definitions</h2>
-            <p>
-                Satellites utilize specialized DTN (Delay Tolerant Networking) schemas over UDP or custom radio frames to receive jobs from ground stations.
-            </p>
-            <div className="bg-[#0f172a] rounded-lg p-6 border border-white/10 font-mono text-sm mb-8 text-purple-300">
-<pre className="m-0 bg-transparent border-0">{`// protobuf: Space Mesh Invocation (DTN Wrapped)
-message SpaceExecutionBundle {
-  bytes bundle_id = 1;
-  repeated ExecutionJob jobs = 2;
-  bytes fec_parity_blocks = 3;
-  uint64 deadline_timestamp_ms = 4;
-}
-
-message SpaceTelemetry {
-  bytes bundle_id = 1;
-  repeated ExecutionResult results = 2;
-  uint32 radiation_seu_count = 3;
-}`}</pre>
-            </div>
-
-            <h2 id="state-transition">4. State Transition Examples (Space Mesh Execution)</h2>
-            <div className="overflow-x-auto my-8 border border-white/10 rounded-lg">
-                <table className="w-full text-left text-sm m-0">
-                    <thead className="bg-white/5 border-b border-white/10 text-slate-300">
-                        <tr>
-                            <th className="p-4 font-semibold uppercase text-xs">Phase</th>
-                            <th className="p-4 font-semibold uppercase text-xs">Data Artifact</th>
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y divide-white/10 text-slate-400 font-mono text-xs">
-                        <tr className="hover:bg-white/[0.02]">
-                            <td className="p-4 text-slate-300">Earth Partition</td>
-                            <td className="p-4">Orchestrator detects Quorum Failure</td>
-                        </tr>
-                        <tr className="hover:bg-white/[0.02]">
-                            <td className="p-4 text-slate-300">Ground Station Uplink</td>
-                            <td className="p-4">Tx: SpaceExecutionBundle(1500 jobs)</td>
-                        </tr>
-                        <tr className="hover:bg-white/[0.02]">
-                            <td className="p-4 text-purple-400">Orbital Execution</td>
-                            <td className="p-4">Satellite runs 16MB Heap WASM (2500ms)</td>
-                        </tr>
-                        <tr className="hover:bg-white/[0.02]">
-                            <td className="p-4 text-blue-400">Ground Station Downlink</td>
-                            <td className="p-4">Rx: SpaceTelemetry(Diffs)</td>
-                        </tr>
-                        <tr className="hover:bg-white/[0.02]">
-                            <td className="p-4 text-emerald-400">Finalization</td>
-                            <td className="p-4">Orchestrator ACKs orbital state root</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <h2 id="threat-model">5. Threat Model Detail</h2>
-            <div className="mb-6">
-                <strong>Adversary Classes:</strong>
-                <ul className="list-disc pl-6 mt-2 text-slate-300">
-                    <li>Passive Observer</li>
-                    <li>Active Network Adversary</li>
-                    <li>Malicious Operator</li>
-                    <li>Byzantine Orchestrator</li>
-                </ul>
-            </div>
-            <div className="mb-6">
-                <strong>Attack Surfaces:</strong>
-                <ul className="list-disc pl-6 mt-2 text-slate-300">
-                    <li>Network-level: RF jamming preventing ground-station uplinks.</li>
-                    <li>Execution-level: Physical radiation (SEU) causing bit flips.</li>
-                    <li>Economic-level: LEO liveness premium exploitation.</li>
-                    <li>Governance-level: Unaudited flight computer admission.</li>
-                    <li>Telemetry-level: Jammed or forged downlink metrics.</li>
-                </ul>
-            </div>
-            <div className="mb-6">
-                <strong>Mitigation Structure:</strong>
-                <ul className="list-disc pl-6 mt-2 text-slate-300">
-                    <li>Cryptographic Guarantees: blake3 hashing and ed25519 signatures via Forward Error Correction (FEC).</li>
-                    <li>Deterministic Execution Rules: Strict pointer bounds, single linear memory, no syscalls, and no external entropy.</li>
-                    <li>Economic Disincentives: Institutional SLA contractual penalties.</li>
-                </ul>
-            </div>
-            <p className="text-slate-300 mb-8">
-                The <strong>Operator</strong> is bound by SLA rules, high-latency quorum assumptions, uptime guarantees, and telemetry verification rules. The <strong>Orchestrator</strong> acts untrusted, verifiable, and bounded by deterministic rules. The <strong>Substrate</strong> executes with no syscalls, no nondeterminism, no external entropy, and strict pointer bounds.
-            </p>
-
-            <h2 id="operator-lifecycle">6. Operator Lifecycle within the Space Mesh</h2>
-            <p>
-                Space operators are aerospace entities (e.g., SpaceX, private LEO operators). They flash the statically compiled `spacegen` WASM runtime onto their flight computers prior to launch, or via secured Over-The-Air (OTA) updates. They do not stake WNODE directly like Earth nodes; instead, they are bound by institutional SLA contracts negotiated by the Wnode DAO.
-            </p>
-
-            <h2 id="economic-model">7. Economic Model</h2>
-            <p>
-                Space Mesh execution commands a premium gas multiplier when triggered. Due to the high cost of orbital compute, transactions routed to the Space Mesh incur a "Liveness Premium," a portion of which directly subsidizes the satellite operators' downlink bandwidth costs.
-            </p>
-
-            <h2 id="governance-model">8. Governance Model</h2>
-            <p>
-                Admitting a new satellite constellation into the Space Mesh requires a `DAO_AEROSPACE_RATIFICATION` proposal. This process involves auditing the operator's flight computer architecture to ensure it meets the strict &le;16MB memory constraints required by the `spacegen` compiler.
-            </p>
-
-            <h2 id="performance">9. Performance Envelopes</h2>
-            <ul className="list-disc pl-6 mb-6 text-slate-300">
-                <li><strong>Latency Bounds:</strong> Extended <code>ExecTime</code> and <code>RTT</code> due to orbital physics.</li>
-                <li><strong>Throughput Metrics:</strong> Low <code>ops_per_sec</code> fallback limit.</li>
-                <li><strong>Resource Pressure:</strong> <code>mem_pressure_mb &le; 16MB</code> for radiation-hardened hardware.</li>
-                <li><strong>Network Performance:</strong> High <code>max_rtt_ms</code> and <code>packet_loss_pct</code> assumptions.</li>
-            </ul>
-
-            <h2 id="cross-component">10. Cross-Component Contracts</h2>
-            <p>
-                The Space Mesh is the absolute fallback for the Earth Mesh. It interfaces only with trusted Orchestrator Ground Stations via DTN protocols, ingesting <code>SpaceExecutionBundle</code> payloads (which encapsulate standard <code>ExecutionJob</code> payloads and <code>SyncManifest</code> structures) and returning FEC-encoded state hashes.
-            </p>
-
-            <h2 id="formal-diagrams">11. Formal Space Mesh DAG</h2>
-            <div className="my-10 bg-[#111] border border-[#444] rounded-xl p-8 overflow-hidden">
-                <svg viewBox="0 0 800 300" className="w-full h-auto">
-                    <defs>
-                        <marker id="arrowSolid" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                            <path d="M 0 0 L 10 5 L 0 10 z" fill="#444" />
-                        </marker>
-                    </defs>
-                    
-                    <rect x="50" y="130" width="120" height="60" rx="8" fill="#111" stroke="#444" strokeWidth="1.5" />
-                    <text x="110" y="165" fill="#ccc" fontSize="14" textAnchor="middle" fontWeight="bold">Ground Station</text>
-
-                    <line x1="170" y1="150" x2="350" y2="80" stroke="#444" strokeWidth="1.5" strokeDasharray="4 4" markerEnd="url(#arrowSolid)" />
-                    <text x="260" y="105" fill="#888" fontSize="11" textAnchor="middle" transform="rotate(-23 260 105)">Uplink (High Latency)</text>
-
-                    <circle cx="420" cy="60" r="50" fill="#111" stroke="#444" strokeWidth="1.5" />
-                    <text x="420" y="55" fill="#ccc" fontSize="14" textAnchor="middle" fontWeight="bold">LEO Node 1</text>
-                    <text x="420" y="75" fill="#888" fontSize="11" textAnchor="middle">16MB Heap WASM</text>
-
-                    <line x1="470" y1="60" x2="600" y2="60" stroke="#444" strokeWidth="1.5" strokeDasharray="4 4" markerEnd="url(#arrowSolid)" />
-                    <text x="535" y="50" fill="#888" fontSize="11" textAnchor="middle">Inter-Satellite Link (ISL)</text>
-
-                    <circle cx="650" cy="60" r="50" fill="#111" stroke="#444" strokeWidth="1.5" />
-                    <text x="650" y="55" fill="#ccc" fontSize="14" textAnchor="middle" fontWeight="bold">LEO Node 2</text>
-                    <text x="650" y="75" fill="#888" fontSize="11" textAnchor="middle">Validation</text>
-                    
-                    <line x1="650" y1="110" x2="650" y2="180" stroke="#444" strokeWidth="1.5" strokeDasharray="4 4" markerEnd="url(#arrowSolid)" />
-                    <rect x="590" y="180" width="120" height="60" rx="8" fill="#111" stroke="#444" strokeWidth="1.5" />
-                    <text x="650" y="215" fill="#ccc" fontSize="14" textAnchor="middle" fontWeight="bold">Ground Station B</text>
-                </svg>
-            </div>
-        </>
+    
+        </div>
     );
 }

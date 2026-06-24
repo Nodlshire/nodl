@@ -3,7 +3,7 @@ import React from 'react';
 export default function Page() {
     return (
         <div className="w-full pb-24">
-            <h1 className="text-[28px] md:text-[32px] font-bold text-[#f9fafb] mb-[12px] leading-tight tracking-tight">{`Execution: Determinism`}</h1>
+            <h1 className="text-[28px] md:text-[32px] font-bold text-[#f9fafb] mb-[12px] leading-tight tracking-tight">{`Execution: Wasm Runtime`}</h1>
             
             {/* 1. At a Glance */}
             <div className="bg-slate-800/50 border border-slate-700 p-[12px] md:p-[16px] rounded-lg mb-[32px]">

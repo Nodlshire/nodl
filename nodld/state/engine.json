@@ -122,7 +122,7 @@
         "NODLR",
         "MESH"
       ],
-      "createdAt": "2026-06-20T17:37:52.346441549+02:00"
+      "createdAt": "2026-06-24T07:08:49.848500282+02:00"
     },
     "SP-00002-ee86276d": {
       "nodlrId": "SP-00002-ee86276d",
@@ -173,7 +173,7 @@
       "tier": 5,
       "isWasm": false,
       "downtimePenalized": true,
-      "downtimeSlashed": false,
+      "downtimeSlashed": true,
       "deviceClass": "native"
     }
   },
@@ -186,34 +186,69 @@
       "amount": -0.0001,
       "reason": "downtime_penalty",
       "timestamp": "2026-06-20T17:40:02.353591169+02:00"
+    },
+    {
+      "entryId": "f650bfd1-315a-4ecc-a8d0-77e10ef0246b",
+      "operatorId": "SP-00003-e54796af",
+      "jobId": "",
+      "shardId": "",
+      "amount": -2.5,
+      "reason": "slash_downtime",
+      "timestamp": "2026-06-24T07:08:59.8490748+02:00"
     }
   ],
   "token_balances": {
     "SP-00003-e54796af": {
       "operatorId": "SP-00003-e54796af",
-      "balance": -0.0001,
-      "updatedAt": "2026-06-20T17:40:02.353591169+02:00"
+      "balance": -2.5001,
+      "updatedAt": "2026-06-24T07:08:59.849075758+02:00"
     }
   },
+  "operator_stakes": {
+    "SP-00003-e54796af": {
+      "operatorId": "SP-00003-e54796af",
+      "staked": 0,
+      "locked": 0,
+      "updatedAt": "2026-06-24T07:08:59.849071394+02:00"
+    }
+  },
+  "stake_ledger": [
+    {
+      "entryId": "773e388a-c8d6-4a36-94e4-3bda492b8842",
+      "operatorId": "SP-00003-e54796af",
+      "amount": -2.5,
+      "reason": "slash_downtime",
+      "timestamp": "2026-06-24T07:08:59.849076969+02:00"
+    }
+  ],
   "operator_reputations": {
     "SP-00003-e54796af": {
       "operatorId": "SP-00003-e54796af",
-      "score": 0.8,
+      "score": 0.6008333333333333,
       "reliability": 1,
-      "uptime": 1,
+      "uptime": 0,
       "successRate": 1,
       "abandonmentRate": 0,
-      "slashes": 0,
+      "slashes": 1,
       "stakeLevel": 0,
       "computeScore": 0,
       "tier": 5,
-      "longevityDays": 0,
-      "updatedAt": "2026-06-20T17:38:28.740100298+02:00",
+      "longevityDays": 3,
+      "updatedAt": "2026-06-24T07:08:59.84908589+02:00",
       "assignedShards": 0,
       "completedShards": 0,
       "abandonedShards": 0
     }
   },
+  "reputation_ledger": [
+    {
+      "entryId": "2597d2fe-b54d-4d6d-871a-4e99fe8fe927",
+      "operatorId": "SP-00003-e54796af",
+      "delta": -0.19916666666666671,
+      "reason": "recalculate",
+      "timestamp": "2026-06-24T07:08:59.849086593+02:00"
+    }
+  ],
   "operator_identities": {
     "SP-00003-e54796af": {
       "operatorId": "SP-00003-e54796af",

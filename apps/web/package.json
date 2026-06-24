@@ -16,13 +16,17 @@
         "nodemailer": "^8.0.6",
         "pdf-lib": "^1.17.1",
         "react": "^19.0.0",
-        "react-dom": "^19.0.0"
+        "react-dom": "^19.0.0",
+        "react-virtualized-auto-sizer": "^2.0.3",
+        "react-window": "^2.2.7"
     },
     "devDependencies": {
         "@types/node": "^25.5.0",
         "@types/nodemailer": "^8.0.0",
         "@types/react": "^19.2.14",
         "@types/react-dom": "^19.2.3",
+        "@types/react-virtualized-auto-sizer": "^1.0.4",
+        "@types/react-window": "^1.8.8",
         "autoprefixer": "^10.4.14",
         "postcss": "^8.4.21",
         "tailwindcss": "^3.4.1",

@@ -61,6 +61,11 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                                 <a href="/docs/v1.0/integrations/ci-flow" className="text-sm font-medium hover:text-white transition-colors">CI Flow</a>
                                 <a href="/docs/v1.0/integrations/versioning" className="text-sm font-medium hover:text-white transition-colors">Versioning</a>
                                 <a href="/docs/v1.0/integrations/anti-patterns" className="text-sm font-medium hover:text-white transition-colors">Anti Patterns</a>
+                                <a href="/docs/v1.0/integrations/registry-overview" className="text-sm font-medium hover:text-white transition-colors">Registry Overview</a>
+                                <a href="/docs/v1.0/integrations/integration-index" className="text-sm font-medium hover:text-white transition-colors">Integration Index</a>
+                                <a href="/docs/v1.0/integrations/integration-metadata-schema" className="text-sm font-medium hover:text-white transition-colors">Metadata Schema</a>
+                                <a href="/docs/v1.0/integrations/integration-ci-flow" className="text-sm font-medium hover:text-white transition-colors">Integration CI Flow</a>
+                                <a href="/docs/v1.0/integrations/integration-examples" className="text-sm font-medium hover:text-white transition-colors">Examples</a>
                             </div>
 
                             <div className="flex flex-col gap-2">
@@ -122,11 +127,17 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                             </div>
 
                             <div className="flex flex-col gap-2 mt-4">
-                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#10b981] mb-2">CTO-Grade Additions</span>
-                                <a href="/docs/v1.0/cto-grade/quorum-slashing" className="text-sm font-medium hover:text-white transition-colors">Quorum & Slashing</a>
-                                <a href="/docs/v1.0/cto-grade/orchestrator-resilience" className="text-sm font-medium hover:text-white transition-colors">Orchestrator Resilience</a>
-                                <a href="/docs/v1.0/cto-grade/tokenomics-integration" className="text-sm font-medium hover:text-white transition-colors">Tokenomics Integration</a>
-                                <a href="/docs/v1.0/cto-grade/mesh-economics" className="text-sm font-medium hover:text-white transition-colors">Mesh Economics</a>
+                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#10b981] mb-2">Protocol Deep-Dive</span>
+                                <a href="/docs/v1.0/protocol-deep-dive/quorum-slashing" className="text-sm font-medium hover:text-white transition-colors">Quorum & Slashing</a>
+                                <a href="/docs/v1.0/protocol-deep-dive/orchestrator-resilience" className="text-sm font-medium hover:text-white transition-colors">Orchestrator Resilience</a>
+                                <a href="/docs/v1.0/protocol-deep-dive/tokenomics-integration" className="text-sm font-medium hover:text-white transition-colors">Tokenomics Integration</a>
+                                <a href="/docs/v1.0/protocol-deep-dive/mesh-economics" className="text-sm font-medium hover:text-white transition-colors">Mesh Economics</a>
+                                <a href="/docs/v1.0/protocol-deep-dive/websocket-protocol" className="text-sm font-medium hover:text-white transition-colors">WebSocket Protocol</a>
+                                <a href="/docs/v1.0/protocol-deep-dive/error-codes" className="text-sm font-medium hover:text-white transition-colors">Error Codes</a>
+                                <a href="/docs/v1.0/protocol-deep-dive/wasm-compatibility-matrix" className="text-sm font-medium hover:text-white transition-colors">WASM Compatibility Matrix</a>
+                                <a href="/docs/v1.0/protocol-deep-dive/data-retention-model" className="text-sm font-medium hover:text-white transition-colors">Data Retention Model</a>
+                                <a href="/docs/v1.0/protocol-deep-dive/operator-onboarding" className="text-sm font-medium hover:text-white transition-colors">Operator Onboarding</a>
+                                <a href="/docs/v1.0/protocol-deep-dive/disaster-recovery" className="text-sm font-medium hover:text-white transition-colors">Disaster Recovery</a>
                             </div>
                         </nav>
                     </div>

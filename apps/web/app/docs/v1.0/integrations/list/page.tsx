@@ -1,15 +1,31 @@
 "use client";
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, Suspense } from 'react';
 import Link from 'next/link';
+import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { ALL_INTEGRATIONS } from './data';
 
-const CATEGORIES = ["All", "DeFi", "Infra", "Data", "Gaming"];
-const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ#".split("");
+const CATEGORIES = ["All", "DeFi", "Infra", "Data", "Gaming", "AI", "Cross-chain"];
 
-export default function IntegrationsList() {
-    const [searchQuery, setSearchQuery] = useState("");
-    const [activeCategory, setActiveCategory] = useState("All");
+function IntegrationsListContent() {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const pathname = usePathname();
+
+    const [searchQuery, setSearchQuery] = useState(searchParams.get('search') || "");
+    const [activeCategory, setActiveCategory] = useState(searchParams.get('category') || "All");
+
+    // Sync state to URL Query Params
+    useEffect(() => {
+        const params = new URLSearchParams(searchParams.toString());
+        if (searchQuery) params.set('search', searchQuery);
+        else params.delete('search');
+        
+        if (activeCategory !== 'All') params.set('category', activeCategory);
+        else params.delete('category');
+        
+        router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    }, [searchQuery, activeCategory, pathname, router, searchParams]);
 
     // Filter logic runs synchronously
     const filteredItems = useMemo(() => {
@@ -20,38 +36,30 @@ export default function IntegrationsList() {
         });
     }, [searchQuery, activeCategory]);
 
-    const letterToItemIndex = useMemo(() => {
-        const map = new Map();
-        filteredItems.forEach((item) => {
-            if (!map.has(item.letter)) {
-                map.set(item.letter, item.safeName);
-            }
-        });
-        return map;
-    }, [filteredItems]);
-
-    const scrollToLetter = (letter: string) => {
-        const elementId = letterToItemIndex.get(letter);
-        if (elementId) {
-            const el = document.getElementById(`integration-${elementId}`);
-            if (el) {
-                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
+    const getCategoryColor = (cat: string) => {
+        switch (cat) {
+            case 'DeFi': return 'bg-blue-900 text-blue-200 border-blue-800';
+            case 'Infra': return 'bg-purple-900 text-purple-200 border-purple-800';
+            case 'Data': return 'bg-green-900 text-green-200 border-green-800';
+            case 'Gaming': return 'bg-pink-900 text-pink-200 border-pink-800';
+            case 'AI': return 'bg-rose-900 text-rose-200 border-rose-800';
+            case 'Cross-chain': return 'bg-teal-900 text-teal-200 border-teal-800';
+            default: return 'bg-slate-800 text-slate-300 border-slate-700';
         }
     };
 
     return (
-        <div className="w-full flex flex-col md:flex-row gap-6 min-h-[calc(100vh-200px)] pb-12">
+        <div className="w-full min-h-[calc(100vh-200px)] pb-12">
             
             {/* Main Content Area */}
-            <div className="flex-1 flex flex-col min-w-0">
+            <div className="flex flex-col min-w-0">
                 <div className="mb-8">
                     <h1 className="text-3xl font-bold text-[#f9fafb] mb-4 tracking-tight">Integration Index</h1>
                     <p className="text-slate-400 text-lg">Browse {ALL_INTEGRATIONS.length} deterministic protocols on the Sovereign Mesh.</p>
                 </div>
 
                 {/* Search & Filters */}
-                <div className="flex flex-col gap-4 mb-6">
+                <div className="flex flex-col gap-4 mb-8">
                     <div className="relative">
                         <input 
                             type="text" 
@@ -72,32 +80,14 @@ export default function IntegrationsList() {
                                 onClick={() => setActiveCategory(cat)}
                                 className={`px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest border transition-all ${
                                     activeCategory === cat 
-                                    ? 'bg-blue-500/20 text-blue-400 border-blue-500/50' 
-                                    : 'bg-slate-800/30 text-slate-400 border-slate-700 hover:bg-slate-800'
+                                    ? getCategoryColor(cat)
+                                    : 'bg-slate-800/30 text-slate-400 border-slate-700 hover:bg-slate-800 hover:text-slate-200'
                                 }`}
                             >
                                 {cat}
                             </button>
                         ))}
                     </div>
-                </div>
-
-                {/* A-Z Top Tabs (Mobile/Tablet) */}
-                <div className="flex md:hidden overflow-x-auto gap-2 pb-4 mb-4 scrollbar-hide">
-                    {ALPHABET.map(letter => (
-                        <button
-                            key={letter}
-                            onClick={() => scrollToLetter(letter)}
-                            disabled={!letterToItemIndex.has(letter)}
-                            className={`flex-shrink-0 w-8 h-8 rounded flex items-center justify-center text-xs font-mono transition-colors ${
-                                letterToItemIndex.has(letter)
-                                ? 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white'
-                                : 'bg-transparent text-slate-700 cursor-not-allowed'
-                            }`}
-                        >
-                            {letter}
-                        </button>
-                    ))}
                 </div>
 
                 {/* Native Grid Container - Full DOM Rendering */}
@@ -107,26 +97,26 @@ export default function IntegrationsList() {
                             No integrations found matching your criteria.
                         </div>
                     ) : (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                             {filteredItems.map((item) => (
                                 <Link 
                                     href={item.path} 
                                     key={item.safeName}
                                     id={`integration-${item.safeName}`}
-                                    className="block group bg-[#0d1117] border border-slate-800 hover:border-slate-600 rounded-xl transition-all hover:bg-[#161b22] shadow-sm flex flex-col p-5 h-40 integration-card"
+                                    className="block group bg-[#0d1117] border border-neutral-800 hover:border-neutral-700 rounded-xl transition-all hover:bg-[#161b22] hover:shadow-md flex flex-col p-6 min-h-[14rem] integration-card"
                                 >
-                                    <div className="flex items-center justify-between mb-3">
-                                        <h3 className="font-mono text-base font-bold text-slate-200 group-hover:text-blue-400 transition-colors truncate">
+                                    <div className="flex items-start justify-between mb-4 gap-4">
+                                        <h3 className="font-mono text-lg font-bold text-slate-200 group-hover:text-blue-400 transition-colors leading-tight break-words">
                                             {item.name}
                                         </h3>
-                                        <span className="px-2 py-0.5 bg-slate-800 text-slate-400 rounded text-[10px] font-bold uppercase tracking-wider">
+                                        <span className={`shrink-0 px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider border ${getCategoryColor(item.category)}`}>
                                             {item.category}
                                         </span>
                                     </div>
-                                    <p className="text-sm text-slate-500 line-clamp-2 m-0 group-hover:text-slate-400 transition-colors">
+                                    <p className="text-sm text-slate-500 line-clamp-3 m-0 group-hover:text-slate-400 transition-colors">
                                         {item.description}
                                     </p>
-                                    <div className="mt-auto flex justify-end">
+                                    <div className="mt-auto pt-4 flex justify-end">
                                         <svg className="w-5 h-5 text-slate-600 group-hover:text-blue-400 opacity-0 group-hover:opacity-100 transition-all transform -translate-x-2 group-hover:translate-x-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                         </svg>
@@ -137,27 +127,14 @@ export default function IntegrationsList() {
                     )}
                 </div>
             </div>
-
-            {/* Sticky Right Sidebar (A-Z) */}
-            <div className="hidden md:flex flex-col w-12 flex-shrink-0 sticky top-32 h-[calc(100vh-160px)]">
-                <div className="bg-[#0d1117] border border-slate-800 rounded-xl p-2 flex flex-col items-center justify-between h-full overflow-y-auto scrollbar-hide py-4">
-                    {ALPHABET.map(letter => (
-                        <button
-                            key={letter}
-                            onClick={() => scrollToLetter(letter)}
-                            disabled={!letterToItemIndex.has(letter)}
-                            className={`w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-mono transition-all ${
-                                letterToItemIndex.has(letter)
-                                ? 'text-slate-400 hover:bg-slate-700 hover:text-white cursor-pointer'
-                                : 'text-slate-700 opacity-30 cursor-not-allowed'
-                            }`}
-                        >
-                            {letter}
-                        </button>
-                    ))}
-                </div>
-            </div>
-
         </div>
+    );
+}
+
+export default function IntegrationsList() {
+    return (
+        <Suspense fallback={<div className="p-12 text-slate-400">Loading Integrations Index...</div>}>
+            <IntegrationsListContent />
+        </Suspense>
     );
 }

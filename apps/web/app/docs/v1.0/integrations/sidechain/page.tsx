@@ -1,15 +1,20 @@
 import React from 'react';
+import integrationData from './integration.json';
 import TemplateIntegrationPage from '../TEMPLATE_INTEGRATION_PAGE';
 import metadataIndex from '../metadata_index.json';
 
 export default function Page() {
-    const metadata = metadataIndex.find(m => m.slug === 'sidechain') || { 
-        name: 'sidechain', 
-        displayName: 'sidechain', 
+    const meta = metadataIndex.find(m => m.slug === 'sidechain') || { 
+        displayName: 'Sidechain', 
         category: 'Other' 
     };
-
+    
     return (
-        <TemplateIntegrationPage {...metadata} name="sidechain" />
+        <TemplateIntegrationPage 
+            integrationData={integrationData} 
+            slug="sidechain" 
+            displayName={meta.displayName} 
+            category={meta.category} 
+        />
     );
 }

@@ -1,15 +1,20 @@
 import React from 'react';
+import integrationData from './integration.json';
 import TemplateIntegrationPage from '../TEMPLATE_INTEGRATION_PAGE';
 import metadataIndex from '../metadata_index.json';
 
 export default function Page() {
-    const metadata = metadataIndex.find(m => m.slug === 'bloxroute') || { 
-        name: 'bloxroute', 
-        displayName: 'bloxroute', 
+    const meta = metadataIndex.find(m => m.slug === 'bloxroute') || { 
+        displayName: 'Bloxroute', 
         category: 'Other' 
     };
-
+    
     return (
-        <TemplateIntegrationPage {...metadata} name="bloxroute" />
+        <TemplateIntegrationPage 
+            integrationData={integrationData} 
+            slug="bloxroute" 
+            displayName={meta.displayName} 
+            category={meta.category} 
+        />
     );
 }

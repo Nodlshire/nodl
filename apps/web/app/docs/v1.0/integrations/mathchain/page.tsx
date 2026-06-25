@@ -1,15 +1,20 @@
 import React from 'react';
+import integrationData from './integration.json';
 import TemplateIntegrationPage from '../TEMPLATE_INTEGRATION_PAGE';
 import metadataIndex from '../metadata_index.json';
 
 export default function Page() {
-    const metadata = metadataIndex.find(m => m.slug === 'mathchain') || { 
-        name: 'mathchain', 
-        displayName: 'mathchain', 
+    const meta = metadataIndex.find(m => m.slug === 'mathchain') || { 
+        displayName: 'Mathchain', 
         category: 'Other' 
     };
-
+    
     return (
-        <TemplateIntegrationPage {...metadata} name="mathchain" />
+        <TemplateIntegrationPage 
+            integrationData={integrationData} 
+            slug="mathchain" 
+            displayName={meta.displayName} 
+            category={meta.category} 
+        />
     );
 }

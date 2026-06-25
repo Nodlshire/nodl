@@ -1,36 +1,58 @@
 {
-  "displayName": "Chainlink",
-  "category": "Oracle",
-  "chain": "Multi-chain",
-  "rpcEndpoint": "N/A (Read-only via target chains)",
-  "abiAvailable": true,
-  "sdkAvailable": false,
-  "contractAddress": "Various AggregatorV3Interface contracts",
-  "version": "v3",
-  "githubRepo": "https://github.com/smartcontractkit/chainlink",
-  "docLink": "https://docs.chain.link/",
-  "deterministicGuarantees": "Provides deterministic historical price feeds that can be used as trust anchors for WASM execution.",
-  "replayBehaviour": "Oracle answers at specific block heights are immutable and perfectly replayable.",
-  "memoryPageUsage": "Minimal (< 2MB).",
-  "executionBoundaries": "Bounded to single Phase/Round ID.",
-  "failureModeBehaviour": "If updated timestamp is too old, reverts with \"STALE_PRICE\".",
-  "rpcMethods": [
-    "eth_call"
-  ],
-  "abiFunctions": [
-    "latestRoundData()",
-    "getRoundData(uint80)"
-  ],
-  "errorCodes": [
-    "No data present"
-  ],
-  "singleChainWorkflowSteps": [
-    "1. Call latestRoundData()",
-    "2. Verify timestamp is within acceptable heartbeat limit.",
-    "3. Return price to the Mesh execution context."
-  ],
-  "sequenceDiagram": "sequenceDiagram\n    participant Job\n    participant MeshNode\n    participant Aggregator\n    Job->>MeshNode: Request Asset Price\n    MeshNode->>Aggregator: eth_call(latestRoundData)\n    Aggregator-->>MeshNode: roundId, answer, startedAt, updatedAt, answeredInRound\n    MeshNode->>MeshNode: Validate freshness (WASM)\n    MeshNode-->>Job: Verified Price",
-  "ecosystemImpactChain": "Securely bridges off-chain asset values into the Sovereign Mesh for deterministic execution.",
-  "ecosystemImpactOther": "N/A",
-  "ecosystemImpactWeb3": "Provides the critical price data necessary for unifying DeFi protocols across fragmentation."
+  "summary": "Chainlink is a Oracle integration.",
+  "verified_metadata": {
+    "supported_networks": [
+      "Multi-chain"
+    ],
+    "key_contract_roles": {
+      "Main Contract": "Various AggregatorV3Interface contracts"
+    },
+    "canonical_references": {
+      "documentation": "https://docs.chain.link/",
+      "github": "https://github.com/smartcontractkit/chainlink"
+    },
+    "deterministic_boundaries": {
+      "guaranteed": [
+        "Provides deterministic historical price feeds that can be used as trust anchors for WASM execution."
+      ],
+      "external": [
+        "PENDING VERIFICATION"
+      ]
+    }
+  },
+  "architecture": {
+    "wnode_interaction": "Wnode acts as a stateless, deterministic execution layer using WASM.",
+    "read_write_flows": {
+      "reads": "PENDING VERIFICATION",
+      "writes": "PENDING VERIFICATION"
+    },
+    "enforced_determinism": "Minimal (< 2MB).",
+    "external_risk": "If updated timestamp is too old, reverts with \"STALE_PRICE\"."
+  },
+  "workflows": {
+    "core_operation": [
+      "PENDING VERIFICATION"
+    ]
+  },
+  "security_determinism": {
+    "deterministic_reads_writes": "All reads and writes are securely executed in deterministic WASM containers.",
+    "avoiding_hallucination": "PENDING VERIFICATION",
+    "rpc_contract_validation": "Validates via N/A (Read-only via target chains)"
+  },
+  "economic_model": {
+    "interest_model": "PENDING VERIFICATION",
+    "wnode_job_exposure": "PENDING VERIFICATION",
+    "pricing_and_predictability": "PENDING VERIFICATION"
+  },
+  "testing_validation": {
+    "deterministic_test_cases": [
+      "PENDING VERIFICATION"
+    ],
+    "validation_strategies": [
+      "PENDING VERIFICATION"
+    ],
+    "example_scenarios": [
+      "PENDING VERIFICATION"
+    ]
+  }
 }

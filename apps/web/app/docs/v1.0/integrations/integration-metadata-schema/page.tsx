@@ -1,15 +1,20 @@
 import React from 'react';
+import integrationData from './integration.json';
 import TemplateIntegrationPage from '../TEMPLATE_INTEGRATION_PAGE';
 import metadataIndex from '../metadata_index.json';
 
 export default function Page() {
-    const metadata = metadataIndex.find(m => m.slug === 'integration-metadata-schema') || { 
-        name: 'integration-metadata-schema', 
-        displayName: 'integration-metadata-schema', 
+    const meta = metadataIndex.find(m => m.slug === 'integration-metadata-schema') || { 
+        displayName: 'Integration-metadata-schema', 
         category: 'Other' 
     };
-
+    
     return (
-        <TemplateIntegrationPage {...metadata} name="integration-metadata-schema" />
+        <TemplateIntegrationPage 
+            integrationData={integrationData} 
+            slug="integration-metadata-schema" 
+            displayName={meta.displayName} 
+            category={meta.category} 
+        />
     );
 }

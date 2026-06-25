@@ -1,15 +1,20 @@
 import React from 'react';
+import integrationData from './integration.json';
 import TemplateIntegrationPage from '../TEMPLATE_INTEGRATION_PAGE';
 import metadataIndex from '../metadata_index.json';
 
 export default function Page() {
-    const metadata = metadataIndex.find(m => m.slug === 'cosmoshub') || { 
-        name: 'cosmoshub', 
-        displayName: 'cosmoshub', 
+    const meta = metadataIndex.find(m => m.slug === 'cosmoshub') || { 
+        displayName: 'Cosmoshub', 
         category: 'Other' 
     };
-
+    
     return (
-        <TemplateIntegrationPage {...metadata} name="cosmoshub" />
+        <TemplateIntegrationPage 
+            integrationData={integrationData} 
+            slug="cosmoshub" 
+            displayName={meta.displayName} 
+            category={meta.category} 
+        />
     );
 }

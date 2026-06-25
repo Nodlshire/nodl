@@ -1,15 +1,20 @@
 import React from 'react';
+import integrationData from './integration.json';
 import TemplateIntegrationPage from '../TEMPLATE_INTEGRATION_PAGE';
 import metadataIndex from '../metadata_index.json';
 
 export default function Page() {
-    const metadata = metadataIndex.find(m => m.slug === 'nuxtweb3') || { 
-        name: 'nuxtweb3', 
-        displayName: 'nuxtweb3', 
+    const meta = metadataIndex.find(m => m.slug === 'nuxtweb3') || { 
+        displayName: 'Nuxtweb3', 
         category: 'Other' 
     };
-
+    
     return (
-        <TemplateIntegrationPage {...metadata} name="nuxtweb3" />
+        <TemplateIntegrationPage 
+            integrationData={integrationData} 
+            slug="nuxtweb3" 
+            displayName={meta.displayName} 
+            category={meta.category} 
+        />
     );
 }

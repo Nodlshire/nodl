@@ -1,15 +1,20 @@
 import React from 'react';
+import integrationData from './integration.json';
 import TemplateIntegrationPage from '../TEMPLATE_INTEGRATION_PAGE';
 import metadataIndex from '../metadata_index.json';
 
 export default function Page() {
-    const metadata = metadataIndex.find(m => m.slug === 'bytecoin') || { 
-        name: 'bytecoin', 
-        displayName: 'bytecoin', 
+    const meta = metadataIndex.find(m => m.slug === 'bytecoin') || { 
+        displayName: 'Bytecoin', 
         category: 'Other' 
     };
-
+    
     return (
-        <TemplateIntegrationPage {...metadata} name="bytecoin" />
+        <TemplateIntegrationPage 
+            integrationData={integrationData} 
+            slug="bytecoin" 
+            displayName={meta.displayName} 
+            category={meta.category} 
+        />
     );
 }

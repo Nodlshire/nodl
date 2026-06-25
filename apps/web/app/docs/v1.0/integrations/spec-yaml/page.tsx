@@ -1,15 +1,20 @@
 import React from 'react';
+import integrationData from './integration.json';
 import TemplateIntegrationPage from '../TEMPLATE_INTEGRATION_PAGE';
 import metadataIndex from '../metadata_index.json';
 
 export default function Page() {
-    const metadata = metadataIndex.find(m => m.slug === 'spec-yaml') || { 
-        name: 'spec-yaml', 
-        displayName: 'spec-yaml', 
+    const meta = metadataIndex.find(m => m.slug === 'spec-yaml') || { 
+        displayName: 'Spec-yaml', 
         category: 'Other' 
     };
-
+    
     return (
-        <TemplateIntegrationPage {...metadata} name="spec-yaml" />
+        <TemplateIntegrationPage 
+            integrationData={integrationData} 
+            slug="spec-yaml" 
+            displayName={meta.displayName} 
+            category={meta.category} 
+        />
     );
 }

@@ -1,15 +1,20 @@
 import React from 'react';
+import integrationData from './integration.json';
 import TemplateIntegrationPage from '../TEMPLATE_INTEGRATION_PAGE';
 import metadataIndex from '../metadata_index.json';
 
 export default function Page() {
-    const metadata = metadataIndex.find(m => m.slug === 'eigenlayer') || { 
-        name: 'eigenlayer', 
-        displayName: 'eigenlayer', 
+    const meta = metadataIndex.find(m => m.slug === 'eigenlayer') || { 
+        displayName: 'Eigenlayer', 
         category: 'Other' 
     };
-
+    
     return (
-        <TemplateIntegrationPage {...metadata} name="eigenlayer" />
+        <TemplateIntegrationPage 
+            integrationData={integrationData} 
+            slug="eigenlayer" 
+            displayName={meta.displayName} 
+            category={meta.category} 
+        />
     );
 }

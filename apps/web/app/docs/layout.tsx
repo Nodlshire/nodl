@@ -1,11 +1,14 @@
 "use client";
 
 import React from "react";
+import { usePathname } from "next/navigation";
 import Header from "../../components/landing/Header";
 import Footer from "../../components/landing/Footer";
 import TableOfContents from "../../components/docs/TableOfContents";
 
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
+    const pathname = usePathname();
+
     return (
         <div className="bg-[#0f1117] min-h-screen text-[#e5e7eb] font-sans selection:bg-[#3b82f6]/30">
             {/* Minimal Header instance without interactive Contact modal for docs to keep it simple, or we can just use the standard one with a dummy or functional prop if needed. Since Header expects onContactClick, we will provide a no-op for now. */}
@@ -149,7 +152,9 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                         {children}
                     </div>
 
-                    <TableOfContents />
+                    {pathname !== '/docs/v1.0/integrations' && pathname !== '/docs/v1.0/integrations/' && (
+                        <TableOfContents />
+                    )}
                 </main>
             </div>
 

@@ -1,26 +1,58 @@
 {
-  "displayName": "context",
-  "category": "Oracle",
-  "chain": "Unknown",
-  "rpcEndpoint": "Unknown",
-  "abiAvailable": false,
-  "sdkAvailable": false,
-  "contractAddress": "Unknown",
-  "version": "Unknown",
-  "githubRepo": "Unknown",
-  "docLink": "Unknown",
-  "deterministicGuarantees": "Awaiting verified architectural review.",
-  "replayBehaviour": "Unknown",
-  "memoryPageUsage": "Unknown",
-  "executionBoundaries": "Unknown",
-  "failureModeBehaviour": "Unknown",
-  "rpcMethods": [],
-  "abiFunctions": [],
-  "errorCodes": [],
-  "singleChainWorkflowSteps": [],
-  "crossChainWorkflowSteps": [],
-  "sequenceDiagram": "sequenceDiagram\\n    participant App\\n    participant MeshNode\\n    App->>MeshNode: Request Execution\\n    MeshNode-->>App: Awaiting Metadata",
-  "ecosystemImpactChain": "Pending analysis.",
-  "ecosystemImpactOther": "Pending analysis.",
-  "ecosystemImpactWeb3": "Pending analysis."
+  "summary": "context is a Oracle integration.",
+  "verified_metadata": {
+    "supported_networks": [
+      "Unknown"
+    ],
+    "key_contract_roles": {
+      "Main Contract": "Unknown"
+    },
+    "canonical_references": {
+      "documentation": "Unknown",
+      "github": "Unknown"
+    },
+    "deterministic_boundaries": {
+      "guaranteed": [
+        "Awaiting verified architectural review."
+      ],
+      "external": [
+        "PENDING VERIFICATION"
+      ]
+    }
+  },
+  "architecture": {
+    "wnode_interaction": "Wnode acts as a stateless, deterministic execution layer using WASM.",
+    "read_write_flows": {
+      "reads": "PENDING VERIFICATION",
+      "writes": "PENDING VERIFICATION"
+    },
+    "enforced_determinism": "Unknown",
+    "external_risk": "Unknown"
+  },
+  "workflows": {
+    "core_operation": [
+      "PENDING VERIFICATION"
+    ]
+  },
+  "security_determinism": {
+    "deterministic_reads_writes": "All reads and writes are securely executed in deterministic WASM containers.",
+    "avoiding_hallucination": "PENDING VERIFICATION",
+    "rpc_contract_validation": "Validates via Unknown"
+  },
+  "economic_model": {
+    "interest_model": "PENDING VERIFICATION",
+    "wnode_job_exposure": "PENDING VERIFICATION",
+    "pricing_and_predictability": "PENDING VERIFICATION"
+  },
+  "testing_validation": {
+    "deterministic_test_cases": [
+      "PENDING VERIFICATION"
+    ],
+    "validation_strategies": [
+      "PENDING VERIFICATION"
+    ],
+    "example_scenarios": [
+      "PENDING VERIFICATION"
+    ]
+  }
 }

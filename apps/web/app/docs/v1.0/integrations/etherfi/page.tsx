@@ -1,15 +1,20 @@
 import React from 'react';
+import integrationData from './integration.json';
 import TemplateIntegrationPage from '../TEMPLATE_INTEGRATION_PAGE';
 import metadataIndex from '../metadata_index.json';
 
 export default function Page() {
-    const metadata = metadataIndex.find(m => m.slug === 'etherfi') || { 
-        name: 'etherfi', 
-        displayName: 'etherfi', 
+    const meta = metadataIndex.find(m => m.slug === 'etherfi') || { 
+        displayName: 'Etherfi', 
         category: 'Other' 
     };
-
+    
     return (
-        <TemplateIntegrationPage {...metadata} name="etherfi" />
+        <TemplateIntegrationPage 
+            integrationData={integrationData} 
+            slug="etherfi" 
+            displayName={meta.displayName} 
+            category={meta.category} 
+        />
     );
 }

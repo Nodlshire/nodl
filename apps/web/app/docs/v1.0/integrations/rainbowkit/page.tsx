@@ -1,15 +1,20 @@
 import React from 'react';
+import integrationData from './integration.json';
 import TemplateIntegrationPage from '../TEMPLATE_INTEGRATION_PAGE';
 import metadataIndex from '../metadata_index.json';
 
 export default function Page() {
-    const metadata = metadataIndex.find(m => m.slug === 'rainbowkit') || { 
-        name: 'rainbowkit', 
-        displayName: 'rainbowkit', 
+    const meta = metadataIndex.find(m => m.slug === 'rainbowkit') || { 
+        displayName: 'Rainbowkit', 
         category: 'Other' 
     };
-
+    
     return (
-        <TemplateIntegrationPage {...metadata} name="rainbowkit" />
+        <TemplateIntegrationPage 
+            integrationData={integrationData} 
+            slug="rainbowkit" 
+            displayName={meta.displayName} 
+            category={meta.category} 
+        />
     );
 }

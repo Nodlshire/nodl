@@ -16,19 +16,19 @@ export default function IntegrationCard({ integration }: IntegrationCardProps) {
         <Link 
             href={`/docs/v1.0/integrations/${integration.name}`}
             prefetch={false}
-            className="group relative flex flex-col p-5 bg-[#0d1117] border border-slate-800 hover:border-slate-600 rounded-xl transition-all hover:bg-[#0f1117] hover:-translate-y-1 shadow-sm hover:shadow-lg min-h-[120px]"
+            className="group relative flex flex-col p-5 bg-[#0d1117] border border-slate-700 hover:border-slate-500 rounded-xl transition-all hover:bg-[#0f1117] hover:-translate-y-1 shadow-sm hover:shadow-lg min-h-[120px]"
         >
-            <div 
-                className="absolute top-0 right-0 m-4 px-2.5 py-1 rounded-full text-[10px] font-bold flex items-center gap-1.5 border"
-                style={{ backgroundColor: `${color}20`, borderColor: color, color: color }}
-            >
-                <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: color }}></span>
-                {integration.category}
-            </div>
-
-            <div className="flex flex-col mb-4 pt-1 pr-16">
-                <div className="text-[18px] font-bold text-[#f9fafb] capitalize group-hover:text-blue-400 transition-colors truncate">
+            <div className="flex flex-col gap-2 mb-6">
+                <div className="text-[18px] font-bold text-[#f9fafb] capitalize group-hover:text-blue-400 transition-colors leading-tight line-clamp-2" title={integration.displayName}>
                     {integration.displayName}
+                </div>
+                
+                <div 
+                    className="self-start px-2 py-0.5 rounded-md text-[10px] font-bold flex items-center gap-1.5 border"
+                    style={{ backgroundColor: `${color}15`, borderColor: `${color}40`, color: color }}
+                >
+                    <span className="w-1 h-1 rounded-full" style={{ backgroundColor: color }}></span>
+                    {integration.category}
                 </div>
             </div>
             

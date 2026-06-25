@@ -1,317 +1,249 @@
+// CANONICAL GOLD STANDARD: DO NOT OVERWRITE, REGENERATE, OR MODIFY THIS TEMPLATE UNLESS EXPLICITLY INSTRUCTED.
 import React from 'react';
-import { IntegrationCategory } from '../../../../lib/integration-utils';
-import { CATEGORY_COLORS } from '../../../../constants/colors';
 import BackButton from './BackButton';
 
-interface IntegrationPageProps {
-    name: string;
-    displayName: string;
-    category: IntegrationCategory;
-    chain?: string;
-    rpcEndpoint?: string;
-    abiAvailable?: boolean;
-    sdkAvailable?: boolean;
-    contractAddress?: string;
-    version?: string;
-    githubRepo?: string;
-    docLink?: string;
-    deterministicGuarantees?: string;
-    replayBehaviour?: string;
-    memoryPageUsage?: string;
-    executionBoundaries?: string;
-    failureModeBehaviour?: string;
-    rpcMethods?: string[];
-    abiFunctions?: string[];
-    errorCodes?: string[];
-    singleChainWorkflowSteps?: string[];
-    crossChainWorkflowSteps?: string[];
-    sequenceDiagram?: string;
-    ecosystemImpactChain?: string;
-    ecosystemImpactOther?: string;
-    ecosystemImpactWeb3?: string;
-}
-
-const DimText = ({ children }: { children: React.ReactNode }) => (
-    <span className="text-slate-600 italic">{children}</span>
-);
-
-const MissingPlaceholder = () => <DimText>Unknown / Not Applicable</DimText>;
-
-export default function TemplateIntegrationPage({
-    name,
-    displayName,
-    category,
-    chain,
-    rpcEndpoint,
-    abiAvailable,
-    sdkAvailable,
-    contractAddress,
-    version,
-    githubRepo,
-    docLink,
-    deterministicGuarantees,
-    replayBehaviour,
-    memoryPageUsage,
-    executionBoundaries,
-    failureModeBehaviour,
-    rpcMethods,
-    abiFunctions,
-    errorCodes,
-    singleChainWorkflowSteps,
-    crossChainWorkflowSteps,
-    sequenceDiagram,
-    ecosystemImpactChain,
-    ecosystemImpactOther,
-    ecosystemImpactWeb3
-}: IntegrationPageProps) {
-    const color = CATEGORY_COLORS[category] || '#94a3b8';
-    
-    // Add generic unverified style if data is missing
-    const isUnverified = !rpcMethods || rpcMethods.length === 0;
+export default function TemplateIntegrationPage({ 
+    integrationData, 
+    slug, 
+    displayName, 
+    category 
+}: { 
+    integrationData: any, 
+    slug: string, 
+    displayName: string, 
+    category: string 
+}) {
+    const isEnterprise = integrationData.summary !== "PENDING VERIFICATION";
 
     return (
         <div className="w-full max-w-[880px] mx-auto pb-24 mt-8">
             <BackButton />
             
-            {/* A. Header */}
             <div className="mt-8 mb-12 border-b border-slate-800 pb-8">
                 <div className="flex items-center gap-3 mb-4 flex-wrap">
-                    <h1 className="text-4xl font-bold text-white capitalize">{displayName}</h1>
-                    <div 
-                        className="px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1.5 border"
-                        style={{ backgroundColor: `${color}20`, borderColor: color, color: color }}
-                    >
-                        <span className="w-2 h-2 rounded-full" style={{ backgroundColor: color }}></span>
+                    <h1 className="text-4xl font-bold text-white">{displayName === 'Aave' ? 'Aave' : `${displayName} Integration`}</h1>
+                    <div className="px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1.5 border border-blue-500/30 bg-blue-500/10 text-blue-400">
+                        <span className="w-2 h-2 rounded-full bg-blue-400"></span>
                         {category}
                     </div>
-                    {isUnverified ? (
-                        <span className="px-3 py-1 rounded-full text-xs font-bold border border-yellow-500/30 bg-yellow-500/10 text-yellow-500">
-                            PENDING VERIFICATION
+                    {isEnterprise ? (
+                        <span className="px-3 py-1 rounded-full text-xs font-bold border border-green-500/30 bg-green-500/10 text-green-400">
+                            ENTERPRISE GRADE
                         </span>
                     ) : (
-                        <span className="px-3 py-1 rounded-full text-xs font-bold border border-green-500/30 bg-green-500/10 text-green-400">
-                            DETERMINISTIC
+                        <span className="px-3 py-1 rounded-full text-xs font-bold border border-yellow-500/30 bg-yellow-500/10 text-yellow-400">
+                            PENDING VERIFICATION
                         </span>
                     )}
                 </div>
                 <p className="text-xl text-slate-400 mb-6">
-                    <DimText>A decentralized integration for {displayName} running on the Sovereign Mesh.</DimText>
+                    {integrationData.summary}
                 </p>
-                <div className="flex gap-4">
-                    {githubRepo && githubRepo !== 'Unknown' && (
-                        <a href={githubRepo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-slate-300 hover:text-white transition-colors">
-                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd"/></svg>
-                            GitHub Repository
-                        </a>
-                    )}
-                    {docLink && docLink !== 'Unknown' && (
-                        <a href={docLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-slate-300 hover:text-white transition-colors">
-                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
-                            Official Documentation
-                        </a>
-                    )}
-                </div>
             </div>
-            
+
             <div className="space-y-12">
-                {/* B. Quick Facts */}
+                {/* 1. Verified Metadata */}
                 <section>
-                    <h2 className="text-2xl font-bold text-white mb-6 border-b border-slate-800 pb-2">Quick Facts</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-900/50 p-6 rounded-xl border border-slate-800">
-                        <div className="flex flex-col gap-1">
-                            <span className="text-sm font-semibold text-slate-400">Chain / Network</span>
-                            <span className="text-white">{chain && chain !== 'Unknown' ? chain : <MissingPlaceholder />}</span>
-                        </div>
-                        <div className="flex flex-col gap-1">
-                            <span className="text-sm font-semibold text-slate-400">Category</span>
-                            <span className="text-white">{category}</span>
-                        </div>
-                        <div className="flex flex-col gap-1">
-                            <span className="text-sm font-semibold text-slate-400">Deterministic Status</span>
-                            {isUnverified ? (
-                                <span className="text-yellow-500 font-mono text-sm">PENDING</span>
-                            ) : (
-                                <span className="text-green-400 font-mono text-sm">VERIFIED</span>
-                            )}
-                        </div>
-                        <div className="flex flex-col gap-1">
-                            <span className="text-sm font-semibold text-slate-400">RPC Endpoint</span>
-                            <span className="text-white font-mono text-sm">{rpcEndpoint && rpcEndpoint !== 'Unknown' ? rpcEndpoint : <MissingPlaceholder />}</span>
-                        </div>
-                        <div className="flex flex-col gap-1">
-                            <span className="text-sm font-semibold text-slate-400">ABI Availability</span>
-                            <span className="text-white">{abiAvailable ? 'Available' : <MissingPlaceholder />}</span>
-                        </div>
-                        <div className="flex flex-col gap-1">
-                            <span className="text-sm font-semibold text-slate-400">SDK Availability</span>
-                            <span className="text-white">{sdkAvailable ? 'Available' : <MissingPlaceholder />}</span>
-                        </div>
-                        <div className="flex flex-col gap-1">
-                            <span className="text-sm font-semibold text-slate-400">Contract Address</span>
-                            <span className="text-white font-mono text-sm break-all">{contractAddress && contractAddress !== 'Unknown' ? contractAddress : <MissingPlaceholder />}</span>
-                        </div>
-                        <div className="flex flex-col gap-1">
-                            <span className="text-sm font-semibold text-slate-400">Version</span>
-                            <span className="text-white">{version && version !== 'Unknown' ? version : <MissingPlaceholder />}</span>
-                        </div>
-                    </div>
-                </section>
-
-                {/* C. Deterministic Execution Model */}
-                <section className={isUnverified ? "opacity-60" : ""}>
-                    <h2 className="text-2xl font-bold text-white mb-6 border-b border-slate-800 pb-2 flex items-center gap-3">
-                        Deterministic Execution Model
-                        {isUnverified && <span className="text-xs font-normal px-2 py-0.5 bg-slate-800 text-slate-400 rounded">Pending metadata</span>}
-                    </h2>
-                    <div className="space-y-4 text-slate-300">
-                        <div>
-                            <strong className="text-slate-200 block mb-1">Deterministic Guarantees:</strong>
-                            {deterministicGuarantees && deterministicGuarantees !== 'Unknown' ? deterministicGuarantees : <MissingPlaceholder />}
-                        </div>
-                        <div>
-                            <strong className="text-slate-200 block mb-1">Replay Behaviour:</strong>
-                            {replayBehaviour && replayBehaviour !== 'Unknown' ? replayBehaviour : <MissingPlaceholder />}
-                        </div>
-                        <div>
-                            <strong className="text-slate-200 block mb-1">Memory Page Usage:</strong>
-                            {memoryPageUsage && memoryPageUsage !== 'Unknown' ? memoryPageUsage : <MissingPlaceholder />}
-                        </div>
-                        <div>
-                            <strong className="text-slate-200 block mb-1">Execution Boundaries:</strong>
-                            {executionBoundaries && executionBoundaries !== 'Unknown' ? executionBoundaries : <MissingPlaceholder />}
-                        </div>
-                        <div>
-                            <strong className="text-slate-200 block mb-1">Failure-mode Behaviour:</strong>
-                            {failureModeBehaviour && failureModeBehaviour !== 'Unknown' ? failureModeBehaviour : <MissingPlaceholder />}
-                        </div>
-                    </div>
-                </section>
-
-                {/* D. RPC / ABI Surface */}
-                <section className={isUnverified ? "opacity-60" : ""}>
-                    <h2 className="text-2xl font-bold text-white mb-6 border-b border-slate-800 pb-2 flex items-center gap-3">
-                        RPC / ABI Surface
-                        {isUnverified && <span className="text-xs font-normal px-2 py-0.5 bg-slate-800 text-slate-400 rounded">Pending metadata</span>}
-                    </h2>
-                    <div className="space-y-6 text-slate-300">
-                        <div>
-                            <strong className="text-slate-200 block mb-2">RPC Methods:</strong> 
-                            {rpcMethods && rpcMethods.length > 0 ? (
-                                <ul className="list-disc pl-5 space-y-1 font-mono text-sm text-slate-400">
-                                    {rpcMethods.map((m, i) => <li key={i}>{m}</li>)}
-                                </ul>
-                            ) : <MissingPlaceholder />}
-                        </div>
-                        <div>
-                            <strong className="text-slate-200 block mb-2">ABI Functions:</strong> 
-                            {abiFunctions && abiFunctions.length > 0 ? (
-                                <ul className="list-disc pl-5 space-y-1 font-mono text-sm text-slate-400 break-all">
-                                    {abiFunctions.map((m, i) => <li key={i}>{m}</li>)}
-                                </ul>
-                            ) : <MissingPlaceholder />}
-                        </div>
-                        <div>
-                            <strong className="text-slate-200 block mb-2">Error Codes:</strong> 
-                            {errorCodes && errorCodes.length > 0 ? (
-                                <ul className="list-disc pl-5 space-y-1 font-mono text-sm text-red-400/80">
-                                    {errorCodes.map((m, i) => <li key={i}>{m}</li>)}
-                                </ul>
-                            ) : <MissingPlaceholder />}
-                        </div>
-                    </div>
-                </section>
-
-                {/* E. Workflows */}
-                <section className={isUnverified ? "opacity-60" : ""}>
-                    <h2 className="text-2xl font-bold text-white mb-6 border-b border-slate-800 pb-2 flex items-center gap-3">
-                        Workflows
-                        {isUnverified && <span className="text-xs font-normal px-2 py-0.5 bg-slate-800 text-slate-400 rounded">Pending metadata</span>}
-                    </h2>
+                    <h2 className="text-2xl font-bold text-white mb-6 border-b border-slate-800 pb-2">Verified Metadata</h2>
                     
-                    <h3 className="text-xl font-bold text-slate-200 mb-4">1. Single-chain Workflow</h3>
-                    <div className="text-slate-300 pl-4 border-l-2 border-slate-800 mb-8">
-                        {singleChainWorkflowSteps && singleChainWorkflowSteps.length > 0 ? (
-                            <div className="space-y-2">
-                                {singleChainWorkflowSteps.map((step, i) => (
-                                    <div key={i} className="flex gap-2">
-                                        <span className="text-slate-500 font-mono">{i + 1}.</span>
-                                        <span>{step.replace(/^\d+\.\s*/, '')}</span>
+                    <div className="space-y-6">
+                        <div className="bg-slate-900/50 p-6 rounded-xl border border-slate-800">
+                            <h3 className="text-lg font-semibold text-slate-200 mb-3">Supported Networks</h3>
+                            <div className="flex flex-wrap gap-2">
+                                {integrationData.verified_metadata?.supported_networks?.map((net: string, i: number) => {
+                                    if (net === 'PENDING VERIFICATION') {
+                                        return (
+                                            <span key={i} className="px-2.5 py-1 rounded text-sm border bg-yellow-500/10 text-yellow-400 border-yellow-500/30">
+                                                {net}
+                                            </span>
+                                        );
+                                    }
+                                    const baseClass = "px-2.5 py-1 rounded text-sm border bg-slate-800 text-slate-300 border-slate-700";
+                                    if (slug === 'aave') {
+                                        return (
+                                            <a key={i} href={`/docs/v1.0/integrations/${net.toLowerCase().replace(/\s+/g, '-')}`} className={`${baseClass} hover:text-slate-200 transition-colors`}>
+                                                {net}
+                                            </a>
+                                        );
+                                    }
+                                    return (
+                                        <span key={i} className={baseClass}>
+                                            {net}
+                                        </span>
+                                    );
+                                })}
+                            </div>
+                        </div>
+
+                        <div className="bg-slate-900/50 p-6 rounded-xl border border-slate-800">
+                            <h3 className="text-lg font-semibold text-slate-200 mb-3">Key Contract Roles</h3>
+                            <div className="space-y-3">
+                                {integrationData.verified_metadata?.key_contract_roles && Object.entries(integrationData.verified_metadata.key_contract_roles).map(([role, desc], i) => (
+                                    <div key={i}>
+                                        <strong className="text-blue-400 font-mono text-sm">{role}:</strong>
+                                        <span className={`ml-2 ${desc === 'PENDING VERIFICATION' ? 'text-yellow-400/80' : 'text-slate-300'}`}>{desc as string}</span>
                                     </div>
                                 ))}
                             </div>
-                        ) : <MissingPlaceholder />}
-                    </div>
-                    
-                    <h3 className="text-xl font-bold text-slate-200 mb-4">2. Cross-chain Workflow</h3>
-                    <div className="text-slate-300 pl-4 border-l-2 border-slate-800">
-                        {crossChainWorkflowSteps && crossChainWorkflowSteps.length > 0 ? (
-                            <div className="space-y-2">
-                                {crossChainWorkflowSteps.map((step, i) => (
-                                    <div key={i} className="flex gap-2">
-                                        <span className="text-slate-500 font-mono">{i + 1}.</span>
-                                        <span>{step.replace(/^\d+\.\s*/, '')}</span>
+                        </div>
+
+                        <div className="bg-slate-900/50 p-6 rounded-xl border border-slate-800">
+                            <h3 className="text-lg font-semibold text-slate-200 mb-3">Deterministic Boundaries</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 className="text-sm font-bold text-green-400 mb-2 uppercase">Guaranteed</h4>
+                                    <ul className="list-disc pl-5 space-y-1 text-slate-300">
+                                        {integrationData.verified_metadata?.deterministic_boundaries?.guaranteed?.map((item: string, i: number) => (
+                                            <li key={i} className={item === 'PENDING VERIFICATION' ? 'text-yellow-400/80' : ''}>{item}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 className="text-sm font-bold text-red-400 mb-2 uppercase">External Dependencies</h4>
+                                    <ul className="list-disc pl-5 space-y-1 text-slate-300">
+                                        {integrationData.verified_metadata?.deterministic_boundaries?.external?.map((item: string, i: number) => (
+                                            <li key={i} className={item === 'PENDING VERIFICATION' ? 'text-yellow-400/80' : ''}>{item}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="bg-slate-900/50 p-6 rounded-xl border border-slate-800">
+                            <h3 className="text-lg font-semibold text-slate-200 mb-4 border-b border-slate-800 pb-2">References & Sources</h3>
+                            <div className="flex flex-col gap-3">
+                                {integrationData.verified_metadata?.canonical_references && Object.entries(integrationData.verified_metadata.canonical_references).map(([key, url], i) => (
+                                    <div key={i} className="flex items-center gap-2">
+                                        <span className="text-slate-500">→</span>
+                                        {url === 'PENDING VERIFICATION' ? (
+                                            <span className="text-yellow-400/80 text-sm font-semibold">{key}: PENDING</span>
+                                        ) : (
+                                            <a href={url as string} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 text-sm font-semibold underline">
+                                                {key}
+                                            </a>
+                                        )}
                                     </div>
                                 ))}
                             </div>
-                        ) : <MissingPlaceholder />}
+                        </div>
                     </div>
                 </section>
 
-                {/* F. Sequence Diagram */}
-                <section className={isUnverified ? "opacity-60" : ""}>
-                    <h2 className="text-2xl font-bold text-white mb-6 border-b border-slate-800 pb-2 flex items-center gap-3">
-                        Sequence Diagram
-                        {isUnverified && <span className="text-xs font-normal px-2 py-0.5 bg-slate-800 text-slate-400 rounded">Pending metadata</span>}
-                    </h2>
-                    <div className="bg-slate-900 border border-slate-800 p-8 rounded-xl flex flex-col items-center justify-center min-h-[200px] overflow-x-auto">
-                        {sequenceDiagram && sequenceDiagram !== 'Unknown' && !sequenceDiagram.includes('Awaiting Metadata') ? (
-                            <pre className="text-sm font-mono text-emerald-400 w-full whitespace-pre-wrap">
-                                {sequenceDiagram}
-                            </pre>
-                        ) : (
-                            <DimText>Mesh-aware sequence diagram (User → Mesh node → WASM executor → Proxy → Endpoint → Telemetry) will be rendered here.</DimText>
-                        )}
-                    </div>
-                </section>
-
-                {/* G. Directory Structure */}
+                {/* 2. Architecture */}
                 <section>
-                    <h2 className="text-2xl font-bold text-white mb-6 border-b border-slate-800 pb-2 flex items-center gap-3">
-                        Directory Structure
-                    </h2>
-                    <div className="space-y-3 text-slate-300 bg-[#0d1117] p-6 border border-slate-800 rounded-xl font-mono text-sm">
-                        <div className="flex gap-4"><span className="text-blue-400 w-32">manifest.json</span><span className="text-slate-500">Deterministic execution manifest</span></div>
-                        <div className="flex gap-4"><span className="text-blue-400 w-32">spec.yaml</span><span className="text-slate-500">Integration specifications</span></div>
-                        <div className="flex gap-4"><span className="text-blue-400 w-32">integration.json</span><span className="text-slate-500">CTO-grade metadata</span></div>
-                        <div className="flex gap-4"><span className="text-blue-400 w-32">tests/</span><span className="text-slate-500">Local integration test suites</span></div>
-                        <div className="flex gap-4"><span className="text-blue-400 w-32">payloads/</span><span className="text-slate-500">Mock RPC payloads for replay</span></div>
-                        <div className="flex gap-4"><span className="text-blue-400 w-32">abi/</span><span className="text-slate-500">Contract ABI JSON files</span></div>
-                        <div className="flex gap-4"><span className="text-blue-400 w-32">rpc/</span><span className="text-slate-500">RPC request schemas</span></div>
-                    </div>
-                </section>
-
-                {/* H. Ecosystem & Platform Impact */}
-                <section>
-                    <h2 className="text-2xl font-bold text-white mb-6 border-b border-slate-800 pb-2 flex items-center gap-3">
-                        Ecosystem & Platform Impact
-                        {isUnverified && <span className="text-xs font-normal px-2 py-0.5 bg-slate-800 text-slate-400 rounded">Pending metadata</span>}
-                    </h2>
+                    <h2 className="text-2xl font-bold text-white mb-6 border-b border-slate-800 pb-2">Architecture</h2>
                     <div className="space-y-6 text-slate-300">
                         <div>
-                            <strong className="text-slate-200 block mb-2 text-lg">1. Own-Chain Benefits</strong>
-                            {ecosystemImpactChain && ecosystemImpactChain !== 'Pending analysis.' ? ecosystemImpactChain : <MissingPlaceholder />}
+                            <strong className="text-slate-100 block mb-1 text-lg">Wnode Interaction</strong>
+                            <p className={integrationData.architecture?.wnode_interaction === 'PENDING VERIFICATION' ? 'text-yellow-400/80' : ''}>{integrationData.architecture?.wnode_interaction}</p>
                         </div>
                         <div>
-                            <strong className="text-slate-200 block mb-2 text-lg">2. Cross-Chain & Other Chain Benefits</strong>
-                            {ecosystemImpactOther && ecosystemImpactOther !== 'Pending analysis.' ? ecosystemImpactOther : <MissingPlaceholder />}
+                            <strong className="text-slate-100 block mb-1 text-lg">Read / Write Flows</strong>
+                            <div className="bg-slate-900 border border-slate-800 p-4 rounded-lg mt-2">
+                                <p className="mb-2"><strong className="text-blue-400">Reads:</strong> <span className={integrationData.architecture?.read_write_flows?.reads === 'PENDING VERIFICATION' ? 'text-yellow-400/80' : ''}>{integrationData.architecture?.read_write_flows?.reads}</span></p>
+                                <p><strong className="text-purple-400">Writes:</strong> <span className={integrationData.architecture?.read_write_flows?.writes === 'PENDING VERIFICATION' ? 'text-yellow-400/80' : ''}>{integrationData.architecture?.read_write_flows?.writes}</span></p>
+                            </div>
                         </div>
-                        <div>
-                            <strong className="text-slate-200 block mb-2 text-lg">3. Web3 Unification Contribution</strong>
-                            {ecosystemImpactWeb3 && ecosystemImpactWeb3 !== 'Pending analysis.' ? ecosystemImpactWeb3 : <MissingPlaceholder />}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="bg-slate-900/50 p-4 border border-slate-800 rounded-lg">
+                                <strong className="text-slate-100 block mb-1">Enforced Determinism</strong>
+                                <p className={`text-sm ${integrationData.architecture?.enforced_determinism === 'PENDING VERIFICATION' ? 'text-yellow-400/80' : ''}`}>{integrationData.architecture?.enforced_determinism}</p>
+                            </div>
+                            <div className="bg-slate-900/50 p-4 border border-slate-800 rounded-lg">
+                                <strong className="text-slate-100 block mb-1">External Risk</strong>
+                                <p className={`text-sm ${integrationData.architecture?.external_risk === 'PENDING VERIFICATION' ? 'text-yellow-400/80' : ''}`}>{integrationData.architecture?.external_risk}</p>
+                            </div>
                         </div>
                     </div>
                 </section>
-                
+
+                {/* 3. Workflows */}
+                <section>
+                    <h2 className="text-2xl font-bold text-white mb-6 border-b border-slate-800 pb-2">Workflows</h2>
+                    <div className="space-y-6">
+                        {integrationData.workflows && Object.entries(integrationData.workflows).map(([flow, steps], i) => (
+                            <div key={i} className="bg-slate-900/30 p-5 rounded-lg border border-slate-800/50">
+                                <h3 className="text-lg font-bold text-slate-200 capitalize mb-3">
+                                    {flow.replace(/_/g, ' ')}
+                                </h3>
+                                <ol className="list-decimal pl-5 space-y-2 text-slate-400">
+                                    {(steps as string[]).map((step, idx) => (
+                                        <li key={idx} className={step === 'PENDING VERIFICATION' ? 'text-yellow-400/80' : 'text-slate-300'}>{step}</li>
+                                    ))}
+                                </ol>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* 4. Security & Determinism */}
+                <section>
+                    <h2 className="text-2xl font-bold text-white mb-6 border-b border-slate-800 pb-2">Security & Determinism</h2>
+                    <div className="space-y-4 text-slate-300 bg-slate-900 border border-slate-800 p-6 rounded-xl">
+                        <div>
+                            <strong className="text-emerald-400 block mb-1">Deterministic Reads & Writes</strong>
+                            <p className={integrationData.security_determinism?.deterministic_reads_writes === 'PENDING VERIFICATION' ? 'text-yellow-400/80' : ''}>{integrationData.security_determinism?.deterministic_reads_writes}</p>
+                        </div>
+                        <div className="pt-4 border-t border-slate-800">
+                            <strong className="text-emerald-400 block mb-1">Avoiding Hallucination</strong>
+                            <p className={integrationData.security_determinism?.avoiding_hallucination === 'PENDING VERIFICATION' ? 'text-yellow-400/80' : ''}>{integrationData.security_determinism?.avoiding_hallucination}</p>
+                        </div>
+                        <div className="pt-4 border-t border-slate-800">
+                            <strong className="text-emerald-400 block mb-1">RPC & Contract Validation</strong>
+                            <p className={integrationData.security_determinism?.rpc_contract_validation === 'PENDING VERIFICATION' ? 'text-yellow-400/80' : ''}>{integrationData.security_determinism?.rpc_contract_validation}</p>
+                        </div>
+                    </div>
+                </section>
+
+                {/* 5. Economic Model */}
+                <section>
+                    <h2 className="text-2xl font-bold text-white mb-6 border-b border-slate-800 pb-2">Economic Model</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-slate-300">
+                        <div className="bg-slate-900/50 p-5 border border-slate-800 rounded-xl">
+                            <strong className="text-slate-100 block mb-2 text-center border-b border-slate-800 pb-2">Interest Model</strong>
+                            <p className={`text-sm ${integrationData.economic_model?.interest_model === 'PENDING VERIFICATION' ? 'text-yellow-400/80' : ''}`}>{integrationData.economic_model?.interest_model}</p>
+                        </div>
+                        <div className="bg-slate-900/50 p-5 border border-slate-800 rounded-xl">
+                            <strong className="text-slate-100 block mb-2 text-center border-b border-slate-800 pb-2">Wnode Job Exposure</strong>
+                            <p className={`text-sm ${integrationData.economic_model?.wnode_job_exposure === 'PENDING VERIFICATION' ? 'text-yellow-400/80' : ''}`}>{integrationData.economic_model?.wnode_job_exposure}</p>
+                        </div>
+                        <div className="bg-slate-900/50 p-5 border border-slate-800 rounded-xl">
+                            <strong className="text-slate-100 block mb-2 text-center border-b border-slate-800 pb-2">Pricing & Predictability</strong>
+                            <p className={`text-sm ${integrationData.economic_model?.pricing_and_predictability === 'PENDING VERIFICATION' ? 'text-yellow-400/80' : ''}`}>{integrationData.economic_model?.pricing_and_predictability}</p>
+                        </div>
+                    </div>
+                </section>
+
+                {/* 6. Testing & Validation */}
+                <section>
+                    <h2 className="text-2xl font-bold text-white mb-6 border-b border-slate-800 pb-2">Testing & Validation</h2>
+                    <div className="space-y-6">
+                        <div>
+                            <strong className="text-slate-200 block mb-3 text-lg">Deterministic Test Cases</strong>
+                            <ul className="list-disc pl-5 space-y-2 text-slate-400">
+                                {integrationData.testing_validation?.deterministic_test_cases?.map((test: string, i: number) => (
+                                    <li key={i} className={test === 'PENDING VERIFICATION' ? 'text-yellow-400/80' : 'text-slate-300'}>{test}</li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div>
+                            <strong className="text-slate-200 block mb-3 text-lg">Validation Strategies</strong>
+                            <ul className="list-disc pl-5 space-y-2 text-slate-400">
+                                {integrationData.testing_validation?.validation_strategies?.map((strat: string, i: number) => (
+                                    <li key={i} className={strat === 'PENDING VERIFICATION' ? 'text-yellow-400/80' : 'text-slate-300'}>{strat}</li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div>
+                            <strong className="text-slate-200 block mb-3 text-lg">Example Scenarios</strong>
+                            <ul className="list-disc pl-5 space-y-2 text-slate-400">
+                                {integrationData.testing_validation?.example_scenarios?.map((scene: string, i: number) => (
+                                    <li key={i} className={scene === 'PENDING VERIFICATION' ? 'text-yellow-400/80' : 'text-slate-300'}>{scene}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </section>
             </div>
         </div>
     );

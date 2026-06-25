@@ -1,15 +1,20 @@
 import React from 'react';
+import integrationData from './integration.json';
 import TemplateIntegrationPage from '../TEMPLATE_INTEGRATION_PAGE';
 import metadataIndex from '../metadata_index.json';
 
 export default function Page() {
-    const metadata = metadataIndex.find(m => m.slug === 'uniswap_v3') || { 
-        name: 'uniswap_v3', 
-        displayName: 'uniswap_v3', 
+    const meta = metadataIndex.find(m => m.slug === 'uniswap_v3') || { 
+        displayName: 'Uniswap_v3', 
         category: 'Other' 
     };
-
+    
     return (
-        <TemplateIntegrationPage {...metadata} name="uniswap_v3" />
+        <TemplateIntegrationPage 
+            integrationData={integrationData} 
+            slug="uniswap_v3" 
+            displayName={meta.displayName} 
+            category={meta.category} 
+        />
     );
 }

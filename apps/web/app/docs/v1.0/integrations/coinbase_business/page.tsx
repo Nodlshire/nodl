@@ -1,15 +1,20 @@
 import React from 'react';
+import integrationData from './integration.json';
 import TemplateIntegrationPage from '../TEMPLATE_INTEGRATION_PAGE';
 import metadataIndex from '../metadata_index.json';
 
 export default function Page() {
-    const metadata = metadataIndex.find(m => m.slug === 'coinbase_business') || { 
-        name: 'coinbase_business', 
-        displayName: 'coinbase_business', 
+    const meta = metadataIndex.find(m => m.slug === 'coinbase_business') || { 
+        displayName: 'Coinbase_business', 
         category: 'Other' 
     };
-
+    
     return (
-        <TemplateIntegrationPage {...metadata} name="coinbase_business" />
+        <TemplateIntegrationPage 
+            integrationData={integrationData} 
+            slug="coinbase_business" 
+            displayName={meta.displayName} 
+            category={meta.category} 
+        />
     );
 }

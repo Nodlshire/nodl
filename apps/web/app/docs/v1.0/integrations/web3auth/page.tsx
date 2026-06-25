@@ -1,15 +1,20 @@
 import React from 'react';
+import integrationData from './integration.json';
 import TemplateIntegrationPage from '../TEMPLATE_INTEGRATION_PAGE';
 import metadataIndex from '../metadata_index.json';
 
 export default function Page() {
-    const metadata = metadataIndex.find(m => m.slug === 'web3auth') || { 
-        name: 'web3auth', 
-        displayName: 'web3auth', 
+    const meta = metadataIndex.find(m => m.slug === 'web3auth') || { 
+        displayName: 'Web3auth', 
         category: 'Other' 
     };
-
+    
     return (
-        <TemplateIntegrationPage {...metadata} name="web3auth" />
+        <TemplateIntegrationPage 
+            integrationData={integrationData} 
+            slug="web3auth" 
+            displayName={meta.displayName} 
+            category={meta.category} 
+        />
     );
 }

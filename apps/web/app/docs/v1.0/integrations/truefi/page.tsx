@@ -1,15 +1,20 @@
 import React from 'react';
+import integrationData from './integration.json';
 import TemplateIntegrationPage from '../TEMPLATE_INTEGRATION_PAGE';
 import metadataIndex from '../metadata_index.json';
 
 export default function Page() {
-    const metadata = metadataIndex.find(m => m.slug === 'truefi') || { 
-        name: 'truefi', 
-        displayName: 'truefi', 
+    const meta = metadataIndex.find(m => m.slug === 'truefi') || { 
+        displayName: 'Truefi', 
         category: 'Other' 
     };
-
+    
     return (
-        <TemplateIntegrationPage {...metadata} name="truefi" />
+        <TemplateIntegrationPage 
+            integrationData={integrationData} 
+            slug="truefi" 
+            displayName={meta.displayName} 
+            category={meta.category} 
+        />
     );
 }

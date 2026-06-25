@@ -1,15 +1,20 @@
 import React from 'react';
+import integrationData from './integration.json';
 import TemplateIntegrationPage from '../TEMPLATE_INTEGRATION_PAGE';
 import metadataIndex from '../metadata_index.json';
 
 export default function Page() {
-    const metadata = metadataIndex.find(m => m.slug === 'filebase') || { 
-        name: 'filebase', 
-        displayName: 'filebase', 
+    const meta = metadataIndex.find(m => m.slug === 'filebase') || { 
+        displayName: 'Filebase', 
         category: 'Other' 
     };
-
+    
     return (
-        <TemplateIntegrationPage {...metadata} name="filebase" />
+        <TemplateIntegrationPage 
+            integrationData={integrationData} 
+            slug="filebase" 
+            displayName={meta.displayName} 
+            category={meta.category} 
+        />
     );
 }

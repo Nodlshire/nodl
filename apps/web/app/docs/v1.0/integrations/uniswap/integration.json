@@ -1,0 +1,38 @@
+{
+  "displayName": "Uniswap",
+  "category": "DeFi",
+  "chain": "Ethereum, Arbitrum, Optimism",
+  "rpcEndpoint": "https://rpc.ankr.com/eth",
+  "abiAvailable": true,
+  "sdkAvailable": true,
+  "contractAddress": "0x1F98431c8aD98523631AE4a59f267346ea31F984 (Factory)",
+  "version": "v3",
+  "githubRepo": "https://github.com/Uniswap/v3-core",
+  "docLink": "https://docs.uniswap.org/",
+  "deterministicGuarantees": "Pool reserves and tick bitmaps are mathematically deterministic. Quotes can be calculated offline with 100% accuracy.",
+  "replayBehaviour": "Tick state can be cached locally. Replaying requires exact block boundaries to match on-chain TWAP.",
+  "memoryPageUsage": "Requires ~8MB WASM memory pages for tick bitmap parsing.",
+  "executionBoundaries": "Bounded to the exact pool address and tick range queried.",
+  "failureModeBehaviour": "Reverts with \"IIA\" (Invalid Initialized Answer) if pool is uninitialized.",
+  "rpcMethods": [
+    "eth_call"
+  ],
+  "abiFunctions": [
+    "slot0()",
+    "swap(address,bool,int256,uint160,bytes)",
+    "mint(...)"
+  ],
+  "errorCodes": [
+    "TF (Too little received)",
+    "LOK (Locked)"
+  ],
+  "singleChainWorkflowSteps": [
+    "1. Fetch slot0 for current sqrtPriceX96.",
+    "2. Calculate exact output amount using Quoter contract.",
+    "3. Construct and sign swap payload."
+  ],
+  "sequenceDiagram": "sequenceDiagram\n    participant App\n    participant MeshNode\n    participant UniV3Pool\n    App->>MeshNode: Get Quote\n    MeshNode->>UniV3Pool: eth_call(slot0)\n    UniV3Pool-->>MeshNode: tick, sqrtPriceX96\n    MeshNode->>MeshNode: Calculate Output (WASM)\n    MeshNode-->>App: Exact Quote Amount",
+  "ecosystemImpactChain": "Allows decentralized frontends to serve zero-latency quotes by caching tick data inside the Sovereign Mesh.",
+  "ecosystemImpactOther": "N/A",
+  "ecosystemImpactWeb3": "Standardizes AMM interactions across all EVM environments via a unified abstraction layer."
+}

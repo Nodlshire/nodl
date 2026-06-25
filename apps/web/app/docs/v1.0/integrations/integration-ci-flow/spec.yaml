@@ -1,0 +1,8 @@
+api_version: v1alpha1
+kind: IntegrationSpec
+metadata:
+  name: integration-ci-flow
+  category: Other
+spec:
+  chain: Unknown
+  contract: Unknown

@@ -1,0 +1,36 @@
+{
+  "displayName": "Chainlink",
+  "category": "Oracle",
+  "chain": "Multi-chain",
+  "rpcEndpoint": "N/A (Read-only via target chains)",
+  "abiAvailable": true,
+  "sdkAvailable": false,
+  "contractAddress": "Various AggregatorV3Interface contracts",
+  "version": "v3",
+  "githubRepo": "https://github.com/smartcontractkit/chainlink",
+  "docLink": "https://docs.chain.link/",
+  "deterministicGuarantees": "Provides deterministic historical price feeds that can be used as trust anchors for WASM execution.",
+  "replayBehaviour": "Oracle answers at specific block heights are immutable and perfectly replayable.",
+  "memoryPageUsage": "Minimal (< 2MB).",
+  "executionBoundaries": "Bounded to single Phase/Round ID.",
+  "failureModeBehaviour": "If updated timestamp is too old, reverts with \"STALE_PRICE\".",
+  "rpcMethods": [
+    "eth_call"
+  ],
+  "abiFunctions": [
+    "latestRoundData()",
+    "getRoundData(uint80)"
+  ],
+  "errorCodes": [
+    "No data present"
+  ],
+  "singleChainWorkflowSteps": [
+    "1. Call latestRoundData()",
+    "2. Verify timestamp is within acceptable heartbeat limit.",
+    "3. Return price to the Mesh execution context."
+  ],
+  "sequenceDiagram": "sequenceDiagram\n    participant Job\n    participant MeshNode\n    participant Aggregator\n    Job->>MeshNode: Request Asset Price\n    MeshNode->>Aggregator: eth_call(latestRoundData)\n    Aggregator-->>MeshNode: roundId, answer, startedAt, updatedAt, answeredInRound\n    MeshNode->>MeshNode: Validate freshness (WASM)\n    MeshNode-->>Job: Verified Price",
+  "ecosystemImpactChain": "Securely bridges off-chain asset values into the Sovereign Mesh for deterministic execution.",
+  "ecosystemImpactOther": "N/A",
+  "ecosystemImpactWeb3": "Provides the critical price data necessary for unifying DeFi protocols across fragmentation."
+}

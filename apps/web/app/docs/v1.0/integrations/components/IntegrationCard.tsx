@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import Link from 'next/link';
 import { IntegrationMeta } from '../../../../../lib/integration-utils';
@@ -13,6 +15,7 @@ export default function IntegrationCard({ integration }: IntegrationCardProps) {
     return (
         <Link 
             href={`/docs/v1.0/integrations/${integration.name}`}
+            prefetch={false}
             className="group relative flex flex-col p-5 bg-[#0d1117] border border-slate-800 hover:border-slate-600 rounded-xl transition-all hover:bg-[#0f1117] hover:-translate-y-1 shadow-sm hover:shadow-lg min-h-[120px]"
         >
             <div 

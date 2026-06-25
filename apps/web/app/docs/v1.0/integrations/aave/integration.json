@@ -1,0 +1,47 @@
+{
+  "displayName": "Aave",
+  "category": "DeFi",
+  "chain": "Ethereum, Polygon, Arbitrum, Optimism",
+  "rpcEndpoint": "https://rpc.ankr.com/eth",
+  "abiAvailable": true,
+  "sdkAvailable": true,
+  "contractAddress": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2 (Aave v3 Pool)",
+  "version": "v3.0.2",
+  "githubRepo": "https://github.com/aave/aave-v3-core",
+  "docLink": "https://docs.aave.com/developers/",
+  "deterministicGuarantees": "Lending pool state mutations are fully deterministic when supplied with exact block hashes and transaction logs.",
+  "replayBehaviour": "Can be replayed locally via Sovereign Mesh WASM executors by mocking the ERC20 balances and oracle price feeds.",
+  "memoryPageUsage": "Requires ~16MB WASM memory pages for full state snapshot decoding.",
+  "executionBoundaries": "Bounded to individual isolated lending pools. Cross-chain state relies on Portal.",
+  "failureModeBehaviour": "If price oracle data is unavailable during replay, execution halts with code 0x401 (ORACLE_TIMEOUT).",
+  "rpcMethods": [
+    "eth_call",
+    "eth_getStorageAt",
+    "eth_getLogs"
+  ],
+  "abiFunctions": [
+    "supply(address,uint256,address,uint16)",
+    "withdraw(address,uint256,address)",
+    "borrow(address,uint256,uint256,uint16,address)"
+  ],
+  "errorCodes": [
+    "3 (NOT_CONTRACT)",
+    "42 (PRICE_ORACLE_SENTINEL_CHECK_FAILED)"
+  ],
+  "singleChainWorkflowSteps": [
+    "1. Extract user collateral balance via `eth_call`.",
+    "2. Fetch current Chainlink oracle price for asset.",
+    "3. Calculate health factor deterministically off-chain.",
+    "4. Execute liquidation if HF < 1."
+  ],
+  "crossChainWorkflowSteps": [
+    "1. Supply collateral on Source Chain.",
+    "2. Mesh Node verifies deposit inclusion.",
+    "3. Emit CCIP message to Destination Chain.",
+    "4. Mint aTokens on Destination Chain."
+  ],
+  "sequenceDiagram": "sequenceDiagram\n    participant User\n    participant MeshNode\n    participant AavePool\n    participant PriceOracle\n    User->>MeshNode: Request Liquidation Check\n    MeshNode->>AavePool: eth_call(getUserAccountData)\n    AavePool-->>MeshNode: collateralBase, debtBase\n    MeshNode->>PriceOracle: eth_call(latestAnswer)\n    PriceOracle-->>MeshNode: assetPrice\n    MeshNode->>MeshNode: Compute Health Factor (WASM)\n    MeshNode-->>User: Result (Liquidatable=True/False)",
+  "ecosystemImpactChain": "Provides deterministic, high-speed liquidation bots running directly on operator nodes without external VPS dependence.",
+  "ecosystemImpactOther": "Enables unified liquidity metrics aggregation across L2s by querying all pool contracts simultaneously.",
+  "ecosystemImpactWeb3": "Demonstrates complex smart-contract interaction executed entirely within a secure WASM sandbox without RPC latency."
+}

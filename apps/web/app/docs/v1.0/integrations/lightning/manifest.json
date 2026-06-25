@@ -1,0 +1,11 @@
+{
+  "name": "lightning",
+  "version": "Unknown",
+  "description": "Deterministic execution manifest for lightning",
+  "mesh_compatibility": "v1.0",
+  "entrypoint": "wasm/main.wasm",
+  "permissions": [
+    "eth_call",
+    "eth_getLogs"
+  ]
+}

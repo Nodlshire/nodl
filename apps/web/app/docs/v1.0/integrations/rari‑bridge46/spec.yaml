@@ -1,0 +1,8 @@
+api_version: v1alpha1
+kind: IntegrationSpec
+metadata:
+  name: rari‑bridge46
+  category: DeFi
+spec:
+  chain: Unknown
+  contract: Unknown

@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { IntegrationCategory } from '../../../../../lib/integration-utils';
 import { CATEGORY_COLORS } from '../../../../../constants/colors';

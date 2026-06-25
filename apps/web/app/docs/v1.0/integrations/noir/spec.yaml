@@ -1,0 +1,8 @@
+api_version: v1alpha1
+kind: IntegrationSpec
+metadata:
+  name: noir
+  category: DeFi
+spec:
+  chain: Unknown
+  contract: Unknown

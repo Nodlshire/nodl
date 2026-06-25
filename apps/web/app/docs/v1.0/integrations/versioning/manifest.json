@@ -1,0 +1,11 @@
+{
+  "name": "versioning",
+  "version": "Unknown",
+  "description": "Deterministic execution manifest for versioning",
+  "mesh_compatibility": "v1.0",
+  "entrypoint": "wasm/main.wasm",
+  "permissions": [
+    "eth_call",
+    "eth_getLogs"
+  ]
+}

@@ -1,0 +1,8 @@
+api_version: v1alpha1
+kind: IntegrationSpec
+metadata:
+  name: coda
+  category: Oracle
+spec:
+  chain: Unknown
+  contract: Unknown

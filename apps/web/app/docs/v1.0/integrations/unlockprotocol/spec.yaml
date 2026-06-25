@@ -1,0 +1,8 @@
+api_version: v1alpha1
+kind: IntegrationSpec
+metadata:
+  name: unlockprotocol
+  category: Other
+spec:
+  chain: Unknown
+  contract: Unknown

@@ -1,0 +1,11 @@
+{
+  "name": "m2m",
+  "version": "Unknown",
+  "description": "Deterministic execution manifest for m2m",
+  "mesh_compatibility": "v1.0",
+  "entrypoint": "wasm/main.wasm",
+  "permissions": [
+    "eth_call",
+    "eth_getLogs"
+  ]
+}

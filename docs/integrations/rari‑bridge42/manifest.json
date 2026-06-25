@@ -1,0 +1,11 @@
+{
+  "name": "rari‑bridge42",
+  "version": "Unknown",
+  "description": "Deterministic execution manifest for rari‑bridge42",
+  "mesh_compatibility": "v1.0",
+  "entrypoint": "wasm/main.wasm",
+  "permissions": [
+    "eth_call",
+    "eth_getLogs"
+  ]
+}

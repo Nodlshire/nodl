@@ -1,0 +1,11 @@
+{
+  "name": "sommelier",
+  "version": "Unknown",
+  "description": "Deterministic execution manifest for sommelier",
+  "mesh_compatibility": "v1.0",
+  "entrypoint": "wasm/main.wasm",
+  "permissions": [
+    "eth_call",
+    "eth_getLogs"
+  ]
+}

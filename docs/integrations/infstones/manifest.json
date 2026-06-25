@@ -1,0 +1,11 @@
+{
+  "name": "infstones",
+  "version": "Unknown",
+  "description": "Deterministic execution manifest for infstones",
+  "mesh_compatibility": "v1.0",
+  "entrypoint": "wasm/main.wasm",
+  "permissions": [
+    "eth_call",
+    "eth_getLogs"
+  ]
+}

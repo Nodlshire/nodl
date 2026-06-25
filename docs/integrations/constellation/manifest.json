@@ -1,0 +1,11 @@
+{
+  "name": "constellation",
+  "version": "Unknown",
+  "description": "Deterministic execution manifest for constellation",
+  "mesh_compatibility": "v1.0",
+  "entrypoint": "wasm/main.wasm",
+  "permissions": [
+    "eth_call",
+    "eth_getLogs"
+  ]
+}

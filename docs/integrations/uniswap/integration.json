@@ -1,0 +1,60 @@
+{
+  "summary": "Uniswap is a DeFi integration.",
+  "verified_metadata": {
+    "supported_networks": [
+      "Ethereum",
+      "Arbitrum",
+      "Optimism"
+    ],
+    "key_contract_roles": {
+      "Main Contract": "0x1F98431c8aD98523631AE4a59f267346ea31F984 (Factory)"
+    },
+    "canonical_references": {
+      "documentation": "https://docs.uniswap.org/",
+      "github": "https://github.com/Uniswap/v3-core"
+    },
+    "deterministic_boundaries": {
+      "guaranteed": [
+        "Pool reserves and tick bitmaps are mathematically deterministic. Quotes can be calculated offline with 100% accuracy."
+      ],
+      "external": [
+        "PENDING VERIFICATION"
+      ]
+    }
+  },
+  "architecture": {
+    "wnode_interaction": "Wnode acts as a stateless, deterministic execution layer using WASM.",
+    "read_write_flows": {
+      "reads": "PENDING VERIFICATION",
+      "writes": "PENDING VERIFICATION"
+    },
+    "enforced_determinism": "Requires ~8MB WASM memory pages for tick bitmap parsing.",
+    "external_risk": "Reverts with \"IIA\" (Invalid Initialized Answer) if pool is uninitialized."
+  },
+  "workflows": {
+    "core_operation": [
+      "PENDING VERIFICATION"
+    ]
+  },
+  "security_determinism": {
+    "deterministic_reads_writes": "All reads and writes are securely executed in deterministic WASM containers.",
+    "avoiding_hallucination": "PENDING VERIFICATION",
+    "rpc_contract_validation": "Validates via https://rpc.ankr.com/eth"
+  },
+  "economic_model": {
+    "interest_model": "PENDING VERIFICATION",
+    "wnode_job_exposure": "PENDING VERIFICATION",
+    "pricing_and_predictability": "PENDING VERIFICATION"
+  },
+  "testing_validation": {
+    "deterministic_test_cases": [
+      "PENDING VERIFICATION"
+    ],
+    "validation_strategies": [
+      "PENDING VERIFICATION"
+    ],
+    "example_scenarios": [
+      "PENDING VERIFICATION"
+    ]
+  }
+}

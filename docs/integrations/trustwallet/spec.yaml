@@ -1,0 +1,8 @@
+api_version: v1alpha1
+kind: IntegrationSpec
+metadata:
+  name: trustwallet
+  category: Oracle
+spec:
+  chain: Unknown
+  contract: Unknown

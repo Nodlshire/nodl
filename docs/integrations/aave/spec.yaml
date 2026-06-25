@@ -1,0 +1,8 @@
+api_version: v1alpha1
+kind: IntegrationSpec
+metadata:
+  name: aave
+  category: DeFi
+spec:
+  chain: Ethereum, Polygon, Arbitrum, Optimism
+  contract: 0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2 (Aave v3 Pool)

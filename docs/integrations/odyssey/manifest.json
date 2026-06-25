@@ -1,0 +1,11 @@
+{
+  "name": "odyssey",
+  "version": "Unknown",
+  "description": "Deterministic execution manifest for odyssey",
+  "mesh_compatibility": "v1.0",
+  "entrypoint": "wasm/main.wasm",
+  "permissions": [
+    "eth_call",
+    "eth_getLogs"
+  ]
+}

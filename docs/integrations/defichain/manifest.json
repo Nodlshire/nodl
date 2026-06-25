@@ -1,0 +1,11 @@
+{
+  "name": "defichain",
+  "version": "Unknown",
+  "description": "Deterministic execution manifest for defichain",
+  "mesh_compatibility": "v1.0",
+  "entrypoint": "wasm/main.wasm",
+  "permissions": [
+    "eth_call",
+    "eth_getLogs"
+  ]
+}

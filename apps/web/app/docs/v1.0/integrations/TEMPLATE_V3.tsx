@@ -71,16 +71,17 @@ const PROTOCOL_FACTS: Record<string, any> = {
 export default function Page() {
     const integrationName = "{integration_name}";
     const normalizedName = integrationName.toLowerCase().replace(/[^a-z0-9]/g, '');
-    const facts = PROTOCOL_FACTS[normalizedName] || {
-        overview: "This integration does not define any protocol overview in its source files.",
-        rpcDetail: [],
-        abiDetail: [],
-        workflows: ["This integration does not define explicit deterministic workflows."],
-        crossChain: ["This integration does not define explicit cross-chain workflows."],
-        payloads: { req: "[No Payload Provided]", res: "[No Response Provided]" },
-        failureModes: [],
-        docs: ["This integration does not reference external protocol documentation."]
-    };
+    const facts = PROTOCOL_FACTS[normalizedName] || {};
+
+    const legacyRpc = facts.rpc || [];
+    const rpcDetail = facts.rpcDetail || legacyRpc.map((r: string) => ({ method: r, params: "N/A", returns: "N/A", error: "N/A" }));
+    const abiDetail = facts.abiDetail || [];
+    const workflows = facts.workflows || facts.useCases || ["This integration does not define explicit deterministic workflows."];
+    const payloads = facts.payloads || { req: "[No Payload Provided]", res: "[No Response Provided]" };
+    const failureModes = facts.failureModes || [];
+    const crossChain = facts.crossChain || ["This integration does not define explicit cross-chain workflows."];
+    const docs = facts.docs || ["This integration does not reference external protocol documentation."];
+    const overview = facts.overview || "This integration does not define any protocol overview in its source files.";
 
     return (
         <div className="w-full pb-24">
@@ -91,7 +92,7 @@ export default function Page() {
             <div className="bg-slate-800/50 border border-slate-700 p-[12px] md:p-[16px] rounded-lg mb-[32px]">
                 <h4 className="text-[12px] font-bold uppercase tracking-widest text-slate-400 mb-[12px]">Protocol Overview</h4>
                 <div className="text-[16px] leading-[1.6] text-slate-300 m-0">
-                    {facts.overview}
+                    {overview}
                 </div>
             </div>
 
@@ -123,14 +124,14 @@ export default function Page() {
 
             {/* 4. RPC-Level Detail */}
             <h2 className="text-[22px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">RPC-Level Detail</h2>
-            {facts.rpcDetail.length > 0 ? (
+            {rpcDetail.length > 0 ? (
                 <div className="space-y-4">
-                    {facts.rpcDetail.map((rpc: any, i: number) => (
+                    {rpcDetail.map((rpc: any, i: number) => (
                         <div key={i} className="bg-[#0d1117] border border-slate-800 rounded-lg p-4">
-                            <div className="font-mono text-blue-400 mb-2">{rpc.method}</div>
-                            <div className="text-sm text-slate-400"><strong>Params:</strong> {rpc.params}</div>
-                            <div className="text-sm text-slate-400"><strong>Returns:</strong> {rpc.returns}</div>
-                            <div className="text-sm text-slate-400"><strong>Error:</strong> {rpc.error}</div>
+                            <div className="font-mono text-blue-400 mb-2">{rpc.method || rpc}</div>
+                            {rpc.params && <div className="text-sm text-slate-400"><strong>Params:</strong> {rpc.params}</div>}
+                            {rpc.returns && <div className="text-sm text-slate-400"><strong>Returns:</strong> {rpc.returns}</div>}
+                            {rpc.error && <div className="text-sm text-slate-400"><strong>Error:</strong> {rpc.error}</div>}
                         </div>
                     ))}
                 </div>
@@ -140,9 +141,9 @@ export default function Page() {
 
             {/* 5. ABI-Level Detail */}
             <h2 className="text-[22px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">ABI-Level Detail</h2>
-            {facts.abiDetail.length > 0 ? (
+            {abiDetail.length > 0 ? (
                 <div className="space-y-4">
-                    {facts.abiDetail.map((abi: any, i: number) => (
+                    {abiDetail.map((abi: any, i: number) => (
                         <div key={i} className="bg-[#0d1117] border border-slate-800 rounded-lg p-4">
                             <div className="font-mono text-purple-400 mb-2">{abi.sig}</div>
                             <div className="text-sm text-slate-400"><strong>Event:</strong> {abi.event}</div>
@@ -159,18 +160,18 @@ export default function Page() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-[16px]">
                 <div className="bg-[#0d1117] border border-slate-800 rounded-lg p-4">
                     <div className="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-2">Request Payload</div>
-                    <pre className="text-[12px] font-mono text-slate-300 overflow-x-auto">{facts.payloads.req}</pre>
+                    <pre className="text-[12px] font-mono text-slate-300 overflow-x-auto">{payloads.req}</pre>
                 </div>
                 <div className="bg-[#0d1117] border border-slate-800 rounded-lg p-4">
                     <div className="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-2">Deterministic Response</div>
-                    <pre className="text-[12px] font-mono text-green-400 overflow-x-auto">{facts.payloads.res}</pre>
+                    <pre className="text-[12px] font-mono text-green-400 overflow-x-auto">{payloads.res}</pre>
                 </div>
             </div>
 
             {/* 7. Deterministic Workflow Examples */}
             <h2 className="text-[22px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Deterministic Workflow Examples</h2>
             <ul className="text-[16px] leading-[1.7] text-[#e5e7eb] list-decimal list-inside space-y-2 mb-[16px]">
-                {facts.workflows.map((wf: string, i: number) => (
+                {workflows.map((wf: string, i: number) => (
                     <li key={i}>{wf}</li>
                 ))}
             </ul>
@@ -178,7 +179,7 @@ export default function Page() {
             {/* 8. Cross-Chain Workflow Examples */}
             <h2 className="text-[22px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Cross-Chain Workflow Examples</h2>
             <ul className="text-[16px] leading-[1.7] text-[#e5e7eb] list-decimal list-inside space-y-2 mb-[16px]">
-                {facts.crossChain.map((cc: string, i: number) => (
+                {crossChain.map((cc: string, i: number) => (
                     <li key={i}>{cc}</li>
                 ))}
             </ul>
@@ -207,7 +208,7 @@ export default function Page() {
             <ul className="text-[16px] leading-[1.7] text-[#e5e7eb] list-disc list-inside space-y-[4px] mb-[16px]">
                 <li><strong>WASM Failures:</strong> Memory limit exceeded (`panic: out of bounds`), divide-by-zero traps.</li>
                 <li><strong>Deterministic Proxy Failures:</strong> Host HTTP timeout &gt; 50ms, Invalid JSON-RPC response from mocked endpoint.</li>
-                {facts.failureModes.map((fm: string, i: number) => (
+                {failureModes.map((fm: string, i: number) => (
                     <li key={i}><strong>Protocol-Specific:</strong> {fm}</li>
                 ))}
             </ul>
@@ -236,7 +237,7 @@ export default function Page() {
             <div className="mt-[32px] pt-[24px] border-t border-slate-800">
                 <h3 className="text-[18px] font-semibold text-slate-300 mb-[12px]">Documentation References</h3>
                 <ul className="text-[14px] text-slate-400 list-disc list-inside space-y-1">
-                    {facts.docs.map((doc: string, i: number) => (
+                    {docs.map((doc: string, i: number) => (
                         <li key={i}><a href={doc} className="text-blue-400 hover:underline" target="_blank" rel="noreferrer">{doc}</a></li>
                     ))}
                 </ul>

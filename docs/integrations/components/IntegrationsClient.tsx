@@ -5,7 +5,7 @@ import AZSelector from './AZSelector';
 import SearchBox from './SearchBox';
 import FilterLabels from './FilterLabels';
 import IntegrationCard from './IntegrationCard';
-import { IntegrationMeta, IntegrationCategory } from '../../../../../lib/integration-utils';
+import { IntegrationMeta, IntegrationCategory } from '../../../apps/web/lib/integration-utils';
 
 interface IntegrationsClientProps {
     integrations: IntegrationMeta[];

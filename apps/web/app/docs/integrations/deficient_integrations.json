@@ -1,0 +1,7082 @@
+[
+  {
+    "name": "0x",
+    "slug": "0x",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "1inch",
+    "slug": "1inch",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "aavegotchi",
+    "slug": "aavegotchi",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "abacus",
+    "slug": "abacus",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "acala",
+    "slug": "acala",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "across",
+    "slug": "across",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "adex",
+    "slug": "adex",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "adyen",
+    "slug": "adyen",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "aergo",
+    "slug": "aergo",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "aerodrome",
+    "slug": "aerodrome",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "agoric",
+    "slug": "agoric",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "ai",
+    "slug": "ai",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "aion",
+    "slug": "aion",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "akash",
+    "slug": "akash",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "alchemix",
+    "slug": "alchemix",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "alchemy",
+    "slug": "alchemy",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "aldrin",
+    "slug": "aldrin",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "aleph-im",
+    "slug": "aleph-im",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "alephzero",
+    "slug": "alephzero",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "algorand",
+    "slug": "algorand",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "altair",
+    "slug": "altair",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "altlayer",
+    "slug": "altlayer",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "amplify",
+    "slug": "amplify",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "amplitude",
+    "slug": "amplitude",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "ankr",
+    "slug": "ankr",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "ankrscan",
+    "slug": "ankrscan",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "anti-patterns",
+    "slug": "anti-patterns",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "api3",
+    "slug": "api3",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "apillon",
+    "slug": "apillon",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "aptos",
+    "slug": "aptos",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "aragon",
+    "slug": "aragon",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "arbitrum",
+    "slug": "arbitrum",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "arbitrumnova",
+    "slug": "arbitrumnova",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "arcana",
+    "slug": "arcana",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "archway",
+    "slug": "archway",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "arctic",
+    "slug": "arctic",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "ark",
+    "slug": "ark",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "arweave",
+    "slug": "arweave",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "astar",
+    "slug": "astar",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "augur",
+    "slug": "augur",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "aurora",
+    "slug": "aurora",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "autonolas",
+    "slug": "autonolas",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "avail",
+    "slug": "avail",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "avalanche",
+    "slug": "avalanche",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "aws",
+    "slug": "aws",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "axelar",
+    "slug": "axelar",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "axieinfinity",
+    "slug": "axieinfinity",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "aztec",
+    "slug": "aztec",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "azure",
+    "slug": "azure",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "bajun",
+    "slug": "bajun",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "balancer",
+    "slug": "balancer",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "bancor",
+    "slug": "bancor",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "bandprotocol",
+    "slug": "bandprotocol",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "base",
+    "slug": "base",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "basegoerli",
+    "slug": "basegoerli",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "basescan",
+    "slug": "basescan",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "basilisk",
+    "slug": "basilisk",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "bat",
+    "slug": "bat",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "berachain",
+    "slug": "berachain",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "bifrost",
+    "slug": "bifrost",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "bitcanna",
+    "slug": "bitcanna",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "bitfinity",
+    "slug": "bitfinity",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "bitgetwallet",
+    "slug": "bitgetwallet",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "bitquery",
+    "slug": "bitquery",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "bitshares",
+    "slug": "bitshares",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "bitso",
+    "slug": "bitso",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "bitte",
+    "slug": "bitte",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "bittensor",
+    "slug": "bittensor",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "blast",
+    "slug": "blast",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "blockdaemon",
+    "slug": "blockdaemon",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "blocknative",
+    "slug": "blocknative",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "blockpi",
+    "slug": "blockpi",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "blockscout",
+    "slug": "blockscout",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "bloxroute",
+    "slug": "bloxroute",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "bloxroutevalidators",
+    "slug": "bloxroutevalidators",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "bluefin",
+    "slug": "bluefin",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "bob",
+    "slug": "bob",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "boba",
+    "slug": "boba",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "bosonprotocol",
+    "slug": "bosonprotocol",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "braavos",
+    "slug": "braavos",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "brahma",
+    "slug": "brahma",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "bridge",
+    "slug": "bridge",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "brightid",
+    "slug": "brightid",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "bscscan",
+    "slug": "bscscan",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "bvnk",
+    "slug": "bvnk",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "bytecoin",
+    "slug": "bytecoin",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "canto",
+    "slug": "canto",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "cardano",
+    "slug": "cardano",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "cartesi",
+    "slug": "cartesi",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "casper",
+    "slug": "casper",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "celer",
+    "slug": "celer",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "celestia",
+    "slug": "celestia",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "celestiatools",
+    "slug": "celestiatools",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "celo",
+    "slug": "celo",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "centrifuge",
+    "slug": "centrifuge",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "cerberus",
+    "slug": "cerberus",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "chainflip",
+    "slug": "chainflip",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "chainjet",
+    "slug": "chainjet",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "Chainlink",
+    "slug": "chainlink",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "https://docs.chain.link/"
+  },
+  {
+    "name": "chainstack",
+    "slug": "chainstack",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "chainstackrpc",
+    "slug": "chainstackrpc",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "chainway",
+    "slug": "chainway",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "chainx",
+    "slug": "chainx",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "charon",
+    "slug": "charon",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "checkout",
+    "slug": "checkout",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "cheqd",
+    "slug": "cheqd",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "chia",
+    "slug": "chia",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "chihuahua",
+    "slug": "chihuahua",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "chiliz",
+    "slug": "chiliz",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "ci-flow",
+    "slug": "ci-flow",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "circlecctp",
+    "slug": "circlecctp",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "circuit",
+    "slug": "circuit",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "civic",
+    "slug": "civic",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "clober",
+    "slug": "clober",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "coda",
+    "slug": "coda",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "coin98",
+    "slug": "coin98",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "coinbase tokenize",
+    "slug": "coinbase tokenize",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "coinbase-tokenize",
+    "slug": "coinbase-tokenize",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "coinbase_business",
+    "slug": "coinbase_business",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "coinbase_tokenize",
+    "slug": "coinbase_tokenize",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "coinbasewallet",
+    "slug": "coinbasewallet",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "coingecko",
+    "slug": "coingecko",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "coinmarketcap",
+    "slug": "coinmarketcap",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "coinmetrics",
+    "slug": "coinmetrics",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "comdex",
+    "slug": "comdex",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "cometh",
+    "slug": "cometh",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "composable",
+    "slug": "composable",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "compound",
+    "slug": "compound",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "connext",
+    "slug": "connext",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "constellation",
+    "slug": "constellation",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "context",
+    "slug": "context",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "coredao",
+    "slug": "coredao",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "cosmoshub",
+    "slug": "cosmoshub",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "cosmostation",
+    "slug": "cosmostation",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "covalent",
+    "slug": "covalent",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "crab",
+    "slug": "crab",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "crescent",
+    "slug": "crescent",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "cronos",
+    "slug": "cronos",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "crossmint",
+    "slug": "crossmint",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "crust",
+    "slug": "crust",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "cryptocom",
+    "slug": "cryptocom",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "curve",
+    "slug": "curve",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "curvegrid",
+    "slug": "curvegrid",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "cyber",
+    "slug": "cyber",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "cyberconnect",
+    "slug": "cyberconnect",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "dappnode",
+    "slug": "dappnode",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "dappradar",
+    "slug": "dappradar",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "dappsmith",
+    "slug": "dappsmith",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "darwinia",
+    "slug": "darwinia",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "dash",
+    "slug": "dash",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "dataunion",
+    "slug": "dataunion",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "debridge",
+    "slug": "debridge",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "decent",
+    "slug": "decent",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "decentology",
+    "slug": "decentology",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "decred",
+    "slug": "decred",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "deepdao",
+    "slug": "deepdao",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "defender",
+    "slug": "defender",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "defichain",
+    "slug": "defichain",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "defillama",
+    "slug": "defillama",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "defipulse",
+    "slug": "defipulse",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "degenchain",
+    "slug": "degenchain",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "delysium",
+    "slug": "delysium",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "dendreth",
+    "slug": "dendreth",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "desmos",
+    "slug": "desmos",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "dflow",
+    "slug": "dflow",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "dfuse",
+    "slug": "dfuse",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "dgen",
+    "slug": "dgen",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "digibyte",
+    "slug": "digibyte",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "dimo",
+    "slug": "dimo",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "dione",
+    "slug": "dione",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "disco",
+    "slug": "disco",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "discord",
+    "slug": "discord",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "district0x",
+    "slug": "district0x",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "dock",
+    "slug": "dock",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "dorahacks",
+    "slug": "dorahacks",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "dune",
+    "slug": "dune",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "dusk",
+    "slug": "dusk",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "dydx",
+    "slug": "dydx",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "dysonprotocol",
+    "slug": "dysonprotocol",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "eco",
+    "slug": "eco",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "edennetwork",
+    "slug": "edennetwork",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "edge",
+    "slug": "edge",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "edgeandnode",
+    "slug": "edgeandnode",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "edgeware",
+    "slug": "edgeware",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "efinity",
+    "slug": "efinity",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "eigenlayer",
+    "slug": "eigenlayer",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "elastos",
+    "slug": "elastos",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "eliza",
+    "slug": "eliza",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "elliptic",
+    "slug": "elliptic",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "embark",
+    "slug": "embark",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "empyrean",
+    "slug": "empyrean",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "energyweb",
+    "slug": "energyweb",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "enjin",
+    "slug": "enjin",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "ens",
+    "slug": "ens",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "ensvision",
+    "slug": "ensvision",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "entangle",
+    "slug": "entangle",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "eos",
+    "slug": "eos",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "epns",
+    "slug": "epns",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "equilibrium",
+    "slug": "equilibrium",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "ergo",
+    "slug": "ergo",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "espresso",
+    "slug": "espresso",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "ether-fi",
+    "slug": "ether-fi",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "etherfi",
+    "slug": "etherfi",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "etherscan",
+    "slug": "etherscan",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "etherspot",
+    "slug": "etherspot",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "ethsign",
+    "slug": "ethsign",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "euler",
+    "slug": "euler",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "evmos",
+    "slug": "evmos",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "exorde",
+    "slug": "exorde",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "factom",
+    "slug": "factom",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "fantom",
+    "slug": "fantom",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "farcaster",
+    "slug": "farcaster",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "farcasterframes",
+    "slug": "farcasterframes",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "farcasterhubs",
+    "slug": "farcasterhubs",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "farcasterwarpcast",
+    "slug": "farcasterwarpcast",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "feathercoin",
+    "slug": "feathercoin",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "fhenix",
+    "slug": "fhenix",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "filebase",
+    "slug": "filebase",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "filecoin",
+    "slug": "filecoin",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "fireblocks",
+    "slug": "fireblocks",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "flare",
+    "slug": "flare",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "flashbots",
+    "slug": "flashbots",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "fluencelabs",
+    "slug": "fluencelabs",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "flutterwave",
+    "slug": "flutterwave",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "forta",
+    "slug": "forta",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "foundry",
+    "slug": "foundry",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "frax",
+    "slug": "frax",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "fuel",
+    "slug": "fuel",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "fuse",
+    "slug": "fuse",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "galadriel",
+    "slug": "galadriel",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "galxe",
+    "slug": "galxe",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "gateio",
+    "slug": "gateio",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "gcp",
+    "slug": "gcp",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "gelato",
+    "slug": "gelato",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "gelatoops",
+    "slug": "gelatoops",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "geminis",
+    "slug": "geminis",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "generate-all",
+    "slug": "generate-all",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "genlayer",
+    "slug": "genlayer",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "genshiro",
+    "slug": "genshiro",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "gitcoin",
+    "slug": "gitcoin",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "glif",
+    "slug": "glif",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "gmx",
+    "slug": "gmx",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "gnolang",
+    "slug": "gnolang",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "gnosis",
+    "slug": "gnosis",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "gnosischain",
+    "slug": "gnosischain",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "gnosissafe",
+    "slug": "gnosissafe",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "gnosissafeapps",
+    "slug": "gnosissafeapps",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "goldfinch",
+    "slug": "goldfinch",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "goldsky",
+    "slug": "goldsky",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "golem",
+    "slug": "golem",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "gravitybridge",
+    "slug": "gravitybridge",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "griptape",
+    "slug": "griptape",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "gro",
+    "slug": "gro",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "groestlcoin",
+    "slug": "groestlcoin",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "gton",
+    "slug": "gton",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "harmony",
+    "slug": "harmony",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "hashflow",
+    "slug": "hashflow",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "hedera",
+    "slug": "hedera",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "helium",
+    "slug": "helium",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "helius",
+    "slug": "helius",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "herodotus",
+    "slug": "herodotus",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "hive",
+    "slug": "hive",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "hivemapper",
+    "slug": "hivemapper",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "holograph",
+    "slug": "holograph",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "hopprotocol",
+    "slug": "hopprotocol",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "hopr",
+    "slug": "hopr",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "hydradx",
+    "slug": "hydradx",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "hyperlane",
+    "slug": "hyperlane",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "hyperliquid",
+    "slug": "hyperliquid",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "icon",
+    "slug": "icon",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "icp",
+    "slug": "icp",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "immunefi",
+    "slug": "immunefi",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "immutablex",
+    "slug": "immutablex",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "indexcoop",
+    "slug": "indexcoop",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "infstones",
+    "slug": "infstones",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "infura",
+    "slug": "infura",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "injective",
+    "slug": "injective",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "ink",
+    "slug": "ink",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "integration-ci-flow",
+    "slug": "integration-ci-flow",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "integration-examples",
+    "slug": "integration-examples",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "integration-index",
+    "slug": "integration-index",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "integration-metadata-schema",
+    "slug": "integration-metadata-schema",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "integritee",
+    "slug": "integritee",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "interchain",
+    "slug": "interchain",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "interlay",
+    "slug": "interlay",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "io-net",
+    "slug": "io-net",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "iota",
+    "slug": "iota",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "iotex",
+    "slug": "iotex",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "ipfs",
+    "slug": "ipfs",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "irisnet",
+    "slug": "irisnet",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "ironfish",
+    "slug": "ironfish",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "jito",
+    "slug": "jito",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "joystream",
+    "slug": "joystream",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "jumperexchange",
+    "slug": "jumperexchange",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "juno",
+    "slug": "juno",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "kadena",
+    "slug": "kadena",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "kakarot",
+    "slug": "kakarot",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "karura",
+    "slug": "karura",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "kaspa",
+    "slug": "kaspa",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "kava",
+    "slug": "kava",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "kelpdao",
+    "slug": "kelpdao",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "khala",
+    "slug": "khala",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "ki",
+    "slug": "ki",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "kilt",
+    "slug": "kilt",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "kinto",
+    "slug": "kinto",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "kintsugi",
+    "slug": "kintsugi",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "klaytn",
+    "slug": "klaytn",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "koinos",
+    "slug": "koinos",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "komodo",
+    "slug": "komodo",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "kroma",
+    "slug": "kroma",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "kusama",
+    "slug": "kusama",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "kwenta",
+    "slug": "kwenta",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "kyber",
+    "slug": "kyber",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "kyve",
+    "slug": "kyve",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "layerzero",
+    "slug": "layerzero",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "leapwallet",
+    "slug": "leapwallet",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "ledgerlive",
+    "slug": "ledgerlive",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "lensprotocol",
+    "slug": "lensprotocol",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "leo",
+    "slug": "leo",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "lido",
+    "slug": "lido",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "lighthouse",
+    "slug": "lighthouse",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "lightlink",
+    "slug": "lightlink",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "lightning",
+    "slug": "lightning",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "linea",
+    "slug": "linea",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "liquity",
+    "slug": "liquity",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "lisk",
+    "slug": "lisk",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "list",
+    "slug": "list",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "litentry",
+    "slug": "litentry",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "litprotocol",
+    "slug": "litprotocol",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "livekit",
+    "slug": "livekit",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "livepeer",
+    "slug": "livepeer",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "logos",
+    "slug": "logos",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "loom",
+    "slug": "loom",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "loopring",
+    "slug": "loopring",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "lukso",
+    "slug": "lukso",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "lum",
+    "slug": "lum",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "lyra",
+    "slug": "lyra",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "m2m",
+    "slug": "m2m",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "madara",
+    "slug": "madara",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "magiceden",
+    "slug": "magiceden",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "magiclink",
+    "slug": "magiclink",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "maidsafecoin",
+    "slug": "maidsafecoin",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "maker",
+    "slug": "maker",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "makerdao",
+    "slug": "makerdao",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "mangata",
+    "slug": "mangata",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "manta",
+    "slug": "manta",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "mantle",
+    "slug": "mantle",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "maplefinance",
+    "slug": "maplefinance",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "mapprotocol",
+    "slug": "mapprotocol",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "marlin",
+    "slug": "marlin",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "marsprotocol",
+    "slug": "marsprotocol",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "massa",
+    "slug": "massa",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "mathchain",
+    "slug": "mathchain",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "matterlabs",
+    "slug": "matterlabs",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "maya",
+    "slug": "maya",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "melon",
+    "slug": "melon",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "metamask",
+    "slug": "metamask",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "metaplex",
+    "slug": "metaplex",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "metis",
+    "slug": "metis",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "mev",
+    "slug": "mev",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "mevboost",
+    "slug": "mevboost",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "mevshare",
+    "slug": "mevshare",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "mina",
+    "slug": "mina",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "mintfun",
+    "slug": "mintfun",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "mintkudos",
+    "slug": "mintkudos",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "mintlayer",
+    "slug": "mintlayer",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "mode",
+    "slug": "mode",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "modularcloud",
+    "slug": "modularcloud",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "monero",
+    "slug": "monero",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "moonbeam",
+    "slug": "moonbeam",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "moonriver",
+    "slug": "moonriver",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "moralis",
+    "slug": "moralis",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "morpho",
+    "slug": "morpho",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "motion",
+    "slug": "motion",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "multichain",
+    "slug": "multichain",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "multiversx",
+    "slug": "multiversx",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "myria",
+    "slug": "myria",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "mythx",
+    "slug": "mythx",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "namada",
+    "slug": "namada",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "namecoin",
+    "slug": "namecoin",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "navcoin",
+    "slug": "navcoin",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "near",
+    "slug": "near",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "nem",
+    "slug": "nem",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "neo",
+    "slug": "neo",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "neon",
+    "slug": "neon",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "neonlabs",
+    "slug": "neonlabs",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "neptune",
+    "slug": "neptune",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "nervos",
+    "slug": "nervos",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "nethermind",
+    "slug": "nethermind",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "neutron",
+    "slug": "neutron",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "neworder",
+    "slug": "neworder",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "nillion",
+    "slug": "nillion",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "nkn",
+    "slug": "nkn",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "noble",
+    "slug": "noble",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "nodle",
+    "slug": "nodle",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "noir",
+    "slug": "noir",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "nomic",
+    "slug": "nomic",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "notifi",
+    "slug": "notifi",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "notional",
+    "slug": "notional",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "nucleo",
+    "slug": "nucleo",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "nuxtweb3",
+    "slug": "nuxtweb3",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "oasis",
+    "slug": "oasis",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "obscuro",
+    "slug": "obscuro",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "oceanprotocol",
+    "slug": "oceanprotocol",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "odyssey",
+    "slug": "odyssey",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "okx",
+    "slug": "okx",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "okxwallet",
+    "slug": "okxwallet",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "omisego",
+    "slug": "omisego",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "omni",
+    "slug": "omni",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "onfinality",
+    "slug": "onfinality",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "onflow",
+    "slug": "onflow",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "ontochain",
+    "slug": "ontochain",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "ontology",
+    "slug": "ontology",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "opensea",
+    "slug": "opensea",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "optimism",
+    "slug": "optimism",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "optimismattestation",
+    "slug": "optimismattestation",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "optimisticetherscan",
+    "slug": "optimisticetherscan",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "orai",
+    "slug": "orai",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "orbs",
+    "slug": "orbs",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "orderly",
+    "slug": "orderly",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "osmosis",
+    "slug": "osmosis",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "ottersec",
+    "slug": "ottersec",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "pactus",
+    "slug": "pactus",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "palm",
+    "slug": "palm",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "pantherprotocol",
+    "slug": "pantherprotocol",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "paradigm",
+    "slug": "paradigm",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "paraswap",
+    "slug": "paraswap",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "paritytech",
+    "slug": "paritytech",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "particle",
+    "slug": "particle",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "passthrough",
+    "slug": "passthrough",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "peaq",
+    "slug": "peaq",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "peercoin",
+    "slug": "peercoin",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "pendle",
+    "slug": "pendle",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "pendulum",
+    "slug": "pendulum",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "perpetualprotocol",
+    "slug": "perpetualprotocol",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "persistence",
+    "slug": "persistence",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "phala",
+    "slug": "phala",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "phoenix",
+    "slug": "phoenix",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "picasso",
+    "slug": "picasso",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "pimlico",
+    "slug": "pimlico",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "pion",
+    "slug": "pion",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "pisa",
+    "slug": "pisa",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "pivx",
+    "slug": "pivx",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "pocketnetwork",
+    "slug": "pocketnetwork",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "pocketportal",
+    "slug": "pocketportal",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "polkadot",
+    "slug": "polkadot",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "polkassembly",
+    "slug": "polkassembly",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "polkastarter",
+    "slug": "polkastarter",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "polygon",
+    "slug": "polygon",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "polymarket",
+    "slug": "polymarket",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "polymesh",
+    "slug": "polymesh",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "polywrap",
+    "slug": "polywrap",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "pontem",
+    "slug": "pontem",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "popcorn",
+    "slug": "popcorn",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "portals",
+    "slug": "portals",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "poseidon",
+    "slug": "poseidon",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "powdr",
+    "slug": "powdr",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "powerledger",
+    "slug": "powerledger",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "primodium",
+    "slug": "primodium",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "proton",
+    "slug": "proton",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "puffer",
+    "slug": "puffer",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "pushprotocol",
+    "slug": "pushprotocol",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "pyth",
+    "slug": "pyth",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "qredo",
+    "slug": "qredo",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "qtum",
+    "slug": "qtum",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "quai",
+    "slug": "quai",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "quant",
+    "slug": "quant",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "quarkid",
+    "slug": "quarkid",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "quartz",
+    "slug": "quartz",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "quasar",
+    "slug": "quasar",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "quicknode",
+    "slug": "quicknode",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "quicksilver",
+    "slug": "quicksilver",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "quickswap",
+    "slug": "quickswap",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "quipuswap",
+    "slug": "quipuswap",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "radiant",
+    "slug": "radiant",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "radix",
+    "slug": "radix",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rainbow",
+    "slug": "rainbow",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rainbowkit",
+    "slug": "rainbowkit",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rango",
+    "slug": "rango",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari",
+    "slug": "rari",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rarible",
+    "slug": "rarible",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑agent",
+    "slug": "rari‑agent",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑api",
+    "slug": "rari‑api",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge",
+    "slug": "rari‑bridge",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge10",
+    "slug": "rari‑bridge10",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge11",
+    "slug": "rari‑bridge11",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge12",
+    "slug": "rari‑bridge12",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge13",
+    "slug": "rari‑bridge13",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge14",
+    "slug": "rari‑bridge14",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge15",
+    "slug": "rari‑bridge15",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge16",
+    "slug": "rari‑bridge16",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge17",
+    "slug": "rari‑bridge17",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge18",
+    "slug": "rari‑bridge18",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge19",
+    "slug": "rari‑bridge19",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge2",
+    "slug": "rari‑bridge2",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge20",
+    "slug": "rari‑bridge20",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge21",
+    "slug": "rari‑bridge21",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge22",
+    "slug": "rari‑bridge22",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge23",
+    "slug": "rari‑bridge23",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge24",
+    "slug": "rari‑bridge24",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge25",
+    "slug": "rari‑bridge25",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge26",
+    "slug": "rari‑bridge26",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge27",
+    "slug": "rari‑bridge27",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge28",
+    "slug": "rari‑bridge28",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge29",
+    "slug": "rari‑bridge29",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge3",
+    "slug": "rari‑bridge3",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge30",
+    "slug": "rari‑bridge30",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge31",
+    "slug": "rari‑bridge31",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge32",
+    "slug": "rari‑bridge32",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge33",
+    "slug": "rari‑bridge33",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge34",
+    "slug": "rari‑bridge34",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge35",
+    "slug": "rari‑bridge35",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge36",
+    "slug": "rari‑bridge36",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge37",
+    "slug": "rari‑bridge37",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge38",
+    "slug": "rari‑bridge38",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge39",
+    "slug": "rari‑bridge39",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge4",
+    "slug": "rari‑bridge4",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge40",
+    "slug": "rari‑bridge40",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge41",
+    "slug": "rari‑bridge41",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge42",
+    "slug": "rari‑bridge42",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge43",
+    "slug": "rari‑bridge43",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge44",
+    "slug": "rari‑bridge44",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge45",
+    "slug": "rari‑bridge45",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge46",
+    "slug": "rari‑bridge46",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge47",
+    "slug": "rari‑bridge47",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge48",
+    "slug": "rari‑bridge48",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge49",
+    "slug": "rari‑bridge49",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge5",
+    "slug": "rari‑bridge5",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge50",
+    "slug": "rari‑bridge50",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge6",
+    "slug": "rari‑bridge6",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge7",
+    "slug": "rari‑bridge7",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge8",
+    "slug": "rari‑bridge8",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑bridge9",
+    "slug": "rari‑bridge9",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑capital",
+    "slug": "rari‑capital",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑chain",
+    "slug": "rari‑chain",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑compute",
+    "slug": "rari‑compute",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑contracts",
+    "slug": "rari‑contracts",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑core",
+    "slug": "rari‑core",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑dao",
+    "slug": "rari‑dao",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑engine",
+    "slug": "rari‑engine",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑fuse",
+    "slug": "rari‑fuse",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑governance",
+    "slug": "rari‑governance",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑index",
+    "slug": "rari‑index",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑infra",
+    "slug": "rari‑infra",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑labs",
+    "slug": "rari‑labs",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑network",
+    "slug": "rari‑network",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑node",
+    "slug": "rari‑node",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑ops",
+    "slug": "rari‑ops",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑oracle",
+    "slug": "rari‑oracle",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑pool",
+    "slug": "rari‑pool",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑protocol",
+    "slug": "rari‑protocol",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑router",
+    "slug": "rari‑router",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑runtime",
+    "slug": "rari‑runtime",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑sdk",
+    "slug": "rari‑sdk",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑storage",
+    "slug": "rari‑storage",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑tools",
+    "slug": "rari‑tools",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑vault",
+    "slug": "rari‑vault",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑vm",
+    "slug": "rari‑vm",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rari‑wallet",
+    "slug": "rari‑wallet",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "ravencoin",
+    "slug": "ravencoin",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "raydium",
+    "slug": "raydium",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "redstone",
+    "slug": "redstone",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "reef",
+    "slug": "reef",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "regen",
+    "slug": "regen",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "registry-overview",
+    "slug": "registry-overview",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "render",
+    "slug": "render",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "renprotocol",
+    "slug": "renprotocol",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "reservoir",
+    "slug": "reservoir",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "ripple",
+    "slug": "ripple",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "risczero",
+    "slug": "risczero",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "robonomics",
+    "slug": "robonomics",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "rocketpool",
+    "slug": "rocketpool",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "ronin",
+    "slug": "ronin",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "routerprotocol",
+    "slug": "routerprotocol",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "safe",
+    "slug": "safe",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "scroll",
+    "slug": "scroll",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "secret",
+    "slug": "secret",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "secretnetwork",
+    "slug": "secretnetwork",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "seda",
+    "slug": "seda",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "sei",
+    "slug": "sei",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "sentinel",
+    "slug": "sentinel",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "shadow",
+    "slug": "shadow",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "shardeum",
+    "slug": "shardeum",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "sherpax",
+    "slug": "sherpax",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "shibarium",
+    "slug": "shibarium",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "shiden",
+    "slug": "shiden",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "shutter",
+    "slug": "shutter",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "sia",
+    "slug": "sia",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "siacoin",
+    "slug": "siacoin",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "sidechain",
+    "slug": "sidechain",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "sismo",
+    "slug": "sismo",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "skale",
+    "slug": "skale",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "snow",
+    "slug": "snow",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "snowtrace",
+    "slug": "snowtrace",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "solana",
+    "slug": "solana",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "sommelier",
+    "slug": "sommelier",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "sonic",
+    "slug": "sonic",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "sora",
+    "slug": "sora",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "soulbound",
+    "slug": "soulbound",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "sovereign",
+    "slug": "sovereign",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "spaceandtime",
+    "slug": "spaceandtime",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "spacemesh",
+    "slug": "spacemesh",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "spec-yaml",
+    "slug": "spec-yaml",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "squad",
+    "slug": "squad",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "stacks",
+    "slug": "stacks",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "stader",
+    "slug": "stader",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "stafi",
+    "slug": "stafi",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "standby",
+    "slug": "standby",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "stargaze",
+    "slug": "stargaze",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "starknet",
+    "slug": "starknet",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "starname",
+    "slug": "starname",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "stasis",
+    "slug": "stasis",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "status",
+    "slug": "status",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "stax",
+    "slug": "stax",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "steakwallet",
+    "slug": "steakwallet",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "steem",
+    "slug": "steem",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "stella",
+    "slug": "stella",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "stellar",
+    "slug": "stellar",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "stratis",
+    "slug": "stratis",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "stride",
+    "slug": "stride",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "stripe",
+    "slug": "stripe",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "subquery",
+    "slug": "subquery",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "subsocial",
+    "slug": "subsocial",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "substrate",
+    "slug": "substrate",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "sui",
+    "slug": "sui",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "superchain",
+    "slug": "superchain",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "superfluid",
+    "slug": "superfluid",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "supra",
+    "slug": "supra",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "sushi",
+    "slug": "sushi",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "sushiswap",
+    "slug": "sushiswap",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "synapse",
+    "slug": "synapse",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "synthetix",
+    "slug": "synthetix",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "syscoin",
+    "slug": "syscoin",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "taiko",
+    "slug": "taiko",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "tapioca",
+    "slug": "tapioca",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "tenderly",
+    "slug": "tenderly",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "tenx",
+    "slug": "tenx",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "tether",
+    "slug": "tether",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "tezos",
+    "slug": "tezos",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "tgrade",
+    "slug": "tgrade",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "thegraph",
+    "slug": "thegraph",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "thegraphhostedservice",
+    "slug": "thegraphhostedservice",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "theta",
+    "slug": "theta",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "thorchain",
+    "slug": "thorchain",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "threshold",
+    "slug": "threshold",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "tidefi",
+    "slug": "tidefi",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "tinkernet",
+    "slug": "tinkernet",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "tokenised GBP",
+    "slug": "tokenised GBP",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "tokenised-GBP",
+    "slug": "tokenised-GBP",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "ton",
+    "slug": "ton",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "tornado",
+    "slug": "tornado",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "treasuredao",
+    "slug": "treasuredao",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "tron",
+    "slug": "tron",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "truefi",
+    "slug": "truefi",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "trustwallet",
+    "slug": "trustwallet",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "trustwalletassets",
+    "slug": "trustwalletassets",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "turing",
+    "slug": "turing",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "umee",
+    "slug": "umee",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "unichain",
+    "slug": "unichain",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "unique",
+    "slug": "unique",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "Uniswap",
+    "slug": "uniswap",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "https://docs.uniswap.org/"
+  },
+  {
+    "name": "uniswap_v3",
+    "slug": "uniswap_v3",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "unlockprotocol",
+    "slug": "unlockprotocol",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "valist",
+    "slug": "valist",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "valora",
+    "slug": "valora",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "vechain",
+    "slug": "vechain",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "vectis",
+    "slug": "vectis",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "velodrome",
+    "slug": "velodrome",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "venus",
+    "slug": "venus",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "versioning",
+    "slug": "versioning",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "vertcoin",
+    "slug": "vertcoin",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "viacoin",
+    "slug": "viacoin",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "vialabs",
+    "slug": "vialabs",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "vidulum",
+    "slug": "vidulum",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "vital",
+    "slug": "vital",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "vulcan",
+    "slug": "vulcan",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "walletconnect",
+    "slug": "walletconnect",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "wanchain",
+    "slug": "wanchain",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "warpcast",
+    "slug": "warpcast",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "waves",
+    "slug": "waves",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "wax",
+    "slug": "wax",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "web3auth",
+    "slug": "web3auth",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "wemix",
+    "slug": "wemix",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "witnesschain",
+    "slug": "witnesschain",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "wormhole",
+    "slug": "wormhole",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "xai",
+    "slug": "xai",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "xdc",
+    "slug": "xdc",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "xlm",
+    "slug": "xlm",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "xmtp",
+    "slug": "xmtp",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "xrp",
+    "slug": "xrp",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "yearn",
+    "slug": "yearn",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "yeti",
+    "slug": "yeti",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "yieldyak",
+    "slug": "yieldyak",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "zcash",
+    "slug": "zcash",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "zebec",
+    "slug": "zebec",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "zeitgeist",
+    "slug": "zeitgeist",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "zerofs",
+    "slug": "zerofs",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "zeta",
+    "slug": "zeta",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "zetachain",
+    "slug": "zetachain",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "zilliqa",
+    "slug": "zilliqa",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "zkapps",
+    "slug": "zkapps",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "zkbob",
+    "slug": "zkbob",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "zkbridge",
+    "slug": "zkbridge",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "zkfair",
+    "slug": "zkfair",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "zklink",
+    "slug": "zklink",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "zksync",
+    "slug": "zksync",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "zksyncexplorer",
+    "slug": "zksyncexplorer",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  },
+  {
+    "name": "zora",
+    "slug": "zora",
+    "missing_sections": [
+      "workflows",
+      "economic_model",
+      "testing_validation"
+    ],
+    "recommended_source": "Unknown"
+  }
+]

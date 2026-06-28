@@ -2,8 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { IntegrationMeta } from '../../../../../lib/integration-utils';
-import { CATEGORY_COLORS } from '../../../../../constants/colors';
+import { IntegrationMeta } from '../../../apps/web/lib/integration-utils';
+import { CATEGORY_COLORS } from '../../../apps/web/constants/colors';
 
 interface IntegrationCardProps {
     integration: IntegrationMeta;
@@ -14,7 +14,7 @@ export default function IntegrationCard({ integration }: IntegrationCardProps) {
 
     return (
         <Link 
-            href={`/docs/v1.0/integrations/${integration.name}`}
+            href={`/docs/integrations/${integration.name}`}
             prefetch={false}
             className="group relative flex flex-col p-5 bg-[#0d1117] border border-slate-700 hover:border-slate-500 rounded-xl transition-all hover:bg-[#0f1117] hover:-translate-y-1 shadow-sm hover:shadow-lg min-h-[120px]"
         >
@@ -24,7 +24,7 @@ export default function IntegrationCard({ integration }: IntegrationCardProps) {
                 </div>
                 
                 <div 
-                    className="self-start px-2 py-0.5 rounded-md text-[10px] font-bold flex items-center gap-1.5 border"
+                    className="inline-flex items-center justify-center max-w-fit px-2.5 py-1 rounded-md text-[10px] font-bold gap-1.5 border"
                     style={{ backgroundColor: `${color}15`, borderColor: `${color}40`, color: color }}
                 >
                     <span className="w-1 h-1 rounded-full" style={{ backgroundColor: color }}></span>
@@ -32,8 +32,7 @@ export default function IntegrationCard({ integration }: IntegrationCardProps) {
                 </div>
             </div>
             
-            <div className="mt-auto pt-4 border-t border-slate-800/50 flex items-center justify-between">
-                <span className="text-[10px] font-mono text-slate-500 bg-slate-900 px-2 py-1 rounded">DETERMINISTIC</span>
+            <div className="mt-auto pt-4 border-t border-slate-800/50 flex items-center justify-end">
                 <div className="flex items-center gap-2">
                     <svg className="w-4 h-4 text-slate-600 group-hover:text-blue-400 transition-colors opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

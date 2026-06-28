@@ -1,4 +1,4 @@
-# rari‑bridge44
+# Rari‑bridge44
 
 ## 1. Summary
 To be populated in Phase 2.3.

@@ -1,4 +1,4 @@
-# ether-fi
+# Ether-fi
 
 ## 1. Summary
 To be populated in Phase 2.3.

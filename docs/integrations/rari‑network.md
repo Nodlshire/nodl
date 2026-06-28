@@ -1,4 +1,4 @@
-# rari‑network
+# Rari‑network
 
 ## 1. Summary
 To be populated in Phase 2.3.

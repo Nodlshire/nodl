@@ -1,4 +1,4 @@
-# uniswap_v3
+# Uniswap_v3
 
 ## 1. Summary
 To be populated in Phase 2.3.

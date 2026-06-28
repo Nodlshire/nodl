@@ -1,4 +1,4 @@
-# darwinia
+# Darwinia
 
 ## 1. Summary
 To be populated in Phase 2.3.

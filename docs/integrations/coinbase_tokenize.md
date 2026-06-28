@@ -1,4 +1,4 @@
-# coinbase_tokenize
+# Coinbase_tokenize
 
 ## 1. Summary
 To be populated in Phase 2.3.

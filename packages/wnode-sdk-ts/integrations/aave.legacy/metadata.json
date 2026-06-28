@@ -1,0 +1,27 @@
+{
+  "name": "aave-health-monitor",
+  "version": "1.0.0",
+  "description": "Monitors Aave V3 user health factors deterministically.",
+  "type": "read-only",
+  "determinismFlags": {
+    "requireFinalized": true,
+    "allowSimulation": false
+  },
+  "abi": [
+    "function getUserAccountData(address user) external view returns (uint256 totalCollateralBase, uint256 totalDebtBase, uint256 availableBorrowsBase, uint256 currentLiquidationThreshold, uint256 ltv, uint256 healthFactor)"
+  ],
+  "exampleWorkflow": {
+    "version": "1.0",
+    "steps": [
+      {
+        "id": "get_health_factor",
+        "action": "readContract",
+        "params": {
+          "address": "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+          "functionName": "getUserAccountData",
+          "args": ["${USER_ADDRESS}"]
+        }
+      }
+    ]
+  }
+}

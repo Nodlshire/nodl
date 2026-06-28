@@ -1,8 +1,0 @@
-api_version: v1alpha1
-kind: IntegrationSpec
-metadata:
-  name: valist
-  category: Oracle
-spec:
-  chain: Unknown
-  contract: Unknown

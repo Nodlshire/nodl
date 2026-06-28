@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const INTEGRATIONS_DIR = path.join(__dirname, '../app/docs/v1.0/integrations');
+const INTEGRATIONS_DIR = path.join(__dirname, '../app/docs/integrations');
 const INDEX_FILE = path.join(INTEGRATIONS_DIR, 'metadata_index.json');
 
 // A verified dictionary of real data for top protocols.

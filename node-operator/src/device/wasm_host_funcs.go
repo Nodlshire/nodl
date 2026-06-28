@@ -10,12 +10,26 @@ import (
 	"github.com/obregan/nodl/node-operator/src/platform"
 )
 
+// WasmCapabilities defines the allowed host extensions from spec.yaml
+type WasmCapabilities struct {
+	HTTPSBindings []string
+	DBBindings    []string
+}
+
+// Global registry for daemon-managed DB connections (mocked for now)
+var ManagedDBConnections = make(map[string]string)
+
+// Set inside ExecuteWasm via context or global for the sandbox scope
+var currentCapabilities WasmCapabilities
+
 // RegisterHostFunctions registers the "env" module allowing controlled host interactions.
-func RegisterHostFunctions(ctx context.Context, r wazero.Runtime) error {
+func RegisterHostFunctions(ctx context.Context, r wazero.Runtime, caps WasmCapabilities) error {
+	currentCapabilities = caps // In a real multi-tenant setup, this should be context-bound
+
 	_, err := r.NewHostModuleBuilder("env").
-		NewFunctionBuilder().
-		WithFunc(requestGpuCompute).
-		Export("request_gpu_compute").
+		NewFunctionBuilder().WithFunc(requestGpuCompute).Export("request_gpu_compute").
+		NewFunctionBuilder().WithFunc(httpRequestWasm).Export("http_request").
+		NewFunctionBuilder().WithFunc(dbQueryWasm).Export("db_query").
 		Instantiate(ctx)
 	
 	if err != nil {
@@ -61,4 +75,74 @@ func requestGpuCompute(ctx context.Context, m api.Module, ptr uint32, length uin
 
 	// Buffer too small to write stub response, return 0
 	return 0
+}
+
+// httpRequestWasm enforces outbound HTTPS rules based on spec.yaml declarations.
+// Signature: http_request(bindingPtr, bindingLen, methodPtr, methodLen, urlPtr, urlLen) (responseLen uint32)
+func httpRequestWasm(ctx context.Context, m api.Module, bindingPtr, bindingLen, methodPtr, methodLen, urlPtr, urlLen uint32) uint32 {
+	bindingBytes, ok1 := m.Memory().Read(bindingPtr, bindingLen)
+	methodBytes, ok2 := m.Memory().Read(methodPtr, methodLen)
+	urlBytes, ok3 := m.Memory().Read(urlPtr, urlLen)
+	
+	if !ok1 || !ok2 || !ok3 {
+		platform.Error("WASM HTTP request failed: out of bounds read")
+		return 0
+	}
+
+	binding := string(bindingBytes)
+	urlStr := string(urlBytes)
+
+	// Capability Check
+	allowed := false
+	for _, b := range currentCapabilities.HTTPSBindings {
+		if b == binding || strings.HasPrefix(urlStr, b) {
+			allowed = true
+			break
+		}
+	}
+
+	if !allowed {
+		platform.Error("WASM HTTP request rejected: capability %q not declared in spec.yaml", binding)
+		return 0
+	}
+
+	platform.Info("WASM HTTP capability authorized. Executing %s %s", string(methodBytes), urlStr)
+	// Execute HTTP request safely... (stubbed)
+	time.Sleep(50 * time.Millisecond)
+
+	return 1 // return 1 on success
+}
+
+// dbQueryWasm enforces scoped database access based on spec.yaml bindings.
+// Signature: db_query(bindingPtr, bindingLen, stmtPtr, stmtLen) (responseLen uint32)
+func dbQueryWasm(ctx context.Context, m api.Module, bindingPtr, bindingLen, stmtPtr, stmtLen uint32) uint32 {
+	bindingBytes, ok1 := m.Memory().Read(bindingPtr, bindingLen)
+	stmtBytes, ok2 := m.Memory().Read(stmtPtr, stmtLen)
+	
+	if !ok1 || !ok2 {
+		platform.Error("WASM DB query failed: out of bounds read")
+		return 0
+	}
+
+	binding := string(bindingBytes)
+
+	// Capability Check
+	allowed := false
+	for _, b := range currentCapabilities.DBBindings {
+		if b == binding {
+			allowed = true
+			break
+		}
+	}
+
+	if !allowed {
+		platform.Error("WASM DB query rejected: capability %q not declared in spec.yaml", binding)
+		return 0
+	}
+
+	platform.Info("WASM DB capability authorized on binding %q. Query: %s", binding, string(stmtBytes))
+	// Route query through daemon-managed connection pool... (stubbed)
+	time.Sleep(20 * time.Millisecond)
+
+	return 1 // return 1 on success
 }

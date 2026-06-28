@@ -1,0 +1,27 @@
+{
+  "name": "chainlink-price-feed",
+  "version": "1.0.0",
+  "description": "Reads Chainlink price feeds with strict determinism and roundId cross-validation.",
+  "type": "oracle",
+  "determinismFlags": {
+    "requireFinalized": true,
+    "allowSimulation": false
+  },
+  "abi": [
+    "function latestRoundData() external view returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound)"
+  ],
+  "exampleWorkflow": {
+    "version": "1.0",
+    "steps": [
+      {
+        "id": "get_eth_usd",
+        "action": "readContract",
+        "params": {
+          "address": "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+          "functionName": "latestRoundData",
+          "args": []
+        }
+      }
+    ]
+  }
+}

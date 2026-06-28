@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const INTEGRATIONS_DIR = path.join(__dirname, 'apps/web/app/docs/v1.0/integrations');
+const INTEGRATIONS_DIR = path.join(__dirname, 'apps/web/app/docs/integrations');
 const TEMPLATE_FILE = path.join(INTEGRATIONS_DIR, 'TEMPLATE_V3.tsx');
 
 let templateContent = fs.readFileSync(TEMPLATE_FILE, 'utf8');

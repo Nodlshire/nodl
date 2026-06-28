@@ -1,0 +1,135 @@
+{
+  "summary": "The Aave integration connects the Sovereign Mesh deterministically to the Aave V3 protocol. It acts as a mesh-safe gateway ensuring that all interactions with Aave—such as reading pool states, checking health factors, and executing liquidations—are mathematically reproducible across nodes. By wrapping Aave's RPC endpoints in a strict, pure-function adapter, the Sovereign Mesh guarantees that no non-deterministic execution paths can breach the consensus layer or corrupt the proof of compute.",
+  "verified_metadata": {
+    "supported_networks": [
+      "Ethereum",
+      "Polygon",
+      "Arbitrum",
+      "Optimism",
+      "Base"
+    ],
+    "key_contract_roles": {
+      "Pool": "Core contract exposing supply, borrow, repay, withdraw, and liquidation functions.",
+      "PoolConfigurator": "Manages configuration parameters for assets within the Pool.",
+      "AaveOracle": "Provides asset price feeds, typically sourced from Chainlink.",
+      "RewardsController": "Manages distribution of incentive tokens for supplying or borrowing."
+    },
+    "canonical_references": {
+      "Aave V3 Documentation": "https://docs.aave.com/developers/v/2.0/",
+      "EVM JSON-RPC Specification": "https://ethereum.org/en/developers/docs/apis/json-rpc/",
+      "Wnode Determinism Guidelines": "/docs/execution/determinism.md"
+    },
+    "deterministic_boundaries": {
+      "guaranteed": [
+        "Local adapter execution",
+        "Calldata formatting",
+        "Step hashing"
+      ],
+      "external": [
+        "Aave smart contracts",
+        "RPC provider",
+        "Chainlink Oracles"
+      ]
+    }
+  },
+  "protocol_overview": {
+    "architecture": "Aave V3 utilizes a decentralized pool architecture managed by a central Pool contract, governed by a PoolConfigurator. Assets are isolated into specific eMode categories to optimize capital efficiency.",
+    "rpc_surfaces": "Uses standard EVM JSON-RPC eth_call and eth_sendRawTransaction endpoints, strictly requiring block height parameters for all state reads.",
+    "data_models": "Employs complex structs including ReserveData, UserAccountData, and EModeCategory.",
+    "proof_models": "Relies on Ethereum state roots (Merkle Patricia Tries). The Sovereign Mesh independently verifies the state root via Light Client endpoints or decentralized RPC quorums before confirming the step hash."
+  },
+  "deterministic_adapter_specification": {
+    "deterministic_rpc_wrapper": "The adapter intercepts EVM eth_call requests. If the RPC provider exceeds 2000ms latency, drops the connection, or returns varying nonce errors, the adapter aborts immediately and maps the failure to NETWORK_UNAVAILABLE.",
+    "deterministic_error_mapping": "Revert strings (e.g., 35 for \"Health factor lower than liquidation threshold\" or 42 for \"Reserve inactive\") are mapped cleanly to Mesh deterministic error strings. Non-standard RPC HTTP errors are masked as REMOTE_ERROR.",
+    "deterministic_response_normalization": "Hexadecimal EVM responses are decoded. BigInt values are converted to canonical base-10 strings. Addresses are forcefully lowercased. Any arrays are strictly sorted.",
+    "deterministic_payloadHash_generation": "The normalized JSON object is serialized without whitespace, and hashed via SHA-256.",
+    "deterministic_integrityProof_generation": "A secondary HMAC SHA-256 hash is generated combining the payloadHash with a secure mesh salt.",
+    "determinismProfile": "{ isPurelyDeterministic: true, reliesOnTime: false, reliesOnRandomness: false }",
+    "capability_map": "{ canFetch: true, canSubmit: true, canValidate: true }"
+  },
+  "canonical_abi_signatures": {
+    "Pool": [
+      "getUserAccountData(address user) -> 0xbf92857c",
+      "getReserveData(address asset) -> 0x35ea6a75",
+      "supply(address asset, uint256 amount, address onBehalfOf, uint16 referralCode) -> 0x617ba037",
+      "borrow(address asset, uint256 amount, uint256 interestRateMode, uint16 referralCode, address onBehalfOf) -> 0xa415bcad",
+      "repay(address asset, uint256 amount, uint256 interestRateMode, address onBehalfOf) -> 0x5ce3b220",
+      "withdraw(address asset, uint256 amount, address to) -> 0x69328dec",
+      "liquidationCall(address collateralAsset, address debtAsset, address user, uint256 debtToCover, bool receiveAToken) -> 0x00a718a9"
+    ],
+    "AaveOracle": [
+      "getAssetPrice(address asset) -> 0xb3596f07"
+    ],
+    "RewardsController": [
+      "claimRewards(address[] assets, uint256 amount, address to, address reward) -> 0xcc29a306"
+    ]
+  },
+  "workflows": {
+    "supply": [
+      "integrationName: aave",
+      "integrationOperation: submit",
+      "action: supply",
+      "asset: 0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "amount: 1000000000"
+    ],
+    "borrow": [
+      "integrationName: aave",
+      "integrationOperation: submit",
+      "action: borrow"
+    ],
+    "repay": [
+      "integrationName: aave",
+      "integrationOperation: submit",
+      "action: repay"
+    ],
+    "withdraw": [
+      "integrationName: aave",
+      "integrationOperation: submit",
+      "action: withdraw"
+    ],
+    "health_factor_monitoring": [
+      "integrationName: aave",
+      "integrationOperation: fetch",
+      "action: getUserAccountData"
+    ],
+    "liquidation_checks": [
+      "integrationName: aave",
+      "integrationOperation: submit",
+      "action: liquidationCall"
+    ],
+    "oracle_verification": [
+      "integrationName: aave",
+      "integrationOperation: fetch",
+      "action: getAssetPrice"
+    ],
+    "incentives_claim": [
+      "integrationName: aave",
+      "integrationOperation: submit",
+      "action: claimRewards"
+    ]
+  },
+  "security_and_determinism": {
+    "deterministic_reads_writes": "All reads are locked to specific block hashes (`eth_call` with block parameter). Writes are generated as pure functions mapping verified input state to `calldata` byte arrays.",
+    "avoiding_hallucination": "Wnode validates all ABI encoding against statically compiled canonical signatures. Injection of unverified `Pool` addresses or falsified RPC responses fails the WASM deterministic hash verification, resulting in node slashing.",
+    "rpc_contract_validation": "Executions require a Proof of Compute where RPC responses and generated `calldata` are cryptographically hashed and verified by quorum before state mutations are finalized."
+  },
+  "economic_model": {
+    "interest_model": "Aave utilizes algorithmic interest rate models designed to manage liquidity risk. Interest rates for borrowing and lending adjust dynamically based on utilization. Sovereign Mesh nodes must reliably fetch and parse these rates to execute time-sensitive yield strategies.",
+    "wnode_job_exposure": "Wnode exposes Aave operations as deterministic jobs (e.g., 'Health Factor Defender'). Users deploy these jobs to the Mesh to run autonomously.",
+    "pricing_and_predictability": "Node operators price Aave jobs predictably based on fixed computational bounds. Fetch operations (e.g., checking a health factor) consume minimal, predictable gas/compute, allowing operators to offer fixed-rate monitoring subscriptions on the mesh."
+  },
+  "testing_and_validation": {
+    "deterministic_test_cases": [
+      "Injecting a mocked getUserAccountData response with a Health Factor of 0.99 to verify precise Pool.liquidationCall payload generation.",
+      "Injecting a mocked getUserAccountData response with a Health Factor of 2.50 to verify execution bypass."
+    ],
+    "validation_strategies": [
+      "Offline RAY/WAD mathematical simulation to verify 100% parity with Aave Solidity libraries.",
+      "Strict bytecode matching of generated payloads against Etherscan-verified signatures."
+    ],
+    "example_scenarios": [
+      "Liquidation Bot: A sovereign workflow continuously fetches getUserAccountData. If healthFactor < 1.0, it transitions to a submit step, invoking liquidationCall via the Aave adapter using the node operator's securely mounted private key.",
+      "Yield Aggregator: A workflow reads currentLiquidityRate from Aave and compares it with Compound. It then executes a cross-integration step to submit a supply transaction to the higher-yielding protocol."
+    ]
+  }
+}

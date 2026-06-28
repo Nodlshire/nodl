@@ -1,8 +1,0 @@
-api_version: v1alpha1
-kind: IntegrationSpec
-metadata:
-  name: chainlink
-  category: Oracle
-spec:
-  chain: Multi-chain
-  contract: Various AggregatorV3Interface contracts

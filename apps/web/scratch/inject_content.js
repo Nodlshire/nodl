@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const INTEGRATIONS_DIR = path.join(__dirname, '../app/docs/v1.0/integrations');
+const INTEGRATIONS_DIR = path.join(__dirname, '../app/docs/integrations');
 const directories = fs.readdirSync(INTEGRATIONS_DIR, { withFileTypes: true })
     .filter(entry => entry.isDirectory() && entry.name !== 'components' && entry.name !== 'TEMPLATE_V2' && entry.name !== 'TEMPLATE_V3')
     .map(entry => entry.name);

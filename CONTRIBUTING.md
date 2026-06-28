@@ -10,4 +10,4 @@ All changes to the Wnode Sovereign Mesh architecture, execution semantics, or to
    - Any architectural SVGs must adhere to the 1.5px monochrome (`#111`, `#444`, `#888`) standard.
 3. **Governance Review**: Your PR must be submitted for a DAO timelock review as defined in [GOVERNANCE.md](GOVERNANCE.md).
 
-*Direct, unverified pushes to the `/docs/v1.0/` specification tree are strictly prohibited.*
+*Direct, unverified pushes to the `/docs/` specification tree are strictly prohibited.*

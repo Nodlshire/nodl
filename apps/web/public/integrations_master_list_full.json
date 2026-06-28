@@ -4,7 +4,7 @@
     "safeName": "0x",
     "letter": "#",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/0x",
+    "path": "/docs/integrations/0x",
     "description": "Sovereign integration for 0x workloads."
   },
   {
@@ -12,7 +12,7 @@
     "safeName": "1inch",
     "letter": "#",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/1inch",
+    "path": "/docs/integrations/1inch",
     "description": "Sovereign integration for 1inch workloads."
   },
   {
@@ -20,7 +20,7 @@
     "safeName": "aave",
     "letter": "A",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/aave",
+    "path": "/docs/integrations/aave",
     "description": "Sovereign integration for aave workloads."
   },
   {
@@ -28,7 +28,7 @@
     "safeName": "aavegotchi",
     "letter": "A",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/aavegotchi",
+    "path": "/docs/integrations/aavegotchi",
     "description": "Sovereign integration for aavegotchi workloads."
   },
   {
@@ -36,7 +36,7 @@
     "safeName": "abacus",
     "letter": "A",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/abacus",
+    "path": "/docs/integrations/abacus",
     "description": "Sovereign integration for abacus workloads."
   },
   {
@@ -44,7 +44,7 @@
     "safeName": "acala",
     "letter": "A",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/acala",
+    "path": "/docs/integrations/acala",
     "description": "Sovereign integration for acala workloads."
   },
   {
@@ -52,7 +52,7 @@
     "safeName": "across",
     "letter": "A",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/across",
+    "path": "/docs/integrations/across",
     "description": "Sovereign integration for across workloads."
   },
   {
@@ -60,7 +60,7 @@
     "safeName": "adex",
     "letter": "A",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/adex",
+    "path": "/docs/integrations/adex",
     "description": "Sovereign integration for adex workloads."
   },
   {
@@ -68,7 +68,7 @@
     "safeName": "adyen",
     "letter": "A",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/adyen",
+    "path": "/docs/integrations/adyen",
     "description": "Sovereign integration for adyen workloads."
   },
   {
@@ -76,7 +76,7 @@
     "safeName": "aergo",
     "letter": "A",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/aergo",
+    "path": "/docs/integrations/aergo",
     "description": "Sovereign integration for aergo workloads."
   },
   {
@@ -84,7 +84,7 @@
     "safeName": "aerodrome",
     "letter": "A",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/aerodrome",
+    "path": "/docs/integrations/aerodrome",
     "description": "Sovereign integration for aerodrome workloads."
   },
   {
@@ -92,7 +92,7 @@
     "safeName": "agoric",
     "letter": "A",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/agoric",
+    "path": "/docs/integrations/agoric",
     "description": "Sovereign integration for agoric workloads."
   },
   {
@@ -100,7 +100,7 @@
     "safeName": "ai",
     "letter": "A",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/ai",
+    "path": "/docs/integrations/ai",
     "description": "Sovereign integration for ai workloads."
   },
   {
@@ -108,7 +108,7 @@
     "safeName": "aion",
     "letter": "A",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/aion",
+    "path": "/docs/integrations/aion",
     "description": "Sovereign integration for aion workloads."
   },
   {
@@ -116,7 +116,7 @@
     "safeName": "akash",
     "letter": "A",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/akash",
+    "path": "/docs/integrations/akash",
     "description": "Sovereign integration for akash workloads."
   },
   {
@@ -124,7 +124,7 @@
     "safeName": "alchemix",
     "letter": "A",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/alchemix",
+    "path": "/docs/integrations/alchemix",
     "description": "Sovereign integration for alchemix workloads."
   },
   {
@@ -132,7 +132,7 @@
     "safeName": "alchemy",
     "letter": "A",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/alchemy",
+    "path": "/docs/integrations/alchemy",
     "description": "Sovereign integration for alchemy workloads."
   },
   {
@@ -140,7 +140,7 @@
     "safeName": "aldrin",
     "letter": "A",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/aldrin",
+    "path": "/docs/integrations/aldrin",
     "description": "Sovereign integration for aldrin workloads."
   },
   {
@@ -148,7 +148,7 @@
     "safeName": "aleph-im",
     "letter": "A",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/aleph-im",
+    "path": "/docs/integrations/aleph-im",
     "description": "Sovereign integration for aleph.im workloads."
   },
   {
@@ -156,7 +156,7 @@
     "safeName": "alephzero",
     "letter": "A",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/alephzero",
+    "path": "/docs/integrations/alephzero",
     "description": "Sovereign integration for alephzero workloads."
   },
   {
@@ -164,7 +164,7 @@
     "safeName": "algorand",
     "letter": "A",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/algorand",
+    "path": "/docs/integrations/algorand",
     "description": "Sovereign integration for algorand workloads."
   },
   {
@@ -172,7 +172,7 @@
     "safeName": "altair",
     "letter": "A",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/altair",
+    "path": "/docs/integrations/altair",
     "description": "Sovereign integration for altair workloads."
   },
   {
@@ -180,7 +180,7 @@
     "safeName": "altlayer",
     "letter": "A",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/altlayer",
+    "path": "/docs/integrations/altlayer",
     "description": "Sovereign integration for altlayer workloads."
   },
   {
@@ -188,7 +188,7 @@
     "safeName": "amplify",
     "letter": "A",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/amplify",
+    "path": "/docs/integrations/amplify",
     "description": "Sovereign integration for amplify workloads."
   },
   {
@@ -196,7 +196,7 @@
     "safeName": "amplitude",
     "letter": "A",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/amplitude",
+    "path": "/docs/integrations/amplitude",
     "description": "Sovereign integration for amplitude workloads."
   },
   {
@@ -204,7 +204,7 @@
     "safeName": "ankr",
     "letter": "A",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/ankr",
+    "path": "/docs/integrations/ankr",
     "description": "Sovereign integration for ankr workloads."
   },
   {
@@ -212,7 +212,7 @@
     "safeName": "ankrscan",
     "letter": "A",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/ankrscan",
+    "path": "/docs/integrations/ankrscan",
     "description": "Sovereign integration for ankrscan workloads."
   },
   {
@@ -220,7 +220,7 @@
     "safeName": "api3",
     "letter": "A",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/api3",
+    "path": "/docs/integrations/api3",
     "description": "Sovereign integration for api3 workloads."
   },
   {
@@ -228,7 +228,7 @@
     "safeName": "apillon",
     "letter": "A",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/apillon",
+    "path": "/docs/integrations/apillon",
     "description": "Sovereign integration for apillon workloads."
   },
   {
@@ -236,7 +236,7 @@
     "safeName": "aptos",
     "letter": "A",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/aptos",
+    "path": "/docs/integrations/aptos",
     "description": "Sovereign integration for aptos workloads."
   },
   {
@@ -244,7 +244,7 @@
     "safeName": "aragon",
     "letter": "A",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/aragon",
+    "path": "/docs/integrations/aragon",
     "description": "Sovereign integration for aragon workloads."
   },
   {
@@ -252,7 +252,7 @@
     "safeName": "arbitrum",
     "letter": "A",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/arbitrum",
+    "path": "/docs/integrations/arbitrum",
     "description": "Sovereign integration for arbitrum workloads."
   },
   {
@@ -260,7 +260,7 @@
     "safeName": "arbitrumnova",
     "letter": "A",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/arbitrumnova",
+    "path": "/docs/integrations/arbitrumnova",
     "description": "Sovereign integration for arbitrumnova workloads."
   },
   {
@@ -268,7 +268,7 @@
     "safeName": "arcana",
     "letter": "A",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/arcana",
+    "path": "/docs/integrations/arcana",
     "description": "Sovereign integration for arcana workloads."
   },
   {
@@ -276,7 +276,7 @@
     "safeName": "archway",
     "letter": "A",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/archway",
+    "path": "/docs/integrations/archway",
     "description": "Sovereign integration for archway workloads."
   },
   {
@@ -284,7 +284,7 @@
     "safeName": "arctic",
     "letter": "A",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/arctic",
+    "path": "/docs/integrations/arctic",
     "description": "Sovereign integration for arctic workloads."
   },
   {
@@ -292,7 +292,7 @@
     "safeName": "ark",
     "letter": "A",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/ark",
+    "path": "/docs/integrations/ark",
     "description": "Sovereign integration for ark workloads."
   },
   {
@@ -300,7 +300,7 @@
     "safeName": "arweave",
     "letter": "A",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/arweave",
+    "path": "/docs/integrations/arweave",
     "description": "Sovereign integration for arweave workloads."
   },
   {
@@ -308,7 +308,7 @@
     "safeName": "astar",
     "letter": "A",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/astar",
+    "path": "/docs/integrations/astar",
     "description": "Sovereign integration for astar workloads."
   },
   {
@@ -316,7 +316,7 @@
     "safeName": "augur",
     "letter": "A",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/augur",
+    "path": "/docs/integrations/augur",
     "description": "Sovereign integration for augur workloads."
   },
   {
@@ -324,7 +324,7 @@
     "safeName": "aurora",
     "letter": "A",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/aurora",
+    "path": "/docs/integrations/aurora",
     "description": "Sovereign integration for aurora workloads."
   },
   {
@@ -332,7 +332,7 @@
     "safeName": "autonolas",
     "letter": "A",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/autonolas",
+    "path": "/docs/integrations/autonolas",
     "description": "Sovereign integration for autonolas workloads."
   },
   {
@@ -340,7 +340,7 @@
     "safeName": "avail",
     "letter": "A",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/avail",
+    "path": "/docs/integrations/avail",
     "description": "Sovereign integration for avail workloads."
   },
   {
@@ -348,7 +348,7 @@
     "safeName": "avalanche",
     "letter": "A",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/avalanche",
+    "path": "/docs/integrations/avalanche",
     "description": "Sovereign integration for avalanche workloads."
   },
   {
@@ -356,7 +356,7 @@
     "safeName": "aws",
     "letter": "A",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/aws",
+    "path": "/docs/integrations/aws",
     "description": "Sovereign integration for aws workloads."
   },
   {
@@ -364,7 +364,7 @@
     "safeName": "axelar",
     "letter": "A",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/axelar",
+    "path": "/docs/integrations/axelar",
     "description": "Sovereign integration for axelar workloads."
   },
   {
@@ -372,7 +372,7 @@
     "safeName": "axieinfinity",
     "letter": "A",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/axieinfinity",
+    "path": "/docs/integrations/axieinfinity",
     "description": "Sovereign integration for axieinfinity workloads."
   },
   {
@@ -380,7 +380,7 @@
     "safeName": "aztec",
     "letter": "A",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/aztec",
+    "path": "/docs/integrations/aztec",
     "description": "Sovereign integration for aztec workloads."
   },
   {
@@ -388,7 +388,7 @@
     "safeName": "azure",
     "letter": "A",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/azure",
+    "path": "/docs/integrations/azure",
     "description": "Sovereign integration for azure workloads."
   },
   {
@@ -396,7 +396,7 @@
     "safeName": "bajun",
     "letter": "B",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/bajun",
+    "path": "/docs/integrations/bajun",
     "description": "Sovereign integration for bajun workloads."
   },
   {
@@ -404,7 +404,7 @@
     "safeName": "balancer",
     "letter": "B",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/balancer",
+    "path": "/docs/integrations/balancer",
     "description": "Sovereign integration for balancer workloads."
   },
   {
@@ -412,7 +412,7 @@
     "safeName": "bancor",
     "letter": "B",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/bancor",
+    "path": "/docs/integrations/bancor",
     "description": "Sovereign integration for bancor workloads."
   },
   {
@@ -420,7 +420,7 @@
     "safeName": "bandprotocol",
     "letter": "B",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/bandprotocol",
+    "path": "/docs/integrations/bandprotocol",
     "description": "Sovereign integration for bandprotocol workloads."
   },
   {
@@ -428,7 +428,7 @@
     "safeName": "base",
     "letter": "B",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/base",
+    "path": "/docs/integrations/base",
     "description": "Sovereign integration for base workloads."
   },
   {
@@ -436,7 +436,7 @@
     "safeName": "basegoerli",
     "letter": "B",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/basegoerli",
+    "path": "/docs/integrations/basegoerli",
     "description": "Sovereign integration for basegoerli workloads."
   },
   {
@@ -444,7 +444,7 @@
     "safeName": "basescan",
     "letter": "B",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/basescan",
+    "path": "/docs/integrations/basescan",
     "description": "Sovereign integration for basescan workloads."
   },
   {
@@ -452,7 +452,7 @@
     "safeName": "basilisk",
     "letter": "B",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/basilisk",
+    "path": "/docs/integrations/basilisk",
     "description": "Sovereign integration for basilisk workloads."
   },
   {
@@ -460,7 +460,7 @@
     "safeName": "bat",
     "letter": "B",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/bat",
+    "path": "/docs/integrations/bat",
     "description": "Sovereign integration for bat workloads."
   },
   {
@@ -468,7 +468,7 @@
     "safeName": "berachain",
     "letter": "B",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/berachain",
+    "path": "/docs/integrations/berachain",
     "description": "Sovereign integration for berachain workloads."
   },
   {
@@ -476,7 +476,7 @@
     "safeName": "bifrost",
     "letter": "B",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/bifrost",
+    "path": "/docs/integrations/bifrost",
     "description": "Sovereign integration for bifrost workloads."
   },
   {
@@ -484,7 +484,7 @@
     "safeName": "bitcanna",
     "letter": "B",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/bitcanna",
+    "path": "/docs/integrations/bitcanna",
     "description": "Sovereign integration for bitcanna workloads."
   },
   {
@@ -492,7 +492,7 @@
     "safeName": "bitfinity",
     "letter": "B",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/bitfinity",
+    "path": "/docs/integrations/bitfinity",
     "description": "Sovereign integration for bitfinity workloads."
   },
   {
@@ -500,7 +500,7 @@
     "safeName": "bitgetwallet",
     "letter": "B",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/bitgetwallet",
+    "path": "/docs/integrations/bitgetwallet",
     "description": "Sovereign integration for bitgetwallet workloads."
   },
   {
@@ -508,7 +508,7 @@
     "safeName": "bitquery",
     "letter": "B",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/bitquery",
+    "path": "/docs/integrations/bitquery",
     "description": "Sovereign integration for bitquery workloads."
   },
   {
@@ -516,7 +516,7 @@
     "safeName": "bitshares",
     "letter": "B",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/bitshares",
+    "path": "/docs/integrations/bitshares",
     "description": "Sovereign integration for bitshares workloads."
   },
   {
@@ -524,7 +524,7 @@
     "safeName": "bitso",
     "letter": "B",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/bitso",
+    "path": "/docs/integrations/bitso",
     "description": "Sovereign integration for bitso workloads."
   },
   {
@@ -532,7 +532,7 @@
     "safeName": "bitte",
     "letter": "B",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/bitte",
+    "path": "/docs/integrations/bitte",
     "description": "Sovereign integration for bitte workloads."
   },
   {
@@ -540,7 +540,7 @@
     "safeName": "bittensor",
     "letter": "B",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/bittensor",
+    "path": "/docs/integrations/bittensor",
     "description": "Sovereign integration for bittensor workloads."
   },
   {
@@ -548,7 +548,7 @@
     "safeName": "blast",
     "letter": "B",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/blast",
+    "path": "/docs/integrations/blast",
     "description": "Sovereign integration for blast workloads."
   },
   {
@@ -556,7 +556,7 @@
     "safeName": "blockdaemon",
     "letter": "B",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/blockdaemon",
+    "path": "/docs/integrations/blockdaemon",
     "description": "Sovereign integration for blockdaemon workloads."
   },
   {
@@ -564,7 +564,7 @@
     "safeName": "blocknative",
     "letter": "B",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/blocknative",
+    "path": "/docs/integrations/blocknative",
     "description": "Sovereign integration for blocknative workloads."
   },
   {
@@ -572,7 +572,7 @@
     "safeName": "blockpi",
     "letter": "B",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/blockpi",
+    "path": "/docs/integrations/blockpi",
     "description": "Sovereign integration for blockpi workloads."
   },
   {
@@ -580,7 +580,7 @@
     "safeName": "blockscout",
     "letter": "B",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/blockscout",
+    "path": "/docs/integrations/blockscout",
     "description": "Sovereign integration for blockscout workloads."
   },
   {
@@ -588,7 +588,7 @@
     "safeName": "bloxroute",
     "letter": "B",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/bloxroute",
+    "path": "/docs/integrations/bloxroute",
     "description": "Sovereign integration for bloxroute workloads."
   },
   {
@@ -596,7 +596,7 @@
     "safeName": "bloxroutevalidators",
     "letter": "B",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/bloxroutevalidators",
+    "path": "/docs/integrations/bloxroutevalidators",
     "description": "Sovereign integration for bloxroutevalidators workloads."
   },
   {
@@ -604,7 +604,7 @@
     "safeName": "bluefin",
     "letter": "B",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/bluefin",
+    "path": "/docs/integrations/bluefin",
     "description": "Sovereign integration for bluefin workloads."
   },
   {
@@ -612,7 +612,7 @@
     "safeName": "bob",
     "letter": "B",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/bob",
+    "path": "/docs/integrations/bob",
     "description": "Sovereign integration for bob workloads."
   },
   {
@@ -620,7 +620,7 @@
     "safeName": "boba",
     "letter": "B",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/boba",
+    "path": "/docs/integrations/boba",
     "description": "Sovereign integration for boba workloads."
   },
   {
@@ -628,7 +628,7 @@
     "safeName": "bosonprotocol",
     "letter": "B",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/bosonprotocol",
+    "path": "/docs/integrations/bosonprotocol",
     "description": "Sovereign integration for bosonprotocol workloads."
   },
   {
@@ -636,7 +636,7 @@
     "safeName": "braavos",
     "letter": "B",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/braavos",
+    "path": "/docs/integrations/braavos",
     "description": "Sovereign integration for braavos workloads."
   },
   {
@@ -644,7 +644,7 @@
     "safeName": "brahma",
     "letter": "B",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/brahma",
+    "path": "/docs/integrations/brahma",
     "description": "Sovereign integration for brahma workloads."
   },
   {
@@ -652,7 +652,7 @@
     "safeName": "bridge",
     "letter": "B",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/bridge",
+    "path": "/docs/integrations/bridge",
     "description": "Sovereign integration for bridge workloads."
   },
   {
@@ -660,7 +660,7 @@
     "safeName": "brightid",
     "letter": "B",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/brightid",
+    "path": "/docs/integrations/brightid",
     "description": "Sovereign integration for brightid workloads."
   },
   {
@@ -668,7 +668,7 @@
     "safeName": "bscscan",
     "letter": "B",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/bscscan",
+    "path": "/docs/integrations/bscscan",
     "description": "Sovereign integration for bscscan workloads."
   },
   {
@@ -676,7 +676,7 @@
     "safeName": "bvnk",
     "letter": "B",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/bvnk",
+    "path": "/docs/integrations/bvnk",
     "description": "Sovereign integration for bvnk workloads."
   },
   {
@@ -684,7 +684,7 @@
     "safeName": "bytecoin",
     "letter": "B",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/bytecoin",
+    "path": "/docs/integrations/bytecoin",
     "description": "Sovereign integration for bytecoin workloads."
   },
   {
@@ -692,7 +692,7 @@
     "safeName": "canto",
     "letter": "C",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/canto",
+    "path": "/docs/integrations/canto",
     "description": "Sovereign integration for canto workloads."
   },
   {
@@ -700,7 +700,7 @@
     "safeName": "cardano",
     "letter": "C",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/cardano",
+    "path": "/docs/integrations/cardano",
     "description": "Sovereign integration for cardano workloads."
   },
   {
@@ -708,7 +708,7 @@
     "safeName": "cartesi",
     "letter": "C",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/cartesi",
+    "path": "/docs/integrations/cartesi",
     "description": "Sovereign integration for cartesi workloads."
   },
   {
@@ -716,7 +716,7 @@
     "safeName": "casper",
     "letter": "C",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/casper",
+    "path": "/docs/integrations/casper",
     "description": "Sovereign integration for casper workloads."
   },
   {
@@ -724,7 +724,7 @@
     "safeName": "celer",
     "letter": "C",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/celer",
+    "path": "/docs/integrations/celer",
     "description": "Sovereign integration for celer workloads."
   },
   {
@@ -732,7 +732,7 @@
     "safeName": "celestia",
     "letter": "C",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/celestia",
+    "path": "/docs/integrations/celestia",
     "description": "Sovereign integration for celestia workloads."
   },
   {
@@ -740,7 +740,7 @@
     "safeName": "celestiatools",
     "letter": "C",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/celestiatools",
+    "path": "/docs/integrations/celestiatools",
     "description": "Sovereign integration for celestiatools workloads."
   },
   {
@@ -748,7 +748,7 @@
     "safeName": "celo",
     "letter": "C",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/celo",
+    "path": "/docs/integrations/celo",
     "description": "Sovereign integration for celo workloads."
   },
   {
@@ -756,7 +756,7 @@
     "safeName": "centrifuge",
     "letter": "C",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/centrifuge",
+    "path": "/docs/integrations/centrifuge",
     "description": "Sovereign integration for centrifuge workloads."
   },
   {
@@ -764,7 +764,7 @@
     "safeName": "cerberus",
     "letter": "C",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/cerberus",
+    "path": "/docs/integrations/cerberus",
     "description": "Sovereign integration for cerberus workloads."
   },
   {
@@ -772,7 +772,7 @@
     "safeName": "chainflip",
     "letter": "C",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/chainflip",
+    "path": "/docs/integrations/chainflip",
     "description": "Sovereign integration for chainflip workloads."
   },
   {
@@ -780,7 +780,7 @@
     "safeName": "chainjet",
     "letter": "C",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/chainjet",
+    "path": "/docs/integrations/chainjet",
     "description": "Sovereign integration for chainjet workloads."
   },
   {
@@ -788,7 +788,7 @@
     "safeName": "chainlink",
     "letter": "C",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/chainlink",
+    "path": "/docs/integrations/chainlink",
     "description": "Sovereign integration for chainlink workloads."
   },
   {
@@ -796,7 +796,7 @@
     "safeName": "chainstack",
     "letter": "C",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/chainstack",
+    "path": "/docs/integrations/chainstack",
     "description": "Sovereign integration for chainstack workloads."
   },
   {
@@ -804,7 +804,7 @@
     "safeName": "chainstackrpc",
     "letter": "C",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/chainstackrpc",
+    "path": "/docs/integrations/chainstackrpc",
     "description": "Sovereign integration for chainstackrpc workloads."
   },
   {
@@ -812,7 +812,7 @@
     "safeName": "chainway",
     "letter": "C",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/chainway",
+    "path": "/docs/integrations/chainway",
     "description": "Sovereign integration for chainway workloads."
   },
   {
@@ -820,7 +820,7 @@
     "safeName": "chainx",
     "letter": "C",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/chainx",
+    "path": "/docs/integrations/chainx",
     "description": "Sovereign integration for chainx workloads."
   },
   {
@@ -828,7 +828,7 @@
     "safeName": "charon",
     "letter": "C",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/charon",
+    "path": "/docs/integrations/charon",
     "description": "Sovereign integration for charon workloads."
   },
   {
@@ -836,7 +836,7 @@
     "safeName": "checkout",
     "letter": "C",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/checkout",
+    "path": "/docs/integrations/checkout",
     "description": "Sovereign integration for checkout workloads."
   },
   {
@@ -844,7 +844,7 @@
     "safeName": "cheqd",
     "letter": "C",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/cheqd",
+    "path": "/docs/integrations/cheqd",
     "description": "Sovereign integration for cheqd workloads."
   },
   {
@@ -852,7 +852,7 @@
     "safeName": "chia",
     "letter": "C",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/chia",
+    "path": "/docs/integrations/chia",
     "description": "Sovereign integration for chia workloads."
   },
   {
@@ -860,7 +860,7 @@
     "safeName": "chihuahua",
     "letter": "C",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/chihuahua",
+    "path": "/docs/integrations/chihuahua",
     "description": "Sovereign integration for chihuahua workloads."
   },
   {
@@ -868,7 +868,7 @@
     "safeName": "chiliz",
     "letter": "C",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/chiliz",
+    "path": "/docs/integrations/chiliz",
     "description": "Sovereign integration for chiliz workloads."
   },
   {
@@ -876,7 +876,7 @@
     "safeName": "circlecctp",
     "letter": "C",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/circlecctp",
+    "path": "/docs/integrations/circlecctp",
     "description": "Sovereign integration for circlecctp workloads."
   },
   {
@@ -884,7 +884,7 @@
     "safeName": "circuit",
     "letter": "C",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/circuit",
+    "path": "/docs/integrations/circuit",
     "description": "Sovereign integration for circuit workloads."
   },
   {
@@ -892,7 +892,7 @@
     "safeName": "civic",
     "letter": "C",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/civic",
+    "path": "/docs/integrations/civic",
     "description": "Sovereign integration for civic workloads."
   },
   {
@@ -900,7 +900,7 @@
     "safeName": "clober",
     "letter": "C",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/clober",
+    "path": "/docs/integrations/clober",
     "description": "Sovereign integration for clober workloads."
   },
   {
@@ -908,7 +908,7 @@
     "safeName": "coda",
     "letter": "C",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/coda",
+    "path": "/docs/integrations/coda",
     "description": "Sovereign integration for coda workloads."
   },
   {
@@ -916,7 +916,7 @@
     "safeName": "coin98",
     "letter": "C",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/coin98",
+    "path": "/docs/integrations/coin98",
     "description": "Sovereign integration for coin98 workloads."
   },
   {
@@ -924,7 +924,7 @@
     "safeName": "coinbase tokenize",
     "letter": "C",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/coinbase tokenize",
+    "path": "/docs/integrations/coinbase tokenize",
     "description": "Sovereign integration for coinbase tokenize workloads."
   },
   {
@@ -932,7 +932,7 @@
     "safeName": "coinbase_business",
     "letter": "C",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/coinbase_business",
+    "path": "/docs/integrations/coinbase_business",
     "description": "Sovereign integration for coinbase_business workloads."
   },
   {
@@ -940,7 +940,7 @@
     "safeName": "coinbase_tokenize",
     "letter": "C",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/coinbase_tokenize",
+    "path": "/docs/integrations/coinbase_tokenize",
     "description": "Sovereign integration for coinbase_tokenize workloads."
   },
   {
@@ -948,7 +948,7 @@
     "safeName": "coinbasewallet",
     "letter": "C",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/coinbasewallet",
+    "path": "/docs/integrations/coinbasewallet",
     "description": "Sovereign integration for coinbasewallet workloads."
   },
   {
@@ -956,7 +956,7 @@
     "safeName": "coingecko",
     "letter": "C",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/coingecko",
+    "path": "/docs/integrations/coingecko",
     "description": "Sovereign integration for coingecko workloads."
   },
   {
@@ -964,7 +964,7 @@
     "safeName": "coinmarketcap",
     "letter": "C",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/coinmarketcap",
+    "path": "/docs/integrations/coinmarketcap",
     "description": "Sovereign integration for coinmarketcap workloads."
   },
   {
@@ -972,7 +972,7 @@
     "safeName": "coinmetrics",
     "letter": "C",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/coinmetrics",
+    "path": "/docs/integrations/coinmetrics",
     "description": "Sovereign integration for coinmetrics workloads."
   },
   {
@@ -980,7 +980,7 @@
     "safeName": "comdex",
     "letter": "C",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/comdex",
+    "path": "/docs/integrations/comdex",
     "description": "Sovereign integration for comdex workloads."
   },
   {
@@ -988,7 +988,7 @@
     "safeName": "cometh",
     "letter": "C",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/cometh",
+    "path": "/docs/integrations/cometh",
     "description": "Sovereign integration for cometh workloads."
   },
   {
@@ -996,7 +996,7 @@
     "safeName": "composable",
     "letter": "C",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/composable",
+    "path": "/docs/integrations/composable",
     "description": "Sovereign integration for composable workloads."
   },
   {
@@ -1004,7 +1004,7 @@
     "safeName": "compound",
     "letter": "C",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/compound",
+    "path": "/docs/integrations/compound",
     "description": "Sovereign integration for compound workloads."
   },
   {
@@ -1012,7 +1012,7 @@
     "safeName": "connext",
     "letter": "C",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/connext",
+    "path": "/docs/integrations/connext",
     "description": "Sovereign integration for connext workloads."
   },
   {
@@ -1020,7 +1020,7 @@
     "safeName": "constellation",
     "letter": "C",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/constellation",
+    "path": "/docs/integrations/constellation",
     "description": "Sovereign integration for constellation workloads."
   },
   {
@@ -1028,7 +1028,7 @@
     "safeName": "context",
     "letter": "C",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/context",
+    "path": "/docs/integrations/context",
     "description": "Sovereign integration for context workloads."
   },
   {
@@ -1036,7 +1036,7 @@
     "safeName": "coredao",
     "letter": "C",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/coredao",
+    "path": "/docs/integrations/coredao",
     "description": "Sovereign integration for coredao workloads."
   },
   {
@@ -1044,7 +1044,7 @@
     "safeName": "cosmoshub",
     "letter": "C",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/cosmoshub",
+    "path": "/docs/integrations/cosmoshub",
     "description": "Sovereign integration for cosmoshub workloads."
   },
   {
@@ -1052,7 +1052,7 @@
     "safeName": "cosmostation",
     "letter": "C",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/cosmostation",
+    "path": "/docs/integrations/cosmostation",
     "description": "Sovereign integration for cosmostation workloads."
   },
   {
@@ -1060,7 +1060,7 @@
     "safeName": "covalent",
     "letter": "C",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/covalent",
+    "path": "/docs/integrations/covalent",
     "description": "Sovereign integration for covalent workloads."
   },
   {
@@ -1068,7 +1068,7 @@
     "safeName": "crab",
     "letter": "C",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/crab",
+    "path": "/docs/integrations/crab",
     "description": "Sovereign integration for crab workloads."
   },
   {
@@ -1076,7 +1076,7 @@
     "safeName": "crescent",
     "letter": "C",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/crescent",
+    "path": "/docs/integrations/crescent",
     "description": "Sovereign integration for crescent workloads."
   },
   {
@@ -1084,7 +1084,7 @@
     "safeName": "cronos",
     "letter": "C",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/cronos",
+    "path": "/docs/integrations/cronos",
     "description": "Sovereign integration for cronos workloads."
   },
   {
@@ -1092,7 +1092,7 @@
     "safeName": "crossmint",
     "letter": "C",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/crossmint",
+    "path": "/docs/integrations/crossmint",
     "description": "Sovereign integration for crossmint workloads."
   },
   {
@@ -1100,7 +1100,7 @@
     "safeName": "crust",
     "letter": "C",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/crust",
+    "path": "/docs/integrations/crust",
     "description": "Sovereign integration for crust workloads."
   },
   {
@@ -1108,7 +1108,7 @@
     "safeName": "cryptocom",
     "letter": "C",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/cryptocom",
+    "path": "/docs/integrations/cryptocom",
     "description": "Sovereign integration for cryptocom workloads."
   },
   {
@@ -1116,7 +1116,7 @@
     "safeName": "curve",
     "letter": "C",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/curve",
+    "path": "/docs/integrations/curve",
     "description": "Sovereign integration for curve workloads."
   },
   {
@@ -1124,7 +1124,7 @@
     "safeName": "curvegrid",
     "letter": "C",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/curvegrid",
+    "path": "/docs/integrations/curvegrid",
     "description": "Sovereign integration for curvegrid workloads."
   },
   {
@@ -1132,7 +1132,7 @@
     "safeName": "cyber",
     "letter": "C",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/cyber",
+    "path": "/docs/integrations/cyber",
     "description": "Sovereign integration for cyber workloads."
   },
   {
@@ -1140,7 +1140,7 @@
     "safeName": "cyberconnect",
     "letter": "C",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/cyberconnect",
+    "path": "/docs/integrations/cyberconnect",
     "description": "Sovereign integration for cyberconnect workloads."
   },
   {
@@ -1148,7 +1148,7 @@
     "safeName": "dappnode",
     "letter": "D",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/dappnode",
+    "path": "/docs/integrations/dappnode",
     "description": "Sovereign integration for dappnode workloads."
   },
   {
@@ -1156,7 +1156,7 @@
     "safeName": "dappradar",
     "letter": "D",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/dappradar",
+    "path": "/docs/integrations/dappradar",
     "description": "Sovereign integration for dappradar workloads."
   },
   {
@@ -1164,7 +1164,7 @@
     "safeName": "dappsmith",
     "letter": "D",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/dappsmith",
+    "path": "/docs/integrations/dappsmith",
     "description": "Sovereign integration for dappsmith workloads."
   },
   {
@@ -1172,7 +1172,7 @@
     "safeName": "darwinia",
     "letter": "D",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/darwinia",
+    "path": "/docs/integrations/darwinia",
     "description": "Sovereign integration for darwinia workloads."
   },
   {
@@ -1180,7 +1180,7 @@
     "safeName": "dash",
     "letter": "D",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/dash",
+    "path": "/docs/integrations/dash",
     "description": "Sovereign integration for dash workloads."
   },
   {
@@ -1188,7 +1188,7 @@
     "safeName": "dataunion",
     "letter": "D",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/dataunion",
+    "path": "/docs/integrations/dataunion",
     "description": "Sovereign integration for dataunion workloads."
   },
   {
@@ -1196,7 +1196,7 @@
     "safeName": "debridge",
     "letter": "D",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/debridge",
+    "path": "/docs/integrations/debridge",
     "description": "Sovereign integration for debridge workloads."
   },
   {
@@ -1204,7 +1204,7 @@
     "safeName": "decent",
     "letter": "D",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/decent",
+    "path": "/docs/integrations/decent",
     "description": "Sovereign integration for decent workloads."
   },
   {
@@ -1212,7 +1212,7 @@
     "safeName": "decentology",
     "letter": "D",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/decentology",
+    "path": "/docs/integrations/decentology",
     "description": "Sovereign integration for decentology workloads."
   },
   {
@@ -1220,7 +1220,7 @@
     "safeName": "decred",
     "letter": "D",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/decred",
+    "path": "/docs/integrations/decred",
     "description": "Sovereign integration for decred workloads."
   },
   {
@@ -1228,7 +1228,7 @@
     "safeName": "deepdao",
     "letter": "D",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/deepdao",
+    "path": "/docs/integrations/deepdao",
     "description": "Sovereign integration for deepdao workloads."
   },
   {
@@ -1236,7 +1236,7 @@
     "safeName": "defender",
     "letter": "D",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/defender",
+    "path": "/docs/integrations/defender",
     "description": "Sovereign integration for defender workloads."
   },
   {
@@ -1244,7 +1244,7 @@
     "safeName": "defichain",
     "letter": "D",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/defichain",
+    "path": "/docs/integrations/defichain",
     "description": "Sovereign integration for defichain workloads."
   },
   {
@@ -1252,7 +1252,7 @@
     "safeName": "defillama",
     "letter": "D",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/defillama",
+    "path": "/docs/integrations/defillama",
     "description": "Sovereign integration for defillama workloads."
   },
   {
@@ -1260,7 +1260,7 @@
     "safeName": "defipulse",
     "letter": "D",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/defipulse",
+    "path": "/docs/integrations/defipulse",
     "description": "Sovereign integration for defipulse workloads."
   },
   {
@@ -1268,7 +1268,7 @@
     "safeName": "degenchain",
     "letter": "D",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/degenchain",
+    "path": "/docs/integrations/degenchain",
     "description": "Sovereign integration for degenchain workloads."
   },
   {
@@ -1276,7 +1276,7 @@
     "safeName": "delysium",
     "letter": "D",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/delysium",
+    "path": "/docs/integrations/delysium",
     "description": "Sovereign integration for delysium workloads."
   },
   {
@@ -1284,7 +1284,7 @@
     "safeName": "dendreth",
     "letter": "D",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/dendreth",
+    "path": "/docs/integrations/dendreth",
     "description": "Sovereign integration for dendreth workloads."
   },
   {
@@ -1292,7 +1292,7 @@
     "safeName": "desmos",
     "letter": "D",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/desmos",
+    "path": "/docs/integrations/desmos",
     "description": "Sovereign integration for desmos workloads."
   },
   {
@@ -1300,7 +1300,7 @@
     "safeName": "dflow",
     "letter": "D",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/dflow",
+    "path": "/docs/integrations/dflow",
     "description": "Sovereign integration for dflow workloads."
   },
   {
@@ -1308,7 +1308,7 @@
     "safeName": "dfuse",
     "letter": "D",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/dfuse",
+    "path": "/docs/integrations/dfuse",
     "description": "Sovereign integration for dfuse workloads."
   },
   {
@@ -1316,7 +1316,7 @@
     "safeName": "dgen",
     "letter": "D",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/dgen",
+    "path": "/docs/integrations/dgen",
     "description": "Sovereign integration for dgen workloads."
   },
   {
@@ -1324,7 +1324,7 @@
     "safeName": "digibyte",
     "letter": "D",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/digibyte",
+    "path": "/docs/integrations/digibyte",
     "description": "Sovereign integration for digibyte workloads."
   },
   {
@@ -1332,7 +1332,7 @@
     "safeName": "dimo",
     "letter": "D",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/dimo",
+    "path": "/docs/integrations/dimo",
     "description": "Sovereign integration for dimo workloads."
   },
   {
@@ -1340,7 +1340,7 @@
     "safeName": "dione",
     "letter": "D",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/dione",
+    "path": "/docs/integrations/dione",
     "description": "Sovereign integration for dione workloads."
   },
   {
@@ -1348,7 +1348,7 @@
     "safeName": "disco",
     "letter": "D",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/disco",
+    "path": "/docs/integrations/disco",
     "description": "Sovereign integration for disco workloads."
   },
   {
@@ -1356,7 +1356,7 @@
     "safeName": "discord",
     "letter": "D",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/discord",
+    "path": "/docs/integrations/discord",
     "description": "Sovereign integration for discord workloads."
   },
   {
@@ -1364,7 +1364,7 @@
     "safeName": "district0x",
     "letter": "D",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/district0x",
+    "path": "/docs/integrations/district0x",
     "description": "Sovereign integration for district0x workloads."
   },
   {
@@ -1372,7 +1372,7 @@
     "safeName": "dock",
     "letter": "D",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/dock",
+    "path": "/docs/integrations/dock",
     "description": "Sovereign integration for dock workloads."
   },
   {
@@ -1380,7 +1380,7 @@
     "safeName": "dorahacks",
     "letter": "D",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/dorahacks",
+    "path": "/docs/integrations/dorahacks",
     "description": "Sovereign integration for dorahacks workloads."
   },
   {
@@ -1388,7 +1388,7 @@
     "safeName": "dune",
     "letter": "D",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/dune",
+    "path": "/docs/integrations/dune",
     "description": "Sovereign integration for dune workloads."
   },
   {
@@ -1396,7 +1396,7 @@
     "safeName": "dusk",
     "letter": "D",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/dusk",
+    "path": "/docs/integrations/dusk",
     "description": "Sovereign integration for dusk workloads."
   },
   {
@@ -1404,7 +1404,7 @@
     "safeName": "dydx",
     "letter": "D",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/dydx",
+    "path": "/docs/integrations/dydx",
     "description": "Sovereign integration for dydx workloads."
   },
   {
@@ -1412,7 +1412,7 @@
     "safeName": "dysonprotocol",
     "letter": "D",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/dysonprotocol",
+    "path": "/docs/integrations/dysonprotocol",
     "description": "Sovereign integration for dysonprotocol workloads."
   },
   {
@@ -1420,7 +1420,7 @@
     "safeName": "eco",
     "letter": "E",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/eco",
+    "path": "/docs/integrations/eco",
     "description": "Sovereign integration for eco workloads."
   },
   {
@@ -1428,7 +1428,7 @@
     "safeName": "edennetwork",
     "letter": "E",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/edennetwork",
+    "path": "/docs/integrations/edennetwork",
     "description": "Sovereign integration for edennetwork workloads."
   },
   {
@@ -1436,7 +1436,7 @@
     "safeName": "edge",
     "letter": "E",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/edge",
+    "path": "/docs/integrations/edge",
     "description": "Sovereign integration for edge workloads."
   },
   {
@@ -1444,7 +1444,7 @@
     "safeName": "edgeandnode",
     "letter": "E",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/edgeandnode",
+    "path": "/docs/integrations/edgeandnode",
     "description": "Sovereign integration for edgeandnode workloads."
   },
   {
@@ -1452,7 +1452,7 @@
     "safeName": "edgeware",
     "letter": "E",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/edgeware",
+    "path": "/docs/integrations/edgeware",
     "description": "Sovereign integration for edgeware workloads."
   },
   {
@@ -1460,7 +1460,7 @@
     "safeName": "efinity",
     "letter": "E",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/efinity",
+    "path": "/docs/integrations/efinity",
     "description": "Sovereign integration for efinity workloads."
   },
   {
@@ -1468,7 +1468,7 @@
     "safeName": "eigenlayer",
     "letter": "E",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/eigenlayer",
+    "path": "/docs/integrations/eigenlayer",
     "description": "Sovereign integration for eigenlayer workloads."
   },
   {
@@ -1476,7 +1476,7 @@
     "safeName": "elastos",
     "letter": "E",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/elastos",
+    "path": "/docs/integrations/elastos",
     "description": "Sovereign integration for elastos workloads."
   },
   {
@@ -1484,7 +1484,7 @@
     "safeName": "eliza",
     "letter": "E",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/eliza",
+    "path": "/docs/integrations/eliza",
     "description": "Sovereign integration for eliza workloads."
   },
   {
@@ -1492,7 +1492,7 @@
     "safeName": "elliptic",
     "letter": "E",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/elliptic",
+    "path": "/docs/integrations/elliptic",
     "description": "Sovereign integration for elliptic workloads."
   },
   {
@@ -1500,7 +1500,7 @@
     "safeName": "embark",
     "letter": "E",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/embark",
+    "path": "/docs/integrations/embark",
     "description": "Sovereign integration for embark workloads."
   },
   {
@@ -1508,7 +1508,7 @@
     "safeName": "empyrean",
     "letter": "E",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/empyrean",
+    "path": "/docs/integrations/empyrean",
     "description": "Sovereign integration for empyrean workloads."
   },
   {
@@ -1516,7 +1516,7 @@
     "safeName": "energyweb",
     "letter": "E",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/energyweb",
+    "path": "/docs/integrations/energyweb",
     "description": "Sovereign integration for energyweb workloads."
   },
   {
@@ -1524,7 +1524,7 @@
     "safeName": "enjin",
     "letter": "E",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/enjin",
+    "path": "/docs/integrations/enjin",
     "description": "Sovereign integration for enjin workloads."
   },
   {
@@ -1532,7 +1532,7 @@
     "safeName": "ens",
     "letter": "E",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/ens",
+    "path": "/docs/integrations/ens",
     "description": "Sovereign integration for ens workloads."
   },
   {
@@ -1540,7 +1540,7 @@
     "safeName": "ensvision",
     "letter": "E",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/ensvision",
+    "path": "/docs/integrations/ensvision",
     "description": "Sovereign integration for ensvision workloads."
   },
   {
@@ -1548,7 +1548,7 @@
     "safeName": "entangle",
     "letter": "E",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/entangle",
+    "path": "/docs/integrations/entangle",
     "description": "Sovereign integration for entangle workloads."
   },
   {
@@ -1556,7 +1556,7 @@
     "safeName": "eos",
     "letter": "E",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/eos",
+    "path": "/docs/integrations/eos",
     "description": "Sovereign integration for eos workloads."
   },
   {
@@ -1564,7 +1564,7 @@
     "safeName": "epns",
     "letter": "E",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/epns",
+    "path": "/docs/integrations/epns",
     "description": "Sovereign integration for epns workloads."
   },
   {
@@ -1572,7 +1572,7 @@
     "safeName": "equilibrium",
     "letter": "E",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/equilibrium",
+    "path": "/docs/integrations/equilibrium",
     "description": "Sovereign integration for equilibrium workloads."
   },
   {
@@ -1580,7 +1580,7 @@
     "safeName": "ergo",
     "letter": "E",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/ergo",
+    "path": "/docs/integrations/ergo",
     "description": "Sovereign integration for ergo workloads."
   },
   {
@@ -1588,7 +1588,7 @@
     "safeName": "espresso",
     "letter": "E",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/espresso",
+    "path": "/docs/integrations/espresso",
     "description": "Sovereign integration for espresso workloads."
   },
   {
@@ -1596,7 +1596,7 @@
     "safeName": "ether-fi",
     "letter": "E",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/ether-fi",
+    "path": "/docs/integrations/ether-fi",
     "description": "Sovereign integration for ether.fi workloads."
   },
   {
@@ -1604,7 +1604,7 @@
     "safeName": "etherfi",
     "letter": "E",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/etherfi",
+    "path": "/docs/integrations/etherfi",
     "description": "Sovereign integration for etherfi workloads."
   },
   {
@@ -1612,7 +1612,7 @@
     "safeName": "etherscan",
     "letter": "E",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/etherscan",
+    "path": "/docs/integrations/etherscan",
     "description": "Sovereign integration for etherscan workloads."
   },
   {
@@ -1620,7 +1620,7 @@
     "safeName": "etherspot",
     "letter": "E",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/etherspot",
+    "path": "/docs/integrations/etherspot",
     "description": "Sovereign integration for etherspot workloads."
   },
   {
@@ -1628,7 +1628,7 @@
     "safeName": "ethsign",
     "letter": "E",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/ethsign",
+    "path": "/docs/integrations/ethsign",
     "description": "Sovereign integration for ethsign workloads."
   },
   {
@@ -1636,7 +1636,7 @@
     "safeName": "euler",
     "letter": "E",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/euler",
+    "path": "/docs/integrations/euler",
     "description": "Sovereign integration for euler workloads."
   },
   {
@@ -1644,7 +1644,7 @@
     "safeName": "evmos",
     "letter": "E",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/evmos",
+    "path": "/docs/integrations/evmos",
     "description": "Sovereign integration for evmos workloads."
   },
   {
@@ -1652,7 +1652,7 @@
     "safeName": "exorde",
     "letter": "E",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/exorde",
+    "path": "/docs/integrations/exorde",
     "description": "Sovereign integration for exorde workloads."
   },
   {
@@ -1660,7 +1660,7 @@
     "safeName": "factom",
     "letter": "F",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/factom",
+    "path": "/docs/integrations/factom",
     "description": "Sovereign integration for factom workloads."
   },
   {
@@ -1668,7 +1668,7 @@
     "safeName": "fantom",
     "letter": "F",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/fantom",
+    "path": "/docs/integrations/fantom",
     "description": "Sovereign integration for fantom workloads."
   },
   {
@@ -1676,7 +1676,7 @@
     "safeName": "farcaster",
     "letter": "F",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/farcaster",
+    "path": "/docs/integrations/farcaster",
     "description": "Sovereign integration for farcaster workloads."
   },
   {
@@ -1684,7 +1684,7 @@
     "safeName": "farcasterframes",
     "letter": "F",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/farcasterframes",
+    "path": "/docs/integrations/farcasterframes",
     "description": "Sovereign integration for farcasterframes workloads."
   },
   {
@@ -1692,7 +1692,7 @@
     "safeName": "farcasterhubs",
     "letter": "F",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/farcasterhubs",
+    "path": "/docs/integrations/farcasterhubs",
     "description": "Sovereign integration for farcasterhubs workloads."
   },
   {
@@ -1700,7 +1700,7 @@
     "safeName": "farcasterwarpcast",
     "letter": "F",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/farcasterwarpcast",
+    "path": "/docs/integrations/farcasterwarpcast",
     "description": "Sovereign integration for farcasterwarpcast workloads."
   },
   {
@@ -1708,7 +1708,7 @@
     "safeName": "feathercoin",
     "letter": "F",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/feathercoin",
+    "path": "/docs/integrations/feathercoin",
     "description": "Sovereign integration for feathercoin workloads."
   },
   {
@@ -1716,7 +1716,7 @@
     "safeName": "fhenix",
     "letter": "F",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/fhenix",
+    "path": "/docs/integrations/fhenix",
     "description": "Sovereign integration for fhenix workloads."
   },
   {
@@ -1724,7 +1724,7 @@
     "safeName": "filebase",
     "letter": "F",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/filebase",
+    "path": "/docs/integrations/filebase",
     "description": "Sovereign integration for filebase workloads."
   },
   {
@@ -1732,7 +1732,7 @@
     "safeName": "filecoin",
     "letter": "F",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/filecoin",
+    "path": "/docs/integrations/filecoin",
     "description": "Sovereign integration for filecoin workloads."
   },
   {
@@ -1740,7 +1740,7 @@
     "safeName": "fireblocks",
     "letter": "F",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/fireblocks",
+    "path": "/docs/integrations/fireblocks",
     "description": "Sovereign integration for fireblocks workloads."
   },
   {
@@ -1748,7 +1748,7 @@
     "safeName": "flare",
     "letter": "F",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/flare",
+    "path": "/docs/integrations/flare",
     "description": "Sovereign integration for flare workloads."
   },
   {
@@ -1756,7 +1756,7 @@
     "safeName": "flashbots",
     "letter": "F",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/flashbots",
+    "path": "/docs/integrations/flashbots",
     "description": "Sovereign integration for flashbots workloads."
   },
   {
@@ -1764,7 +1764,7 @@
     "safeName": "fluencelabs",
     "letter": "F",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/fluencelabs",
+    "path": "/docs/integrations/fluencelabs",
     "description": "Sovereign integration for fluencelabs workloads."
   },
   {
@@ -1772,7 +1772,7 @@
     "safeName": "flutterwave",
     "letter": "F",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/flutterwave",
+    "path": "/docs/integrations/flutterwave",
     "description": "Sovereign integration for flutterwave workloads."
   },
   {
@@ -1780,7 +1780,7 @@
     "safeName": "forta",
     "letter": "F",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/forta",
+    "path": "/docs/integrations/forta",
     "description": "Sovereign integration for forta workloads."
   },
   {
@@ -1788,7 +1788,7 @@
     "safeName": "foundry",
     "letter": "F",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/foundry",
+    "path": "/docs/integrations/foundry",
     "description": "Sovereign integration for foundry workloads."
   },
   {
@@ -1796,7 +1796,7 @@
     "safeName": "frax",
     "letter": "F",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/frax",
+    "path": "/docs/integrations/frax",
     "description": "Sovereign integration for frax workloads."
   },
   {
@@ -1804,7 +1804,7 @@
     "safeName": "fuel",
     "letter": "F",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/fuel",
+    "path": "/docs/integrations/fuel",
     "description": "Sovereign integration for fuel workloads."
   },
   {
@@ -1812,7 +1812,7 @@
     "safeName": "fuse",
     "letter": "F",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/fuse",
+    "path": "/docs/integrations/fuse",
     "description": "Sovereign integration for fuse workloads."
   },
   {
@@ -1820,7 +1820,7 @@
     "safeName": "galadriel",
     "letter": "G",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/galadriel",
+    "path": "/docs/integrations/galadriel",
     "description": "Sovereign integration for galadriel workloads."
   },
   {
@@ -1828,7 +1828,7 @@
     "safeName": "galxe",
     "letter": "G",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/galxe",
+    "path": "/docs/integrations/galxe",
     "description": "Sovereign integration for galxe workloads."
   },
   {
@@ -1836,7 +1836,7 @@
     "safeName": "gateio",
     "letter": "G",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/gateio",
+    "path": "/docs/integrations/gateio",
     "description": "Sovereign integration for gateio workloads."
   },
   {
@@ -1844,7 +1844,7 @@
     "safeName": "gcp",
     "letter": "G",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/gcp",
+    "path": "/docs/integrations/gcp",
     "description": "Sovereign integration for gcp workloads."
   },
   {
@@ -1852,7 +1852,7 @@
     "safeName": "gelato",
     "letter": "G",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/gelato",
+    "path": "/docs/integrations/gelato",
     "description": "Sovereign integration for gelato workloads."
   },
   {
@@ -1860,7 +1860,7 @@
     "safeName": "gelatoops",
     "letter": "G",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/gelatoops",
+    "path": "/docs/integrations/gelatoops",
     "description": "Sovereign integration for gelatoops workloads."
   },
   {
@@ -1868,7 +1868,7 @@
     "safeName": "geminis",
     "letter": "G",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/geminis",
+    "path": "/docs/integrations/geminis",
     "description": "Sovereign integration for geminis workloads."
   },
   {
@@ -1876,7 +1876,7 @@
     "safeName": "genlayer",
     "letter": "G",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/genlayer",
+    "path": "/docs/integrations/genlayer",
     "description": "Sovereign integration for genlayer workloads."
   },
   {
@@ -1884,7 +1884,7 @@
     "safeName": "genshiro",
     "letter": "G",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/genshiro",
+    "path": "/docs/integrations/genshiro",
     "description": "Sovereign integration for genshiro workloads."
   },
   {
@@ -1892,7 +1892,7 @@
     "safeName": "gitcoin",
     "letter": "G",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/gitcoin",
+    "path": "/docs/integrations/gitcoin",
     "description": "Sovereign integration for gitcoin workloads."
   },
   {
@@ -1900,7 +1900,7 @@
     "safeName": "glif",
     "letter": "G",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/glif",
+    "path": "/docs/integrations/glif",
     "description": "Sovereign integration for glif workloads."
   },
   {
@@ -1908,7 +1908,7 @@
     "safeName": "gmx",
     "letter": "G",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/gmx",
+    "path": "/docs/integrations/gmx",
     "description": "Sovereign integration for gmx workloads."
   },
   {
@@ -1916,7 +1916,7 @@
     "safeName": "gnolang",
     "letter": "G",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/gnolang",
+    "path": "/docs/integrations/gnolang",
     "description": "Sovereign integration for gnolang workloads."
   },
   {
@@ -1924,7 +1924,7 @@
     "safeName": "gnosis",
     "letter": "G",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/gnosis",
+    "path": "/docs/integrations/gnosis",
     "description": "Sovereign integration for gnosis workloads."
   },
   {
@@ -1932,7 +1932,7 @@
     "safeName": "gnosischain",
     "letter": "G",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/gnosischain",
+    "path": "/docs/integrations/gnosischain",
     "description": "Sovereign integration for gnosischain workloads."
   },
   {
@@ -1940,7 +1940,7 @@
     "safeName": "gnosissafe",
     "letter": "G",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/gnosissafe",
+    "path": "/docs/integrations/gnosissafe",
     "description": "Sovereign integration for gnosissafe workloads."
   },
   {
@@ -1948,7 +1948,7 @@
     "safeName": "gnosissafeapps",
     "letter": "G",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/gnosissafeapps",
+    "path": "/docs/integrations/gnosissafeapps",
     "description": "Sovereign integration for gnosissafeapps workloads."
   },
   {
@@ -1956,7 +1956,7 @@
     "safeName": "goldfinch",
     "letter": "G",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/goldfinch",
+    "path": "/docs/integrations/goldfinch",
     "description": "Sovereign integration for goldfinch workloads."
   },
   {
@@ -1964,7 +1964,7 @@
     "safeName": "goldsky",
     "letter": "G",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/goldsky",
+    "path": "/docs/integrations/goldsky",
     "description": "Sovereign integration for goldsky workloads."
   },
   {
@@ -1972,7 +1972,7 @@
     "safeName": "golem",
     "letter": "G",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/golem",
+    "path": "/docs/integrations/golem",
     "description": "Sovereign integration for golem workloads."
   },
   {
@@ -1980,7 +1980,7 @@
     "safeName": "gravitybridge",
     "letter": "G",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/gravitybridge",
+    "path": "/docs/integrations/gravitybridge",
     "description": "Sovereign integration for gravitybridge workloads."
   },
   {
@@ -1988,7 +1988,7 @@
     "safeName": "griptape",
     "letter": "G",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/griptape",
+    "path": "/docs/integrations/griptape",
     "description": "Sovereign integration for griptape workloads."
   },
   {
@@ -1996,7 +1996,7 @@
     "safeName": "gro",
     "letter": "G",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/gro",
+    "path": "/docs/integrations/gro",
     "description": "Sovereign integration for gro workloads."
   },
   {
@@ -2004,7 +2004,7 @@
     "safeName": "groestlcoin",
     "letter": "G",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/groestlcoin",
+    "path": "/docs/integrations/groestlcoin",
     "description": "Sovereign integration for groestlcoin workloads."
   },
   {
@@ -2012,7 +2012,7 @@
     "safeName": "gton",
     "letter": "G",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/gton",
+    "path": "/docs/integrations/gton",
     "description": "Sovereign integration for gton workloads."
   },
   {
@@ -2020,7 +2020,7 @@
     "safeName": "harmony",
     "letter": "H",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/harmony",
+    "path": "/docs/integrations/harmony",
     "description": "Sovereign integration for harmony workloads."
   },
   {
@@ -2028,7 +2028,7 @@
     "safeName": "hashflow",
     "letter": "H",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/hashflow",
+    "path": "/docs/integrations/hashflow",
     "description": "Sovereign integration for hashflow workloads."
   },
   {
@@ -2036,7 +2036,7 @@
     "safeName": "hedera",
     "letter": "H",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/hedera",
+    "path": "/docs/integrations/hedera",
     "description": "Sovereign integration for hedera workloads."
   },
   {
@@ -2044,7 +2044,7 @@
     "safeName": "helium",
     "letter": "H",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/helium",
+    "path": "/docs/integrations/helium",
     "description": "Sovereign integration for helium workloads."
   },
   {
@@ -2052,7 +2052,7 @@
     "safeName": "helius",
     "letter": "H",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/helius",
+    "path": "/docs/integrations/helius",
     "description": "Sovereign integration for helius workloads."
   },
   {
@@ -2060,7 +2060,7 @@
     "safeName": "herodotus",
     "letter": "H",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/herodotus",
+    "path": "/docs/integrations/herodotus",
     "description": "Sovereign integration for herodotus workloads."
   },
   {
@@ -2068,7 +2068,7 @@
     "safeName": "hive",
     "letter": "H",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/hive",
+    "path": "/docs/integrations/hive",
     "description": "Sovereign integration for hive workloads."
   },
   {
@@ -2076,7 +2076,7 @@
     "safeName": "hivemapper",
     "letter": "H",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/hivemapper",
+    "path": "/docs/integrations/hivemapper",
     "description": "Sovereign integration for hivemapper workloads."
   },
   {
@@ -2084,7 +2084,7 @@
     "safeName": "holograph",
     "letter": "H",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/holograph",
+    "path": "/docs/integrations/holograph",
     "description": "Sovereign integration for holograph workloads."
   },
   {
@@ -2092,7 +2092,7 @@
     "safeName": "hopprotocol",
     "letter": "H",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/hopprotocol",
+    "path": "/docs/integrations/hopprotocol",
     "description": "Sovereign integration for hopprotocol workloads."
   },
   {
@@ -2100,7 +2100,7 @@
     "safeName": "hopr",
     "letter": "H",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/hopr",
+    "path": "/docs/integrations/hopr",
     "description": "Sovereign integration for hopr workloads."
   },
   {
@@ -2108,7 +2108,7 @@
     "safeName": "hydradx",
     "letter": "H",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/hydradx",
+    "path": "/docs/integrations/hydradx",
     "description": "Sovereign integration for hydradx workloads."
   },
   {
@@ -2116,7 +2116,7 @@
     "safeName": "hyperlane",
     "letter": "H",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/hyperlane",
+    "path": "/docs/integrations/hyperlane",
     "description": "Sovereign integration for hyperlane workloads."
   },
   {
@@ -2124,7 +2124,7 @@
     "safeName": "hyperliquid",
     "letter": "H",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/hyperliquid",
+    "path": "/docs/integrations/hyperliquid",
     "description": "Sovereign integration for hyperliquid workloads."
   },
   {
@@ -2132,7 +2132,7 @@
     "safeName": "icon",
     "letter": "I",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/icon",
+    "path": "/docs/integrations/icon",
     "description": "Sovereign integration for icon workloads."
   },
   {
@@ -2140,7 +2140,7 @@
     "safeName": "icp",
     "letter": "I",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/icp",
+    "path": "/docs/integrations/icp",
     "description": "Sovereign integration for icp workloads."
   },
   {
@@ -2148,7 +2148,7 @@
     "safeName": "immunefi",
     "letter": "I",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/immunefi",
+    "path": "/docs/integrations/immunefi",
     "description": "Sovereign integration for immunefi workloads."
   },
   {
@@ -2156,7 +2156,7 @@
     "safeName": "immutablex",
     "letter": "I",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/immutablex",
+    "path": "/docs/integrations/immutablex",
     "description": "Sovereign integration for immutablex workloads."
   },
   {
@@ -2164,7 +2164,7 @@
     "safeName": "indexcoop",
     "letter": "I",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/indexcoop",
+    "path": "/docs/integrations/indexcoop",
     "description": "Sovereign integration for indexcoop workloads."
   },
   {
@@ -2172,7 +2172,7 @@
     "safeName": "infstones",
     "letter": "I",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/infstones",
+    "path": "/docs/integrations/infstones",
     "description": "Sovereign integration for infstones workloads."
   },
   {
@@ -2180,7 +2180,7 @@
     "safeName": "infura",
     "letter": "I",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/infura",
+    "path": "/docs/integrations/infura",
     "description": "Sovereign integration for infura workloads."
   },
   {
@@ -2188,7 +2188,7 @@
     "safeName": "injective",
     "letter": "I",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/injective",
+    "path": "/docs/integrations/injective",
     "description": "Sovereign integration for injective workloads."
   },
   {
@@ -2196,7 +2196,7 @@
     "safeName": "ink",
     "letter": "I",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/ink",
+    "path": "/docs/integrations/ink",
     "description": "Sovereign integration for ink workloads."
   },
   {
@@ -2204,7 +2204,7 @@
     "safeName": "integritee",
     "letter": "I",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/integritee",
+    "path": "/docs/integrations/integritee",
     "description": "Sovereign integration for integritee workloads."
   },
   {
@@ -2212,7 +2212,7 @@
     "safeName": "interchain",
     "letter": "I",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/interchain",
+    "path": "/docs/integrations/interchain",
     "description": "Sovereign integration for interchain workloads."
   },
   {
@@ -2220,7 +2220,7 @@
     "safeName": "interlay",
     "letter": "I",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/interlay",
+    "path": "/docs/integrations/interlay",
     "description": "Sovereign integration for interlay workloads."
   },
   {
@@ -2228,7 +2228,7 @@
     "safeName": "io-net",
     "letter": "I",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/io-net",
+    "path": "/docs/integrations/io-net",
     "description": "Sovereign integration for io.net workloads."
   },
   {
@@ -2236,7 +2236,7 @@
     "safeName": "iota",
     "letter": "I",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/iota",
+    "path": "/docs/integrations/iota",
     "description": "Sovereign integration for iota workloads."
   },
   {
@@ -2244,7 +2244,7 @@
     "safeName": "iotex",
     "letter": "I",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/iotex",
+    "path": "/docs/integrations/iotex",
     "description": "Sovereign integration for iotex workloads."
   },
   {
@@ -2252,7 +2252,7 @@
     "safeName": "ipfs",
     "letter": "I",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/ipfs",
+    "path": "/docs/integrations/ipfs",
     "description": "Sovereign integration for ipfs workloads."
   },
   {
@@ -2260,7 +2260,7 @@
     "safeName": "irisnet",
     "letter": "I",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/irisnet",
+    "path": "/docs/integrations/irisnet",
     "description": "Sovereign integration for irisnet workloads."
   },
   {
@@ -2268,7 +2268,7 @@
     "safeName": "ironfish",
     "letter": "I",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/ironfish",
+    "path": "/docs/integrations/ironfish",
     "description": "Sovereign integration for ironfish workloads."
   },
   {
@@ -2276,7 +2276,7 @@
     "safeName": "jito",
     "letter": "J",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/jito",
+    "path": "/docs/integrations/jito",
     "description": "Sovereign integration for jito workloads."
   },
   {
@@ -2284,7 +2284,7 @@
     "safeName": "joystream",
     "letter": "J",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/joystream",
+    "path": "/docs/integrations/joystream",
     "description": "Sovereign integration for joystream workloads."
   },
   {
@@ -2292,7 +2292,7 @@
     "safeName": "jumperexchange",
     "letter": "J",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/jumperexchange",
+    "path": "/docs/integrations/jumperexchange",
     "description": "Sovereign integration for jumperexchange workloads."
   },
   {
@@ -2300,7 +2300,7 @@
     "safeName": "juno",
     "letter": "J",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/juno",
+    "path": "/docs/integrations/juno",
     "description": "Sovereign integration for juno workloads."
   },
   {
@@ -2308,7 +2308,7 @@
     "safeName": "kadena",
     "letter": "K",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/kadena",
+    "path": "/docs/integrations/kadena",
     "description": "Sovereign integration for kadena workloads."
   },
   {
@@ -2316,7 +2316,7 @@
     "safeName": "kakarot",
     "letter": "K",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/kakarot",
+    "path": "/docs/integrations/kakarot",
     "description": "Sovereign integration for kakarot workloads."
   },
   {
@@ -2324,7 +2324,7 @@
     "safeName": "karura",
     "letter": "K",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/karura",
+    "path": "/docs/integrations/karura",
     "description": "Sovereign integration for karura workloads."
   },
   {
@@ -2332,7 +2332,7 @@
     "safeName": "kaspa",
     "letter": "K",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/kaspa",
+    "path": "/docs/integrations/kaspa",
     "description": "Sovereign integration for kaspa workloads."
   },
   {
@@ -2340,7 +2340,7 @@
     "safeName": "kava",
     "letter": "K",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/kava",
+    "path": "/docs/integrations/kava",
     "description": "Sovereign integration for kava workloads."
   },
   {
@@ -2348,7 +2348,7 @@
     "safeName": "kelpdao",
     "letter": "K",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/kelpdao",
+    "path": "/docs/integrations/kelpdao",
     "description": "Sovereign integration for kelpdao workloads."
   },
   {
@@ -2356,7 +2356,7 @@
     "safeName": "khala",
     "letter": "K",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/khala",
+    "path": "/docs/integrations/khala",
     "description": "Sovereign integration for khala workloads."
   },
   {
@@ -2364,7 +2364,7 @@
     "safeName": "ki",
     "letter": "K",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/ki",
+    "path": "/docs/integrations/ki",
     "description": "Sovereign integration for ki workloads."
   },
   {
@@ -2372,7 +2372,7 @@
     "safeName": "kilt",
     "letter": "K",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/kilt",
+    "path": "/docs/integrations/kilt",
     "description": "Sovereign integration for kilt workloads."
   },
   {
@@ -2380,7 +2380,7 @@
     "safeName": "kinto",
     "letter": "K",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/kinto",
+    "path": "/docs/integrations/kinto",
     "description": "Sovereign integration for kinto workloads."
   },
   {
@@ -2388,7 +2388,7 @@
     "safeName": "kintsugi",
     "letter": "K",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/kintsugi",
+    "path": "/docs/integrations/kintsugi",
     "description": "Sovereign integration for kintsugi workloads."
   },
   {
@@ -2396,7 +2396,7 @@
     "safeName": "klaytn",
     "letter": "K",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/klaytn",
+    "path": "/docs/integrations/klaytn",
     "description": "Sovereign integration for klaytn workloads."
   },
   {
@@ -2404,7 +2404,7 @@
     "safeName": "koinos",
     "letter": "K",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/koinos",
+    "path": "/docs/integrations/koinos",
     "description": "Sovereign integration for koinos workloads."
   },
   {
@@ -2412,7 +2412,7 @@
     "safeName": "komodo",
     "letter": "K",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/komodo",
+    "path": "/docs/integrations/komodo",
     "description": "Sovereign integration for komodo workloads."
   },
   {
@@ -2420,7 +2420,7 @@
     "safeName": "kroma",
     "letter": "K",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/kroma",
+    "path": "/docs/integrations/kroma",
     "description": "Sovereign integration for kroma workloads."
   },
   {
@@ -2428,7 +2428,7 @@
     "safeName": "kusama",
     "letter": "K",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/kusama",
+    "path": "/docs/integrations/kusama",
     "description": "Sovereign integration for kusama workloads."
   },
   {
@@ -2436,7 +2436,7 @@
     "safeName": "kwenta",
     "letter": "K",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/kwenta",
+    "path": "/docs/integrations/kwenta",
     "description": "Sovereign integration for kwenta workloads."
   },
   {
@@ -2444,7 +2444,7 @@
     "safeName": "kyber",
     "letter": "K",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/kyber",
+    "path": "/docs/integrations/kyber",
     "description": "Sovereign integration for kyber workloads."
   },
   {
@@ -2452,7 +2452,7 @@
     "safeName": "kyve",
     "letter": "K",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/kyve",
+    "path": "/docs/integrations/kyve",
     "description": "Sovereign integration for kyve workloads."
   },
   {
@@ -2460,7 +2460,7 @@
     "safeName": "layerzero",
     "letter": "L",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/layerzero",
+    "path": "/docs/integrations/layerzero",
     "description": "Sovereign integration for layerzero workloads."
   },
   {
@@ -2468,7 +2468,7 @@
     "safeName": "leapwallet",
     "letter": "L",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/leapwallet",
+    "path": "/docs/integrations/leapwallet",
     "description": "Sovereign integration for leapwallet workloads."
   },
   {
@@ -2476,7 +2476,7 @@
     "safeName": "ledgerlive",
     "letter": "L",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/ledgerlive",
+    "path": "/docs/integrations/ledgerlive",
     "description": "Sovereign integration for ledgerlive workloads."
   },
   {
@@ -2484,7 +2484,7 @@
     "safeName": "lensprotocol",
     "letter": "L",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/lensprotocol",
+    "path": "/docs/integrations/lensprotocol",
     "description": "Sovereign integration for lensprotocol workloads."
   },
   {
@@ -2492,7 +2492,7 @@
     "safeName": "leo",
     "letter": "L",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/leo",
+    "path": "/docs/integrations/leo",
     "description": "Sovereign integration for leo workloads."
   },
   {
@@ -2500,7 +2500,7 @@
     "safeName": "lido",
     "letter": "L",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/lido",
+    "path": "/docs/integrations/lido",
     "description": "Sovereign integration for lido workloads."
   },
   {
@@ -2508,7 +2508,7 @@
     "safeName": "lighthouse",
     "letter": "L",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/lighthouse",
+    "path": "/docs/integrations/lighthouse",
     "description": "Sovereign integration for lighthouse workloads."
   },
   {
@@ -2516,7 +2516,7 @@
     "safeName": "lightlink",
     "letter": "L",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/lightlink",
+    "path": "/docs/integrations/lightlink",
     "description": "Sovereign integration for lightlink workloads."
   },
   {
@@ -2524,7 +2524,7 @@
     "safeName": "lightning",
     "letter": "L",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/lightning",
+    "path": "/docs/integrations/lightning",
     "description": "Sovereign integration for lightning workloads."
   },
   {
@@ -2532,7 +2532,7 @@
     "safeName": "linea",
     "letter": "L",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/linea",
+    "path": "/docs/integrations/linea",
     "description": "Sovereign integration for linea workloads."
   },
   {
@@ -2540,7 +2540,7 @@
     "safeName": "liquity",
     "letter": "L",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/liquity",
+    "path": "/docs/integrations/liquity",
     "description": "Sovereign integration for liquity workloads."
   },
   {
@@ -2548,7 +2548,7 @@
     "safeName": "lisk",
     "letter": "L",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/lisk",
+    "path": "/docs/integrations/lisk",
     "description": "Sovereign integration for lisk workloads."
   },
   {
@@ -2556,7 +2556,7 @@
     "safeName": "litentry",
     "letter": "L",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/litentry",
+    "path": "/docs/integrations/litentry",
     "description": "Sovereign integration for litentry workloads."
   },
   {
@@ -2564,7 +2564,7 @@
     "safeName": "litprotocol",
     "letter": "L",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/litprotocol",
+    "path": "/docs/integrations/litprotocol",
     "description": "Sovereign integration for litprotocol workloads."
   },
   {
@@ -2572,7 +2572,7 @@
     "safeName": "livekit",
     "letter": "L",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/livekit",
+    "path": "/docs/integrations/livekit",
     "description": "Sovereign integration for livekit workloads."
   },
   {
@@ -2580,7 +2580,7 @@
     "safeName": "livepeer",
     "letter": "L",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/livepeer",
+    "path": "/docs/integrations/livepeer",
     "description": "Sovereign integration for livepeer workloads."
   },
   {
@@ -2588,7 +2588,7 @@
     "safeName": "logos",
     "letter": "L",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/logos",
+    "path": "/docs/integrations/logos",
     "description": "Sovereign integration for logos workloads."
   },
   {
@@ -2596,7 +2596,7 @@
     "safeName": "loom",
     "letter": "L",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/loom",
+    "path": "/docs/integrations/loom",
     "description": "Sovereign integration for loom workloads."
   },
   {
@@ -2604,7 +2604,7 @@
     "safeName": "loopring",
     "letter": "L",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/loopring",
+    "path": "/docs/integrations/loopring",
     "description": "Sovereign integration for loopring workloads."
   },
   {
@@ -2612,7 +2612,7 @@
     "safeName": "lukso",
     "letter": "L",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/lukso",
+    "path": "/docs/integrations/lukso",
     "description": "Sovereign integration for lukso workloads."
   },
   {
@@ -2620,7 +2620,7 @@
     "safeName": "lum",
     "letter": "L",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/lum",
+    "path": "/docs/integrations/lum",
     "description": "Sovereign integration for lum workloads."
   },
   {
@@ -2628,7 +2628,7 @@
     "safeName": "lyra",
     "letter": "L",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/lyra",
+    "path": "/docs/integrations/lyra",
     "description": "Sovereign integration for lyra workloads."
   },
   {
@@ -2636,7 +2636,7 @@
     "safeName": "m2m",
     "letter": "M",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/m2m",
+    "path": "/docs/integrations/m2m",
     "description": "Sovereign integration for m2m workloads."
   },
   {
@@ -2644,7 +2644,7 @@
     "safeName": "madara",
     "letter": "M",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/madara",
+    "path": "/docs/integrations/madara",
     "description": "Sovereign integration for madara workloads."
   },
   {
@@ -2652,7 +2652,7 @@
     "safeName": "magiceden",
     "letter": "M",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/magiceden",
+    "path": "/docs/integrations/magiceden",
     "description": "Sovereign integration for magiceden workloads."
   },
   {
@@ -2660,7 +2660,7 @@
     "safeName": "magiclink",
     "letter": "M",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/magiclink",
+    "path": "/docs/integrations/magiclink",
     "description": "Sovereign integration for magiclink workloads."
   },
   {
@@ -2668,7 +2668,7 @@
     "safeName": "maidsafecoin",
     "letter": "M",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/maidsafecoin",
+    "path": "/docs/integrations/maidsafecoin",
     "description": "Sovereign integration for maidsafecoin workloads."
   },
   {
@@ -2676,7 +2676,7 @@
     "safeName": "maker",
     "letter": "M",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/maker",
+    "path": "/docs/integrations/maker",
     "description": "Sovereign integration for maker workloads."
   },
   {
@@ -2684,7 +2684,7 @@
     "safeName": "makerdao",
     "letter": "M",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/makerdao",
+    "path": "/docs/integrations/makerdao",
     "description": "Sovereign integration for makerdao workloads."
   },
   {
@@ -2692,7 +2692,7 @@
     "safeName": "mangata",
     "letter": "M",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/mangata",
+    "path": "/docs/integrations/mangata",
     "description": "Sovereign integration for mangata workloads."
   },
   {
@@ -2700,7 +2700,7 @@
     "safeName": "manta",
     "letter": "M",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/manta",
+    "path": "/docs/integrations/manta",
     "description": "Sovereign integration for manta workloads."
   },
   {
@@ -2708,7 +2708,7 @@
     "safeName": "mantle",
     "letter": "M",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/mantle",
+    "path": "/docs/integrations/mantle",
     "description": "Sovereign integration for mantle workloads."
   },
   {
@@ -2716,7 +2716,7 @@
     "safeName": "maplefinance",
     "letter": "M",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/maplefinance",
+    "path": "/docs/integrations/maplefinance",
     "description": "Sovereign integration for maplefinance workloads."
   },
   {
@@ -2724,7 +2724,7 @@
     "safeName": "mapprotocol",
     "letter": "M",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/mapprotocol",
+    "path": "/docs/integrations/mapprotocol",
     "description": "Sovereign integration for mapprotocol workloads."
   },
   {
@@ -2732,7 +2732,7 @@
     "safeName": "marlin",
     "letter": "M",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/marlin",
+    "path": "/docs/integrations/marlin",
     "description": "Sovereign integration for marlin workloads."
   },
   {
@@ -2740,7 +2740,7 @@
     "safeName": "marsprotocol",
     "letter": "M",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/marsprotocol",
+    "path": "/docs/integrations/marsprotocol",
     "description": "Sovereign integration for marsprotocol workloads."
   },
   {
@@ -2748,7 +2748,7 @@
     "safeName": "massa",
     "letter": "M",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/massa",
+    "path": "/docs/integrations/massa",
     "description": "Sovereign integration for massa workloads."
   },
   {
@@ -2756,7 +2756,7 @@
     "safeName": "mathchain",
     "letter": "M",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/mathchain",
+    "path": "/docs/integrations/mathchain",
     "description": "Sovereign integration for mathchain workloads."
   },
   {
@@ -2764,7 +2764,7 @@
     "safeName": "matterlabs",
     "letter": "M",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/matterlabs",
+    "path": "/docs/integrations/matterlabs",
     "description": "Sovereign integration for matterlabs workloads."
   },
   {
@@ -2772,7 +2772,7 @@
     "safeName": "maya",
     "letter": "M",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/maya",
+    "path": "/docs/integrations/maya",
     "description": "Sovereign integration for maya workloads."
   },
   {
@@ -2780,7 +2780,7 @@
     "safeName": "melon",
     "letter": "M",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/melon",
+    "path": "/docs/integrations/melon",
     "description": "Sovereign integration for melon workloads."
   },
   {
@@ -2788,7 +2788,7 @@
     "safeName": "metamask",
     "letter": "M",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/metamask",
+    "path": "/docs/integrations/metamask",
     "description": "Sovereign integration for metamask workloads."
   },
   {
@@ -2796,7 +2796,7 @@
     "safeName": "metaplex",
     "letter": "M",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/metaplex",
+    "path": "/docs/integrations/metaplex",
     "description": "Sovereign integration for metaplex workloads."
   },
   {
@@ -2804,7 +2804,7 @@
     "safeName": "metis",
     "letter": "M",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/metis",
+    "path": "/docs/integrations/metis",
     "description": "Sovereign integration for metis workloads."
   },
   {
@@ -2812,7 +2812,7 @@
     "safeName": "mev",
     "letter": "M",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/mev",
+    "path": "/docs/integrations/mev",
     "description": "Sovereign integration for mev workloads."
   },
   {
@@ -2820,7 +2820,7 @@
     "safeName": "mevboost",
     "letter": "M",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/mevboost",
+    "path": "/docs/integrations/mevboost",
     "description": "Sovereign integration for mevboost workloads."
   },
   {
@@ -2828,7 +2828,7 @@
     "safeName": "mevshare",
     "letter": "M",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/mevshare",
+    "path": "/docs/integrations/mevshare",
     "description": "Sovereign integration for mevshare workloads."
   },
   {
@@ -2836,7 +2836,7 @@
     "safeName": "mina",
     "letter": "M",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/mina",
+    "path": "/docs/integrations/mina",
     "description": "Sovereign integration for mina workloads."
   },
   {
@@ -2844,7 +2844,7 @@
     "safeName": "mintfun",
     "letter": "M",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/mintfun",
+    "path": "/docs/integrations/mintfun",
     "description": "Sovereign integration for mintfun workloads."
   },
   {
@@ -2852,7 +2852,7 @@
     "safeName": "mintkudos",
     "letter": "M",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/mintkudos",
+    "path": "/docs/integrations/mintkudos",
     "description": "Sovereign integration for mintkudos workloads."
   },
   {
@@ -2860,7 +2860,7 @@
     "safeName": "mintlayer",
     "letter": "M",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/mintlayer",
+    "path": "/docs/integrations/mintlayer",
     "description": "Sovereign integration for mintlayer workloads."
   },
   {
@@ -2868,7 +2868,7 @@
     "safeName": "mode",
     "letter": "M",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/mode",
+    "path": "/docs/integrations/mode",
     "description": "Sovereign integration for mode workloads."
   },
   {
@@ -2876,7 +2876,7 @@
     "safeName": "modularcloud",
     "letter": "M",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/modularcloud",
+    "path": "/docs/integrations/modularcloud",
     "description": "Sovereign integration for modularcloud workloads."
   },
   {
@@ -2884,7 +2884,7 @@
     "safeName": "monero",
     "letter": "M",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/monero",
+    "path": "/docs/integrations/monero",
     "description": "Sovereign integration for monero workloads."
   },
   {
@@ -2892,7 +2892,7 @@
     "safeName": "moonbeam",
     "letter": "M",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/moonbeam",
+    "path": "/docs/integrations/moonbeam",
     "description": "Sovereign integration for moonbeam workloads."
   },
   {
@@ -2900,7 +2900,7 @@
     "safeName": "moonriver",
     "letter": "M",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/moonriver",
+    "path": "/docs/integrations/moonriver",
     "description": "Sovereign integration for moonriver workloads."
   },
   {
@@ -2908,7 +2908,7 @@
     "safeName": "moralis",
     "letter": "M",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/moralis",
+    "path": "/docs/integrations/moralis",
     "description": "Sovereign integration for moralis workloads."
   },
   {
@@ -2916,7 +2916,7 @@
     "safeName": "morpho",
     "letter": "M",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/morpho",
+    "path": "/docs/integrations/morpho",
     "description": "Sovereign integration for morpho workloads."
   },
   {
@@ -2924,7 +2924,7 @@
     "safeName": "motion",
     "letter": "M",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/motion",
+    "path": "/docs/integrations/motion",
     "description": "Sovereign integration for motion workloads."
   },
   {
@@ -2932,7 +2932,7 @@
     "safeName": "multichain",
     "letter": "M",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/multichain",
+    "path": "/docs/integrations/multichain",
     "description": "Sovereign integration for multichain workloads."
   },
   {
@@ -2940,7 +2940,7 @@
     "safeName": "multiversx",
     "letter": "M",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/multiversx",
+    "path": "/docs/integrations/multiversx",
     "description": "Sovereign integration for multiversx workloads."
   },
   {
@@ -2948,7 +2948,7 @@
     "safeName": "myria",
     "letter": "M",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/myria",
+    "path": "/docs/integrations/myria",
     "description": "Sovereign integration for myria workloads."
   },
   {
@@ -2956,7 +2956,7 @@
     "safeName": "mythx",
     "letter": "M",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/mythx",
+    "path": "/docs/integrations/mythx",
     "description": "Sovereign integration for mythx workloads."
   },
   {
@@ -2964,7 +2964,7 @@
     "safeName": "namada",
     "letter": "N",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/namada",
+    "path": "/docs/integrations/namada",
     "description": "Sovereign integration for namada workloads."
   },
   {
@@ -2972,7 +2972,7 @@
     "safeName": "namecoin",
     "letter": "N",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/namecoin",
+    "path": "/docs/integrations/namecoin",
     "description": "Sovereign integration for namecoin workloads."
   },
   {
@@ -2980,7 +2980,7 @@
     "safeName": "navcoin",
     "letter": "N",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/navcoin",
+    "path": "/docs/integrations/navcoin",
     "description": "Sovereign integration for navcoin workloads."
   },
   {
@@ -2988,7 +2988,7 @@
     "safeName": "near",
     "letter": "N",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/near",
+    "path": "/docs/integrations/near",
     "description": "Sovereign integration for near workloads."
   },
   {
@@ -2996,7 +2996,7 @@
     "safeName": "nem",
     "letter": "N",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/nem",
+    "path": "/docs/integrations/nem",
     "description": "Sovereign integration for nem workloads."
   },
   {
@@ -3004,7 +3004,7 @@
     "safeName": "neo",
     "letter": "N",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/neo",
+    "path": "/docs/integrations/neo",
     "description": "Sovereign integration for neo workloads."
   },
   {
@@ -3012,7 +3012,7 @@
     "safeName": "neon",
     "letter": "N",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/neon",
+    "path": "/docs/integrations/neon",
     "description": "Sovereign integration for neon workloads."
   },
   {
@@ -3020,7 +3020,7 @@
     "safeName": "neonlabs",
     "letter": "N",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/neonlabs",
+    "path": "/docs/integrations/neonlabs",
     "description": "Sovereign integration for neonlabs workloads."
   },
   {
@@ -3028,7 +3028,7 @@
     "safeName": "neptune",
     "letter": "N",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/neptune",
+    "path": "/docs/integrations/neptune",
     "description": "Sovereign integration for neptune workloads."
   },
   {
@@ -3036,7 +3036,7 @@
     "safeName": "nervos",
     "letter": "N",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/nervos",
+    "path": "/docs/integrations/nervos",
     "description": "Sovereign integration for nervos workloads."
   },
   {
@@ -3044,7 +3044,7 @@
     "safeName": "nethermind",
     "letter": "N",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/nethermind",
+    "path": "/docs/integrations/nethermind",
     "description": "Sovereign integration for nethermind workloads."
   },
   {
@@ -3052,7 +3052,7 @@
     "safeName": "neutron",
     "letter": "N",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/neutron",
+    "path": "/docs/integrations/neutron",
     "description": "Sovereign integration for neutron workloads."
   },
   {
@@ -3060,7 +3060,7 @@
     "safeName": "neworder",
     "letter": "N",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/neworder",
+    "path": "/docs/integrations/neworder",
     "description": "Sovereign integration for neworder workloads."
   },
   {
@@ -3068,7 +3068,7 @@
     "safeName": "nillion",
     "letter": "N",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/nillion",
+    "path": "/docs/integrations/nillion",
     "description": "Sovereign integration for nillion workloads."
   },
   {
@@ -3076,7 +3076,7 @@
     "safeName": "nkn",
     "letter": "N",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/nkn",
+    "path": "/docs/integrations/nkn",
     "description": "Sovereign integration for nkn workloads."
   },
   {
@@ -3084,7 +3084,7 @@
     "safeName": "noble",
     "letter": "N",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/noble",
+    "path": "/docs/integrations/noble",
     "description": "Sovereign integration for noble workloads."
   },
   {
@@ -3092,7 +3092,7 @@
     "safeName": "nodle",
     "letter": "N",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/nodle",
+    "path": "/docs/integrations/nodle",
     "description": "Sovereign integration for nodle workloads."
   },
   {
@@ -3100,7 +3100,7 @@
     "safeName": "noir",
     "letter": "N",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/noir",
+    "path": "/docs/integrations/noir",
     "description": "Sovereign integration for noir workloads."
   },
   {
@@ -3108,7 +3108,7 @@
     "safeName": "nomic",
     "letter": "N",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/nomic",
+    "path": "/docs/integrations/nomic",
     "description": "Sovereign integration for nomic workloads."
   },
   {
@@ -3116,7 +3116,7 @@
     "safeName": "notifi",
     "letter": "N",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/notifi",
+    "path": "/docs/integrations/notifi",
     "description": "Sovereign integration for notifi workloads."
   },
   {
@@ -3124,7 +3124,7 @@
     "safeName": "notional",
     "letter": "N",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/notional",
+    "path": "/docs/integrations/notional",
     "description": "Sovereign integration for notional workloads."
   },
   {
@@ -3132,7 +3132,7 @@
     "safeName": "nucleo",
     "letter": "N",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/nucleo",
+    "path": "/docs/integrations/nucleo",
     "description": "Sovereign integration for nucleo workloads."
   },
   {
@@ -3140,7 +3140,7 @@
     "safeName": "oasis",
     "letter": "O",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/oasis",
+    "path": "/docs/integrations/oasis",
     "description": "Sovereign integration for oasis workloads."
   },
   {
@@ -3148,7 +3148,7 @@
     "safeName": "obscuro",
     "letter": "O",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/obscuro",
+    "path": "/docs/integrations/obscuro",
     "description": "Sovereign integration for obscuro workloads."
   },
   {
@@ -3156,7 +3156,7 @@
     "safeName": "oceanprotocol",
     "letter": "O",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/oceanprotocol",
+    "path": "/docs/integrations/oceanprotocol",
     "description": "Sovereign integration for oceanprotocol workloads."
   },
   {
@@ -3164,7 +3164,7 @@
     "safeName": "odyssey",
     "letter": "O",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/odyssey",
+    "path": "/docs/integrations/odyssey",
     "description": "Sovereign integration for odyssey workloads."
   },
   {
@@ -3172,7 +3172,7 @@
     "safeName": "okx",
     "letter": "O",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/okx",
+    "path": "/docs/integrations/okx",
     "description": "Sovereign integration for okx workloads."
   },
   {
@@ -3180,7 +3180,7 @@
     "safeName": "okxwallet",
     "letter": "O",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/okxwallet",
+    "path": "/docs/integrations/okxwallet",
     "description": "Sovereign integration for okxwallet workloads."
   },
   {
@@ -3188,7 +3188,7 @@
     "safeName": "omisego",
     "letter": "O",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/omisego",
+    "path": "/docs/integrations/omisego",
     "description": "Sovereign integration for omisego workloads."
   },
   {
@@ -3196,7 +3196,7 @@
     "safeName": "omni",
     "letter": "O",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/omni",
+    "path": "/docs/integrations/omni",
     "description": "Sovereign integration for omni workloads."
   },
   {
@@ -3204,7 +3204,7 @@
     "safeName": "onfinality",
     "letter": "O",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/onfinality",
+    "path": "/docs/integrations/onfinality",
     "description": "Sovereign integration for onfinality workloads."
   },
   {
@@ -3212,7 +3212,7 @@
     "safeName": "onflow",
     "letter": "O",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/onflow",
+    "path": "/docs/integrations/onflow",
     "description": "Sovereign integration for onflow workloads."
   },
   {
@@ -3220,7 +3220,7 @@
     "safeName": "ontochain",
     "letter": "O",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/ontochain",
+    "path": "/docs/integrations/ontochain",
     "description": "Sovereign integration for ontochain workloads."
   },
   {
@@ -3228,7 +3228,7 @@
     "safeName": "ontology",
     "letter": "O",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/ontology",
+    "path": "/docs/integrations/ontology",
     "description": "Sovereign integration for ontology workloads."
   },
   {
@@ -3236,7 +3236,7 @@
     "safeName": "opensea",
     "letter": "O",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/opensea",
+    "path": "/docs/integrations/opensea",
     "description": "Sovereign integration for opensea workloads."
   },
   {
@@ -3244,7 +3244,7 @@
     "safeName": "optimism",
     "letter": "O",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/optimism",
+    "path": "/docs/integrations/optimism",
     "description": "Sovereign integration for optimism workloads."
   },
   {
@@ -3252,7 +3252,7 @@
     "safeName": "orai",
     "letter": "O",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/orai",
+    "path": "/docs/integrations/orai",
     "description": "Sovereign integration for orai workloads."
   },
   {
@@ -3260,7 +3260,7 @@
     "safeName": "orbs",
     "letter": "O",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/orbs",
+    "path": "/docs/integrations/orbs",
     "description": "Sovereign integration for orbs workloads."
   },
   {
@@ -3268,7 +3268,7 @@
     "safeName": "orderly",
     "letter": "O",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/orderly",
+    "path": "/docs/integrations/orderly",
     "description": "Sovereign integration for orderly workloads."
   },
   {
@@ -3276,7 +3276,7 @@
     "safeName": "osmosis",
     "letter": "O",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/osmosis",
+    "path": "/docs/integrations/osmosis",
     "description": "Sovereign integration for osmosis workloads."
   },
   {
@@ -3284,7 +3284,7 @@
     "safeName": "ottersec",
     "letter": "O",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/ottersec",
+    "path": "/docs/integrations/ottersec",
     "description": "Sovereign integration for ottersec workloads."
   },
   {
@@ -3292,7 +3292,7 @@
     "safeName": "pactus",
     "letter": "P",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/pactus",
+    "path": "/docs/integrations/pactus",
     "description": "Sovereign integration for pactus workloads."
   },
   {
@@ -3300,7 +3300,7 @@
     "safeName": "palm",
     "letter": "P",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/palm",
+    "path": "/docs/integrations/palm",
     "description": "Sovereign integration for palm workloads."
   },
   {
@@ -3308,7 +3308,7 @@
     "safeName": "pantherprotocol",
     "letter": "P",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/pantherprotocol",
+    "path": "/docs/integrations/pantherprotocol",
     "description": "Sovereign integration for pantherprotocol workloads."
   },
   {
@@ -3316,7 +3316,7 @@
     "safeName": "paradigm",
     "letter": "P",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/paradigm",
+    "path": "/docs/integrations/paradigm",
     "description": "Sovereign integration for paradigm workloads."
   },
   {
@@ -3324,7 +3324,7 @@
     "safeName": "paraswap",
     "letter": "P",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/paraswap",
+    "path": "/docs/integrations/paraswap",
     "description": "Sovereign integration for paraswap workloads."
   },
   {
@@ -3332,7 +3332,7 @@
     "safeName": "paritytech",
     "letter": "P",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/paritytech",
+    "path": "/docs/integrations/paritytech",
     "description": "Sovereign integration for paritytech workloads."
   },
   {
@@ -3340,7 +3340,7 @@
     "safeName": "particle",
     "letter": "P",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/particle",
+    "path": "/docs/integrations/particle",
     "description": "Sovereign integration for particle workloads."
   },
   {
@@ -3348,7 +3348,7 @@
     "safeName": "passthrough",
     "letter": "P",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/passthrough",
+    "path": "/docs/integrations/passthrough",
     "description": "Sovereign integration for passthrough workloads."
   },
   {
@@ -3356,7 +3356,7 @@
     "safeName": "peaq",
     "letter": "P",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/peaq",
+    "path": "/docs/integrations/peaq",
     "description": "Sovereign integration for peaq workloads."
   },
   {
@@ -3364,7 +3364,7 @@
     "safeName": "peercoin",
     "letter": "P",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/peercoin",
+    "path": "/docs/integrations/peercoin",
     "description": "Sovereign integration for peercoin workloads."
   },
   {
@@ -3372,7 +3372,7 @@
     "safeName": "pendle",
     "letter": "P",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/pendle",
+    "path": "/docs/integrations/pendle",
     "description": "Sovereign integration for pendle workloads."
   },
   {
@@ -3380,7 +3380,7 @@
     "safeName": "pendulum",
     "letter": "P",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/pendulum",
+    "path": "/docs/integrations/pendulum",
     "description": "Sovereign integration for pendulum workloads."
   },
   {
@@ -3388,7 +3388,7 @@
     "safeName": "perpetualprotocol",
     "letter": "P",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/perpetualprotocol",
+    "path": "/docs/integrations/perpetualprotocol",
     "description": "Sovereign integration for perpetualprotocol workloads."
   },
   {
@@ -3396,7 +3396,7 @@
     "safeName": "persistence",
     "letter": "P",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/persistence",
+    "path": "/docs/integrations/persistence",
     "description": "Sovereign integration for persistence workloads."
   },
   {
@@ -3404,7 +3404,7 @@
     "safeName": "phala",
     "letter": "P",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/phala",
+    "path": "/docs/integrations/phala",
     "description": "Sovereign integration for phala workloads."
   },
   {
@@ -3412,7 +3412,7 @@
     "safeName": "phoenix",
     "letter": "P",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/phoenix",
+    "path": "/docs/integrations/phoenix",
     "description": "Sovereign integration for phoenix workloads."
   },
   {
@@ -3420,7 +3420,7 @@
     "safeName": "picasso",
     "letter": "P",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/picasso",
+    "path": "/docs/integrations/picasso",
     "description": "Sovereign integration for picasso workloads."
   },
   {
@@ -3428,7 +3428,7 @@
     "safeName": "pimlico",
     "letter": "P",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/pimlico",
+    "path": "/docs/integrations/pimlico",
     "description": "Sovereign integration for pimlico workloads."
   },
   {
@@ -3436,7 +3436,7 @@
     "safeName": "pion",
     "letter": "P",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/pion",
+    "path": "/docs/integrations/pion",
     "description": "Sovereign integration for pion workloads."
   },
   {
@@ -3444,7 +3444,7 @@
     "safeName": "pisa",
     "letter": "P",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/pisa",
+    "path": "/docs/integrations/pisa",
     "description": "Sovereign integration for pisa workloads."
   },
   {
@@ -3452,7 +3452,7 @@
     "safeName": "pivx",
     "letter": "P",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/pivx",
+    "path": "/docs/integrations/pivx",
     "description": "Sovereign integration for pivx workloads."
   },
   {
@@ -3460,7 +3460,7 @@
     "safeName": "pocketnetwork",
     "letter": "P",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/pocketnetwork",
+    "path": "/docs/integrations/pocketnetwork",
     "description": "Sovereign integration for pocketnetwork workloads."
   },
   {
@@ -3468,7 +3468,7 @@
     "safeName": "pocketportal",
     "letter": "P",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/pocketportal",
+    "path": "/docs/integrations/pocketportal",
     "description": "Sovereign integration for pocketportal workloads."
   },
   {
@@ -3476,7 +3476,7 @@
     "safeName": "polkadot",
     "letter": "P",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/polkadot",
+    "path": "/docs/integrations/polkadot",
     "description": "Sovereign integration for polkadot workloads."
   },
   {
@@ -3484,7 +3484,7 @@
     "safeName": "polkassembly",
     "letter": "P",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/polkassembly",
+    "path": "/docs/integrations/polkassembly",
     "description": "Sovereign integration for polkassembly workloads."
   },
   {
@@ -3492,7 +3492,7 @@
     "safeName": "polkastarter",
     "letter": "P",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/polkastarter",
+    "path": "/docs/integrations/polkastarter",
     "description": "Sovereign integration for polkastarter workloads."
   },
   {
@@ -3500,7 +3500,7 @@
     "safeName": "polygon",
     "letter": "P",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/polygon",
+    "path": "/docs/integrations/polygon",
     "description": "Sovereign integration for polygon workloads."
   },
   {
@@ -3508,7 +3508,7 @@
     "safeName": "polymarket",
     "letter": "P",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/polymarket",
+    "path": "/docs/integrations/polymarket",
     "description": "Sovereign integration for polymarket workloads."
   },
   {
@@ -3516,7 +3516,7 @@
     "safeName": "polymesh",
     "letter": "P",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/polymesh",
+    "path": "/docs/integrations/polymesh",
     "description": "Sovereign integration for polymesh workloads."
   },
   {
@@ -3524,7 +3524,7 @@
     "safeName": "polywrap",
     "letter": "P",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/polywrap",
+    "path": "/docs/integrations/polywrap",
     "description": "Sovereign integration for polywrap workloads."
   },
   {
@@ -3532,7 +3532,7 @@
     "safeName": "pontem",
     "letter": "P",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/pontem",
+    "path": "/docs/integrations/pontem",
     "description": "Sovereign integration for pontem workloads."
   },
   {
@@ -3540,7 +3540,7 @@
     "safeName": "popcorn",
     "letter": "P",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/popcorn",
+    "path": "/docs/integrations/popcorn",
     "description": "Sovereign integration for popcorn workloads."
   },
   {
@@ -3548,7 +3548,7 @@
     "safeName": "portals",
     "letter": "P",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/portals",
+    "path": "/docs/integrations/portals",
     "description": "Sovereign integration for portals workloads."
   },
   {
@@ -3556,7 +3556,7 @@
     "safeName": "poseidon",
     "letter": "P",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/poseidon",
+    "path": "/docs/integrations/poseidon",
     "description": "Sovereign integration for poseidon workloads."
   },
   {
@@ -3564,7 +3564,7 @@
     "safeName": "powdr",
     "letter": "P",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/powdr",
+    "path": "/docs/integrations/powdr",
     "description": "Sovereign integration for powdr workloads."
   },
   {
@@ -3572,7 +3572,7 @@
     "safeName": "powerledger",
     "letter": "P",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/powerledger",
+    "path": "/docs/integrations/powerledger",
     "description": "Sovereign integration for powerledger workloads."
   },
   {
@@ -3580,7 +3580,7 @@
     "safeName": "primodium",
     "letter": "P",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/primodium",
+    "path": "/docs/integrations/primodium",
     "description": "Sovereign integration for primodium workloads."
   },
   {
@@ -3588,7 +3588,7 @@
     "safeName": "proton",
     "letter": "P",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/proton",
+    "path": "/docs/integrations/proton",
     "description": "Sovereign integration for proton workloads."
   },
   {
@@ -3596,7 +3596,7 @@
     "safeName": "puffer",
     "letter": "P",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/puffer",
+    "path": "/docs/integrations/puffer",
     "description": "Sovereign integration for puffer workloads."
   },
   {
@@ -3604,7 +3604,7 @@
     "safeName": "pushprotocol",
     "letter": "P",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/pushprotocol",
+    "path": "/docs/integrations/pushprotocol",
     "description": "Sovereign integration for pushprotocol workloads."
   },
   {
@@ -3612,7 +3612,7 @@
     "safeName": "pyth",
     "letter": "P",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/pyth",
+    "path": "/docs/integrations/pyth",
     "description": "Sovereign integration for pyth workloads."
   },
   {
@@ -3620,7 +3620,7 @@
     "safeName": "qredo",
     "letter": "Q",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/qredo",
+    "path": "/docs/integrations/qredo",
     "description": "Sovereign integration for qredo workloads."
   },
   {
@@ -3628,7 +3628,7 @@
     "safeName": "qtum",
     "letter": "Q",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/qtum",
+    "path": "/docs/integrations/qtum",
     "description": "Sovereign integration for qtum workloads."
   },
   {
@@ -3636,7 +3636,7 @@
     "safeName": "quai",
     "letter": "Q",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/quai",
+    "path": "/docs/integrations/quai",
     "description": "Sovereign integration for quai workloads."
   },
   {
@@ -3644,7 +3644,7 @@
     "safeName": "quant",
     "letter": "Q",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/quant",
+    "path": "/docs/integrations/quant",
     "description": "Sovereign integration for quant workloads."
   },
   {
@@ -3652,7 +3652,7 @@
     "safeName": "quarkid",
     "letter": "Q",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/quarkid",
+    "path": "/docs/integrations/quarkid",
     "description": "Sovereign integration for quarkid workloads."
   },
   {
@@ -3660,7 +3660,7 @@
     "safeName": "quartz",
     "letter": "Q",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/quartz",
+    "path": "/docs/integrations/quartz",
     "description": "Sovereign integration for quartz workloads."
   },
   {
@@ -3668,7 +3668,7 @@
     "safeName": "quasar",
     "letter": "Q",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/quasar",
+    "path": "/docs/integrations/quasar",
     "description": "Sovereign integration for quasar workloads."
   },
   {
@@ -3676,7 +3676,7 @@
     "safeName": "quicknode",
     "letter": "Q",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/quicknode",
+    "path": "/docs/integrations/quicknode",
     "description": "Sovereign integration for quicknode workloads."
   },
   {
@@ -3684,7 +3684,7 @@
     "safeName": "quicksilver",
     "letter": "Q",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/quicksilver",
+    "path": "/docs/integrations/quicksilver",
     "description": "Sovereign integration for quicksilver workloads."
   },
   {
@@ -3692,7 +3692,7 @@
     "safeName": "quickswap",
     "letter": "Q",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/quickswap",
+    "path": "/docs/integrations/quickswap",
     "description": "Sovereign integration for quickswap workloads."
   },
   {
@@ -3700,7 +3700,7 @@
     "safeName": "quipuswap",
     "letter": "Q",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/quipuswap",
+    "path": "/docs/integrations/quipuswap",
     "description": "Sovereign integration for quipuswap workloads."
   },
   {
@@ -3708,7 +3708,7 @@
     "safeName": "radiant",
     "letter": "R",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/radiant",
+    "path": "/docs/integrations/radiant",
     "description": "Sovereign integration for radiant workloads."
   },
   {
@@ -3716,7 +3716,7 @@
     "safeName": "radix",
     "letter": "R",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/radix",
+    "path": "/docs/integrations/radix",
     "description": "Sovereign integration for radix workloads."
   },
   {
@@ -3724,7 +3724,7 @@
     "safeName": "rainbow",
     "letter": "R",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/rainbow",
+    "path": "/docs/integrations/rainbow",
     "description": "Sovereign integration for rainbow workloads."
   },
   {
@@ -3732,7 +3732,7 @@
     "safeName": "rainbowkit",
     "letter": "R",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/rainbowkit",
+    "path": "/docs/integrations/rainbowkit",
     "description": "Sovereign integration for rainbowkit workloads."
   },
   {
@@ -3740,7 +3740,7 @@
     "safeName": "rango",
     "letter": "R",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/rango",
+    "path": "/docs/integrations/rango",
     "description": "Sovereign integration for rango workloads."
   },
   {
@@ -3748,7 +3748,7 @@
     "safeName": "rari",
     "letter": "R",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/rari",
+    "path": "/docs/integrations/rari",
     "description": "Sovereign integration for rari workloads."
   },
   {
@@ -3756,7 +3756,7 @@
     "safeName": "rarible",
     "letter": "R",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/rarible",
+    "path": "/docs/integrations/rarible",
     "description": "Sovereign integration for rarible workloads."
   },
   {
@@ -3764,7 +3764,7 @@
     "safeName": "ravencoin",
     "letter": "R",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/ravencoin",
+    "path": "/docs/integrations/ravencoin",
     "description": "Sovereign integration for ravencoin workloads."
   },
   {
@@ -3772,7 +3772,7 @@
     "safeName": "raydium",
     "letter": "R",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/raydium",
+    "path": "/docs/integrations/raydium",
     "description": "Sovereign integration for raydium workloads."
   },
   {
@@ -3780,7 +3780,7 @@
     "safeName": "redstone",
     "letter": "R",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/redstone",
+    "path": "/docs/integrations/redstone",
     "description": "Sovereign integration for redstone workloads."
   },
   {
@@ -3788,7 +3788,7 @@
     "safeName": "reef",
     "letter": "R",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/reef",
+    "path": "/docs/integrations/reef",
     "description": "Sovereign integration for reef workloads."
   },
   {
@@ -3796,7 +3796,7 @@
     "safeName": "regen",
     "letter": "R",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/regen",
+    "path": "/docs/integrations/regen",
     "description": "Sovereign integration for regen workloads."
   },
   {
@@ -3804,7 +3804,7 @@
     "safeName": "render",
     "letter": "R",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/render",
+    "path": "/docs/integrations/render",
     "description": "Sovereign integration for render workloads."
   },
   {
@@ -3812,7 +3812,7 @@
     "safeName": "renprotocol",
     "letter": "R",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/renprotocol",
+    "path": "/docs/integrations/renprotocol",
     "description": "Sovereign integration for renprotocol workloads."
   },
   {
@@ -3820,7 +3820,7 @@
     "safeName": "reservoir",
     "letter": "R",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/reservoir",
+    "path": "/docs/integrations/reservoir",
     "description": "Sovereign integration for reservoir workloads."
   },
   {
@@ -3828,7 +3828,7 @@
     "safeName": "ripple",
     "letter": "R",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/ripple",
+    "path": "/docs/integrations/ripple",
     "description": "Sovereign integration for ripple workloads."
   },
   {
@@ -3836,7 +3836,7 @@
     "safeName": "risczero",
     "letter": "R",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/risczero",
+    "path": "/docs/integrations/risczero",
     "description": "Sovereign integration for risczero workloads."
   },
   {
@@ -3844,7 +3844,7 @@
     "safeName": "robonomics",
     "letter": "R",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/robonomics",
+    "path": "/docs/integrations/robonomics",
     "description": "Sovereign integration for robonomics workloads."
   },
   {
@@ -3852,7 +3852,7 @@
     "safeName": "rocketpool",
     "letter": "R",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/rocketpool",
+    "path": "/docs/integrations/rocketpool",
     "description": "Sovereign integration for rocketpool workloads."
   },
   {
@@ -3860,7 +3860,7 @@
     "safeName": "ronin",
     "letter": "R",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/ronin",
+    "path": "/docs/integrations/ronin",
     "description": "Sovereign integration for ronin workloads."
   },
   {
@@ -3868,7 +3868,7 @@
     "safeName": "routerprotocol",
     "letter": "R",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/routerprotocol",
+    "path": "/docs/integrations/routerprotocol",
     "description": "Sovereign integration for routerprotocol workloads."
   },
   {
@@ -3876,7 +3876,7 @@
     "safeName": "safe",
     "letter": "S",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/safe",
+    "path": "/docs/integrations/safe",
     "description": "Sovereign integration for safe workloads."
   },
   {
@@ -3884,7 +3884,7 @@
     "safeName": "scroll",
     "letter": "S",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/scroll",
+    "path": "/docs/integrations/scroll",
     "description": "Sovereign integration for scroll workloads."
   },
   {
@@ -3892,7 +3892,7 @@
     "safeName": "secret",
     "letter": "S",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/secret",
+    "path": "/docs/integrations/secret",
     "description": "Sovereign integration for secret workloads."
   },
   {
@@ -3900,7 +3900,7 @@
     "safeName": "secretnetwork",
     "letter": "S",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/secretnetwork",
+    "path": "/docs/integrations/secretnetwork",
     "description": "Sovereign integration for secretnetwork workloads."
   },
   {
@@ -3908,7 +3908,7 @@
     "safeName": "seda",
     "letter": "S",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/seda",
+    "path": "/docs/integrations/seda",
     "description": "Sovereign integration for seda workloads."
   },
   {
@@ -3916,7 +3916,7 @@
     "safeName": "sei",
     "letter": "S",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/sei",
+    "path": "/docs/integrations/sei",
     "description": "Sovereign integration for sei workloads."
   },
   {
@@ -3924,7 +3924,7 @@
     "safeName": "sentinel",
     "letter": "S",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/sentinel",
+    "path": "/docs/integrations/sentinel",
     "description": "Sovereign integration for sentinel workloads."
   },
   {
@@ -3932,7 +3932,7 @@
     "safeName": "shadow",
     "letter": "S",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/shadow",
+    "path": "/docs/integrations/shadow",
     "description": "Sovereign integration for shadow workloads."
   },
   {
@@ -3940,7 +3940,7 @@
     "safeName": "shardeum",
     "letter": "S",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/shardeum",
+    "path": "/docs/integrations/shardeum",
     "description": "Sovereign integration for shardeum workloads."
   },
   {
@@ -3948,7 +3948,7 @@
     "safeName": "sherpax",
     "letter": "S",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/sherpax",
+    "path": "/docs/integrations/sherpax",
     "description": "Sovereign integration for sherpax workloads."
   },
   {
@@ -3956,7 +3956,7 @@
     "safeName": "shibarium",
     "letter": "S",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/shibarium",
+    "path": "/docs/integrations/shibarium",
     "description": "Sovereign integration for shibarium workloads."
   },
   {
@@ -3964,7 +3964,7 @@
     "safeName": "shiden",
     "letter": "S",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/shiden",
+    "path": "/docs/integrations/shiden",
     "description": "Sovereign integration for shiden workloads."
   },
   {
@@ -3972,7 +3972,7 @@
     "safeName": "shutter",
     "letter": "S",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/shutter",
+    "path": "/docs/integrations/shutter",
     "description": "Sovereign integration for shutter workloads."
   },
   {
@@ -3980,7 +3980,7 @@
     "safeName": "sia",
     "letter": "S",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/sia",
+    "path": "/docs/integrations/sia",
     "description": "Sovereign integration for sia workloads."
   },
   {
@@ -3988,7 +3988,7 @@
     "safeName": "siacoin",
     "letter": "S",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/siacoin",
+    "path": "/docs/integrations/siacoin",
     "description": "Sovereign integration for siacoin workloads."
   },
   {
@@ -3996,7 +3996,7 @@
     "safeName": "sidechain",
     "letter": "S",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/sidechain",
+    "path": "/docs/integrations/sidechain",
     "description": "Sovereign integration for sidechain workloads."
   },
   {
@@ -4004,7 +4004,7 @@
     "safeName": "sismo",
     "letter": "S",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/sismo",
+    "path": "/docs/integrations/sismo",
     "description": "Sovereign integration for sismo workloads."
   },
   {
@@ -4012,7 +4012,7 @@
     "safeName": "skale",
     "letter": "S",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/skale",
+    "path": "/docs/integrations/skale",
     "description": "Sovereign integration for skale workloads."
   },
   {
@@ -4020,7 +4020,7 @@
     "safeName": "snow",
     "letter": "S",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/snow",
+    "path": "/docs/integrations/snow",
     "description": "Sovereign integration for snow workloads."
   },
   {
@@ -4028,7 +4028,7 @@
     "safeName": "snowtrace",
     "letter": "S",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/snowtrace",
+    "path": "/docs/integrations/snowtrace",
     "description": "Sovereign integration for snowtrace workloads."
   },
   {
@@ -4036,7 +4036,7 @@
     "safeName": "solana",
     "letter": "S",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/solana",
+    "path": "/docs/integrations/solana",
     "description": "Sovereign integration for solana workloads."
   },
   {
@@ -4044,7 +4044,7 @@
     "safeName": "sommelier",
     "letter": "S",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/sommelier",
+    "path": "/docs/integrations/sommelier",
     "description": "Sovereign integration for sommelier workloads."
   },
   {
@@ -4052,7 +4052,7 @@
     "safeName": "sonic",
     "letter": "S",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/sonic",
+    "path": "/docs/integrations/sonic",
     "description": "Sovereign integration for sonic workloads."
   },
   {
@@ -4060,7 +4060,7 @@
     "safeName": "sora",
     "letter": "S",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/sora",
+    "path": "/docs/integrations/sora",
     "description": "Sovereign integration for sora workloads."
   },
   {
@@ -4068,7 +4068,7 @@
     "safeName": "soulbound",
     "letter": "S",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/soulbound",
+    "path": "/docs/integrations/soulbound",
     "description": "Sovereign integration for soulbound workloads."
   },
   {
@@ -4076,7 +4076,7 @@
     "safeName": "sovereign",
     "letter": "S",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/sovereign",
+    "path": "/docs/integrations/sovereign",
     "description": "Sovereign integration for sovereign workloads."
   },
   {
@@ -4084,7 +4084,7 @@
     "safeName": "spaceandtime",
     "letter": "S",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/spaceandtime",
+    "path": "/docs/integrations/spaceandtime",
     "description": "Sovereign integration for spaceandtime workloads."
   },
   {
@@ -4092,7 +4092,7 @@
     "safeName": "spacemesh",
     "letter": "S",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/spacemesh",
+    "path": "/docs/integrations/spacemesh",
     "description": "Sovereign integration for spacemesh workloads."
   },
   {
@@ -4100,7 +4100,7 @@
     "safeName": "squad",
     "letter": "S",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/squad",
+    "path": "/docs/integrations/squad",
     "description": "Sovereign integration for squad workloads."
   },
   {
@@ -4108,7 +4108,7 @@
     "safeName": "stacks",
     "letter": "S",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/stacks",
+    "path": "/docs/integrations/stacks",
     "description": "Sovereign integration for stacks workloads."
   },
   {
@@ -4116,7 +4116,7 @@
     "safeName": "stader",
     "letter": "S",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/stader",
+    "path": "/docs/integrations/stader",
     "description": "Sovereign integration for stader workloads."
   },
   {
@@ -4124,7 +4124,7 @@
     "safeName": "stafi",
     "letter": "S",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/stafi",
+    "path": "/docs/integrations/stafi",
     "description": "Sovereign integration for stafi workloads."
   },
   {
@@ -4132,7 +4132,7 @@
     "safeName": "standby",
     "letter": "S",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/standby",
+    "path": "/docs/integrations/standby",
     "description": "Sovereign integration for standby workloads."
   },
   {
@@ -4140,7 +4140,7 @@
     "safeName": "stargaze",
     "letter": "S",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/stargaze",
+    "path": "/docs/integrations/stargaze",
     "description": "Sovereign integration for stargaze workloads."
   },
   {
@@ -4148,7 +4148,7 @@
     "safeName": "starknet",
     "letter": "S",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/starknet",
+    "path": "/docs/integrations/starknet",
     "description": "Sovereign integration for starknet workloads."
   },
   {
@@ -4156,7 +4156,7 @@
     "safeName": "starname",
     "letter": "S",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/starname",
+    "path": "/docs/integrations/starname",
     "description": "Sovereign integration for starname workloads."
   },
   {
@@ -4164,7 +4164,7 @@
     "safeName": "stasis",
     "letter": "S",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/stasis",
+    "path": "/docs/integrations/stasis",
     "description": "Sovereign integration for stasis workloads."
   },
   {
@@ -4172,7 +4172,7 @@
     "safeName": "status",
     "letter": "S",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/status",
+    "path": "/docs/integrations/status",
     "description": "Sovereign integration for status workloads."
   },
   {
@@ -4180,7 +4180,7 @@
     "safeName": "stax",
     "letter": "S",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/stax",
+    "path": "/docs/integrations/stax",
     "description": "Sovereign integration for stax workloads."
   },
   {
@@ -4188,7 +4188,7 @@
     "safeName": "steakwallet",
     "letter": "S",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/steakwallet",
+    "path": "/docs/integrations/steakwallet",
     "description": "Sovereign integration for steakwallet workloads."
   },
   {
@@ -4196,7 +4196,7 @@
     "safeName": "steem",
     "letter": "S",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/steem",
+    "path": "/docs/integrations/steem",
     "description": "Sovereign integration for steem workloads."
   },
   {
@@ -4204,7 +4204,7 @@
     "safeName": "stella",
     "letter": "S",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/stella",
+    "path": "/docs/integrations/stella",
     "description": "Sovereign integration for stella workloads."
   },
   {
@@ -4212,7 +4212,7 @@
     "safeName": "stellar",
     "letter": "S",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/stellar",
+    "path": "/docs/integrations/stellar",
     "description": "Sovereign integration for stellar workloads."
   },
   {
@@ -4220,7 +4220,7 @@
     "safeName": "stratis",
     "letter": "S",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/stratis",
+    "path": "/docs/integrations/stratis",
     "description": "Sovereign integration for stratis workloads."
   },
   {
@@ -4228,7 +4228,7 @@
     "safeName": "stride",
     "letter": "S",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/stride",
+    "path": "/docs/integrations/stride",
     "description": "Sovereign integration for stride workloads."
   },
   {
@@ -4236,7 +4236,7 @@
     "safeName": "stripe",
     "letter": "S",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/stripe",
+    "path": "/docs/integrations/stripe",
     "description": "Sovereign integration for stripe workloads."
   },
   {
@@ -4244,7 +4244,7 @@
     "safeName": "subquery",
     "letter": "S",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/subquery",
+    "path": "/docs/integrations/subquery",
     "description": "Sovereign integration for subquery workloads."
   },
   {
@@ -4252,7 +4252,7 @@
     "safeName": "subsocial",
     "letter": "S",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/subsocial",
+    "path": "/docs/integrations/subsocial",
     "description": "Sovereign integration for subsocial workloads."
   },
   {
@@ -4260,7 +4260,7 @@
     "safeName": "substrate",
     "letter": "S",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/substrate",
+    "path": "/docs/integrations/substrate",
     "description": "Sovereign integration for substrate workloads."
   },
   {
@@ -4268,7 +4268,7 @@
     "safeName": "sui",
     "letter": "S",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/sui",
+    "path": "/docs/integrations/sui",
     "description": "Sovereign integration for sui workloads."
   },
   {
@@ -4276,7 +4276,7 @@
     "safeName": "superchain",
     "letter": "S",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/superchain",
+    "path": "/docs/integrations/superchain",
     "description": "Sovereign integration for superchain workloads."
   },
   {
@@ -4284,7 +4284,7 @@
     "safeName": "superfluid",
     "letter": "S",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/superfluid",
+    "path": "/docs/integrations/superfluid",
     "description": "Sovereign integration for superfluid workloads."
   },
   {
@@ -4292,7 +4292,7 @@
     "safeName": "supra",
     "letter": "S",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/supra",
+    "path": "/docs/integrations/supra",
     "description": "Sovereign integration for supra workloads."
   },
   {
@@ -4300,7 +4300,7 @@
     "safeName": "sushi",
     "letter": "S",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/sushi",
+    "path": "/docs/integrations/sushi",
     "description": "Sovereign integration for sushi workloads."
   },
   {
@@ -4308,7 +4308,7 @@
     "safeName": "sushiswap",
     "letter": "S",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/sushiswap",
+    "path": "/docs/integrations/sushiswap",
     "description": "Sovereign integration for sushiswap workloads."
   },
   {
@@ -4316,7 +4316,7 @@
     "safeName": "synapse",
     "letter": "S",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/synapse",
+    "path": "/docs/integrations/synapse",
     "description": "Sovereign integration for synapse workloads."
   },
   {
@@ -4324,7 +4324,7 @@
     "safeName": "synthetix",
     "letter": "S",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/synthetix",
+    "path": "/docs/integrations/synthetix",
     "description": "Sovereign integration for synthetix workloads."
   },
   {
@@ -4332,7 +4332,7 @@
     "safeName": "syscoin",
     "letter": "S",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/syscoin",
+    "path": "/docs/integrations/syscoin",
     "description": "Sovereign integration for syscoin workloads."
   },
   {
@@ -4340,7 +4340,7 @@
     "safeName": "taiko",
     "letter": "T",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/taiko",
+    "path": "/docs/integrations/taiko",
     "description": "Sovereign integration for taiko workloads."
   },
   {
@@ -4348,7 +4348,7 @@
     "safeName": "tapioca",
     "letter": "T",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/tapioca",
+    "path": "/docs/integrations/tapioca",
     "description": "Sovereign integration for tapioca workloads."
   },
   {
@@ -4356,7 +4356,7 @@
     "safeName": "tenderly",
     "letter": "T",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/tenderly",
+    "path": "/docs/integrations/tenderly",
     "description": "Sovereign integration for tenderly workloads."
   },
   {
@@ -4364,7 +4364,7 @@
     "safeName": "tenx",
     "letter": "T",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/tenx",
+    "path": "/docs/integrations/tenx",
     "description": "Sovereign integration for tenx workloads."
   },
   {
@@ -4372,7 +4372,7 @@
     "safeName": "tether",
     "letter": "T",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/tether",
+    "path": "/docs/integrations/tether",
     "description": "Sovereign integration for tether workloads."
   },
   {
@@ -4380,7 +4380,7 @@
     "safeName": "tezos",
     "letter": "T",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/tezos",
+    "path": "/docs/integrations/tezos",
     "description": "Sovereign integration for tezos workloads."
   },
   {
@@ -4388,7 +4388,7 @@
     "safeName": "tgrade",
     "letter": "T",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/tgrade",
+    "path": "/docs/integrations/tgrade",
     "description": "Sovereign integration for tgrade workloads."
   },
   {
@@ -4396,7 +4396,7 @@
     "safeName": "thegraph",
     "letter": "T",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/thegraph",
+    "path": "/docs/integrations/thegraph",
     "description": "Sovereign integration for thegraph workloads."
   },
   {
@@ -4404,7 +4404,7 @@
     "safeName": "thegraphhostedservice",
     "letter": "T",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/thegraphhostedservice",
+    "path": "/docs/integrations/thegraphhostedservice",
     "description": "Sovereign integration for thegraphhostedservice workloads."
   },
   {
@@ -4412,7 +4412,7 @@
     "safeName": "theta",
     "letter": "T",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/theta",
+    "path": "/docs/integrations/theta",
     "description": "Sovereign integration for theta workloads."
   },
   {
@@ -4420,7 +4420,7 @@
     "safeName": "thorchain",
     "letter": "T",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/thorchain",
+    "path": "/docs/integrations/thorchain",
     "description": "Sovereign integration for thorchain workloads."
   },
   {
@@ -4428,7 +4428,7 @@
     "safeName": "threshold",
     "letter": "T",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/threshold",
+    "path": "/docs/integrations/threshold",
     "description": "Sovereign integration for threshold workloads."
   },
   {
@@ -4436,7 +4436,7 @@
     "safeName": "tidefi",
     "letter": "T",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/tidefi",
+    "path": "/docs/integrations/tidefi",
     "description": "Sovereign integration for tidefi workloads."
   },
   {
@@ -4444,7 +4444,7 @@
     "safeName": "tinkernet",
     "letter": "T",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/tinkernet",
+    "path": "/docs/integrations/tinkernet",
     "description": "Sovereign integration for tinkernet workloads."
   },
   {
@@ -4452,7 +4452,7 @@
     "safeName": "tokenised GBP",
     "letter": "T",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/tokenised GBP",
+    "path": "/docs/integrations/tokenised GBP",
     "description": "Sovereign integration for tokenised GBP workloads."
   },
   {
@@ -4460,7 +4460,7 @@
     "safeName": "ton",
     "letter": "T",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/ton",
+    "path": "/docs/integrations/ton",
     "description": "Sovereign integration for ton workloads."
   },
   {
@@ -4468,7 +4468,7 @@
     "safeName": "tornado",
     "letter": "T",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/tornado",
+    "path": "/docs/integrations/tornado",
     "description": "Sovereign integration for tornado workloads."
   },
   {
@@ -4476,7 +4476,7 @@
     "safeName": "treasuredao",
     "letter": "T",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/treasuredao",
+    "path": "/docs/integrations/treasuredao",
     "description": "Sovereign integration for treasuredao workloads."
   },
   {
@@ -4484,7 +4484,7 @@
     "safeName": "tron",
     "letter": "T",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/tron",
+    "path": "/docs/integrations/tron",
     "description": "Sovereign integration for tron workloads."
   },
   {
@@ -4492,7 +4492,7 @@
     "safeName": "truefi",
     "letter": "T",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/truefi",
+    "path": "/docs/integrations/truefi",
     "description": "Sovereign integration for truefi workloads."
   },
   {
@@ -4500,7 +4500,7 @@
     "safeName": "trustwallet",
     "letter": "T",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/trustwallet",
+    "path": "/docs/integrations/trustwallet",
     "description": "Sovereign integration for trustwallet workloads."
   },
   {
@@ -4508,7 +4508,7 @@
     "safeName": "trustwalletassets",
     "letter": "T",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/trustwalletassets",
+    "path": "/docs/integrations/trustwalletassets",
     "description": "Sovereign integration for trustwalletassets workloads."
   },
   {
@@ -4516,7 +4516,7 @@
     "safeName": "turing",
     "letter": "T",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/turing",
+    "path": "/docs/integrations/turing",
     "description": "Sovereign integration for turing workloads."
   },
   {
@@ -4524,7 +4524,7 @@
     "safeName": "umee",
     "letter": "U",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/umee",
+    "path": "/docs/integrations/umee",
     "description": "Sovereign integration for umee workloads."
   },
   {
@@ -4532,7 +4532,7 @@
     "safeName": "unichain",
     "letter": "U",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/unichain",
+    "path": "/docs/integrations/unichain",
     "description": "Sovereign integration for unichain workloads."
   },
   {
@@ -4540,7 +4540,7 @@
     "safeName": "unique",
     "letter": "U",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/unique",
+    "path": "/docs/integrations/unique",
     "description": "Sovereign integration for unique workloads."
   },
   {
@@ -4548,7 +4548,7 @@
     "safeName": "uniswap",
     "letter": "U",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/uniswap",
+    "path": "/docs/integrations/uniswap",
     "description": "Sovereign integration for uniswap workloads."
   },
   {
@@ -4556,7 +4556,7 @@
     "safeName": "uniswap_v3",
     "letter": "U",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/uniswap_v3",
+    "path": "/docs/integrations/uniswap_v3",
     "description": "Sovereign integration for uniswap_v3 workloads."
   },
   {
@@ -4564,7 +4564,7 @@
     "safeName": "unlockprotocol",
     "letter": "U",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/unlockprotocol",
+    "path": "/docs/integrations/unlockprotocol",
     "description": "Sovereign integration for unlockprotocol workloads."
   },
   {
@@ -4572,7 +4572,7 @@
     "safeName": "valist",
     "letter": "V",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/valist",
+    "path": "/docs/integrations/valist",
     "description": "Sovereign integration for valist workloads."
   },
   {
@@ -4580,7 +4580,7 @@
     "safeName": "valora",
     "letter": "V",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/valora",
+    "path": "/docs/integrations/valora",
     "description": "Sovereign integration for valora workloads."
   },
   {
@@ -4588,7 +4588,7 @@
     "safeName": "vechain",
     "letter": "V",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/vechain",
+    "path": "/docs/integrations/vechain",
     "description": "Sovereign integration for vechain workloads."
   },
   {
@@ -4596,7 +4596,7 @@
     "safeName": "vectis",
     "letter": "V",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/vectis",
+    "path": "/docs/integrations/vectis",
     "description": "Sovereign integration for vectis workloads."
   },
   {
@@ -4604,7 +4604,7 @@
     "safeName": "velodrome",
     "letter": "V",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/velodrome",
+    "path": "/docs/integrations/velodrome",
     "description": "Sovereign integration for velodrome workloads."
   },
   {
@@ -4612,7 +4612,7 @@
     "safeName": "venus",
     "letter": "V",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/venus",
+    "path": "/docs/integrations/venus",
     "description": "Sovereign integration for venus workloads."
   },
   {
@@ -4620,7 +4620,7 @@
     "safeName": "vertcoin",
     "letter": "V",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/vertcoin",
+    "path": "/docs/integrations/vertcoin",
     "description": "Sovereign integration for vertcoin workloads."
   },
   {
@@ -4628,7 +4628,7 @@
     "safeName": "viacoin",
     "letter": "V",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/viacoin",
+    "path": "/docs/integrations/viacoin",
     "description": "Sovereign integration for viacoin workloads."
   },
   {
@@ -4636,7 +4636,7 @@
     "safeName": "vialabs",
     "letter": "V",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/vialabs",
+    "path": "/docs/integrations/vialabs",
     "description": "Sovereign integration for vialabs workloads."
   },
   {
@@ -4644,7 +4644,7 @@
     "safeName": "vidulum",
     "letter": "V",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/vidulum",
+    "path": "/docs/integrations/vidulum",
     "description": "Sovereign integration for vidulum workloads."
   },
   {
@@ -4652,7 +4652,7 @@
     "safeName": "vital",
     "letter": "V",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/vital",
+    "path": "/docs/integrations/vital",
     "description": "Sovereign integration for vital workloads."
   },
   {
@@ -4660,7 +4660,7 @@
     "safeName": "vulcan",
     "letter": "V",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/vulcan",
+    "path": "/docs/integrations/vulcan",
     "description": "Sovereign integration for vulcan workloads."
   },
   {
@@ -4668,7 +4668,7 @@
     "safeName": "walletconnect",
     "letter": "W",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/walletconnect",
+    "path": "/docs/integrations/walletconnect",
     "description": "Sovereign integration for walletconnect workloads."
   },
   {
@@ -4676,7 +4676,7 @@
     "safeName": "wanchain",
     "letter": "W",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/wanchain",
+    "path": "/docs/integrations/wanchain",
     "description": "Sovereign integration for wanchain workloads."
   },
   {
@@ -4684,7 +4684,7 @@
     "safeName": "warpcast",
     "letter": "W",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/warpcast",
+    "path": "/docs/integrations/warpcast",
     "description": "Sovereign integration for warpcast workloads."
   },
   {
@@ -4692,7 +4692,7 @@
     "safeName": "waves",
     "letter": "W",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/waves",
+    "path": "/docs/integrations/waves",
     "description": "Sovereign integration for waves workloads."
   },
   {
@@ -4700,7 +4700,7 @@
     "safeName": "wax",
     "letter": "W",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/wax",
+    "path": "/docs/integrations/wax",
     "description": "Sovereign integration for wax workloads."
   },
   {
@@ -4708,7 +4708,7 @@
     "safeName": "web3auth",
     "letter": "W",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/web3auth",
+    "path": "/docs/integrations/web3auth",
     "description": "Sovereign integration for web3auth workloads."
   },
   {
@@ -4716,7 +4716,7 @@
     "safeName": "wemix",
     "letter": "W",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/wemix",
+    "path": "/docs/integrations/wemix",
     "description": "Sovereign integration for wemix workloads."
   },
   {
@@ -4724,7 +4724,7 @@
     "safeName": "witnesschain",
     "letter": "W",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/witnesschain",
+    "path": "/docs/integrations/witnesschain",
     "description": "Sovereign integration for witnesschain workloads."
   },
   {
@@ -4732,7 +4732,7 @@
     "safeName": "wormhole",
     "letter": "W",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/wormhole",
+    "path": "/docs/integrations/wormhole",
     "description": "Sovereign integration for wormhole workloads."
   },
   {
@@ -4740,7 +4740,7 @@
     "safeName": "xai",
     "letter": "X",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/xai",
+    "path": "/docs/integrations/xai",
     "description": "Sovereign integration for xai workloads."
   },
   {
@@ -4748,7 +4748,7 @@
     "safeName": "xdc",
     "letter": "X",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/xdc",
+    "path": "/docs/integrations/xdc",
     "description": "Sovereign integration for xdc workloads."
   },
   {
@@ -4756,7 +4756,7 @@
     "safeName": "xlm",
     "letter": "X",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/xlm",
+    "path": "/docs/integrations/xlm",
     "description": "Sovereign integration for xlm workloads."
   },
   {
@@ -4764,7 +4764,7 @@
     "safeName": "xmtp",
     "letter": "X",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/xmtp",
+    "path": "/docs/integrations/xmtp",
     "description": "Sovereign integration for xmtp workloads."
   },
   {
@@ -4772,7 +4772,7 @@
     "safeName": "xrp",
     "letter": "X",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/xrp",
+    "path": "/docs/integrations/xrp",
     "description": "Sovereign integration for xrp workloads."
   },
   {
@@ -4780,7 +4780,7 @@
     "safeName": "yearn",
     "letter": "Y",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/yearn",
+    "path": "/docs/integrations/yearn",
     "description": "Sovereign integration for yearn workloads."
   },
   {
@@ -4788,7 +4788,7 @@
     "safeName": "yeti",
     "letter": "Y",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/yeti",
+    "path": "/docs/integrations/yeti",
     "description": "Sovereign integration for yeti workloads."
   },
   {
@@ -4796,7 +4796,7 @@
     "safeName": "yieldyak",
     "letter": "Y",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/yieldyak",
+    "path": "/docs/integrations/yieldyak",
     "description": "Sovereign integration for yieldyak workloads."
   },
   {
@@ -4804,7 +4804,7 @@
     "safeName": "zcash",
     "letter": "Z",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/zcash",
+    "path": "/docs/integrations/zcash",
     "description": "Sovereign integration for zcash workloads."
   },
   {
@@ -4812,7 +4812,7 @@
     "safeName": "zebec",
     "letter": "Z",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/zebec",
+    "path": "/docs/integrations/zebec",
     "description": "Sovereign integration for zebec workloads."
   },
   {
@@ -4820,7 +4820,7 @@
     "safeName": "zeitgeist",
     "letter": "Z",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/zeitgeist",
+    "path": "/docs/integrations/zeitgeist",
     "description": "Sovereign integration for zeitgeist workloads."
   },
   {
@@ -4828,7 +4828,7 @@
     "safeName": "zerofs",
     "letter": "Z",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/zerofs",
+    "path": "/docs/integrations/zerofs",
     "description": "Sovereign integration for zerofs workloads."
   },
   {
@@ -4836,7 +4836,7 @@
     "safeName": "zeta",
     "letter": "Z",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/zeta",
+    "path": "/docs/integrations/zeta",
     "description": "Sovereign integration for zeta workloads."
   },
   {
@@ -4844,7 +4844,7 @@
     "safeName": "zetachain",
     "letter": "Z",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/zetachain",
+    "path": "/docs/integrations/zetachain",
     "description": "Sovereign integration for zetachain workloads."
   },
   {
@@ -4852,7 +4852,7 @@
     "safeName": "zilliqa",
     "letter": "Z",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/zilliqa",
+    "path": "/docs/integrations/zilliqa",
     "description": "Sovereign integration for zilliqa workloads."
   },
   {
@@ -4860,7 +4860,7 @@
     "safeName": "zkapps",
     "letter": "Z",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/zkapps",
+    "path": "/docs/integrations/zkapps",
     "description": "Sovereign integration for zkapps workloads."
   },
   {
@@ -4868,7 +4868,7 @@
     "safeName": "zkbob",
     "letter": "Z",
     "category": "DeFi",
-    "path": "/docs/v1.0/integrations/zkbob",
+    "path": "/docs/integrations/zkbob",
     "description": "Sovereign integration for zkbob workloads."
   },
   {
@@ -4876,7 +4876,7 @@
     "safeName": "zkbridge",
     "letter": "Z",
     "category": "Data",
-    "path": "/docs/v1.0/integrations/zkbridge",
+    "path": "/docs/integrations/zkbridge",
     "description": "Sovereign integration for zkbridge workloads."
   },
   {
@@ -4884,7 +4884,7 @@
     "safeName": "zkfair",
     "letter": "Z",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/zkfair",
+    "path": "/docs/integrations/zkfair",
     "description": "Sovereign integration for zkfair workloads."
   },
   {
@@ -4892,7 +4892,7 @@
     "safeName": "zklink",
     "letter": "Z",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/zklink",
+    "path": "/docs/integrations/zklink",
     "description": "Sovereign integration for zklink workloads."
   },
   {
@@ -4900,7 +4900,7 @@
     "safeName": "zksync",
     "letter": "Z",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/zksync",
+    "path": "/docs/integrations/zksync",
     "description": "Sovereign integration for zksync workloads."
   },
   {
@@ -4908,7 +4908,7 @@
     "safeName": "zksyncexplorer",
     "letter": "Z",
     "category": "Infra",
-    "path": "/docs/v1.0/integrations/zksyncexplorer",
+    "path": "/docs/integrations/zksyncexplorer",
     "description": "Sovereign integration for zksyncexplorer workloads."
   },
   {
@@ -4916,7 +4916,7 @@
     "safeName": "zora",
     "letter": "Z",
     "category": "Gaming",
-    "path": "/docs/v1.0/integrations/zora",
+    "path": "/docs/integrations/zora",
     "description": "Sovereign integration for zora workloads."
   }
 ]

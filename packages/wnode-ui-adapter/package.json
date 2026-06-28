@@ -1,0 +1,22 @@
+{
+  "name": "@wnode/ui-adapter",
+  "version": "1.0.0",
+  "description": "Wnode UI Adapter Layer mapping deterministic runtime features to frontend-safe surfaces.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@wnode/sdk": "file:../wnode-sdk-ts"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.14.9",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.5",
+    "typescript": "^5.5.2"
+  }
+}

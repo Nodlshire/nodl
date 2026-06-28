@@ -40,7 +40,8 @@ func ExecuteWasm(ctx context.Context, wasmBytes []byte, payload string, limits T
 	defer r.Close(execCtx)
 
 	// 4. Register Host Functions Bridge
-	if err := RegisterHostFunctions(execCtx, r); err != nil {
+	caps := WasmCapabilities{} // In a real flow, this is parsed from spec.yaml or payload metadata
+	if err := RegisterHostFunctions(execCtx, r, caps); err != nil {
 		return "", fmt.Errorf("failed to register host functions: %w", err)
 	}
 

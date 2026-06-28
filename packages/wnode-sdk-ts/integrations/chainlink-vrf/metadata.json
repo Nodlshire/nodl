@@ -1,0 +1,27 @@
+{
+  "name": "chainlink-vrf",
+  "version": "1.0.0",
+  "description": "Generates VRF fulfillment calldata and simulates deterministic callbacks.",
+  "type": "write-simulation",
+  "determinismFlags": {
+    "requireFinalized": true,
+    "allowSimulation": true
+  },
+  "abi": [
+    "function fulfillRandomWords(uint256 requestId, uint256[] memory randomWords) external"
+  ],
+  "exampleWorkflow": {
+    "version": "1.0",
+    "steps": [
+      {
+        "id": "simulate_fulfillment",
+        "action": "buildCalldata",
+        "params": {
+          "address": "${VRF_COORDINATOR}",
+          "functionName": "fulfillRandomWords",
+          "args": ["${REQUEST_ID}", "[${MOCK_RANDOM_WORDS}]"]
+        }
+      }
+    ]
+  }
+}

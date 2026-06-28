@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const INTEGRATIONS_DIR = path.join(__dirname, '../app/docs/v1.0/integrations');
+const INTEGRATIONS_DIR = path.join(__dirname, '../app/docs/integrations');
 const DEFICIENCY_REPORT_PATH = path.join(INTEGRATIONS_DIR, 'deficiency_report.json');
 
 // This matches the actual schema expected by TEMPLATE_INTEGRATION_PAGE.tsx

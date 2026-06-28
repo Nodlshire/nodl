@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const INTEGRATIONS_DIR = path.join(__dirname, '../app/docs/v1.0/integrations');
+const INTEGRATIONS_DIR = path.join(__dirname, '../app/docs/integrations');
 
 function run() {
     const entries = fs.readdirSync(INTEGRATIONS_DIR, { withFileTypes: true });

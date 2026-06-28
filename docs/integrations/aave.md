@@ -8,15 +8,23 @@ The Aave integration connects the Sovereign Mesh deterministically to the Aave V
 - **Version**: 1.1.0
 - **Determinism Profile**: Purely Deterministic (Block-Bound)
 - **Capability Set**: Fetch, Submit, Validate
-- **Supported Networks**: [Ethereum](/docs/integrations/ethereum) [Polygon](/docs/integrations/polygon) [Arbitrum](/docs/integrations/arbitrum) [Optimism](/docs/integrations/optimism) [Base](/docs/integrations/base)
 - **Adapter Hash**: `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`
 - **Last Updated**: 2026-06-28
+
+**Supported Networks:**
+<div class="network-labels">
+  <a class="label ethereum" href="/docs/integrations/ethereum">Ethereum</a>
+  <a class="label polygon" href="/docs/integrations/polygon">Polygon</a>
+  <a class="label arbitrum" href="/docs/integrations/arbitrum">Arbitrum</a>
+  <a class="label optimism" href="/docs/integrations/optimism">Optimism</a>
+  <a class="label base" href="/docs/integrations/base">Base</a>
+</div>
 
 ## 3. Protocol Overview
 - **Architecture**: Aave V3 utilizes a decentralized pool architecture managed by a central `Pool` contract, governed by a `PoolConfigurator`. Assets are isolated into specific eMode categories to optimize capital efficiency.
 - **RPC Surfaces**: Uses standard EVM JSON-RPC `eth_call` and `eth_sendRawTransaction` endpoints, strictly requiring block height parameters for all state reads.
 - **Data Models**: Employs complex structs including `ReserveData`, `UserAccountData`, and `EModeCategory`.
-- **Proof Models**: Relies on Ethereum state roots (Merkle Patricia Tries). The Sovereign Mesh independently verifies the state root via Light Client endpoints or decentralized RPC quorums before confirming the step hash.
+- **Proof Models (if applicable)**: Relies on Ethereum state roots (Merkle Patricia Tries). The Sovereign Mesh independently verifies the state root via Light Client endpoints or decentralized RPC quorums before confirming the step hash.
 
 ## 4. Deterministic Adapter Specification
 - **Deterministic RPC Wrapper**: The adapter intercepts EVM `eth_call` requests. If the RPC provider exceeds 2000ms latency, drops the connection, or returns varying nonce errors, the adapter aborts immediately and maps the failure to `NETWORK_UNAVAILABLE`.
@@ -27,7 +35,7 @@ The Aave integration connects the Sovereign Mesh deterministically to the Aave V
 - **`determinismProfile()`**: Returns `{ isPurelyDeterministic: true, reliesOnTime: false, reliesOnRandomness: false }`.
 - **Capability Map**: Returns `{ canFetch: true, canSubmit: true, canValidate: true }`.
 
-## 5. Canonical ABI Signatures
+## 5. Canonical ABI Signatures (or API Schemas)
 ### Pool (`Pool.sol`)
 - **Function Selectors**:
   - `getUserAccountData(address user)` -> `0xbf92857c`
@@ -37,7 +45,7 @@ The Aave integration connects the Sovereign Mesh deterministically to the Aave V
   - `repay(address asset, uint256 amount, uint256 interestRateMode, address onBehalfOf)` -> `0x5ce3b220`
   - `withdraw(address asset, uint256 amount, address to)` -> `0x69328dec`
   - `liquidationCall(address collateralAsset, address debtAsset, address user, uint256 debtToCover, bool receiveAToken)` -> `0x00a718a9`
-  
+
 ### AaveOracle (`AaveOracle.sol`)
 - **Function Selectors**:
   - `getAssetPrice(address asset)` -> `0xb3596f07`
@@ -85,7 +93,7 @@ struct ReserveData {
 - **Quorum Verification**: Nodes 1, 2, and 3 simultaneously hit their respective RPCs at block `N`. If any RPC returns varying state (due to archive node syncing issues), the `payloadHash` diverges, and the network quarantines the out-of-sync node.
 - **Replay Determinism**: Because the call is explicitly bound to block `N`, any future replay of this workflow will query archive nodes at block `N`, guaranteeing identical output hashes perpetually.
 
-## 8. Workflow Catalogue
+## 8. Workflow Usage Examples
 ### supply
 ```json
 {
@@ -146,19 +154,6 @@ struct ReserveData {
 }
 ```
 
-### health factor monitoring
-```json
-{
-  "integrationName": "aave",
-  "integrationOperation": "fetch",
-  "params": {
-    "action": "getUserAccountData",
-    "user": "0x1234567890123456789012345678901234567890",
-    "blockTag": "0x1b4f4c9"
-  }
-}
-```
-
 ### liquidation checks
 ```json
 {
@@ -204,7 +199,6 @@ struct ReserveData {
 ```
 
 ## 9. Security & Determinism Model
-- **Guaranteed vs External Dependencies**: The Sovereign Mesh guarantees local adapter execution, calldata formatting, and step hashing. External dependencies (the Aave smart contracts, the RPC provider, and Chainlink Oracles) are strictly bounded by block numbers to convert external state into guaranteed, deterministic data points for the mesh.
 - **RPC Trust Boundaries**: The adapter assumes the RPC is fundamentally untrusted. It enforces strict ABI length checks and timeout bounds.
 - **ABI Verification Boundaries**: Decoded parameters must strictly fit the `uint256` boundaries. Any overflow or underflow halts the adapter with `ABI_MISMATCH`.
 - **Deterministic Replay Guarantees**: Aave state changes continuously. All fetches MUST include a specific block height during validation. If `latest` is used by a user, the workflow engine automatically locks the *current* block number into the executed step assignment before propagation.
@@ -244,25 +238,11 @@ flowchart TD
 
 ## 14. Testing & Validation
 - **Test Suite**: Fully covered in `test/integrations/aave.test.ts` within the TS SDK.
-- **deterministic test cases**: Tests do not merely check for code execution; they assert that identical mock RPC inputs deterministically produce identical `payloadHash` outputs across isolated test environments.
-- **mock RPC responses**: Comprehensive mocks map standard RPC outputs, HTTP 5xx errors, and network latency scenarios to deterministic error codes (`REMOTE_ERROR`, `NETWORK_UNAVAILABLE`).
-- **health factor boundary tests**: Asserts that inputs with a health factor `< 1.0` strictly trigger the `HEALTH_FACTOR_BREACH` exception, while `1.0` and above are permitted.
-- **liquidation boundary tests**: Validates that mock liquidatable accounts correctly process `liquidationCall` calldata generation without reverting.
-- **oracle staleness tests**: Tests inject timestamps older than `max_oracle_age_seconds` to ensure the adapter correctly traps and maps to the `STALE_ORACLE` error.
-- **ABI mismatch tests**: Tests actively attempt to inject malicious malformed JSON and overflowed hex values, validating that the adapter successfully traps and maps them to `ABI_MISMATCH` rather than crashing the isolate sandbox.
-- **Validation**: Mocks are designed to simulate healthy accounts, liquidatable accounts, and stale oracles deterministically.
+- **Validation**: Mocks are designed to simulate healthy accounts, liquidatable accounts, and stale oracles deterministically. Assertions map mock RPC outputs, HTTP 5xx errors, and network latency scenarios to deterministic error codes (`REMOTE_ERROR`, `NETWORK_UNAVAILABLE`).
 
 ## 15. Example Scenarios
 - **Liquidation Bot**: A sovereign workflow continuously fetches `getUserAccountData`. If `healthFactor < 1.0`, it transitions to a `submit` step, invoking `liquidationCall` via the Aave adapter using the node operator's securely mounted private key.
 - **Yield Aggregator**: A workflow reads `currentLiquidityRate` from Aave and compares it with Compound. It then executes a cross-integration step to submit a supply transaction to the higher-yielding protocol.
-
-### Economic Model & Job Exposure
-- **interest model**: Aave utilizes algorithmic interest rate models designed to manage liquidity risk. Interest rates for borrowing and lending adjust dynamically based on utilization. Sovereign Mesh nodes must reliably fetch and parse these rates to execute time-sensitive yield strategies.
-- **deterministic pricing**: Node operators price Aave jobs predictably based on fixed computational bounds. Fetch operations (e.g., checking a health factor) consume minimal, predictable gas/compute, allowing operators to offer fixed-rate monitoring subscriptions on the mesh.
-- **predictable compute cycles**: Every deterministic fetch translates to known latency bounds and compute cycle overhead, enabling precise job cost estimations globally.
-- **job types**:
-  - **Health Factor Defender**: A job where users delegate mesh operators to monitor their Aave positions and automatically repay debt or add collateral if their health factor approaches 1.0.
-  - **Liquidation Executor**: A job designed to identify undercollateralized positions and execute liquidations, capturing the liquidation bonus as revenue for the operator.
 
 ## 16. References & Sources
 - [Aave V3 Documentation](https://docs.aave.com/developers/v/2.0/)

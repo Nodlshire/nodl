@@ -11,7 +11,11 @@ import (
 	"sync"
 	"time"
 	"os"
+	"runtime"
 	"bufio"
+
+	"golang.org/x/crypto/bcrypt"
+	"go.etcd.io/bbolt"
 
 	"github.com/gofiber/contrib/websocket"
 	"github.com/gofiber/fiber/v2"
@@ -297,6 +301,7 @@ func (s *Server) registerRoutes() {
 	apiV1.Post("/auth/invite", s.handleInvite) // Internal/Test only
 	apiV1.Post("/auth/onboard", s.handleOnboardWithInvite)
 	apiV1.Post("/auth/login", s.handleLogin)
+	apiV1.Post("/auth/register", s.handleRegister)
 	apiV1.Get("/affiliates/tree/:id", s.requireAccess(account.RoleVisitor, "nodlr", "command"), s.handleGetAffiliateTree)
 	apiV1.Post("/affiliates/transfer", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleTransferAffiliate)
 	apiV1.Post("/affiliates/genesis/activate", s.requireAccess(account.RoleOwner, "command"), s.handleActivateFounder)
@@ -363,6 +368,10 @@ func (s *Server) registerRoutes() {
 	apiV1.Post("/stripe/connect/start", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleStripeConnectStart)
 	apiV1.Get("/stripe/connect/status", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleStripeConnectStatus)
 	apiV1.Post("/stripe/connect/v2/session", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleStripeV2AccountSession)
+	apiV1.Get("/stripe/callback", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleStripeCallback)
+
+	// Local ONNX Telemetry Export
+	apiV1.Get("/telemetry/export", s.handleTelemetryExport)
 
 	// Money Routes (Canonical 8080)
 	apiV1.Get("/money/overview", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.moneyHandler.HandleMoneyOverview)
@@ -516,10 +525,27 @@ func (s *Server) handleNodesSummary(c *fiber.Ctx) error {
 		offlineNodes = 0
 	}
 
+	var memTotal float64
+	if data, err := os.ReadFile("/proc/meminfo"); err == nil {
+		for _, line := range strings.Split(string(data), "\n") {
+			fields := strings.Fields(line)
+			if len(fields) >= 2 && fields[0] == "MemTotal:" {
+				fmt.Sscanf(fields[1], "%f", &memTotal)
+				break
+			}
+		}
+	}
+	systemRamGb := int(memTotal / (1024 * 1024))
+	cpuCores := runtime.NumCPU()
+	networkSpeed := "10 Gbps"
+
 	return c.JSON(fiber.Map{
 		"totalNodes":   totalNodes,
 		"activeNodes":  activeNodes,
 		"offlineNodes": offlineNodes,
+		"cpuCores":     cpuCores,
+		"systemRamGb":  systemRamGb,
+		"networkSpeed": networkSpeed,
 	})
 }
 
@@ -1019,7 +1045,7 @@ func (s *Server) handleOnboardWithInvite(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "email_mismatch"})
 	}
 
-	acc, err := s.accountStore.CreateNodlr(req.Email, "")
+	acc, err := s.accountStore.CreateNodlr(req.Email, "", "", req.FirstName, req.LastName, "")
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "failed to create account"})
 	}
@@ -1058,9 +1084,13 @@ func (s *Server) handleUpdateAccount(c *fiber.Ctx) error {
 
 func (s *Server) handleOnboardAccount(c *fiber.Ctx) error {
 	var req struct {
-		Email       string `json:"email"`
-		ParentID    string `json:"parentId"`
-		InviteToken string `json:"inviteToken"`
+		Email        string `json:"email"`
+		ParentID     string `json:"parentId"`
+		InviteToken  string `json:"inviteToken"`
+		Password     string `json:"password"`
+		FirstName    string `json:"firstName"`
+		LastName     string `json:"lastName"`
+		BusinessName string `json:"businessName"`
 	}
 	if err := c.BodyParser(&req); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid request"})
@@ -1097,7 +1127,7 @@ func (s *Server) handleOnboardAccount(c *fiber.Ctx) error {
 	}
 
 	// Fallback to genesis rotation if still empty
-	acc, err := s.accountStore.CreateNodlr(req.Email, req.ParentID)
+	acc, err := s.accountStore.CreateNodlr(req.Email, req.ParentID, req.Password, req.FirstName, req.LastName, req.BusinessName)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
 	}
@@ -1937,6 +1967,107 @@ func (s *Server) handleCreateAccount(c *fiber.Ctx) error {
 	return c.Status(fiber.StatusCreated).JSON(newAcc)
 }
 
+func (s *Server) handleRegister(c *fiber.Ctx) error {
+	var req struct {
+		Email    string `json:"email"`
+		Password string `json:"password"`
+		Domain   string `json:"domain"`
+	}
+	if err := c.BodyParser(&req); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid payload"})
+	}
+
+	req.Email = strings.TrimSpace(strings.ToLower(req.Email))
+	if req.Email == "" || req.Password == "" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "email and password required"})
+	}
+	if req.Domain == "" {
+		req.Domain = "mesh"
+	}
+
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(req.Password), bcrypt.DefaultCost)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "failed to hash password"})
+	}
+
+	var newNodlr *account.Nodlr
+	var newCRM *account.CRMRecord
+
+	err = s.accountStore.DB.Update(func(tx *bbolt.Tx) error {
+		b := tx.Bucket([]byte("nodlrs"))
+		crmB := tx.Bucket([]byte("crm_records"))
+
+		exists := false
+		b.ForEach(func(k, v []byte) error {
+			if exists {
+				return nil
+			}
+			var temp account.Nodlr
+			if err := json.Unmarshal(v, &temp); err == nil {
+				if temp.Email == req.Email {
+					exists = true
+				}
+			}
+			return nil
+		})
+		if exists {
+			return fmt.Errorf("email already registered")
+		}
+
+		seq, _ := b.NextSequence()
+		wuid := fmt.Sprintf("1000%02d-0426-%02d-AA", seq, seq)
+
+		newNodlr = &account.Nodlr{
+			ID:                 wuid,
+			Email:              req.Email,
+			Password:           string(hashedPassword),
+			DisplayName:        req.Email,
+			Role:               account.RoleStandard,
+			Status:             account.OpStatus{Active: true},
+			CreatedAt:          time.Now(),
+		}
+
+		newCRM = &account.CRMRecord{
+			NodlrID:      wuid,
+			BusinessName: req.Email,
+			CreatedAt:    time.Now(),
+		}
+
+		nBytes, _ := json.Marshal(newNodlr)
+		if err := b.Put([]byte(wuid), nBytes); err != nil {
+			return err
+		}
+
+		cBytes, _ := json.Marshal(newCRM)
+		if err := crmB.Put([]byte(wuid), cBytes); err != nil {
+			return err
+		}
+
+		return nil
+	})
+
+	if err != nil {
+		if err.Error() == "email already registered" {
+			return c.Status(fiber.StatusConflict).JSON(fiber.Map{"error": err.Error()})
+		}
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "database error"})
+	}
+
+	sessionID := s.accountStore.CreateSession(newNodlr.ID, req.Domain, newNodlr.Role)
+
+	c.Cookie(&fiber.Cookie{
+		Name:     req.Domain + "_session",
+		Value:    sessionID,
+		Expires:  time.Now().Add(24 * time.Hour * 30),
+		HTTPOnly: true,
+		Secure:   false, 
+		SameSite: "Lax",
+		Path:     "/",
+	})
+
+	return c.Status(fiber.StatusCreated).JSON(newNodlr)
+}
+
 func (s *Server) handleLogin(c *fiber.Ctx) error {
 	var req struct {
 		WUID     string `json:"wuid"`
@@ -1966,8 +2097,11 @@ func (s *Server) handleLogin(c *fiber.Ctx) error {
 	}
 
 	// Verify canonical password from SOT
-	if acc.Password != "" && req.Password != acc.Password {
-		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "invalid developer password"})
+	if acc.Password != "" {
+		err := bcrypt.CompareHashAndPassword([]byte(acc.Password), []byte(req.Password))
+		if err != nil {
+			return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "invalid developer password"})
+		}
 	}
 
 	sessionID := s.accountStore.CreateSession(acc.ID, req.Domain, acc.Role)
@@ -2669,3 +2803,32 @@ func (s *Server) handlePatchIntegration(c *fiber.Ctx) error {
 	return c.JSON(integration)
 }
 
+
+func (s *Server) handleStripeCallback(c *fiber.Ctx) error {
+	wuid, _, _ := s.resolveIdentity(c)
+	if wuid == "" {
+		return c.Redirect("http://localhost:3001/login")
+	}
+
+	if err := s.accountStore.UpdatePayoutEligibility(wuid, true); err != nil {
+		return c.Status(fiber.StatusInternalServerError).SendString(err.Error())
+	}
+
+	return c.Redirect("http://localhost:3001/dashboard?status=verified")
+}
+
+func (s *Server) handleTelemetryExport(c *fiber.Ctx) error {
+	ip := c.IP()
+	if ip != "127.0.0.1" && ip != "::1" && ip != "localhost" {
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "Forbidden: local access only"})
+	}
+
+	records, err := s.accountStore.ExportTelemetry()
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+	if records == nil {
+		records = []json.RawMessage{}
+	}
+	return c.JSON(records)
+}

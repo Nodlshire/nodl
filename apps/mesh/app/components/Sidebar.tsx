@@ -21,7 +21,7 @@ export default function Sidebar() {
 
     const handleSignOut = async () => {
         try {
-            await fetch('/api/v1/auth/logout', { method: 'POST' });
+            await fetch('/api/auth/logout', { method: 'POST' });
         } catch (e) {}
         document.cookie = "mesh_session=; Max-Age=0; path=/;";
         window.location.href = "/login";

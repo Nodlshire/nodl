@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{}"
+self.__REACT_LOADABLE_MANIFEST='{"../shared/components/FleetMap.tsx -> leaflet":{"id":3368,"files":["static/chunks/e89fb3a8.1570e3b65bfde54b.js"]}}';

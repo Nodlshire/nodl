@@ -1,22 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-// Mock WUID generator matching the format 100001-0426-01-AA
-function generateWuid() {
-    const prefix = "100001";
-    const date = "0508"; // Current mock date
-    const index = Math.floor(Math.random() * 99).toString().padStart(2, '0');
-    const suffix = "INV";
-    return `${prefix}-${date}-${index}-${suffix}`;
-}
-
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method !== 'POST') {
         return res.status(405).json({ message: 'Method not allowed' });
     }
-
-    // Role check (Mocked for now, assuming user is Owner)
-    // const user = req.user;
-    // if (user.role !== 'Owner') return res.status(403).json({ message: 'Forbidden' });
 
     const { slot, email } = req.body;
 
@@ -25,25 +12,28 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     try {
-        const wuid = generateWuid();
+        const apiUrl = process.env.API_URL || 'http://127.0.0.1:8080';
+        
+        // Fetch invite token from the Go backend (SOT)
+        const response = await fetch(`${apiUrl}/api/v1/admin/founder/invite`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': req.headers.authorization || '',
+            },
+            body: JSON.stringify({ slot: parseInt(slot.toString(), 10) })
+        });
 
-        // Database logic would go here:
-        // await db.affiliate.create({
-        //     data: {
-        //         type: slot.type,
-        //         wuid,
-        //         email,
-        //         invitedBy: user.id,
-        //         inviteSent: true,
-        //     }
-        // });
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Backend error: ${errorText}`);
+        }
 
-        // Email logic would go here:
-        // await mailer.sendInvite(email, wuid);
+        const data = await response.json();
 
         return res.status(200).json({ 
             success: true, 
-            wuid,
+            wuid: data.token, // Return token as wuid for legacy UI compatibility
             message: `Invitation successfully issued to ${email}` 
         });
     } catch (error) {

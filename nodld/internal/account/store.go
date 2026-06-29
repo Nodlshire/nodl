@@ -10,6 +10,8 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/obregan/nodl/nodld/internal/forensics"
+	"go.etcd.io/bbolt"
+	"golang.org/x/crypto/bcrypt"
 )
 
 type Store struct {
@@ -70,6 +72,8 @@ type Store struct {
 	saveMu    sync.Mutex
 	lastSave  time.Time
 	saveBatch int64
+
+	DB *bbolt.DB
 }
 
 type storeState struct {
@@ -80,7 +84,44 @@ type storeState struct {
 }
 
 func NewStore(forensics *forensics.Store, statePath string) *Store {
+	dbPath := filepath.Join(filepath.Dir(statePath), "engine.db")
+	os.MkdirAll(filepath.Dir(dbPath), 0755)
+	db, err := bbolt.Open(dbPath, 0600, nil)
+	if err != nil {
+		panic(fmt.Errorf("failed to open bbolt db: %v", err))
+	}
+	db.Update(func(tx *bbolt.Tx) error {
+		b, _ := tx.CreateBucketIfNotExists([]byte("nodlrs"))
+		crmB, _ := tx.CreateBucketIfNotExists([]byte("crm_records"))
+		_, _ = tx.CreateBucketIfNotExists([]byte("telemetry_history"))
+		
+		// Auto-seed from legacy state if empty
+		if b.Stats().KeyN == 0 {
+			data, err := os.ReadFile(statePath)
+			if err == nil {
+				var legacyState struct {
+					Nodlrs     map[string]*Nodlr     `json:"nodlrs"`
+					CRMRecords map[string]*CRMRecord `json:"crm_records"`
+				}
+				if err := json.Unmarshal(data, &legacyState); err == nil {
+					if founder, ok := legacyState.Nodlrs["100001-0426-01-AA"]; ok {
+						hashed, _ := bcrypt.GenerateFromPassword([]byte("command"), bcrypt.DefaultCost)
+						founder.Password = string(hashed)
+						nBytes, _ := json.Marshal(founder)
+						b.Put([]byte("100001-0426-01-AA"), nBytes)
+					}
+					if crm, ok := legacyState.CRMRecords["100001-0426-01-AA"]; ok {
+						cBytes, _ := json.Marshal(crm)
+						crmB.Put([]byte("100001-0426-01-AA"), cBytes)
+					}
+				}
+			}
+		}
+		return nil
+	})
+
 	s := &Store{
+		DB:                 db,
 		nodlrs:             make(map[string]*Nodlr),
 		pendingCommissions: make(map[string][]CommissionRecord),
 		nodes:              make(map[string]*WnodeNode),
@@ -111,6 +152,13 @@ func NewStore(forensics *forensics.Store, statePath string) *Store {
 	s.SeedIntegrations()
 	go s.runDowntimeWatchdog(10 * time.Second)
 	go s.runReputationRecalculation(24 * time.Hour)
+	go func() {
+		ticker := time.NewTicker(6 * time.Hour)
+		defer ticker.Stop()
+		for range ticker.C {
+			s.pruneTelemetry()
+		}
+	}()
 	return s
 }
 
@@ -339,7 +387,7 @@ func (s *Store) SetFounder(index int, id string) {
 }
 
 // CreateNodlr creates a new account. If parentID is empty, it uses round-robin.
-func (s *Store) CreateNodlr(email, parentID string) (*Nodlr, error) {
+func (s *Store) CreateNodlr(email, parentID, password, firstName, lastName, businessName string) (*Nodlr, error) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 
@@ -373,15 +421,40 @@ func (s *Store) CreateNodlr(email, parentID string) (*Nodlr, error) {
 		}
 	}
 
+	var hashedPassword string
+	if password != "" {
+		hash, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+		if err == nil {
+			hashedPassword = string(hash)
+		}
+	}
+
 	n := &Nodlr{
 		ID:              id,
 		Email:           email,
+		Password:        hashedPassword,
+		FirstName:       firstName,
+		LastName:        lastName,
 		MeshClientID:    s.GenerateMeshClientID(),
 		PayoutFrequency: PayoutDaily,
 		PayoutStatus:    PayoutStatusIncomplete,
+		PayoutsEnabled:  false,
+		Role:            RoleStandard,
 		IntegrityScore:  600, // Initial trust
 		ParentID:        parentID,
 		CreatedAt:       time.Now(),
+	}
+
+	businessNameVal := businessName
+	if businessNameVal == "" {
+		businessNameVal = "New Operator"
+	}
+
+	// Initialize their native CRM record placeholder
+	s.crmRecords[id] = &CRMRecord{
+		NodlrID:      id,
+		BusinessName: businessNameVal,
+		CreatedAt:    time.Now(),
 	}
 
 	// If this ID is in founders, mark it
@@ -509,10 +582,25 @@ func (s *Store) AddNodlr(n *Nodlr) {
 }
 
 func (s *Store) GetNodlr(id string) (*Nodlr, bool) {
-	s.mu.RLock()
-	defer s.mu.RUnlock()
-	n, ok := s.nodlrs[id]
-	return n, ok
+	var n Nodlr
+	found := false
+	s.DB.View(func(tx *bbolt.Tx) error {
+		b := tx.Bucket([]byte("nodlrs"))
+		if b == nil {
+			return nil
+		}
+		v := b.Get([]byte(id))
+		if v != nil {
+			if err := json.Unmarshal(v, &n); err == nil {
+				found = true
+			}
+		}
+		return nil
+	})
+	if found {
+		return &n, true
+	}
+	return nil, false
 }
 
 func (s *Store) ListNodlrs() []*Nodlr {
@@ -526,12 +614,30 @@ func (s *Store) ListNodlrs() []*Nodlr {
 }
 
 func (s *Store) GetNodlrByEmail(email string) (*Nodlr, bool) {
-	s.mu.RLock()
-	defer s.mu.RUnlock()
-	for _, n := range s.nodlrs {
-		if n.Email == email {
-			return n, true
+	var n Nodlr
+	found := false
+	s.DB.View(func(tx *bbolt.Tx) error {
+		b := tx.Bucket([]byte("nodlrs"))
+		if b == nil {
+			return nil
 		}
+		b.ForEach(func(k, v []byte) error {
+			if found {
+				return nil
+			}
+			var temp Nodlr
+			if err := json.Unmarshal(v, &temp); err == nil {
+				if temp.Email == email {
+					n = temp
+					found = true
+				}
+			}
+			return nil
+		})
+		return nil
+	})
+	if found {
+		return &n, true
 	}
 	return nil, false
 }
@@ -687,6 +793,76 @@ func (s *Store) GetPendingRecords(nodlrID string) []CommissionRecord {
 	s.mu.RLock()
 	defer s.mu.RUnlock()
 	return s.pendingCommissions[nodlrID]
+}
+
+func (s *Store) pruneTelemetry() {
+	cutoff := time.Now().Add(-24 * time.Hour).UnixNano()
+	cutoffStr := fmt.Sprintf("%020d", cutoff)
+	
+	s.DB.Update(func(tx *bbolt.Tx) error {
+		b := tx.Bucket([]byte("telemetry_history"))
+		if b == nil {
+			return nil
+		}
+		c := b.Cursor()
+		for k, _ := c.First(); k != nil; k, _ = c.Next() {
+			if string(k) < cutoffStr {
+				c.Delete()
+			} else {
+				break
+			}
+		}
+		return nil
+	})
+}
+
+func (s *Store) LogTelemetry(payload []byte) error {
+	return s.DB.Update(func(tx *bbolt.Tx) error {
+		b := tx.Bucket([]byte("telemetry_history"))
+		if b == nil {
+			return fmt.Errorf("telemetry_history bucket missing")
+		}
+		key := []byte(fmt.Sprintf("%020d", time.Now().UnixNano()))
+		return b.Put(key, payload)
+	})
+}
+
+func (s *Store) ExportTelemetry() ([]json.RawMessage, error) {
+	var records []json.RawMessage
+	err := s.DB.View(func(tx *bbolt.Tx) error {
+		b := tx.Bucket([]byte("telemetry_history"))
+		if b == nil {
+			return nil
+		}
+		c := b.Cursor()
+		for k, v := c.First(); k != nil; k, v = c.Next() {
+			cp := make([]byte, len(v))
+			copy(cp, v)
+			records = append(records, json.RawMessage(cp))
+		}
+		return nil
+	})
+	return records, err
+}
+
+func (s *Store) UpdatePayoutEligibility(wuid string, eligible bool) error {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	n, ok := s.nodlrs[wuid]
+	if !ok {
+		return fmt.Errorf("account not found")
+	}
+
+	n.PayoutsEnabled = eligible
+	if eligible {
+		n.PayoutStatus = PayoutStatusActive
+	} else {
+		n.PayoutStatus = PayoutStatusIncomplete
+	}
+
+	go s.SaveState()
+	return nil
 }
 
 // FinalizePayout marks all pending records for an ID as paid and clears the pending balance.

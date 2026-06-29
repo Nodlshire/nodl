@@ -4,7 +4,11 @@ package jobs
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
+	"os"
+	"runtime"
+	"strings"
 	"sync"
 	"time"
 
@@ -15,6 +19,52 @@ import (
 	"github.com/obregan/nodl/nodld/internal/p2p"
 	"go.uber.org/zap"
 )
+
+// TelemetryLog captures execution context for the ONNX routing model.
+type TelemetryLog struct {
+	Timestamp     int64  `json:"timestamp"`
+	JobID         string `json:"job_id"`
+	JobType       string `json:"job_type"`
+	Context       string `json:"execution_context"`
+	CPULoad       int    `json:"cpu_load"`
+	RAMLoad       int    `json:"ram_load"`
+	ExecutionTime int64  `json:"execution_time_ms"`
+	Status        string `json:"status"`
+}
+
+func getSystemMetrics() (cpuLoad int, ramLoad int) {
+	if data, err := os.ReadFile("/proc/meminfo"); err == nil {
+		var total, available float64
+		for _, line := range strings.Split(string(data), "\n") {
+			fields := strings.Fields(line)
+			if len(fields) >= 2 {
+				if fields[0] == "MemTotal:" {
+					fmt.Sscanf(fields[1], "%f", &total)
+				} else if fields[0] == "MemAvailable:" {
+					fmt.Sscanf(fields[1], "%f", &available)
+				}
+			}
+		}
+		if total > 0 {
+			ramLoad = int(((total - available) / total) * 100)
+		}
+	}
+	if data, err := os.ReadFile("/proc/loadavg"); err == nil {
+		fields := strings.Fields(string(data))
+		if len(fields) > 0 {
+			var load1 float64
+			fmt.Sscanf(fields[0], "%f", &load1)
+			cores := float64(runtime.NumCPU())
+			if cores > 0 {
+				cpuLoad = int((load1 / cores) * 100)
+				if cpuLoad > 100 {
+					cpuLoad = 100
+				}
+			}
+		}
+	}
+	return
+}
 
 // JobStatus represents the lifecycle state of a compute job.
 type JobStatus string
@@ -368,6 +418,24 @@ func (d *Dispatcher) RecordProof(receipt ProofReceipt) error {
 					"budgetCents": budgetCents,
 					"splits":      len(records),
 				}, "0.0.0.0")
+			}
+		}
+
+		// Emit telemetry
+		cpu, ram := getSystemMetrics()
+		telemetry := TelemetryLog{
+			Timestamp:     time.Now().UnixMilli(),
+			JobID:         j.ID,
+			JobType:       string(j.DeliveryMode),
+			Context:       "mesh_worker",
+			CPULoad:       cpu,
+			RAMLoad:       ram,
+			ExecutionTime: receipt.ElapsedMs,
+			Status:        "success",
+		}
+		if b, err := json.Marshal(telemetry); err == nil {
+			if d.accountStore != nil {
+				d.accountStore.LogTelemetry(b)
 			}
 		}
 

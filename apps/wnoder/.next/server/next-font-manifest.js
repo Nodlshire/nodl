@@ -1,1 +1,1 @@
-self.__NEXT_FONT_MANIFEST="{\"pages\":{},\"app\":{\"/home/obregan/Documents/nodl/apps/wnoder/app/layout\":[\"static/media/1e41be92c43b3255-s.p.woff2\"]},\"appUsingSizeAdjust\":true,\"pagesUsingSizeAdjust\":false}"
+self.__NEXT_FONT_MANIFEST='{"pages":{},"app":{"/home/obregan/Documents/nodl/apps/wnoder/app/layout":["static/media/1e41be92c43b3255-s.p.woff2"]},"appUsingSizeAdjust":true,"pagesUsingSizeAdjust":false}';

@@ -32,6 +32,7 @@ export default function DashboardPage() {
     const apiBase = '';
     const { data: impactData } = useSWR(`/api/v1/impact`, fetcher, { refreshInterval: 10000 });
     const { data: accountData } = useSWR(`/api/account/me`, fetcher);
+    const { data: summaryData } = useSWR(`/api/v1/nodes/summary`, fetcher);
     const [showWizard, setShowWizard] = useState(false);
     const [hasSkipped, setHasSkipped] = useState(false);
     const [mounted, setMounted] = useState(false);
@@ -213,10 +214,10 @@ export default function DashboardPage() {
                         </div>
                         <div className="space-y-4">
                             {[
-                                { label: 'CPU Cores', value: '112 Cores' },
-                                { label: 'VRAM Pool', value: '128GB' },
-                                { label: 'System RAM', value: '512GB' },
-                                { label: 'Network', value: '10 Gbps' }
+                                { label: 'CPU Cores', value: summaryData?.cpuCores ? `${summaryData.cpuCores} Cores` : '0 Cores' },
+                                { label: 'VRAM Pool', value: summaryData?.systemRamGb ? `${summaryData.systemRamGb}GB` : '0GB' },
+                                { label: 'System RAM', value: summaryData?.systemRamGb ? `${summaryData.systemRamGb}GB` : '0GB' },
+                                { label: 'Network', value: summaryData?.networkSpeed || '0 Gbps' }
                             ].map(stat => (
                                 <div key={stat.label} className="flex justify-between items-center">
                                     <span className="text-[11px] text-slate-500 uppercase tracking-tight font-normal">{stat.label}</span>

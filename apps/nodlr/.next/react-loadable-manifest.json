@@ -1,8 +1,8 @@
 {
   "../shared/components/FleetMap.tsx -> leaflet": {
-    "id": 2323,
+    "id": 3368,
     "files": [
-      "static/chunks/fe69a73d.dc8dd023b7182e2c.js"
+      "static/chunks/e89fb3a8.1570e3b65bfde54b.js"
     ]
   }
 }

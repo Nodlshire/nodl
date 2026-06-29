@@ -2,7 +2,7 @@ import { NextResponse, NextRequest } from 'next/server';
 import { resolveIdentityHeaders } from '@/app/lib/identity';
 
 export async function GET(req: NextRequest) {
-    const BACKEND_URL = process.env.NODLD_API_URL || 'http://127.0.0.1:8081';
+    const BACKEND_URL = process.env.NODLD_API_URL || 'http://127.0.0.1:8080';
     const headers = resolveIdentityHeaders(req);
     
     try {

@@ -3,8 +3,9 @@ import { NextRequest, NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
+    console.log(`[PROXY INCOMING] Path: ${req.url} | Raw Cookie Header:`, req.headers.get('cookie'));
     try {
-        const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8081";
+        const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8080";
         const fetchHeaders: Record<string, string> = {};
         
         req.headers.forEach((value, key) => {
@@ -54,6 +55,8 @@ export async function GET(req: NextRequest) {
                 console.log(`[API/ACCOUNT/ME] No session cookie found in request.`);
             }
         }
+
+        console.log(`[PROXY OUTGOING TO BACKEND] Forwarding Headers:`, fetchHeaders['Cookie']);
 
         const res = await fetch(`${apiUrl}/api/v1/account/me`, {
             method: 'GET',

@@ -170,10 +170,11 @@ export default function LoginPage() {
 
                         <div className="text-center mt-6">
                             <button
-                                onClick={() => setAuthMode(authMode === 'signin' ? 'signup' : 'signin')}
+                                type="button"
+                                onClick={() => router.push('/register')}
                                 className="text-slate-500 text-xs hover:text-white transition-colors underline-offset-4 hover:underline"
                             >
-                                {authMode === 'signin' ? "Don't have an account? Sign up" : 'Already have an account? Sign in'}
+                                Create an Account / Join Beta
                             </button>
                         </div>
                     </div>

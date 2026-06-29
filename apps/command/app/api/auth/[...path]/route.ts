@@ -1,29 +1,50 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest, { params }: { params: Promise<{ path: string[] }> }) {
-    const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8081";
+    const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8080";
     const { path } = await params;
-    const pathString = path.join('/');
+    const resolvedPath = path.join('/');
+
+    let targetEndpoint = resolvedPath;
+    if (resolvedPath === 'debug-session') {
+        targetEndpoint = 'login';
+    }
 
     try {
-        const body = await req.json();
-        const res = await fetch(`${apiUrl}/api/v1/auth/${pathString}`, {
-            method: 'POST',
+        let bodyObj;
+        try { bodyObj = await req.json(); } catch (e) {}
+
+        const options: RequestInit = {
+            method: req.method,
             headers: {
                 'Content-Type': 'application/json',
                 cookie: req.headers.get('cookie') ?? '',
             },
             credentials: 'include',
-            body: JSON.stringify(body),
-        });
+        };
+        if (bodyObj) {
+            options.body = JSON.stringify(bodyObj);
+        }
 
-        const data = await res.json();
+        const res = await fetch(`${apiUrl}/api/v1/auth/${targetEndpoint}`, options);
+
+        let data = {};
+        try { data = await res.json(); } catch (e) {}
 
         // Forward the Set-Cookie header if present
         const response = NextResponse.json(data, { status: res.status });
-        const setCookie = res.headers.get('set-cookie');
-        if (setCookie) {
-            response.headers.set('set-cookie', setCookie);
+        const setCookies = res.headers.getSetCookie();
+        if (setCookies && setCookies.length > 0) {
+            for (const cookieStr of setCookies) {
+                let cookieValue = cookieStr;
+                if (req.url.includes('localhost') || req.url.includes('127.0.0.1') || req.url.includes('0.0.0.0')) {
+                    cookieValue = cookieValue
+                        .replace(/Domain=[^;]+;?\s*/i, '')
+                        .replace(/Secure;?\s*/i, '')
+                        .replace(/SameSite=None/i, 'SameSite=Lax');
+                }
+                response.headers.append('set-cookie', cookieValue);
+            }
         }
 
         return response;

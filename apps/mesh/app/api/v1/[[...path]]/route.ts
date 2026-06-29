@@ -16,6 +16,7 @@ const TRANSACTIONS = [
 ];
 
 async function handleProxy(req: NextRequest, method: string, subPath: string) {
+    console.log(`[PROXY INCOMING] Path: ${req.url} | Raw Cookie Header:`, req.headers.get('cookie'));
     // Route pool requests to pools mock JSON helper
     if (subPath === 'pools' && method === 'GET') {
         return NextResponse.json(COMPUTE_POOLS, { status: 200 });
@@ -30,7 +31,7 @@ async function handleProxy(req: NextRequest, method: string, subPath: string) {
     const isNodeRoute = subPath.startsWith('nodes') || subPath.startsWith('nodlrs');
     const isAccountRoute = subPath.startsWith('money') || subPath.startsWith('jobs') || subPath.startsWith('account');
 
-    let apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8081";
+    let apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8080";
     if (isAccountRoute) {
         apiUrl = process.env.ACCOUNT_SERVICE_URL || "http://localhost:3002";
     }
@@ -95,6 +96,8 @@ async function handleProxy(req: NextRequest, method: string, subPath: string) {
                 console.log(`[API/V1/PROXY] No session cookie found in request for path /${subPath}.`);
             }
         }
+
+        console.log(`[PROXY OUTGOING TO BACKEND] Forwarding Headers:`, fetchHeaders['Cookie']);
 
         const res = await fetch(targetUrl, {
             method,

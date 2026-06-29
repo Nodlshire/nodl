@@ -177,7 +177,7 @@ describe('Orchestrator LLM Connectivity Test', () => {
         try {
             const endpoint = process.env.NODLD_API_URL
                 ? `${process.env.NODLD_API_URL}/api/v1/ai/orchestrator`
-                : 'http://127.0.0.1:8081/api/v1/ai/orchestrator';
+                : 'http://127.0.0.1:8080/api/v1/ai/orchestrator';
 
             const controller = new AbortController();
             const timeout = setTimeout(() => controller.abort(), 3000);

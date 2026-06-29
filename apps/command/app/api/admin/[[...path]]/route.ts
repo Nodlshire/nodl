@@ -4,7 +4,7 @@ export const dynamic = 'force-dynamic';
 
 async function handleProxy(req: NextRequest, method: string, pathSegments: string[]) {
     try {
-        const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8081";
+        const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8080";
         
         // Construct the subpath. For example, /api/admin/pricing/tiers -> we forward to /api/v1/meta/tiers if that's what's needed,
         // but since we made them relative to /api/admin/..., let's map them.

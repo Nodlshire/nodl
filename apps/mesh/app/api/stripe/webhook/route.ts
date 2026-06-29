@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing signature' }, { status: 400 });
     }
 
-    const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8081";
+    const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8080";
     console.log(`[STRIPE-PROXY] Forwarding webhook to ${apiUrl}/api/v1/stripe/webhook`);
 
     const res = await fetch(`${apiUrl}/api/v1/stripe/webhook`, {

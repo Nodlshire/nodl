@@ -18,59 +18,6 @@ interface NodlDevice {
     last_seen: string;
 }
 
-const INITIAL_NODLS: NodlDevice[] = [
-    {
-        id: '1',
-        node_name: 'NODLR_FDR_43',
-        status: 'Active',
-        cpu_specs: 'AMD Ryzen 9 (16 Cores)',
-        gpu_specs: 'RTX 4090 (24GB)',
-        ram_total: '64GB',
-        uptime: '342:12:04',
-        last_seen: '2s ago'
-    },
-    {
-        id: '2',
-        node_name: 'AWS_US_EAST_PROV',
-        status: 'Suspended',
-        cpu_specs: 'Xeon Platinum (32 Cores)',
-        gpu_specs: 'Tesla T4 (16GB)',
-        ram_total: '128GB',
-        uptime: '12:45:10',
-        last_seen: '1m ago'
-    },
-    {
-        id: '3',
-        node_name: 'NODLR_LON_12',
-        status: 'Active',
-        cpu_specs: 'Intel i9-14900K',
-        gpu_specs: 'RTX 3080 Ti',
-        ram_total: '32GB',
-        uptime: '48:22:15',
-        last_seen: '5s ago'
-    },
-    {
-        id: '4',
-        node_name: 'EDGE_SGP_99',
-        status: 'Active',
-        cpu_specs: 'Apple M2 Ultra',
-        gpu_specs: '64-Core GPU',
-        ram_total: '128GB',
-        uptime: '912:05:33',
-        last_seen: '12s ago'
-    },
-    {
-        id: '5',
-        node_name: 'NODLR_PAR_08',
-        status: 'Offline',
-        cpu_specs: 'Threadripper 3990X',
-        gpu_specs: '2x RTX 3090',
-        ram_total: '256GB',
-        uptime: '00:00:00',
-        last_seen: '2d ago'
-    }
-];
-
 export default function HardwarePage() {
     const { nodes: nodls, loading, refresh } = useProviderNodes();
 

@@ -20,7 +20,7 @@ export default function FilterLabels({ selectedCategories, onToggleCategory, isA
                 onClick={onSelectAll}
                 className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all border shadow-sm hover:shadow-md flex items-center justify-center ${
                     isAllActive
-                        ? 'bg-slate-400 text-black border-slate-400 shadow-[0_0_12px_rgba(148,163,184,0.4)] hover:bg-slate-300'
+                        ? 'bg-slate-400 text-white border-slate-400 shadow-[0_0_12px_rgba(148,163,184,0.4)] hover:bg-slate-300'
                         : 'bg-[#0d1117] text-slate-300 border-slate-700 hover:bg-slate-800'
                 }`}
             >

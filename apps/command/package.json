@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next dev -H 127.0.0.1 -p 3001",
+    "dev": "next dev -H 127.0.0.1 -p 3002",
     "build": "NODE_OPTIONS=\"--max-old-space-size=4096\" next build",
-    "start": "next start -H 0.0.0.0 -p 3001",
+    "start": "next start -H 0.0.0.0 -p 3002",
     "lint": "next lint",
     "sync-anchor": "CURRENT_ID=$(grep 'libp2p host online' ../../nodld/nodld.log | tail -n 1 | sed -n 's/.*\"peerID\":\"\\([^\"]*\\)\".*/\\1/p'); if [ -z \"$CURRENT_ID\" ]; then echo 'ERROR: Peer ID not found in nodld.log'; exit 1; fi; sed -i \"s/NEXT_PUBLIC_ANCHOR_PEER_ID=.*/NEXT_PUBLIC_ANCHOR_PEER_ID=$CURRENT_ID/\" .env.local; sed -i \"s|NEXT_PUBLIC_ANCHOR_MULTIADDR=.*|NEXT_PUBLIC_ANCHOR_MULTIADDR=/ip4/127.0.0.1/tcp/10000/ws/p2p/$CURRENT_ID|\" .env.local; echo \"Successfully synchronized Anchor to PeerID: $CURRENT_ID\""
   },

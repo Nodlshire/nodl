@@ -39,12 +39,8 @@ export function getDeterministicCategory(name: string): IntegrationCategory {
 
 export function parseIntegrationMetadata(dirName: string): IntegrationMeta {
     let displayName = dirName.replace(/-/g, ' ');
-    if (dirName === 'aave.legacy') {
-        displayName = 'Aave';
-    } else {
-        // Title case for aesthetic
-        displayName = displayName.replace(/\b\w/g, l => l.toUpperCase());
-    }
+    // Title case for aesthetic
+    displayName = displayName.replace(/\b\w/g, l => l.toUpperCase());
     const firstLetter = displayName.charAt(0).toUpperCase();
     const validLetter = /^[A-Z]$/.test(firstLetter) ? firstLetter : '#';
     

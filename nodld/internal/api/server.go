@@ -156,7 +156,7 @@ func New(dispatcher *jobs.Dispatcher, store *jobs.Store, pricingStore *pricing.S
 	app.Use(recover.New())
 	allowOrigins := os.Getenv("ALLOWED_ORIGINS")
 	if allowOrigins == "" {
-		allowOrigins = "http://localhost:3000, http://localhost:3004, http://localhost:3005"
+		allowOrigins = "http://localhost:3000, http://localhost:3004, http://localhost:3005, https://nodlr.wnode.one, https://cmd.wnode.one, https://mesh.wnode.one, https://wnode.one"
 	}
 
 	app.Use(cors.New(cors.Config{

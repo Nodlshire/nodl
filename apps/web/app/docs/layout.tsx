@@ -80,8 +80,22 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                                 <a href="/docs/execution/panic-handling" className="text-sm font-medium hover:text-white transition-colors">Panic Handling</a>
                                 <a href="/docs/execution/timeouts" className="text-sm font-medium hover:text-white transition-colors">Timeouts</a>
                                 <a href="/docs/execution/resource-bounds" className="text-sm font-medium hover:text-white transition-colors">Resource Bounds</a>
-                                <a href="/docs/execution/determinism" className="text-sm font-medium hover:text-white transition-colors">Determinism</a>
+                                <a href="/docs/execution/determinism" className="text-sm font-medium hover:text-white transition-colors">Wnode Determinism Guidelines</a>
                                 <a href="/docs/execution/failure-modes" className="text-sm font-medium hover:text-white transition-colors">Failure Modes</a>
+                            </div>
+
+                            <div className="flex flex-col gap-2">
+                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-2">Wnode SDK</span>
+                                <a href="/docs/sdk" className="text-sm font-medium hover:text-white transition-colors">SDK Overview</a>
+                                <a href="/docs/sdk/installation" className="text-sm font-medium hover:text-white transition-colors">Installation</a>
+                                <a href="/docs/sdk/identity" className="text-sm font-medium hover:text-white transition-colors">Identity</a>
+                                <a href="/docs/sdk/jobs" className="text-sm font-medium hover:text-white transition-colors">Jobs</a>
+                                <a href="/docs/sdk/mesh" className="text-sm font-medium hover:text-white transition-colors">Mesh Routing</a>
+                                <a href="/docs/sdk/integrations" className="text-sm font-medium hover:text-white transition-colors">Integration Wrappers</a>
+                                <a href="/docs/sdk/examples" className="text-sm font-medium hover:text-white transition-colors">Examples</a>
+                                <a href="/docs/sdk/determinism" className="text-sm font-medium hover:text-white transition-colors">Deterministic Execution</a>
+                                <a href="/docs/sdk/security" className="text-sm font-medium hover:text-white transition-colors">Security</a>
+                                <a href="/docs/sdk/api-reference" className="text-sm font-medium hover:text-white transition-colors">API Reference</a>
                             </div>
 
                             <div className="flex flex-col gap-2">

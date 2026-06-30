@@ -1,5 +1,14 @@
 package device
 
+/*
+Determinism Contract:
+1. Pure WASM computation (no external I/O, no time, no randomness) must produce identical results across nodes and architectures.
+2. External I/O (HTTP, DB, GPU) is:
+   - strictly capability‑bounded,
+   - mediated via host functions,
+   - treated as external nondeterminism.
+*/
+
 import (
 	"context"
 	"fmt"
@@ -9,8 +18,23 @@ import (
 	"github.com/obregan/nodl/node-operator/src/platform"
 )
 
+// ExecutionOptions defines the replay and audit context for WASM execution.
+type ExecutionOptions struct {
+	ModuleID   string
+	ReplayMode bool
+	ReplayLog  []TelemetryEvent
+}
+
+// TelemetryEvent represents a recorded, deterministic I/O interaction.
+type TelemetryEvent struct {
+	ModuleID      string
+	CapabilityID  string
+	RequestParams string
+	ResponseHash  string
+}
+
 // ExecuteWasm runs a WASM module within a strict, air-gapped memory sandbox.
-func ExecuteWasm(ctx context.Context, wasmBytes []byte, payload string, limits TaskLimits) (string, error) {
+func ExecuteWasm(ctx context.Context, wasmBytes []byte, payload string, limits TaskLimits, opts ExecutionOptions) (string, error) {
 	// 1. Setup Runtime Limits
 	// Default to 128MB if not specified. Max 2048MB.
 	memMB := limits.MemoryMB
@@ -40,8 +64,18 @@ func ExecuteWasm(ctx context.Context, wasmBytes []byte, payload string, limits T
 	defer r.Close(execCtx)
 
 	// 4. Register Host Functions Bridge
-	caps := WasmCapabilities{} // In a real flow, this is parsed from spec.yaml or payload metadata
-	if err := RegisterHostFunctions(execCtx, r, caps); err != nil {
+	allowedCaps := GetEpochCapabilities(opts.ModuleID)
+	// Build WasmCapabilities from the epoch capability strings
+	caps := WasmCapabilities{}
+	for _, c := range allowedCaps {
+		if c == "http" || c == "https" || c == "http_request" {
+			caps.HTTPSBindings = append(caps.HTTPSBindings, c)
+		} else if c == "db" || c == "db_query" {
+			caps.DBBindings = append(caps.DBBindings, c)
+		}
+	}
+	
+	if err := RegisterHostFunctions(execCtx, r, caps, opts); err != nil {
 		return "", fmt.Errorf("failed to register host functions: %w", err)
 	}
 
@@ -120,6 +154,8 @@ func ExecuteWasm(ctx context.Context, wasmBytes []byte, payload string, limits T
 	if !ok {
 		return "", fmt.Errorf("failed to read output from wasm memory (out of bounds)")
 	}
+
+	platform.Info("Execution Telemetry Envelope: %v", TelemetryEnvelope)
 
 	return string(outBytes), nil
 }

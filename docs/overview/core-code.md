@@ -1,5 +1,7 @@
 # Wnode Architecture — Core Code
 
+![diagram](/diagrams/core-artifacts.png)
+
 The Wnode Sovereign Mesh is built on a minimal, deterministic, cryptographically verifiable execution core.  
 Every component is designed to enforce safety, replayability, and zero‑custody guarantees.
 

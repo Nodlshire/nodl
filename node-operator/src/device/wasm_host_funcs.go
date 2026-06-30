@@ -2,7 +2,9 @@ package device
 
 import (
 	"context"
+	"crypto/sha256"
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/tetratelabs/wazero"
@@ -21,15 +23,21 @@ var ManagedDBConnections = make(map[string]string)
 
 // Set inside ExecuteWasm via context or global for the sandbox scope
 var currentCapabilities WasmCapabilities
+var currentOpts ExecutionOptions
+var TelemetryEnvelope []TelemetryEvent
 
 // RegisterHostFunctions registers the "env" module allowing controlled host interactions.
-func RegisterHostFunctions(ctx context.Context, r wazero.Runtime, caps WasmCapabilities) error {
-	currentCapabilities = caps // In a real multi-tenant setup, this should be context-bound
+func RegisterHostFunctions(ctx context.Context, r wazero.Runtime, caps WasmCapabilities, opts ExecutionOptions) error {
+	currentCapabilities = caps
+	currentOpts = opts
+	TelemetryEnvelope = make([]TelemetryEvent, 0)
 
 	_, err := r.NewHostModuleBuilder("env").
 		NewFunctionBuilder().WithFunc(requestGpuCompute).Export("request_gpu_compute").
 		NewFunctionBuilder().WithFunc(httpRequestWasm).Export("http_request").
 		NewFunctionBuilder().WithFunc(dbQueryWasm).Export("db_query").
+		NewFunctionBuilder().WithFunc(logicalTimeWasm).Export("wnode_logical_time").
+		NewFunctionBuilder().WithFunc(deterministicRandWasm).Export("wnode_deterministic_rand").
 		Instantiate(ctx)
 	
 	if err != nil {
@@ -39,60 +47,90 @@ func RegisterHostFunctions(ctx context.Context, r wazero.Runtime, caps WasmCapab
 	return nil
 }
 
-// requestGpuCompute is a host function callable from within the WASM module.
-// In Phase 2, this is a stub. It simulates latency and returns a dummy response,
-// establishing the secure interface boundary for Phase 5.
-// Signature: request_gpu_compute(ptr uint32, len uint32) (responseLen uint32)
-func requestGpuCompute(ctx context.Context, m api.Module, ptr uint32, length uint32) uint32 {
-	platform.Info("WASM requested GPU Compute (Stub). Reading %d bytes from ptr %d", length, ptr)
+func checkReplay(capID, reqParams string) (bool, string) {
+	if !currentOpts.ReplayMode {
+		return false, ""
+	}
+	
+	// Shift from replay log
+	if len(currentOpts.ReplayLog) == 0 {
+		panic(fmt.Sprintf("deterministic trap: replay log exhausted but module requested %s", capID))
+	}
+	
+	evt := currentOpts.ReplayLog[0]
+	currentOpts.ReplayLog = currentOpts.ReplayLog[1:]
+	
+	if evt.CapabilityID != capID {
+		panic(fmt.Sprintf("deterministic trap: replay divergence, expected %s, got %s", evt.CapabilityID, capID))
+	}
+	if evt.RequestParams != reqParams {
+		panic(fmt.Sprintf("deterministic trap: replay divergence, expected params %s, got %s", evt.RequestParams, reqParams))
+	}
+	
+	return true, evt.ResponseHash
+}
 
-	// 1. Strict bounds checking on memory read
+func hashResponse(data []byte) string {
+	h := sha256.Sum256(data)
+	return fmt.Sprintf("%x", h)
+}
+
+func logTelemetry(capID, reqParams, respHash string) {
+	evt := TelemetryEvent{
+		ModuleID:      currentOpts.ModuleID,
+		CapabilityID:  capID,
+		RequestParams: reqParams,
+		ResponseHash:  respHash,
+	}
+	TelemetryEnvelope = append(TelemetryEnvelope, evt)
+}
+
+func logicalTimeWasm(ctx context.Context, m api.Module) uint64 {
+	logTelemetry("logical_time", "", "")
+	return 1000000
+}
+
+func deterministicRandWasm(ctx context.Context, m api.Module) uint32 {
+	logTelemetry("deterministic_rand", "", "")
+	return 42
+}
+
+func requestGpuCompute(ctx context.Context, m api.Module, ptr uint32, length uint32) uint32 {
 	reqBytes, ok := m.Memory().Read(ptr, length)
 	if !ok {
-		platform.Error("WASM GPU request failed: out of bounds read")
-		return 0 // 0 length implies error or empty
+		return 0
+	}
+	reqParams := string(reqBytes)
+	
+	if isReplay, respHash := checkReplay("gpu_compute", reqParams); isReplay {
+		platform.Info("Replaying GPU compute. Hash: %s", respHash)
+		logTelemetry("gpu_compute", reqParams, respHash)
+		return 1
 	}
 
-	// For Phase 2, we just log what the WASM asked us to do
-	platform.Info("GPU Stub received payload: %s", string(reqBytes))
-
-	// 2. Simulate GPU latency
-	time.Sleep(100 * time.Millisecond)
-
-	// 3. Write a stubbed response back
-	// In a real implementation, we would allocate new memory or require the module
-	// to pass an output buffer. For this stub, we'll write back to the same buffer
-	// if it's large enough, or just return 0 to indicate we didn't write anything.
+	respMsg := []byte("deterministic_gpu_stub_response")
+	respHash := hashResponse(respMsg)
 	
-	respMsg := []byte("gpu_stub_response_success")
 	if length >= uint32(len(respMsg)) {
-		if !m.Memory().Write(ptr, respMsg) {
-			platform.Error("WASM GPU request failed: out of bounds write")
-			return 0
-		}
+		m.Memory().Write(ptr, respMsg)
+		logTelemetry("gpu_compute", reqParams, respHash)
 		return uint32(len(respMsg))
 	}
-
-	// Buffer too small to write stub response, return 0
 	return 0
 }
 
-// httpRequestWasm enforces outbound HTTPS rules based on spec.yaml declarations.
-// Signature: http_request(bindingPtr, bindingLen, methodPtr, methodLen, urlPtr, urlLen) (responseLen uint32)
 func httpRequestWasm(ctx context.Context, m api.Module, bindingPtr, bindingLen, methodPtr, methodLen, urlPtr, urlLen uint32) uint32 {
 	bindingBytes, ok1 := m.Memory().Read(bindingPtr, bindingLen)
 	methodBytes, ok2 := m.Memory().Read(methodPtr, methodLen)
 	urlBytes, ok3 := m.Memory().Read(urlPtr, urlLen)
-	
 	if !ok1 || !ok2 || !ok3 {
-		platform.Error("WASM HTTP request failed: out of bounds read")
 		return 0
 	}
 
 	binding := string(bindingBytes)
+	method := string(methodBytes)
 	urlStr := string(urlBytes)
 
-	// Capability Check
 	allowed := false
 	for _, b := range currentCapabilities.HTTPSBindings {
 		if b == binding || strings.HasPrefix(urlStr, b) {
@@ -100,33 +138,36 @@ func httpRequestWasm(ctx context.Context, m api.Module, bindingPtr, bindingLen, 
 			break
 		}
 	}
-
 	if !allowed {
-		platform.Error("WASM HTTP request rejected: capability %q not declared in spec.yaml", binding)
-		return 0
+		panic(fmt.Sprintf("deterministic trap: unauthorized http_request capability to %s", binding))
 	}
 
-	platform.Info("WASM HTTP capability authorized. Executing %s %s", string(methodBytes), urlStr)
-	// Execute HTTP request safely... (stubbed)
+	reqParams := fmt.Sprintf("%s %s (binding: %s)", method, urlStr, binding)
+	if isReplay, respHash := checkReplay("http_request", reqParams); isReplay {
+		platform.Info("Replaying HTTP request. Hash: %s", respHash)
+		logTelemetry("http_request", reqParams, respHash)
+		return 1
+	}
+
+	platform.Info("WASM HTTP capability authorized: %s", reqParams)
 	time.Sleep(50 * time.Millisecond)
 
-	return 1 // return 1 on success
+	respHash := hashResponse([]byte("http_stub_response"))
+	logTelemetry("http_request", reqParams, respHash)
+
+	return 1
 }
 
-// dbQueryWasm enforces scoped database access based on spec.yaml bindings.
-// Signature: db_query(bindingPtr, bindingLen, stmtPtr, stmtLen) (responseLen uint32)
 func dbQueryWasm(ctx context.Context, m api.Module, bindingPtr, bindingLen, stmtPtr, stmtLen uint32) uint32 {
 	bindingBytes, ok1 := m.Memory().Read(bindingPtr, bindingLen)
 	stmtBytes, ok2 := m.Memory().Read(stmtPtr, stmtLen)
-	
 	if !ok1 || !ok2 {
-		platform.Error("WASM DB query failed: out of bounds read")
 		return 0
 	}
 
 	binding := string(bindingBytes)
+	stmt := string(stmtBytes)
 
-	// Capability Check
 	allowed := false
 	for _, b := range currentCapabilities.DBBindings {
 		if b == binding {
@@ -134,15 +175,22 @@ func dbQueryWasm(ctx context.Context, m api.Module, bindingPtr, bindingLen, stmt
 			break
 		}
 	}
-
 	if !allowed {
-		platform.Error("WASM DB query rejected: capability %q not declared in spec.yaml", binding)
-		return 0
+		panic(fmt.Sprintf("deterministic trap: unauthorized db_query capability to %s", binding))
 	}
 
-	platform.Info("WASM DB capability authorized on binding %q. Query: %s", binding, string(stmtBytes))
-	// Route query through daemon-managed connection pool... (stubbed)
+	reqParams := fmt.Sprintf("Query: %s (binding: %s)", stmt, binding)
+	if isReplay, respHash := checkReplay("db_query", reqParams); isReplay {
+		platform.Info("Replaying DB Query. Hash: %s", respHash)
+		logTelemetry("db_query", reqParams, respHash)
+		return 1
+	}
+
+	platform.Info("WASM DB capability authorized: %s", reqParams)
 	time.Sleep(20 * time.Millisecond)
 
-	return 1 // return 1 on success
+	respHash := hashResponse([]byte("db_stub_response"))
+	logTelemetry("db_query", reqParams, respHash)
+
+	return 1
 }

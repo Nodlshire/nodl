@@ -1,5 +1,7 @@
 # Wnode Architecture — Execution Flow
 
+![diagram](/diagrams/flow-sequence.png)
+
 The Wnode Sovereign Mesh executes workloads through a deterministic, cryptographically verifiable sequence.  
 Every step is replayable, auditable, and identical across all nodes and environments.
 

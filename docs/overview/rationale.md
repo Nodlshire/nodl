@@ -1,5 +1,7 @@
 # Wnode Architecture — Rationale
 
+![diagram](/diagrams/rationale-determinism.png)
+
 The Wnode Sovereign Mesh exists to solve a fundamental problem in distributed systems:  
 **modern compute platforms cannot guarantee deterministic, verifiable, replayable execution at scale.**
 
@@ -63,4 +65,19 @@ This removes the orchestrator from the critical path entirely.
 
 ---
 
-## Why Capability
+## Why Capability Boundaries Matter
+Capability-scoped I/O is the constitutional safety boundary of Wnode.
+It ensures:
+- no unauthorized outbound I/O
+- no host contamination
+- no privilege escalation
+- no nondeterministic behavior
+- no hidden side effects
+
+All outbound operations must be:
+- declared in spec.yaml
+- validated by the daemon
+- enforced by the capability registry
+- mapped to deterministic host functions
+
+Unauthorized operations trap instantly and deterministically.

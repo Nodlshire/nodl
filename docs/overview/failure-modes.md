@@ -1,5 +1,7 @@
 # Wnode Architecture — Failure Modes
 
+![diagram](/diagrams/failure-modes-map.png)
+
 The Wnode Sovereign Mesh is designed to fail deterministically, safely, and verifiably.  
 Every failure mode is intentional, explicit, and cryptographically accountable.  
 No silent corruption, nondeterministic drift, or hidden state is ever permitted.

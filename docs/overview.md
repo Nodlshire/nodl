@@ -1,5 +1,7 @@
 # Wnode Enterprise Architecture — Overview
 
+![diagram](/diagrams/overview-architecture.png)
+
 The Wnode Sovereign Mesh is a deterministic, verifiable, auto-scaling compute substrate designed for high-assurance execution across heterogeneous environments. It runs immutable, signed WASM and Go artifacts inside a decentralized network of operators, enforcing strict capability boundaries, deterministic routing, and cryptographically verifiable telemetry.
 
 Wnode’s architecture is built on four constitutional pillars:

@@ -1,5 +1,7 @@
 # Wnode Architecture — Invariants
 
+![diagram](/diagrams/invariants-constitution.png)
+
 Wnode enforces a strict set of constitutional invariants that guarantee deterministic, safe, and sovereign execution across the entire mesh.  
 These invariants cannot be bypassed, weakened, or conditionally disabled.  
 They define the non-negotiable safety boundaries of the system.

@@ -1,94 +1,47 @@
 import React from 'react';
+import fs from 'fs';
+import path from 'path';
+import ReactMarkdown from 'react-markdown';
+import { notFound } from 'next/navigation';
 
-export default function Page() {
+export default function HotLoadLifecyclePage() {
+    const filePath = path.join(process.cwd(), '../../docs/architecture/hot-load-lifecycle.md');
+
+    if (!fs.existsSync(filePath)) {
+        notFound();
+    }
+
+    const content = fs.readFileSync(filePath, 'utf8');
+
+    // Strip frontmatter if exists
+    const markdownContent = content.replace(/^---[\s\S]*?---\n/, '');
+
     return (
         <div className="prose prose-invert max-w-none">
-            <h1 className="text-4xl font-bold mb-6">Wnode Enterprise Architecture Specification</h1>
-            
-            <h2 id="architecture-overview" className="text-2xl font-semibold mt-8 mb-4">Architecture Overview</h2>
-            <p>The Wnode Sovereign Mesh is a deterministic, verifiable, and auto-scaling compute substrate. It executes immutable, signed WASM and Go artifacts deployed across a decentralized network. The network features a stateless, horizontally scalable orchestrator layer, local ingress validation via signed routing epochs, capability-based WASM execution, hardened mTLS telemetry with signed envelopes, and a multi-dimensional reputation and grace system for node reliability.</p>
-
-            <h2 id="conceptual-overview" className="text-2xl font-semibold mt-8 mb-4">Conceptual Overview</h2>
-            <p>Wnode utilizes a strictly generative Substrate Model rather than traditional container orchestration. By compiling a declarative <code>spec.yaml</code> into an immutable, deterministic artifact, Wnode guarantees identical execution environments globally. This deterministic execution, combined with capability-based host extensions, balances absolute safety with practical utility. Distributing signed routing epochs to nodes for local validation removes central bottlenecks, allowing the orchestrator to scale horizontally without becoming a Single Point of Failure (SPOF).</p>
-
-            <h2 id="global-architecture" className="text-2xl font-semibold mt-8 mb-4">Global Architecture Diagram</h2>
-            <pre className="bg-slate-900 p-4 rounded-md overflow-x-auto text-sm text-slate-300">
-{`[ Stateless Orchestrator Layer ]
-  ├── Ingress Validation
-  ├── Routing Epoch Distribution
-  └── Telemetry Sink (mTLS)
-         │
-         ▼
-[ Earth Mesh (Tier-1) ] <--------- [ Space Mesh (Tier-3) ]
-  ├── Synchronous Execution          ├── Asynchronous MapReduce
-  ├── Native Go + WASM               ├── Sharded Workloads
-  ├── Local Ingress Validation       └── Edge/Off-Grid Operators
-  └── Capability-Scoped I/O`}
-            </pre>
-
-            <h2 id="execution-flow" className="text-2xl font-semibold mt-8 mb-4">Execution Sequence Flow</h2>
-            <ol className="list-decimal pl-6 space-y-2">
-                <li>Client sends an HMAC-signed request to the mesh.</li>
-                <li>Node validates the request locally using the cached routing epoch.</li>
-                <li>Node executes the WASM payload with strict capability enforcement.</li>
-                <li>Node emits a cryptographically signed telemetry envelope.</li>
-                <li>Node returns the encrypted execution result to the client.</li>
-            </ol>
-
-            <h2 id="core-artifacts" className="text-2xl font-semibold mt-8 mb-4">Core Artifacts</h2>
-            <ul className="list-disc pl-6 space-y-2">
-                <li><strong>spec.yaml:</strong> The declarative target defining resources and capabilities (e.g., HTTPS and DB bindings).</li>
-                <li><strong>Generated Go Handler:</strong> The strict execution boundary enforcing timeouts and cgroups.</li>
-                <li><strong>WASM Runtime:</strong> The Wazero sandbox isolating memory and executing logic.</li>
-                <li><strong>Capability Registry:</strong> The daemon-side enforcer of spec.yaml bindings.</li>
-                <li><strong>Routing Epoch Structure:</strong> The signed payload containing allowed routes and HMAC secrets.</li>
-            </ul>
-
-            <h2 id="failure-modes" className="text-2xl font-semibold mt-8 mb-4">Failure Modes & Error Handling</h2>
-            <ul className="list-disc pl-6 space-y-2">
-                <li><strong>Epoch Expiration:</strong> Nodes reject ingress traffic safely until a new signed epoch is fetched.</li>
-                <li><strong>Capability Rejection:</strong> Unauthorized I/O attempts instantly trap the WASM call.</li>
-                <li><strong>WASM Sandbox Traps:</strong> Panics within the module are securely trapped without affecting the host.</li>
-                <li><strong>Grace-Based Reputation Decay:</strong> Nodes experience continuous score decay rather than instant slashing for transient failures.</li>
-                <li><strong>Offline Operation:</strong> Nodes continue to process tasks utilizing cached routing epochs during orchestrator downtime.</li>
-            </ul>
-
-            <h2 id="security-boundaries" className="text-2xl font-semibold mt-8 mb-4">Security Boundaries & Invariants</h2>
-            <ul className="list-disc pl-6 space-y-2">
-                <li>Deterministic WASM execution in an air-gapped memory sandbox.</li>
-                <li>Capability-scoped outbound I/O enforced by the daemon.</li>
-                <li>Cryptographically signed artifacts and routing epochs.</li>
-                <li>mTLS-secured telemetry transport.</li>
-                <li>Hardware-bound node identity keys for absolute proof of execution.</li>
-            </ul>
-
-            <h2 id="performance-characteristics" className="text-2xl font-semibold mt-8 mb-4">Performance Characteristics</h2>
-            <ul className="list-disc pl-6 space-y-2">
-                <li><strong>Local Ingress Validation Latency:</strong> &lt; 1ms overhead for local HMAC checks.</li>
-                <li><strong>WASM Cold Start:</strong> &lt; 10ms utilizing pre-compiled runtime caches.</li>
-                <li><strong>Capability Overhead:</strong> &lt; 2ms penalty for bridging host-function capabilities.</li>
-                <li><strong>Epoch Refresh Intervals:</strong> Asynchronous refreshes occur entirely outside the execution critical path.</li>
-            </ul>
-
-            <h2 id="responsibilities" className="text-2xl font-semibold mt-8 mb-4">Responsibilities</h2>
-            <ul className="list-disc pl-6 space-y-2">
-                <li><strong>Operator:</strong> Maintain uptime, protect node identity keys securely, and ensure host OS cgroups and sandboxing features are enabled.</li>
-                <li><strong>Developer:</strong> Define accurate <code>spec.yaml</code> manifests, explicitly declare required capabilities, and write deterministic WASM logic.</li>
-            </ul>
-
-            <h2 id="telemetry" className="text-2xl font-semibold mt-8 mb-4">Telemetry Emitted</h2>
-            <p>All telemetry utilizes mTLS transport and is cryptographically signed by the node's identity key. Envelopes include a monotonic sequence counter to prevent replay attacks. No plaintext logs are emitted.</p>
-
-            <h2 id="cross-component-interactions" className="text-2xl font-semibold mt-8 mb-4">Cross-Component Interactions</h2>
-            <p>Nodes operate independently based on locally cached routing epochs. The orchestrator functions exclusively as a stateless, horizontally scalable routing table publisher and authenticated telemetry sink. Telemetry interaction is secured via mTLS.</p>
-
-            <h2 id="best-practices" className="text-2xl font-semibold mt-8 mb-4">Best Practices & Anti-Patterns</h2>
-            <ul className="list-disc pl-6 space-y-2">
-                <li>Declare the absolute minimal required capabilities.</li>
-                <li>Avoid nondeterministic logic inside WASM modules.</li>
-                <li>Use conservative timeouts to account for network variability.</li>
-                <li>Do not modify the node environment manually; all configuration flows from the orchestrator.</li>
-            </ul>
+            <ReactMarkdown
+                components={{
+                    h1: ({node, ...props}) => <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white border-b border-slate-800 pb-6" {...props} />,
+                    h2: ({node, ...props}) => <h2 className="text-2xl font-bold mt-12 mb-6 text-white border-b border-slate-800/50 pb-2" {...props} />,
+                    h3: ({node, ...props}) => <h3 className="text-xl font-bold mt-8 mb-4 text-slate-200" {...props} />,
+                    p: ({node, ...props}) => <p className="text-slate-300 leading-relaxed mb-6" {...props} />,
+                    pre: ({node, ...props}) => <pre className="bg-slate-900 p-4 rounded-xl border border-slate-800 overflow-x-auto my-6" {...props} />,
+                    code: ({node, inline, className, children, ...props}: any) => {
+                        return inline ? (
+                            <code className="bg-slate-800 px-1.5 py-0.5 rounded text-sm text-blue-300 font-mono" {...props}>{children}</code>
+                        ) : (
+                            <code className="text-sm font-mono text-slate-300" {...props}>{children}</code>
+                        );
+                    },
+                    ul: ({node, ...props}) => <ul className="list-disc pl-6 space-y-2 my-4 text-slate-300" {...props} />,
+                    ol: ({node, ...props}) => <ol className="list-decimal pl-6 space-y-2 my-4 text-slate-300" {...props} />,
+                    li: ({node, ...props}) => <li className="" {...props} />,
+                    strong: ({node, ...props}) => <strong className="font-bold text-slate-200" {...props} />,
+                    a: ({node, href, children, ...props}: any) => <a className="text-blue-400 hover:text-blue-300 underline" href={href} {...props}>{children}</a>,
+                    img: ({node, ...props}) => <img className="rounded-xl border border-slate-800 shadow-2xl my-8 max-w-full" {...props} />,
+                }}
+            >
+                {markdownContent}
+            </ReactMarkdown>
         </div>
     );
 }

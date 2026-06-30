@@ -1,5 +1,7 @@
 # Wnode Architecture — Telemetry
 
+![diagram](/diagrams/telemetry-pipeline.png)
+
 Telemetry in the Wnode Sovereign Mesh is cryptographically signed, mTLS‑secured, deterministic, and replayable.  
 It provides verifiable insight into node behavior without exposing plaintext logs, retained buffers, or sensitive execution data.
 

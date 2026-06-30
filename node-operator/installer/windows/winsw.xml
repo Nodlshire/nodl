@@ -1,0 +1,9 @@
+<service>
+  <id>nodl-core</id>
+  <name>Wnode Operator Core</name>
+  <description>Deterministic execution fabric node for the Sovereign Mesh.</description>
+  <executable>nodl-core.exe</executable>
+  <logmode>roll</logmode>
+  <depend></depend>
+  <startargument>--profile=earth</startargument>
+</service>

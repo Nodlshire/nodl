@@ -27,6 +27,13 @@ type ProofOfWork struct {
 	DurationMs    int64
 }
 
+// trapReader is a deterministic PRNG stub that traps when read
+type trapReader struct{}
+
+func (trapReader) Read(p []byte) (n int, err error) {
+	return 0, fmt.Errorf("deterministic trap: random_get is not permitted")
+}
+
 // Runner is a reusable WASM execution sandbox.
 // A single Runner may execute many WASM modules sequentially.
 // It is safe for sequential use; parallel execution should use separate Runners.
@@ -79,13 +86,12 @@ func (r *Runner) Execute(ctx context.Context, jobID string, payload []byte, inpu
 	}
 	defer mod.Close(ctx)
 
-	// Instantiate with no preopened dirs (sandboxed)
+	// Instantiate with no preopened dirs (sandboxed), no time access, and trapped randomness
 	cfg := wazero.NewModuleConfig().
 		WithName("nodl-task").
 		WithStdout(nil).   // captured separately
 		WithStderr(nil).
-		WithSysWalltime().
-		WithSysNanotime()
+		WithRandSource(trapReader{})
 
 	instance, err := r.runtime.InstantiateModule(ctx, mod, cfg)
 	if err != nil {

@@ -48,6 +48,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                                 <a href="/docs/architecture/earth-mesh" className="text-sm font-medium hover:text-white transition-colors">Earth Mesh</a>
                                 <a href="/docs/architecture/space-mesh" className="text-sm font-medium hover:text-white transition-colors">Space Mesh</a>
                                 <a href="/docs/architecture/orchestrator" className="text-sm font-medium hover:text-white transition-colors">Orchestrator</a>
+                                <a href="/docs/architecture/node-operator" className="text-sm font-medium hover:text-white transition-colors">Node Operator</a>
                                 <a href="/docs/architecture/mesh-routing" className="text-sm font-medium hover:text-white transition-colors">Mesh Routing</a>
                                 <a href="/docs/architecture/ingestion-pipeline" className="text-sm font-medium hover:text-white transition-colors">Ingestion Pipeline</a>
                                 <a href="/docs/architecture/tinygo-pipeline" className="text-sm font-medium hover:text-white transition-colors">TinyGo Pipeline</a>
@@ -58,18 +59,15 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
 
                             <div className="flex flex-col gap-2">
                                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-2">Integrations</span>
-                                <a href="/docs/integrations/index.md" className="text-sm font-medium hover:text-white transition-colors">Integrations Index</a>
-                                <a href="/docs/integrations/aave" className="text-sm font-medium hover:text-white transition-colors">Aave</a>
-                                <a href="/docs/integrations/arweave" className="text-sm font-medium hover:text-white transition-colors">Arweave</a>
-                                <a href="/docs/integrations/base" className="text-sm font-medium hover:text-white transition-colors">Base</a>
-                                <a href="/docs/integrations/celestia" className="text-sm font-medium hover:text-white transition-colors">Celestia</a>
-                                <a href="/docs/integrations/chainlink" className="text-sm font-medium hover:text-white transition-colors">Chainlink</a>
-                                <a href="/docs/integrations/eigenlayer" className="text-sm font-medium hover:text-white transition-colors">EigenLayer</a>
-                                <a href="/docs/integrations/ethereum" className="text-sm font-medium hover:text-white transition-colors">Ethereum</a>
-                                <a href="/docs/integrations/filecoin" className="text-sm font-medium hover:text-white transition-colors">Filecoin</a>
-                                <a href="/docs/integrations/ipfs" className="text-sm font-medium hover:text-white transition-colors">IPFS</a>
-                                <a href="/docs/integrations/polygon" className="text-sm font-medium hover:text-white transition-colors">Polygon</a>
-                                <a href="/docs/integrations/solana" className="text-sm font-medium hover:text-white transition-colors">Solana</a>
+                                <a href="/docs/integrations/architecture" className="text-sm font-medium hover:text-white transition-colors">Architecture</a>
+                                <a href="/docs/integrations/optimisation-engine" className="text-sm font-medium hover:text-white transition-colors">Optimisation Engine</a>
+                                <a href="/docs/integrations/ai-search-engine" className="text-sm font-medium hover:text-white transition-colors">AI Search Engine</a>
+                                <a href="/docs/integrations/web3-unification-substrate" className="text-sm font-medium hover:text-white transition-colors">Web3 Unification Substrate</a>
+                                <a href="/docs/integrations/machinefi-and-m2m" className="text-sm font-medium hover:text-white transition-colors">MachineFi & M2M</a>
+                                <a href="/docs/integrations/agentic-workflows" className="text-sm font-medium hover:text-white transition-colors">Agentic Workflows</a>
+                                <a href="/docs/integrations/agent-finance" className="text-sm font-medium hover:text-white transition-colors">Agent Finance</a>
+                                <a href="/docs/integrations/mev-engine" className="text-sm font-medium hover:text-white transition-colors">MEV Engine</a>
+                                <a href="/docs/integrations/index.md" className="text-sm font-medium hover:text-white transition-colors">Integration Index</a>
                             </div>
 
                             <div className="flex flex-col gap-2">

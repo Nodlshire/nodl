@@ -167,7 +167,8 @@ func routeTask(task SandboxTask) (string, error) {
 		// the task.Limits and data. ExecuteWasm will create its own internal context
 		// bounded by the same Limits.CpuTimeoutMs.
 		// A cleaner approach in the future would be passing context down to routeTask.
-		return ExecuteWasm(context.Background(), wasmBytes, task.Data, task.Limits)
+		opts := ExecutionOptions{ModuleID: task.WasmUrl}
+		return ExecuteWasm(context.Background(), wasmBytes, task.Data, task.Limits, opts)
 
 	default:
 		return "", fmt.Errorf("unsupported action: %s", task.Action)

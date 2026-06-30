@@ -16,11 +16,13 @@ import (
 
 // RoutingEpoch represents a signed configuration dictating allowed ingress routes
 type RoutingEpoch struct {
-	EpochID       string            `json:"epoch_id"`
-	AllowedRoutes []string          `json:"allowed_routes"`
-	HMACSecret    string            `json:"hmac_secret"`
-	ExpiresAt     time.Time         `json:"expires_at"`
-	Signature     string            `json:"signature"`
+	EpochID       string              `json:"epoch_id"`
+	AllowedRoutes []string            `json:"allowed_routes"`
+	HMACSecret    string              `json:"hmac_secret"`
+	ExpiresAt     time.Time           `json:"expires_at"`
+	Signature     string              `json:"signature"`
+	Capabilities  map[string][]string `json:"capabilities"`
+	Determinism   string              `json:"determinism"`
 }
 
 var (
@@ -118,5 +120,18 @@ func ValidateIngress(route string, payloadBytes []byte, providedHMAC string) err
 		return fmt.Errorf("HMAC mismatch: request is unauthorized or tampered")
 	}
 
+	return nil
+}
+
+// GetEpochCapabilities returns the capabilities mapped to a specific route in the active epoch
+func GetEpochCapabilities(route string) []string {
+	epochMu.RLock()
+	defer epochMu.RUnlock()
+	
+	if currentEpoch.Capabilities != nil {
+		if caps, exists := currentEpoch.Capabilities[route]; exists {
+			return caps
+		}
+	}
 	return nil
 }

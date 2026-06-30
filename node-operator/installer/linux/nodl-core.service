@@ -1,0 +1,14 @@
+[Unit]
+Description=Wnode Operator Core Daemon
+After=network.target
+
+[Service]
+Type=simple
+User=wnode
+ExecStart=/usr/local/bin/nodl-core
+Restart=on-failure
+Environment=NODL_DEVICE_TOKEN=
+Environment=NODL_PROFILE=earth
+
+[Install]
+WantedBy=multi-user.target

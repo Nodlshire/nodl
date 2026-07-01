@@ -14,10 +14,10 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
             {/* Minimal Header instance without interactive Contact modal for docs to keep it simple, or we can just use the standard one with a dummy or functional prop if needed. Since Header expects onContactClick, we will provide a no-op for now. */}
             <Header onContactClick={() => {}} />
 
-            <div className="max-w-7xl mx-auto px-6 md:px-8 pt-32 pb-24 flex flex-col md:flex-row gap-12">
+            <div className="max-w-7xl mx-auto px-6 md:px-8 pt-32 pb-24 flex overflow-visible flex-col md:flex-row gap-12">
                 {/* Sidebar Navigation */}
-                <aside className="md:w-64 flex-shrink-0">
-                    <div className="sticky top-32 flex flex-col gap-8">
+                <aside className="md:w-64 sticky top-0 h-screen overflow-y-auto flex-shrink-0">
+                    <div className="flex flex-col gap-8 pt-8 pb-24">
                         
                         {/* Search Placeholder */}
                         <div className="relative">
@@ -160,7 +160,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                 </aside>
 
                 {/* Main Content Area */}
-                <main className="flex-1 min-w-0 flex flex-col lg:flex-row gap-12">
+                <main className="flex-1 overflow-visible min-w-0 flex flex-col lg:flex-row gap-12">
                     <div className="flex-1 w-full max-w-[880px] mx-auto text-[#e5e7eb]">
                         {children}
                     </div>

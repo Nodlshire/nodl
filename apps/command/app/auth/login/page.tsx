@@ -53,9 +53,9 @@ export default function LoginPage() {
 
             if (res.ok) {
                 if (data) {
-                    localStorage.setItem("nodl_user", JSON.stringify(data.user || data));
+                    localStorage.setItem("cmd_session", JSON.stringify(data.user || data));
                 }
-                router.push('/');
+                window.location.href = '/';
                 return;
             } else {
                 setError('Invalid credentials.');

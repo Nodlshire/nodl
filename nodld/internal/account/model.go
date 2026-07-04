@@ -116,6 +116,8 @@ type Nodlr struct {
 	Labels                []string        `json:"labels"`
 	Archetype             Archetype       `json:"archetype,omitempty"`
 	CreatedAt             time.Time       `json:"createdAt"`
+	TOTPSecret            string          `json:"totpSecret,omitempty"`
+	TOTPEnabled           bool            `json:"totpEnabled"`
 }
 
 // AffiliateRelation represents a link in the tree.
@@ -326,11 +328,21 @@ type MagicLinkToken struct {
 
 // DomainSession represents a verified session for a specific identity domain.
 type DomainSession struct {
-	WUID      string    `json:"wuid"`
-	Domain    string    `json:"domain"`
-	Role      UserRole  `json:"role"`
-	ExpiresAt time.Time `json:"expiresAt"`
-	CreatedAt time.Time `json:"createdAt"`
+	WUID         string    `json:"wuid"`
+	Domain       string    `json:"domain"`
+	Role         UserRole  `json:"role"`
+	TwoFAEnabled bool      `json:"twoFAEnabled"`
+	TwoFAVerified bool     `json:"twoFAVerified"`
+	ExpiresAt    time.Time `json:"expiresAt"`
+	CreatedAt    time.Time `json:"createdAt"`
+}
+
+// WUIDHardwareMapping explicitly maps a human WUID to a specific hardware node.
+type WUIDHardwareMapping struct {
+	WUID               string    `json:"wuid"`
+	HardwareHash       string    `json:"hardwareHash"`
+	BrowserFingerprint string    `json:"browserFingerprint,omitempty"`
+	CreatedAt          time.Time `json:"createdAt"`
 }
 
 // CRMRecord represents the authoritative identity and contact data for a platform participant.

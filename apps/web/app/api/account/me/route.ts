@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
     const jwt = authHeader.replace(/^Bearer\s+/i, '');
 
     // Also check cookie-based token as fallback
-    const cookieToken = req.cookies.get('nodl_jwt')?.value;
+    const cookieToken = req.cookies.get('mesh_session')?.value;
     const token = jwt || cookieToken || '';
 
     try {

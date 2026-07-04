@@ -25,7 +25,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // 1. On mount, read user from localStorage
         let bootstrapped = null;
         if (typeof window !== 'undefined') {
-            const cached = localStorage.getItem('nodl_user');
+            const cached = localStorage.getItem('nodlr_session');
             if (cached) {
                 try {
                     const parsed = JSON.parse(cached);
@@ -41,7 +41,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // 2. Call /api/account/me in background
         const fetchSession = async () => {
             try {
-                const res = await fetch('/api/account/me', { credentials: 'include' });
+                const res = await fetch('/api/account/me', { credentials: 'include', method: 'GET' });
                 if (res.ok) {
                     const data = await res.json();
                     data.id = data.id || data.ID || data.wuid || data.WnodeID;
@@ -49,7 +49,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                     setSession({ user: data });
                     setProfile(data);
                     if (typeof window !== 'undefined') {
-                        localStorage.setItem('nodl_user', JSON.stringify(data));
+                        localStorage.setItem('nodlr_session', JSON.stringify(data));
+                        localStorage.setItem('nodlr_user_id', data.id);
                     }
                 } else {
                     // Do NOT clear user on transient 401s if we successfully bootstrapped
@@ -58,7 +59,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                         setSession(null);
                         setProfile(null);
                         if (typeof window !== 'undefined') {
-                            localStorage.removeItem('nodl_user');
+                            localStorage.removeItem('nodlr_session');
+                            localStorage.removeItem('nodlr_user_id');
                         }
                     }
                 }

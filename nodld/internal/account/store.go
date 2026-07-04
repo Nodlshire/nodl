@@ -34,6 +34,9 @@ type Store struct {
 	// CRM Registry
 	crmRecords         map[string]*CRMRecord
 
+	// Hardware Identity Separation
+	hardwareMapping    map[string]*WUIDHardwareMapping
+
 	// Mesh Client ID Generation State
 	meshBucket         int
 	meshSequence       int
@@ -1142,6 +1145,16 @@ func (s *Store) RegisterNode(userId string, metadata NodeMetadata, hardwareHash 
 	// Perform initial identity registration consistency check
 	s.EvaluateIdentityConsistencyLocked(userId, hardwareHash, browserFingerprint, deviceClass)
 
+	// Hardware mapping
+	if hardwareHash != "" {
+		s.hardwareMapping[hardwareHash] = &WUIDHardwareMapping{
+			WUID:               userId,
+			HardwareHash:       hardwareHash,
+			BrowserFingerprint: browserFingerprint,
+			CreatedAt:          time.Now(),
+		}
+	}
+
 	return deviceToken, nil
 }
 
@@ -1219,6 +1232,16 @@ func (s *Store) UpdateNodeHeartbeat(nodeID string, metrics NodeHealthMetrics, ha
 
 		// Weighted aggregation
 		node.GlobalScore = (localScore * 0.6) + (uptimeScore * 0.2) + (successRate * 0.2)
+	}
+
+	// Hardware mapping
+	if hardwareHash != "" {
+		s.hardwareMapping[hardwareHash] = &WUIDHardwareMapping{
+			WUID:               node.UserID,
+			HardwareHash:       hardwareHash,
+			BrowserFingerprint: browserFingerprint,
+			CreatedAt:          time.Now(),
+		}
 	}
 
 	s.EvaluateIdentityConsistencyLocked(node.UserID, hardwareHash, browserFingerprint, deviceClass)
@@ -1713,13 +1736,21 @@ func (s *Store) ConsumeMagicLinkToken(token string) (*MagicLinkToken, error) {
 func (s *Store) CreateSession(wuid, domain string, role UserRole) string {
 	s.mu.Lock()
 	defer s.mu.Unlock()
+	
+	twoFAEnabled := false
+	if n, ok := s.nodlrs[wuid]; ok {
+		twoFAEnabled = n.TOTPEnabled
+	}
+
 	sessionID := uuid.New().String()
 	s.domainSessions[sessionID] = &DomainSession{
-		WUID:      wuid,
-		Domain:    domain,
-		Role:      role,
-		ExpiresAt: time.Now().Add(24 * time.Hour),
-		CreatedAt: time.Now(),
+		WUID:         wuid,
+		Domain:       domain,
+		Role:         role,
+		TwoFAEnabled: twoFAEnabled,
+		TwoFAVerified: false,
+		ExpiresAt:    time.Now().Add(24 * time.Hour),
+		CreatedAt:    time.Now(),
 	}
 	go s.SaveState()
 	return sessionID

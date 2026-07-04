@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"strings"
 	"sync"
 	"time"
@@ -277,8 +278,14 @@ func (s *Server) registerRoutes() {
 	// Auth Aliases for Frontend (Phase 4 MVP)
 	// apiV1.Post("/auth/login", s.handleHealth) // MVP Mock
 	apiV1.Post("/auth/signup", s.handleOnboardAccount)
-	apiV1.Post("/auth/magic-link", s.handleMagicLink)
-	apiV1.Post("/auth/verify", s.handleVerifyMagicLink)
+	apiV1.Post("/auth/request-magic-link", s.handleMagicLink)
+	apiV1.Post("/auth/verify-magic-link", s.handleVerifyMagicLink)
+	apiV1.Post("/auth/google", s.handleGoogleAuth)
+
+	// TOTP 2FA Endpoints
+	apiV1.Post("/auth/2fa/enable", s.requireAccess(account.RoleStandard), s.handleEnable2FA)
+	apiV1.Post("/auth/2fa/disable", s.requireAccess(account.RoleStandard), s.handleDisable2FA)
+	apiV1.Post("/auth/2fa/verify", s.requireAccess(account.RoleStandard), s.handleVerify2FA)
 	
 	// Phase 8 & 9: CMD Invites
 	apiV1.Get("/admin/founder/slots", s.requireAccess(account.RoleManagement, "command"), s.handleGetFounderSlots)
@@ -1274,6 +1281,7 @@ func (s *Server) requireLevel(minLevel account.UserRole) fiber.Handler {
 // requireAccess enforces RBAC levels AND domain-scoped portal isolation.
 func (s *Server) requireAccess(minLevel account.UserRole, allowedPortals ...string) fiber.Handler {
 	return func(c *fiber.Ctx) error {
+		fmt.Printf("[AUTH_DIAGNOSTIC] Path: %s | Headers: %v | Cookie: %s\n", c.Path(), c.GetReqHeaders(), c.Cookies("cmd_session"));
 		// Owner bypass
 		if s.isOwner(c) {
 			c.Locals("user_id", account.AuthoritativeOwnerID)
@@ -1309,6 +1317,16 @@ func (s *Server) requireAccess(minLevel account.UserRole, allowedPortals ...stri
 		requester, ok := s.accountStore.GetNodlr(requesterID)
 		if !ok {
 			return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "account not found"})
+		}
+
+		// Enforce 2FA verification if enabled
+		// Bypass for /api/v1/auth/2fa/verify, /api/v1/auth/logout, and Owner bypass which skips this
+		if sess, ok := s.accountStore.GetSession(c.Cookies(domain + "_session")); ok {
+			if sess.TwoFAEnabled && !sess.TwoFAVerified {
+				if string(c.Request().URI().Path()) != "/api/v1/auth/2fa/verify" && string(c.Request().URI().Path()) != "/api/v1/auth/logout" {
+					return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "totp_required"})
+				}
+			}
 		}
 
 		// Master Key Protocol: SuperAdmins bypass all RBAC and status checks
@@ -2055,13 +2073,24 @@ func (s *Server) handleRegister(c *fiber.Ctx) error {
 
 	sessionID := s.accountStore.CreateSession(newNodlr.ID, req.Domain, newNodlr.Role)
 
+	secureFlag := true
+	domainFlag := ".wnode.one"
+	sameSiteFlag := "None"
+
+	if os.Getenv("DEVELOPMENT_MODE") == "true" {
+		secureFlag = false
+		domainFlag = ""
+		sameSiteFlag = "Lax"
+	}
+
 	c.Cookie(&fiber.Cookie{
 		Name:     req.Domain + "_session",
 		Value:    sessionID,
 		Expires:  time.Now().Add(24 * time.Hour * 30),
 		HTTPOnly: true,
-		Secure:   false, 
-		SameSite: "Lax",
+		Secure:   secureFlag,
+		SameSite: sameSiteFlag,
+		Domain:   domainFlag,
 		Path:     "/",
 	})
 
@@ -2079,27 +2108,38 @@ func (s *Server) handleLogin(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid request"})
 	}
 
-	// Explicit developer identity mapping (Deterministic)
+	log.Printf("[AUTH_DEBUG] Request payload received: %+v", req)
+
+	// Resolve email dynamically
 	if req.Email != "" {
 		normalized := strings.ToLower(strings.TrimSpace(req.Email))
-		if normalized == "stephen@wnode.one" || normalized == "stephen@nodl.one" {
-			req.WUID = "100001-0426-01-AA"
-		} else if normalized == "test@user.com" {
-			req.WUID = "100002-0426-01-AA"
-		} else {
-			return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "unauthorized developer identity"})
+		nodlr, ok := s.accountStore.GetNodlrByEmail(normalized)
+		if !ok {
+			log.Printf("[AUTH_DEBUG] Login attempt failed for email: %s, domain: %s. Reason: email not found", req.Email, req.Domain)
+			return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "invalid credentials"})
 		}
+		req.WUID = nodlr.ID
 	}
 
 	acc, ok := s.accountStore.GetNodlr(req.WUID)
 	if !ok {
+		log.Printf("[AUTH_DEBUG] Login attempt failed for email: %s, domain: %s. Reason: account not found for WUID %s", req.Email, req.Domain, req.WUID)
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "account not found"})
+	}
+
+	// Enforce Command Invite-Only
+	if req.Domain == "command" {
+		if acc.Role != account.RoleOwner && acc.Role != account.RoleExecutive && acc.Role != account.RoleManagement && !acc.IsSuperAdmin {
+			log.Printf("[AUTH_DEBUG] Login attempt failed for email: %s, domain: %s. Reason: command_invite_required", req.Email, req.Domain)
+			return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "command_invite_required"})
+		}
 	}
 
 	// Verify canonical password from SOT
 	if acc.Password != "" {
 		err := bcrypt.CompareHashAndPassword([]byte(acc.Password), []byte(req.Password))
 		if err != nil {
+			log.Printf("[AUTH_DEBUG] Login attempt failed for email: %s, domain: %s. Reason: %v", req.Email, req.Domain, err)
 			return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "invalid developer password"})
 		}
 	}

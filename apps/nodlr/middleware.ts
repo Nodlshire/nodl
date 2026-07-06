@@ -10,7 +10,8 @@ export function middleware(request: NextRequest) {
                        request.nextUrl.pathname.endsWith('.webp') ||
                        request.nextUrl.pathname.endsWith('.ico') ||
                        request.nextUrl.pathname.endsWith('.png') ||
-                       request.nextUrl.pathname.endsWith('.svg');
+                       request.nextUrl.pathname.endsWith('.svg') ||
+                       request.nextUrl.pathname.startsWith('/install/');
 
   // If no session and trying to access protected page
   if (!session && !isAuthPage && !isPublicFile) {

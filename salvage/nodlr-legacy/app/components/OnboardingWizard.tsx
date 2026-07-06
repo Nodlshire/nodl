@@ -26,7 +26,7 @@ export default function OnboardingWizard() {
     const handleConnectStripe = async () => {
         setIsConnecting(true);
         try {
-            const apiBase = process.env.NEXT_PUBLIC_API_URL || 'https://api.nodl.one';
+            const apiBase = process.env.NEXT_PUBLIC_API_URL || 'https://api.wnode.one';
             const res = await fetch(`${apiBase}/api/v1/stripe/connect/account`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

@@ -11,39 +11,39 @@ interface AddMachineModalProps {
 }
 
 export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachineModalProps) {
-  const [pairingCode, setPairingCode] = useState("WN-7F3K-92QX"); // Placeholder for now
-  const [copied, setCopied] = useState(false);
-  const [loadingCode, setLoadingCode] = useState(false);
+  const [headlessToken, setHeadlessToken] = useState<string | null>(null);
+  const [loadingHeadless, setLoadingHeadless] = useState(false);
+  const [headlessCopied, setHeadlessCopied] = useState("");
 
-  const generatePairingCode = async () => {
-    setLoadingCode(true);
+  const generateHeadlessToken = async () => {
+    setLoadingHeadless(true);
     try {
-      const res = await fetch(`${apiBase}/api/nodes/pairing-code/create`, {
+      const res = await fetch(`${apiBase}/api/nodes/headless-token/create`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('nodl_jwt')}`
         }
       });
-      if (!res.ok) throw new Error("Failed to generate code");
+      if (!res.ok) throw new Error("Failed to generate headless token");
       const data = await res.json();
-      setPairingCode(data.code);
+      setHeadlessToken(data.token);
     } catch (err) {
-      console.error("Failed to generate code", err);
+      console.error("Failed to generate headless token", err);
     } finally {
-      setLoadingCode(false);
+      setLoadingHeadless(false);
     }
   };
 
-  const copyCode = () => {
-    navigator.clipboard.writeText(pairingCode);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const copyHeadless = (text: string, os: string) => {
+    navigator.clipboard.writeText(text);
+    setHeadlessCopied(os);
+    setTimeout(() => setHeadlessCopied(""), 2000);
   };
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-xl">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/90 backdrop-blur-xl overflow-hidden" style={{ overscrollBehavior: 'contain' }}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -70,9 +70,6 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
           {/* Option 1: Browser */}
           <div className="space-y-6 flex flex-col h-full lg:pr-5">
             <div className="space-y-2">
-              <div className="flex items-center gap-3">
-                <span className="px-2 py-0.5 bg-green-500/10 text-green-500 text-[10px] font-bold uppercase tracking-widest rounded-full border border-green-500/20">Recommended</span>
-              </div>
               <h3 className="text-xl font-bold text-white">Option 1 — Connect through your browser</h3>
               <p className="text-sm text-slate-400 font-medium">Perfect for beginners. No codes. No setup. Just works.</p>
             </div>
@@ -100,73 +97,10 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
             </div>
           </div>
 
-          {/* Option 2: Pairing Code */}
+          {/* Option 2: Install the Nodlr Compute Agent (UI Node Operator) */}
           <div className="space-y-6 flex flex-col h-full lg:px-10 py-10 lg:py-0">
-            <div className="space-y-2">
-              <h3 className="text-xl font-bold text-white">Option 2 — Use a pairing code</h3>
-              <p className="text-sm text-slate-400 font-medium">Use this when you can’t open a browser on the target machine.</p>
-            </div>
-
-            <div className="space-y-5">
-              <div className="flex gap-4 items-start">
-                <div className="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center shrink-0 border border-white/10 mt-0.5">
-                  <span className="text-[10px] text-white font-bold">1</span>
-                </div>
-                <span className="text-sm text-slate-300 leading-relaxed">Start the Nodlr node software on the machine you want to connect.</span>
-              </div>
-
-              <div className="flex gap-4 items-start">
-                <div className="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center shrink-0 border border-white/10 mt-0.5">
-                  <span className="text-[10px] text-white font-bold">2</span>
-                </div>
-                <div className="flex-1 space-y-3">
-                  <span className="text-sm text-slate-300 leading-relaxed block">When prompted, enter this pairing code:</span>
-                  
-                  <div className="flex items-stretch gap-2">
-                    <div className="flex-1 bg-black border border-white/20 px-4 py-3 font-mono text-cyber-cyan text-xl tracking-[0.2em] flex items-center justify-center rounded-[4px]">
-                      {pairingCode}
-                    </div>
-                    <button 
-                      onClick={copyCode}
-                      className="px-4 border border-white/10 hover:bg-white/5 rounded-[4px] transition-colors group"
-                    >
-                      {copied ? <Check className="w-5 h-5 text-green-500" /> : <Copy className="w-5 h-5 text-white/40 group-hover:text-white" />}
-                    </button>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <button 
-                      onClick={generatePairingCode}
-                      disabled={loadingCode}
-                      className="text-[10px] uppercase tracking-widest font-bold text-cyber-cyan hover:underline disabled:opacity-50"
-                    >
-                      {loadingCode ? "Generating..." : "Generate new code"}
-                    </button>
-                    <span className="text-[10px] text-slate-500 uppercase font-bold tracking-widest">Expires in 10 minutes</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex gap-4 items-start">
-                <div className="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center shrink-0 border border-white/10 mt-0.5">
-                  <span className="text-[10px] text-white font-bold">3</span>
-                </div>
-                <span className="text-sm text-slate-300 leading-relaxed">The machine links instantly to your account.</span>
-              </div>
-
-              <div className="flex gap-4 items-start">
-                <div className="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center shrink-0 border border-white/10 mt-0.5">
-                  <span className="text-[10px] text-white font-bold">4</span>
-                </div>
-                <span className="text-sm text-slate-300 leading-relaxed">A secure token is stored locally so it reconnects automatically after reboot.</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Option 3: Compute Agent */}
-          <div className="space-y-6 flex flex-col h-full lg:pl-10 py-10 lg:py-0">
              <div className="space-y-2">
-              <h3 className="text-xl font-bold text-white leading-tight">Option 3 — Install the Nodlr Compute Agent</h3>
+              <h3 className="text-xl font-bold text-white leading-tight">Option 2 — Install the Nodlr Compute Agent (UI Node Operator)</h3>
               <p className="text-sm text-slate-400 font-medium italic">For farms & power users.</p>
             </div>
 
@@ -178,14 +112,18 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                 <div className="flex-1 space-y-3">
                   <span className="text-sm text-slate-300 leading-relaxed block">Download the Nodlr Compute Agent for your system:</span>
                   <div className="grid grid-cols-1 gap-2">
-                    {["macOS", "Windows", "Linux"].map(os => (
-                      <button key={os} className="flex items-center justify-between px-4 py-2.5 bg-white/5 border border-white/10 hover:bg-white/10 transition-all rounded-[4px] group">
+                    {[
+                      { os: "macOS", url: "https://github.com/wnode/node-operator/releases/download/v1.0.0/nodl-core-darwin-arm64" },
+                      { os: "Windows", url: "https://github.com/wnode/node-operator/releases/download/v1.0.0/nodl-core-windows-amd64.exe" },
+                      { os: "Linux", url: "https://github.com/wnode/node-operator/releases/download/v1.0.0/nodl-core-linux-amd64" }
+                    ].map(item => (
+                      <a key={item.os} href={item.url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between px-4 py-2.5 bg-white/5 border border-white/10 hover:bg-white/10 transition-all rounded-[4px] group">
                         <div className="flex items-center gap-3">
                           <Download className="w-4 h-4 text-white/40 group-hover:text-cyber-cyan" />
-                          <span className="text-xs text-slate-300 font-bold tracking-wide">Download for {os}</span>
+                          <span className="text-xs text-slate-300 font-bold tracking-wide">Download for {item.os}</span>
                         </div>
                         <ChevronRight className="w-3 h-3 text-white/20" />
-                      </button>
+                      </a>
                     ))}
                   </div>
                 </div>
@@ -213,6 +151,73 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                 <span className="text-[10px] font-black uppercase tracking-[0.2em]">Always-Earning Mode</span>
               </div>
               <p className="text-13px text-slate-400 mt-2 font-medium">Ideal for dedicated machines, farms, and always-on setups.</p>
+            </div>
+          </div>
+
+          {/* Option 3: Install Headless Node Operator (CLI) */}
+          <div className="space-y-6 flex flex-col h-full lg:pl-10 py-10 lg:py-0">
+             <div className="space-y-2">
+              <h3 className="text-xl font-bold text-white leading-tight">Option 3 — Install Headless Node Operator (CLI)</h3>
+              <p className="text-sm text-slate-400 font-medium italic">For Linux, macOS, or Android CLI.</p>
+            </div>
+
+            <div className="space-y-5 flex-1">
+              <div className="flex gap-4 items-start">
+                <div className="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center shrink-0 border border-white/10 mt-0.5">
+                  <span className="text-[10px] text-white font-bold">1</span>
+                </div>
+                <div className="flex-1 space-y-3">
+                  <span className="text-sm text-slate-300 leading-relaxed block">Generate a secure registration token:</span>
+                  <div className="flex items-center">
+                    <button 
+                      onClick={generateHeadlessToken}
+                      disabled={loadingHeadless}
+                      className="px-4 py-2 border border-white/10 hover:bg-white/5 rounded-[4px] transition-colors text-xs font-bold text-cyber-cyan disabled:opacity-50"
+                    >
+                      {loadingHeadless ? "Generating..." : headlessToken ? "Generate new token" : "Generate Token"}
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {headlessToken && (
+                <div className="flex gap-4 items-start">
+                  <div className="w-6 h-6 rounded-full bg-white/5 flex items-center justify-center shrink-0 border border-white/10 mt-0.5">
+                    <span className="text-[10px] text-white font-bold">2</span>
+                  </div>
+                  <div className="flex-1 space-y-3">
+                    <span className="text-sm text-slate-300 leading-relaxed block">Run the installer on your server:</span>
+                    <div className="grid grid-cols-1 gap-3">
+                      {[
+                        { os: "Linux", cmd: `curl -s https://wnode.one/install/linux.sh | bash -s ${headlessToken}` },
+                        { os: "macOS", cmd: `curl -s https://wnode.one/install/macos.sh | bash -s ${headlessToken}` },
+                        { os: "Windows", cmd: `Invoke-WebRequest -Uri https://wnode.one/install/windows.ps1 -OutFile install.ps1; .\\install.ps1 -Token "${headlessToken}"` },
+                        { os: "Android", cmd: `curl -s https://wnode.one/install/android.sh | bash -s ${headlessToken}` }
+                      ].map(item => (
+                        <div key={item.os} className="space-y-1">
+                          <span className="text-[10px] font-bold text-slate-400 uppercase">{item.os}</span>
+                          <div className="flex items-stretch gap-2">
+                            <div className="flex-1 bg-black border border-white/20 px-3 py-2 font-mono text-[10px] text-slate-300 flex items-center rounded-[4px] overflow-x-auto whitespace-nowrap">
+                              {item.cmd}
+                            </div>
+                            <button 
+                              onClick={() => copyHeadless(item.cmd, item.os)}
+                              className="px-3 border border-white/10 hover:bg-white/5 rounded-[4px] transition-colors group flex items-center justify-center shrink-0"
+                            >
+                              {headlessCopied === item.os ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4 text-white/40 group-hover:text-white" />}
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="pt-6 border-t border-white/5 bg-white/[0.01] -mx-10 px-10 -mb-10 pb-10 mt-auto">
+              <p className="text-[11px] text-slate-500 uppercase tracking-widest font-bold">Secure</p>
+              <p className="text-13px text-slate-400 mt-1 font-medium italic">No passwords required. Token is one-time use.</p>
             </div>
           </div>
         </div>

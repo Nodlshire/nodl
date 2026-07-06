@@ -7,7 +7,7 @@ export default function Navbar() {
         <nav className="flex items-center justify-between py-6 px-8 border-b border-white/5 backdrop-blur-xl sticky top-0 z-50">
             <div className="flex items-center gap-3">
                 <img
-                    src="https://nodl.one/wp-content/uploads/2025/05/nodl-medium.webp"
+                    src="https://wnode.one/wp-content/uploads/2025/05/nodl-medium.webp"
                     alt="Nodl"
                     className="w-16 h-auto"
                 />

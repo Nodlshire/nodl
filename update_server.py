@@ -18,7 +18,7 @@ content = content.replace(dev_mode_block, "")
 old_identity = """	// Explicit developer identity mapping (Deterministic)
 	if req.Email != "" {
 		normalized := strings.ToLower(strings.TrimSpace(req.Email))
-		if normalized == "stephen@wnode.one" || normalized == "stephen@nodl.one" {
+		if normalized == "stephen@wnode.one" || normalized == "stephen@wnode.one" {
 			req.WUID = "100001-0426-01-AA"
 		} else if normalized == "test@user.com" {
 			req.WUID = "100002-0426-01-AA"

@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
         const url = new URL(req.url);
         const resolvedPath = url.pathname.replace('/api/auth/', '');
         let targetEndpoint = resolvedPath;
-        if (resolvedPath === 'debug-session' || resolvedPath === 'login') {
+        if (resolvedPath === 'login') {
             targetEndpoint = 'login';
         }
         const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8080";
@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
                 if (isLocal) {
                     cookieValue = cookieValue
                         .replace(/Domain=[^;]+;?\s*/gi, '')
-                        .replace(/SameSite=None/gi, 'SameSite=Lax');
+                        .replace(/SameSite=None/gi, 'SameSite=Lax').replace(/Secure;?/gi, '');
                 }
                 headers.append('set-cookie', cookieValue);
             }

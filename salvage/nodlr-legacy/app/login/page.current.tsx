@@ -19,7 +19,7 @@ export default function LoginPage() {
         setError('');
 
         // Specific seed account check/bypass for Phase 4
-        if (email === 'stephen@nodl.one' && password === 'command') {
+        if (email === 'stephen@wnode.one' && password === 'command') {
             localStorage.setItem('nodl_auth_bypass', 'true');
             localStorage.setItem('nodl_user_email', email);
             setTimeout(() => {
@@ -48,7 +48,7 @@ export default function LoginPage() {
                 {/* Logo Section */}
                 <div className="flex flex-col items-center mb-10">
                     <img
-                        src="https://nodl.one/wp-content/uploads/2025/05/nodl-medium.webp"
+                        src="https://wnode.one/wp-content/uploads/2025/05/nodl-medium.webp"
                         alt="Nodl"
                         className="w-48 h-auto mb-2"
                         style={{ filter: 'drop-shadow(0 0 15px rgba(147, 51, 234, 0.3))' }}
@@ -160,11 +160,11 @@ export default function LoginPage() {
 
                 <div className="mt-12 text-center">
                     <a
-                        href="https://nodl.one"
+                        href="https://wnode.one"
                         target="_blank"
                         className="text-white hover:text-slate-200 text-[10px]  uppercase tracking-[0.2em] transition-colors"
                     >
-                        go to nodl.one
+                        go to wnode.one
                     </a>
                 </div>
             </motion.div>

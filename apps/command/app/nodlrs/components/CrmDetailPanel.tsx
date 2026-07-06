@@ -280,7 +280,7 @@ export default function CrmDetailPanel({
                             <section className="space-y-4 mt-4">
                                 <IdentityEditor 
                                     person={person} 
-                                    onSaveSuccess={() => onUpdate(person)} 
+                                    onSaveSuccess={(mesh, nodlr) => onUpdate({ ...person, isMeshCustomer: mesh, isNodlr: nodlr })} 
                                 />
                             </section>
 

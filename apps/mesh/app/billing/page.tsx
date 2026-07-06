@@ -24,7 +24,7 @@ export default function BillingPage() {
 
     const fetchTransactions = async () => {
         try {
-            const email = localStorage.getItem('nodl_user_email') || 'stephen@nodl.one';
+            const email = localStorage.getItem('nodl_user_email') || 'stephen@wnode.one';
             const apiBase = '';
             const res = await fetch(`${apiBase}/api/v1/money/transactions?email=${encodeURIComponent(email)}`);
             if (res.ok) {

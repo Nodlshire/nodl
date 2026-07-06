@@ -26,7 +26,7 @@ export default function LoginPage() {
 
         // Specific seed account check/bypass for Phase 4
         // Use: stephen@wnode.one / command
-        if ((normalizedEmail === 'stephen@wnode.one' || normalizedEmail === 'stephen@nodl.one') && normalizedPassword === 'command') {
+        if ((normalizedEmail === 'stephen@wnode.one' || normalizedEmail === 'stephen@wnode.one') && normalizedPassword === 'command') {
             console.log('[Auth Debug] Peak Developer credentials accepted.');
             localStorage.setItem('nodl_auth_bypass', 'true');
             localStorage.setItem('nodl_user_email', normalizedEmail);

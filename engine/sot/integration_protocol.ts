@@ -38,16 +38,20 @@ export class IntegrationProtocol {
         console.log(`[SOT] Assigned Founder identity to ${handshake.identifier}`);
     }
 
-    static getProgrammaticIdentities(wuid: string, existingFlags?: any): any {
+    static getProgrammaticIdentities(wuid: string, person?: any): any {
         // In a real scenario, this would query the SOT ledger for this WUID.
         // For the proxy, we mirror the existing flags or mock them for testing.
+        
+        // Canonical SOT override for Founder/Owner
+        const isCanonicalFounder = wuid === "100001-0426-01-AA" || wuid === "1000001-0426-01-AA";
+
         return {
-            isFounderOrPartner: !!existingFlags?.isFounderOrPartner,
-            isOwner: !!existingFlags?.isOwner || wuid === "W-OWNER-TEST",
-            isCommand: !!existingFlags?.isCommand,
-            isMeshInt: !!existingFlags?.isMeshInt,
-            isNodlrInt: !!existingFlags?.isNodlrInt,
-            isTechFounder: !!existingFlags?.isTechFounder
+            isFounderOrPartner: !!person?.isFounderOrPartner || isCanonicalFounder,
+            isOwner: !!person?.isOwner || isCanonicalFounder || wuid === "W-OWNER-TEST",
+            isCommand: !!person?.isCommand || isCanonicalFounder,
+            isMeshInt: !!person?.isMeshInt,
+            isNodlrInt: !!person?.isNodlrInt,
+            isTechFounder: !!person?.isTechFounder || isCanonicalFounder
         };
     }
 }

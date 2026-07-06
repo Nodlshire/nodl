@@ -14,7 +14,7 @@ export default function SettingsPage() {
     const [profile, setProfile] = useState({
         fullName: 'Stephen Nodl',
         businessName: 'Nodl Core Operations',
-        contactEmail: 'stephen@nodl.one'
+        contactEmail: 'stephen@wnode.one'
     });
 
     // Payout State

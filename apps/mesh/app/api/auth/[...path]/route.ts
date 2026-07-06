@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
                 if (isLocal) {
                     cookieValue = cookieValue
                         .replace(/Domain=[^;]+;?\s*/gi, '')
-                        .replace(/SameSite=None/gi, 'SameSite=Lax');
+                        .replace(/SameSite=None/gi, 'SameSite=Lax').replace(/Secure;?/gi, '');
                 }
                 headers.append('set-cookie', cookieValue);
             }

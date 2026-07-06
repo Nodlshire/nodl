@@ -44,7 +44,7 @@ export default function DashboardLayout({
                 <div className="h-20 flex flex-col items-start justify-center px-8 border-b border-white/10 shrink-0 overflow-hidden relative">
                     <div className="absolute inset-y-0 left-8 flex items-center">
                         <img 
-                            src="https://nodl.one/wp-content/uploads/2025/05/nodl-medium.webp" 
+                            src="https://wnode.one/wp-content/uploads/2025/05/nodl-medium.webp" 
                             alt="nodl logo" 
                             className="h-4 w-auto scale-[3] transform origin-left"
                         />

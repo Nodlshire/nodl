@@ -25,7 +25,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     useEffect(() => {
         const checkBypass = () => {
             if (typeof window !== 'undefined' && localStorage.getItem('nodl_auth_bypass') === 'true') {
-                const mockEmail = localStorage.getItem('nodl_user_email') || 'stephen@nodl.one';
+                const mockEmail = localStorage.getItem('nodl_user_email') || 'stephen@wnode.one';
                 const mockUser = {
                     id: 'mock-id-123',
                     email: mockEmail,

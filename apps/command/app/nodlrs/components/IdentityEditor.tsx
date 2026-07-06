@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Shield } from "lucide-react";
 import { CrmPerson } from "../types";
 
-export function IdentityEditor({ person, onSaveSuccess }: { person: CrmPerson; onSaveSuccess: () => void }) {
+export function IdentityEditor({ person, onSaveSuccess }: { person: CrmPerson; onSaveSuccess: (mesh: boolean, nodlr: boolean) => void }) {
     const [isMeshCustomer, setIsMeshCustomer] = useState(!!person.isMeshCustomer);
     const [isNodlr, setIsNodlr] = useState(!!person.isNodlr);
     const [isSaving, setIsSaving] = useState(false);
@@ -25,6 +25,7 @@ export function IdentityEditor({ person, onSaveSuccess }: { person: CrmPerson; o
         try {
             const res = await fetch(`/api/v1/nodlrs/${person.wuid}`, {
                 method: "PATCH",
+                cache: 'no-store',
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ 
                     isMeshCustomer: mesh,
@@ -34,7 +35,7 @@ export function IdentityEditor({ person, onSaveSuccess }: { person: CrmPerson; o
             if (res.ok) {
                 setShowToast(true);
                 setTimeout(() => setShowToast(false), 3000);
-                onSaveSuccess();
+                onSaveSuccess(mesh, nodlr);
             } else {
                 console.error("Failed to patch identity");
             }

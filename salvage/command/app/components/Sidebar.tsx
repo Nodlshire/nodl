@@ -36,7 +36,7 @@ export default function Sidebar() {
 
     // Rule: Initialize login state ONLY on the client
     const userEmail = mounted ? (user?.email || (typeof window !== "undefined" ? localStorage.getItem("nodl_user_email") : null)) : null;
-    const isDev = userEmail === 'stephen@wnode.one' || userEmail === 'stephen@nodl.one';
+    const isDev = userEmail === 'stephen@wnode.one' || userEmail === 'stephen@wnode.one';
     const role = isDev ? 'owner' : (user?.role || 'visitor');
 
     const allItems = [

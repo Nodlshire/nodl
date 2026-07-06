@@ -114,7 +114,7 @@ export default function AffiliatePage() {
                     <div className="surface-card p-4.5 flex items-center justify-between group cursor-pointer hover:border-white/20 transition-all max-w-lg">
                          <div className="flex-1 overflow-hidden">
                             <span className="text-[10px] text-slate-500 uppercase font-normal block mb-0.5">Invite link</span>
-                            <span className="text-sm text-white font-normal truncate tracking-tight">nodl.one/invite/{affiliateCode}</span>
+                            <span className="text-sm text-white font-normal truncate tracking-tight">wnode.one/invite/{affiliateCode}</span>
                         </div>
                         <ArrowUpRight className="w-4 h-4 text-slate-600 group-hover:text-white transition-colors ml-4" />
                     </div>

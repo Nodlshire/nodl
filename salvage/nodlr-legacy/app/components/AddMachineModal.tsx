@@ -102,7 +102,7 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                   <div className="space-y-3">
                     <div className="flex gap-3 text-13px text-slate-400">
                       <Monitor className="w-4 h-4 shrink-0 text-[#22D3EE]" />
-                      <span>Go to the machine you want to add and visit <strong className="text-white">nodl.one/connect</strong></span>
+                      <span>Go to the machine you want to add and visit <strong className="text-white">wnode.one/connect</strong></span>
                     </div>
                     <div className="flex gap-3 text-13px text-slate-400">
                       <Download className="w-4 h-4 shrink-0 text-[#22D3EE]" />

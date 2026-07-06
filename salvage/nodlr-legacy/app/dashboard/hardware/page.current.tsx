@@ -227,7 +227,7 @@ export default function HardwarePage() {
                             <div className="p-6 border-b border-white/10 flex justify-between items-center bg-white/[0.02]">
                                 <div className="flex items-center gap-4">
                                     <img
-                                        src="https://nodl.one/wp-content/uploads/2025/05/nodl-medium.webp"
+                                        src="https://wnode.one/wp-content/uploads/2025/05/nodl-medium.webp"
                                         alt="Nodl"
                                         className="w-24 h-auto"
                                     />

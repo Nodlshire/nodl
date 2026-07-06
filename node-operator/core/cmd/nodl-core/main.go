@@ -7,6 +7,8 @@ import (
 
 	"github.com/obregan/nodl/node-operator/src/platform"
 	"github.com/obregan/nodl/node-operator/src/device"
+	"github.com/obregan/nodl/node-operator/src/auth"
+	"strings"
 )
 
 func main() {
@@ -25,10 +27,28 @@ func main() {
 		platform.Info("Loading Space Mesh configuration from config/space.config.json")
 		// In a full implementation, parse space.config.json and override API Base, etc.
 		*apiBase = "https://space.nodl.it"
+	} else if *profile == "earth-headless" {
+		platform.Info("Loading Headless Earth configuration from config/earth-headless.config.json")
+		*apiBase = "http://127.0.0.1:8080"
 	}
 
 	if state.DeviceToken == "" {
-		log.Println("Warning: NODL_DEVICE_TOKEN not set, joining mesh might fail.")
+		tokenFile := "/etc/wnode/token"
+		if _, err := os.Stat(tokenFile); os.IsNotExist(err) {
+			tokenFile = os.ExpandEnv("$HOME/.wnode/token")
+		}
+
+		if tokenData, err := os.ReadFile(tokenFile); err == nil {
+			token := strings.TrimSpace(string(tokenData))
+			platform.Info("Found registration token in %s, attempting headless registration...", tokenFile)
+			if err := auth.AuthenticateHeadless(*apiBase, token, state); err != nil {
+				log.Fatalf("Headless registration failed: %v", err)
+			}
+			// Delete token file after successful consumption
+			os.Remove(tokenFile)
+		} else {
+			log.Println("Warning: NODL_DEVICE_TOKEN not set and no registration token found. Joining mesh might fail.")
+		}
 	}
 
 	// Start Routing Epoch Synchronization

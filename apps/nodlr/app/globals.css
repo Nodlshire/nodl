@@ -107,3 +107,9 @@ body::before {
   filter: blur(60px);
   animation: pulse-glow-nodlr 10s ease-in-out infinite;
 }
+
+/* Canonical High Visibility Layer */
+.border, .border-wnode-border-neutral, .border-wnode-border-separator {
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    border-width: 1px !important;
+}

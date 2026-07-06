@@ -24,6 +24,8 @@ export default function Sidebar() {
             await fetch('/api/auth/logout', { method: 'POST' });
         } catch (e) {}
         document.cookie = "mesh_session=; Max-Age=0; path=/;";
+        document.cookie = "__Host-mesh_session=; Max-Age=0; path=/;";
+        document.cookie = "__Secure-mesh_session=; Max-Age=0; path=/;";
         window.location.href = "/login";
     };
 

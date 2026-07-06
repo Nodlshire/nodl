@@ -17,23 +17,13 @@ const TRANSACTIONS = [
 
 async function handleProxy(req: NextRequest, method: string, subPath: string) {
     console.log(`[PROXY INCOMING] Path: ${req.url} | Raw Cookie Header:`, req.headers.get('cookie'));
-    // Route pool requests to pools mock JSON helper
-    if (subPath === 'pools' && method === 'GET') {
-        return NextResponse.json(COMPUTE_POOLS, { status: 200 });
-    }
-
-    // Route transaction history requests to transaction history mock JSON helper
-    if (subPath === 'transactions' && method === 'GET') {
-        return NextResponse.json(TRANSACTIONS, { status: 200 });
-    }
-
     // Determine upstream URL based on path domain
     const isNodeRoute = subPath.startsWith('nodes') || subPath.startsWith('nodlrs');
     const isAccountRoute = subPath.startsWith('money') || subPath.startsWith('jobs') || subPath.startsWith('account');
 
     let apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8080";
     if (isAccountRoute) {
-        apiUrl = process.env.ACCOUNT_SERVICE_URL || "http://localhost:3002";
+        apiUrl = process.env.ACCOUNT_SERVICE_URL || "http://localhost:3001";
     }
 
     // Proxy the request to the selected backend

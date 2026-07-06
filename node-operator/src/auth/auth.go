@@ -90,3 +90,63 @@ func Authenticate(apiBase, email, password string, state *platform.State) error 
 	platform.Info("Authentication successful.")
 	return nil
 }
+
+type HeadlessConsumeResponse struct {
+	Status      string `json:"status"`
+	DeviceToken string `json:"deviceToken"`
+	NodeID      string `json:"nodeId"`
+	Error       string `json:"error,omitempty"`
+}
+
+// AuthenticateHeadless registers the node using a registration token.
+func AuthenticateHeadless(apiBase, token string, state *platform.State) error {
+	url := fmt.Sprintf("%s/api/v1/nodes/headless-token/consume", strings.TrimRight(apiBase, "/"))
+
+	req, err := http.NewRequest("POST", url, nil)
+	if err != nil {
+		return fmt.Errorf("failed to create request: %w", err)
+	}
+	req.Header.Set("Authorization", "Bearer "+token)
+
+	platform.Info("Authenticating headless node with API: %s", url)
+
+	client := &http.Client{Timeout: 10 * time.Second}
+	resp, err := client.Do(req)
+	if err != nil {
+		return fmt.Errorf("network error during headless authentication: %w", err)
+	}
+	defer resp.Body.Close()
+
+	bodyBytes, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return fmt.Errorf("failed to read response body: %w", err)
+	}
+
+	if resp.StatusCode != http.StatusOK {
+		var errResp HeadlessConsumeResponse
+		if err := json.Unmarshal(bodyBytes, &errResp); err == nil && errResp.Error != "" {
+			return fmt.Errorf("headless authentication failed: %s (status %d)", errResp.Error, resp.StatusCode)
+		}
+		return fmt.Errorf("headless authentication failed with status %d: %s", resp.StatusCode, string(bodyBytes))
+	}
+
+	var successResp HeadlessConsumeResponse
+	if err := json.Unmarshal(bodyBytes, &successResp); err != nil {
+		return fmt.Errorf("failed to parse successful response: %w", err)
+	}
+
+	if successResp.DeviceToken == "" {
+		return fmt.Errorf("server did not return a device token")
+	}
+
+	state.DeviceToken = successResp.DeviceToken
+	state.MeshAPI = apiBase
+
+	if err := platform.SaveState(state); err != nil {
+		return fmt.Errorf("failed to save state: %w", err)
+	}
+
+	platform.Info("Headless authentication successful. Node ID: %s", successResp.NodeID)
+	return nil
+}
+

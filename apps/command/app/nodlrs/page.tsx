@@ -63,118 +63,13 @@ export default function UserCrmPage() {
     const fetchData = async () => {
         setIsLoading(true);
         try {
-            const [nodlrsRes, clientsRes, integrationsRes] = await Promise.all([
-                fetch('/api/nodlrs/all').catch(() => ({ ok: false, json: async () => [] })),
-                fetch('/api/clients/all').catch(() => ({ ok: false, json: async () => [] })),
-                fetch('/api/integrations/all').catch(() => ({ ok: false, json: async () => [] }))
-            ]);
-            
-            let nodlrs: CrmPerson[] = [];
-            let clients: CrmPerson[] = [];
-            let integrations: CrmPerson[] = [];
-            
-            if (nodlrsRes.ok) {
-                const data = await nodlrsRes.json();
-                const raw = Array.isArray(data) ? data : (data?.nodlrs || []);
-                nodlrs = raw.map((r: any) => ({
-                    wuid: r.protocolId || r.id || "W-UNKNOWN",
-                    name: r.displayName || r.name || r.email || "Unknown Identity",
-                    email: r.email,
-                    createdAt: r.createdAt || new Date().toISOString(),
-                    lastContact: r.lastContact || r.createdAt || new Date().toISOString(),
-                    isNodlr: true,
-                    isMeshCustomer: !!r.isMeshCustomer,
-                    isFounderOrPartner: !!r.isFounder,
-                    isOwner: !!r.isOwner,
-                    isCommand: !!r.isCommand,
-                    isMeshInt: !!r.integration_path || !!r.isIntegration || !!r.isMeshInt,
-                    isNodlrInt: !!r.isNodlrInt,
-                    isTechFounder: !!r.isTechFounder,
-                    activeNodes: Number(r.nodeCount || 0),
-                    l1Affiliates: 0,
-                    l2Affiliates: 0,
-                    affiliateReferrer: r.referrerWuid || (r.isFounder ? "Founder" : "Partner"),
-                    events: r.events || [],
-                    notes: r.notes || []
-                }));
+            const res = await fetch('/api/v1/nodlrs', { cache: 'no-store' });
+            if (res.ok) {
+                const data = await res.json();
+                setCrmRecords(data);
+                localStorage.setItem('crm_records', JSON.stringify(data));
+                verifyReferralTree(data);
             }
-
-            if (clientsRes.ok) {
-                const data = await clientsRes.json();
-                const raw = Array.isArray(data) ? data : (data?.clients || []);
-                clients = raw.map((r: any) => ({
-                    wuid: r.id || "W-MESH-UNKNOWN",
-                    name: r.name || r.email || "Mesh Client",
-                    email: r.email,
-                    createdAt: r.createdAt || new Date().toISOString(),
-                    lastContact: r.lastContact || r.createdAt || new Date().toISOString(),
-                    isNodlr: !!r.isNodlr,
-                    isMeshCustomer: true,
-                    isFounderOrPartner: !!r.isFounder,
-                    isOwner: !!r.isOwner,
-                    isCommand: !!r.isCommand,
-                    isMeshInt: !!r.integration_path || !!r.isIntegration || !!r.isMeshInt,
-                    isNodlrInt: !!r.isNodlrInt,
-                    isTechFounder: !!r.isTechFounder,
-                    activeNodes: 0,
-                    l1Affiliates: 0,
-                    l2Affiliates: 0,
-                    affiliateReferrer: r.referrerWuid || "Partner",
-                    events: r.events || [],
-                    notes: r.notes || []
-                }));
-            }
-
-            if (integrationsRes.ok) {
-                const data = await integrationsRes.json();
-                const raw = Array.isArray(data) ? data : (data?.integrations || data?.data || []);
-                integrations = raw.map((r: any) => ({
-                    wuid: r.id || r.slug || "W-UNKNOWN",
-                    name: r.name || r.integration_path || r.slug || "Integration",
-                    email: undefined,
-                    createdAt: r.joinedAt || r.createdAt || new Date().toISOString(),
-                    lastContact: r.activatedAt || r.updatedAt || new Date().toISOString(),
-                    isNodlr: false,
-                    isMeshCustomer: false,
-                    isFounderOrPartner: false,
-                    isOwner: false,
-                    isCommand: false,
-                    isMeshInt: true,
-                    isNodlrInt: false,
-                    isTechFounder: false,
-                    activeNodes: 0,
-                    l1Affiliates: 0,
-                    l2Affiliates: 0,
-                    affiliateReferrer: "System",
-                    events: [],
-                    notes: []
-                }));
-            }
-
-            const unifiedMap = new Map<string, CrmPerson>();
-            [...nodlrs, ...clients, ...integrations].forEach(p => {
-                if (unifiedMap.has(p.wuid)) {
-                    const existing = unifiedMap.get(p.wuid)!;
-                    unifiedMap.set(p.wuid, {
-                        ...existing,
-                        isNodlr: existing.isNodlr || p.isNodlr,
-                        isMeshCustomer: existing.isMeshCustomer || p.isMeshCustomer,
-                        isFounderOrPartner: existing.isFounderOrPartner || p.isFounderOrPartner,
-                        isOwner: existing.isOwner || p.isOwner,
-                        isCommand: existing.isCommand || p.isCommand,
-                        isMeshInt: existing.isMeshInt || p.isMeshInt,
-                        isNodlrInt: existing.isNodlrInt || p.isNodlrInt,
-                        isTechFounder: existing.isTechFounder || p.isTechFounder
-                    });
-                } else {
-                    unifiedMap.set(p.wuid, p);
-                }
-            });
-
-            const merged = Array.from(unifiedMap.values());
-            setCrmRecords(merged);
-            localStorage.setItem('crm_records', JSON.stringify(merged));
-            verifyReferralTree(merged);
         } catch (error) {
             console.error('CRM Hub -> Unified Fetch Error:', error);
         } finally {
@@ -309,7 +204,7 @@ export default function UserCrmPage() {
                 />
             </div>
 
-            <div className="bg-white/[0.02] border border-wnode-border-neutral shadow-[0_0_20px_rgba(255,255,255,0.05)] p-6 flex flex-col md:flex-row items-center gap-6 rounded-[5px]">
+            <div className="bg-white/[0.02] shadow-[0_0_20px_rgba(255,255,255,0.05)] p-6 flex flex-col md:flex-row items-center gap-6 rounded-[5px]">
                 <div className="flex-1 w-full relative group">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 group-focus-within:text-[#22D3EE] transition-colors" />
                     <input 
@@ -382,8 +277,8 @@ export default function UserCrmPage() {
                 </div>
             </div>
 
-            <div className="bg-white/[0.01] border border-white/10 rounded-[5px] overflow-hidden">
-                <div className="grid grid-cols-[180px_1fr_120px_120px_120px] border-b border-white/10 bg-white/[0.02] px-6 py-4">
+            <div className="bg-white/[0.01] rounded-[5px] overflow-hidden">
+                <div className="grid grid-cols-[180px_1fr_120px_120px_120px] bg-white/[0.02] px-6 py-4">
                     <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">WUID / Root</span>
                     <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Identity / Role</span>
                     <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest text-center">Nodes</span>

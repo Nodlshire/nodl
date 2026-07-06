@@ -29,6 +29,7 @@ type Store struct {
 	// Auth Tokens
 	inviteTokens     map[string]*InviteToken
 	magicLinkTokens  map[string]*MagicLinkToken
+	headlessTokens   map[string]*HeadlessToken
 	domainSessions   map[string]*DomainSession // SessionID -> Session
 
 	// CRM Registry
@@ -132,6 +133,7 @@ func NewStore(forensics *forensics.Store, statePath string) *Store {
 		pairingCodes:       make(map[string]*PairingCode),
 		inviteTokens:       make(map[string]*InviteToken),
 		magicLinkTokens:    make(map[string]*MagicLinkToken),
+		headlessTokens:     make(map[string]*HeadlessToken),
 		domainSessions:     make(map[string]*DomainSession),
 		crmRecords:         make(map[string]*CRMRecord),
 		forensics:          forensics,
@@ -1929,4 +1931,67 @@ func (s *Store) GetFounderSlotsStatus() *FounderSlotsResponse {
 	}
 
 	return resp
+}
+
+// GenerateHeadlessToken creates a short-lived registration token for headless node setup.
+func (s *Store) GenerateHeadlessToken(userID string, profile string) (*HeadlessToken, error) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	// Verify user exists
+	if _, ok := s.nodlrs[userID]; !ok {
+		return nil, fmt.Errorf("user not found")
+	}
+
+	tokenStr := fmt.Sprintf("REG-%s", uuid.New().String())
+	token := &HeadlessToken{
+		Token:     tokenStr,
+		UserID:    userID,
+		Profile:   profile,
+		ExpiresAt: time.Now().Add(1 * time.Hour),
+		Used:      false,
+		CreatedAt: time.Now(),
+	}
+
+	s.headlessTokens[tokenStr] = token
+	go s.SaveState()
+
+	return token, nil
+}
+
+// ConsumeHeadlessToken uses a valid registration token to provision a new node and return a long-lived device token.
+func (s *Store) ConsumeHeadlessToken(tokenStr string) (*WnodeNode, string, error) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	token, ok := s.headlessTokens[tokenStr]
+	if !ok || token.Used {
+		return nil, "", fmt.Errorf("invalid or used token")
+	}
+	if time.Now().After(token.ExpiresAt) {
+		return nil, "", fmt.Errorf("token expired")
+	}
+
+	// Mark as used
+	token.Used = true
+	go s.SaveState()
+
+	// Create the node for the user
+	nodeID := fmt.Sprintf("HN-%s", uuid.New().String()[:8])
+	deviceToken := uuid.New().String()
+
+	node := &WnodeNode{
+		ID:          nodeID,
+		UserID:      token.UserID,
+		DeviceToken: deviceToken,
+		Status:      "active",
+		CreatedAt:   time.Now(),
+		LastSeen:    time.Now(),
+		IsWASM:      false,
+		Tier:        1,
+	}
+
+	s.nodes[nodeID] = node
+
+	return node, deviceToken, nil
 }

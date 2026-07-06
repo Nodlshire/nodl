@@ -1,18 +1,19 @@
 {
-    email admin@nodl.one
+    email admin@wnode.one
 }
 
-nodlr.nodl.one {
+cmd.wnode.one {
     reverse_proxy localhost:3001
 }
 
-mesh.nodl.one {
+nodlr.wnode.one {
     reverse_proxy localhost:3002
 }
 
-api.nodl.one {
-    reverse_proxy localhost:4000 {
-        header_up Upgrade {>Upgrade}
-        header_up Connection {>Connection}
-    }
+mesh.wnode.one {
+    reverse_proxy localhost:3003
+}
+
+api.wnode.one {
+    reverse_proxy localhost:8080
 }

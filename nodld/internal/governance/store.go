@@ -29,7 +29,7 @@ func (s *Store) seedOwner() {
 	now := time.Now()
 	s.users[ownerID] = &CommandUser{
 		ID:          ownerID,
-		Email:       "stephen@nodl.one",
+		Email:       "stephen@wnode.one",
 		Name:        "Stephen Soos",
 		Role:        account.RoleOwner,
 		Status:      StatusActive,

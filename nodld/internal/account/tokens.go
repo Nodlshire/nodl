@@ -239,7 +239,7 @@ func (s *Store) GetLeaderboard() []map[string]interface{} {
 		if n, ok := s.nodlrs[item.opID]; ok {
 			email = n.Email
 		} else {
-			email = "unknown@nodl.one"
+			email = "unknown@wnode.one"
 		}
 		result = append(result, map[string]interface{}{
 			"rank":       idx + 1,

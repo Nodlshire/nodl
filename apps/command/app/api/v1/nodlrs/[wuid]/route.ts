@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic';
+export const fetchCache = 'force-no-store';
+
 export async function PATCH(req: NextRequest, { params }: { params: { wuid: string } }) {
     try {
         const { wuid } = await params;

@@ -1,8 +1,11 @@
 import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/request';
+import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
-  const session = request.cookies.get('mesh_session');
+  const session =
+    request.cookies.get('mesh_session') ??
+    request.cookies.get('__Host-mesh_session') ??
+    request.cookies.get('__Secure-mesh_session');
   const isLoginPage = request.nextUrl.pathname === '/login';
 
   if (!session && !isLoginPage) {

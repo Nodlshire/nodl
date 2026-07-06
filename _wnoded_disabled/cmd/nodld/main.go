@@ -109,7 +109,7 @@ func main() {
 		NodlrID:         "100001-0420-01-AA",
 		MeshClientID:    "M0-000001-0420",
 		Name:            "Stephen Soos",
-		Email:           "stephen@nodl.one",
+		Email:           "stephen@wnode.one",
 		AvatarURL:       "https://ui-avatars.com/api/?name=Stephen+Soos&background=0D8ABC&color=fff&size=128",
 		Status:          "active",
 		PayoutFrequency: account.PayoutDaily,

@@ -1,15 +1,21 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { IntegrationProtocol } from "../../../../../../engine/sot/integration_protocol";
 import { CrmPerson } from "../../../nodlrs/types";
 
-export async function GET() {
+export const dynamic = 'force-dynamic';
+export const fetchCache = 'force-no-store';
+
+export async function GET(req: NextRequest) {
     try {
+        const cookieHeader = req.headers.get("cookie") || "";
+        const headers = { "cookie": cookieHeader };
+
         // 1. Fetch CRM records (Mocking by calling the legacy endpoints if they existed, 
         // or just building the array from those legacy routes internally if they are active)
         const [nodlrsRes, clientsRes, integrationsRes] = await Promise.all([
-            fetch('http://localhost:3001/api/nodlrs/all').catch(() => ({ ok: false, json: async () => [] })),
-            fetch('http://localhost:3001/api/clients/all').catch(() => ({ ok: false, json: async () => [] })),
-            fetch('http://localhost:3001/api/integrations/all').catch(() => ({ ok: false, json: async () => [] }))
+            fetch('http://localhost:3001/api/nodlrs/all', { headers, cache: 'no-store' }).catch(() => ({ ok: false, json: async () => [] })),
+            fetch('http://localhost:3001/api/clients/all', { headers, cache: 'no-store' }).catch(() => ({ ok: false, json: async () => [] })),
+            fetch('http://localhost:3001/api/integrations/all', { headers, cache: 'no-store' }).catch(() => ({ ok: false, json: async () => [] }))
         ]);
         
         let nodlrs: CrmPerson[] = [];

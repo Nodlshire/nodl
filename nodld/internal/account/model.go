@@ -326,6 +326,16 @@ type MagicLinkToken struct {
 	CreatedAt time.Time `json:"createdAt"`
 }
 
+// HeadlessToken represents a registration token for a headless node.
+type HeadlessToken struct {
+	Token     string    `json:"token"`
+	UserID    string    `json:"userId"`
+	Profile   string    `json:"profile"`
+	ExpiresAt time.Time `json:"expiresAt"`
+	Used      bool      `json:"used"`
+	CreatedAt time.Time `json:"createdAt"`
+}
+
 // DomainSession represents a verified session for a specific identity domain.
 type DomainSession struct {
 	WUID         string    `json:"wuid"`

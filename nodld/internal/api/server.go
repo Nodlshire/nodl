@@ -303,7 +303,7 @@ func (s *Server) registerRoutes() {
 	// Space Node (Phase 3 Backend)
 	apiV1.Post("/admin/space-node/payload", s.requireAccess(account.RoleManagement, "command"), s.handleGenerateSpaceNodePayload)
 
-	// apiV1.Post("/auth/debug-session", s.handleDebugSession)
+	apiV1.Post("/auth/debug-session", s.handleDebugSession)
 	apiV1.Post("/auth/logout", s.handleLogout)
 	apiV1.Post("/auth/invite", s.handleInvite) // Internal/Test only
 	apiV1.Post("/auth/onboard", s.handleOnboardWithInvite)
@@ -335,7 +335,7 @@ func (s *Server) registerRoutes() {
 
 	// Overrides
 	s.app.Post("/pricing/override", s.requireAccess(account.RoleManagement, "command"), s.handleUpdatePricingRule)
-	s.app.Get("/v1/meta/tiers", s.requireAccess(account.RoleManagement, "command"), s.handleGetMetaTiers)
+	s.app.Get("/v1/meta/tiers", s.requireAccess(account.RoleManagement, "command", "mesh"), s.handleGetMetaTiers)
 	s.app.Patch("/v1/admin/tiers/:id", s.requireAccess(account.RoleManagement, "command"), s.handleUpdateAdminTier)
 	s.app.Post("/api/admin/resolve-flag", s.requireAccess(account.RoleManagement, "command"), s.handleResolveFlag)
 
@@ -346,9 +346,11 @@ func (s *Server) registerRoutes() {
 	apiV1.Get("/account/opportunity", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetOpportunityAudit)
 	apiV1.Get("/system/pulse", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handleGetSystemPulse)
 	apiV1.Get("/impact", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handleGetImpact)
-	apiV1.Get("/meta/tiers", s.requireAccess(account.RoleManagement, "command"), s.handleGetMetaTiers)
+	apiV1.Get("/meta/tiers", s.requireAccess(account.RoleManagement, "command", "mesh"), s.handleGetMetaTiers)
 	apiV1.Post("/nodes/pairing-code/create", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleCreatePairingCode)
 	apiV1.Post("/nodes/pairing-code/consume", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleConsumePairingCode)
+	apiV1.Post("/nodes/headless-token/create", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleCreateHeadlessToken)
+	apiV1.Post("/nodes/headless-token/consume", s.handleConsumeHeadlessToken)
 	apiV1.Post("/nodes/register", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleRegisterNode)
 	apiV1.Get("/nodes/verify-token", s.requireDeviceToken(), s.handleVerifyToken)
 	apiV1.Post("/nodes/heartbeat", s.requireDeviceToken(), s.handleHeartbeatNode)
@@ -1763,6 +1765,43 @@ func (s *Server) handleConsumePairingCode(c *fiber.Ctx) error {
 	})
 }
 
+func (s *Server) handleCreateHeadlessToken(c *fiber.Ctx) error {
+	userId := c.Locals("user_id").(string)
+	
+	// Create token for 'earth-headless' profile
+	token, err := s.accountStore.GenerateHeadlessToken(userId, "earth-headless")
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	return c.Status(fiber.StatusCreated).JSON(fiber.Map{
+		"token":     token.Token,
+		"profile":   token.Profile,
+		"expiresAt": token.ExpiresAt,
+	})
+}
+
+func (s *Server) handleConsumeHeadlessToken(c *fiber.Ctx) error {
+	authHeader := c.Get("Authorization")
+	if !strings.HasPrefix(authHeader, "Bearer ") {
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "missing or invalid Authorization header"})
+	}
+
+	tokenStr := strings.TrimPrefix(authHeader, "Bearer ")
+	
+	node, deviceToken, err := s.accountStore.ConsumeHeadlessToken(tokenStr)
+	if err != nil {
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	return c.JSON(fiber.Map{
+		"nodeId":      node.ID,
+		"deviceToken": deviceToken,
+		"status":      "connected",
+	})
+}
+
+
 func (s *Server) handleRegisterNode(c *fiber.Ctx) error {
 	var req struct {
 		Metadata           account.NodeMetadata `json:"metadata"`
@@ -2157,7 +2196,7 @@ func (s *Server) handleLogin(c *fiber.Ctx) error {
 	domainFlag := ".wnode.one"
 	sameSiteFlag := "None"
 
-	if os.Getenv("DEVELOPMENT_MODE") == "true" {
+	if strings.TrimSpace(os.Getenv("DEVELOPMENT_MODE")) == "true" {
 		secureFlag = false
 		domainFlag = ""
 		sameSiteFlag = "Lax"
@@ -2175,6 +2214,9 @@ func (s *Server) handleLogin(c *fiber.Ctx) error {
 	})
 
 	return c.JSON(fiber.Map{"status": "success", "session_id": sessionID})
+}
+func (s *Server) handleDebugSession(c *fiber.Ctx) error {
+	return c.JSON(fiber.Map{"status": "debug session active", "session_id": "debug-1234"})
 }
 
 func (s *Server) handleLogout(c *fiber.Ctx) error {

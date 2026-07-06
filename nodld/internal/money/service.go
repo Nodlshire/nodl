@@ -97,7 +97,7 @@ func (s *Service) GetMoneyOverview(ctx context.Context, operatorEmail string) (*
 		TotalOverrideEarned:  overrideEarned,
 		TotalOverridePaid:    0,
 		TotalOverridePending: overrideEarned,
-		FounderEmail:         "stephen@nodl.one",
+		FounderEmail:         "stephen@wnode.one",
 	}
 
 	// Platform View

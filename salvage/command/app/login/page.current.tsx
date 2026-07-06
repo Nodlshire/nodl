@@ -18,7 +18,7 @@ export default function LoginPage() {
         setError('');
 
         // Specific Owner account bypass
-        if (email === 'stephen@nodl.one' && password === 'command') {
+        if (email === 'stephen@wnode.one' && password === 'command') {
             localStorage.setItem('nodl_auth_session', 'true');
             localStorage.setItem('nodl_user_email', email);
             setTimeout(() => {
@@ -76,7 +76,7 @@ export default function LoginPage() {
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     className="w-full bg-white/[0.03] border border-white/10 rounded-[5px] px-5 py-3.5 text-white font-normal text-16px focus:outline-none focus:border-[#22D3EE]/50 focus:bg-white/[0.05] transition-all placeholder:text-slate-700"
-                                    placeholder="stephen@nodl.one"
+                                    placeholder="stephen@wnode.one"
                                     required
                                 />
                             </div>

@@ -55,9 +55,192 @@
         "NODLR",
         "MESH"
       ],
-      "createdAt": "2026-07-04T17:25:46.143898969+02:00"
+      "createdAt": "2026-07-06T11:59:59.885147868+02:00"
     }
   },
+  "nodes": {
+    "HN-0ee67faf": {
+      "id": "HN-0ee67faf",
+      "userId": "100001-0426-01-AA",
+      "metadata": {
+        "os": ""
+      },
+      "status": "offline",
+      "createdAt": "2026-07-06T12:01:32.948700585+02:00",
+      "lastSeen": "2026-07-06T12:01:32.948700646+02:00",
+      "globalScore": 0,
+      "tier": 5,
+      "isWasm": false,
+      "downtimePenalized": true,
+      "downtimeSlashed": true
+    },
+    "HN-5f8876f6": {
+      "id": "HN-5f8876f6",
+      "userId": "100001-0426-01-AA",
+      "metadata": {
+        "os": ""
+      },
+      "status": "offline",
+      "createdAt": "2026-07-06T12:01:39.321395861+02:00",
+      "lastSeen": "2026-07-06T12:01:39.321395926+02:00",
+      "globalScore": 0,
+      "tier": 5,
+      "isWasm": false,
+      "downtimePenalized": true,
+      "downtimeSlashed": true
+    },
+    "HN-798de003": {
+      "id": "HN-798de003",
+      "userId": "100001-0426-01-AA",
+      "metadata": {
+        "os": ""
+      },
+      "status": "offline",
+      "createdAt": "2026-07-06T12:01:38.806267519+02:00",
+      "lastSeen": "2026-07-06T12:01:38.806267579+02:00",
+      "globalScore": 0,
+      "tier": 5,
+      "isWasm": false,
+      "downtimePenalized": true,
+      "downtimeSlashed": true
+    }
+  },
+  "token_ledger": [
+    {
+      "entryId": "7d679354-fc7c-4a13-8577-36a2e4aeaa8c",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "downtime",
+      "shardId": "HN-0ee67faf",
+      "amount": -0.005,
+      "reason": "downtime_penalty",
+      "timestamp": "2026-07-06T12:03:09.882719557+02:00"
+    },
+    {
+      "entryId": "30fdba97-d81b-49de-9e83-14b09046734b",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "downtime",
+      "shardId": "HN-798de003",
+      "amount": -0.005,
+      "reason": "downtime_penalty",
+      "timestamp": "2026-07-06T12:03:09.882719557+02:00"
+    },
+    {
+      "entryId": "702eb27a-23b4-4f56-a7f5-79bc169fe79f",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "downtime",
+      "shardId": "HN-5f8876f6",
+      "amount": -0.005,
+      "reason": "downtime_penalty",
+      "timestamp": "2026-07-06T12:03:09.882719557+02:00"
+    },
+    {
+      "entryId": "3635e1f9-bae3-46de-b4d0-9b6120ce2bf7",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "",
+      "shardId": "",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-07-06T12:04:09.882580276+02:00"
+    },
+    {
+      "entryId": "ba7973d5-e4cc-4e55-9592-d2f7449e5360",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "",
+      "shardId": "",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-07-06T12:04:09.882618815+02:00"
+    },
+    {
+      "entryId": "2a77f7bd-91ec-4cbb-a640-069e8c6a2255",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "",
+      "shardId": "",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-07-06T12:04:09.882629478+02:00"
+    }
+  ],
+  "token_balances": {
+    "100001-0426-01-AA": {
+      "operatorId": "100001-0426-01-AA",
+      "balance": -30.015,
+      "updatedAt": "2026-07-06T12:04:09.882629632+02:00"
+    }
+  },
+  "operator_stakes": {
+    "100001-0426-01-AA": {
+      "operatorId": "100001-0426-01-AA",
+      "staked": 0,
+      "locked": 0,
+      "updatedAt": "2026-07-06T12:04:09.88262867+02:00"
+    }
+  },
+  "stake_ledger": [
+    {
+      "entryId": "ac7fa72c-b7ea-4adf-98bb-59879847fd03",
+      "operatorId": "100001-0426-01-AA",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-07-06T12:04:09.882581681+02:00"
+    },
+    {
+      "entryId": "eb92fcaf-1a19-4086-864e-d598a70be641",
+      "operatorId": "100001-0426-01-AA",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-07-06T12:04:09.882619426+02:00"
+    },
+    {
+      "entryId": "ff3e267a-f4a2-4800-b562-deb2a4b2a9e8",
+      "operatorId": "100001-0426-01-AA",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-07-06T12:04:09.882629909+02:00"
+    }
+  ],
+  "operator_reputations": {
+    "100001-0426-01-AA": {
+      "operatorId": "100001-0426-01-AA",
+      "score": 0.5002777777777778,
+      "reliability": 1,
+      "uptime": 0,
+      "successRate": 1,
+      "abandonmentRate": 0,
+      "slashes": 3,
+      "stakeLevel": 0,
+      "computeScore": 0,
+      "tier": 5,
+      "longevityDays": 1,
+      "updatedAt": "2026-07-06T12:04:09.882631617+02:00",
+      "assignedShards": 0,
+      "completedShards": 0,
+      "abandonedShards": 0
+    }
+  },
+  "reputation_ledger": [
+    {
+      "entryId": "a77344c6-a4ae-477c-919c-990798cbcc8a",
+      "operatorId": "100001-0426-01-AA",
+      "delta": -0.19972222222222225,
+      "reason": "recalculate",
+      "timestamp": "2026-07-06T12:04:09.882597751+02:00"
+    },
+    {
+      "entryId": "7234226d-e3b6-4999-84f7-7a0c04933743",
+      "operatorId": "100001-0426-01-AA",
+      "delta": -0.04999999999999993,
+      "reason": "recalculate",
+      "timestamp": "2026-07-06T12:04:09.882621697+02:00"
+    },
+    {
+      "entryId": "70ec72d8-dd6c-478c-b271-dc613bbaa07a",
+      "operatorId": "100001-0426-01-AA",
+      "delta": -0.050000000000000044,
+      "reason": "recalculate",
+      "timestamp": "2026-07-06T12:04:09.882631973+02:00"
+    }
+  ],
   "invite": {
     "secret": "8bfc352d54f0e0127fd8b679554f1feee00bb0b62da7230837ae3c997e74e9c9f08bb8e0e2e45968ed45341b644236cf6d3cf480b62d958834fb43072051a08c",
     "nextFounderIndex": 1,
@@ -440,6 +623,240 @@
     }
   },
   "domain_sessions": {
+    "0ce908eb-80bf-4b37-b51f-c34f9acb8ba1": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "mesh",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-07T04:56:44.175723702+02:00",
+      "createdAt": "2026-07-06T04:56:44.175724124+02:00"
+    },
+    "17910312-627f-4bea-8bbd-a0c17037f090": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-07T10:44:38.000660392+02:00",
+      "createdAt": "2026-07-06T10:44:38.000661103+02:00"
+    },
+    "356eefd2-4c0b-4827-b323-65714b1b23d2": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-06T14:47:00.928063146+02:00",
+      "createdAt": "2026-07-05T14:47:00.928063423+02:00"
+    },
+    "50f59a5d-255f-4c5b-83d6-801afa152739": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-06T14:27:38.615068445+02:00",
+      "createdAt": "2026-07-05T14:27:38.615068787+02:00"
+    },
+    "689c5831-a5ce-4b16-adba-26623d6a7119": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-07T04:43:45.331634998+02:00",
+      "createdAt": "2026-07-06T04:43:45.331635313+02:00"
+    },
+    "6ab49078-b567-4594-be46-30663c519b91": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "mesh",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-07T04:45:37.242259556+02:00",
+      "createdAt": "2026-07-06T04:45:37.242259932+02:00"
+    },
+    "7151cd16-9a0d-4edb-ad23-a5cd05aa7392": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-07T04:58:17.653802728+02:00",
+      "createdAt": "2026-07-06T04:58:17.653803296+02:00"
+    },
+    "7c93d33c-eb04-491f-8823-f949d3e1a89e": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-07T04:56:09.089315211+02:00",
+      "createdAt": "2026-07-06T04:56:09.089315552+02:00"
+    },
+    "84f6fc59-3930-426a-b21f-75f7a0025edf": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-07T04:56:36.993455697+02:00",
+      "createdAt": "2026-07-06T04:56:36.993455929+02:00"
+    },
+    "88b872a1-cb1e-431b-9aaf-f282a1b205cc": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-06T17:48:43.51132054+02:00",
+      "createdAt": "2026-07-05T17:48:43.511320729+02:00"
+    },
+    "9551b496-e21b-43bf-abd0-c38d1e75ed6a": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "mesh",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-07T04:58:41.108575455+02:00",
+      "createdAt": "2026-07-06T04:58:41.108576228+02:00"
+    },
+    "a154365e-df96-4ba4-a7a8-c2149534e677": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-07T04:46:29.242235173+02:00",
+      "createdAt": "2026-07-06T04:46:29.242235507+02:00"
+    },
+    "a1f8b739-3f75-4f0a-925b-8a402f6410eb": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-06T14:49:16.213028926+02:00",
+      "createdAt": "2026-07-05T14:49:16.213029232+02:00"
+    },
+    "a3fcd8ab-ca8f-4198-83d9-ef918d61d9a2": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-07T04:44:25.838300742+02:00",
+      "createdAt": "2026-07-06T04:44:25.838301216+02:00"
+    },
+    "a7b6d495-9279-42bc-814b-bc4b1527d70f": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-07T04:26:41.80769041+02:00",
+      "createdAt": "2026-07-06T04:26:41.807690725+02:00"
+    },
+    "acee5174-0a48-421e-8186-ecd2d929a296": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-07T04:43:32.289902617+02:00",
+      "createdAt": "2026-07-06T04:43:32.289903001+02:00"
+    },
+    "ada74a00-ca1e-4eb1-be5e-a0beb62902b8": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-07T05:40:17.010904004+02:00",
+      "createdAt": "2026-07-06T05:40:17.010904925+02:00"
+    },
+    "b6187773-2e99-4f55-b9cc-5c0d371a73aa": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "mesh",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-07T04:53:10.210076788+02:00",
+      "createdAt": "2026-07-06T04:53:10.210077165+02:00"
+    },
+    "bda5d6d9-7bb0-4b33-8a28-dd20669f841f": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-07T04:56:44.030345187+02:00",
+      "createdAt": "2026-07-06T04:56:44.030345592+02:00"
+    },
+    "c58f8784-a792-4195-8a8e-b7a9b4b07ee6": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "mesh",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-07T04:45:00.98183803+02:00",
+      "createdAt": "2026-07-06T04:45:00.98183862+02:00"
+    },
+    "c89d2fc8-adcf-4d92-bdbe-ea303f60f81a": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-07T12:03:02.200489843+02:00",
+      "createdAt": "2026-07-06T12:03:02.200490209+02:00"
+    },
+    "cb4f7904-2500-48d7-9a5a-837f16a60ad7": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-06T14:27:47.183376281+02:00",
+      "createdAt": "2026-07-05T14:27:47.183376501+02:00"
+    },
+    "cf1a3b8b-009d-4e68-ae75-63715532a642": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-07T08:44:17.516777167+02:00",
+      "createdAt": "2026-07-06T08:44:17.516777652+02:00"
+    },
+    "d2096994-3955-47ba-9e88-107f0bcc734c": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "mesh",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-07T04:44:57.370720321+02:00",
+      "createdAt": "2026-07-06T04:44:57.370720623+02:00"
+    },
+    "dafde9c7-fd46-496b-8654-ef452cf66129": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-07T04:53:10.064790128+02:00",
+      "createdAt": "2026-07-06T04:53:10.064790438+02:00"
+    },
+    "e07ccf5f-4aa0-4169-8490-7f33a69cd302": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-07T04:53:09.849269131+02:00",
+      "createdAt": "2026-07-06T04:53:09.849269422+02:00"
+    },
     "e307379a-aad4-4310-bdcb-c79be8175248": {
       "wuid": "100001-0426-01-AA",
       "domain": "mesh",
@@ -448,6 +865,60 @@
       "twoFAVerified": false,
       "expiresAt": "2026-07-05T17:43:38.078732397+02:00",
       "createdAt": "2026-07-04T17:43:38.078732648+02:00"
+    },
+    "e57c693c-66d4-4d57-8279-4aa5b3025d88": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-07T04:58:32.117203478+02:00",
+      "createdAt": "2026-07-06T04:58:32.117206462+02:00"
+    },
+    "e5cc013d-21df-4060-8ec5-48308c42149d": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-07T07:41:28.192038376+02:00",
+      "createdAt": "2026-07-06T07:41:28.192038609+02:00"
+    },
+    "e6577644-1eb8-4f17-9420-dc3bc6502bec": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "mesh",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-07T07:41:42.401185837+02:00",
+      "createdAt": "2026-07-06T07:41:42.401186158+02:00"
+    },
+    "e9aca665-b6f2-4a3a-a6ac-318da73ec514": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-07T12:00:58.200764721+02:00",
+      "createdAt": "2026-07-06T12:00:58.200765078+02:00"
+    },
+    "f6e5633c-ea55-43e0-bb5b-3819a4bacdc7": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-06T14:46:55.67423992+02:00",
+      "createdAt": "2026-07-05T14:46:55.674240272+02:00"
+    },
+    "f8dcadc5-35fd-453a-b2d5-ee763d17c2a3": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-06T14:27:33.495232017+02:00",
+      "createdAt": "2026-07-05T14:27:33.495232337+02:00"
     }
   }
 }

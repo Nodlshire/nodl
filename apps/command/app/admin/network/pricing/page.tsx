@@ -76,7 +76,7 @@ export default function PricingManager() {
                         <Zap className="text-cyan-400 w-10 h-10" />
                         Price Controller
                     </h1>
-                    <p className="text-slate-500 uppercase tracking-widest text-[10px] mt-2 font-bold">
+                    <p className="text-white/40 uppercase tracking-widest text-[10px] mt-2 font-bold">
                         Global Network Authority // Managed Compute Tiers
                     </p>
                 </div>
@@ -85,7 +85,7 @@ export default function PricingManager() {
                     <Activity className="w-4 h-4 text-cyan-400 animate-pulse" />
                     <div>
                         <div className="text-[10px] text-cyan-400 font-black uppercase tracking-wider">Source of Truth</div>
-                        <div className="text-[9px] text-slate-500 font-bold uppercase">nodld_api:8080</div>
+                        <div className="text-[9px] text-white/40 font-bold uppercase">nodld_api:8080</div>
                     </div>
                 </div>
             </div>
@@ -100,16 +100,16 @@ export default function PricingManager() {
             )}
 
             {/* Matrix Table */}
-            <div className="border border-white/5 bg-[#050505] rounded-2xl overflow-hidden shadow-2xl">
+            <div className="border border-wnode-border-separator bg-[#050505] rounded-2xl overflow-hidden shadow-2xl">
                 <table className="w-full text-left border-collapse">
                     <thead>
-                        <tr className="bg-white/5 border-b border-white/10">
-                            <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-slate-400">Tier ID</th>
-                            <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-slate-400">Rate ($/TH-sec)</th>
-                            <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-slate-400">CPU</th>
-                            <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-slate-400">GPU Model</th>
-                            <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-slate-400">RAM</th>
-                            <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-slate-400 text-left">Actions</th>
+                        <tr className="bg-white/5 border-b border-wnode-border-neutral">
+                            <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-white/60">Tier ID</th>
+                            <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-white/60">Rate ($/TH-sec)</th>
+                            <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-white/60">CPU</th>
+                            <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-white/60">GPU Model</th>
+                            <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-white/60">RAM</th>
+                            <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-white/60 text-left">Actions</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-white/5">
@@ -120,7 +120,7 @@ export default function PricingManager() {
                                         <div className="w-2 h-2 rounded-full bg-cyan-400 group-hover:shadow-[0_0_8px_#22d3ee]" />
                                         <div className="flex flex-col">
                                             <span className="text-sm font-black uppercase tracking-tight">{tier.name}</span>
-                                            <span className="text-[9px] text-slate-600 font-bold uppercase tracking-widest">{tier.id}</span>
+                                            <span className="text-[9px] text-white/40 font-bold uppercase tracking-widest">{tier.id}</span>
                                         </div>
                                     </div>
                                 </td>
@@ -128,20 +128,20 @@ export default function PricingManager() {
                                     ${tier.rate_th_sec.toFixed(4)}
                                 </td>
                                 <td className="px-6 py-6">
-                                    <span className="text-sm font-bold text-slate-300">{tier.cpu_cores} vCPU</span>
+                                    <span className="text-sm font-bold text-white/80">{tier.cpu_cores} vCPU</span>
                                 </td>
                                 <td className="px-6 py-6">
-                                    <span className="text-[11px] font-black uppercase tracking-wider text-slate-300 px-3 py-1 bg-white/5 border border-white/10 rounded">
+                                    <span className="text-[11px] font-black uppercase tracking-wider text-white/80 px-3 py-1 bg-white/5 border border-wnode-border-neutral rounded">
                                         {tier.gpu_model}
                                     </span>
                                 </td>
-                                <td className="px-6 py-6 font-bold text-slate-300 text-sm">
+                                <td className="px-6 py-6 font-bold text-white/80 text-sm">
                                     {tier.ram_gb} GB
                                 </td>
                                 <td className="px-6 py-6 text-left">
                                     <button 
                                         onClick={() => setEditingTier(tier)}
-                                        className="inline-flex items-center gap-2 px-6 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all hover:scale-105"
+                                        className="inline-flex items-center gap-2 px-6 py-2 bg-white/5 hover:bg-white/10 border border-wnode-border-neutral rounded-lg text-[10px] font-black uppercase tracking-widest transition-all hover:scale-105"
                                     >
                                         <Edit3 className="w-3 h-3" />
                                         Edit
@@ -163,59 +163,59 @@ export default function PricingManager() {
                                 Edit Tier: {editingTier.name}
                             </h2>
                             <button onClick={() => setEditingTier(null)} className="p-2 hover:bg-white/10 rounded-full transition-colors">
-                                <X className="w-6 h-6 text-slate-500" />
+                                <X className="w-6 h-6 text-white/40" />
                             </button>
                         </div>
 
                         <div className="space-y-6">
                             <div className="grid grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-black uppercase tracking-widest text-slate-500">Rate ($/TH-sec)</label>
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-white/40">Rate ($/TH-sec)</label>
                                     <input 
                                         type="number" 
                                         step="0.0001"
                                         value={editingTier.rate_th_sec}
                                         onChange={(e) => setEditingTier({...editingTier, rate_th_sec: parseFloat(e.target.value)})}
-                                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 font-mono text-cyan-400 focus:outline-none focus:border-cyan-400/50"
+                                        className="w-full bg-white/5 border border-wnode-border-neutral rounded-xl px-4 py-3 font-mono text-cyan-400 focus:outline-none focus:border-cyan-400/50"
                                     />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-black uppercase tracking-widest text-slate-500">CPU Cores</label>
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-white/40">CPU Cores</label>
                                     <input 
                                         type="number" 
                                         value={editingTier.cpu_cores}
                                         onChange={(e) => setEditingTier({...editingTier, cpu_cores: parseInt(e.target.value)})}
-                                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm font-bold focus:outline-none focus:border-cyan-400/50"
+                                        className="w-full bg-white/5 border border-wnode-border-neutral rounded-xl px-4 py-3 text-sm font-bold focus:outline-none focus:border-cyan-400/50"
                                     />
                                 </div>
                             </div>
 
                             <div className="space-y-2">
-                                <label className="text-[10px] font-black uppercase tracking-widest text-slate-500">GPU Model</label>
+                                <label className="text-[10px] font-black uppercase tracking-widest text-white/40">GPU Model</label>
                                 <input 
                                     type="text" 
                                     value={editingTier.gpu_model}
                                     onChange={(e) => setEditingTier({...editingTier, gpu_model: e.target.value})}
-                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm font-bold uppercase focus:outline-none focus:border-cyan-400/50"
+                                    className="w-full bg-white/5 border border-wnode-border-neutral rounded-xl px-4 py-3 text-sm font-bold uppercase focus:outline-none focus:border-cyan-400/50"
                                 />
                             </div>
 
                             <div className="space-y-2">
-                                <label className="text-[10px] font-black uppercase tracking-widest text-slate-500">RAM (GB)</label>
+                                <label className="text-[10px] font-black uppercase tracking-widest text-white/40">RAM (GB)</label>
                                 <input 
                                     type="number" 
                                     value={editingTier.ram_gb}
                                     onChange={(e) => setEditingTier({...editingTier, ram_gb: parseInt(e.target.value)})}
-                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm font-bold focus:outline-none focus:border-cyan-400/50"
+                                    className="w-full bg-white/5 border border-wnode-border-neutral rounded-xl px-4 py-3 text-sm font-bold focus:outline-none focus:border-cyan-400/50"
                                 />
                             </div>
 
                             <div className="space-y-2">
-                                <label className="text-[10px) font-black uppercase tracking-widest text-slate-500">Description</label>
+                                <label className="text-[10px) font-black uppercase tracking-widest text-white/40">Description</label>
                                 <textarea 
                                     value={editingTier.description}
                                     onChange={(e) => setEditingTier({...editingTier, description: e.target.value})}
-                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm font-medium h-24 focus:outline-none focus:border-cyan-400/50"
+                                    className="w-full bg-white/5 border border-wnode-border-neutral rounded-xl px-4 py-3 text-sm font-medium h-24 focus:outline-none focus:border-cyan-400/50"
                                 />
                             </div>
                         </div>
@@ -230,7 +230,7 @@ export default function PricingManager() {
                             </button>
                             <button 
                                 onClick={() => setEditingTier(null)}
-                                className="px-8 border border-white/10 hover:bg-white/5 text-slate-400 font-bold uppercase tracking-widest py-4 rounded-xl transition-all"
+                                className="px-8 border border-wnode-border-neutral hover:bg-white/5 text-white/60 font-bold uppercase tracking-widest py-4 rounded-xl transition-all"
                             >
                                 Cancel
                             </button>

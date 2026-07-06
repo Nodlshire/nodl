@@ -64,7 +64,7 @@ export default function OverviewPanel({ onCrmClick, onSectionClick }: OverviewPa
         <Tooltip key={i} text={m.tooltip} direction="down">
           <div 
             onClick={() => onSectionClick(m.id)}
-            className="flex-1 min-w-0 bg-white/[0.02] border border-white/10 rounded-[5px] p-5 hover:bg-white/[0.04] hover:border-white/20 transition-all group cursor-pointer flex flex-col justify-between h-[100px]"
+            className="flex-1 min-w-0 bg-white/[0.02] border border-wnode-border-neutral shadow-[0_0_20px_rgba(255,255,255,0.05)] rounded-[5px] p-5 hover:bg-white/[0.04] hover:border-wnode-border-hover transition-all group cursor-pointer flex flex-col justify-between h-[100px]"
           >
             <div className="flex items-center gap-2">
               <div className="opacity-60 group-hover:opacity-100 transition-opacity">
@@ -82,7 +82,7 @@ export default function OverviewPanel({ onCrmClick, onSectionClick }: OverviewPa
       <Tooltip text="View Infrastructure Manager CRM details" direction="down">
         <div 
           onClick={() => onCrmClick(managerName, managerWUID)}
-          className="flex-1 min-w-0 bg-white/[0.02] border border-white/10 rounded-[5px] p-5 hover:bg-white/[0.04] hover:border-white/20 transition-all group cursor-pointer flex flex-col justify-between h-[100px]"
+          className="flex-1 min-w-0 bg-white/[0.02] border border-wnode-border-neutral shadow-[0_0_20px_rgba(255,255,255,0.05)] rounded-[5px] p-5 hover:bg-white/[0.04] hover:border-wnode-border-hover transition-all group cursor-pointer flex flex-col justify-between h-[100px]"
         >
           <div className="flex items-center gap-2">
             <Shield className="w-[18px] h-[18px] text-cyan-400 opacity-60 group-hover:opacity-100 transition-opacity" />

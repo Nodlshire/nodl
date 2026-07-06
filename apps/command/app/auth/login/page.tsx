@@ -82,33 +82,33 @@ export default function LoginPage() {
                     </div>
                 </div>
 
-                <div className="bg-[#1a1a1b] border border-white/5 rounded-[5px] p-10 shadow-2xl">
+                <div className="bg-[#1a1a1b] border border-wnode-border-separator rounded-[5px] p-10 shadow-2xl">
                     <div className="text-center mb-8">
                         <h1 className="text-4xl font-bold text-white mb-2 tracking-tight uppercase">
                             Command
                         </h1>
-                        <p className="text-slate-500 text-xs tracking-widest uppercase mt-2">Executive Control Access</p>
+                        <p className="text-white/40 text-xs tracking-widest uppercase mt-2">Executive Control Access</p>
                     </div>
 
                     <form onSubmit={handleLogin} className="space-y-4">
-                        <div className="space-y-1.5 font-bold uppercase tracking-widest text-[10px] text-slate-500">
+                        <div className="space-y-1.5 font-bold uppercase tracking-widest text-[10px] text-white/40">
                              Email
                              <input
                                 type="email"
                                 placeholder="Email Address"
-                                className="w-full bg-black/40 border border-white/10 rounded-[5px] px-4 py-4 text-white text-sm focus:outline-none focus:border-cyan-500/50 transition-all border-b-2"
+                                className="w-full bg-black/40 border border-wnode-border-neutral rounded-[5px] px-4 py-4 text-white text-sm focus:outline-none focus:border-cyan-500/50 transition-all border-b-2"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
                             />
                         </div>
 
-                        <div className="space-y-1.5 font-bold uppercase tracking-widest text-[10px] text-slate-500">
+                        <div className="space-y-1.5 font-bold uppercase tracking-widest text-[10px] text-white/40">
                              Password
                              <input
                                 type="password"
                                 placeholder="••••••••"
-                                className="w-full bg-black/40 border border-white/10 rounded-[5px] px-4 py-4 text-white text-sm focus:outline-none focus:border-cyan-500/50 transition-all border-b-2"
+                                className="w-full bg-black/40 border border-wnode-border-neutral rounded-[5px] px-4 py-4 text-white text-sm focus:outline-none focus:border-cyan-500/50 transition-all border-b-2"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
@@ -124,7 +124,7 @@ export default function LoginPage() {
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className="w-full bg-transparent border border-white/10 hover:bg-white/5 text-white font-bold py-4 rounded-[5px] transition-all flex items-center justify-center gap-2 group active:scale-[0.98] mt-6"
+                            className="w-full bg-transparent border border-wnode-border-neutral hover:bg-white/5 text-white font-bold py-4 rounded-[5px] transition-all flex items-center justify-center gap-2 group active:scale-[0.98] mt-6"
                         >
                             {isLoading ? (
                                 <Loader2 className="w-5 h-5 animate-spin text-cyan-400" />
@@ -139,7 +139,7 @@ export default function LoginPage() {
                 </div>
                 
                 <div className="mt-12 text-center">
-                    <p className="text-slate-500 text-[10px] uppercase tracking-[0.4em]">Authorized Personnel Only</p>
+                    <p className="text-white/40 text-[10px] uppercase tracking-[0.4em]">Authorized Personnel Only</p>
                 </div>
             </div>
         </div>

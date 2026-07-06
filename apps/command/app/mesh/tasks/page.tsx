@@ -19,7 +19,7 @@ export default function MeshTasksPage() {
     }, []);
 
     if (!mounted || loading) return (
-        <div className="p-8 flex flex-col items-center justify-center min-h-[400px] text-slate-500 gap-4">
+        <div className="p-8 flex flex-col items-center justify-center min-h-[400px] text-white/40 gap-4">
             <Activity className="w-8 h-8 animate-spin text-cyan-400" />
             <p className="text-sm font-medium">Reconstructing task queue...</p>
         </div>
@@ -34,9 +34,9 @@ export default function MeshTasksPage() {
                 breadcrumbs={[{ label: "Tasks" }]}
             />
             
-            <div className="overflow-x-auto border border-white/10 rounded-lg">
+            <div className="overflow-x-auto border border-wnode-border-neutral rounded-lg">
                 <table className="w-full text-left text-sm">
-                    <thead className="bg-white/[0.03] text-slate-500 uppercase text-[10px] font-bold tracking-widest">
+                    <thead className="bg-white/[0.03] text-white/40 uppercase text-[10px] font-bold tracking-widest">
                         <tr>
                             <th className="px-6 py-4">Task ID</th>
                             <th className="px-6 py-4">Status</th>
@@ -58,12 +58,12 @@ export default function MeshTasksPage() {
                                         task.status === "completed" ? "bg-emerald-400/5 text-emerald-400 border-emerald-400/20" :
                                         task.status === "failed" ? "bg-red-400/5 text-red-400 border-red-400/20" :
                                         task.status === "running" ? "bg-cyan-400/5 text-cyan-400 border-cyan-400/20" :
-                                        "bg-slate-400/5 text-slate-400 border-slate-400/20"
+                                        "bg-slate-400/5 text-white/60 border-wnode-border-separator"
                                     }`}>
                                         {task.status}
                                     </span>
                                 </td>
-                                <td className="px-6 py-4 text-slate-400 font-mono text-xs">
+                                <td className="px-6 py-4 text-white/60 font-mono text-xs">
                                     {task.nodeId ? (
                                         <Link href={`/mesh/nodes/${task.nodeId}`} className="hover:text-cyan-400 transition-colors">
                                             {task.nodeId.substring(0, 8)}...
@@ -72,13 +72,13 @@ export default function MeshTasksPage() {
                                         <span className="opacity-30">—</span>
                                     )}
                                 </td>
-                                <td className="px-6 py-4 text-slate-500 text-xs text-right whitespace-nowrap overflow-hidden">
+                                <td className="px-6 py-4 text-white/40 text-xs text-right whitespace-nowrap overflow-hidden">
                                     {new Date(task.createdAt).toLocaleString()}
                                 </td>
                                 <td className="px-6 py-4 text-right">
                                     <div className="flex items-center justify-end gap-3 translate-x-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
                                         <Link href={`/mesh/tasks/${task.taskId}/events`} title="View Timeline">
-                                            <History className="w-4 h-4 text-slate-500 hover:text-cyan-400 transition-colors" />
+                                            <History className="w-4 h-4 text-white/40 hover:text-cyan-400 transition-colors" />
                                         </Link>
                                         <Link href={`/mesh/tasks/${task.taskId}`}>
                                             <ChevronRight className="w-4 h-4 text-cyan-400" />
@@ -89,7 +89,7 @@ export default function MeshTasksPage() {
                         ))}
                         {tasks.length === 0 && (
                             <tr>
-                                <td colSpan={5} className="px-6 py-12 text-center text-slate-500 italic">
+                                <td colSpan={5} className="px-6 py-12 text-center text-white/40 italic">
                                     Task queue is currently empty.
                                 </td>
                             </tr>

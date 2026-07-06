@@ -14,14 +14,14 @@ export default function ChatUI() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex items-center gap-2 border border-white/10 bg-white/[0.03] rounded-[5px] px-3 py-2"
+      className="flex items-center gap-2 border border-wnode-border-neutral bg-white/[0.03] rounded-[5px] px-3 py-2"
     >
       <input
         type="text"
         value={input}
         onChange={(e) => setInput(e.target.value)}
         placeholder="Ask Maestro"
-        className="flex-1 bg-transparent text-sm text-slate-200 placeholder-slate-500 outline-none"
+        className="flex-1 bg-transparent text-sm text-white/80 placeholder-slate-500 outline-none"
       />
       <button
         type="submit"

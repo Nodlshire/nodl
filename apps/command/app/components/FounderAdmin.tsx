@@ -75,7 +75,7 @@ export default function FounderAdmin() {
     };
 
     if (loading) return (
-        <div className="flex items-center gap-2 text-slate-500 font-mono text-[12px] animate-pulse">
+        <div className="flex items-center gap-2 text-white/40 font-mono text-[12px] animate-pulse">
             <RefreshCw className="w-3 h-3 animate-spin" /> SYNCHRONIZING GENESIS LAYER...
         </div>
     );
@@ -97,7 +97,7 @@ export default function FounderAdmin() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
                 {founders.map((f) => (
-                    <div key={f.id} className={`card-sovereign p-4 border transition-all ${f.status === 'active' ? 'border-[#22D3EE]/20 bg-[#22D3EE]/5' : 'border-white/5 bg-white/[0.02] opacity-60'}`}>
+                    <div key={f.id} className={`card-sovereign p-4 border transition-all ${f.status === 'active' ? 'border-[#22D3EE]/20 bg-[#22D3EE]/5' : 'border-wnode-border-separator bg-white/[0.02] opacity-60'}`}>
                         <div className="flex flex-col gap-3">
                             <div className="flex items-center justify-between">
                                 <span className="text-[10px] font-mono text-white uppercase tracking-widest">FOUNDER #{f.founderIndex}</span>
@@ -115,7 +115,7 @@ export default function FounderAdmin() {
                                 disabled={toggling === f.id}
                                 className={`mt-2 w-full py-2 rounded-[5px] text-[11px] font-normal transition-all flex items-center justify-center gap-2 ${
                                     f.status === 'active' 
-                                    ? 'bg-slate-800 text-slate-400 hover:bg-red-500/10 hover:text-red-500 hover:border-red-500/30' 
+                                    ? 'bg-slate-800 text-white/60 hover:bg-red-500/10 hover:text-red-500 hover:border-red-500/30' 
                                     : 'bg-[#22D3EE]/10 text-[#22D3EE] hover:bg-[#22D3EE]/20'
                                 } border border-transparent`}
                             >

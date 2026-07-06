@@ -65,7 +65,7 @@ export const Tree = ({ onNodeClick, selectedNodeId }: TreeProps) => {
         return (
             <div className="flex items-center gap-3 p-4">
                 <div className="w-4 h-4 border-2 border-[#22D3EE]/20 border-t-[#22D3EE] rounded-full animate-spin" />
-                <span className="text-[12px] text-slate-500 font-mono">Initializing topology mapping...</span>
+                <span className="text-[12px] text-white/40 font-mono">Initializing topology mapping...</span>
             </div>
         );
     }

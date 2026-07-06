@@ -67,28 +67,29 @@ export default function IntelligencePage() {
   ];
 
   return (
-    <main className="flex-1 px-8 pt-24 pb-10 overflow-y-auto custom-scrollbar relative">
+    <main className="flex-1 px-8 pt-3 pb-20 overflow-y-auto space-y-6 custom-scrollbar relative">
       {/* Ambient glow */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[120px] pointer-events-none -z-10" />
 
       {/* 1. Status Strip */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 -mt-1.5 [&>div]:!py-3.5">
         {STATUS_CARDS.map((item, i) => (
           <div 
             key={i} 
-            className={`border ${item.border} ${item.bg} rounded-[5px] p-3 h-[80px] flex flex-col justify-between transition-all hover:brightness-125 shadow-lg shadow-black/20`}
+            className="relative bg-white/[0.04] shadow-[0_4px_25px_rgba(0,0,0,0.4)] border border-wnode-border-neutral p-5 rounded-[5px] flex flex-col gap-1 group truncate transition-all hover:bg-white/[0.06] backdrop-blur-sm h-full"
           >
             <Tooltip text={item.tooltip}>
-              <span className="text-[9px] uppercase font-bold tracking-widest text-slate-400/80 cursor-help border-b border-dashed border-slate-500/50 pb-0.5">
+              <span className="text-[17px] text-white font-normal uppercase tracking-tight font-sans cursor-help border-b border-dashed border-wnode-border-separator pb-0.5">
                 {item.label}
               </span>
             </Tooltip>
-            <span 
-              className={`text-[11px] font-bold leading-snug ${item.accent} line-clamp-2 overflow-hidden text-ellipsis`}
-              title={typeof item.value === 'string' ? item.value : undefined}
-            >
-              {item.value}
-            </span>
+            <div className="flex items-center justify-between">
+              <div className="flex flex-col">
+                <span className={`text-[22px] font-normal tracking-tighter ${item.accent}`}>
+                  {item.value}
+                </span>
+              </div>
+            </div>
           </div>
         ))}
       </div>
@@ -97,49 +98,49 @@ export default function IntelligencePage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 items-start">
         
         {/* Left column — Secondary Panels */}
-        <div className="lg:col-span-1 flex flex-col gap-6">
+        <div className="lg:col-span-1 flex flex-col gap-4">
           
           {/* A. Insights Box */}
-          <div className="bg-white/[0.02] border border-white/10 rounded-[5px] p-3 h-[220px] flex flex-col relative overflow-hidden">
-          <div className="px-4 py-3 border-b border-white/5 flex items-center gap-3 bg-white/[0.01] -mx-3 -mt-3 mb-3">
-             <Info className="w-3.5 h-3.5 text-purple-400" />
-             <span className="text-[11px] uppercase font-bold tracking-widest text-white">System Insights</span>
-          </div>
-             <div className="flex-1 overflow-y-auto custom-scrollbar pr-2">
-                <ul className="flex flex-col gap-3">
-                  {INSIGHTS.map((text, i) => (
-                    <li 
-                      key={i} 
-                      onClick={() => {
-                        setSelectedInsight({ text });
-                        setDrawerOpen(true);
-                      }}
-                      className="text-xs text-slate-400 leading-relaxed pl-3 py-1.5 border-l border-purple-500/30 cursor-pointer hover:bg-white/[0.03] hover:text-white transition-all rounded-r-[5px] active:bg-white/[0.05]"
-                    >
-                      {text}
-                    </li>
-                  ))}
-                </ul>
-             </div>
+          <div className="bg-white/[0.04] shadow-[0_4px_25px_rgba(0,0,0,0.4)] border border-wnode-border-neutral p-5 rounded-[5px] h-[250px] flex flex-col relative overflow-hidden">
+            <div className="px-4 py-3 border-b border-wnode-border-separator flex items-center gap-3 bg-white/[0.01] -mx-5 -mt-5 mb-3">
+               <Info className="w-3.5 h-3.5 text-purple-400" />
+               <span className="text-[11px] uppercase font-bold tracking-widest text-white">System Insights</span>
+            </div>
+            <div className="flex-1 overflow-y-auto custom-scrollbar pr-2">
+               <ul className="flex flex-col gap-3">
+                 {INSIGHTS.map((text, i) => (
+                   <li 
+                     key={i} 
+                     onClick={() => {
+                       setSelectedInsight({ text });
+                       setDrawerOpen(true);
+                     }}
+                     className="text-xs text-white/60 leading-relaxed pl-3 py-1.5 border-l border-purple-500/30 cursor-pointer hover:bg-white/[0.03] hover:text-white transition-all rounded-r-[5px] active:bg-white/[0.05]"
+                   >
+                     {text}
+                   </li>
+                 ))}
+               </ul>
+            </div>
           </div>
 
           {/* B. Chat History Box */}
-          <div className="bg-white/[0.02] border border-white/10 rounded-[5px] p-3 h-[220px] flex flex-col relative overflow-hidden">
-          <div className="px-4 py-3 border-b border-white/5 flex items-center gap-3 bg-white/[0.01] -mx-3 -mt-3 mb-3">
-             <History className="w-3.5 h-3.5 text-slate-400" />
-             <span className="text-[11px] uppercase font-bold tracking-widest text-white">Chat History</span>
-          </div>
-             <div className="flex-1 flex items-center justify-center">
-                <span className="text-[10px] text-slate-600 italic">No previous sessions</span>
-             </div>
+          <div className="bg-white/[0.04] shadow-[0_4px_25px_rgba(0,0,0,0.4)] border border-wnode-border-neutral p-5 rounded-[5px] h-[250px] flex flex-col relative overflow-hidden">
+            <div className="px-4 py-3 border-b border-wnode-border-separator flex items-center gap-3 bg-white/[0.01] -mx-5 -mt-5 mb-3">
+               <History className="w-3.5 h-3.5 text-white/60" />
+               <span className="text-[11px] uppercase font-bold tracking-widest text-white">Chat History</span>
+            </div>
+            <div className="flex-1 flex items-center justify-center">
+               <span className="text-[10px] text-white/40 italic">No previous sessions</span>
+            </div>
           </div>
 
         </div>
 
         {/* Right column — Primary Chat Cockpit */}
-        <div className="lg:col-span-2 bg-white/[0.02] border border-white/10 rounded-[5px] flex flex-col h-[600px] shadow-2xl relative overflow-hidden">
+        <div className="lg:col-span-2 bg-white/[0.04] shadow-[0_4px_25px_rgba(0,0,0,0.4)] border border-wnode-border-neutral p-5 rounded-[5px] flex flex-col h-[600px] relative overflow-hidden">
           {/* Internal Card Header */}
-          <div className="px-6 py-4 border-b border-white/5 flex items-center justify-between bg-white/[0.01]">
+          <div className="px-6 py-4 border-b border-wnode-border-separator flex items-center justify-between bg-white/[0.01] -mx-5 -mt-5 mb-5">
             <div className="flex items-center gap-3">
               <Brain className="w-4 h-4 text-purple-400" />
               <span className="text-[11px] uppercase font-bold tracking-widest text-white">
@@ -148,19 +149,19 @@ export default function IntelligencePage() {
             </div>
             <div className="flex items-center gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-              <span className="text-[9px] uppercase font-bold tracking-widest text-slate-500">System Ready</span>
+              <span className="text-[9px] uppercase font-bold tracking-widest text-white/40">System Ready</span>
             </div>
           </div>
 
           {/* Scrollable History Area */}
-          <div className="flex-1 min-h-[300px] p-6 overflow-hidden flex flex-col">
-            <div className="flex-1 min-h-[200px] overflow-y-auto flex flex-col justify-end border border-white/10 rounded-[5px] p-3 mb-3 custom-scrollbar">
+          <div className="flex-1 min-h-[300px] overflow-hidden flex flex-col mb-5">
+            <div className="flex-1 min-h-[200px] overflow-y-auto flex flex-col justify-end border border-wnode-border-neutral rounded-[5px] p-3 mb-3 custom-scrollbar">
               <ChatHistory />
             </div>
           </div>
 
           {/* Fixed Input Area */}
-          <div className="p-6 border-t border-white/5 bg-white/[0.01]">
+          <div className="border-t border-wnode-border-separator bg-white/[0.01] -mx-5 -mb-5 p-5">
             <ChatUI />
           </div>
         </div>

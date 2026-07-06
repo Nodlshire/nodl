@@ -21,15 +21,15 @@ export default function HelpOverviewPage() {
                     Back to Help Center
                 </Link>
 
-                <div className="bg-white/[0.02] border border-white/10 p-12 rounded-[5px]">
+                <div className="bg-white/[0.02] border border-wnode-border-neutral p-12 rounded-[5px]">
                     <h1 className="text-3xl font-bold text-white mb-4 uppercase tracking-tighter">Command Overview</h1>
-                    <p className="text-slate-400 text-sm leading-relaxed mb-12 max-w-2xl">
+                    <p className="text-white/60 text-sm leading-relaxed mb-12 max-w-2xl">
                         The Wnode Command Portal is the authoritative executive layer for global resource management. 
                         It provides real-time oversight of the mesh network's compute capacity, memory distribution, 
                         and institutional economic stability.
                     </p>
 
-                    <img src="/docs/cmd/screenshots/dashboard-overview.png" alt="Dashboard Overview" className="rounded-md border border-gray-700 shadow-2xl mb-12" />
+                    <img src="/docs/cmd/screenshots/dashboard-overview.png" alt="Dashboard Overview" className="rounded-md border border-wnode-border-neutral shadow-2xl mb-12" />
 
                     <div className="space-y-16">
                         <section>
@@ -37,11 +37,11 @@ export default function HelpOverviewPage() {
                                 <BookOpen className="w-4 h-4" />
                                 1. Dashboard Overview
                             </h2>
-                            <p className="text-slate-400 text-[13px] leading-relaxed mb-6">
+                            <p className="text-white/60 text-[13px] leading-relaxed mb-6">
                                 The Command Centre Operations dashboard provides a high-density, real-time visualization of the global mesh network. 
                                 It is divided into three primary functional zones: Vitals, Operational Metrics, and the Global Fleet Map.
                             </p>
-                            <ul className="list-disc pl-5 text-[12px] text-slate-400 space-y-2 mb-8">
+                            <ul className="list-disc pl-5 text-[12px] text-white/60 space-y-2 mb-8">
                                 <li><strong>Network Vitals:</strong> High-level aggregates of vCPUs, RAM, and growth metrics.</li>
                                 <li><strong>Operational Status:</strong> Real-time health indicators including API latency and backend connectivity.</li>
                                 <li><strong>Global Fleet Map:</strong> A geospatial representation of all active and inactive nodes worldwide.</li>
@@ -53,19 +53,19 @@ export default function HelpOverviewPage() {
                                 <ShieldCheck className="w-4 h-4" />
                                 2. How Metrics Work
                             </h2>
-                            <p className="text-slate-400 text-[13px] leading-relaxed mb-6">
+                            <p className="text-white/60 text-[13px] leading-relaxed mb-6">
                                 Metrics are polled every 10 seconds from the authoritative backend. Each card provides specific tooltips explaining the data source.
                             </p>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div className="space-y-4">
                                     <h3 className="text-white text-sm font-bold">Capacity Metrics</h3>
-                                    <p className="text-slate-400 text-[13px] leading-relaxed">
+                                    <p className="text-white/60 text-[13px] leading-relaxed">
                                         Total Cores and Unified Memory represent the aggregate resources available for compute jobs across the entire network.
                                     </p>
                                 </div>
                                 <div className="space-y-4">
                                     <h3 className="text-white text-sm font-bold">Growth Metrics</h3>
-                                    <p className="text-slate-400 text-[13px] leading-relaxed">
+                                    <p className="text-white/60 text-[13px] leading-relaxed">
                                         New Users and Nodes tracked over the current billing period compared to the previous month.
                                     </p>
                                 </div>
@@ -75,7 +75,7 @@ export default function HelpOverviewPage() {
                 </div>
 
                 <div className="mt-12 text-center">
-                    <p className="text-slate-600 text-[10px] uppercase tracking-[0.2em]">© 2026 Wnode Technologies // Executive Documentation</p>
+                    <p className="text-white/40 text-[10px] uppercase tracking-[0.2em]">© 2026 Wnode Technologies // Executive Documentation</p>
                 </div>
             </div>
         </main>

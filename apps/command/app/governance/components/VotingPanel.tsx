@@ -4,7 +4,7 @@ import Tooltip from '../../components/Tooltip';
 
 export default function VotingPanel() {
   return (
-    <div  className="bg-white/[0.02] border border-white/10 rounded-[5px] p-8 space-y-6 hover:shadow-[0_0_20px_rgba(59,130,246,0.05)] transition-all group h-[300px] flex flex-col">
+    <div  className="bg-white/[0.02] border border-wnode-border-neutral shadow-[0_0_20px_rgba(255,255,255,0.05)] rounded-[5px] p-8 space-y-6 hover:shadow-[0_0_20px_rgba(59,130,246,0.05)] transition-all group h-[300px] flex flex-col">
       <div className="flex items-center gap-3">
         <Tooltip text="Voting terminal">
           <CheckSquare className="w-6 h-6 text-blue-400 group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.4)] transition-all" />
@@ -13,14 +13,14 @@ export default function VotingPanel() {
       </div>
 
       <div className="flex-1 flex flex-col justify-center space-y-6">
-        <div className="flex justify-between items-center bg-black/20 border border-white/5 p-4 rounded">
+        <div className="flex justify-between items-center bg-black/20 border border-wnode-border-neutral p-4 rounded">
           <div className="flex flex-col">
-            <span className="text-[10px] text-slate-500 uppercase tracking-widest">Your Weight</span>
+            <span className="text-[10px] text-white/40 uppercase tracking-widest">Your Weight</span>
             <span className="text-[16px] text-[#22D3EE] font-mono">—</span>
           </div>
           <div className="flex flex-col items-end">
-            <span className="text-[10px] text-slate-500 uppercase tracking-widest">Last Vote</span>
-            <span className="text-[11px] text-slate-400">—</span>
+            <span className="text-[10px] text-white/40 uppercase tracking-widest">Last Vote</span>
+            <span className="text-[11px] text-white/60">—</span>
           </div>
         </div>
 

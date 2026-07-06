@@ -10,7 +10,7 @@ export default function NavigationHelpPage() {
     usePageTitle("Navigation & Layout", "Structural guidance for the Command Portal interface.");
 
     return (
-        <main className="flex-1 p-8 overflow-y-auto pb-24 font-sans text-slate-300">
+        <main className="flex-1 p-8 overflow-y-auto pb-24 font-sans text-white/80">
             <div className="max-w-4xl mx-auto">
                 <Link 
                     href="/help" 
@@ -20,13 +20,13 @@ export default function NavigationHelpPage() {
                     Back to Help Center
                 </Link>
 
-                <div className="bg-white/[0.02] border border-white/10 p-12 rounded-[5px] shadow-2xl">
+                <div className="bg-white/[0.02] border border-wnode-border-neutral p-12 rounded-[5px] shadow-2xl">
                     <h1 className="text-3xl font-bold text-white mb-4 uppercase tracking-tighter">Interface & Navigation</h1>
-                    <p className="text-slate-400 text-sm leading-relaxed mb-12 max-w-2xl">
+                    <p className="text-white/60 text-sm leading-relaxed mb-12 max-w-2xl">
                         The Command Portal is designed for high-density executive oversight. Understanding the sidebar, panels, and slide-out patterns is key to efficient resource management.
                     </p>
 
-                    <img src="/docs/cmd/screenshots/cmd-navigation.png" alt="CMD Navigation" className="rounded-md border border-gray-700 shadow-2xl mb-12" />
+                    <img src="/docs/cmd/screenshots/cmd-navigation.png" alt="CMD Navigation" className="rounded-md border border-wnode-border-neutral shadow-2xl mb-12" />
 
                     <div className="space-y-16">
                         {/* 1. Global Sidebar */}
@@ -35,10 +35,10 @@ export default function NavigationHelpPage() {
                                 <SidebarIcon className="w-4 h-4" />
                                 1. Global Sidebar
                             </h2>
-                            <p className="text-slate-400 text-[13px] leading-relaxed mb-6">
+                            <p className="text-white/60 text-[13px] leading-relaxed mb-6">
                                 The left-hand sidebar is your primary navigation anchor. It provides instant access to all major operational sectors.
                             </p>
-                            <ul className="list-disc pl-5 text-[12px] text-slate-400 space-y-2 mb-8">
+                            <ul className="list-disc pl-5 text-[12px] text-white/60 space-y-2 mb-8">
                                 <li><strong>Operations:</strong> The main dashboard and real-time fleet map.</li>
                                 <li><strong>Network:</strong> Granular inventory of Nodes and User CRM.</li>
                                 <li><strong>Finances:</strong> Authoritative ledgers and institutional statements.</li>
@@ -51,7 +51,7 @@ export default function NavigationHelpPage() {
                                 <Layout className="w-4 h-4" />
                                 2. Modular Content Panels
                             </h2>
-                            <p className="text-slate-400 text-[13px] leading-relaxed mb-6">
+                            <p className="text-white/60 text-[13px] leading-relaxed mb-6">
                                 Pages are constructed using modular "Sovereign" panels. Each panel is dedicated to a specific data subset (e.g., Metrics, Charts, Tables).
                             </p>
                         </section>
@@ -62,10 +62,10 @@ export default function NavigationHelpPage() {
                                 <PanelRight className="w-4 h-4" />
                                 3. Contextual Slide-outs
                             </h2>
-                            <p className="text-slate-400 text-[13px] leading-relaxed mb-6">
+                            <p className="text-white/60 text-[13px] leading-relaxed mb-6">
                                 To maintain context, detailed records (Users, Nodes, Transactions) open in a right-hand slide-out drawer rather than a new page.
                             </p>
-                            <ul className="list-disc pl-5 text-[12px] text-slate-400 space-y-2 mb-8">
+                            <ul className="list-disc pl-5 text-[12px] text-white/60 space-y-2 mb-8">
                                 <li><strong>Multi-tab Support:</strong> Most slide-outs feature internal tabs for deep-dive metadata.</li>
                                 <li><strong>Dismissal:</strong> Click the backdrop or the close button to return to the main list.</li>
                             </ul>
@@ -74,7 +74,7 @@ export default function NavigationHelpPage() {
                 </div>
 
                 <div className="mt-12 text-center">
-                    <p className="text-slate-600 text-[10px] uppercase tracking-[0.2em]">© 2026 Wnode Technologies // Executive Documentation</p>
+                    <p className="text-white/40 text-[10px] uppercase tracking-[0.2em]">© 2026 Wnode Technologies // Executive Documentation</p>
                 </div>
             </div>
         </main>

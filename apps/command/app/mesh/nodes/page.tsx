@@ -19,7 +19,7 @@ export default function MeshNodesPage() {
     }, []);
 
     if (!mounted || loading) return (
-        <div className="p-8 flex flex-col items-center justify-center min-h-[400px] text-slate-500 gap-4">
+        <div className="p-8 flex flex-col items-center justify-center min-h-[400px] text-white/40 gap-4">
             <Activity className="w-8 h-8 animate-spin text-cyan-400" />
             <p className="text-sm font-medium">Scanning mesh nodes...</p>
         </div>
@@ -34,9 +34,9 @@ export default function MeshNodesPage() {
                 breadcrumbs={[{ label: "Nodes" }]}
             />
             
-            <div className="overflow-x-auto border border-white/10 rounded-lg">
+            <div className="overflow-x-auto border border-wnode-border-neutral rounded-lg">
                 <table className="w-full text-left text-sm">
-                    <thead className="bg-white/[0.03] text-slate-500 uppercase text-[10px] font-bold tracking-widest">
+                    <thead className="bg-white/[0.03] text-white/40 uppercase text-[10px] font-bold tracking-widest">
                         <tr>
                             <th className="px-6 py-4">Node ID</th>
                             <th className="px-6 py-4">Status</th>
@@ -60,7 +60,7 @@ export default function MeshNodesPage() {
                                         {node.status}
                                     </span>
                                 </td>
-                                <td className="px-6 py-4 text-slate-400 text-xs">
+                                <td className="px-6 py-4 text-white/60 text-xs">
                                     {new Date(node.lastHeartbeat).toLocaleString()}
                                 </td>
                                 <td className="px-6 py-4">
@@ -68,13 +68,13 @@ export default function MeshNodesPage() {
                                         <div className="flex-1 min-w-[60px] max-w-[100px] bg-white/10 h-1.5 rounded-full overflow-hidden">
                                             <div className="bg-cyan-400 h-full" style={{ width: `${node.load * 100}%` }} />
                                         </div>
-                                        <span className="text-[10px] text-slate-500">{(node.load * 100).toFixed(0)}%</span>
+                                        <span className="text-[10px] text-white/40">{(node.load * 100).toFixed(0)}%</span>
                                     </div>
                                 </td>
                                 <td className="px-6 py-4 text-right">
                                     <div className="flex items-center justify-end gap-3 translate-x-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
                                         <Link href={`/mesh/nodes/${node.nodeId}/events`} title="View History">
-                                            <History className="w-4 h-4 text-slate-500 hover:text-cyan-400 transition-colors" />
+                                            <History className="w-4 h-4 text-white/40 hover:text-cyan-400 transition-colors" />
                                         </Link>
                                         <Link href={`/mesh/nodes/${node.nodeId}`}>
                                             <ChevronRight className="w-4 h-4 text-cyan-400" />
@@ -85,7 +85,7 @@ export default function MeshNodesPage() {
                         ))}
                         {nodes.length === 0 && (
                             <tr>
-                                <td colSpan={5} className="px-6 py-12 text-center text-slate-500 italic">
+                                <td colSpan={5} className="px-6 py-12 text-center text-white/40 italic">
                                     No nodes currently registered in the mesh.
                                 </td>
                             </tr>

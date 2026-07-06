@@ -17,9 +17,9 @@ export default function HelpPage() {
                     Back to Help Center
                 </Link>
 
-                <div className="bg-white/[0.02] border border-white/10 p-12 rounded-[5px]">
+                <div className="bg-white/[0.02] border border-wnode-border-neutral p-12 rounded-[5px]">
                     <h1 className="text-3xl font-bold text-white mb-4 uppercase tracking-tighter">Mesh Insights</h1>
-                    <p className="text-slate-400 text-sm leading-relaxed mb-12 max-w-2xl">
+                    <p className="text-white/60 text-sm leading-relaxed mb-12 max-w-2xl">
                         This page provides an overview of the Mesh Insights functionality within the Command portal.
                     </p>
 
@@ -29,7 +29,7 @@ export default function HelpPage() {
                                 <Info className="w-4 h-4" />
                                 Purpose
                             </h2>
-                            <p className="text-slate-400 text-[13px] leading-relaxed">
+                            <p className="text-white/60 text-[13px] leading-relaxed">
                                 The Mesh Insights page is designed to monitor and manage relevant system metrics and configurations.
                             </p>
                         </section>
@@ -39,10 +39,10 @@ export default function HelpPage() {
                                 <Monitor className="w-4 h-4" />
                                 UI Elements & Actions
                             </h2>
-                            <p className="text-slate-400 text-[13px] leading-relaxed mb-4">
+                            <p className="text-white/60 text-[13px] leading-relaxed mb-4">
                                 Use the available tables and controls to filter data and trigger associated operational tasks.
                             </p>
-                            <Image src="/help/screenshots/mesh-insights-overview.png" alt="mesh-insights overview" width={800} height={400} className="rounded border border-white/20 shadow-xl mb-4 w-full h-auto object-cover" />
+                            <Image src="/help/screenshots/mesh-insights-overview.png" alt="mesh-insights overview" width={800} height={400} className="rounded border border-wnode-border-neutral shadow-xl mb-4 w-full h-auto object-cover" />
                         </section>
 
                         <section>
@@ -50,7 +50,7 @@ export default function HelpPage() {
                                 <HelpCircle className="w-4 h-4" />
                                 How to use this page
                             </h2>
-                            <ul className="list-disc list-inside text-slate-400 text-[13px] leading-relaxed space-y-2">
+                            <ul className="list-disc list-inside text-white/60 text-[13px] leading-relaxed space-y-2">
                                 <li>Review the top metrics for a high-level summary.</li>
                                 <li>Select individual rows to view detailed diagnostics.</li>
                             </ul>
@@ -61,7 +61,7 @@ export default function HelpPage() {
                                 <ShieldAlert className="w-4 h-4" />
                                 Troubleshooting
                             </h2>
-                            <p className="text-slate-400 text-[13px] leading-relaxed">
+                            <p className="text-white/60 text-[13px] leading-relaxed">
                                 If data fails to load, verify your network connection and ensure the backend nodld service is reachable. Contact an administrator if issues persist.
                             </p>
                         </section>

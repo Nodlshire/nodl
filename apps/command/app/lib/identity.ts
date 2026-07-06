@@ -22,8 +22,8 @@ export function resolveIdentityHeaders(req: NextRequest): Record<string, string>
         const payload = JSON.parse(Buffer.from(payloadStr, 'base64').toString());
         
         // Canonical Owner Resolution
-        if (payload.email === 'stephen@nodl.one' || payload.email === 'stephen@wnode.one') {
-            headers['X-Owner-Email'] = 'stephen@nodl.one';
+        if (payload.email === 'stephen@wnode.one' || payload.email === 'stephen@wnode.one') {
+            headers['X-Owner-Email'] = 'stephen@wnode.one';
             headers['X-Owner-ID'] = '100001-0426-01-AA';
         }
 

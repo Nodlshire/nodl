@@ -9,6 +9,17 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
+                wnode: {
+                    'border-neutral': 'rgba(255, 255, 255, 0.20)',
+                    'border-separator': 'rgba(255, 255, 255, 0.15)',
+                    'border-hover': 'rgba(255, 255, 255, 0.40)',
+                    'border-accent': 'rgba(255, 255, 255, 0.50)',
+                    'compute': '#60a5fa',
+                    'identity': '#c084fc',
+                    'health': '#4ade80',
+                    'warning': '#fbbf24',
+                    'sovereign': '#22d3ee',
+                },
                 background: "var(--nodl-bg)",
                 foreground: "var(--nodl-text-primary)",
                 nodl: {

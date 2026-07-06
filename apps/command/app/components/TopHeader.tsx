@@ -9,7 +9,7 @@ export default function TopHeader() {
     const { pageTitle, pageSubtitle } = usePageTitle();
 
     return (
-        <header className="sticky top-0 z-40 w-full bg-black/60 backdrop-blur-md border-b border-white/5 px-8 py-4 flex items-center justify-between">
+        <header className="sticky top-0 z-40 w-full bg-black/60 backdrop-blur-md border-b border-wnode-border-separator px-8 py-4 flex items-center justify-between">
             <div className="flex flex-col gap-0.5">
                 <div className="flex items-center gap-2">
                     <h1 className="text-3xl font-bold tracking-tight text-white">
@@ -17,7 +17,7 @@ export default function TopHeader() {
                     </h1>
                 </div>
                 {pageSubtitle && (
-                    <p className="text-[11px] text-slate-500 font-medium tracking-tight mt-0.5">
+                    <p className="text-[11px] text-white/40 font-medium tracking-tight mt-0.5">
                         {pageSubtitle}
                     </p>
                 )}

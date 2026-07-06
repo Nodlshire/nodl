@@ -11,7 +11,7 @@ const ROLE_COLORS: Record<string, string> = {
     'owner': 'text-[#22D3EE] bg-[#22D3EE]/10 border-[#22D3EE]/20',
     'management': 'text-purple-400 bg-purple-400/10 border-purple-400/20',
     'customer_service': 'text-emerald-400 bg-emerald-400/10 border-emerald-400/20',
-    'visitor': 'text-slate-500 bg-white/[0.01] border-white/5',
+    'visitor': 'text-white/40 bg-white/[0.01] border-wnode-border-separator',
 };
 
 const ROLE_ICONS: Record<string, any> = {
@@ -178,20 +178,20 @@ export default function StaffManagementPage() {
         <>
             <main className="flex-1 p-8 overflow-y-auto pb-24 relative space-y-10 focus:outline-none">
 
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10 bg-white/[0.01] border border-white/5 p-4 rounded-[5px]">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10 bg-white/[0.01] border border-wnode-border-separator p-4 rounded-[5px]">
                     <div className="flex flex-wrap items-center gap-3 flex-1">
                         <div className="relative group flex-1 max-w-md">
-                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 group-focus-within:text-[#22D3EE] transition-colors" />
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 group-focus-within:text-[#22D3EE] transition-colors" />
                             <input 
                                 type="text" 
                                 placeholder="Search by name, identity, or role..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="bg-white/[0.03] border border-white/10 rounded-[5px] pl-10 pr-4 py-2 text-[13px] focus:outline-none focus:border-[#22D3EE]/50 w-full transition-all"
+                                className="bg-white/[0.03] border border-wnode-border-neutral rounded-[5px] pl-10 pr-4 py-2 text-[13px] focus:outline-none focus:border-[#22D3EE]/50 w-full transition-all"
                             />
                         </div>
-                        <button className="px-4 py-2 bg-white/[0.03] border border-white/10 rounded-[5px] text-[13px] font-normal text-slate-400 hover:text-white transition-all flex items-center gap-2">
-                            <Filter className="w-4 h-4 text-slate-600" /> Filter Roles
+                        <button className="px-4 py-2 bg-white/[0.03] border border-wnode-border-neutral rounded-[5px] text-[13px] font-normal text-white/60 hover:text-white transition-all flex items-center gap-2">
+                            <Filter className="w-4 h-4 text-white/40" /> Filter Roles
                         </button>
                     </div>
 
@@ -206,7 +206,7 @@ export default function StaffManagementPage() {
                     <div className="card-sovereign overflow-hidden">
                         <div className="overflow-x-auto">
                             <table className="w-full text-left">
-                                <thead className="bg-white/[0.04] text-[12px] text-slate-400 uppercase-none border-b border-white/10">
+                                <thead className="bg-white/[0.04] text-[12px] text-white/60 uppercase-none border-b border-wnode-border-neutral">
                                 <tr>
                                     <th className="px-8 py-5 font-normal">Operator Name</th>
                                     <th className="px-6 py-5 font-normal">Access Level</th>
@@ -214,9 +214,9 @@ export default function StaffManagementPage() {
                                     <th className="px-8 py-5 font-normal text-left">Actions</th>
                                 </tr>
                                 </thead>
-                                <tbody className="text-[14px] text-slate-300 divide-y divide-white/5">
+                                <tbody className="text-[14px] text-white/80 divide-y divide-white/5">
                                     {loading ? (
-                                        <tr><td colSpan={4} className="px-8 py-12 text-center text-slate-500">Retrieving personnel security records...</td></tr>
+                                        <tr><td colSpan={4} className="px-8 py-12 text-center text-white/40">Retrieving personnel security records...</td></tr>
                                     ) : filteredStaff.map((member) => {
                                         const Icon = ROLE_ICONS[member.role] || Users;
                                         return (
@@ -226,12 +226,12 @@ export default function StaffManagementPage() {
                                                         onClick={() => setSelectedUser(member)}
                                                         className="flex items-center gap-4 cursor-pointer"
                                                     >
-                                                        <div className="w-10 h-10 rounded-[5px] bg-white/5 border border-white/10 flex items-center justify-center text-slate-500 group-hover:border-[#22D3EE]/30 transition-colors">
+                                                        <div className="w-10 h-10 rounded-[5px] bg-white/5 border border-wnode-border-neutral flex items-center justify-center text-white/40 group-hover:border-[#22D3EE]/30 transition-colors">
                                                             {member.name ? member.name.charAt(0).toUpperCase() : (member.email ? member.email.charAt(0).toUpperCase() : '?')}
                                                         </div>
                                                         <div className="flex flex-col">
                                                             <span className="text-[14px] font-normal text-white group-hover:text-[#22D3EE] transition-colors">{member.name || 'Anonymous Operator'}</span>
-                                                            <span className="text-[12px] font-normal text-slate-600 font-mono tracking-tighter">{member.email}</span>
+                                                            <span className="text-[12px] font-normal text-white/40 font-mono tracking-tighter">{member.email}</span>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -244,7 +244,7 @@ export default function StaffManagementPage() {
                                                 <td className="px-6 py-6">
                                                     <div className="flex items-center gap-2">
                                                         <div className={`w-1.5 h-1.5 rounded-full ${STATUS_COLORS[member.status] || 'bg-slate-700'}`} />
-                                                        <span className="text-[12px] font-bold text-slate-400 tracking-widest uppercase">{member.status}</span>
+                                                        <span className="text-[12px] font-bold text-white/60 tracking-widest uppercase">{member.status}</span>
                                                     </div>
                                                 </td>
                                                 <td className="px-8 py-6 text-left relative">
@@ -255,13 +255,13 @@ export default function StaffManagementPage() {
                                                                 setActiveDropdown(activeDropdown === member.id ? null : member.id);
                                                                 setConfirmDeleteId(null);
                                                             }}
-                                                            className="p-1.5 text-white hover:bg-white/10 transition-all bg-white/[0.05] border border-white/10 rounded-[5px] flex items-center justify-center transition-all group"
+                                                            className="p-1.5 text-white hover:bg-white/10 transition-all bg-white/[0.05] border border-wnode-border-neutral rounded-[5px] flex items-center justify-center transition-all group"
                                                         >
                                                             <MoreVertical className="w-4 h-4 group-hover:scale-110 transition-transform" />
                                                         </button>
 
                                                         {activeDropdown === member.id && (
-                                                            <div className="absolute right-full top-1/2 -translate-y-1/2 mr-2 w-48 bg-[#0A0A0B] border border-white/10 rounded-[5px] shadow-2xl z-[100] p-1 animate-in fade-in slide-in-from-right-2 duration-200">
+                                                            <div className="absolute right-full top-1/2 -translate-y-1/2 mr-2 w-48 bg-[#0A0A0B] border border-wnode-border-neutral rounded-[5px] shadow-2xl z-[100] p-1 animate-in fade-in slide-in-from-right-2 duration-200">
                                                                 {member.status === 'suspended' ? (
                                                                     <button 
                                                                         onClick={() => handleUpdateStatus(member.id, 'active')}
@@ -288,7 +288,7 @@ export default function StaffManagementPage() {
                                                                             e.stopPropagation();
                                                                             handleResendInvite(member);
                                                                         }}
-                                                                        className="w-full text-left px-3 py-2 text-[12px] text-slate-500 hover:bg-white/5 hover:text-white rounded transition-colors flex items-center gap-2"
+                                                                        className="w-full text-left px-3 py-2 text-[12px] text-white/40 hover:bg-white/5 hover:text-white rounded transition-colors flex items-center gap-2"
                                                                     >
                                                                         <Mail className="w-3.5 h-3.5" /> Resend Invite
                                                                     </button>
@@ -307,7 +307,7 @@ export default function StaffManagementPage() {
                                                                     className={`w-full text-left px-3 py-2 text-[12px] rounded transition-all flex items-center gap-2 ${
                                                                         confirmDeleteId === member.id 
                                                                         ? 'bg-red-500 text-white font-bold animate-pulse' 
-                                                                        : 'text-slate-500 hover:bg-red-500/10 hover:text-red-400'
+                                                                        : 'text-white/40 hover:bg-red-500/10 hover:text-red-400'
                                                                     }`}
                                                                 >
                                                                     <Trash2 className="w-3.5 h-3.5" /> 
@@ -325,7 +325,7 @@ export default function StaffManagementPage() {
                         </div>
                     </div>
 
-                    <div className="flex items-center gap-6 pt-10 text-[12px] font-normal text-slate-700">
+                    <div className="flex items-center gap-6 pt-10 text-[12px] font-normal text-white/40">
                         <div className="flex items-center gap-2">
                             <ShieldCheck className="w-4 h-4 opacity-50" />
                             Command RBAC: Active
@@ -341,29 +341,29 @@ export default function StaffManagementPage() {
                 subtitle={selectedUser?.role}
             >
                 <div className="space-y-8">
-                    <div className="bg-white/[0.02] border border-white/5 p-6 rounded-[5px]">
-                        <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] mb-4">Command Identity</h4>
+                    <div className="bg-white/[0.02] border border-wnode-border-separator p-6 rounded-[5px]">
+                        <h4 className="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em] mb-4">Command Identity</h4>
                         <div className="space-y-4">
                             <div className="flex items-center justify-between">
-                                <span className="text-[12px] text-slate-400">Canonical Email</span>
+                                <span className="text-[12px] text-white/60">Canonical Email</span>
                                 <span className="text-[13px] text-white font-mono">{selectedUser?.email}</span>
                             </div>
                             <div className="flex items-center justify-between">
-                                <span className="text-[12px] text-slate-400">Account Status</span>
+                                <span className="text-[12px] text-white/60">Account Status</span>
                                 <div className="flex items-center gap-2">
                                     <div className={`w-1.5 h-1.5 rounded-full ${STATUS_COLORS[selectedUser?.status]}`} />
                                     <span className="text-[12px] text-white uppercase tracking-widest">{selectedUser?.status}</span>
                                 </div>
                             </div>
                             <div className="flex items-center justify-between">
-                                <span className="text-[12px] text-slate-400">Operational Level</span>
+                                <span className="text-[12px] text-white/60">Operational Level</span>
                                 <span className={`text-[12px] font-bold px-2 py-0.5 rounded border ${ROLE_COLORS[selectedUser?.role]}`}>{selectedUser?.role?.toUpperCase()}</span>
                             </div>
                         </div>
                     </div>
 
-                    <div className="bg-white/[0.02] border border-white/5 p-6 rounded-[5px]">
-                        <h4 className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] mb-4">Access Governance</h4>
+                    <div className="bg-white/[0.02] border border-wnode-border-separator p-6 rounded-[5px]">
+                        <h4 className="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em] mb-4">Access Governance</h4>
                         <div className="space-y-4">
                             <button 
                                 onClick={() => handleUpdateStatus(selectedUser?.id, selectedUser?.status === 'suspended' ? 'active' : 'suspended')}
@@ -378,11 +378,11 @@ export default function StaffManagementPage() {
                         </div>
                     </div>
 
-                    <div className="bg-black/40 border border-white/5 p-6 rounded-[5px] flex items-center gap-4">
-                        <Lock className="w-5 h-5 text-slate-600" />
+                    <div className="bg-black/40 border border-wnode-border-separator p-6 rounded-[5px] flex items-center gap-4">
+                        <Lock className="w-5 h-5 text-white/40" />
                         <div>
-                            <p className="text-[13px] text-slate-300">RBAC Enforcement active.</p>
-                            <p className="text-[11px] text-slate-600">Administrative changes are logged to the platform audit trace.</p>
+                            <p className="text-[13px] text-white/80">RBAC Enforcement active.</p>
+                            <p className="text-[11px] text-white/40">Administrative changes are logged to the platform audit trace.</p>
                         </div>
                     </div>
                 </div>
@@ -397,49 +397,49 @@ export default function StaffManagementPage() {
                             initial={{ scale: 0.95, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.95, opacity: 0 }}
-                            className="w-full max-w-md bg-[#0A0A0B] border border-white/10 rounded-[5px] shadow-2xl p-10 relative"
+                            className="w-full max-w-md bg-[#0A0A0B] border border-wnode-border-neutral rounded-[5px] shadow-2xl p-10 relative"
                         >
                             <button 
                                 onClick={() => setIsAddModalOpen(false)}
-                                className="absolute top-6 right-6 text-slate-500 hover:text-white transition-colors"
+                                className="absolute top-6 right-6 text-white/40 hover:text-white transition-colors"
                             >
                                 <X className="w-5 h-5" />
                             </button>
 
                             <div className="mb-8">
                                 <h2 className="text-xl font-bold text-white uppercase tracking-widest mb-2">Add user account</h2>
-                                <p className="text-[12px] text-slate-500">The user will receive an email to set their password.</p>
+                                <p className="text-[12px] text-white/40">The user will receive an email to set their password.</p>
                             </div>
 
                             <form onSubmit={handleAddUser} className="space-y-6">
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Full Name</label>
+                                    <label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Full Name</label>
                                     <input 
                                         type="text" 
                                         required
                                         value={newUser.name}
                                         onChange={(e) => setNewUser({...newUser, name: e.target.value})}
-                                        className="w-full bg-black/50 border border-white/10 rounded-[5px] px-4 py-3 text-[14px] text-white focus:outline-none focus:border-[#22D3EE]/50 transition-all font-normal"
+                                        className="w-full bg-black/50 border border-wnode-border-neutral rounded-[5px] px-4 py-3 text-[14px] text-white focus:outline-none focus:border-[#22D3EE]/50 transition-all font-normal"
                                         placeholder="James Carter"
                                     />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Email Address</label>
+                                    <label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Email Address</label>
                                     <input 
                                         type="email" 
                                         required
                                         value={newUser.email}
                                         onChange={(e) => setNewUser({...newUser, email: e.target.value})}
-                                        className="w-full bg-black/50 border border-white/10 rounded-[5px] px-4 py-3 text-[14px] text-white focus:outline-none focus:border-[#22D3EE]/50 transition-all font-normal"
+                                        className="w-full bg-black/50 border border-wnode-border-neutral rounded-[5px] px-4 py-3 text-[14px] text-white focus:outline-none focus:border-[#22D3EE]/50 transition-all font-normal"
                                         placeholder="james@wnode.one"
                                     />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Access Level</label>
+                                    <label className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Access Level</label>
                                     <select 
                                         value={newUser.role}
                                         onChange={(e) => setNewUser({...newUser, role: e.target.value})}
-                                        className="w-full bg-black/50 border border-white/10 rounded-[5px] px-4 py-3 text-[14px] text-white focus:outline-none focus:border-[#22D3EE]/50 transition-all font-normal appearance-none"
+                                        className="w-full bg-black/50 border border-wnode-border-neutral rounded-[5px] px-4 py-3 text-[14px] text-white focus:outline-none focus:border-[#22D3EE]/50 transition-all font-normal appearance-none"
                                     >
                                         <option value="management">Manager</option>
                                         <option value="customer_service">Customer Service</option>

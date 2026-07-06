@@ -85,7 +85,7 @@ export default function DiscordLivePanel() {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center h-full text-slate-500 space-y-4">
+      <div className="flex flex-col items-center justify-center h-full text-white/40 space-y-4">
         <RefreshCw className="w-8 h-8 animate-spin text-purple-400" />
         <span className="text-[10px] uppercase tracking-widest font-bold">Connecting to Gateway...</span>
       </div>
@@ -95,7 +95,7 @@ export default function DiscordLivePanel() {
   return (
     <div className="flex flex-col h-full bg-black/20 overflow-hidden relative">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-white/5 bg-white/[0.02]">
+      <div className="flex items-center justify-between p-4 border-b border-wnode-border-separator bg-white/[0.02]">
         <h3 className="text-[11px] font-bold text-white uppercase tracking-widest flex items-center gap-2">
           <MessageSquare className="w-3 h-3 text-purple-400" />
           Live Community Feed
@@ -111,7 +111,7 @@ export default function DiscordLivePanel() {
       {/* Messages Area */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar">
         {messages.length === 0 && (
-          <div className="flex flex-col items-center justify-center h-full text-slate-600 space-y-2 opacity-50">
+          <div className="flex flex-col items-center justify-center h-full text-white/40 space-y-2 opacity-50">
             <Hash className="w-8 h-8" />
             <p className="text-[10px] uppercase tracking-widest">Waiting for incoming messages...</p>
           </div>
@@ -127,11 +127,11 @@ export default function DiscordLivePanel() {
             <div className="flex-1 space-y-1 min-w-0">
               <div className="flex items-baseline gap-2">
                 <span className="text-[11px] font-bold text-white truncate">{msg.author.username}</span>
-                <span className="text-[8px] text-slate-500 font-mono">
+                <span className="text-[8px] text-white/40 font-mono">
                   {new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </span>
               </div>
-              <p className="text-[12px] text-slate-300 leading-relaxed break-words">
+              <p className="text-[12px] text-white/80 leading-relaxed break-words">
                 {msg.content}
               </p>
             </div>

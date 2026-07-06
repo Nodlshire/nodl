@@ -35,7 +35,7 @@ export default function FinancesPage() {
     const fetchAccountData = async () => {
         setIsRefreshing(true);
         try {
-            const userEmail = localStorage.getItem("nodl_user_email") || "stephen@nodl.one";
+            const userEmail = localStorage.getItem("nodl_user_email") || "stephen@wnode.one";
             
             // We fetch the money overview which contains the operator details
             const res = await fetch(`/api/v1/money/overview?email=${encodeURIComponent(userEmail)}`);
@@ -130,18 +130,18 @@ export default function FinancesPage() {
                 <div className="flex justify-between items-start mb-6">
                         <div className="flex items-center gap-6">
                             <div className="flex flex-col items-start gap-1">
-                                <span className="text-[10px] text-slate-500 uppercase-none tracking-widest font-bold">Ledger Authority</span>
+                                <span className="text-[10px] text-white/40 uppercase-none tracking-widest font-bold">Ledger Authority</span>
                                 <div 
                                     onClick={fetchAccountData}
-                                    className="flex items-center gap-2 bg-white/[0.04] border border-white/10 px-3 py-1.5 rounded-[5px] cursor-pointer hover:border-[#22D3EE] transition-colors group"
+                                    className="flex items-center gap-2 bg-white/[0.04] border border-wnode-border-neutral px-3 py-1.5 rounded-[5px] cursor-pointer hover:border-[#22D3EE] transition-colors group"
                                 >
-                                    <RefreshCw className={`w-3.5 h-3.5 text-slate-400 group-hover:text-[#22D3EE] ${isRefreshing ? 'animate-spin' : ''}`} />
+                                    <RefreshCw className={`w-3.5 h-3.5 text-white/60 group-hover:text-[#22D3EE] ${isRefreshing ? 'animate-spin' : ''}`} />
                                     <span className="text-[13px] font-mono text-white capitalize">Sync Ledger</span>
                                 </div>
                             </div>
 
                             <div className="flex flex-col items-start gap-1">
-                                <span className="text-[10px] text-slate-500 uppercase-none tracking-widest font-bold">Payout Status</span>
+                                <span className="text-[10px] text-white/40 uppercase-none tracking-widest font-bold">Payout Status</span>
                                 {account?.stripeConnectId ? (
                                     <div className="flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-[5px] text-emerald-400">
                                         <CheckCircle2 className="w-3.5 h-3.5" />
@@ -168,10 +168,10 @@ export default function FinancesPage() {
                                 className="card-sovereign p-8 flex flex-col justify-between h-44 cursor-pointer hover:border-[#22D3EE]/50 transition-all group overflow-hidden relative"
                             >
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#22D3EE]/5 blur-3xl rounded-full -mr-16 -mt-16 group-hover:bg-[#22D3EE]/10 transition-colors" />
-                                <span className="text-[14px] font-bold text-slate-400 uppercase-none group-hover:text-white transition-colors relative z-10">{m.label}</span>
+                                <span className="text-[14px] font-bold text-white/60 uppercase-none group-hover:text-white transition-colors relative z-10">{m.label}</span>
                                 <div className="flex items-baseline gap-2 relative z-10">
                                     <span className="text-5xl font-black text-white tracking-tighter uppercase-none font-mono">{m.value}</span>
-                                    <span className="text-[14px] font-normal text-slate-500 tracking-wider font-mono uppercase-none">{m.unit}</span>
+                                    <span className="text-[14px] font-normal text-white/40 tracking-wider font-mono uppercase-none">{m.unit}</span>
                                 </div>
                                 <span className="text-[12px] text-[#22D3EE] font-mono tracking-tighter uppercase-none relative z-10 font-bold">{m.sub}</span>
                             </div>
@@ -179,16 +179,16 @@ export default function FinancesPage() {
                     </div>
 
                     <div className="card-sovereign p-8 flex flex-col">
-                        <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
+                        <div className="flex items-center justify-between mb-6 pb-4 border-b border-wnode-border-neutral">
                             <span className="text-[16px] font-bold text-white uppercase-none italic tracking-tight">Canonical Settlement Ledger</span>
-                            <div className="flex items-center gap-2 text-[11px] text-slate-500 uppercase-none tracking-widest font-bold">
+                            <div className="flex items-center gap-2 text-[11px] text-white/40 uppercase-none tracking-widest font-bold">
                                 <AlertCircle className="w-3.5 h-3.5" />
                                 Authoritative Source: nodld
                             </div>
                         </div>
-                        <div className="overflow-hidden border border-white/10 rounded-[5px]">
+                        <div className="overflow-hidden border border-wnode-border-neutral rounded-[5px]">
                             <table className="w-full text-left">
-                                <thead className="bg-white/[0.04] text-[11px] text-slate-500 uppercase-none tracking-wider font-bold">
+                                <thead className="bg-white/[0.04] text-[11px] text-white/40 uppercase-none tracking-wider font-bold">
                                     <tr>
                                         <th className="px-6 py-4 font-bold">Node ID</th>
                                         <th className="px-6 py-4 font-bold">Earnings (Cents)</th>
@@ -196,7 +196,7 @@ export default function FinancesPage() {
                                         <th className="px-6 py-4 font-bold">Ledger Integrity</th>
                                     </tr>
                                 </thead>
-                                <tbody className="text-[14px] text-slate-300 divide-y divide-white/5">
+                                <tbody className="text-[14px] text-white/80 divide-y divide-white/5">
                                     {account ? (
                                         <tr className="hover:bg-white/[0.02] transition-colors">
                                             <td className="px-6 py-4 font-mono text-[12px]">{account.id.substring(0, 16)}...</td>
@@ -211,7 +211,7 @@ export default function FinancesPage() {
                                         </tr>
                                     ) : (
                                         <tr className="hover:bg-white/[0.02] transition-colors italic">
-                                            <td colSpan={4} className="px-6 py-10 text-center text-slate-600">No active ledger data detected for this terminal.</td>
+                                            <td colSpan={4} className="px-6 py-10 text-center text-white/40">No active ledger data detected for this terminal.</td>
                                         </tr>
                                     )}
                                 </tbody>
@@ -221,24 +221,24 @@ export default function FinancesPage() {
                 </main>
 
                 {/* Financial Detail Drawer */}
-                <div className={`fixed inset-y-0 right-0 w-[550px] bg-black border-l border-white/20 z-[100] transition-transform duration-500 shadow-2xl ${selectedMetric ? 'translate-x-0' : 'translate-x-full'}`}>
+                <div className={`fixed inset-y-0 right-0 w-[550px] bg-black border-l border-wnode-border-neutral z-[100] transition-transform duration-500 shadow-2xl ${selectedMetric ? 'translate-x-0' : 'translate-x-full'}`}>
                     {selectedMetric && (
                          <div className="flex flex-col h-full">
-                            <header className="p-10 border-b border-white/10 flex items-center justify-between bg-white/[0.02]">
+                            <header className="p-10 border-b border-wnode-border-neutral flex items-center justify-between bg-white/[0.02]">
                                 <div>
-                                    <span className="text-[10px] text-slate-500 uppercase-none tracking-[0.3em] font-mono">Revenue source itemization</span>
+                                    <span className="text-[10px] text-white/40 uppercase-none tracking-[0.3em] font-mono">Revenue source itemization</span>
                                     <h3 className="text-[24px] text-white font-normal uppercase-none italic">{selectedMetric}</h3>
                                 </div>
                                 <button onClick={() => setSelectedMetric(null)} className="p-3 hover:bg-white/5 rounded-full transition-colors">
-                                    <X className="w-6 h-6 text-slate-500 hover:text-white" />
+                                    <X className="w-6 h-6 text-white/40 hover:text-white" />
                                 </button>
                             </header>
                             <div className="flex-1 p-10 space-y-12 overflow-y-auto">
                                 <div className="space-y-6">
                                      <span className="text-[12px] text-[#22D3EE] font-mono uppercase-none tracking-widest font-bold">Consolidated Data</span>
                                      <div className="card-sovereign p-8 space-y-6 bg-white/[0.02]">
-                                        <div className="flex justify-between text-[16px] border-b border-white/5 pb-4">
-                                            <span className="text-slate-400">Gross Revenue</span>
+                                        <div className="flex justify-between text-[16px] border-b border-wnode-border-separator pb-4">
+                                            <span className="text-white/60">Gross Revenue</span>
                                             <span className="text-white font-mono font-bold">{formatCents(account?.total_compute)}</span>
                                         </div>
                                         <div className="flex justify-between text-[18px]">
@@ -253,23 +253,23 @@ export default function FinancesPage() {
                                      <div className="card-sovereign p-8 space-y-8 bg-white/[0.02]">
                                         <div className="grid grid-cols-2 gap-y-8 gap-x-12">
                                             <div className="space-y-1">
-                                                <span className="text-[10px] text-slate-500 uppercase-none tracking-widest font-bold">Transfers</span>
+                                                <span className="text-[10px] text-white/40 uppercase-none tracking-widest font-bold">Transfers</span>
                                                 <div className={`text-[12px] font-mono px-2 py-1 rounded-[3px] w-fit border capitalize font-bold ${account?.stripeInfo?.transferStatus === 'active' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-amber-500/10 border-amber-500/20 text-amber-400'}`}>
                                                     {account?.stripeInfo?.transferStatus || "Pending"}
                                                 </div>
                                             </div>
                                             <div className="space-y-1">
-                                                <span className="text-[10px] text-slate-500 uppercase-none tracking-widest font-bold">Payouts</span>
+                                                <span className="text-[10px] text-white/40 uppercase-none tracking-widest font-bold">Payouts</span>
                                                 <div className={`text-[12px] font-mono px-2 py-1 rounded-[3px] w-fit border font-bold ${account?.stripeInfo?.payoutsEnabled ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-red-500/10 border-red-500/20 text-red-400'}`}>
                                                     {account?.stripeInfo?.payoutsEnabled ? "Enabled" : "Restricted"}
                                                 </div>
                                             </div>
                                             <div className="space-y-1">
-                                                <span className="text-[10px] text-slate-500 uppercase-none tracking-widest font-bold">Currency</span>
+                                                <span className="text-[10px] text-white/40 uppercase-none tracking-widest font-bold">Currency</span>
                                                 <div className="text-[14px] font-mono text-white uppercase font-bold">{account?.stripeInfo?.defaultCurrency || "USD"}</div>
                                             </div>
                                             <div className="space-y-1">
-                                                <span className="text-[10px] text-slate-500 uppercase-none tracking-widest font-bold">Region</span>
+                                                <span className="text-[10px] text-white/40 uppercase-none tracking-widest font-bold">Region</span>
                                                 <div className="text-[14px] font-mono text-white uppercase font-bold">{account?.stripeInfo?.country || "US"}</div>
                                             </div>
                                         </div>
@@ -284,7 +284,7 @@ export default function FinancesPage() {
                                 </div>
                                 <div className="p-6 bg-[#22D3EE]/5 border border-[#22D3EE]/20 rounded-[5px] flex items-start gap-4">
                                     <Info className="w-5 h-5 text-[#22D3EE] shrink-0 mt-0.5" />
-                                    <p className="text-[13px] text-slate-400 leading-relaxed font-bold">
+                                    <p className="text-[13px] text-white/60 leading-relaxed font-bold">
                                         Payouts are aggregated and processed automatically via your linked Stripe Connect account. 
                                         Authoritative ledger data is synchronized every 30 seconds.
                                     </p>

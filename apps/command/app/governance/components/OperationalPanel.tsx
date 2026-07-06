@@ -4,7 +4,7 @@ import Tooltip from '../../components/Tooltip';
 
 export default function OperationalPanel() {
   return (
-    <div  className="bg-white/[0.02] border border-white/10 rounded-[5px] p-8 space-y-6 hover:shadow-[0_0_20px_rgba(251,146,60,0.05)] transition-all group h-[280px] flex flex-col">
+    <div  className="bg-white/[0.02] border border-wnode-border-neutral shadow-[0_0_20px_rgba(255,255,255,0.05)] rounded-[5px] p-8 space-y-6 hover:shadow-[0_0_20px_rgba(251,146,60,0.05)] transition-all group h-[280px] flex flex-col">
       <div className="flex items-center gap-3">
         <Tooltip text="Infrastructure settings">
           <Settings className="w-6 h-6 text-orange-400 group-hover:drop-shadow-[0_0_8px_rgba(251,146,60,0.4)] transition-all" />
@@ -15,11 +15,11 @@ export default function OperationalPanel() {
       <div className="flex-1 space-y-4 flex flex-col justify-center">
         <div className="space-y-3">
           <div className="flex items-center justify-between text-[11px]">
-            <span className="text-slate-500 uppercase tracking-widest font-bold">Infrastructure Manager</span>
+            <span className="text-white/40 uppercase tracking-widest font-bold">Infrastructure Manager</span>
             <span className="text-white font-mono">—</span>
           </div>
           <div className="flex items-center justify-between text-[11px]">
-            <span className="text-slate-500 uppercase tracking-widest font-bold">EIB Balance</span>
+            <span className="text-white/40 uppercase tracking-widest font-bold">EIB Balance</span>
             <span className="text-white font-mono">—</span>
           </div>
         </div>

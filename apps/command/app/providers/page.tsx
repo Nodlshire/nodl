@@ -84,10 +84,10 @@ export default function ProvidersPage() {
         <>
             <main className="p-8 pt-24 w-full flex flex-col space-y-8 overflow-y-auto pb-24 focus:outline-none">
 
-                <div className="flex items-center justify-between gap-4 bg-white/5 border border-white/10 p-4 rounded-[6px] w-full">
+                <div className="flex items-center justify-between gap-4 bg-white/5 border border-wnode-border-neutral p-4 rounded-[6px] w-full">
                     <div className="flex items-center gap-4">
                         <div className="relative group">
-                            <button className="flex items-center gap-2 px-4 py-2 bg-white/[0.03] border border-white/10 rounded-[5px] text-[13px] text-slate-300 hover:bg-white/[0.06] transition-all">
+                            <button className="flex items-center gap-2 px-4 py-2 bg-white/[0.03] border border-wnode-border-neutral rounded-[5px] text-[13px] text-white/80 hover:bg-white/[0.06] transition-all">
                                 <Filter className="w-3.5 h-3.5 text-[#22D3EE]" />
                                 <span>Search Filters</span>
                                 <ChevronRight className="w-3.5 h-3.5 opacity-40 rotate-90" />
@@ -100,42 +100,42 @@ export default function ProvidersPage() {
                     </div>
 
                     <div className="relative">
-                        <Search className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
+                        <Search className="w-4 h-4 text-white/40 absolute left-3 top-1/2 -translate-y-1/2" />
                         <input 
                             type="text"
                             placeholder="Search by name, email, or WUID..."
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
-                            className="bg-black/40 border border-white/10 rounded-[5px] pl-10 pr-4 py-2 text-[13px] w-80 focus:outline-none focus:border-[#22D3EE]/50 transition-all font-normal"
+                            className="bg-black/40 border border-wnode-border-neutral rounded-[5px] pl-10 pr-4 py-2 text-[13px] w-80 focus:outline-none focus:border-[#22D3EE]/50 transition-all font-normal"
                         />
                     </div>
                 </div>
 
-                <div className="bg-black/40 border border-white/5 rounded-[5px] overflow-hidden backdrop-blur-sm w-full text-left space-y-2">
+                <div className="bg-black/40 border border-wnode-border-separator rounded-[5px] overflow-hidden backdrop-blur-sm w-full text-left space-y-2">
                     <table className="w-full text-left">
-                        <thead className="bg-white/[0.02] border-b border-white/5">
+                        <thead className="bg-white/[0.02] border-b border-wnode-border-separator">
                             <tr>
-                                <th className="px-6 py-4 text-slate-400 text-[12px] uppercase tracking-widest">
+                                <th className="px-6 py-4 text-white/60 text-[12px] uppercase tracking-widest">
                                     <Tooltip text="Authoritative provider identity and display name">
                                         Nodl’r Identity
                                     </Tooltip>
                                 </th>
-                                <th className="px-6 py-4 text-slate-400 text-[12px] uppercase tracking-widest">
+                                <th className="px-6 py-4 text-white/60 text-[12px] uppercase tracking-widest">
                                     <Tooltip text="Compliance status and Stripe verification state">
                                         Global Status
                                     </Tooltip>
                                 </th>
-                                <th className="px-6 py-4 text-slate-400 text-[12px] uppercase tracking-widest">
+                                <th className="px-6 py-4 text-white/60 text-[12px] uppercase tracking-widest">
                                     <Tooltip text="Count of hardware nodes actively provisioned to the mesh">
                                         Active Nodls
                                     </Tooltip>
                                 </th>
-                                <th className="px-6 py-4 text-slate-400 text-[12px] uppercase tracking-widest">
+                                <th className="px-6 py-4 text-white/60 text-[12px] uppercase tracking-widest">
                                     <Tooltip text="Month-to-date accrued revenue across all provisioned hardware">
                                         Revenue (MTD)
                                     </Tooltip>
                                 </th>
-                                <th className="px-6 py-4 text-slate-400 text-[12px] uppercase tracking-widest">
+                                <th className="px-6 py-4 text-white/60 text-[12px] uppercase tracking-widest">
                                     <Tooltip text="Timestamp of last authoritative registry update or telemetry pulse">
                                         Last Activity
                                     </Tooltip>
@@ -149,39 +149,39 @@ export default function ProvidersPage() {
                                     onClick={() => setSelectedProvider(p)}
                                     className="hover:bg-white/[0.03] transition-colors cursor-pointer group"
                                 >
-                                    <td className="px-6 py-5 text-slate-200 text-[14px]">
+                                    <td className="px-6 py-5 text-white/80 text-[14px]">
                                         <div className="flex items-center gap-3">
                                             <div className="w-10 h-10 rounded-[5px] bg-[#22D3EE]/5 border border-[#22D3EE]/20 flex items-center justify-center text-[12px] font-bold text-[#22D3EE] group-hover:bg-[#22D3EE] group-hover:text-black transition-all">
                                                 <Server className="w-5 h-5 text-[#22D3EE] group-hover:text-black" />
                                             </div>
                                             <div className="flex flex-col">
                                                 <span className="text-[14px] font-normal text-white">{p.displayName}</span>
-                                                <span className="text-[11px] text-slate-500 font-mono italic">{p.id}</span>
+                                                <span className="text-[11px] text-white/40 font-mono italic">{p.id}</span>
                                             </div>
                                         </div>
                                     </td>
-                                    <td className="px-6 py-5 text-slate-200 text-[14px]">
+                                    <td className="px-6 py-5 text-white/80 text-[14px]">
                                         <div className="flex flex-col gap-1.5">
                                             <div className="flex items-center gap-2">
                                                 <div className={`w-1.5 h-1.5 rounded-full ${p.status === 'active' ? 'bg-green-500 shadow-[0_0_8px_#22C55E]' : 'bg-red-500/50'}`} />
-                                                <span className="text-[11px] text-slate-300 capitalize tracking-widest">{p.status}</span>
+                                                <span className="text-[11px] text-white/80 capitalize tracking-widest">{p.status}</span>
                                             </div>
                                             <div className={`text-[9px] uppercase tracking-widest px-1.5 py-0.5 rounded-[2px] w-fit border ${p.stripeVerification === 'verified' ? 'bg-green-500/10 border-green-500/20 text-green-500' : 'bg-yellow-500/10 border-yellow-500/20 text-yellow-500'}`}>
                                                 Stripe {p.stripeVerification}
                                             </div>
                                         </div>
                                     </td>
-                                    <td className="px-6 py-5 text-slate-200 text-[14px]">
+                                    <td className="px-6 py-5 text-white/80 text-[14px]">
                                         <div className="flex items-center gap-2">
-                                            <HardDrive className="w-4 h-4 text-slate-600" />
+                                            <HardDrive className="w-4 h-4 text-white/40" />
                                             <span className="text-[15px] font-mono text-white">{p.nodeCount}</span>
                                         </div>
                                     </td>
-                                    <td className="px-6 py-5 text-slate-200 text-[14px] font-mono">
+                                    <td className="px-6 py-5 text-white/80 text-[14px] font-mono">
                                         <span className="text-[14px] text-[#22D3EE] font-normal">$0.00</span>
                                     </td>
-                                    <td className="px-6 py-5 text-slate-200 text-[14px]">
-                                        <span className="text-[12px] text-slate-500 font-mono">--</span>
+                                    <td className="px-6 py-5 text-white/80 text-[14px]">
+                                        <span className="text-[12px] text-white/40 font-mono">--</span>
                                     </td>
                                 </tr>
                             ))}
@@ -189,10 +189,10 @@ export default function ProvidersPage() {
                     </table>
                     {filteredProviders.length === 0 && !loading && (
                         <div className="py-24 flex flex-col items-center justify-center space-y-4">
-                            <div className="p-4 bg-white/[0.02] border border-white/5 rounded-full">
-                                <Server className="w-8 h-8 text-slate-700" />
+                            <div className="p-4 bg-white/[0.02] border border-wnode-border-separator rounded-full">
+                                <Server className="w-8 h-8 text-white/40" />
                             </div>
-                            <p className="text-[14px] text-slate-500 font-normal">No provider accounts found in registry.</p>
+                            <p className="text-[14px] text-white/40 font-normal">No provider accounts found in registry.</p>
                         </div>
                     )}
                     {loading && <div className="py-20 flex justify-center"><RefreshCw className="w-8 h-8 animate-spin text-[#22D3EE] opacity-20" /></div>}
@@ -206,7 +206,7 @@ export default function ProvidersPage() {
                 subtitle={`Protocol ID: ${providerDetails?.protocolId || selectedProvider?.protocolId || selectedProvider?.id}`}
                 footer={
                     <div className="grid grid-cols-3 gap-2">
-                        <button className="py-2 px-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-[3px] text-[10px] text-white font-bold uppercase tracking-widest transition-all">
+                        <button className="py-2 px-3 bg-white/5 hover:bg-white/10 border border-wnode-border-neutral rounded-[3px] text-[10px] text-white font-bold uppercase tracking-widest transition-all">
                             Edit Profile
                         </button>
                         <button className="py-2 px-3 bg-[#22D3EE]/10 hover:bg-[#22D3EE]/20 border border-[#22D3EE]/20 rounded-[3px] text-[10px] text-[#22D3EE] font-bold uppercase tracking-widest transition-all">
@@ -260,7 +260,7 @@ export default function ProvidersPage() {
                         {/* ── Financial / Yield ───────────────────────── */}
                         <Section icon={<DollarSign className="w-4 h-4 text-green-400" />} title="Financial / Yield">
                             <div className="bg-[#22D3EE]/5 border border-[#22D3EE]/20 p-4 rounded-[5px] mb-3">
-                                <span className="text-[9px] text-slate-400 uppercase tracking-widest block mb-1">Current Balance</span>
+                                <span className="text-[9px] text-white/60 uppercase tracking-widest block mb-1">Current Balance</span>
                                 <span className="text-[24px] font-mono text-white">${((providerDetails.accruedFounderBalance || 0) / 100).toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
                             </div>
                             <div className="grid grid-cols-2 gap-3 mb-3">
@@ -272,12 +272,12 @@ export default function ProvidersPage() {
                             <Field label="Stripe Status" value={providerDetails.stripeVerification} tag />
                             {providerDetails.recentPayouts?.length > 0 && (
                                 <div className="mt-2">
-                                    <span className="text-[10px] text-slate-500 uppercase tracking-widest block mb-2">Recent Payouts</span>
+                                    <span className="text-[10px] text-white/40 uppercase tracking-widest block mb-2">Recent Payouts</span>
                                     {providerDetails.recentPayouts.map((p: any) => (
-                                        <div key={p.id} className="flex justify-between items-center py-1.5 border-b border-white/5 text-[11px]">
-                                            <span className="text-slate-400 font-mono">{p.id}</span>
+                                        <div key={p.id} className="flex justify-between items-center py-1.5 border-b border-wnode-border-separator text-[11px]">
+                                            <span className="text-white/60 font-mono">{p.id}</span>
                                             <span className="text-white font-mono">${(p.amount / 100).toLocaleString()}</span>
-                                            <span className="text-slate-500 font-mono">{new Date(p.date).toLocaleDateString()}</span>
+                                            <span className="text-white/40 font-mono">{new Date(p.date).toLocaleDateString()}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -303,9 +303,9 @@ export default function ProvidersPage() {
                             <Field label="Storage Mode" value={providerDetails.storageMode} />
                             {providerDetails.recentEvents?.length > 0 && (
                                 <div className="mt-2">
-                                    <span className="text-[10px] text-slate-500 uppercase tracking-widest block mb-2">Recent Events</span>
+                                    <span className="text-[10px] text-white/40 uppercase tracking-widest block mb-2">Recent Events</span>
                                     {providerDetails.recentEvents.map((e: any, i: number) => (
-                                        <div key={i} className="flex items-center gap-2 py-1 text-[10px] font-mono text-slate-500">
+                                        <div key={i} className="flex items-center gap-2 py-1 text-[10px] font-mono text-white/40">
                                             <span className="text-[#22D3EE]/40">[{e.type}]</span>
                                             <span>{e.msg}</span>
                                         </div>
@@ -315,7 +315,7 @@ export default function ProvidersPage() {
                         </Section>
 
                         {/* ── Metadata ────────────────────────────────── */}
-                        <Section icon={<BarChart3 className="w-4 h-4 text-slate-500" />} title="Metadata">
+                        <Section icon={<BarChart3 className="w-4 h-4 text-white/40" />} title="Metadata">
                             <Field label="Created At" value={providerDetails.createdAt ? new Date(providerDetails.createdAt).toLocaleString() : '—'} mono />
                             <Field label="Updated At" value={providerDetails.updatedAt ? new Date(providerDetails.updatedAt).toLocaleString() : '—'} mono />
                             <Field label="Source" value={providerDetails.source} tag />
@@ -336,9 +336,9 @@ export default function ProvidersPage() {
 function Section({ icon, title, children }: { icon: React.ReactNode; title: string; children: React.ReactNode }) {
     return (
         <section className="space-y-3">
-            <div className="flex items-center gap-2 border-b border-white/5 pb-2">
+            <div className="flex items-center gap-2 border-b border-wnode-border-separator pb-2">
                 {icon}
-                <h4 className="text-[11px] font-bold text-slate-300 uppercase tracking-widest">{title}</h4>
+                <h4 className="text-[11px] font-bold text-white/80 uppercase tracking-widest">{title}</h4>
             </div>
             <div className="space-y-0">{children}</div>
         </section>
@@ -347,8 +347,8 @@ function Section({ icon, title, children }: { icon: React.ReactNode; title: stri
 
 function Field({ label, value, mono, cyan, tag }: { label: string; value: any; mono?: boolean; cyan?: boolean; tag?: boolean }) {
     return (
-        <div className="flex justify-between items-center py-2 border-b border-white/[0.03] hover:bg-white/[0.01] px-1 transition-all">
-            <span className="text-[11px] text-slate-500 uppercase tracking-wider">{label}</span>
+        <div className="flex justify-between items-center py-2 border-b border-wnode-border-separator hover:bg-white/[0.01] px-1 transition-all">
+            <span className="text-[11px] text-white/40 uppercase tracking-wider">{label}</span>
             {tag ? (
                 <span className="text-[10px] px-2 py-0.5 rounded-[2px] bg-[#22D3EE]/10 text-[#22D3EE] border border-[#22D3EE]/20 uppercase tracking-widest font-bold">
                     {String(value)}
@@ -364,9 +364,9 @@ function Field({ label, value, mono, cyan, tag }: { label: string; value: any; m
 
 function StatBlock({ label, value, color = 'text-white' }: { label: string; value: any; color?: string }) {
     return (
-        <div className="bg-white/[0.03] border border-white/5 p-3 rounded-[5px] text-center">
+        <div className="bg-white/[0.03] border border-wnode-border-separator p-3 rounded-[5px] text-center">
             <span className={`text-[16px] font-mono ${color} block`}>{value}</span>
-            <span className="text-[8px] text-slate-500 uppercase tracking-widest">{label}</span>
+            <span className="text-[8px] text-white/40 uppercase tracking-widest">{label}</span>
         </div>
     );
 }

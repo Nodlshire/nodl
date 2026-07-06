@@ -96,7 +96,7 @@ export const TreeNode = ({
                     ) : (
                         <div className="w-4 h-4 flex items-center justify-center">
                             {expanded ? (
-                                <ChevronDown className="w-4 h-4 text-slate-500" />
+                                <ChevronDown className="w-4 h-4 text-white/40" />
                             ) : (
                                 <ChevronRight className="w-4 h-4 text-[#22D3EE]" />
                             )}
@@ -116,7 +116,7 @@ export const TreeNode = ({
                         </span>
                     </div>
 
-                    <span className="font-mono text-[13px] text-slate-300 group-hover:text-white transition-colors tracking-tighter">
+                    <span className="font-mono text-[13px] text-white/80 group-hover:text-white transition-colors tracking-tighter">
                         {node.nodlrId}
                     </span>
                 </div>
@@ -124,7 +124,7 @@ export const TreeNode = ({
                 <div className="flex items-center gap-6 min-w-[360px]">
                     <div className="flex items-center gap-2">
                         <Zap className="w-3 text-[#22D3EE]/70" />
-                        <span className="text-[11px] text-slate-400 font-mono">
+                        <span className="text-[11px] text-white/60 font-mono">
                             {node.nodeCount} <span className="opacity-40 uppercase text-[9px] font-bold">Nodes</span>
                         </span>
                     </div>
@@ -146,16 +146,16 @@ export const TreeNode = ({
 
                 <div className="flex-1" />
 
-                <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-black/20 border border-white/5">
+                <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-black/20 border border-wnode-border-neutral">
                     <div className={`w-1.5 h-1.5 rounded-full ${node.active ? 'bg-emerald-500 shadow-[0_0_8px_#10B981]' : 'bg-slate-700'}`} />
-                    <span className={`text-[10px] font-bold uppercase tracking-[0.2em] ${node.active ? 'text-emerald-400' : 'text-slate-600'}`}>
+                    <span className={`text-[10px] font-bold uppercase tracking-[0.2em] ${node.active ? 'text-emerald-400' : 'text-white/40'}`}>
                         {node.active ? 'active' : 'inactive'}
                     </span>
                 </div>
             </div>
 
             {expanded && (
-                <div className="ml-8 mt-1 pl-4 border-l border-white/5 space-y-1">
+                <div className="ml-8 mt-1 pl-4 border-l border-wnode-border-neutral space-y-1">
                     {children && children.length > 0 ? (
                         children.map((child) => (
                             <TreeNode 
@@ -171,7 +171,7 @@ export const TreeNode = ({
                             />
                         ))
                     ) : hasLoaded && !isLoading ? (
-                        <div className="py-2 px-4 text-[11px] text-slate-600 italic">No descendants found.</div>
+                        <div className="py-2 px-4 text-[11px] text-white/40 italic">No descendants found.</div>
                     ) : null}
                 </div>
             )}

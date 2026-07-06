@@ -18,9 +18,9 @@ export default function Enunciators() {
                 <Activity className="w-3 h-3 text-emerald-500" />
                 <span className="text-[9px] text-emerald-500 font-bold uppercase tracking-widest">Active</span>
             </div>
-            <div className="flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 rounded-[3px]">
-                <PowerOff className="w-3 h-3 text-slate-500" />
-                <span className="text-[9px] text-slate-500 font-bold uppercase tracking-widest">Inactive</span>
+            <div className="flex items-center gap-2 px-3 py-1 bg-white/5 border border-wnode-border-neutral rounded-[3px]">
+                <PowerOff className="w-3 h-3 text-white/40" />
+                <span className="text-[9px] text-white/40 font-bold uppercase tracking-widest">Inactive</span>
             </div>
         </div>
     );

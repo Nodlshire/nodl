@@ -56,22 +56,22 @@ export default function DetailPanel({
                         animate={{ x: 0 }}
                         exit={{ x: "100%" }}
                         transition={{ type: "spring", damping: 30, stiffness: 300 }}
-                        className="fixed top-0 right-0 bottom-0 w-full max-w-xl bg-[#0A0A0B] border-l border-white/10 z-[101] shadow-2xl flex flex-col"
+                        className="fixed top-0 right-0 bottom-0 w-full max-w-xl bg-[#0A0A0B] border-l border-wnode-border-neutral z-[101] shadow-2xl flex flex-col"
                     >
                         {/* Header */}
-                        <header className="h-20 border-b border-white/10 flex items-center justify-between px-8 bg-black/40 backdrop-blur-xl shrink-0">
+                        <header className="h-20 border-b border-wnode-border-neutral flex items-center justify-between px-8 bg-black/40 backdrop-blur-xl shrink-0">
                             <div>
                                 <h3 className="text-lg font-normal text-white flex items-center gap-2">
                                     <ChevronRight className="w-4 h-4 text-[#22D3EE]" />
                                     {title}
                                 </h3>
                                 {subtitle && (
-                                    <p className="text-[12px] text-slate-500 uppercase tracking-widest mt-0.5">{subtitle}</p>
+                                    <p className="text-[12px] text-white/40 uppercase tracking-widest mt-0.5">{subtitle}</p>
                                 )}
                             </div>
                             <button 
                                 onClick={onClose}
-                                className="p-2 hover:bg-white/5 rounded-full transition-colors text-slate-400 hover:text-white"
+                                className="p-2 hover:bg-white/5 rounded-full transition-colors text-white/60 hover:text-white"
                             >
                                 <X className="w-5 h-5" />
                             </button>
@@ -86,7 +86,7 @@ export default function DetailPanel({
 
                         {/* Footer */}
                         {footer && (
-                            <footer className="p-6 border-t border-white/10 bg-black/40 backdrop-blur-xl shrink-0">
+                            <footer className="p-6 border-t border-wnode-border-neutral bg-black/40 backdrop-blur-xl shrink-0">
                                 {footer}
                             </footer>
                         )}

@@ -5,12 +5,12 @@ export default function LoadingSkeleton() {
         <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#000000]">
             <div className="relative">
                 {/* Minimalist Spinner */}
-                <div className="w-16 h-16 border border-white/5 border-t-cyber-cyan rounded-full animate-spin" />
+                <div className="w-16 h-16 border border-wnode-border-separator border-t-cyber-cyan rounded-full animate-spin" />
                 <div className="absolute inset-0 m-auto w-4 h-4 bg-cyber-cyan opacity-20 rounded-full animate-pulse" />
             </div>
 
             <div className="mt-8 space-y-2 text-center pointer-events-none">
-                <h2 className="text-[10px] font-normal uppercase tracking-[0.3em] text-slate-500 animate-pulse">
+                <h2 className="text-[10px] font-normal uppercase tracking-[0.3em] text-white/40 animate-pulse">
                     Command OS Synchronizing
                 </h2>
                 <div className="flex gap-1.5 justify-center">

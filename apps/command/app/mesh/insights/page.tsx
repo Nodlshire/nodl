@@ -49,7 +49,7 @@ export default function MeshInsightsPage() {
 
     if (!mounted || loading) {
         return (
-            <div className="flex flex-col items-center justify-center min-h-[400px] text-slate-500 gap-4">
+            <div className="flex flex-col items-center justify-center min-h-[400px] text-white/40 gap-4">
                 <Loader2 className="w-8 h-8 animate-spin text-cyan-400" />
                 <p className="text-sm font-medium">Running heuristics analysis...</p>
             </div>
@@ -95,11 +95,11 @@ export default function MeshInsightsPage() {
                                 {health.status}
                             </span>
                         </div>
-                        <p className="text-slate-300 text-sm mb-4">{health.message}</p>
+                        <p className="text-white/80 text-sm mb-4">{health.message}</p>
                         {health.details.length > 0 && (
                             <ul className="space-y-2">
                                 {health.details.map((detail, idx) => (
-                                    <li key={idx} className="flex items-start gap-2 text-xs text-slate-400">
+                                    <li key={idx} className="flex items-start gap-2 text-xs text-white/60">
                                         <ChevronRight className="w-3 h-3 mt-0.5 text-cyan-500 flex-shrink-0" />
                                         {detail}
                                     </li>
@@ -110,22 +110,22 @@ export default function MeshInsightsPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {/* Bottlenecks */}
-                        <div className="bg-white/[0.03] border border-white/10 rounded-lg p-6">
+                        <div className="bg-white/[0.03] border border-wnode-border-neutral rounded-lg p-6">
                             <div className="flex items-center gap-2 mb-4 text-amber-400">
                                 <AlertTriangle className="w-4 h-4" />
                                 <h3 className="text-xs font-bold uppercase tracking-wider">Detected Bottlenecks</h3>
                             </div>
                             {bottlenecks.length === 0 ? (
-                                <p className="text-xs text-slate-500 italic">No significant bottlenecks detected at current throughput.</p>
+                                <p className="text-xs text-white/40 italic">No significant bottlenecks detected at current throughput.</p>
                             ) : (
                                 <div className="space-y-4">
                                     {bottlenecks.map((b, idx) => (
                                         <div key={idx} className="space-y-1">
                                             <div className="flex items-center gap-2">
                                                 <div className={`w-1 h-1 rounded-full ${b.severity === 'HIGH' ? 'bg-red-500' : 'bg-amber-500'}`} />
-                                                <span className="text-xs font-bold text-slate-200">{b.title}</span>
+                                                <span className="text-xs font-bold text-white/80">{b.title}</span>
                                             </div>
-                                            <p className="text-[11px] text-slate-400 leading-relaxed pl-3">{b.description}</p>
+                                            <p className="text-[11px] text-white/60 leading-relaxed pl-3">{b.description}</p>
                                         </div>
                                     ))}
                                 </div>
@@ -133,22 +133,22 @@ export default function MeshInsightsPage() {
                         </div>
 
                         {/* Task Insights */}
-                        <div className="bg-white/[0.03] border border-white/10 rounded-lg p-6">
+                        <div className="bg-white/[0.03] border border-wnode-border-neutral rounded-lg p-6">
                             <div className="flex items-center gap-2 mb-4 text-cyan-400">
                                 <Search className="w-4 h-4" />
                                 <h3 className="text-xs font-bold uppercase tracking-wider">Failure Patterns</h3>
                             </div>
                             {insights.length === 0 ? (
-                                <p className="text-xs text-slate-500 italic">No recurring failure patterns detected in recent task history.</p>
+                                <p className="text-xs text-white/40 italic">No recurring failure patterns detected in recent task history.</p>
                             ) : (
                                 <div className="space-y-4">
                                     {insights.map((i, idx) => (
                                         <div key={idx} className="space-y-1">
                                             <div className="flex items-center gap-2">
                                                 <div className="w-1 h-1 rounded-full bg-cyan-500" />
-                                                <span className="text-xs font-bold text-slate-200">{i.title}</span>
+                                                <span className="text-xs font-bold text-white/80">{i.title}</span>
                                             </div>
-                                            <p className="text-[11px] text-slate-400 leading-relaxed pl-3">{i.explanation}</p>
+                                            <p className="text-[11px] text-white/60 leading-relaxed pl-3">{i.explanation}</p>
                                         </div>
                                     ))}
                                 </div>
@@ -157,21 +157,21 @@ export default function MeshInsightsPage() {
                     </div>
 
                     {/* Node Anomalies List */}
-                    <div className="bg-white/[0.03] border border-white/10 rounded-lg p-6">
+                    <div className="bg-white/[0.03] border border-wnode-border-neutral rounded-lg p-6">
                         <div className="flex items-center gap-2 mb-4 text-emerald-400">
                             <Zap className="w-4 h-4" />
                             <h3 className="text-xs font-bold uppercase tracking-wider">Node Anomalies</h3>
                         </div>
                         {anomalies.length === 0 ? (
-                            <p className="text-xs text-slate-500 italic">All active nodes are operating within established performance envelopes.</p>
+                            <p className="text-xs text-white/40 italic">All active nodes are operating within established performance envelopes.</p>
                         ) : (
                             <div className="overflow-x-auto">
                                 <table className="w-full text-left">
                                     <thead>
-                                        <tr className="border-b border-white/5">
-                                            <th className="pb-3 text-[10px] font-bold text-slate-500 uppercase">Node ID</th>
-                                            <th className="pb-3 text-[10px] font-bold text-slate-500 uppercase">Issue Type</th>
-                                            <th className="pb-3 text-[10px] font-bold text-slate-500 uppercase">Diagnostics</th>
+                                        <tr className="border-b border-wnode-border-separator">
+                                            <th className="pb-3 text-[10px] font-bold text-white/40 uppercase">Node ID</th>
+                                            <th className="pb-3 text-[10px] font-bold text-white/40 uppercase">Issue Type</th>
+                                            <th className="pb-3 text-[10px] font-bold text-white/40 uppercase">Diagnostics</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-white/5">
@@ -185,7 +185,7 @@ export default function MeshInsightsPage() {
                                                         {a.type}
                                                     </span>
                                                 </td>
-                                                <td className="py-3 text-[11px] text-slate-400">{a.details}</td>
+                                                <td className="py-3 text-[11px] text-white/60">{a.details}</td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -197,16 +197,16 @@ export default function MeshInsightsPage() {
 
                 {/* Plain Text Operator Report */}
                 <section className="space-y-6">
-                    <div className="bg-[#0A0A0B] border border-white/10 rounded-lg h-full flex flex-col overflow-hidden">
-                        <div className="p-4 border-b border-white/10 flex items-center gap-2 bg-white/[0.02]">
-                            <FileText className="w-4 h-4 text-slate-400" />
-                            <h3 className="text-[10px] font-bold text-slate-300 uppercase tracking-widest">Operator Console</h3>
+                    <div className="bg-[#0A0A0B] border border-wnode-border-neutral rounded-lg h-full flex flex-col overflow-hidden">
+                        <div className="p-4 border-b border-wnode-border-neutral flex items-center gap-2 bg-white/[0.02]">
+                            <FileText className="w-4 h-4 text-white/60" />
+                            <h3 className="text-[10px] font-bold text-white/80 uppercase tracking-widest">Operator Console</h3>
                         </div>
-                        <div className="p-6 flex-1 font-mono text-[11px] leading-relaxed text-slate-300 overflow-y-auto whitespace-pre-wrap selection:bg-cyan-500/30">
+                        <div className="p-6 flex-1 font-mono text-[11px] leading-relaxed text-white/80 overflow-y-auto whitespace-pre-wrap selection:bg-cyan-500/30">
                             {report}
                         </div>
-                        <div className="p-4 border-t border-white/10 bg-black/40">
-                            <p className="text-[9px] text-slate-600 uppercase tracking-widest font-bold">
+                        <div className="p-4 border-t border-wnode-border-neutral bg-black/40">
+                            <p className="text-[9px] text-white/40 uppercase tracking-widest font-bold">
                                 Confidential Diagnostic Data // Read-Only // (c) 2026 WNODE
                             </p>
                         </div>

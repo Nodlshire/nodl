@@ -19,7 +19,8 @@ export default function UserCrmPage() {
     usePageTitle("COMMAND CENTRE OPERATIONS → User CRM Database", "Authoritative identity and financial ledger registry.");
     
     const [searchQuery, setSearchQuery] = useState("");
-    const [identityFilter, setIdentityFilter] = useState("All");
+    const [identityFilters, setIdentityFilters] = useState<string[]>(["All"]);
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [selectedPerson, setSelectedPerson] = useState<CrmPerson | null>(null);
     const [crmRecords, setCrmRecords] = useState<CrmPerson[]>([]);
     const [navigationHistory, setNavigationHistory] = useState<string[]>([]);
@@ -63,9 +64,9 @@ export default function UserCrmPage() {
         setIsLoading(true);
         try {
             const [nodlrsRes, clientsRes, integrationsRes] = await Promise.all([
-                fetch('/api/nodlrs/all'),
-                fetch('/api/clients/all'),
-                fetch('/api/integrations/all')
+                fetch('/api/nodlrs/all').catch(() => ({ ok: false, json: async () => [] })),
+                fetch('/api/clients/all').catch(() => ({ ok: false, json: async () => [] })),
+                fetch('/api/integrations/all').catch(() => ({ ok: false, json: async () => [] }))
             ]);
             
             let nodlrs: CrmPerson[] = [];
@@ -84,7 +85,11 @@ export default function UserCrmPage() {
                     isNodlr: true,
                     isMeshCustomer: !!r.isMeshCustomer,
                     isFounderOrPartner: !!r.isFounder,
+                    isOwner: !!r.isOwner,
+                    isCommand: !!r.isCommand,
                     isMeshInt: !!r.integration_path || !!r.isIntegration || !!r.isMeshInt,
+                    isNodlrInt: !!r.isNodlrInt,
+                    isTechFounder: !!r.isTechFounder,
                     activeNodes: Number(r.nodeCount || 0),
                     l1Affiliates: 0,
                     l2Affiliates: 0,
@@ -106,7 +111,11 @@ export default function UserCrmPage() {
                     isNodlr: !!r.isNodlr,
                     isMeshCustomer: true,
                     isFounderOrPartner: !!r.isFounder,
+                    isOwner: !!r.isOwner,
+                    isCommand: !!r.isCommand,
                     isMeshInt: !!r.integration_path || !!r.isIntegration || !!r.isMeshInt,
+                    isNodlrInt: !!r.isNodlrInt,
+                    isTechFounder: !!r.isTechFounder,
                     activeNodes: 0,
                     l1Affiliates: 0,
                     l2Affiliates: 0,
@@ -128,7 +137,11 @@ export default function UserCrmPage() {
                     isNodlr: false,
                     isMeshCustomer: false,
                     isFounderOrPartner: false,
+                    isOwner: false,
+                    isCommand: false,
                     isMeshInt: true,
+                    isNodlrInt: false,
+                    isTechFounder: false,
                     activeNodes: 0,
                     l1Affiliates: 0,
                     l2Affiliates: 0,
@@ -147,7 +160,11 @@ export default function UserCrmPage() {
                         isNodlr: existing.isNodlr || p.isNodlr,
                         isMeshCustomer: existing.isMeshCustomer || p.isMeshCustomer,
                         isFounderOrPartner: existing.isFounderOrPartner || p.isFounderOrPartner,
-                        isMeshInt: existing.isMeshInt || p.isMeshInt
+                        isOwner: existing.isOwner || p.isOwner,
+                        isCommand: existing.isCommand || p.isCommand,
+                        isMeshInt: existing.isMeshInt || p.isMeshInt,
+                        isNodlrInt: existing.isNodlrInt || p.isNodlrInt,
+                        isTechFounder: existing.isTechFounder || p.isTechFounder
                     });
                 } else {
                     unifiedMap.set(p.wuid, p);
@@ -175,19 +192,20 @@ export default function UserCrmPage() {
                 (r.email || "").toLowerCase().includes(searchQuery.toLowerCase()) || 
                 r.wuid.toLowerCase().includes(searchQuery.toLowerCase());
             
-            if (!matchesSearch) return false;
+            if (identityFilters.includes("All") || identityFilters.length === 0) return true;
 
-            switch(identityFilter) {
-                case "Nodlr": return r.isNodlr && !r.isMeshCustomer;
-                case "Mesh": return r.isMeshCustomer && !r.isMeshInt && !r.isNodlr;
-                case "Mesh Int": return !!r.isMeshInt;
-                case "Nodlr/Mesh": return r.isNodlr && r.isMeshCustomer;
-                case "All":
-                default:
-                    return true;
-            }
+            const matchMesh = identityFilters.includes("Mesh") && r.isMeshCustomer;
+            const matchNodlr = identityFilters.includes("Nodlr") && r.isNodlr;
+            const matchFounder = identityFilters.includes("Founder") && r.isFounderOrPartner;
+            const matchOwner = identityFilters.includes("Owner") && r.isOwner;
+            const matchCMD = identityFilters.includes("CMD") && r.isCommand;
+            const matchMeshIn = identityFilters.includes("Mesh In") && r.isMeshInt;
+            const matchNodlrIn = identityFilters.includes("Nodlr In") && r.isNodlrInt;
+            const matchTechFounder = identityFilters.includes("Tech Founder") && r.isTechFounder;
+
+            return matchMesh || matchNodlr || matchFounder || matchOwner || matchCMD || matchMeshIn || matchNodlrIn || matchTechFounder;
         });
-    }, [crmRecords, searchQuery, identityFilter]);
+    }, [crmRecords, searchQuery, identityFilters]);
 
     const dashboardStats = useMemo(() => {
         const now = new Date();
@@ -207,13 +225,17 @@ export default function UserCrmPage() {
         return { totalClients, activeClients, newClients, totalNodes };
     }, [crmRecords]);
 
-    const handleUpdatePerson = (updated: CrmPerson) => {
-        const newRecords = crmRecords.map(p => p.wuid === updated.wuid ? updated : p);
-        setCrmRecords(newRecords);
-        localStorage.setItem('crm_records', JSON.stringify(newRecords));
-        verifyReferralTree(newRecords);
-        if (selectedPerson?.wuid === updated.wuid) {
-            setSelectedPerson(updated);
+    const handleUpdate = (updatedPerson?: CrmPerson) => {
+        if (updatedPerson) {
+            // Keep the slide-out open with the updated person
+            setSelectedPerson(updatedPerson);
+            const newRecords = crmRecords.map(p => p.wuid === updatedPerson.wuid ? updatedPerson : p);
+            setCrmRecords(newRecords);
+            localStorage.setItem('crm_records', JSON.stringify(newRecords));
+            verifyReferralTree(newRecords);
+        } else {
+            // Fallback: re-fetch the person from backend
+            fetchData();
         }
     };
 
@@ -244,72 +266,113 @@ export default function UserCrmPage() {
     };
 
     return (
-        <div className="flex-1 p-8 overflow-y-auto pb-24 relative custom-scrollbar h-full">
+        <div className="flex-1 p-8 pt-6 overflow-y-auto pb-24 relative custom-scrollbar h-full space-y-6">
             {/* Redundant body title removed per Phase 2.5 instructions */}
 
             {/* Rebuilt Dashboard Panels (Phase 2.5 - Visual Polish) */}
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mb-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
                 <CrmMetricCard 
                     label="Total Clients" 
                     value={dashboardStats.totalClients} 
-                    icon={Users} 
+                    icon={Icon => <Users className="w-3.5 h-3.5" />}
                     color="text-blue-400" 
-                    border="border-blue-500/30"
+                    border="border-blue-400/40 shadow-[0_0_20px_rgba(255,255,255,0.05)]"
                     subtext="Aggregated Contacts"
                     tooltip="Total unique identities (Nodlrs, Clients, Partners)."
                 />
                 <CrmMetricCard 
                     label="Active Clients" 
                     value={dashboardStats.activeClients} 
-                    icon={Handshake} 
+                    icon={Icon => <Handshake className="w-3.5 h-3.5" />}
                     color="text-green-400" 
-                    border="border-green-500/30"
+                    border="border-green-400/40 shadow-[0_0_20px_rgba(255,255,255,0.05)]"
                     subtext="Last 30 Days"
                     tooltip="Users with interaction in the last 30 days."
                 />
                 <CrmMetricCard 
                     label="New Clients" 
                     value={dashboardStats.newClients} 
-                    icon={TrendingUp} 
+                    icon={Icon => <TrendingUp className="w-3.5 h-3.5" />}
                     color="text-teal-400" 
-                    border="border-teal-500/30"
+                    border="border-[#22D3EE]/40 shadow-[0_0_20px_rgba(255,255,255,0.05)]"
                     subtext="Growth Indicator"
                     tooltip="Records created in the last 30 days."
                 />
                 <CrmMetricCard 
                     label="Active Nodes" 
                     value={dashboardStats.totalNodes} 
-                    icon={Network} 
+                    icon={Icon => <Network className="w-3.5 h-3.5" />}
                     color="text-yellow-500" 
-                    border="border-yellow-500/30"
+                    border="border-amber-400/40 shadow-[0_0_20px_rgba(255,255,255,0.05)]"
                     subtext="Network Registry"
                     tooltip="Real-time count of active nodes linked to CRM users."
                 />
             </div>
 
-            <div className="card-sovereign p-6 flex flex-col md:flex-row items-center gap-6 mb-8">
+            <div className="bg-white/[0.02] border border-wnode-border-neutral shadow-[0_0_20px_rgba(255,255,255,0.05)] p-6 flex flex-col md:flex-row items-center gap-6 rounded-[5px]">
                 <div className="flex-1 w-full relative group">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 group-focus-within:text-[#22D3EE] transition-colors" />
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 group-focus-within:text-[#22D3EE] transition-colors" />
                     <input 
                         type="text" 
                         placeholder="Search Unified Database: Name, Email, or WUID..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full bg-black/50 border border-white/10 rounded-[5px] pl-12 pr-4 py-3 text-[14px] text-white focus:outline-none focus:border-[#22D3EE]/50 transition-all placeholder:text-slate-700 font-normal"
+                        className="w-full bg-black/50 border border-wnode-border-neutral rounded-[5px] pl-12 pr-4 py-3 text-[14px] text-white focus:outline-none focus:border-[#22D3EE]/50 transition-all placeholder:text-white/40 font-normal"
                     />
                 </div>
                 <div className="flex items-center gap-3 w-full md:w-auto">
-                    <select 
-                        value={identityFilter}
-                        onChange={(e) => setIdentityFilter(e.target.value)}
-                        className="bg-black/50 border border-white/10 rounded-[5px] px-4 py-3 text-[13px] text-white focus:outline-none focus:border-[#22D3EE]/50 transition-all outline-none"
-                    >
-                        <option value="All">All</option>
-                        <option value="Nodlr">Nodlr</option>
-                        <option value="Mesh">Mesh</option>
-                        <option value="Mesh Int">Mesh Int</option>
-                        <option value="Nodlr/Mesh">Nodlr/Mesh</option>
-                    </select>
+                    <div className="relative">
+                        <div 
+                            onClick={() => setIsFilterOpen(!isFilterOpen)}
+                            className="bg-black/50 border border-wnode-border-neutral rounded-[5px] px-4 py-3 text-[13px] text-white cursor-pointer hover:border-white/20 transition-all min-w-[140px] flex justify-between items-center"
+                        >
+                            <span className="truncate pr-4">
+                                {identityFilters.includes("All") || identityFilters.length === 0 
+                                    ? "All Identities" 
+                                    : identityFilters.join(", ")}
+                            </span>
+                            <span className="text-white/40 text-[10px]">▼</span>
+                        </div>
+
+                        <AnimatePresence>
+                            {isFilterOpen && (
+                                <motion.div 
+                                    initial={{ opacity: 0, y: -5 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -5 }}
+                                    className="absolute top-full mt-2 w-full min-w-[200px] bg-[#0A0A0A] border border-wnode-border-neutral rounded-[5px] shadow-2xl z-50 overflow-hidden"
+                                >
+                                    <div className="flex flex-col max-h-[300px] overflow-y-auto custom-scrollbar">
+                                        {["All", "Mesh", "Nodlr", "Founder", "Owner", "CMD", "Mesh In", "Nodlr In", "Tech Founder"].map(f => (
+                                            <div 
+                                                key={f}
+                                                onClick={() => {
+                                                    if (f === "All") {
+                                                        setIdentityFilters(["All"]);
+                                                    } else {
+                                                        setIdentityFilters(prev => {
+                                                            const next = prev.filter(x => x !== "All");
+                                                            if (next.includes(f)) {
+                                                                const filtered = next.filter(x => x !== f);
+                                                                return filtered.length === 0 ? ["All"] : filtered;
+                                                            }
+                                                            return [...next, f];
+                                                        });
+                                                    }
+                                                }}
+                                                className="px-4 py-3 hover:bg-white/5 cursor-pointer text-[13px] text-white/80 transition-colors flex items-center justify-between"
+                                            >
+                                                <span>{f}</span>
+                                                {identityFilters.includes(f) && (
+                                                    <CheckCircle2 className="w-3.5 h-3.5 text-[#22D3EE]" />
+                                                )}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
                 </div>
                 <div className="flex items-center gap-3">
                     <button className="bg-[#22D3EE] hover:bg-[#22D3EE]/80 text-black px-8 py-3 rounded-[5px] flex items-center gap-3 text-[13px] font-bold uppercase tracking-widest transition-all shadow-[0_0_15px_rgba(34,211,238,0.2)]">
@@ -333,27 +396,36 @@ export default function UserCrmPage() {
                         <div 
                             key={person.wuid} 
                             onClick={() => handleSelectPerson(person)}
-                            className="grid grid-cols-[180px_1fr_120px_120px_120px] items-center px-6 py-4 rounded-[4px] transition-all cursor-pointer hover:bg-white/[0.04] border border-transparent hover:border-white/10 group"
+                            className="grid grid-cols-[180px_1fr_120px_120px_120px] items-center px-6 py-4 rounded-[4px] transition-all cursor-pointer hover:bg-white/[0.04] border border-transparent hover:border-wnode-border-hover group"
                             title={`Inspect ${person.name}`}
                         >
-                            <span className="text-[12px] font-mono text-slate-400 group-hover:text-white transition-colors">{person.wuid}</span>
+                            <span className="text-[12px] font-mono text-white/60 group-hover:text-white transition-colors">{person.wuid}</span>
                             <div className="flex items-center gap-4 overflow-hidden">
                                 <span className="text-[14px] text-white font-medium truncate">{person.name}</span>
                                 <div className="flex items-center gap-1.5 shrink-0">
-                                    {person.isNodlr && person.isMeshCustomer && !person.isMeshInt && (
-                                        <div className="px-1.5 py-0.5 rounded-[2px] bg-purple-500/10 border border-purple-500/20 text-purple-400 text-[8px] font-bold uppercase tracking-widest">NODLR/MESH</div>
-                                    )}
-                                    {person.isNodlr && (!person.isMeshCustomer || person.isMeshInt) && (
-                                        <div className="px-1.5 py-0.5 rounded-[2px] bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[8px] font-bold uppercase tracking-widest">NODLR</div>
-                                    )}
-                                    {person.isMeshInt && (
-                                        <div className="px-1.5 py-0.5 rounded-[2px] bg-[#f7c6ff]/10 border border-[#f7c6ff]/20 text-[#f7c6ff] text-[8px] font-bold uppercase tracking-widest">MESH INT</div>
-                                    )}
-                                    {person.isMeshCustomer && !person.isNodlr && !person.isMeshInt && (
-                                        <div className="px-1.5 py-0.5 rounded-[2px] bg-green-500/10 border border-green-500/20 text-green-400 text-[8px] font-bold uppercase tracking-widest">MESH</div>
+                                    {person.isOwner && (
+                                        <div className="px-1.5 py-0.5 rounded-[2px] bg-red-500/10 border border-red-500/20 text-red-400 text-[8px] font-bold uppercase tracking-widest">OWNER</div>
                                     )}
                                     {person.isFounderOrPartner && (
-                                        <div className="px-1.5 py-0.5 rounded-[2px] bg-yellow-500/10 border border-yellow-500/20 text-yellow-500 text-[8px] font-bold uppercase tracking-widest">GOLD</div>
+                                        <div className="px-1.5 py-0.5 rounded-[2px] bg-red-500/10 border border-red-500/20 text-red-400 text-[8px] font-bold uppercase tracking-widest">FOUNDER</div>
+                                    )}
+                                    {person.isCommand && (
+                                        <div className="px-1.5 py-0.5 rounded-[2px] bg-red-500/10 border border-red-500/20 text-red-400 text-[8px] font-bold uppercase tracking-widest">CMD</div>
+                                    )}
+                                    {person.isMeshInt && (
+                                        <div className="px-1.5 py-0.5 rounded-[2px] bg-red-500/10 border border-red-500/20 text-red-400 text-[8px] font-bold uppercase tracking-widest">MESH IN</div>
+                                    )}
+                                    {person.isNodlrInt && (
+                                        <div className="px-1.5 py-0.5 rounded-[2px] bg-red-500/10 border border-red-500/20 text-red-400 text-[8px] font-bold uppercase tracking-widest">NODLR IN</div>
+                                    )}
+                                    {person.isTechFounder && (
+                                        <div className="px-1.5 py-0.5 rounded-[2px] bg-red-500/10 border border-red-500/20 text-red-400 text-[8px] font-bold uppercase tracking-widest">TECH FOUNDER</div>
+                                    )}
+                                    {person.isMeshCustomer && (
+                                        <div className="px-1.5 py-0.5 rounded-[2px] bg-[#22D3EE]/20 border border-[#22D3EE]/50 text-[#22D3EE] text-[8px] font-bold uppercase tracking-widest">MESH</div>
+                                    )}
+                                    {person.isNodlr && (
+                                        <div className="px-1.5 py-0.5 rounded-[2px] bg-[#22D3EE]/20 border border-[#22D3EE]/50 text-[#22D3EE] text-[8px] font-bold uppercase tracking-widest">NODLR</div>
                                     )}
                                 </div>
                             </div>
@@ -361,10 +433,10 @@ export default function UserCrmPage() {
                                 <span className="text-[14px] font-mono text-white">{person.activeNodes}</span>
                             </div>
                             <div className="text-center">
-                                <span className="text-[14px] font-mono text-slate-500 group-hover:text-slate-300 transition-colors">{person.l1Affiliates}</span>
+                                <span className="text-[14px] font-mono text-white/40 group-hover:text-white/80 transition-colors">{person.l1Affiliates}</span>
                             </div>
                             <div className="text-center">
-                                <span className="text-[14px] font-mono text-slate-500 group-hover:text-slate-300 transition-colors">{person.l2Affiliates}</span>
+                                <span className="text-[14px] font-mono text-white/40 group-hover:text-white/80 transition-colors">{person.l2Affiliates}</span>
                             </div>
                         </div>
                     ))}
@@ -375,7 +447,7 @@ export default function UserCrmPage() {
                 isOpen={!!selectedPerson}
                 onClose={() => setSelectedPerson(null)}
                 person={selectedPerson}
-                onUpdate={handleUpdatePerson}
+                onUpdate={handleUpdate}
                 onNavigate={handleNavigateToReferrer}
                 history={navigationHistory}
                 onBack={handleBack}
@@ -399,7 +471,7 @@ function CrmMetricCard({ label, value, icon: Icon, color, border, subtext, toolt
             <div className="flex flex-col items-start justify-center gap-0">
                 {/* Phase 2.5: Reduced number size to CMD scale (16px) */}
                 <span className="text-[16px] text-white font-mono font-bold leading-tight">{value}</span>
-                <span className="text-[8px] text-slate-500 uppercase tracking-widest font-normal opacity-80">{subtext}</span>
+                <span className="text-[8px] text-white/40 uppercase tracking-widest font-normal opacity-80">{subtext}</span>
             </div>
         </div>
     );

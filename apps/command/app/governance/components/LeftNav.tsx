@@ -41,7 +41,7 @@ export default function LeftNav() {
           <Tooltip key={item.id} text={item.tooltip} direction="down">
             <button
               onClick={() => scrollTo(item.id)}
-              className="w-full text-left px-4 py-2 text-[11px] font-medium uppercase tracking-widest text-slate-500 hover:text-[#22D3EE] transition-all border-l border-white/5 hover:border-[#22D3EE]/50"
+              className="w-full text-left px-4 py-2 text-[11px] font-medium uppercase tracking-widest text-white/40 hover:text-[#22D3EE] transition-all border-l border-wnode-border-neutral hover:border-[#22D3EE]/50"
             >
               {item.label}
             </button>

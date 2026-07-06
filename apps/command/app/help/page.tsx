@@ -43,15 +43,15 @@ export default function HelpPage() {
   usePageTitle('Help & Documentation');
 
   return (
-    <main className="flex-1 p-8 pt-24 overflow-y-auto custom-scrollbar relative space-y-12 focus:outline-none text-slate-300">
-      <div className="absolute top-6 right-8 text-[9px] text-slate-800 uppercase tracking-widest select-none pointer-events-none opacity-40">
+    <main className="flex-1 p-8 pt-3 overflow-y-auto custom-scrollbar relative space-y-6 focus:outline-none text-white/80">
+      <div className="absolute top-6 right-8 text-[9px] text-white/40 uppercase tracking-widest select-none pointer-events-none opacity-40">
           Executive Support Portal
       </div>
       
       <div className="max-w-4xl mx-auto pb-24">
-        <div className="mb-12">
+        <div className="mb-8">
           <h1 className="text-3xl font-bold text-white mb-2 uppercase tracking-tighter">Command Help Center</h1>
-          <p className="text-slate-400 text-sm">Operational guidance and technical documentation for the Wnode ecosystem.</p>
+          <p className="text-white/60 text-sm">Operational guidance and technical documentation for the Wnode ecosystem.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -59,17 +59,17 @@ export default function HelpPage() {
             <Link 
               key={topic.href} 
               href={topic.href}
-              className="group bg-white/[0.02] border border-white/10 rounded-[5px] p-8 shadow-lg hover:bg-white/[0.04] hover:border-white/20 transition-all flex flex-col justify-between h-48"
+              className="group bg-white/[0.02] border border-wnode-border-neutral rounded-[5px] p-8 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:bg-white/[0.04] hover:border-wnode-border-hover transition-all flex flex-col justify-between h-48"
             >
               <div className="flex justify-between items-start">
-                <div className="p-3 bg-black/40 border border-white/5 rounded">
+                <div className="p-3 bg-black/40 border border-wnode-border-neutral rounded">
                   {topic.icon}
                 </div>
-                <BookOpen className="w-4 h-4 text-slate-700 group-hover:text-cyan-400 transition-colors" />
+                <BookOpen className="w-4 h-4 text-white/40 group-hover:text-cyan-400 transition-colors" />
               </div>
               <div>
                 <h2 className="text-sm font-bold uppercase tracking-widest text-white mb-2">{topic.title}</h2>
-                <p className="text-[12px] leading-relaxed text-slate-500 group-hover:text-slate-400 transition-colors">
+                <p className="text-[12px] leading-relaxed text-white/40 group-hover:text-white/60 transition-colors">
                   {topic.desc}
                 </p>
               </div>

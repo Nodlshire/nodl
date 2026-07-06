@@ -19,7 +19,7 @@ export default function Tooltip({ children, text, direction = 'up' }: TooltipPro
     >
       {children}
       {show && (
-        <div className={`absolute left-0 mb-2 w-max max-w-[250px] bg-slate-900 text-slate-200 text-[11px] px-3 py-2 rounded-[4px] shadow-2xl z-[110] whitespace-normal text-left border border-white/10 backdrop-blur-md animate-in fade-in zoom-in duration-150 ${
+        <div className={`absolute left-0 mb-2 w-max max-w-[250px] bg-slate-900 text-white/80 text-[11px] px-3 py-2 rounded-[4px] shadow-2xl z-[110] whitespace-normal text-left border border-wnode-border-neutral backdrop-blur-md animate-in fade-in zoom-in duration-150 ${
           direction === 'up' ? 'bottom-full mb-2' : 'top-full mt-2'
         }`}>
           {text}

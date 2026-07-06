@@ -78,7 +78,7 @@ export default function InstitutionalDashboard() {
     return (
         <main className="flex-1 p-8 overflow-y-auto pb-24 space-y-10 custom-scrollbar">
             {/* Navigation Tabs */}
-            <div className="flex items-center gap-2 p-1 bg-white/[0.02] border border-white/5 rounded-[8px] w-fit">
+            <div className="flex items-center gap-2 p-1 bg-white/[0.02] border border-wnode-border-separator rounded-[8px] w-fit">
                 {TABS.map(tab => (
                     <button
                         key={tab.id}
@@ -86,7 +86,7 @@ export default function InstitutionalDashboard() {
                         className={`flex items-center gap-2 px-6 py-2.5 text-[12px] font-medium tracking-widest uppercase transition-all rounded-[6px] ${
                             activeTab === tab.id 
                             ? 'bg-[#22D3EE] text-black shadow-lg shadow-[#22D3EE]/20' 
-                            : 'text-slate-500 hover:text-white hover:bg-white/5'
+                            : 'text-white/40 hover:text-white hover:bg-white/5'
                         }`}
                     >
                         <tab.icon className="w-3.5 h-3.5" />
@@ -106,23 +106,23 @@ export default function InstitutionalDashboard() {
                         <div className="flex justify-between items-center">
                             <div className="flex items-center gap-3">
                                 <Shield className="w-5 h-5 text-[#22D3EE]" />
-                                <h3 className="text-[14px] font-normal text-slate-300 uppercase tracking-widest">Tamper-Proof Forensic Event Log</h3>
+                                <h3 className="text-[14px] font-normal text-white/80 uppercase tracking-widest">Tamper-Proof Forensic Event Log</h3>
                             </div>
                             <div className="relative">
-                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
                                 <input 
                                     type="text" 
                                     placeholder="Filter by actor or action..."
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
-                                    className="bg-black/50 border border-white/10 rounded-[5px] pl-10 pr-4 py-2 text-[12px] text-white focus:outline-none focus:border-[#22D3EE]/30"
+                                    className="bg-black/50 border border-wnode-border-neutral rounded-[5px] pl-10 pr-4 py-2 text-[12px] text-white focus:outline-none focus:border-[#22D3EE]/30"
                                 />
                             </div>
                         </div>
 
                         <div className="card-sovereign overflow-hidden">
                             <table className="w-full text-left">
-                                <thead className="bg-white/[0.04] text-[10px] text-slate-500 uppercase tracking-widest">
+                                <thead className="bg-white/[0.04] text-[10px] text-white/40 uppercase tracking-widest">
                                     <tr>
                                         <th className="px-6 py-4 font-bold">Timestamp (UTC)</th>
                                         <th className="px-6 py-4 font-bold">Action</th>
@@ -134,7 +134,7 @@ export default function InstitutionalDashboard() {
                                 <tbody className="divide-y divide-white/5 text-[13px]">
                                     {filteredForensics.map(event => (
                                         <tr key={event.id} className="hover:bg-white/[0.02] transition-colors group">
-                                            <td className="px-6 py-5 font-mono text-[11px] text-slate-500">
+                                            <td className="px-6 py-5 font-mono text-[11px] text-white/40">
                                                 {new Date(event.timestamp).toLocaleString()}
                                             </td>
                                             <td className="px-6 py-5">
@@ -142,8 +142,8 @@ export default function InstitutionalDashboard() {
                                             </td>
                                             <td className="px-6 py-5">
                                                 <div className="flex flex-col">
-                                                    <span className="text-slate-300">{event.actorAccountId}</span>
-                                                    <span className="text-[10px] text-slate-600 uppercase tracking-widest">{event.actorRole}</span>
+                                                    <span className="text-white/80">{event.actorAccountId}</span>
+                                                    <span className="text-[10px] text-white/40 uppercase tracking-widest">{event.actorRole}</span>
                                                 </div>
                                             </td>
                                             <td className="px-6 py-5">
@@ -160,7 +160,7 @@ export default function InstitutionalDashboard() {
                                                 </div>
                                             </td>
                                             <td className="px-6 py-5 text-right">
-                                                <span className="font-mono text-[10px] text-slate-600 truncate block w-32 ml-auto" title={event.signature}>
+                                                <span className="font-mono text-[10px] text-white/40 truncate block w-32 ml-auto" title={event.signature}>
                                                     {event.signature.substring(0, 16)}...
                                                 </span>
                                             </td>
@@ -176,26 +176,26 @@ export default function InstitutionalDashboard() {
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-10">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                              <div className="card-sovereign p-8 space-y-4">
-                                <span className="text-[12px] text-slate-500 uppercase tracking-widest">30-Day Volume</span>
+                                <span className="text-[12px] text-white/40 uppercase tracking-widest">30-Day Volume</span>
                                 <div className="text-[32px] font-normal text-white">{formatCents(runRate?.totalVolumeCents)}</div>
                                 <div className="text-[11px] text-emerald-400 font-bold uppercase tracking-widest flex items-center gap-1">
                                     <ArrowUpRight className="w-3.5 h-3.5" /> +14.2% Growth
                                 </div>
                              </div>
                              <div className="card-sovereign p-8 space-y-4">
-                                <span className="text-[12px] text-slate-500 uppercase tracking-widest">Daily Average</span>
+                                <span className="text-[12px] text-white/40 uppercase tracking-widest">Daily Average</span>
                                 <div className="text-[32px] font-normal text-white">{formatCents(runRate?.dailyAverageCents)}</div>
-                                <div className="text-[11px] text-slate-500 font-normal uppercase tracking-widest">Nominal Performance</div>
+                                <div className="text-[11px] text-white/40 font-normal uppercase tracking-widest">Nominal Performance</div>
                              </div>
                              <div className="card-sovereign p-8 border-l-2 border-l-[#22D3EE] space-y-4">
-                                <span className="text-[12px] text-slate-500 uppercase tracking-widest">Yearly Projection</span>
+                                <span className="text-[12px] text-white/40 uppercase tracking-widest">Yearly Projection</span>
                                 <div className="text-[32px] font-normal text-[#22D3EE]">{formatCents(runRate?.projectedYearly)}</div>
-                                <div className="text-[11px] text-slate-500 font-normal uppercase tracking-widest italic">Based on 30d run-rate</div>
+                                <div className="text-[11px] text-white/40 font-normal uppercase tracking-widest italic">Based on 30d run-rate</div>
                              </div>
                         </div>
 
                         <div className="card-sovereign p-8">
-                            <h3 className="text-[14px] text-slate-300 uppercase tracking-widest mb-8 flex items-center gap-3">
+                            <h3 className="text-[14px] text-white/80 uppercase tracking-widest mb-8 flex items-center gap-3">
                                 <BarChart className="w-5 h-5 text-[#22D3EE]" /> Economic Disbursement Delta
                             </h3>
                             <div className="space-y-6">
@@ -206,7 +206,7 @@ export default function InstitutionalDashboard() {
                                 ].map(bar => (
                                     <div key={bar.label} className="space-y-2">
                                         <div className="flex justify-between text-[12px]">
-                                            <span className="text-slate-400 font-medium">{bar.label}</span>
+                                            <span className="text-white/60 font-medium">{bar.label}</span>
                                             <span className="text-white font-mono">{formatCents(bar.value)}</span>
                                         </div>
                                         <div className="w-full h-2 bg-white/5 rounded-full overflow-hidden">
@@ -222,7 +222,7 @@ export default function InstitutionalDashboard() {
                 {activeTab === 'operators' && (
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="card-sovereign overflow-hidden">
                         <table className="w-full text-left">
-                            <thead className="bg-white/[0.04] text-[10px] text-slate-500 uppercase tracking-widest">
+                            <thead className="bg-white/[0.04] text-[10px] text-white/40 uppercase tracking-widest">
                                 <tr>
                                     <th className="px-6 py-4 font-bold">Rank</th>
                                     <th className="px-6 py-4 font-bold">Operator</th>
@@ -238,10 +238,10 @@ export default function InstitutionalDashboard() {
                                         <td className="px-6 py-5">
                                             <div className="flex flex-col">
                                                 <span className="text-white font-medium">{op.email}</span>
-                                                <span className="text-[10px] text-slate-600 font-mono tracking-tighter">{op.operatorId}</span>
+                                                <span className="text-[10px] text-white/40 font-mono tracking-tighter">{op.operatorId}</span>
                                             </div>
                                         </td>
-                                        <td className="px-6 py-5 text-right text-slate-300 font-mono">{op.totalJobs}</td>
+                                        <td className="px-6 py-5 text-right text-white/80 font-mono">{op.totalJobs}</td>
                                         <td className="px-6 py-5 text-right text-emerald-400 font-mono">{formatCents(op.totalRevenue)}</td>
                                         <td className="px-6 py-5">
                                             <div className="flex items-center justify-center gap-2">
@@ -271,26 +271,26 @@ export default function InstitutionalDashboard() {
                                     </div>
                                     <div className="flex flex-col">
                                         <span className="text-[14px] text-white font-medium">{f.founderEmail}</span>
-                                        <span className="text-[10px] text-slate-600 font-mono italic">Infinite Depth Active</span>
+                                        <span className="text-[10px] text-white/40 font-mono italic">Infinite Depth Active</span>
                                     </div>
                                 </div>
 
-                                <div className="pt-4 border-t border-white/5 space-y-4">
+                                <div className="pt-4 border-t border-wnode-border-separator space-y-4">
                                     <div className="flex justify-between items-end">
-                                        <span className="text-[11px] text-slate-500 uppercase tracking-widest">Tree Root Accrual</span>
+                                        <span className="text-[11px] text-white/40 uppercase tracking-widest">Tree Root Accrual</span>
                                         <span className="text-[20px] font-normal text-[#22D3EE] font-mono">{formatCents(f.totalAccruedCents)}</span>
                                     </div>
                                     <div className="flex justify-between items-center text-[11px]">
-                                        <span className="text-slate-500 uppercase tracking-widest">Growth Rate</span>
+                                        <span className="text-white/40 uppercase tracking-widest">Growth Rate</span>
                                         <span className="text-emerald-400 font-bold">+{f.growthRate}%</span>
                                     </div>
                                     <div className="flex justify-between items-center text-[11px]">
-                                        <span className="text-slate-500 uppercase tracking-widest">90d Contribution</span>
-                                        <span className="text-slate-300 font-mono">{formatCents(f.runRateContribution)}</span>
+                                        <span className="text-white/40 uppercase tracking-widest">90d Contribution</span>
+                                        <span className="text-white/80 font-mono">{formatCents(f.runRateContribution)}</span>
                                     </div>
                                 </div>
 
-                                <button className="w-full py-3 bg-white/[0.04] border border-white/10 rounded-[5px] text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-white hover:bg-white/10 transition-all">
+                                <button className="w-full py-3 bg-white/[0.04] border border-wnode-border-neutral rounded-[5px] text-[10px] font-bold uppercase tracking-widest text-white/60 hover:text-white hover:bg-white/10 transition-all">
                                     Visualize Tree Topology
                                 </button>
                             </motion.div>
@@ -307,24 +307,24 @@ export default function InstitutionalDashboard() {
                             </div>
 
                             <div className="space-y-8">
-                                <div className="flex items-end justify-between border-b border-white/5 pb-6">
+                                <div className="flex items-end justify-between border-b border-wnode-border-separator pb-6">
                                     <div className="flex flex-col gap-1">
-                                        <span className="text-[12px] text-slate-500 uppercase tracking-widest">Liquid Balance</span>
+                                        <span className="text-[12px] text-white/40 uppercase tracking-widest">Liquid Balance</span>
                                         <span className="text-[36px] font-normal text-white tracking-tighter">{formatCents(platform?.treasuryBalance)}</span>
                                     </div>
                                     <div className="text-right">
                                         <div className="text-[12px] text-emerald-400 font-bold uppercase tracking-widest">Solvent</div>
-                                        <div className="text-[10px] text-slate-600 uppercase tracking-widest">Audited Just Now</div>
+                                        <div className="text-[10px] text-white/40 uppercase tracking-widest">Audited Just Now</div>
                                     </div>
                                 </div>
 
                                 <div className="grid grid-cols-2 gap-8">
                                      <div className="space-y-2">
-                                        <span className="text-[11px] text-slate-600 uppercase tracking-widest leading-loose">90d Outlook</span>
-                                        <div className="text-[18px] text-slate-300 font-mono tracking-tighter">{formatCents(platform?.treasuryForecast)}</div>
+                                        <span className="text-[11px] text-white/40 uppercase tracking-widest leading-loose">90d Outlook</span>
+                                        <div className="text-[18px] text-white/80 font-mono tracking-tighter">{formatCents(platform?.treasuryForecast)}</div>
                                      </div>
                                      <div className="space-y-2">
-                                        <span className="text-[11px] text-slate-600 uppercase tracking-widest leading-loose">Reserve Ratio</span>
+                                        <span className="text-[11px] text-white/40 uppercase tracking-widest leading-loose">Reserve Ratio</span>
                                         <div className="text-[18px] text-[#22D3EE] font-mono tracking-tighter">{(platform?.reserveRatio * 100).toFixed(2)}%</div>
                                      </div>
                                 </div>
@@ -333,8 +333,8 @@ export default function InstitutionalDashboard() {
                             <div className="p-6 bg-emerald-500/[0.03] border border-emerald-500/10 rounded-[8px] flex items-start gap-4">
                                 <FileCheck className="w-5 h-5 text-emerald-400 mt-1" />
                                 <div>
-                                    <p className="text-[13px] text-slate-300 font-medium">Authoritative Economic Alignment</p>
-                                    <p className="text-[11px] text-slate-500 mt-1 uppercase tracking-tight leading-relaxed">
+                                    <p className="text-[13px] text-white/80 font-medium">Authoritative Economic Alignment</p>
+                                    <p className="text-[11px] text-white/40 mt-1 uppercase tracking-tight leading-relaxed">
                                         Platform reserves are calculated based on the immutable 7% infrastructure cut across all processed compute cycles.
                                     </p>
                                 </div>
@@ -344,7 +344,7 @@ export default function InstitutionalDashboard() {
                         <div className="card-sovereign p-10 flex flex-col justify-center items-center relative group overflow-hidden">
                              <div className="absolute inset-0 bg-gradient-to-tr from-[#22D3EE]/5 via-transparent to-purple-500/5 opacity-50 transition-opacity group-hover:opacity-100" />
                              <BarChart3 className="w-16 h-16 text-[#22D3EE]/20 mb-6 animate-pulse" />
-                             <h4 className="text-[12px] text-slate-500 uppercase tracking-[0.3em] mb-4">Network Growth Vector</h4>
+                             <h4 className="text-[12px] text-white/40 uppercase tracking-[0.3em] mb-4">Network Growth Vector</h4>
                              <div className="text-[64px] font-normal text-white tracking-tighter mb-2">3.8x</div>
                              <p className="text-[11px] text-[#22D3EE] font-bold uppercase tracking-widest">Projected Q3 Expansion</p>
                         </div>

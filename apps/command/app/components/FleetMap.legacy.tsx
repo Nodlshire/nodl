@@ -142,7 +142,7 @@ export default function FleetMap({ nodes, nodlrs, loading, onNodeSelect }: MapPr
                 )}
             </div>
 
-            <div className="bg-white/[0.02] border border-white/10 rounded-[5px] h-[480px] relative overflow-hidden group shadow-xl transition-all hover:bg-white/[0.03] backdrop-blur-sm">
+            <div className="bg-white/[0.02] border border-wnode-border-neutral rounded-[5px] h-[480px] relative overflow-hidden group shadow-xl transition-all hover:bg-white/[0.03] backdrop-blur-sm">
                 <div className="absolute inset-0 relative bg-neutral-950 rounded-md overflow-hidden border border-neutral-800">
                     <div
                         id="fleet-map"
@@ -151,12 +151,12 @@ export default function FleetMap({ nodes, nodlrs, loading, onNodeSelect }: MapPr
                     />
 
                     {/* Map Legend / Annunciator - Requirement 5 */}
-                    <div className="absolute bottom-6 left-6 z-10 bg-black/60 backdrop-blur-md p-3 border border-white/10 rounded-[5px] flex flex-col gap-2 min-w-[160px] pointer-events-none">
+                    <div className="absolute bottom-6 left-6 z-10 bg-black/60 backdrop-blur-md p-3 border border-wnode-border-neutral rounded-[5px] flex flex-col gap-2 min-w-[160px] pointer-events-none">
                         <div className="flex items-center justify-between gap-4">
                             <span className="text-[9px] text-[#b0bac3] uppercase tracking-widest font-bold">Active Nodes</span>
                             <span className="text-[10px] font-mono text-[#22D3EE] font-bold">{mappedNodes.length}</span>
                         </div>
-                        <div className="flex items-center justify-between gap-4 border-t border-white/5 pt-2">
+                        <div className="flex items-center justify-between gap-4 border-t border-wnode-border-separator pt-2">
                             <span className="text-[9px] text-[#b0bac3] uppercase tracking-widest font-bold">Registry Sync</span>
                             <span className="text-[9px] font-mono text-green-400 font-bold tracking-tighter">STABLE</span>
                         </div>
@@ -165,7 +165,7 @@ export default function FleetMap({ nodes, nodlrs, loading, onNodeSelect }: MapPr
                     {loading && (
                         <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/60 backdrop-blur-sm">
                             <div className="flex flex-col items-center gap-4">
-                                <div className="w-8 h-8 border-2 border-t-cyan-400 border-white/10 rounded-full animate-spin" />
+                                <div className="w-8 h-8 border-2 border-t-cyan-400 border-wnode-border-neutral rounded-full animate-spin" />
                                 <span className="text-[11px] text-neutral-400 uppercase tracking-[0.2em] font-medium">
                                     Synchronizing Registry...
                                 </span>

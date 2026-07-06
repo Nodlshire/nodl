@@ -48,9 +48,9 @@ export default function GovernancePage() {
             <LeftNav />
 
             {/* Main Content Column */}
-            <main className="flex-1 p-6 pt-10 pb-12 w-full flex flex-col">
+            <main className="flex-1 p-6 pt-3 pb-12 w-full flex flex-col">
                 
-                <div className="grid grid-cols-1 gap-8">
+                <div className="grid grid-cols-1 gap-6">
                     {/* Row 1: Overview */}
                     <section id="overview">
                         <OverviewPanel 
@@ -65,7 +65,7 @@ export default function GovernancePage() {
                     </section>
 
                     {/* Row 3: Proposals & Voting */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <section id="proposals" onClick={() => openSlideOut("Proposal Audit")} className="cursor-pointer">
                             <ProposalsPanel />
                         </section>
@@ -75,7 +75,7 @@ export default function GovernancePage() {
                     </div>
 
                     {/* Row 4: Discord & Operational */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <section id="discord" onClick={() => openSlideOut("Discord Context")} className="cursor-pointer">
                             <DiscordPanel />
                         </section>
@@ -96,9 +96,9 @@ export default function GovernancePage() {
                 </div>
 
                 {/* Footer */}
-                <footer className="mt-20 flex flex-col items-center gap-2 pb-12 border-t border-white/5 pt-12">
-                    <div className="flex items-center gap-2 text-slate-500">
-                        <Terminal className="w-4 h-4 text-slate-600" />
+                <footer className="mt-20 flex flex-col items-center gap-2 pb-12 border-t border-wnode-border-neutral pt-6">
+                    <div className="flex items-center gap-2 text-white/40">
+                        <Terminal className="w-4 h-4 text-white/40" />
                         <span className="text-[11px] uppercase tracking-[0.2em] font-medium">
                             Wnode Command — Executive Control v1.0
                         </span>

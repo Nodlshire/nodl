@@ -19,20 +19,20 @@ export default function AiMeshInsight() {
       });
   }, []);
 
-  if (loading) return <div className="p-4 text-gray-500 animate-pulse">AI thinking...</div>;
+  if (loading) return <div className="p-4 text-white/40 animate-pulse">AI thinking...</div>;
 
   return (
-    <div className="p-4 bg-gray-900 border border-gray-800 rounded-lg shadow-lg">
-      <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 flex items-center">
+    <div className="p-4 bg-blue-950/10 border border-wnode-compute rounded-lg shadow-lg">
+      <h3 className="text-xs font-bold text-white/60 uppercase tracking-widest mb-2 flex items-center">
         <span className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></span>
         AI Mesh Insight
       </h3>
       {insight && insight.status === 'ok' ? (
-        <div className="text-lg font-medium text-white">
+        <div className="text-lg font-medium text-white/85">
           Network Efficiency Score: <span className="text-blue-400">{(insight.data.score * 100).toFixed(0)}%</span>
         </div>
       ) : (
-        <div className="text-gray-500 italic">AI engine offline or calibrating.</div>
+        <div className="text-white/40 italic">AI engine offline or calibrating.</div>
       )}
     </div>
   );

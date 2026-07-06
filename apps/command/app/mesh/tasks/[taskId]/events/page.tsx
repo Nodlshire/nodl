@@ -40,7 +40,7 @@ export default function TaskEventsPage() {
 
     if (loading) {
         return (
-            <div className="flex flex-col items-center justify-center min-h-[400px] text-slate-500 gap-4">
+            <div className="flex flex-col items-center justify-center min-h-[400px] text-white/40 gap-4">
                 <Loader2 className="w-6 h-6 animate-spin text-cyan-400" />
                 <p className="text-sm font-medium">Tracing task execution path...</p>
             </div>
@@ -70,7 +70,7 @@ export default function TaskEventsPage() {
             <div className="space-y-12 relative before:absolute before:inset-y-0 before:left-[17px] before:w-px before:bg-white/5">
                 {(Object.entries(groupedEvents) as [string, MeshEvent[]][]).map(([date, events]) => (
                     <div key={date} className="space-y-6">
-                        <h2 className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] relative">
+                        <h2 className="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em] relative">
                             {date}
                         </h2>
 
@@ -83,13 +83,13 @@ export default function TaskEventsPage() {
                                         event.severity === 'SUCCESS' ? 'bg-emerald-500' : 'bg-cyan-500'
                                     }`} />
 
-                                    <div className="bg-white/[0.02] border border-white/10 rounded-lg p-4">
+                                    <div className="bg-white/[0.02] border border-wnode-border-neutral rounded-lg p-4">
                                         <div className="flex items-start justify-between gap-4">
                                             <div className="space-y-1">
-                                                <h3 className="text-sm font-bold text-slate-100">{event.summary}</h3>
-                                                <p className="text-xs text-slate-400 leading-relaxed">{event.details}</p>
+                                                <h3 className="text-sm font-bold text-white/85">{event.summary}</h3>
+                                                <p className="text-xs text-white/60 leading-relaxed">{event.details}</p>
                                             </div>
-                                            <div className="flex items-center gap-1 text-[10px] font-mono text-slate-500 whitespace-nowrap">
+                                            <div className="flex items-center gap-1 text-[10px] font-mono text-white/40 whitespace-nowrap">
                                                 <Clock className="w-3 h-3" />
                                                 {new Date(event.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
                                             </div>

@@ -10,7 +10,7 @@ export default function ProposalsPanel() {
   ];
 
   return (
-    <div className="bg-white/[0.02] border border-white/10 rounded-[5px] p-8 space-y-6 hover:shadow-[0_0_20px_rgba(250,204,21,0.05)] transition-all group h-[300px] flex flex-col">
+    <div className="bg-white/[0.02] border border-wnode-border-neutral shadow-[0_0_20px_rgba(255,255,255,0.05)] rounded-[5px] p-8 space-y-6 hover:shadow-[0_0_20px_rgba(250,204,21,0.05)] transition-all group h-[300px] flex flex-col">
       <div className="flex items-center gap-3">
         <Tooltip text="Governance proposals">
           <FileText className="w-6 h-6 text-yellow-400 group-hover:drop-shadow-[0_0_8px_rgba(250,204,21,0.4)] transition-all" />
@@ -20,12 +20,12 @@ export default function ProposalsPanel() {
 
       <div className="flex-1 space-y-3">
         {proposals.map((p, i) => (
-          <div key={i} className="flex items-center justify-between p-3 bg-white/5 border border-white/5 rounded hover:border-yellow-400/30 transition-colors">
+          <div key={i} className="flex items-center justify-between p-3 bg-white/5 border border-wnode-border-neutral rounded hover:border-yellow-400/30 transition-colors">
             <div className="flex flex-col">
               <span className="text-[12px] text-white font-medium">{p.title}</span>
-              <span className="text-[9px] text-slate-500 uppercase tracking-tighter">{p.type}</span>
+              <span className="text-[9px] text-white/40 uppercase tracking-tighter">{p.type}</span>
             </div>
-            <span className={`px-2 py-0.5 rounded text-[9px] uppercase font-bold ${p.status === 'Active' ? 'bg-green-500/10 text-green-500' : 'bg-white/5 text-slate-500'}`}>
+            <span className={`px-2 py-0.5 rounded text-[9px] uppercase font-bold ${p.status === 'Active' ? 'bg-green-500/10 text-green-500' : 'bg-white/5 text-white/40'}`}>
               {p.status}
             </span>
           </div>

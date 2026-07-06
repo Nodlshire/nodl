@@ -27,16 +27,16 @@ export default function DetailPanel({ isOpen, onClose, node, affiliateData }: De
                 onClick={onClose}
             />
 
-            <div className={`fixed top-0 right-0 h-full w-[450px] bg-[#0A0A0A] border-l border-white/10 z-[100] shadow-[0_0_50px_rgba(0,0,0,0.8)] transition-transform duration-500 ease-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+            <div className={`fixed top-0 right-0 h-full w-[450px] bg-[#0A0A0A] border-l border-wnode-border-neutral z-[100] shadow-[0_0_50px_rgba(0,0,0,0.8)] transition-transform duration-500 ease-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                 <div className="p-8 space-y-8 h-full overflow-y-auto custom-scrollbar">
                     <div className="flex items-center justify-between">
                         <div className="space-y-1">
                             <h2 className="text-[14px] font-bold text-white uppercase tracking-widest">Affiliate Intelligence</h2>
-                            <p className="text-[10px] text-slate-500 font-mono">Node Trace Registry</p>
+                            <p className="text-[10px] text-white/40 font-mono">Node Trace Registry</p>
                         </div>
                         <button 
                             onClick={onClose}
-                            className="p-2 hover:bg-white/5 rounded-full transition-colors text-slate-500 hover:text-white"
+                            className="p-2 hover:bg-white/5 rounded-full transition-colors text-white/40 hover:text-white"
                         >
                             <X className="w-5 h-5" />
                         </button>
@@ -44,7 +44,7 @@ export default function DetailPanel({ isOpen, onClose, node, affiliateData }: De
 
                     <div className="space-y-6">
                         {/* Polished Header */}
-                        <header className="mb-4 border-b border-gray-700 pb-3">
+                        <header className="mb-4 border-b border-wnode-border-neutral pb-3">
                             <h2 className="text-lg font-semibold text-gray-200">
                                 {node?.name ?? "Affiliate"}
                             </h2>
@@ -80,11 +80,11 @@ export default function DetailPanel({ isOpen, onClose, node, affiliateData }: De
                         <section className="mt-6 space-y-2">
                             <h3 className="text-sm font-semibold text-gray-300 mb-2">Live Telemetry</h3>
                             <div className="grid grid-cols-2 gap-4 text-sm text-gray-400">
-                                <div className="p-3 bg-white/[0.02] border border-gray-800 rounded">
+                                <div className="p-3 bg-white/[0.02] border border-wnode-border-neutral rounded">
                                     <span className="text-xs text-gray-500 block mb-1">Uptime</span>
                                     <span className="font-mono text-gray-300">99.98%</span>
                                 </div>
-                                <div className="p-3 bg-white/[0.02] border border-gray-800 rounded">
+                                <div className="p-3 bg-white/[0.02] border border-wnode-border-neutral rounded">
                                     <span className="text-xs text-gray-500 block mb-1">Latency</span>
                                     <span className="font-mono text-gray-300">14ms</span>
                                 </div>

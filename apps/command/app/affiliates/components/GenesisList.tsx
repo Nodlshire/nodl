@@ -35,19 +35,19 @@ const genesisData: GenesisRow[] = [
 export default function GenesisList({ onRowClick, onL1Click, onInvite, selectedWuid }: GenesisListProps) {
     return (
         <section className="space-y-6">
-            <div className="bg-white/[0.01] border border-white/10 rounded-[5px] overflow-hidden">
+            <div className="bg-white/[0.01] border border-wnode-border-neutral shadow-[0_0_20px_rgba(255,255,255,0.05)] rounded-[5px] overflow-hidden">
                 {/* Header Row */}
-                <div className="grid grid-cols-[80px_1fr_110px_190px_120px_120px] border-b border-white/10 bg-white/[0.02] px-6 py-3">
-                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Index</span>
-                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Name</span>
-                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Type</span>
-                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">WUID</span>
-                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest text-center">L1</span>
-                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest text-center">L2</span>
+                <div className="grid grid-cols-[80px_1fr_110px_190px_120px_120px] border-b border-wnode-border-neutral bg-white/[0.02] px-6 py-3">
+                    <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Index</span>
+                    <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Name</span>
+                    <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Type</span>
+                    <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest">WUID</span>
+                    <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest text-center">L1</span>
+                    <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest text-center">L2</span>
                 </div>
 
                 {/* Data Rows */}
-                <div className="divide-y divide-white/5 p-1 space-y-1">
+                <div className="divide-y divide-white/20 p-1 space-y-1">
                     {genesisData.map((row) => {
                         const isSelected = selectedWuid === row.wuid && row.wuid !== "—";
                         const isEmpty = row.wuid === "—" || !row.wuid;
@@ -70,7 +70,7 @@ export default function GenesisList({ onRowClick, onL1Click, onInvite, selectedW
                                     }
                                 `}
                             >
-                                <span className="text-[12px] font-mono text-slate-500 group-hover:text-white transition-colors">{row.index}</span>
+                                <span className="text-[12px] font-mono text-white/40 group-hover:text-white transition-colors">{row.index}</span>
                                 <span className="text-[13px] text-white font-medium">{row.name}</span>
                                 <div className="flex justify-start mr-2">
                                     <div 
@@ -92,7 +92,7 @@ export default function GenesisList({ onRowClick, onL1Click, onInvite, selectedW
                                     ) : (
                                         <span 
                                             title="Unique Wnode Identifier"
-                                            className="text-[12px] font-mono text-slate-400 group-hover:text-white transition-colors"
+                                            className="text-[12px] font-mono text-white/60 group-hover:text-white transition-colors"
                                         >
                                             {row.wuid}
                                         </span>
@@ -102,10 +102,10 @@ export default function GenesisList({ onRowClick, onL1Click, onInvite, selectedW
                                     className="text-center"
                                     onClick={(e) => onL1Click?.(e, row)}
                                 >
-                                    <span className="text-[12px] font-mono text-slate-500 hover:text-white transition-colors cursor-pointer">{row.l1Count}</span>
+                                    <span className="text-[12px] font-mono text-white/40 hover:text-white transition-colors cursor-pointer">{row.l1Count}</span>
                                 </div>
                                 <div className="text-center">
-                                    <span className="text-[12px] font-mono text-slate-500">{row.l2Count}</span>
+                                    <span className="text-[12px] font-mono text-white/40">{row.l2Count}</span>
                                 </div>
                             </div>
                         );

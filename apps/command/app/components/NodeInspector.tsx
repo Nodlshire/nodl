@@ -80,7 +80,7 @@ export default function NodeInspector({ nodeId, onClose }: NodeInspectorProps) {
                     <section className="flex items-center justify-between p-4 ds-card">
                         <div className="flex flex-col">
                             <span className="ds-sub">Heartbeat Status</span>
-                            <span className={`text-[13px] font-bold uppercase tracking-widest ${node.status === 'active' || node.status === 'online' ? 'text-[#22D3EE]' : 'text-slate-500'}`}>
+                            <span className={`text-[13px] font-bold uppercase tracking-widest ${node.status === 'active' || node.status === 'online' ? 'text-[#22D3EE]' : 'text-white/40'}`}>
                                 {node.status || 'OFFLINE'}
                             </span>
                         </div>
@@ -89,7 +89,7 @@ export default function NodeInspector({ nodeId, onClose }: NodeInspectorProps) {
 
                     {/* Operational Core */}
                     <section className="space-y-4">
-                        <h3 className="ds-sub border-b border-white/5 pb-2">Operational Core</h3>
+                        <h3 className="ds-sub border-b border-wnode-border-separator pb-2">Operational Core</h3>
                         <div className="grid grid-cols-2 gap-4">
                             <div className="flex flex-col gap-1 p-3 ds-card">
                                 <span className="ds-sub opacity-60">CPU Capacity</span>
@@ -110,12 +110,12 @@ export default function NodeInspector({ nodeId, onClose }: NodeInspectorProps) {
 
                     {/* Protocol Identity */}
                     <section className="space-y-4">
-                        <h3 className="ds-sub border-b border-white/5 pb-2">Protocol Identity</h3>
+                        <h3 className="ds-sub border-b border-wnode-border-separator pb-2">Protocol Identity</h3>
                         <div className="space-y-4">
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-3">
-                                    <User className="w-4 h-4 text-slate-500" />
-                                    <span className="text-[11px] text-slate-400">Node Operator</span>
+                                    <User className="w-4 h-4 text-white/40" />
+                                    <span className="text-[11px] text-white/60">Node Operator</span>
                                 </div>
                                 <span className="text-[12px] text-white font-bold">{node.name || 'ANONYMOUS'}</span>
                             </div>
@@ -126,7 +126,7 @@ export default function NodeInspector({ nodeId, onClose }: NodeInspectorProps) {
                                     <span className="text-[11px] font-mono text-white break-all text-right max-w-[200px]">{node.id}</span>
                                 </div>
                                 {nodlr && (
-                                    <div className="flex items-center justify-between border-t border-white/5 pt-3">
+                                    <div className="flex items-center justify-between border-t border-wnode-border-separator pt-3">
                                         <span className="ds-sub opacity-60">nodlr.id</span>
                                         <span className="text-[11px] font-mono text-[#22D3EE] font-bold">{nodlr.id}</span>
                                     </div>
@@ -137,7 +137,7 @@ export default function NodeInspector({ nodeId, onClose }: NodeInspectorProps) {
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-3">
                                         <BarChart className="w-4 h-4 text-[#22D3EE] opacity-50" />
-                                        <span className="text-[11px] text-slate-400">Accrued Balance</span>
+                                        <span className="text-[11px] text-white/60">Accrued Balance</span>
                                     </div>
                                     <span className="text-[12px] text-[#22D3EE] font-mono font-bold">${(nodlr.accruedFounderBalance / 100 || 0).toLocaleString()}</span>
                                 </div>
@@ -145,8 +145,8 @@ export default function NodeInspector({ nodeId, onClose }: NodeInspectorProps) {
                             
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-3">
-                                    <Globe className="w-4 h-4 text-slate-500" />
-                                    <span className="text-[11px] text-slate-400">Region Root</span>
+                                    <Globe className="w-4 h-4 text-white/40" />
+                                    <span className="text-[11px] text-white/60">Region Root</span>
                                 </div>
                                 <span className="text-[12px] text-white underline underline-offset-4 decoration-white/10">{node.region || 'Unknown Location'}</span>
                             </div>
@@ -159,7 +159,7 @@ export default function NodeInspector({ nodeId, onClose }: NodeInspectorProps) {
                             <Terminal className="w-4 h-4 text-[#22D3EE]" />
                             <h4 className="ds-sub">Live Intelligence Trace</h4>
                         </div>
-                        <div className="bg-black/40 border border-white/5 rounded-[5px] p-4 font-mono text-[10px] leading-relaxed space-y-1.5 max-h-[150px] overflow-y-auto custom-scrollbar shadow-inner text-slate-500">
+                        <div className="bg-black/40 border border-wnode-border-separator rounded-[5px] p-4 font-mono text-[10px] leading-relaxed space-y-1.5 max-h-[150px] overflow-y-auto custom-scrollbar shadow-inner text-white/40">
                             <p>[{new Date().toISOString()}] INITIALIZING CORE MODULES...</p>
                             <p className="text-[#22D3EE]/60">[OK] SECURITY PROTOCOLS ACTIVE</p>
                             <p>[NET] DHT REFRESH (LATENCY: 12ms)</p>

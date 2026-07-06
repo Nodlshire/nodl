@@ -9,6 +9,8 @@
     --background: 0 0% 0%;
     --foreground: 0 0% 100%;
     --font-roboto: 'Roboto', sans-serif;
+    --nodl-border: rgba(148, 163, 184, 0.35); /* High-contrast gray (slate-400 with 35% opacity) */
+    --nodl-border-hover: rgba(148, 163, 184, 0.6); /* High-contrast hover (slate-400 with 60% opacity) */
   }
 
 
@@ -25,7 +27,7 @@
   /* Global Form Controls - Universal Override */
   input, select, textarea {
     background-color: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--nodl-border);
     color: #e2e8f0; /* text-slate-200 */
     border-radius: 5px;
     appearance: none;
@@ -58,7 +60,7 @@
   /* Sovereign Unified Cards */
   .card-sovereign, .card, .ds-card {
     background: rgba(255, 255, 255, 0.03) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid var(--nodl-border) !important;
     border-radius: 5px !important;
     backdrop-filter: blur(20px) saturate(180%);
     box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.4);
@@ -81,7 +83,7 @@ div, button, input, section, aside, header, nav, img {
 /* Scrollbar Customization */
 .nodl-map-tooltip {
   background: #0F172A !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid var(--nodl-border) !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
   color: white !important;
   padding: 0 !important;
@@ -140,4 +142,10 @@ body::before {
 
 .animate-green-mesh {
     animation: green-pulse 3s infinite;
+}
+
+/* Canonical High Visibility Layer */
+.border, .border-wnode-border-neutral, .border-wnode-border-separator {
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    border-width: 1px !important;
 }

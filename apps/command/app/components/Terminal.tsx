@@ -23,13 +23,13 @@ export default function Terminal({ logs }: { logs: TerminalLog[] }) {
     }, [logs]);
 
     return (
-        <div className="bg-black border border-white/10 backdrop-blur-md p-4 text-[11px] h-[400px] overflow-hidden flex flex-col group rounded-none">
-            <div className="flex items-center justify-between mb-3 pb-2 border-b border-white/5">
+        <div className="bg-black border border-wnode-border-neutral backdrop-blur-md p-4 text-[11px] h-[400px] overflow-hidden flex flex-col group rounded-none">
+            <div className="flex items-center justify-between mb-3 pb-2 border-b border-wnode-border-separator">
                 <span className="text-white uppercase flex items-center gap-2 font-black tracking-[0.2em] text-[9px]">
                     <div className="w-1.5 h-1.5 bg-cyber-crimson shadow-[0_0_8px_#ef4444]" />
                     Live Mesh Telemetry
                 </span>
-                <span className="text-[8px] text-slate-700 font-bold tracking-[0.3em]">SYSTEM_TRACE_v2.0</span>
+                <span className="text-[8px] text-white/40 font-bold tracking-[0.3em]">SYSTEM_TRACE_v2.0</span>
             </div>
 
             <div
@@ -37,15 +37,15 @@ export default function Terminal({ logs }: { logs: TerminalLog[] }) {
                 className="flex-1 overflow-y-auto space-y-1 terminal-scrollbar pr-2"
             >
                 {logs.length === 0 ? (
-                    <div className="text-slate-700 ">Awaiting telemetry packets...</div>
+                    <div className="text-white/40 ">Awaiting telemetry packets...</div>
                 ) : (
                     logs.map((log, i) => (
                         <div key={i} className="flex gap-3 items-start animate-in fade-in slide-in-from-left-1 duration-300">
-                            <span className="text-slate-600 shrink-0">[{new Date(log.timestamp).toLocaleTimeString([], { hour12: false })}]</span>
+                            <span className="text-white/40 shrink-0">[{new Date(log.timestamp).toLocaleTimeString([], { hour12: false })}]</span>
                             <span className={`
                 ${log.type === 'error' ? 'text-cyber-crimson' :
                                     log.type === 'warn' ? 'text-yellow-500' :
-                                        log.type === 'success' ? 'text-cyber-blue' : 'text-slate-400'}
+                                        log.type === 'success' ? 'text-cyber-blue' : 'text-white/60'}
               `}>
                                 {formatMessage(log.message)}
                             </span>

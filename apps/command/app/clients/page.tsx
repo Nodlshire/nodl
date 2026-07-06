@@ -53,16 +53,16 @@ export default function ClientsPage() {
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
                     <div className="flex-1" />
                         
-                        <div className="flex bg-white/[0.03] border border-white/10 p-1 rounded-[5px]">
+                        <div className="flex bg-white/[0.03] border border-wnode-border-neutral p-1 rounded-[5px]">
                             <button 
                                 onClick={() => setActiveTab("all")}
-                                className={`px-4 py-1.5 rounded-[4px] text-[11px] font-normal transition-all uppercase tracking-widest ${activeTab === "all" ? "bg-white/10 text-white" : "text-slate-500 hover:text-white"}`}
+                                className={`px-4 py-1.5 rounded-[4px] text-[11px] font-normal transition-all uppercase tracking-widest ${activeTab === "all" ? "bg-white/10 text-white" : "text-white/40 hover:text-white"}`}
                             >
                                 All Accounts
                             </button>
                             <button 
                                 onClick={() => setActiveTab("integrity")}
-                                className={`px-4 py-1.5 rounded-[4px] text-[11px] font-normal transition-all uppercase tracking-widest ${activeTab === "integrity" ? "bg-red-500/10 text-red-500" : "text-slate-500 hover:text-white"}`}
+                                className={`px-4 py-1.5 rounded-[4px] text-[11px] font-normal transition-all uppercase tracking-widest ${activeTab === "integrity" ? "bg-red-500/10 text-red-500" : "text-white/40 hover:text-white"}`}
                             >
                                 Integrity Flags
                             </button>
@@ -71,27 +71,27 @@ export default function ClientsPage() {
 
                     <div className="flex flex-col xl:flex-row xl:items-center gap-4 mb-8">
                         <div className="flex-1 relative group">
-                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 group-focus-within:text-[#22D3EE] transition-colors" />
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 group-focus-within:text-[#22D3EE] transition-colors" />
                             <input 
                                 type="text" 
                                 placeholder="Search client, ID, name, postcode, telephone, email"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="w-full bg-white/[0.03] border border-white/10 rounded-[5px] pl-10 pr-4 py-2.5 text-[13px] focus:outline-none focus:border-[#22D3EE]/50 transition-all font-normal"
+                                className="w-full bg-white/[0.03] border border-wnode-border-neutral rounded-[5px] pl-10 pr-4 py-2.5 text-[13px] focus:outline-none focus:border-[#22D3EE]/50 transition-all font-normal"
                             />
                         </div>
                         <div className="flex items-center gap-3">
-                            <span className="text-[11px] text-slate-600 uppercase tracking-widest">Sort:</span>
-                            <div className="flex bg-white/[0.03] border border-white/10 p-1 rounded-[5px]">
+                            <span className="text-[11px] text-white/40 uppercase tracking-widest">Sort:</span>
+                            <div className="flex bg-white/[0.03] border border-wnode-border-neutral p-1 rounded-[5px]">
                                 <button 
                                     onClick={() => setSortBy("id")}
-                                    className={`px-3 py-1 rounded-[3px] text-[11px] uppercase tracking-tighter ${sortBy === "id" ? "bg-[#22D3EE] text-black" : "text-slate-500"}`}
+                                    className={`px-3 py-1 rounded-[3px] text-[11px] uppercase tracking-tighter ${sortBy === "id" ? "bg-[#22D3EE] text-black" : "text-white/40"}`}
                                 >
                                     Identity
                                 </button>
                                 <button 
                                     onClick={() => setSortBy("health")}
-                                    className={`px-3 py-1 rounded-[3px] text-[11px] uppercase tracking-tighter ${sortBy === "health" ? "bg-[#22D3EE] text-black" : "text-slate-500"}`}
+                                    className={`px-3 py-1 rounded-[3px] text-[11px] uppercase tracking-tighter ${sortBy === "health" ? "bg-[#22D3EE] text-black" : "text-white/40"}`}
                                 >
                                     Usage
                                 </button>
@@ -99,31 +99,31 @@ export default function ClientsPage() {
                         </div>
                     </div>
 
-                    <div className="bg-white/[0.01] border border-white/10 rounded-[5px] overflow-hidden">
+                    <div className="bg-white/[0.01] border border-wnode-border-neutral rounded-[5px] overflow-hidden">
                         <table className="w-full text-left border-collapse">
                             <thead>
-                                <tr className="border-b border-white/10 bg-white/[0.02]">
-                                    <th className="px-6 py-4 text-[10px] font-normal text-slate-500 uppercase tracking-widest">
+                                <tr className="border-b border-wnode-border-neutral bg-white/[0.02]">
+                                    <th className="px-6 py-4 text-[10px] font-normal text-white/40 uppercase tracking-widest">
                                         <Tooltip text="Authoritative customer identity and contact information">
                                             Client WUID
                                         </Tooltip>
                                     </th>
-                                    <th className="px-6 py-4 text-[10px] font-normal text-slate-500 uppercase tracking-widest">
+                                    <th className="px-6 py-4 text-[10px] font-normal text-white/40 uppercase tracking-widest">
                                         <Tooltip text="Aggregate compute consumption for the current billing cycle">
                                             Monthly Consumption
                                         </Tooltip>
                                     </th>
-                                    <th className="px-6 py-4 text-[10px] font-normal text-slate-500 uppercase tracking-widest">
+                                    <th className="px-6 py-4 text-[10px] font-normal text-white/40 uppercase tracking-widest">
                                         <Tooltip text="Current billing standing and credit verification">
                                             Billing Status
                                         </Tooltip>
                                     </th>
-                                    <th className="px-6 py-4 text-[10px] font-normal text-slate-500 uppercase tracking-widest">
+                                    <th className="px-6 py-4 text-[10px] font-normal text-white/40 uppercase tracking-widest">
                                         <Tooltip text="Number of active compute tasks currently provisioned by this client">
                                             Active Jobs
                                         </Tooltip>
                                     </th>
-                                    <th className="px-6 py-4 text-[10px] font-normal text-slate-500 uppercase tracking-widest text-left">
+                                    <th className="px-6 py-4 text-[10px] font-normal text-white/40 uppercase tracking-widest text-left">
                                         <Tooltip text="Global account integrity and operational status">
                                             Standing
                                         </Tooltip>
@@ -141,18 +141,18 @@ export default function ClientsPage() {
                                             <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-[#22D3EE] opacity-0 group-hover:opacity-100 transition-opacity shadow-[0_0_8px_#22D3EE]" />
                                             <div className="flex flex-col gap-1">
                                                 <span className="text-[14px] font-normal text-white group-hover:text-[#22D3EE] transition-colors">{row.name || 'Anonymous Client'}</span>
-                                                <span className="text-[10px] text-slate-500 font-mono italic">{row.email || row.id}</span>
+                                                <span className="text-[10px] text-white/40 font-mono italic">{row.email || row.id}</span>
                                             </div>
                                         </td>
                                         <td className="px-6 py-5">
                                             <div className="flex flex-col gap-1">
                                                 <span className="text-[14px] text-[#22D3EE] font-mono">{(row.consumption || (Math.random() * 50)).toFixed(2)} TH/s</span>
-                                                <span className="text-[9px] text-slate-500 uppercase tracking-tighter">Current Cycle</span>
+                                                <span className="text-[9px] text-white/40 uppercase tracking-tighter">Current Cycle</span>
                                             </div>
                                         </td>
                                         <td className="px-6 py-5">
                                             <div className="flex items-center gap-2">
-                                                <CreditCard className="w-4 h-4 text-slate-600" />
+                                                <CreditCard className="w-4 h-4 text-white/40" />
                                                 <span className={`text-[11px] font-bold tracking-widest uppercase ${row.billing_status === 'Verified' ? 'text-green-500' : 'text-yellow-500'}`}>
                                                     {row.billing_status || 'Verified'}
                                                 </span>
@@ -160,7 +160,7 @@ export default function ClientsPage() {
                                         </td>
                                         <td className="px-6 py-5">
                                             <div className="flex items-center gap-2">
-                                                <Cpu className="w-4 h-4 text-slate-600" />
+                                                <Cpu className="w-4 h-4 text-white/40" />
                                                 <span className="text-[13px] font-mono text-white">{row.active_jobs || Math.floor(Math.random() * 10)} Jobs</span>
                                             </div>
                                         </td>
@@ -197,11 +197,11 @@ export default function ClientsPage() {
                             <div className="flex gap-3">
                                 {isEditMode ? (
                                     <>
-                                        <button onClick={() => setIsEditMode(false)} className="flex-1 py-3 bg-white/5 border border-white/10 rounded-[5px] text-[13px] text-slate-500 transition-colors">Discard</button>
+                                        <button onClick={() => setIsEditMode(false)} className="flex-1 py-3 bg-white/5 border border-wnode-border-neutral rounded-[5px] text-[13px] text-white/40 transition-colors">Discard</button>
                                         <button onClick={() => setIsEditMode(false)} className="flex-1 py-3 bg-[#22D3EE]/20 border border-[#22D3EE]/40 rounded-[5px] text-[13px] text-[#22D3EE] font-medium transition-colors">Save Updates</button>
                                     </>
                                 ) : (
-                                    <button onClick={() => setIsEditMode(true)} className="w-full py-3 border border-white/10 bg-white/[0.02] rounded-[5px] text-[12px] text-slate-400 hover:bg-white/5 transition-colors uppercase tracking-widest">Adjust Profile Context</button>
+                                    <button onClick={() => setIsEditMode(true)} className="w-full py-3 border border-wnode-border-neutral bg-white/[0.02] rounded-[5px] text-[12px] text-white/60 hover:bg-white/5 transition-colors uppercase tracking-widest">Adjust Profile Context</button>
                                 )}
                             </div>
                         </div>
@@ -211,29 +211,29 @@ export default function ClientsPage() {
                         <div className="space-y-10">
                             {/* Profile Info */}
                             <section className="space-y-6">
-                                <div className="flex items-center gap-2 text-[12px] text-slate-400 uppercase tracking-widest">
+                                <div className="flex items-center gap-2 text-[12px] text-white/60 uppercase tracking-widest">
                                     <Shield className="w-4 h-4 text-[#22D3EE]" />
                                     <span>Identity Overview</span>
                                 </div>
-                                <div className="bg-black/40 border border-white/5 rounded-[5px] p-5 space-y-4">
+                                <div className="bg-black/40 border border-wnode-border-separator rounded-[5px] p-5 space-y-4">
                                     <div className="flex justify-between items-center text-[14px]">
-                                        <span className="text-slate-500 font-normal">Provider Linkage</span>
+                                        <span className="text-white/40 font-normal">Provider Linkage</span>
                                         {isEditMode ? (
-                                            <input value={editData.name} onChange={(e) => setEditData({...editData, name: e.target.value})} className="bg-black border border-white/10 rounded-[3px] px-3 py-1 text-white text-[13px] w-40 focus:border-[#22D3EE]/50" />
+                                            <input value={editData.name} onChange={(e) => setEditData({...editData, name: e.target.value})} className="bg-black border border-wnode-border-neutral rounded-[3px] px-3 py-1 text-white text-[13px] w-40 focus:border-[#22D3EE]/50" />
                                         ) : (
                                             <span className="text-white font-normal">{editData.name}</span>
                                         )}
                                     </div>
                                     <div className="flex justify-between items-center text-[14px]">
-                                        <span className="text-slate-500 font-normal">Contact Root</span>
+                                        <span className="text-white/40 font-normal">Contact Root</span>
                                         {isEditMode ? (
-                                            <input value={editData.email} onChange={(e) => setEditData({...editData, email: e.target.value})} className="bg-black border border-white/10 rounded-[3px] px-3 py-1 text-white text-[13px] w-40 focus:border-[#22D3EE]/50" />
+                                            <input value={editData.email} onChange={(e) => setEditData({...editData, email: e.target.value})} className="bg-black border border-wnode-border-neutral rounded-[3px] px-3 py-1 text-white text-[13px] w-40 focus:border-[#22D3EE]/50" />
                                         ) : (
-                                            <span className="text-slate-400 font-mono text-[12px]">{editData.email}</span>
+                                            <span className="text-white/60 font-mono text-[12px]">{editData.email}</span>
                                         )}
                                     </div>
                                     <div className="flex justify-between items-center text-[14px]">
-                                        <span className="text-slate-500 font-normal">Economic Standing</span>
+                                        <span className="text-white/40 font-normal">Economic Standing</span>
                                         <span className="text-[#22D3EE] uppercase tracking-tighter text-[11px] border border-[#22D3EE]/20 px-2 py-0.5 rounded-[2px]">{editData.standing}</span>
                                     </div>
                                 </div>
@@ -241,16 +241,16 @@ export default function ClientsPage() {
 
                             {/* Active Workload */}
                             <section className="space-y-6">
-                                <div className="flex items-center gap-2 text-[12px] text-slate-400 uppercase tracking-widest">
+                                <div className="flex items-center gap-2 text-[12px] text-white/60 uppercase tracking-widest">
                                     <Cpu className="w-4 h-4 text-purple-400" />
                                     <span>Compute Lifecycle</span>
                                 </div>
                                 <div className="space-y-3">
                                     {activeTasks.map(task => (
-                                        <div key={task.id} className="p-4 bg-white/[0.02] border border-white/10 rounded-[5px] flex items-center justify-between transition-all hover:bg-white/[0.04]">
+                                        <div key={task.id} className="p-4 bg-white/[0.02] border border-wnode-border-neutral rounded-[5px] flex items-center justify-between transition-all hover:bg-white/[0.04]">
                                             <div className="flex flex-col gap-1">
                                                 <span className="text-[13px] text-white font-normal">{task.purpose}</span>
-                                                <span className="text-[10px] text-slate-600 font-mono flex items-center gap-1.5 uppercase-none">
+                                                <span className="text-[10px] text-white/40 font-mono flex items-center gap-1.5 uppercase-none">
                                                     <Hash className="w-3 h-3 opacity-50" /> {task.id} • Clusters: {task.nodes}
                                                 </span>
                                             </div>
@@ -267,7 +267,7 @@ export default function ClientsPage() {
 
                             {/* Environmental Index */}
                             <section className="space-y-6">
-                                <div className="flex items-center gap-2 text-[12px] text-slate-400 uppercase tracking-widest">
+                                <div className="flex items-center gap-2 text-[12px] text-white/60 uppercase tracking-widest">
                                     <Leaf className="w-4 h-4 text-emerald-500" />
                                     <span>Impact Audit</span>
                                 </div>
@@ -281,11 +281,11 @@ export default function ClientsPage() {
 
                             {/* Financial Audit */}
                             <section className="space-y-6">
-                                <div className="flex items-center gap-2 text-[12px] text-slate-400 uppercase tracking-widest">
+                                <div className="flex items-center gap-2 text-[12px] text-white/60 uppercase tracking-widest">
                                     <CreditCard className="w-4 h-4 text-orange-400" />
                                     <span>Consumption History</span>
                                 </div>
-                                <div className="bg-black/40 border border-white/5 rounded-[5px] divide-y divide-white/5">
+                                <div className="bg-black/40 border border-wnode-border-separator rounded-[5px] divide-y divide-white/5">
                                     {[
                                         { date: '2025.03.20', amount: '$1,200.00', units: '1.2M TH/s' },
                                         { date: '2025.03.12', amount: '$450.00', units: '450K TH/s' },
@@ -293,9 +293,9 @@ export default function ClientsPage() {
                                         <div key={i} className="p-4 flex justify-between items-center group hover:bg-white/[0.01] transition-all">
                                             <div className="flex flex-col">
                                                 <span className="text-[13px] text-white font-normal">{buy.amount}</span>
-                                                <span className="text-[10px] text-slate-600 font-normal uppercase tracking-tighter">{buy.units}</span>
+                                                <span className="text-[10px] text-white/40 font-normal uppercase tracking-tighter">{buy.units}</span>
                                             </div>
-                                            <span className="text-slate-700 font-mono text-[11px]">{buy.date}</span>
+                                            <span className="text-white/40 font-mono text-[11px]">{buy.date}</span>
                                         </div>
                                     ))}
                                 </div>

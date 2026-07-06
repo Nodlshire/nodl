@@ -26,20 +26,20 @@ export function MeshHeader({ title, subtitle, breadcrumbs, icon: Icon }: MeshHea
 
     return (
         <header className="flex flex-col gap-4 mb-8">
-            <nav className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-500">
+            <nav className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-white/40">
                 <Link href="/mesh" className="hover:text-cyan-400 transition-colors flex items-center gap-1">
                     <Home className="w-3 h-3" />
                     Mesh
                 </Link>
                 {breadcrumbs.map((bc, idx) => (
                     <React.Fragment key={idx}>
-                        <span className="text-slate-700">/</span>
+                        <span className="text-white/40">/</span>
                         {bc.href ? (
                             <Link href={bc.href} className="hover:text-cyan-400 transition-colors">
                                 {bc.label}
                             </Link>
                         ) : (
-                            <span className="text-slate-300">{bc.label}</span>
+                            <span className="text-white/80">{bc.label}</span>
                         )}
                     </React.Fragment>
                 ))}

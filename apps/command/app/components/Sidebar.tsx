@@ -42,7 +42,7 @@ export default function Sidebar() {
 
     // Rule: Initialize login state ONLY on the client to prevent hydration mismatches
     const userEmail = mounted ? (user?.email || (typeof window !== "undefined" ? localStorage.getItem("nodl_user_email") : null)) : null;
-    const isOwner = userEmail === 'stephen@wnode.one' || userEmail === 'stephen@nodl.one';
+    const isOwner = userEmail === 'stephen@wnode.one' || userEmail === 'stephen@wnode.one';
     
     // Derived canonical role
     let role = 'visitor';
@@ -72,7 +72,7 @@ export default function Sidebar() {
     const navItems = allItems.filter(item => item.roles.includes(role));
 
     return (
-        <aside className="fixed inset-y-0 left-0 w-64 bg-gradient-to-b from-[#0a0f1b] to-[#02040c] border-r border-white/5 hidden lg:flex flex-col z-50">
+        <aside className="fixed inset-y-0 left-0 w-64 bg-gradient-to-b from-[#0a0f1b] to-[#02040c] border-r border-wnode-border-separator hidden lg:flex flex-col z-50">
             <div className="pt-[24px] pl-8 mb-12 flex flex-col items-start gap-4">
                 <Link href="/">
                     <div className="flex flex-col items-start select-none gap-3">
@@ -85,7 +85,7 @@ export default function Sidebar() {
                         </div>
                         <div className="flex flex-col items-start mt-4">
                             <span className="text-[10px] font-bold tracking-[0.4em] text-[#22D3EE] drop-shadow-[0_0_8px_rgba(34,211,238,0.4)]">WNODE COMMAND</span>
-                            <span className="text-[10px] text-slate-400 mt-1 uppercase tracking-widest font-bold">Executive Control</span>
+                            <span className="text-[10px] text-white/60 mt-1 uppercase tracking-widest font-bold">Executive Control</span>
                         </div>
                     </div>
                 </Link>
@@ -103,13 +103,13 @@ export default function Sidebar() {
                                 className={`w-full flex items-center gap-3 px-5 py-2.5 text-[14px] font-medium rounded-[5px] transition-all relative group ${
                                     isActive 
                                     ? 'bg-[#22D3EE]/10 text-white border border-[#22D3EE]/30 shadow-[inset_0_0_12px_rgba(34,211,238,0.1)]' 
-                                    : 'text-slate-400 hover:text-white hover:bg-white/[0.04]'
+                                    : 'text-white/60 hover:text-white hover:bg-white/[0.04]'
                                 }`}
                             >
                                 {isActive && (
                                     <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-[#22D3EE] rounded-r-full shadow-[0_0_12px_#22D3EE]" />
                                 )}
-                                <item.icon className={`w-4 h-4 transition-colors ${isActive ? 'text-[#22D3EE]' : (item.iconColor || 'text-slate-500 group-hover:text-slate-300')}`} />
+                                <item.icon className={`w-4 h-4 transition-colors ${isActive ? 'text-[#22D3EE]' : (item.iconColor || 'text-white/40 group-hover:text-white/80')}`} />
                                 {item.name}
                             </Link>
 

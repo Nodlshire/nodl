@@ -43,7 +43,7 @@ export default function IntegrityReviewPage() {
 
     return (
         <>
-                <header className="h-14 border-b border-white/25 flex items-center justify-between px-8 bg-black shrink-0">
+                <header className="h-14 border-b border-wnode-border-neutral flex items-center justify-between px-8 bg-black shrink-0">
                     <span className="text-[12px] font-normal text-[#22D3EE] tracking-[0.2em] uppercase-none">Integrity Review / Administrative Queue</span>
                     <div className="flex items-center gap-2.5 bg-[#EF4444]/10 border border-[#EF4444]/30 px-3 py-1 rounded-[5px]">
                         <AlertTriangle className="w-3.5 h-3.5 text-[#EF4444]" />
@@ -54,7 +54,7 @@ export default function IntegrityReviewPage() {
                 <main className="flex-1 p-10 overflow-y-auto pb-24 space-y-10">
                     <div className="pb-2">
                         <h2 className="text-[16px] font-normal tracking-tight text-white mb-1 uppercase-none">Judicial Review Queue</h2>
-                        <p className="text-[14px] text-slate-400 font-normal uppercase-none">Investigate potential sybil attacks and policy violations.</p>
+                        <p className="text-[14px] text-white/60 font-normal uppercase-none">Investigate potential sybil attacks and policy violations.</p>
                     </div>
 
                     <div className="grid grid-cols-1 gap-6">
@@ -67,7 +67,7 @@ export default function IntegrityReviewPage() {
                                         </div>
                                         <div>
                                             <h3 className="text-[18px] text-white font-normal mb-1">{info.sessionId}</h3>
-                                            <div className="flex items-center gap-3 text-[12px] text-slate-500 font-mono">
+                                            <div className="flex items-center gap-3 text-[12px] text-white/40 font-mono">
                                                 <span>DNA: {dna}</span>
                                                 <span className="w-1 h-1 rounded-full bg-slate-700" />
                                                 <span className="text-[#EF4444]">Reason: {info.isVM ? "Virtual Machine Detected" : "Hardware Collision"}</span>
@@ -77,7 +77,7 @@ export default function IntegrityReviewPage() {
                                     <div className="flex gap-3">
                                         <button 
                                             onClick={() => handleResolve(dna, 'shadow-bench')}
-                                            className="px-6 py-2.5 bg-white/5 border border-white/10 rounded-[5px] text-[13px] text-slate-400 hover:bg-white/10 hover:text-white transition-all flex items-center gap-2"
+                                            className="px-6 py-2.5 bg-white/5 border border-wnode-border-neutral rounded-[5px] text-[13px] text-white/60 hover:bg-white/10 hover:text-white transition-all flex items-center gap-2"
                                         >
                                             <Ghost className="w-4 h-4" /> Shadow-Bench
                                         </button>
@@ -90,13 +90,13 @@ export default function IntegrityReviewPage() {
                                     </div>
                                 </div>
 
-                                <div className="bg-black/40 border border-white/5 rounded-[5px] overflow-hidden">
-                                    <div className="px-6 py-3 border-b border-white/5 bg-white/5">
-                                        <span className="text-[11px] text-slate-500 uppercase tracking-widest font-normal">Hardware DNA Match Cluster</span>
+                                <div className="bg-black/40 border border-wnode-border-separator rounded-[5px] overflow-hidden">
+                                    <div className="px-6 py-3 border-b border-wnode-border-separator bg-white/5">
+                                        <span className="text-[11px] text-white/40 uppercase tracking-widest font-normal">Hardware DNA Match Cluster</span>
                                     </div>
                                     <table className="w-full text-left">
                                         <thead>
-                                            <tr className="border-b border-white/5 text-[11px] text-slate-600 uppercase tracking-tighter">
+                                            <tr className="border-b border-wnode-border-separator text-[11px] text-white/40 uppercase tracking-tighter">
                                                 <th className="px-6 py-4 font-normal">Account ID</th>
                                                 <th className="px-6 py-4 font-normal">Last Active</th>
                                                 <th className="px-6 py-4 font-normal">Integrity</th>
@@ -104,9 +104,9 @@ export default function IntegrityReviewPage() {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr className="border-b border-white/5 bg-white/[0.02]">
+                                            <tr className="border-b border-wnode-border-separator bg-white/[0.02]">
                                                 <td className="px-6 py-4 text-[13px] text-white">{info.sessionId}</td>
-                                                <td className="px-6 py-4 text-[13px] text-slate-500 font-mono">{new Date(info.lastSeen).toLocaleString()}</td>
+                                                <td className="px-6 py-4 text-[13px] text-white/40 font-mono">{new Date(info.lastSeen).toLocaleString()}</td>
                                                 <td className="px-6 py-4 text-[13px] text-[#EF4444] font-mono">{(info.integrityScore * 100).toFixed(0)}%</td>
                                                 <td className="px-6 py-4 text-[13px] text-[#EF4444] uppercase tracking-tighter font-bold">Flagged</td>
                                             </tr>
@@ -119,8 +119,8 @@ export default function IntegrityReviewPage() {
 
                         {flaggedNodes.length === 0 && (
                             <div className="py-20 flex flex-col items-center justify-center opacity-30">
-                                <Shield className="w-16 h-16 text-slate-500 mb-4" />
-                                <span className="text-[14px] text-slate-400 font-normal">No pending integrity flags. Judicial queue is empty.</span>
+                                <Shield className="w-16 h-16 text-white/40 mb-4" />
+                                <span className="text-[14px] text-white/60 font-normal">No pending integrity flags. Judicial queue is empty.</span>
                             </div>
                         )}
                     </div>

@@ -15,7 +15,7 @@ export default function LedgerHelpPage() {
     usePageTitle("Money & Ledgers", "Technical guidance for platform economics and audit traces.");
 
     return (
-        <main className="flex-1 p-8 overflow-y-auto pb-24 font-sans text-slate-300">
+        <main className="flex-1 p-8 overflow-y-auto pb-24 font-sans text-white/80">
             <div className="max-w-4xl mx-auto">
                 <Link 
                     href="/help" 
@@ -25,14 +25,14 @@ export default function LedgerHelpPage() {
                     Back to Help Center
                 </Link>
 
-                <div className="bg-white/[0.02] border border-white/10 p-12 rounded-[5px] shadow-2xl">
+                <div className="bg-white/[0.02] border border-wnode-border-neutral p-12 rounded-[5px] shadow-2xl">
                     <h1 className="text-3xl font-bold text-white mb-4 uppercase tracking-tighter">Sovereign Money Engine</h1>
-                    <p className="text-slate-400 text-sm leading-relaxed mb-12 max-w-2xl">
+                    <p className="text-white/60 text-sm leading-relaxed mb-12 max-w-2xl">
                         The Sovereign Money Engine is the authoritative financial core of the Wnode ecosystem. 
                         It provides an immutable, cryptographically-verified ledger of all network value transitions.
                     </p>
 
-                    <img src="/docs/cmd/screenshots/ledger-statements.png" alt="Ledger Statements" className="rounded-md border border-gray-700 shadow-2xl mb-12" />
+                    <img src="/docs/cmd/screenshots/ledger-statements.png" alt="Ledger Statements" className="rounded-md border border-wnode-border-neutral shadow-2xl mb-12" />
 
                     <div className="space-y-16">
                         {/* 1. Payments In (Compute & Billing) */}
@@ -41,10 +41,10 @@ export default function LedgerHelpPage() {
                                 <ArrowUpRight className="w-4 h-4" />
                                 1. Payments In (Mesh Revenue)
                             </h2>
-                            <p className="text-slate-400 text-[13px] leading-relaxed mb-6">
+                            <p className="text-white/60 text-[13px] leading-relaxed mb-6">
                                 Payments In represent revenue entering the platform. This includes compute resource purchases, service top-ups, and subscription billings.
                             </p>
-                            <ul className="list-disc pl-5 text-[12px] text-slate-400 space-y-2 mb-8">
+                            <ul className="list-disc pl-5 text-[12px] text-white/60 space-y-2 mb-8">
                                 <li><strong>Anchoring:</strong> Every payment is anchored to a WUID via Stripe metadata.</li>
                                 <li><strong>Verification:</strong> Transaction IDs are cross-referenced with Stripe PaymentIntents.</li>
                             </ul>
@@ -56,10 +56,10 @@ export default function LedgerHelpPage() {
                                 <DollarSign className="w-4 h-4" />
                                 2. Payments Out (Nodlr Earnings)
                             </h2>
-                            <p className="text-slate-400 text-[13px] leading-relaxed mb-6">
+                            <p className="text-white/60 text-[13px] leading-relaxed mb-6">
                                 Payments Out represent value distribution to participants. This covers node earnings, affiliate commissions, and institutional payouts.
                             </p>
-                            <ul className="list-disc pl-5 text-[12px] text-slate-400 space-y-2 mb-8">
+                            <ul className="list-disc pl-5 text-[12px] text-white/60 space-y-2 mb-8">
                                 <li><strong>Automated Split:</strong> Protocol-level enforcement of the 80/20 revenue manifest.</li>
                                 <li><strong>Payout Status:</strong> Track transfers from the platform to individual Stripe Connect accounts.</li>
                             </ul>
@@ -71,10 +71,10 @@ export default function LedgerHelpPage() {
                                 <FileText className="w-4 h-4" />
                                 3. Monthly Statements & PDF Export
                             </h2>
-                            <p className="text-slate-400 text-[13px] leading-relaxed mb-6">
+                            <p className="text-white/60 text-[13px] leading-relaxed mb-6">
                                 The ledger provides monthly-grouped statement views for simplified accounting and institutional reporting.
                             </p>
-                            <ul className="list-disc pl-5 text-[12px] text-slate-400 space-y-2 mb-8">
+                            <ul className="list-disc pl-5 text-[12px] text-white/60 space-y-2 mb-8">
                                 <li><strong>PDF Generation:</strong> Branded executive-level summaries for audit compliance.</li>
                                 <li><strong>CSV Data:</strong> Raw ledger dumps for programmatic reconciliation.</li>
                             </ul>
@@ -83,7 +83,7 @@ export default function LedgerHelpPage() {
                 </div>
 
                 <div className="mt-12 text-center">
-                    <p className="text-slate-600 text-[10px] uppercase tracking-[0.2em]">© 2026 Wnode Technologies // Executive Documentation</p>
+                    <p className="text-white/40 text-[10px] uppercase tracking-[0.2em]">© 2026 Wnode Technologies // Executive Documentation</p>
                 </div>
             </div>
         </main>

@@ -14,7 +14,7 @@ import Tooltip from "../components/Tooltip";
 import { usePageTitle } from "../components/PageTitleContext";
 
 export default function LedgerPage() {
-    usePageTitle("Sovereign Ledger", "Authoritative network value oversight and historical transaction indexing.");
+    usePageTitle("Money", "Authoritative network value oversight and historical transaction indexing.");
     const [transactions, setTransactions] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [summary, setSummary] = useState<any>(null);
@@ -86,11 +86,11 @@ export default function LedgerPage() {
 
     const getRoleColor = (role: string) => {
         switch (role) {
-            case 'platform': return 'text-[#22D3EE] border-[#22D3EE]/20 bg-[#22D3EE]/5';
-            case 'wnode': return 'text-purple-400 border-purple-500/20 bg-purple-500/5';
-            case 'founder': return 'text-amber-400 border-amber-500/20 bg-amber-500/5';
-            case 'sales_source': return 'text-green-400 border-green-500/20 bg-green-500/5';
-            default: return 'text-slate-400 border-white/10 bg-white/5';
+            case 'platform': return 'text-[#22D3EE] border-[#22D3EE]/40 bg-[#22D3EE]/5';
+            case 'wnode': return 'text-purple-400 border-purple-400/40 bg-purple-500/5';
+            case 'founder': return 'text-amber-400 border-amber-400/40 bg-amber-500/5';
+            case 'sales_source': return 'text-green-400 border-green-400/40 bg-green-500/5';
+            default: return 'text-white/60 border-wnode-border-neutral bg-white/5';
         }
     };
 
@@ -118,11 +118,11 @@ export default function LedgerPage() {
 
     if (error) {
         return (
-            <main className="flex-1 p-8 flex flex-col items-center justify-center space-y-6">
+            <main className="flex-1 p-8 pt-6 flex flex-col items-center justify-center space-y-6">
                 <div className="p-8 bg-red-500/10 border border-red-500/20 rounded-[5px] flex flex-col items-center text-center max-w-md shadow-2xl">
                     <AlertCircle className="w-12 h-12 text-red-500 mb-4" />
                     <h3 className="text-white text-xl font-medium mb-2 tracking-tighter">Protocol Access Refused</h3>
-                    <p className="text-slate-400 text-sm leading-relaxed mb-6">{error}</p>
+                    <p className="text-white/60 text-sm leading-relaxed mb-6">{error}</p>
                     <button 
                         onClick={() => window.location.reload()}
                         className="w-full py-3 bg-red-500 text-white rounded-[5px] text-sm font-bold uppercase tracking-widest hover:bg-red-600 transition-all shadow-[0_0_20px_rgba(239,68,68,0.3)]"
@@ -136,7 +136,7 @@ export default function LedgerPage() {
 
     return (
         <>
-            <main className="flex-1 p-8 overflow-y-auto pb-24 relative space-y-12 focus:outline-none scroll-smooth">
+            <main className="flex-1 p-8 pt-6 overflow-y-auto pb-24 relative space-y-6 focus:outline-none scroll-smooth">
                 
                 {/* Real-time Summary Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -169,23 +169,23 @@ export default function LedgerPage() {
                             label: 'Escrowed Funds', 
                             value: formatCurrency(stats.total_escrow_cents), 
                             icon: Lock, 
-                            color: 'text-slate-400',
+                            color: 'text-white/60',
                             description: 'Held for Unonboarded IDs',
                             tooltip: 'Commissions held in escrow for participants who have not yet linked a Stripe account.'
                         },
                     ].map((s) => (
                         <Tooltip key={s.label} text={s.tooltip} direction="down">
-                            <div className="bg-white/[0.02] border border-white/10 p-6 rounded-[5px] flex flex-col gap-6 hover:border-white/20 hover:bg-white/[0.04] transition-all group w-full">
+                            <div className="bg-white/[0.02] border border-wnode-border-neutral shadow-[0_0_20px_rgba(255,255,255,0.05)] p-6 rounded-[5px] flex flex-col gap-6 hover:border-wnode-border-hover hover:bg-white/[0.04] transition-all group w-full">
                                 <div className="flex items-center justify-between">
-                                    <span className="text-[10px] text-slate-500 uppercase tracking-[0.2em] font-bold">{s.label}</span>
+                                    <span className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-bold">{s.label}</span>
                                     <s.icon className={`w-4 h-4 ${s.color} opacity-30 group-hover:opacity-100 transition-opacity`} />
                                 </div>
                                 <div className="space-y-1">
                                     <div className="flex items-baseline gap-2">
                                         <span className={`text-3xl font-normal tracking-tighter ${s.color}`}>{s.value}</span>
-                                        <span className="text-[10px] text-slate-700 font-mono">USD</span>
+                                        <span className="text-[10px] text-white/40 font-mono">USD</span>
                                     </div>
-                                    <p className="text-[10px] text-slate-600 font-normal uppercase tracking-widest">{s.description}</p>
+                                    <p className="text-[10px] text-white/40 font-normal uppercase tracking-widest">{s.description}</p>
                                 </div>
                             </div>
                         </Tooltip>
@@ -193,24 +193,24 @@ export default function LedgerPage() {
                 </div>
 
                 {/* Filtration & Audit Controls */}
-                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 bg-white/[0.01] border border-white/10 p-5 rounded-[5px] backdrop-blur-sm">
+                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 bg-white/[0.01] border border-wnode-border-neutral p-5 rounded-[5px] backdrop-blur-sm shadow-[0_0_20px_rgba(255,255,255,0.05)]">
                     <div className="flex flex-wrap items-center gap-4 flex-1">
                         <div className="relative group flex-1 max-w-md">
-                            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 group-focus-within:text-[#22D3EE] transition-colors" />
+                            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 group-focus-within:text-[#22D3EE] transition-colors" />
                             <input 
                                 type="text" 
                                 placeholder="Audit by ID, Transaction, or Recipient..."
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
-                                className="bg-white/[0.03] border border-white/10 rounded-[5px] pl-12 pr-4 py-3 text-[13px] focus:outline-none focus:border-[#22D3EE]/50 w-full transition-all text-slate-300 placeholder:text-slate-600"
+                                className="bg-white/[0.03] border border-wnode-border-neutral rounded-[5px] pl-12 pr-4 py-3 text-[13px] focus:outline-none focus:border-[#22D3EE]/50 w-full transition-all text-white/80 placeholder:text-white/40"
                             />
                         </div>
                         <div className="flex items-center gap-3">
-                            <Filter className="w-4 h-4 text-slate-500" />
+                            <Filter className="w-4 h-4 text-white/40" />
                             <select 
                                 value={filterStatus}
                                 onChange={(e) => setFilterStatus(e.target.value)}
-                                className="bg-white/[0.03] border border-white/10 rounded-[5px] px-4 py-3 text-[12px] focus:outline-none focus:border-[#22D3EE]/50 transition-all text-slate-400 appearance-none min-w-[140px]"
+                                className="bg-white/[0.03] border border-wnode-border-neutral rounded-[5px] px-4 py-3 text-[12px] focus:outline-none focus:border-[#22D3EE]/50 transition-all text-white/60 appearance-none min-w-[140px]"
                             >
                                 <option value="all">All Statuses</option>
                                 <option value="pending">Pending</option>
@@ -222,7 +222,7 @@ export default function LedgerPage() {
                                 <button 
                                     onClick={() => handleExport('csv')} 
                                     disabled={transactions.length === 0}
-                                    className={`flex items-center gap-2 px-4 py-3 bg-white/[0.03] border border-white/10 rounded-[5px] text-[11px] font-bold uppercase tracking-widest transition-all ${transactions.length > 0 ? 'text-slate-400 hover:text-white hover:bg-white/[0.08] hover:border-white/20' : 'text-slate-700 cursor-not-allowed opacity-50'}`}
+                                    className={`flex items-center gap-2 px-4 py-3 bg-white/[0.03] border border-wnode-border-neutral rounded-[5px] text-[11px] font-bold uppercase tracking-widest transition-all ${transactions.length > 0 ? 'text-white/60 hover:text-white hover:bg-white/[0.08] hover:border-wnode-border-hover' : 'text-white/40 cursor-not-allowed opacity-50'}`}
                                 >
                                     <Download className="w-4 h-4" />
                                     CSV
@@ -232,7 +232,7 @@ export default function LedgerPage() {
                                 <button 
                                     onClick={() => handleExport('pdf')} 
                                     disabled={transactions.length === 0}
-                                    className={`flex items-center gap-2 px-4 py-3 bg-white/[0.03] border border-white/10 rounded-[5px] text-[11px] font-bold uppercase tracking-widest transition-all ${transactions.length > 0 ? 'text-slate-400 hover:text-white hover:bg-white/[0.08] hover:border-white/20' : 'text-slate-700 cursor-not-allowed opacity-50'}`}
+                                    className={`flex items-center gap-2 px-4 py-3 bg-white/[0.03] border border-wnode-border-neutral rounded-[5px] text-[11px] font-bold uppercase tracking-widest transition-all ${transactions.length > 0 ? 'text-white/60 hover:text-white hover:bg-white/[0.08] hover:border-wnode-border-hover' : 'text-white/40 cursor-not-allowed opacity-50'}`}
                                 >
                                     <FileText className="w-4 h-4" />
                                     PDF
@@ -242,13 +242,13 @@ export default function LedgerPage() {
                     </div>
                     
                     <div className="flex items-center gap-4">
-                        <div className="px-4 py-2 bg-white/[0.02] border border-white/5 rounded-[5px] flex items-center gap-3">
+                        <div className="px-4 py-2 bg-white/[0.02] border border-wnode-border-neutral rounded-[5px] flex items-center gap-3">
                             <div className={`w-2 h-2 rounded-full ${summary?.stripe_health === 'operational' ? 'bg-green-500 shadow-[0_0_10px_#22C55E]' : 'bg-orange-500 animate-pulse shadow-[0_0_10px_#F97316]'}`} />
-                            <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Stripe: {summary?.stripe_health || 'Checking'}</span>
+                            <span className="text-[10px] text-white/40 uppercase tracking-widest font-bold">Stripe: {summary?.stripe_health || 'Checking'}</span>
                         </div>
                         <button 
                             onClick={fetchData}
-                            className="p-3 bg-white/[0.03] border border-white/10 rounded-[5px] text-slate-400 hover:text-white hover:bg-white/[0.08] transition-all"
+                            className="p-3 bg-white/[0.03] border border-wnode-border-neutral rounded-[5px] text-white/60 hover:text-white hover:bg-white/[0.08] transition-all"
                         >
                             <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
                         </button>
@@ -256,30 +256,30 @@ export default function LedgerPage() {
                 </div>
 
                 {/* Authoritative Ledger Table */}
-                <div className="bg-white/[0.01] border border-white/10 rounded-[5px] overflow-hidden shadow-2xl">
+                <div className="bg-white/[0.01] border border-wnode-border-neutral rounded-[5px] overflow-hidden shadow-[0_0_20px_rgba(255,255,255,0.05)]">
                     <div className="overflow-x-auto">
                         <table className="w-full text-left border-collapse">
                             <thead>
-                                <tr className="border-b border-white/10 bg-white/[0.04]">
-                                    <th className="px-8 py-5 text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">Commission ID</th>
-                                    <th className="px-8 py-5 text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">Sovereign Role</th>
-                                    <th className="px-8 py-5 text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">Recipient WUID</th>
-                                    <th className="px-8 py-5 text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">Settlement</th>
-                                    <th className="px-8 py-5 text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">Status / Auth Time</th>
+                                <tr className="border-b border-wnode-border-neutral bg-white/[0.04]">
+                                    <th className="px-8 py-5 text-[10px] font-bold text-white/80 uppercase tracking-[0.2em]">Commission ID</th>
+                                    <th className="px-8 py-5 text-[10px] font-bold text-white/80 uppercase tracking-[0.2em]">Sovereign Role</th>
+                                    <th className="px-8 py-5 text-[10px] font-bold text-white/80 uppercase tracking-[0.2em]">Recipient WUID</th>
+                                    <th className="px-8 py-5 text-[10px] font-bold text-white/80 uppercase tracking-[0.2em]">Settlement</th>
+                                    <th className="px-8 py-5 text-[10px] font-bold text-white/80 uppercase tracking-[0.2em]">Status / Auth Time</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-white/5 bg-white/[0.01]">
+                            <tbody className="divide-y divide-white/20 bg-white/[0.01]">
                                 {filteredTransactions.map((tx) => (
                                     <tr 
                                         key={tx.id} 
                                         onClick={() => fetchDetail(tx.transactionId)}
-                                        className="hover:bg-white/[0.04] transition-all group cursor-pointer border-b border-white/[0.02]"
+                                        className="hover:bg-white/[0.04] transition-all group cursor-pointer border-b border-wnode-border-neutral"
                                     >
                                         <td className="px-8 py-6 relative">
                                             <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-[#22D3EE] opacity-0 group-hover:opacity-100 transition-opacity shadow-[0_0_10px_#22D3EE]" />
                                             <div className="flex flex-col gap-1.5">
                                                 <span className="text-[13px] font-mono text-[#22D3EE] font-bold tracking-tighter">{tx.id.split('-')[0]}...</span>
-                                                <span className="text-[10px] text-slate-600 font-mono opacity-60">TX: {tx.transactionId?.split('-')[0]}</span>
+                                                <span className="text-[10px] text-white/40 font-mono opacity-60">TX: {tx.transactionId?.split('-')[0]}</span>
                                             </div>
                                         </td>
                                         <td className="px-8 py-6">
@@ -290,23 +290,23 @@ export default function LedgerPage() {
                                             </Tooltip>
                                         </td>
                                         <td className="px-8 py-6">
-                                            <span className="text-[13px] text-slate-400 font-mono group-hover:text-white transition-colors">{tx.recipientId}</span>
+                                            <span className="text-[13px] text-white/60 font-mono group-hover:text-white transition-colors">{tx.recipientId}</span>
                                         </td>
                                         <td className="px-8 py-6">
                                             <div className="flex flex-col">
                                                 <span className="text-[16px] font-mono font-bold text-white tracking-tight">
                                                     {formatCurrency(tx.amountCents)}
                                                 </span>
-                                                <span className="text-[10px] text-slate-600 uppercase tracking-widest font-medium">Gross Accrual</span>
+                                                <span className="text-[10px] text-white/40 uppercase tracking-widest font-medium">Gross Accrual</span>
                                             </div>
                                         </td>
                                         <td className="px-8 py-6">
                                             <div className="flex flex-col items-start">
                                                 <div className="flex items-center gap-2.5 mb-2">
                                                     <div className={`w-2 h-2 rounded-full ${tx.status === 'paid' ? 'bg-green-500 shadow-[0_0_8px_#22C55E]' : 'bg-orange-500 shadow-[0_0_8px_#F97316] animate-pulse'}`} />
-                                                    <span className="text-[11px] text-slate-300 font-bold uppercase tracking-widest">{tx.status}</span>
+                                                    <span className="text-[11px] text-white/80 font-bold uppercase tracking-widest">{tx.status}</span>
                                                 </div>
-                                                <span className="text-[10px] text-slate-600 font-mono tracking-tighter opacity-80">{new Date(tx.createdAt).toLocaleString()}</span>
+                                                <span className="text-[10px] text-white/40 font-mono tracking-tighter opacity-80">{new Date(tx.createdAt).toLocaleString()}</span>
                                             </div>
                                         </td>
                                     </tr>
@@ -317,38 +317,38 @@ export default function LedgerPage() {
 
                     {filteredTransactions.length === 0 && !loading && (
                         <div className="py-32 flex flex-col items-center justify-center space-y-6">
-                            <div className="p-6 bg-white/[0.02] border border-white/5 rounded-full blur-[0.3px]">
-                                <BarChart3 className="w-10 h-10 text-slate-800" />
+                            <div className="p-6 bg-white/[0.02] border border-wnode-border-neutral rounded-full blur-[0.3px]">
+                                <BarChart3 className="w-10 h-10 text-white/40" />
                             </div>
                             <div className="text-center space-y-2">
-                                <p className="text-[16px] text-slate-500 font-normal tracking-tight">Environmental Isolation: No Sovereign records found.</p>
-                                <p className="text-[11px] text-slate-700 uppercase tracking-[0.2em] font-bold">Waiting for live network telemetry...</p>
+                                <p className="text-[16px] text-white/40 font-normal tracking-tight">Environmental Isolation: No Sovereign records found.</p>
+                                <p className="text-[11px] text-white/40 uppercase tracking-[0.2em] font-bold">Waiting for live network telemetry...</p>
                             </div>
                         </div>
                     )}
                 </div>
 
                 {/* Integrity Anchor */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between border-t border-white/10 pt-12 gap-8 pb-10">
+                <div className="flex flex-col md:flex-row md:items-center justify-between border-t border-wnode-border-neutral pt-6 gap-8 pb-10">
                     <div className="flex items-center gap-6">
-                        <div className="p-3 bg-white/[0.03] border border-white/5 rounded-full shadow-inner">
+                        <div className="p-3 bg-white/[0.03] border border-wnode-border-neutral rounded-full shadow-inner">
                             <Zap className="w-5 h-5 text-[#22D3EE] animate-pulse" />
                         </div>
                         <div className="flex flex-col gap-1.5">
-                            <span className="text-[11px] text-slate-600 uppercase tracking-[0.2em] font-bold">State Integrity Anchor</span>
+                            <span className="text-[11px] text-white/40 uppercase tracking-[0.2em] font-bold">State Integrity Anchor</span>
                             <div className="flex items-center gap-3">
                                 <Tooltip text="Click to copy authoritative rolling state hash">
                                     <button 
                                         onClick={() => copyToClipboard(summary?.rolling_hash || "")}
-                                        className="group flex items-center gap-3 px-3 py-1.5 bg-white/[0.02] border border-white/5 rounded hover:border-[#22D3EE]/30 transition-all"
+                                        className="group flex items-center gap-3 px-3 py-1.5 bg-white/[0.02] border border-wnode-border-neutral rounded hover:border-[#22D3EE]/35 transition-all"
                                     >
-                                        <span className="text-[12px] text-slate-400 font-mono tracking-widest transition-colors group-hover:text-[#22D3EE]">{shortenedHash}</span>
-                                        {copied ? <CheckCircle2 className="w-3.5 h-3.5 text-green-500" /> : <Copy className="w-3.5 h-3.5 text-slate-600 group-hover:text-[#22D3EE] transition-colors" />}
+                                        <span className="text-[12px] text-white/60 font-mono tracking-widest transition-colors group-hover:text-[#22D3EE]">{shortenedHash}</span>
+                                        {copied ? <CheckCircle2 className="w-3.5 h-3.5 text-green-500" /> : <Copy className="w-3.5 h-3.5 text-white/40 group-hover:text-[#22D3EE] transition-colors" />}
                                     </button>
                                 </Tooltip>
                                 <button 
                                     onClick={() => setIsIntegrityOpen(true)}
-                                    className="p-1.5 hover:bg-white/5 rounded text-slate-600 hover:text-[#22D3EE] transition-all"
+                                    className="p-1.5 hover:bg-white/5 rounded text-white/40 hover:text-[#22D3EE] transition-all"
                                 >
                                     <Info className="w-4 h-4" />
                                 </button>
@@ -358,13 +358,13 @@ export default function LedgerPage() {
                     
                     <div className="flex items-center gap-10">
                         <div className="text-right">
-                            <span className="text-[10px] text-slate-600 uppercase tracking-[0.2em] font-bold block mb-1">System Version</span>
-                            <span className="text-[12px] text-slate-400 font-mono tracking-tighter">wnode-core-v2-ledger-auth</span>
+                            <span className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-bold block mb-1">System Version</span>
+                            <span className="text-[12px] text-white/60 font-mono tracking-tighter">wnode-core-v2-ledger-auth</span>
                         </div>
-                        <div className="h-12 w-px bg-white/10" />
+                        <div className="h-12 w-px bg-white/20" />
                         <div className="flex flex-col items-end">
-                            <span className="text-[10px] text-slate-600 uppercase tracking-[0.2em] font-bold block mb-1">Audit Status</span>
-                            <div className="flex items-center gap-2 text-green-400 font-mono tracking-tighter text-[13px] bg-green-500/5 px-3 py-1 border border-green-500/20 rounded-full shadow-[0_0_15px_rgba(34,197,94,0.1)]">
+                            <span className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-bold block mb-1">Audit Status</span>
+                            <div className="flex items-center gap-2 text-green-400 font-mono tracking-tighter text-[13px] bg-green-500/5 px-3 py-1 border border-green-400/40 rounded-full shadow-[0_0_15px_rgba(34,197,94,0.1)]">
                                 <CheckCircle2 className="w-3.5 h-3.5" />
                                 Verified
                             </div>
@@ -373,11 +373,10 @@ export default function LedgerPage() {
                 </div>
 
                 {/* Footer Documentation Note */}
-                <div className="absolute bottom-6 right-8 text-[9px] text-slate-800 uppercase tracking-widest select-none pointer-events-none opacity-40">
+                <div className="absolute bottom-6 right-8 text-[9px] text-white/40 uppercase tracking-widest select-none pointer-events-none opacity-40">
                     This page is screenshot-ready for documentation.
                 </div>
 
-                {/* Detail Slide-out (Transaction) */}
                 <DetailPanel
                     isOpen={!!selectedTxDetail}
                     onClose={() => setSelectedTxDetail(null)}
@@ -385,7 +384,7 @@ export default function LedgerPage() {
                     subtitle={`Transaction: ${selectedTxDetail?.transaction?.id?.split('-')[0]}...`}
                     footer={
                         <div className="flex items-center gap-4">
-                            <button className="flex-1 py-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-[5px] text-[13px] text-slate-300 flex items-center justify-center gap-2.5 transition-all">
+                            <button className="flex-1 py-4 bg-white/5 hover:bg-white/10 border border-wnode-border-neutral rounded-[5px] text-[13px] text-white/80 flex items-center justify-center gap-2.5 transition-all">
                                 <ExternalLink className="w-4.5 h-4.5 text-[#22D3EE]" />
                                 View on Explorer
                             </button>
@@ -404,15 +403,15 @@ export default function LedgerPage() {
                                     <CreditCard className="w-5 h-5 text-[#22D3EE]" />
                                     <h4 className="text-[13px] font-bold text-white uppercase tracking-[0.2em]">Gross Event Summary</h4>
                                 </div>
-                                <div className="bg-white/[0.03] border border-white/10 rounded-[5px] p-8 flex items-center justify-between shadow-inner relative overflow-hidden">
+                                <div className="bg-white/[0.03] border border-wnode-border-neutral rounded-[5px] p-8 flex items-center justify-between shadow-inner relative overflow-hidden">
                                     <div className="space-y-2 relative z-10">
-                                        <span className="text-[11px] text-slate-500 uppercase tracking-widest font-medium">Total Transaction Value</span>
+                                        <span className="text-[11px] text-white/40 uppercase tracking-widest font-medium">Total Transaction Value</span>
                                         <div className="text-4xl font-mono text-white font-bold tracking-tighter">
                                             {formatCurrency(selectedTxDetail.transaction.gross_cents)}
                                         </div>
                                     </div>
                                     <div className="text-right relative z-10">
-                                        <span className="text-[11px] text-slate-500 uppercase tracking-widest font-medium block mb-2">Protocol status</span>
+                                        <span className="text-[11px] text-white/40 uppercase tracking-widest font-medium block mb-2">Protocol status</span>
                                         <div className={`px-4 py-1.5 rounded-full border text-[11px] font-black uppercase tracking-widest ${selectedTxDetail.transaction.status === 'paid' ? 'bg-green-500/10 border-green-500/30 text-green-400' : 'bg-orange-500/10 border-orange-500/30 text-orange-400'}`}>
                                             {selectedTxDetail.transaction.status}
                                         </div>
@@ -431,12 +430,12 @@ export default function LedgerPage() {
                                 </div>
                                 <div className="space-y-3">
                                     {selectedTxDetail.ledger_entries.map((r: any) => (
-                                        <div key={r.id} className="flex items-center justify-between p-5 bg-white/[0.02] border border-white/5 rounded-[5px] hover:border-white/20 hover:bg-white/[0.04] transition-all">
+                                        <div key={r.id} className="flex items-center justify-between p-5 bg-white/[0.02] border border-wnode-border-neutral rounded-[5px] hover:border-wnode-border-hover hover:bg-white/[0.04] transition-all">
                                             <div className="flex items-center gap-5">
                                                 <div className={`text-[9px] uppercase tracking-widest font-bold px-2.5 py-1.5 rounded-[3px] border ${getRoleColor(r.role)} shadow-sm`}>
                                                     {r.role.replace('_', ' ')}
                                                 </div>
-                                                <span className="text-[13px] text-slate-400 font-mono tracking-tight">{r.recipientId}</span>
+                                                <span className="text-[13px] text-white/60 font-mono tracking-tight">{r.recipientId}</span>
                                             </div>
                                             <span className="text-[16px] text-white font-mono font-bold">
                                                 {formatCurrency(r.amountCents)}
@@ -449,21 +448,21 @@ export default function LedgerPage() {
                             {/* Trace Metadata */}
                             <section className="space-y-6">
                                 <div className="flex items-center gap-2.5">
-                                    <HardDrive className="w-5 h-5 text-slate-500" />
+                                    <HardDrive className="w-5 h-5 text-white/40" />
                                     <h4 className="text-[13px] font-bold text-white uppercase tracking-[0.2em]">Metadata Trace</h4>
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                    <div className="p-5 bg-white/[0.02] border border-white/10 rounded-[5px] space-y-2 group transition-all hover:bg-white/[0.04]">
-                                        <span className="text-[10px] text-slate-600 uppercase tracking-widest font-bold flex items-center gap-2">
+                                    <div className="p-5 bg-white/[0.02] border border-wnode-border-neutral rounded-[5px] space-y-2 group transition-all hover:bg-white/[0.04]">
+                                        <span className="text-[10px] text-white/40 uppercase tracking-widest font-bold flex items-center gap-2">
                                             <ShieldCheck className="w-3 h-3" /> Integrity Hash
                                         </span>
-                                        <span className="text-[11px] font-mono text-slate-400 break-all leading-relaxed group-hover:text-slate-300">{selectedTxDetail.integrity.rolling_hash}</span>
+                                        <span className="text-[11px] font-mono text-white/60 break-all leading-relaxed group-hover:text-white/80">{selectedTxDetail.integrity.rolling_hash}</span>
                                     </div>
-                                    <div className="p-5 bg-white/[0.02] border border-white/10 rounded-[5px] space-y-2 group transition-all hover:bg-white/[0.04]">
-                                        <span className="text-[10px] text-slate-600 uppercase tracking-widest font-bold flex items-center gap-2">
+                                    <div className="p-5 bg-white/[0.02] border border-wnode-border-neutral rounded-[5px] space-y-2 group transition-all hover:bg-white/[0.04]">
+                                        <span className="text-[10px] text-white/40 uppercase tracking-widest font-bold flex items-center gap-2">
                                             <Clock className="w-3 h-3" /> Auth Timestamp
                                         </span>
-                                        <span className="text-[12px] font-mono text-slate-400 group-hover:text-slate-300">{new Date(selectedTxDetail.transaction.timestamp).toLocaleString()}</span>
+                                        <span className="text-[12px] font-mono text-white/60 group-hover:text-white/80">{new Date(selectedTxDetail.transaction.timestamp).toLocaleString()}</span>
                                     </div>
                                 </div>
                             </section>
@@ -480,7 +479,7 @@ export default function LedgerPage() {
                     footer={
                         <button 
                             onClick={() => copyToClipboard(summary?.rolling_hash || "")}
-                            className="w-full py-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-[5px] text-[13px] text-[#22D3EE] font-bold uppercase tracking-widest flex items-center justify-center gap-3 transition-all"
+                            className="w-full py-4 bg-white/5 hover:bg-white/10 border border-wnode-border-neutral rounded-[5px] text-[13px] text-[#22D3EE] font-bold uppercase tracking-widest flex items-center justify-center gap-3 transition-all"
                         >
                             {copied ? <CheckCircle2 className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
                             {copied ? "Hash Copied to Clipboard" : "Copy Full Rolling Hash"}
@@ -493,8 +492,8 @@ export default function LedgerPage() {
                                 <Zap className="w-5 h-5 text-[#22D3EE]" />
                                 <h4 className="text-[13px] font-bold text-white uppercase tracking-[0.2em]">Authoritative State Hash</h4>
                             </div>
-                            <div className="bg-black/60 border border-[#22D3EE]/20 p-6 rounded-[5px] shadow-[inset_0_0_20px_rgba(34,211,238,0.05)]">
-                                <p className="text-[14px] font-mono text-slate-300 break-all leading-loose tracking-widest select-all">
+                            <div className="bg-black/60 border border-[#22D3EE]/40 p-6 rounded-[5px] shadow-[inset_0_0_20px_rgba(34,211,238,0.05)]">
+                                <p className="text-[14px] font-mono text-white/80 break-all leading-loose tracking-widest select-all">
                                     {summary?.rolling_hash || "NULL_STATE_DETECTED"}
                                 </p>
                             </div>
@@ -512,16 +511,16 @@ export default function LedgerPage() {
                                     { label: "Double-Spend Guard", status: "Locked", color: "text-[#22D3EE]" },
                                     { label: "Historical Persistence", status: "Encrypted", color: "text-purple-400" },
                                 ].map((inv) => (
-                                    <div key={inv.label} className="flex items-center justify-between p-5 bg-white/[0.02] border border-white/10 rounded-[5px]">
-                                        <span className="text-[12px] text-slate-400 font-medium">{inv.label}</span>
+                                    <div key={inv.label} className="flex items-center justify-between p-5 bg-white/[0.02] border border-wnode-border-neutral rounded-[5px]">
+                                        <span className="text-[12px] text-white/60 font-medium">{inv.label}</span>
                                         <span className={`text-[11px] font-mono font-black uppercase tracking-[0.2em] ${inv.color}`}>{inv.status}</span>
                                     </div>
                                 ))}
                             </div>
                         </section>
 
-                        <section className="p-6 bg-[#22D3EE]/5 border border-[#22D3EE]/10 rounded-[5px]">
-                            <p className="text-[11px] text-slate-400 leading-relaxed font-normal">
+                        <section className="p-6 bg-[#22D3EE]/5 border border-[#22D3EE]/45 rounded-[5px]">
+                            <p className="text-[11px] text-white/60 leading-relaxed font-normal">
                                 The rolling hash is a SHA-256 fingerprint of the entire financial state, including every pending commission and participant balance. Any unauthorized mutation to the ledger will cause an immediate hash mismatch and trigger a protocol lockdown.
                             </p>
                         </section>

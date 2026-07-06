@@ -27,7 +27,7 @@ export default function LivePeerMap() {
                             <span className="w-1.5 h-1.5 rounded-full bg-crimson animate-pulse" />
                             {activePeers} Active Nodes
                         </div>
-                        <div className="flex items-center gap-1.5 text-[10px] uppercase text-slate-500 font-normal">
+                        <div className="flex items-center gap-1.5 text-[10px] uppercase text-white/40 font-normal">
                             <span className="w-1.5 h-1.5 rounded-full bg-white/20" />
                             {throughput} TH/s Throughput
                         </div>
@@ -41,7 +41,7 @@ export default function LivePeerMap() {
 
             </div>
 
-            <div className="aspect-[21/9] bg-black/40 border border-white/5 flex items-center justify-center relative bg-[url('https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg')] bg-no-repeat bg-contain bg-center opacity-30 grayscale invert brightness-50 rounded-[5px]">
+            <div className="aspect-[21/9] bg-black/40 border border-wnode-border-separator flex items-center justify-center relative bg-[url('https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg')] bg-no-repeat bg-contain bg-center opacity-30 grayscale invert brightness-50 rounded-[5px]">
 
                 {/* Simulated Peer Markers */}
                 <div className="absolute top-[30%] left-[20%] w-2 h-2 rounded-full bg-cyber-cyan shadow-[0_0_10px_#00f2ff]" />
@@ -52,15 +52,15 @@ export default function LivePeerMap() {
 
             <div className="mt-8 grid grid-cols-3 gap-6 text-center">
                 <div>
-                    <span className="text-[10px] font-normal uppercase tracking-widest text-slate-500 block mb-1">Total Compute Hours</span>
+                    <span className="text-[10px] font-normal uppercase tracking-widest text-white/40 block mb-1">Total Compute Hours</span>
                     <span className="text-2xl font-normal text-white">8.4M</span>
                 </div>
-                <div className="border-x border-white/10">
-                    <span className="text-[10px] font-normal uppercase tracking-widest text-slate-500 block mb-1">Verified Proofs</span>
+                <div className="border-x border-wnode-border-neutral">
+                    <span className="text-[10px] font-normal uppercase tracking-widest text-white/40 block mb-1">Verified Proofs</span>
                     <span className="text-2xl font-normal text-white">142.1K</span>
                 </div>
                 <div>
-                    <span className="text-[10px] font-normal uppercase tracking-widest text-slate-500 block mb-1">Uptime (Mesh)</span>
+                    <span className="text-[10px] font-normal uppercase tracking-widest text-white/40 block mb-1">Uptime (Mesh)</span>
                     <span className="text-2xl font-normal text-white">99.98%</span>
                 </div>
             </div>

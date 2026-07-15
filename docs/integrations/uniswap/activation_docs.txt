@@ -1,0 +1,9 @@
+# Uniswap V3 Integration
+
+Uses `@uniswap/v3-sdk` for routing.
+Official documentation: https://docs.uniswap.org/sdk/v3/overview
+
+Example:
+```typescript
+import { Trade } from '@uniswap/v3-sdk';
+```

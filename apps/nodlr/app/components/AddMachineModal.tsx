@@ -113,9 +113,11 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                   <span className="text-sm text-slate-300 leading-relaxed block">Download the Nodlr Compute Agent for your system:</span>
                   <div className="grid grid-cols-1 gap-2">
                     {[
-                      { os: "macOS", url: "https://github.com/wnode/node-operator/releases/download/v1.0.0/nodl-core-darwin-arm64" },
-                      { os: "Windows", url: "https://github.com/wnode/node-operator/releases/download/v1.0.0/nodl-core-windows-amd64.exe" },
-                      { os: "Linux", url: "https://github.com/wnode/node-operator/releases/download/v1.0.0/nodl-core-linux-amd64" }
+                      { os: "macOS (Apple Silicon)", url: "https://github.com/wnode/node-operator/releases/download/v1.0.0/wnode-operator-darwin-arm64.tar.gz" },
+                      { os: "macOS (Intel)", url: "https://github.com/wnode/node-operator/releases/download/v1.0.0/wnode-operator-darwin-amd64.tar.gz" },
+                      { os: "Windows (amd64)", url: "https://github.com/wnode/node-operator/releases/download/v1.0.0/wnode-operator-windows-amd64.zip" },
+                      { os: "Linux (amd64)", url: "https://github.com/wnode/node-operator/releases/download/v1.0.0/wnode-operator-linux-amd64.tar.gz" },
+                      { os: "Linux (arm64)", url: "https://github.com/wnode/node-operator/releases/download/v1.0.0/wnode-operator-linux-arm64.tar.gz" }
                     ].map(item => (
                       <a key={item.os} href={item.url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between px-4 py-2.5 bg-white/5 border border-white/10 hover:bg-white/10 transition-all rounded-[4px] group">
                         <div className="flex items-center gap-3">
@@ -130,10 +132,9 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
               </div>
 
               {[
-                "Install it like any normal app.",
-                "When it starts, it will ask you to either log in through your browser or enter a pairing code.",
-                "After that, it runs quietly in the background.",
-                "It automatically reconnects after reboot or power loss.",
+                "Extract the downloaded archive (ZIP or TAR.GZ) to your preferred directory.",
+                "Run the OS-specific install script (install_windows.ps1, install_macos.sh, or install_linux.sh) as Administrator/root.",
+                "The core daemon will install itself as a background service and start automatically.",
                 "It uses spare CPU/GPU cycles to maximise your earnings."
               ].map((step, i) => (
                 <div key={i} className="flex gap-4 items-start">
@@ -189,10 +190,9 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                     <span className="text-sm text-slate-300 leading-relaxed block">Run the installer on your server:</span>
                     <div className="grid grid-cols-1 gap-3">
                       {[
-                        { os: "Linux", cmd: `curl -s https://wnode.one/install/linux.sh | bash -s ${headlessToken}` },
-                        { os: "macOS", cmd: `curl -s https://wnode.one/install/macos.sh | bash -s ${headlessToken}` },
-                        { os: "Windows", cmd: `Invoke-WebRequest -Uri https://wnode.one/install/windows.ps1 -OutFile install.ps1; .\\install.ps1 -Token "${headlessToken}"` },
-                        { os: "Android", cmd: `curl -s https://wnode.one/install/android.sh | bash -s ${headlessToken}` }
+                        { os: "Linux (amd64)", cmd: `wget https://github.com/wnode/node-operator/releases/download/v1.0.0/wnode-operator-linux-amd64.tar.gz && tar -xzf wnode-operator-linux-amd64.tar.gz && sudo ./install_linux.sh && echo "${headlessToken}" | sudo tee /etc/wnode/token && sudo systemctl restart nodl-core` },
+                        { os: "macOS (Apple Silicon)", cmd: `curl -LO https://github.com/wnode/node-operator/releases/download/v1.0.0/wnode-operator-darwin-arm64.tar.gz && tar -xzf wnode-operator-darwin-arm64.tar.gz && sudo ./install_macos.sh && echo "${headlessToken}" | sudo tee /etc/wnode/token && sudo launchctl kickstart -k system/com.nodl.core` },
+                        { os: "Windows (PowerShell)", cmd: `Invoke-WebRequest -Uri "https://github.com/wnode/node-operator/releases/download/v1.0.0/wnode-operator-windows-amd64.zip" -OutFile "operator.zip"; Expand-Archive "operator.zip" -Force; cd operator; .\\install_windows.ps1; Set-Content -Path "$env:ProgramData\\Wnode\\token" -Value "${headlessToken}"; Restart-Service -Name "nodl-core"` }
                       ].map(item => (
                         <div key={item.os} className="space-y-1">
                           <span className="text-[10px] font-bold text-slate-400 uppercase">{item.os}</span>

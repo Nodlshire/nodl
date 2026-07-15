@@ -1,0 +1,309 @@
+Wnode White Paper
+Sovereign Compute Mesh for the Agent Economy
+Version: 1.5 — June 2026
+Author: Stephen Soos, Founder & Architect
+
+1.
+
+Executive Summary
+
+Wnode is a live sovereign compute mesh that activates idle hardware across Earth (with orbital extension planned) into a
+unified, permissionless execution layer purpose-built for autonomous agents and machine-to-machine economies.
+The network delivers RAM-only, stateless, cryptographically verifiable compute with zero data retention. It features
+frictionless onboarding, fiat-first USD settlement rails, and 600+ protocol-level integrations. This creates a capital-efficient,
+human-friendly alternative to centralized hyperscalers and fragmented DePIN networks.
+Key Highlights:
+•
+
+MVP live with functional dashboards and real workload execution
+
+•
+
+Nodes onboard in under 10 minutes
+
+•
+
+600+ protocol integrations with active execution hooks (Coinbase, Sui, ICP, Tether, Polygon, and others)
+
+•
+
+Optimised for high-volume stateless micro-tasks: agent actions, verification, oracles, and sharded inference
+
+•
+
+70% revenue share to node operators
+
+•
+
+Seeking $100,000 USD to accelerate public beta and scale
+
+Wnode turns global hardware waste into sovereign infrastructure for the emerging machine economy.
+
+2.
+
+The Problem
+
+Compute demand is exploding due to AI agents and autonomous systems, yet current solutions fall short:
+•
+
+Centralised Cloud Limitations: High costs, opaque pricing, vendor lock-in, single points of failure, and significant
+environmental impact.
+
+•
+
+Idle Hardware Waste: Consumer and enterprise devices sit idle ~75% of the time.
+
+•
+
+DePIN Fragmentation: Most networks are vertical-specific, token-heavy, technically complex, and lack unified
+agent execution or regulated fiat rails.
+
+•
+
+Lack of True Redundancy: No major network spans dense terrestrial coverage and orbital/sovereign execution.
+
+The result is a market failing to serve the granular, high-frequency, verifiable compute needs of the agent economy.
+
+3.
+
+Solution: The Wnode Mesh
+•
+
+Wnode creates a unified, sovereign compute fabric where:
+
+•
+
+Anyone can contribute hardware and earn in USD.
+
+•
+
+Agents and developers can submit workloads with minimal friction.
+
+•
+
+All execution is RAM-only, stateless, ephemeral, and cryptographically verifiable.
+
+3.1
+
+Core Design Principles:
+•
+
+Stateless-first execution optimized for agent workloads.
+
+•
+
+Fiat-first settlement for mass adoption.
+
+•
+
+Permissionless and “granny-proof” onboarding.
+
+•
+
+Sovereign AI-driven routing and orchestration.
+
+4.
+
+Architecture
+
+Wnode consists of heterogeneous node types (Low, Standard, Pro, Edge, Enterprise, and future Space Nodes) feeding into a
+distributed execution environment.
+4.1
+
+Key Technical Components:
+•
+
+Sovereign AI Orchestrator: Intelligent routing engine that assigns micro-jobs based on locality, performance,
+reputation, real-time telemetry, and market conditions. Uses Mixture-of-Experts patterns for self-optimization.
+
+•
+
+Execution Layer: RAM-only, encrypted, deterministic. Zero persistent storage on nodes.
+
+•
+
+Verification Layer: Redundant execution, hash matching, deterministic replay, and cryptographic proofs.
+
+•
+
+Security Model: Hardware fingerprinting, automatic isolation, no plaintext exposure.
+
+This architecture excels at fast, granular workloads where persistence is unnecessary or handled externally via protocol
+integrations.
+5.
+
+Earth Mesh & Space Mesh
+
+Earth Mesh democratises compute by turning everyday devices into productive nodes with zero-config setup, automatic
+updates, instant fiat payouts, and a viral affiliate engine.
+Space Mesh (in active development) provides orbital redundancy and global coverage using satellite idle windows. Initial
+focus is lightweight, stateless workloads with a single partner.
+
+5.
+
+Traction & Current Status
+
+MVP Live: Fully operational Mesh with real workload execution and payouts.
+Dashboards:
+Admin: cmd.wnode.one
+Compute Buyer: mesh.wnode.one
+Node Operator: nodlr.wnode.one
+Onboarding: <10 minutes for non-technical users.
+Integrations: 600+ protocol-level integrations with execution hooks and live end-to-end agent settlements.
+Core Loop: Proven with test stateless jobs, verification, fiat settlement.
+
+6.
+
+Protocol-Level Integrations & Go-to-Market
+
+Wnode’s GTM leverages deep protocol integrations that allow agents to operate natively across settlement, data, and
+execution rails without middleware.
+Current integrations include Coinbase, Sui, ICP, Tether, Polygon, and 600+ others. This creates immediate demand channels
+and positions Wnode as first-class infrastructure for the agent economy.
+
+6.1
+
+Enabled Capabilities:
+•
+
+Edge inference
+
+•
+
+Real-time oracles
+
+•
+
+Autonomous trading, hedging, and settlement
+
+•
+
+Headless M2M coordination
+
+7.
+
+Tokenomics & Revenue Model
+
+WNODE (WEX) serves as a utility token for governance, staking, incentives, and ecosystem growth. Primary compute
+payments remain USD-first for regulatory simplicity and broad adoption.
+Revenue Distribution (Gross Mesh Revenue):
+•
+
+Node Operators: 70%
+
+•
+
+Sales Source: 10%
+
+•
+
+L1 Affiliate: 3%
+
+•
+
+L2 Affiliate: 7%
+
+•
+
+Wnode Ltd (Steward): 7%
+
+•
+
+Founder Override: 3%
+
+The model is highly capital-efficient with near-zero infrastructure costs.
+
+8.
+
+Governance & DAO
+
+Wnode features a capture-resistant, soul-based DAO with 1 Soul = 1 Vote. A formal Constitution provides immutable
+safeguards. Wnode Ltd acts as the regulated operational Steward with no control over governance or treasury.
+
+9.
+
+Environmental Impact
+
+Wnode is one of the most environmentally neutral compute networks: no new datacenters, no new hardware manufacturing,
+minimal resource use, and future solar-powered orbital capacity. It converts idle hardware waste into value.
+
+10.
+
+About the Founder
+
+Stephen Soos is the founder, architect, and sole developer of Wnode.
+
+Stephen built the platform under extreme adversity. After four years under martial law in Ukraine, he and his family fled in
+early 2026 with minimal possessions. Using scavenged “potato stack” hardware while rebuilding life in Hungary, he
+developed the initial Mesh working extended hours daily.
+With decades of experience, including early ecommerce, Xerox cloud-connected printing systems, medical hardware
+ecosystems, and scaling a 12-clinic network treating 30,000+ patients, Wnode represents the culmination of his expertise in
+systems architecture, AI orchestration, and decentralised governance.
+
+11.
+
+Investment Opportunity & Roadmap
+
+Wnode is raising $100,000 USD to accelerate public beta, deepen high-volume integrations, eacquire sovereign tech stack,
+and reach initial recurring revenue.
+
+12.
+
+Key Milestones:
+•
+
+Public beta launch (Q3 2026)
+
+•
+
+Rapid node activation via viral engine
+
+•
+
+Production-grade rails and enterprise pilots
+
+•
+
+First Space Mesh partner pilot
+
+13.
+
+Financial Projections (Conservative, Annualised Gross Revenue):
+•
+
+Beta Launch (0–6 months): $100k – $400k
+
+•
+
+Early Scale (7–12 months): $1.2M – $3.5M
+
+•
+
+Growth Phase (13–24 months): $8M – $25M
+
+All funds go directly to product and infrastructure. Founder takes zero salary.
+
+14.
+
+Risks & Mitigations
+
+•
+
+Node reliability: Addressed through reputation scoring, verification, and redundant execution.
+
+•
+
+Integration scaling: Leverages existing 600+ hooks.
+
+•
+
+Regulatory: USD-first model and compliant Steward structure.
+
+•
+
+Competition: Focused differentiation on agent-optimized stateless execution and fiat accessibility.
+
+Contact: stephen@wnode.one
+Live Demo Credentials Available Upon Serious Inquiry
+
+

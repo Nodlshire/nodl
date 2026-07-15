@@ -1,0 +1,291 @@
+we now have to fix docs one and for all
+
+This pageArchitecture Overview
+The Wnode Sovereign Mesh is a deterministic, verifiable, and auto-scaling compute substrate acting as the canonical execution layer for decentralized integrations.
+
+Conceptual Overview & Rationale
+Wnode abandons traditional container orchestration (like Kubernetes or Docker Swarm) in favor of a strictly generative Substrate Model. Instead of accepting generic Docker images which hide immense complexity, zero-day vulnerabilities, and unpredictable state, Wnode ingests declarative YAML specs.
+
+The Rationale: In a truly decentralized network where nodes are operated by thousands of untrusted third parties, shipping a container means shipping a black box. You cannot deterministically prove what a container will do until it does it. By forcing developers to write a spec.yaml, Wnode can deterministically compile that spec into hardened, zero-dependency WASM and native Go binaries. This guarantees identical execution environments globally, removing environmental drift entirely.
+
+Global Architecture Diagram
+Global Orchestrator
+Ingress, DAG Routing,
+Telemetry Aggregation
+Earth Mesh (Tier-1)
+Synchronous / Native Go
+Bare-Metal Operators
+Space Mesh (Tier-3)
+Asynchronous MapReduce
+Orbital / Edge Operators
+Low Latency Sync
+Sharded Async
+Execution Sequence Flow
+DApp Client
+Orchestrator
+Node Operator
+1. POST /submit (HMAC Signed)
+2. Validate Schema & Auth
+3. Route to optimal Node
+4. Execute WASM inside Cgroups
+5. Return Encrypted Result
+6. 200 OK (JSON Payload)
+Core Code Artifacts
+To fully grasp the architecture, you must understand how a declarative YAML becomes an executable Go handler.
+
+spec.yaml (Declarative Target)
+yaml
+id: "hello-world-01"
+strict_mode: true
+job_template:
+  action: "execute_hello"
+  node_job:
+    execution_type: "native"
+    timeout_ms: 500
+    required_resources:
+      CPU: "1"
+      RAM: "128MB"
+nodegen_output.go (Generated Handler)
+go
+// AUTO-GENERATED: DO NOT EDIT
+func (h *HelloWorldHandler) Execute(ctx context.Context, payload []byte) ([]byte, error) {
+    // Context enforced by timeout_ms: 500
+    ctx, cancel := context.WithTimeout(ctx, 500*time.Millisecond)
+    defer cancel()
+
+    // Cgroup bounds applied implicitly by the daemon wrapper for this struct
+    // CPU: 1, RAM: 128MB
+
+    start := time.Now()
+    res, err := h.Runtime.CallWASM("execute_hello", payload)
+    
+    if err != nil {
+        telemetry.EmitFault("hello-world-01", err.Error(), time.Since(start))
+        return nil, err
+    }
+    
+    telemetry.EmitSuccess("hello-world-01", time.Since(start))
+    return res, nil
+}
+Failure Modes & Error Handling
+Network Partition (Orchestrator to Node): If the Orchestrator cannot reach an Earth node during step 3, the DAG routing table marks the node as unreachable and immediately re-routes to the next available node based on latency metrics.
+WASM Panic: If the CallWASM execution panics (e.g., divide by zero in user logic), the Wazero sandbox traps the panic. The node does not crash. It returns an ExecutionFault to the Orchestrator, which responds to the DApp with a 422 Unprocessable Entity.
+Security Boundaries & Invariants
+Invariant 1: The Orchestrator never executes third-party code. It only routes. This prevents Orchestrator compromise via malicious payloads.
+
+Invariant 2: Node Operators cannot read the raw Orchestrator-to-DApp signing keys. HMAC validation occurs before routing. Nodes only receive the execution payload.
+
+Performance Characteristics
+The Orchestrator's internal router is written in highly optimized Go, utilizing lock-free DAG traversal.
+Ingress Latency: < 2ms overhead for HMAC validation and schema checks.
+Routing Overhead: < 5ms to traverse the DHT (Distributed Hash Table) and select an optimal node.
+WASM Cold Start: < 10ms utilizing Wazero's pre-compiled cache.
+
+Responsibilities
+Operator Responsibilities
+Maintain high uptime, ensure bare-metal Cgroups are enabled in the kernel, and securely store the Node Identity cryptographic token. Operators do not manage routing or scaling logic.
+
+Developer Responsibilities
+Define strict, accurate YAML specifications. Write deterministic, memory-safe WASM logic that adheres to the timeout_ms constraints. Avoid non-deterministic algorithms.
+
+Telemetry Emitted
+Heartbeat Payload
+json
+{
+  "node_id": "0xabc123",
+  "archetype": "EarthMesh",
+  "metrics": {
+    "cpu_pressure_pct": 12.4,
+    "ram_pressure_pct": 45.1,
+    "jobs_processed_1m": 450,
+    "faults_1m": 0
+  }
+}
+Cross-Component Interactions
+The Orchestrator interacts with the Node Operators via long-lived, multiplexed WebSockets for telemetry (heartbeats), and initiates short-lived TCP streams for raw payload execution. The Node Operators never interact with each other directly in the Earth Mesh (preventing Sybil collusion).
+
+Best Practices & Anti-Patterns
+Anti-Pattern: Imperative Configuration
+Do not attempt to SSH into a Node Operator to tweak Nginx configs or container limits. All configuration must flow downwards from the central spec.yaml. Manual tweaks will be overwritten or will cause the verify_substrate hash check to fail, slashing the node.
+Best Practice: Over-provision Timeouts
+When writing the spec.yaml, set timeout_ms to 2x your expected maximum execution time. Aggressive timeouts save resources but can cause spurious failures during localized network spikes.
+
+I cannot remember now
+
+Hewre is akash
+
+akash Integration
+DeFi
+ENTERPRISE GRADE
+Akash Network is a decentralized Docker container execution and marketplace platform built on the Cosmos SDK.
+
+Verified Metadata
+Supported Networks
+Akash Network Mainnet
+Key Contract Roles
+Deployment:Tenant submits Deployment Specification (SDL) via MsgCreateDeployment to the blockchain.
+Bid:Providers match inventory and issue automated on-chain bids via MsgCreateBid.
+Lease:Tenant selects winning bid, generating an on-chain MsgCreateLease.
+Provider:Remote Kubernetes orchestration agent managing decentralized workloads.
+Deterministic Boundaries
+Guaranteed
+Secured via sequential Cosmos SDK account sequence tracking numbers preventing replay attacks across programmatic deployments.
+Cosmos SDK native Secp256k1 keypair signing for ledger state transitions.
+External Dependencies
+Transactions follow standard CometBFT mempool propagation mechanics where validators determine ordering, exposing order flow to front-running or arbitrage risks during highly congested bidding phases.
+References & Sources
+→
+Akash official docs
+→
+Akash core GitHub repo
+→
+Akash provider repo
+→
+Akash Whitepaper
+Architecture
+Wnode Interaction
+Decentralized Docker container execution on remote Provider Kubernetes clusters managed by specialized SDL (Stack Definition Language) parsing agents.
+
+Read / Write Flows
+Reads: PENDING VERIFICATION
+
+Writes: MsgCreateDeployment, MsgUpdateDeployment, MsgCloseDeployment, MsgCreateBid, MsgCloseBid, MsgCreateLease, DeclareProvider
+
+Enforced Determinism
+Tendermint/CometBFT Delegated Proof-of-Stake (dPoS) with 75 active validators.
+
+External Risk
+Front-running risks exist on competitive marketplace bids; mitigation depends entirely on individual validator mempool processing parameters as there is no native private order flow or relay framework.
+
+Workflows
+core operation
+Tenant submits Deployment Specification (SDL) via MsgCreateDeployment to the blockchain.
+Providers match inventory and issue automated on-chain bids via MsgCreateBid.
+Tenant selects winning bid, generating an on-chain MsgCreateLease.
+Tenant authenticates with Provider via TLS mTLS using on-chain certificates to send the container workload manifest.
+Security & Determinism
+Deterministic Reads & Writes
+On-chain state tracking secured by dPoS; multi-tenant isolation via native Kubernetes namespaces; network interactions authenticated via on-chain cryptographically matched client/provider certificates.
+
+Avoiding Hallucination
+Protobuf message validation for MsgCreateDeployment, MsgCreateBid, and MsgCreateLease. SDL schema validation rules reject any payload not matching canonical definitions. Rejection of unauthenticated payloads via on-chain public key and provider TLS certificate validation.
+
+RPC & Contract Validation
+Account number and sequence number verification prevents replay attacks. Deterministic signature validation uses Cosmos SDK native Secp256k1 keys. Provider endpoint validation occurs using X.509 certificates stored on-chain. Validates against RPC endpoints (e.g. rpc.akash.network) and REST endpoints (api.akash.network).
+
+Economic Model
+Interest Model
+Standard 20% take rate for payments settled in AKT, increased to 40% when alternative settlement assets (e.g., USDC) are utilized.
+
+Wnode Job Exposure
+Total Value Locked via staked AKT token bonding natively secures the network protocol layer under Tendermint's BFT 1/3 cryptoeconomic fault tolerance limits.
+
+Pricing & Predictability
+Utility token AKT used for governance, staking security, hosting transaction fees, and acting as the baseline unit of exchange for compute resource allocation.
+
+Testing & Validation
+Deterministic Test Cases
+SDL schema validation for MsgCreateDeployment payloads.
+Deterministic simulation of the MsgCreateBid on-chain auction matching.
+Deterministic lease settlement via MsgCreateLease transaction verification.
+X.509 client certificate generation and mTLS authentication verification.
+Validation Strategies
+Cosmos SDK Secp256k1 transaction signature validation.
+SDL (Stack Definition Language) specification parsing and inventory matching.
+On-chain state tracking of lease transitions via Tendermint/CometBFT.
+Cryptographically matched client/provider TLS certificate validation.
+Example Scenarios
+Deployment Creation: Tenant submits SDL via MsgCreateDeployment to the blockchain.
+Automated Bidding: Providers match inventory and issue on-chain bids via MsgCreateBid.
+Lease Settlement: Tenant selects winning bid and generates an on-chain MsgCreateLease.
+Workload Submission: Tenant authenticates with Provider via mTLS to send the container workload manifest.
+Health Check: SDK execution of akash.ping() to verify connection.
+
+I am not sure if this is detailed enough, especially for th akask cto
+
+THis one
+
+starknet Integration
+DeFi
+ENTERPRISE GRADE
+starknet is a DeFi integration.
+
+Verified Metadata
+Supported Networks
+Unknown
+Key Contract Roles
+Main Contract:Unknown
+Deterministic Boundaries
+Guaranteed
+Awaiting verified architectural review.
+External Dependencies
+PENDING VERIFICATION
+References & Sources
+→
+documentation
+→
+github
+Architecture
+Wnode Interaction
+Wnode acts as a stateless, deterministic execution layer using WASM.
+
+Read / Write Flows
+Reads: PENDING VERIFICATION
+
+Writes: PENDING VERIFICATION
+
+Enforced Determinism
+Unknown
+
+External Risk
+Unknown
+
+Workflows
+core operation
+PENDING VERIFICATION
+Security & Determinism
+Deterministic Reads & Writes
+All reads and writes are securely executed in deterministic WASM containers.
+
+Avoiding Hallucination
+PENDING VERIFICATION
+
+RPC & Contract Validation
+Validates via Unknown
+
+Economic Model
+Interest Model
+PENDING VERIFICATION
+
+Wnode Job Exposure
+PENDING VERIFICATION
+
+Pricing & Predictability
+PENDING VERIFICATION
+
+Testing & Validation
+Deterministic Test Cases
+PENDING VERIFICATION
+Validation Strategies
+PENDING VERIFICATION
+Example Scenarios
+PENDING VERIFICATION
+
+Is very bad, and we have just made it through the initial phase of the grant application for starkent, so they will be checking
+
+We need a torough pass on every single page, through
+
+AG need to correct the links, and fill in all the data
+
+For starknet and 20 others, give me a pomrpt for gemini to research and compse the data we need for all, in the order it is on the page
+
+I will do batches of 20 to start, go a-z, incuding the ones we have done, we can see if the can be improved
+
+Include starkent in the first batch as they will be evaluating the docs soon
+
+Make sesne ?
+
+
+
+
+

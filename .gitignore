@@ -1,86 +1,96 @@
-# Logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Process IDs
-*.pid
-boot_pid*.txt
-command_pid.txt
-mesh_pid.txt
-nodlr_pid.txt
-
-# Dependency directories
+# === Dependencies ===
 node_modules/
 jspm_packages/
 
-# Build outputs
+# === Build outputs ===
 dist/
 .next/
 out/
 build/
+.turbo/
+tsconfig.tsbuildinfo
 
-# IDEs and Editors
+# === IDE / Editors ===
 .idea/
 .vscode/
 *.swp
 *.swo
 *~
 
-# OS Files
+# === OS files ===
 .DS_Store
 Thumbs.db
 
-# Environment variables
+# === Environment variables ===
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+*.env
+!.env.example
 
-# Temp/Lock files
+# === Temp / Lock files ===
 .~lock.*
 
-# Project specific logs and status files
-heartbeat.json
-*.txt
+# === Logs ===
 *.log
-*.pid
-boot_pid*.txt
-command_pid.txt
-mesh_pid.txt
-nodlr_pid.txt
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Documents
+# === Process IDs ===
+*.pid
+
+# === Documents (keep out of Git) ===
 *.odt
 *.pdf
+*.docx
 
-# Binaries
-nodld/nodld*
-!nodld/nodld/*.go
-!nodld/nodld/Dockerfile
-!nodld/nodld/.env.example
-nodld/go_build_output.txt
-nodld/nodld/nodld
-wnoded/stripe.env
-wnoded/stripe.env
-.git_token
-.git_askpass.sh
-*.key
-*.env
-.turbo/
-
-# AI model files (server-only, too large for Git)
-ai/models/*
-ai/model/
-
-# Backend Purge
-nodld/bin/
-wnoded/
+# === Binaries ===
+*.wasm
 *.exe
-**/main
+services/nodld/nodld
+services/nodld/nodlr
+nodld/nodld
+nodld/nodlr
+nodld/nodld_bin
+nodld/nodlr_peer.key
 **/nodld-old
 **/build-cache
+**/main
+
+# === Keys / Credentials ===
+*.key
+recovery-codes.txt
+.git_token
+.git_askpass.sh
+
+# === State / DB ===
+state/
+*.db
+
+# === AI model files ===
+ai/models/*
+ai/model/
+tools/ai/models/*
+
+# === App-specific ===
 apps/web/storage/*.json
-rebrand_temp/
+
+# === Hardhat / Foundry ===
+contracts/hardhat/cache/
+contracts/hardhat/artifacts/
+contracts/foundry/cache/
+contracts/foundry/out/
+wenode-hardhat/cache/
+wenode-hardhat/artifacts/
+
+# === Obsidian ===
+.obsidian/
+
+# === Cookie / Session dumps ===
+*_cookies*.txt
+cookie.txt
+csrf.json
+heartbeat.json

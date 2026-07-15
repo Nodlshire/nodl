@@ -1,0 +1,5 @@
+{
+  "name": "Uniswap",
+  "version": "v3",
+  "subgraph": "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3"
+}

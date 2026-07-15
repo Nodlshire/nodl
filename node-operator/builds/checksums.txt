@@ -1,0 +1,5 @@
+fbe176e0dedad42ea6926eead3fda5d3855c6a2a3c775bbc6f84604c1f3ed5f9  wnode-operator-darwin-amd64.tar.gz
+bd5d90e58cb3c730894a6623d006842fa36c70506e682d8318b127b5869a85e9  wnode-operator-darwin-arm64.tar.gz
+3adc20dcd8babfce4e196202c3339c93f7bc18aa3f8c8ec60bdc3c0bf2744f54  wnode-operator-linux-amd64.tar.gz
+d208a49f96ff80d0cd8af5a9a8f93c21a0f08e9f39998e6901fea25c80515220  wnode-operator-linux-arm64.tar.gz
+3e229e120044395a0da1fc71f35954eed6689d828dfef298fb1055591c8b5bdb  wnode-operator-windows-amd64.zip

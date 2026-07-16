@@ -235,13 +235,10 @@ export default function FleetMap({
                 )}
 
                 {!loading && mappedNodes.length === 0 && (
-                    <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
-                        <div className="flex flex-col items-center gap-4 p-8 bg-black/60 border border-white/10 rounded-[5px] backdrop-blur-md">
-                            <MapPin className="w-8 h-8 text-slate-700" />
-                            <div className="text-center">
-                                <span className="text-[11px] text-white uppercase tracking-[0.2em] font-bold block mb-1">Zero geocoded nodes detected</span>
-                                <span className="text-[10px] text-slate-600 font-mono tracking-widest uppercase">Nodes online: {nodeList.length} — Awaiting coordinate data</span>
-                            </div>
+                    <div className="absolute bottom-4 right-4 z-10 flex items-center justify-center pointer-events-none">
+                        <div className="flex items-center gap-2 px-3 py-1.5 bg-black/80 border border-white/10 rounded-full backdrop-blur-md">
+                            <MapPin className="w-3 h-3 text-slate-400" />
+                            <span className="text-[10px] text-slate-400 font-mono tracking-widest uppercase">Nodes online: {nodeList.length} (Awaiting Geo)</span>
                         </div>
                     </div>
                 )}

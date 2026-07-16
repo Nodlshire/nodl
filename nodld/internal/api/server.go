@@ -1791,7 +1791,15 @@ func (s *Server) handleConsumeHeadlessToken(c *fiber.Ctx) error {
 
 	tokenStr := strings.TrimPrefix(authHeader, "Bearer ")
 	
-	node, deviceToken, err := s.accountStore.ConsumeHeadlessToken(tokenStr)
+	type HeadlessConsumeBody struct {
+		UPID     string `json:"upid"`
+		CPUCores int    `json:"cpuCores"`
+		MemoryGB int    `json:"memoryGb"`
+	}
+	var body HeadlessConsumeBody
+	_ = c.BodyParser(&body)
+
+	node, deviceToken, err := s.accountStore.ConsumeHeadlessToken(tokenStr, body.UPID, body.CPUCores, body.MemoryGB)
 	if err != nil {
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": err.Error()})
 	}

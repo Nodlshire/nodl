@@ -176,11 +176,15 @@ type WnodeNode struct {
 	IPAddress          string             `json:"ipAddress"`
 	ID                 string             `json:"id"`
 	UserID             string             `json:"userId"`
+	OperatorWUID       string             `json:"operator_wuid"`
+	CRMLink            string             `json:"crm_link"`
 	DeviceToken        string             `json:"-"` // Long-lived secure secret
 	Metadata           NodeMetadata       `json:"metadata"`
 	Status             string             `json:"status"` // active, offline
 	CreatedAt          time.Time          `json:"createdAt"`
 	LastSeen           time.Time          `json:"lastSeen"`
+	LastHeartbeat      string             `json:"last_heartbeat"`
+	LastSeenAt         string             `json:"last_seen_at"`
 	Metrics            *NodeHealthMetrics `json:"metrics,omitempty"`
 	GlobalScore        float64            `json:"globalScore"`
 	Tier               int                `json:"tier"` // Phase 11 capability tier (1-5)

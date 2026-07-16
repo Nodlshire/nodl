@@ -1975,7 +1975,7 @@ func (s *Store) GenerateHeadlessToken(userID string, profile string) (*HeadlessT
 }
 
 // ConsumeHeadlessToken uses a valid registration token to provision a new node and return a long-lived device token.
-func (s *Store) ConsumeHeadlessToken(tokenStr string) (*WnodeNode, string, error) {
+func (s *Store) ConsumeHeadlessToken(tokenStr string, upid string, cpuCores int, memoryGb int) (*WnodeNode, string, error) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 
@@ -1991,9 +1991,23 @@ func (s *Store) ConsumeHeadlessToken(tokenStr string) (*WnodeNode, string, error
 	token.Used = true
 	go s.SaveState()
 
-	// Create the node for the user
-	nodeID := fmt.Sprintf("HN-%s", uuid.New().String()[:8])
+	// Use UPID as the immutable key to eliminate ghost nodes
+	nodeID := upid
+	if nodeID == "" {
+		nodeID = fmt.Sprintf("HN-%s", uuid.New().String()[:8])
+	}
 	deviceToken := uuid.New().String()
+
+	// If node already exists, execute an UPGRADE/UPSERT update
+	if existingNode, exists := s.nodes[nodeID]; exists {
+		existingNode.DeviceToken = deviceToken
+		existingNode.Status = "active"
+		existingNode.LastSeen = time.Now()
+		existingNode.CPUCores = cpuCores
+		existingNode.MemoryGB = memoryGb
+		go s.SaveState()
+		return existingNode, deviceToken, nil
+	}
 
 	node := &WnodeNode{
 		ID:          nodeID,
@@ -2004,6 +2018,8 @@ func (s *Store) ConsumeHeadlessToken(tokenStr string) (*WnodeNode, string, error
 		LastSeen:    time.Now(),
 		IsWASM:      false,
 		Tier:        1,
+		CPUCores:    cpuCores,
+		MemoryGB:    memoryGb,
 	}
 
 	s.nodes[nodeID] = node

@@ -1797,7 +1797,12 @@ func (s *Server) handleConsumeHeadlessToken(c *fiber.Ctx) error {
 		MemoryGB int    `json:"memoryGb"`
 	}
 	var body HeadlessConsumeBody
-	_ = c.BodyParser(&body)
+	fmt.Printf("RAW CONSUME BODY: %s\n", string(c.Body()))
+	fmt.Printf("CONTENT TYPE: %s\n", c.Get("Content-Type"))
+	if err := c.BodyParser(&body); err != nil {
+		fmt.Printf("BodyParser error: %v\n", err)
+	}
+	fmt.Printf("PARSED UPID: %s\n", body.UPID)
 
 	node, deviceToken, err := s.accountStore.ConsumeHeadlessToken(tokenStr, body.UPID, body.CPUCores, body.MemoryGB)
 	if err != nil {

@@ -18,7 +18,7 @@ fi
 echo "[+] Detected architecture: $ARCH. Target build path: $BUILD_DIR/$BINARY_NAME"
 
 # 3. Download the pre-compiled binary from GitHub Releases
-BINARY_URL="https://github.com/wnodeltd/wnode/releases/download/v1.0.1/nodl-core-$BUILD_DIR"
+BINARY_URL="https://github.com/wnodeltd/wnode/releases/download/v1.0.2/nodl-core-$BUILD_DIR"
 echo "[+] Downloading binary from $BINARY_URL..."
 sudo curl -fsSL -L "$BINARY_URL" -o /usr/local/bin/nodl-core || {
   echo "[-] Failed to download binary from GitHub. Exiting."

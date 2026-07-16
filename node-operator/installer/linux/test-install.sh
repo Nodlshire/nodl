@@ -6,16 +6,8 @@ echo "[+] Starting WNode Operator Standalone Installation..."
 # 1. Setup local configuration directory
 sudo mkdir -p /etc/wnode
 
-# 2. Fetch the manifest directly from GitHub to resolve versions/variables
-echo "[+] Fetching version manifest from GitHub..."
-curl -fsSL "https://raw.githubusercontent.com/wnodeltd/wnode/staging-node-operator-dry-run/dist/manifest.json" -o /tmp/manifest.json || {
-  echo "[-] Failed to fetch manifest from GitHub. Exiting."
-  exit 1
-}
-
-# 3. Determine system architecture
+# 2. Determine system architecture
 ARCH=$(uname -m)
-OS="linux"
 BINARY_NAME="wnode-operator-linux-amd64"
 
 if [ "$ARCH" = "aarch64" ] || [ "$ARCH" = "arm64" ]; then
@@ -24,8 +16,7 @@ fi
 
 echo "[+] Detected architecture: $ARCH. Target binary: $BINARY_NAME"
 
-# 4. Download the pre-compiled binary from GitHub staging / releases
-# (For dry-run testing, we pull the compiled binary from the staging branch assets)
+# 3. Download the pre-compiled binary from GitHub staging
 BINARY_URL="https://raw.githubusercontent.com/wnodeltd/wnode/staging-node-operator-dry-run/node-operator/bin/$BINARY_NAME"
 echo "[+] Downloading binary from $BINARY_URL..."
 sudo curl -fsSL "$BINARY_URL" -o /usr/local/bin/wnode-operator || {
@@ -35,7 +26,7 @@ sudo curl -fsSL "$BINARY_URL" -o /usr/local/bin/wnode-operator || {
 
 sudo chmod +x /usr/local/bin/wnode-operator
 
-# 5. Download the systemd service file template from GitHub raw
+# 4. Configure systemd service
 echo "[+] Configuring systemd service..."
 SYSTEMD_URL="https://raw.githubusercontent.com/wnodeltd/wnode/staging-node-operator-dry-run/node-operator/installer/linux/nodl-core.service"
 sudo curl -fsSL "$SYSTEMD_URL" -o /etc/systemd/system/nodl-core.service || {
@@ -56,7 +47,7 @@ WantedBy=multi-user.target
 SVC
 }
 
-# 6. Enable and start the service
+# 5. Enable and start the service
 sudo systemctl daemon-reload
 sudo systemctl enable nodl-core.service
 sudo systemctl restart nodl-core.service

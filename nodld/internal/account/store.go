@@ -280,7 +280,7 @@ func (s *Store) SeedFoundationIdentities() {
 			Role:               RoleOwner,
 			IsSuperAdmin:       true,
 			IsProtected:        true,
-			Password:           "command",
+			Password:           "$2a$10$Vb9cM3C/BfLg4Wz2k9WXO.j81o9GZJ2W.xY2QhF5M7c8Ff.j3hP9y",
 			OnboardingComplete: true,
 			Verified:           true,
 			Status:             OpStatus{Active: true, Verification: "verified"},

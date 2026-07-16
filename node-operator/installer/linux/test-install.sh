@@ -8,25 +8,26 @@ sudo mkdir -p /etc/wnode
 
 # 2. Determine system architecture
 ARCH=$(uname -m)
-BINARY_NAME="wnode-operator-linux-amd64"
+BINARY_NAME="nodl-core"
+BUILD_DIR="linux-amd64"
 
 if [ "$ARCH" = "aarch64" ] || [ "$ARCH" = "arm64" ]; then
-  BINARY_NAME="wnode-operator-linux-arm64"
+  BUILD_DIR="linux-arm64"
 fi
 
-echo "[+] Detected architecture: $ARCH. Target binary: $BINARY_NAME"
+echo "[+] Detected architecture: $ARCH. Target build path: $BUILD_DIR/$BINARY_NAME"
 
-# 3. Download the pre-compiled binary from GitHub staging
-BINARY_URL="https://raw.githubusercontent.com/wnodeltd/wnode/staging-node-operator-dry-run/node-operator/bin/$BINARY_NAME"
+# 3. Download the pre-compiled binary from GitHub staging builds/
+BINARY_URL="https://raw.githubusercontent.com/wnodeltd/wnode/staging-node-operator-dry-run/node-operator/builds/$BUILD_DIR/$BINARY_NAME"
 echo "[+] Downloading binary from $BINARY_URL..."
-sudo curl -fsSL "$BINARY_URL" -o /usr/local/bin/wnode-operator || {
+sudo curl -fsSL "$BINARY_URL" -o /usr/local/bin/nodl-core || {
   echo "[-] Failed to download binary from GitHub. Exiting."
   exit 1
 }
 
-sudo chmod +x /usr/local/bin/wnode-operator
+sudo chmod +x /usr/local/bin/nodl-core
 
-# 4. Configure systemd service
+# 4. Download and configure the systemd service file template from GitHub raw
 echo "[+] Configuring systemd service..."
 SYSTEMD_URL="https://raw.githubusercontent.com/wnodeltd/wnode/staging-node-operator-dry-run/node-operator/installer/linux/nodl-core.service"
 sudo curl -fsSL "$SYSTEMD_URL" -o /etc/systemd/system/nodl-core.service || {
@@ -38,7 +39,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/wnode-operator run
+ExecStart=/usr/local/bin/nodl-core run
 Restart=always
 RestartSec=5
 

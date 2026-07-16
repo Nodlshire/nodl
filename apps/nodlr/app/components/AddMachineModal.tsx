@@ -113,11 +113,11 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                   <span className="text-sm text-slate-300 leading-relaxed block">Download the Nodlr Compute Agent for your system:</span>
                   <div className="grid grid-cols-1 gap-2">
                     {[
-                      { os: "macOS (Apple Silicon)", url: "https://github.com/wnodeltd/wnode/releases/download/v1.0.0/wnode-operator-darwin-arm64.tar.gz" },
-                      { os: "macOS (Intel)", url: "https://github.com/wnodeltd/wnode/releases/download/v1.0.0/wnode-operator-darwin-amd64.tar.gz" },
-                      { os: "Windows (amd64)", url: "https://github.com/wnodeltd/wnode/releases/download/v1.0.0/wnode-operator-windows-amd64.zip" },
-                      { os: "Linux (amd64)", url: "https://github.com/wnodeltd/wnode/releases/download/v1.0.0/wnode-operator-linux-amd64.tar.gz" },
-                      { os: "Linux (arm64)", url: "https://github.com/wnodeltd/wnode/releases/download/v1.0.0/wnode-operator-linux-arm64.tar.gz" }
+                      { os: "macOS (Apple Silicon)", url: "https://github.com/wnodeltd/wnode/releases/download/v1.0.0/nodl-core-darwin-arm64.tar.gz" },
+                      { os: "macOS (Intel)", url: "https://github.com/wnodeltd/wnode/releases/download/v1.0.0/nodl-core-darwin-amd64.tar.gz" },
+                      { os: "Windows (amd64)", url: "https://github.com/wnodeltd/wnode/releases/download/v1.0.0/nodl-core-windows-amd64.zip" },
+                      { os: "Linux (amd64)", url: "https://github.com/wnodeltd/wnode/releases/download/v1.0.0/nodl-core-linux-amd64.tar.gz" },
+                      { os: "Linux (arm64)", url: "https://github.com/wnodeltd/wnode/releases/download/v1.0.0/nodl-core-linux-arm64.tar.gz" }
                     ].map(item => (
                       <a key={item.os} href={item.url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between px-4 py-2.5 bg-white/5 border border-white/10 hover:bg-white/10 transition-all rounded-[4px] group">
                         <div className="flex items-center gap-3">
@@ -190,9 +190,9 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                     <span className="text-sm text-slate-300 leading-relaxed block">Run the installer on your server:</span>
                     <div className="grid grid-cols-1 gap-3">
                       {[
-                        { os: "Linux (amd64)", cmd: `sudo mkdir -p /etc/wnode && echo "${headlessToken}" | sudo tee /etc/wnode/token && curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/staging-node-operator-dry-run/node-operator/installer/linux/test-install.sh | bash` },
-                        { os: "macOS (Apple Silicon)", cmd: `curl -LO https://github.com/wnode/node-operator/releases/download/v1.0.0/wnode-operator-darwin-arm64.tar.gz && tar -xzf wnode-operator-darwin-arm64.tar.gz && sudo ./install_macos.sh && echo "${headlessToken}" | sudo tee /etc/wnode/token && sudo launchctl kickstart -k system/com.nodl.core` },
-                        { os: "Windows (PowerShell)", cmd: `Invoke-WebRequest -Uri "https://github.com/wnode/node-operator/releases/download/v1.0.0/wnode-operator-windows-amd64.zip" -OutFile "operator.zip"; Expand-Archive "operator.zip" -Force; cd operator; .\\install_windows.ps1; Set-Content -Path "$env:ProgramData\\Wnode\\token" -Value "${headlessToken}"; Restart-Service -Name "nodl-core"` }
+                        { os: "Linux (amd64)", cmd: `sudo mkdir -p /etc/wnode && echo "${headlessToken}" | sudo tee /etc/wnode/token && curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/staging-nodl-core-dry-run/nodl-core/installer/linux/test-install.sh | bash` },
+                        { os: "macOS (Apple Silicon)", cmd: `curl -LO https://github.com/wnode/nodl-core/releases/download/v1.0.0/nodl-core-darwin-arm64.tar.gz && tar -xzf nodl-core-darwin-arm64.tar.gz && sudo ./install_macos.sh && echo "${headlessToken}" | sudo tee /etc/wnode/token && sudo launchctl kickstart -k system/com.nodl.core` },
+                        { os: "Windows (PowerShell)", cmd: `Invoke-WebRequest -Uri "https://github.com/wnode/nodl-core/releases/download/v1.0.0/nodl-core-windows-amd64.zip" -OutFile "operator.zip"; Expand-Archive "operator.zip" -Force; cd operator; .\\install_windows.ps1; Set-Content -Path "$env:ProgramData\\Wnode\\token" -Value "${headlessToken}"; Restart-Service -Name "nodl-core"` }
                       ].map(item => (
                         <div key={item.os} className="space-y-1">
                           <span className="text-[10px] font-bold text-slate-400 uppercase">{item.os}</span>

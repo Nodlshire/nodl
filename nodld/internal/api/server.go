@@ -1885,7 +1885,7 @@ func (s *Server) handleHeartbeatNode(c *fiber.Ctx) error {
 		}
 	}
 
-	if err := s.accountStore.UpdateNodeHeartbeat(nodeId, req.Metrics, req.HardwareHash, req.BrowserFingerprint, deviceClass); err != nil {
+	if err := s.accountStore.UpdateNodeHeartbeat(nodeId, req.Metrics, req.HardwareHash, req.BrowserFingerprint, deviceClass, c.IP()); err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
 	}
 

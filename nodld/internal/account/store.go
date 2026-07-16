@@ -1185,7 +1185,7 @@ func (s *Store) GetNodeByToken(token string) (*WnodeNode, bool) {
 }
 
 // UpdateNodeHeartbeat sets the LastSeen and Metrics for a node.
-func (s *Store) UpdateNodeHeartbeat(nodeID string, metrics NodeHealthMetrics, hardwareHash string, browserFingerprint string, deviceClass string) error {
+func (s *Store) UpdateNodeHeartbeat(nodeID string, metrics NodeHealthMetrics, hardwareHash string, browserFingerprint string, deviceClass string, ipAddress string) error {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 
@@ -1195,6 +1195,14 @@ func (s *Store) UpdateNodeHeartbeat(nodeID string, metrics NodeHealthMetrics, ha
 	}
 
 	node.LastSeen = time.Now()
+
+	if node.IPAddress != ipAddress && ipAddress != "" {
+		lat, lon, _ := GetGeoIPLookup().ResolveIP(ipAddress)
+		node.IPAddress = ipAddress
+		node.Latitude = lat
+		node.Longitude = lon
+	}
+
 	node.Metrics = &metrics
 	node.Status = "active"
 	node.IsWASM = metrics.IsWASM

@@ -169,6 +169,9 @@ type Payout struct {
 
 // WnodeNode represents a physical or virtual machine connected to the network.
 type WnodeNode struct {
+	Latitude           float64            `json:"lat"`
+	Longitude          float64            `json:"lon"`
+	IPAddress          string             `json:"ipAddress"`
 	ID                 string             `json:"id"`
 	UserID             string             `json:"userId"`
 	DeviceToken        string             `json:"-"` // Long-lived secure secret

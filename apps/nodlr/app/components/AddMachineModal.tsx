@@ -190,7 +190,7 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                     <span className="text-sm text-slate-300 leading-relaxed block">Run the installer on your server:</span>
                     <div className="grid grid-cols-1 gap-3">
                       {[
-                        { os: "Linux (amd64)", cmd: `sudo mkdir -p /etc/wnode && echo "${headlessToken}" | sudo tee /etc/wnode/token && curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/staging-nodl-core-dry-run/nodl-core/installer/linux/test-install.sh | bash` },
+                        { os: "Linux (amd64)", cmd: `sudo mkdir -p /etc/wnode && echo "${headlessToken}" | sudo tee /etc/wnode/token && curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/staging-node-operator-dry-run/node-operator/installer/linux/test-install.sh | bash` },
                         { os: "macOS (Apple Silicon)", cmd: `curl -LO https://github.com/wnode/nodl-core/releases/download/v1.0.0/nodl-core-darwin-arm64.tar.gz && tar -xzf nodl-core-darwin-arm64.tar.gz && sudo ./install_macos.sh && echo "${headlessToken}" | sudo tee /etc/wnode/token && sudo launchctl kickstart -k system/com.nodl.core` },
                         { os: "Windows (PowerShell)", cmd: `Invoke-WebRequest -Uri "https://github.com/wnode/nodl-core/releases/download/v1.0.0/nodl-core-windows-amd64.zip" -OutFile "operator.zip"; Expand-Archive "operator.zip" -Force; cd operator; .\\install_windows.ps1; Set-Content -Path "$env:ProgramData\\Wnode\\token" -Value "${headlessToken}"; Restart-Service -Name "nodl-core"` }
                       ].map(item => (

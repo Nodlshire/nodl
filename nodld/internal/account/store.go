@@ -1204,6 +1204,8 @@ func (s *Store) UpdateNodeHeartbeat(nodeID string, metrics NodeHealthMetrics, ha
 	}
 
 	node.Metrics = &metrics
+	node.CPUCores = metrics.CPUCores
+	node.MemoryGB = metrics.MemoryGB
 	node.Status = "active"
 	node.IsWASM = metrics.IsWASM
 	node.DowntimePenalized = false
@@ -1267,6 +1269,8 @@ func (s *Store) UpdateNodeHeartbeat(nodeID string, metrics NodeHealthMetrics, ha
 		NodeID:     node.ID,
 		DeviceID:   deviceID,
 		Payload: map[string]interface{}{
+			"cpu_cores":    metrics.CPUCores,
+			"memory_gb":    metrics.MemoryGB,
 			"metrics": map[string]interface{}{
 				"cpu":          metrics.CPU,
 				"ram":          metrics.RAM,

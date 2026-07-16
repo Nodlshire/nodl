@@ -169,6 +169,8 @@ type Payout struct {
 
 // WnodeNode represents a physical or virtual machine connected to the network.
 type WnodeNode struct {
+	CPUCores           int                `json:"cpu_cores"`
+	MemoryGB           int                `json:"memory_gb"`
 	Latitude           float64            `json:"lat"`
 	Longitude          float64            `json:"lon"`
 	IPAddress          string             `json:"ipAddress"`
@@ -214,6 +216,8 @@ type ReputationMetrics struct {
 
 // NodeHealthMetrics captures dynamic telemetry from a node.
 type NodeHealthMetrics struct {
+	CPUCores    int                `json:"cpuCores"`
+	MemoryGB    int                `json:"memoryGb"`
 	CPU         float64            `json:"cpu"`
 	RAM         float64            `json:"ram"`
 	Disk        float64            `json:"disk"`

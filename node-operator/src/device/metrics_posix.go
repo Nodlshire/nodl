@@ -92,6 +92,12 @@ func CollectMetrics(state *platform.State) NodeHealthMetrics {
 				} else {
 					used = total - free - buffers - cached
 				}
+				metrics.CPUCores = runtime.NumCPU()
+				if total > 1000000000 {
+					metrics.MemoryGB = int(total / (1024 * 1024 * 1024))
+				} else {
+					metrics.MemoryGB = int(total / (1024 * 1024))
+				}
 				metrics.RAM = used / total
 			}
 		}

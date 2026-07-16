@@ -6,9 +6,9 @@ Wants=network-online.target
 
 [Service]
 Type=simple
-User=wnode
-Group=wnode
-ExecStart=/usr/local/bin/nodl-core --profile=earth --api=https://api.wnode.network
+User=root
+Group=root
+ExecStart=/usr/local/bin/nodl-core --profile=earth --api=https://nodlr.wnode.one
 Restart=on-failure
 RestartSec=5
 StandardOutput=journal

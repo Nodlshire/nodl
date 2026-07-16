@@ -1,26 +1,64 @@
 #!/bin/bash
-# Wnode Node Operator - Linux Install Verification Script
 set -e
 
-MANIFEST="../../dist/manifest.json"
-if [ ! -f "$MANIFEST" ]; then
-    echo "Error: Manifest not found at $MANIFEST"
-    exit 1
+echo "[+] Starting WNode Operator Standalone Installation..."
+
+# 1. Setup local configuration directory
+sudo mkdir -p /etc/wnode
+
+# 2. Fetch the manifest directly from GitHub to resolve versions/variables
+echo "[+] Fetching version manifest from GitHub..."
+curl -fsSL "https://raw.githubusercontent.com/wnodeltd/wnode/staging-node-operator-dry-run/dist/manifest.json" -o /tmp/manifest.json || {
+  echo "[-] Failed to fetch manifest from GitHub. Exiting."
+  exit 1
+}
+
+# 3. Determine system architecture
+ARCH=$(uname -m)
+OS="linux"
+BINARY_NAME="wnode-operator-linux-amd64"
+
+if [ "$ARCH" = "aarch64" ] || [ "$ARCH" = "arm64" ]; then
+  BINARY_NAME="wnode-operator-linux-arm64"
 fi
-VERSION=$(grep -o '"version": "[^"]*' "$MANIFEST" | cut -d'"' -f4)
 
-echo "Simulating Linux Install Verification for v$VERSION..."
+echo "[+] Detected architecture: $ARCH. Target binary: $BINARY_NAME"
 
-# Staging path based on build script
-STAGING_DIR="/tmp/wnode-node-operator-deb-staging"
+# 4. Download the pre-compiled binary from GitHub staging / releases
+# (For dry-run testing, we pull the compiled binary from the staging branch assets)
+BINARY_URL="https://raw.githubusercontent.com/wnodeltd/wnode/staging-node-operator-dry-run/node-operator/bin/$BINARY_NAME"
+echo "[+] Downloading binary from $BINARY_URL..."
+sudo curl -fsSL "$BINARY_URL" -o /usr/local/bin/wnode-operator || {
+  echo "[-] Failed to download binary from GitHub. Exiting."
+  exit 1
+}
 
-echo "[PLACEHOLDER] Verifying payload structure in $STAGING_DIR..."
-# if [ ! -f "$STAGING_DIR/usr/bin/node-operator" ]; then echo "Missing binary"; exit 1; fi
-# if [ ! -f "$STAGING_DIR/etc/systemd/system/node-operator.service" ]; then echo "Missing service"; exit 1; fi
-# if [ ! -f "$STAGING_DIR/var/lib/node-operator/meta.json" ]; then echo "Missing meta.json"; exit 1; fi
+sudo chmod +x /usr/local/bin/wnode-operator
 
-echo "[PLACEHOLDER] Validating meta.json version match for $VERSION..."
-# META_VER=$(grep -o '"version": "[^"]*' "$STAGING_DIR/var/lib/node-operator/meta.json" | cut -d'"' -f4)
-# if [ "$META_VER" != "$VERSION" ]; then echo "Version mismatch!"; exit 1; fi
+# 5. Download the systemd service file template from GitHub raw
+echo "[+] Configuring systemd service..."
+SYSTEMD_URL="https://raw.githubusercontent.com/wnodeltd/wnode/staging-node-operator-dry-run/node-operator/installer/linux/nodl-core.service"
+sudo curl -fsSL "$SYSTEMD_URL" -o /etc/systemd/system/nodl-core.service || {
+  # Fallback: create a basic service file inline if the fetch fails
+  sudo tee /etc/systemd/system/nodl-core.service > /dev/null << 'SVC'
+[Unit]
+Description=WNode Core Operator
+After=network.target
 
-echo "Linux install verification complete (Placeholder)."
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/wnode-operator run
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+SVC
+}
+
+# 6. Enable and start the service
+sudo systemctl daemon-reload
+sudo systemctl enable nodl-core.service
+sudo systemctl restart nodl-core.service
+
+echo "[+] WNode Operator successfully installed and started!"

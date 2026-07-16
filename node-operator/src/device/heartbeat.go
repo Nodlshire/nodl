@@ -113,7 +113,7 @@ func flushQueue(apiBase string, state *platform.State) {
 }
 
 func sendHeartbeat(apiBase string, payload HeartbeatPayload, state *platform.State) error {
-	url := fmt.Sprintf("%s/api/cmd/node/heartbeat", strings.TrimRight(apiBase, "/"))
+	url := fmt.Sprintf("%s/api/v1/nodes/heartbeat", strings.TrimRight(apiBase, "/"))
 	
 	// Envelope and Signature
 	seq := atomic.AddUint64(&telemetrySeq, 1)

@@ -102,13 +102,30 @@ type HeadlessConsumeResponse struct {
 func AuthenticateHeadless(apiBase, token string, state *platform.State) error {
 	url := fmt.Sprintf("%s/api/v1/nodes/headless-token/consume", strings.TrimRight(apiBase, "/"))
 
-	req, err := http.NewRequest("POST", url, nil)
+	// Build the registration body with immutable hardware identity
+	type registrationBody struct {
+		UPID     string `json:"upid"`
+		CPUCores int    `json:"cpuCores"`
+		MemoryGB int    `json:"memoryGb"`
+	}
+	regBody := registrationBody{
+		UPID:     state.UPID,
+		CPUCores: state.CPUCores,
+		MemoryGB: state.MemoryGB,
+	}
+	jsonBody, err := json.Marshal(regBody)
+	if err != nil {
+		return fmt.Errorf("failed to marshal registration body: %w", err)
+	}
+
+	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonBody))
 	if err != nil {
 		return fmt.Errorf("failed to create request: %w", err)
 	}
 	req.Header.Set("Authorization", "Bearer "+token)
+	req.Header.Set("Content-Type", "application/json")
 
-	platform.Info("Authenticating headless node with API: %s", url)
+	platform.Info("Authenticating headless node with API: %s (UPID: %s, CPUCores: %d, MemoryGB: %d)", url, state.UPID, state.CPUCores, state.MemoryGB)
 
 	client := &http.Client{Timeout: 10 * time.Second}
 	resp, err := client.Do(req)

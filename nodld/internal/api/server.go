@@ -1876,18 +1876,21 @@ func (s *Server) handleVerifyToken(c *fiber.Ctx) error {
 func (s *Server) handleHeartbeatNode(c *fiber.Ctx) error {
 	nodeId := c.Locals("node_id").(string)
 	
-	var req struct {
-		Metrics            account.NodeHealthMetrics `json:"metrics"`
-		HardwareHash       string                    `json:"hardwareHash,omitempty"`
-		BrowserFingerprint string                    `json:"browserFingerprint,omitempty"`
-		DeviceClass        string                    `json:"deviceClass,omitempty"`
+	var envelope struct {
+		Payload struct {
+			Metrics            account.NodeHealthMetrics `json:"metrics"`
+			HardwareHash       string                    `json:"hardwareHash,omitempty"`
+			BrowserFingerprint string                    `json:"browserFingerprint,omitempty"`
+			DeviceClass        string                    `json:"deviceClass,omitempty"`
+		} `json:"payload"`
 	}
 	body := c.Body()
 	fmt.Printf("===================\nRAW HEARTBEAT BODY:\n%s\n===================\n", string(body))
 
-	if err := c.BodyParser(&req); err != nil {
+	if err := c.BodyParser(&envelope); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid request body"})
 	}
+	req := envelope.Payload
 
 	deviceClass := req.DeviceClass
 	if deviceClass == "" {

@@ -15,6 +15,9 @@ type State struct {
 	DeviceToken     string `json:"device_token,omitempty"`
 	NodeID            string `json:"node_id,omitempty"`
 	DeviceUUID        string `json:"device_uuid,omitempty"`
+	UPID              string `json:"upid,omitempty"`
+	CPUCores          int    `json:"cpu_cores,omitempty"`
+	MemoryGB          int    `json:"memory_gb,omitempty"`
 	MeshAPI           string `json:"mesh_api"`
 	HeartbeatOffset   int    `json:"heartbeat_offset"`
 	HeartbeatInterval int    `json:"heartbeat_interval"`

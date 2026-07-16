@@ -53,6 +53,18 @@ func main() {
 		if tokenData, err := os.ReadFile(tokenFile); err == nil {
 			token := strings.TrimSpace(string(tokenData))
 			platform.Info("Found registration token in %s, attempting headless registration...", tokenFile)
+
+			// Hydrate state with hardware identity before registration
+			bootMetrics := device.CollectMetrics(state)
+			bootMeta   := device.CollectMetadata()
+			if state.UPID == "" {
+				state.UPID = device.ComputeHardwareHash(bootMeta)
+			}
+			state.CPUCores = bootMetrics.CPUCores
+			state.MemoryGB = bootMetrics.MemoryGB
+			_ = platform.SaveState(state)
+			platform.Info("Hardware snapshot: UPID=%s CPUCores=%d MemoryGB=%d", state.UPID, state.CPUCores, state.MemoryGB)
+
 			if err := auth.AuthenticateHeadless(*apiBase, token, state); err != nil {
 				log.Fatalf("Headless registration failed: %v", err)
 			}

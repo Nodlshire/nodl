@@ -189,7 +189,7 @@ func sendHeartbeat(apiBase string, payload HeartbeatPayload, state *platform.Sta
 // StartHeartbeatLoop runs the persistent staggered loop.
 func StartHeartbeatLoop(apiBase string, state *platform.State) {
 	if state.HeartbeatInterval == 0 {
-		state.HeartbeatInterval = 2700 // 45 min default
+		state.HeartbeatInterval = 30 // 30 sec default
 	}
 
 	platform.Info("Heartbeat loop initialized. Interval: %ds, Offset: %ds", state.HeartbeatInterval, state.HeartbeatOffset)

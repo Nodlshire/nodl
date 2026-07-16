@@ -201,7 +201,7 @@ func Register(apiBase string, state *platform.State) error {
 
 	state.DeviceToken = successResp.DeviceToken
 	state.HeartbeatOffset = successResp.HeartbeatOffset
-	state.HeartbeatInterval = 2700 // default 45 mins
+	state.HeartbeatInterval = 30 // default 30 secs
 	state.RegisteredAt = time.Now().UTC().Format(time.RFC3339)
 
 	if err := platform.SaveState(state); err != nil {

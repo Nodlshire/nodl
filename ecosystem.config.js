@@ -1,55 +1,42 @@
 module.exports = {
   apps: [
     {
-      name: 'backend',
-      script: './nodld_bin',
-      cwd: './nodld',
-      watch: false,
-      env: {
-        NODE_ENV: 'development',
-        DEVELOPMENT_MODE: 'true',
-        DEVELOPER_MODE: 'true'
-      }
+      name: "web",
+      cwd: "/home/obregan/Documents/nodl/apps/web",
+      script: "npm",
+      args: "start",
+      env: { PORT: 3004 }
     },
     {
-      name: 'command',
-      script: 'npm',
-      args: 'run start --prefix apps/command -- -p 3001',
-      cwd: '.',
-      watch: false,
-      env: {
-        NODE_ENV: 'production'
-      }
+      name: "command",
+      cwd: "/home/obregan/Documents/nodl/apps/command",
+      script: "npm",
+      args: "start",
+      env: { PORT: 3001 }
     },
     {
-      name: 'mesh',
-      script: 'npm',
-      args: 'run start --prefix apps/mesh',
-      cwd: '.',
-      watch: false,
-      env: {
-        NODE_ENV: 'production'
-      }
+      name: "nodlr",
+      cwd: "/home/obregan/Documents/nodl/apps/nodlr",
+      script: "npm",
+      args: "start",
+      env: { PORT: 3002 }
     },
     {
-      name: 'nodlr',
-      script: 'npm',
-      args: 'run start --prefix apps/nodlr -- -p 3002',
-      cwd: '.',
-      watch: false,
-      env: {
-        NODE_ENV: 'production'
-      }
+      name: "mesh",
+      cwd: "/home/obregan/Documents/nodl/apps/mesh",
+      script: "npm",
+      args: "start",
+      env: { PORT: 3003 }
     },
     {
-      name: 'web',
-      script: 'npm',
-      args: 'run start --prefix apps/web',
-      cwd: '.',
-      watch: false,
-      env: {
-        NODE_ENV: 'production'
+      name: "backend",
+      cwd: "/home/obregan/Documents/nodl",
+      script: "/home/obregan/Documents/nodl/nodld_bin",
+      args: "",
+      env: { 
+        PORT: 8080,
+        DEVELOPMENT_MODE: "true"
       }
     }
   ]
-};
+}

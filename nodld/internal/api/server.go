@@ -1882,6 +1882,9 @@ func (s *Server) handleHeartbeatNode(c *fiber.Ctx) error {
 		BrowserFingerprint string                    `json:"browserFingerprint,omitempty"`
 		DeviceClass        string                    `json:"deviceClass,omitempty"`
 	}
+	body := c.Body()
+	fmt.Printf("===================\nRAW HEARTBEAT BODY:\n%s\n===================\n", string(body))
+
 	if err := c.BodyParser(&req); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid request body"})
 	}

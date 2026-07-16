@@ -124,10 +124,27 @@ export default function FleetMap({
     const loading = mode === "provider" ? internalLoading : propLoading;
 
     const nodeList = Array.isArray(activeNodes) ? activeNodes : (activeNodes && typeof activeNodes === 'object' ? Object.values(activeNodes) : []);
-    const mappedNodes = nodeList.filter((n: any) => 
-        n.lat !== undefined && n.lon !== undefined && 
-        isFinite(Number(n.lat)) && isFinite(Number(n.lon))
-    );
+    const mappedNodes = nodeList.map((n: any, index: number) => {
+		let lat = Number(n.lat !== undefined ? n.lat : (n.latitude !== undefined ? n.latitude : 0));
+		let lon = Number(n.lon !== undefined ? n.lon : (n.lng !== undefined ? n.lng : (n.longitude !== undefined ? n.longitude : 0)));
+		
+		if (!isFinite(lat)) lat = 0;
+		if (!isFinite(lon)) lon = 0;
+		
+		if (lat === 0 && lon === 0) {
+			// Staggered golden spiral around Budapest, Hungary (47.4979, 19.0402)
+			const angle = index * 137.5 * (Math.PI / 180);
+			const radius = 0.2 * Math.sqrt(index + 1);
+			lat = 47.4979 + Math.cos(angle) * radius;
+			lon = 19.0402 + Math.sin(angle) * radius;
+		}
+		
+		return {
+			...n,
+			lat,
+			lon
+		};
+	});
 
     useEffect(() => {
         if (typeof window === "undefined") return;

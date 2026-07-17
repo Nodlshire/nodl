@@ -27,7 +27,7 @@ type DebugSessionResponse struct {
 // Authenticate attempts to log in against the CMD API login endpoint.
 // It stores the resulting session token in the local state.
 func Authenticate(apiBase, email, password string, state *platform.State) error {
-	url := fmt.Sprintf("%s/api/cmd/auth/login", strings.TrimRight(apiBase, "/"))
+	url := fmt.Sprintf("%s/api/v1/auth/login", strings.TrimRight(apiBase, "/"))
 
 	reqBody := DebugSessionRequest{
 		Email:    email,

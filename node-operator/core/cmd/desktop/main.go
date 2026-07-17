@@ -48,7 +48,7 @@ func startNodlCore() {
 		log.Println("Warning: NODL_DEVICE_TOKEN not set, joining mesh might fail.")
 	}
 
-	apiBase := "http://localhost:3000"
+	apiBase := "https://api.wnode.one"
 	go device.StartEpochSyncLoop(apiBase, state)
 
 	// Keep core running...

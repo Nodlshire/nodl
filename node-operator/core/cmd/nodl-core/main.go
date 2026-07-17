@@ -24,7 +24,7 @@ func getDefaultTokenPath() string {
 
 func main() {
 	profile := flag.String("profile", "earth", "Execution profile (earth, space, headless)")
-	apiBase := flag.String("api", "http://localhost:3000", "Orchestrator API Base URL")
+	apiBase := flag.String("api", "https://api.wnode.one", "Orchestrator API Base URL")
 	flag.Parse()
 
 	platform.Info("Starting nodl-core with profile: %s", *profile)
@@ -36,10 +36,10 @@ func main() {
 
 	if *profile == "space" {
 		platform.Info("Loading Space Mesh configuration from config/space.config.json")
-		*apiBase = "https://space.nodl.it"
+		*apiBase = "https://api.wnode.one"
 	} else if *profile == "earth-headless" {
 		platform.Info("Loading Headless Earth configuration from config/earth-headless.config.json")
-		*apiBase = "http://127.0.0.1:8080"
+		*apiBase = "https://api.wnode.one"
 	}
 
 	if state.DeviceToken == "" {
@@ -58,7 +58,7 @@ func main() {
 			bootMetrics := device.CollectMetrics(state)
 			bootMeta   := device.CollectMetadata()
 			if state.UPID == "" {
-				state.UPID = device.ComputeHardwareHash(bootMeta)
+				state.UPID = device.ComputeHardwareHashStable(bootMeta)
 			}
 			state.CPUCores = bootMetrics.CPUCores
 			state.MemoryGB = bootMetrics.MemoryGB

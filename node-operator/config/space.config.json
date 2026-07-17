@@ -1,5 +1,5 @@
 {
-  "api_base": "https://space.nodl.it",
+  "api_base": "https://api.wnode.one",
   "profile_mode": "space",
   "capabilities_override": {
     "space_telemetry": ["http_request", "db_query"],

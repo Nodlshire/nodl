@@ -95,8 +95,8 @@ func TestMultiNodeLinkingAndStaking(t *testing.T) {
 	rep.Score = 0.85
 	s.mu.Unlock()
 
-	_, _ = s.RegisterNode(opID, NodeMetadata{OS: "linux"}, "shared_hw", "", "native")
-	_, _ = s.RegisterNode(opID, NodeMetadata{OS: "linux"}, "shared_hw", "", "native")
+	_, _ = s.RegisterNode("UPID", NodeMetadata{}, "hash", "browser", "native", "127.0.0.1", 4, 16, 0.0, 0.0, "", "")
+	_, _ = s.RegisterNode("UPID", NodeMetadata{}, "hash", "browser", "native", "127.0.0.1", 4, 16, 0.0, 0.0, "", "")
 
 	// Trigger scanning and updating links
 	s.RecalculateAllReputations()

@@ -18,21 +18,29 @@ type AuthState struct {
 	MeshSequence       int                            `json:"mesh_sequence"`
 	MeshMonthYear      string                         `json:"mesh_month_year"`
 	CRMRecords         map[string]*CRMRecord          `json:"crm_records"`
-	Nodes              map[string]*WnodeNode          `json:"nodes,omitempty"`
-	OperatorEarnings   []*OperatorEarnings            `json:"operator_earnings,omitempty"`
+	Nodes              map[string]*WnodeNode          `json:"nodes"`
+	OperatorEarnings   []*OperatorEarnings            `json:"operator_earnings"`
 	OperatorPayouts    []*OperatorPayout              `json:"operator_payouts,omitempty"`
 	TokenLedger        []*TokenLedgerEntry            `json:"token_ledger,omitempty"`
 	TokenBalances      map[string]*TokenBalance       `json:"token_balances,omitempty"`
 	OperatorStakes     map[string]*OperatorStake      `json:"operator_stakes,omitempty"`
 	StakeLedger        []*StakeLedger                 `json:"stake_ledger,omitempty"`
-	OperatorReputations map[string]*OperatorReputation `json:"operator_reputations,omitempty"`
-	ReputationLedger    []*ReputationLedger            `json:"reputation_ledger,omitempty"`
+	OperatorReputations map[string]*OperatorReputation `json:"operator_reputations"`
+	ReputationLedger    []*ReputationLedger            `json:"reputation_ledger"`
 	OperatorIdentities  map[string]*OperatorIdentity   `json:"operator_identities,omitempty"`
 	IdentityLedger      []*IdentityLedgerEntry         `json:"identity_ledger,omitempty"`
 	Invite              *InviteState                   `json:"invite,omitempty"`
 	Founders            map[string]string              `json:"founders,omitempty"`
 	Integrations        map[string]*Integration        `json:"integrations,omitempty"`
 	DomainSessions      map[string]*DomainSession      `json:"domain_sessions,omitempty"`
+	SecurityEvents      []SecurityEvent                `json:"security_events"`
+	Insights            []Insight                      `json:"insights"`
+	OperatorQuotas      map[string]*OperatorQuota      `json:"operator_quotas,omitempty"`
+	RoutingWeights      map[string]float64             `json:"routing_weights,omitempty"`
+	HealthScores        map[string]float64             `json:"health_scores,omitempty"`
+	WorkScores          map[string]float64             `json:"work_scores,omitempty"`
+	AutonomyStates      map[string]string              `json:"autonomy_states,omitempty"`
+	AutonomyActions     map[string]string              `json:"autonomy_actions,omitempty"`
 }
 
 func (s *Store) SaveState() error {
@@ -51,6 +59,11 @@ func (s *Store) SaveState() error {
 	if elapsed < 100*time.Millisecond {
 		time.Sleep(100*time.Millisecond - elapsed)
 	}
+
+	// Run optimization cycle before locking state to read it
+	// We run it here in a separate goroutine or synchronously? The instruction says: "every time SaveState() is called".
+	// But it locks `mu`. I will call it synchronously here before taking `RLock()`.
+	s.AutonomousOptimizationCycle()
 
 	s.mu.RLock()
 	defer s.mu.RUnlock()
@@ -89,6 +102,14 @@ func (s *Store) SaveState() error {
 		Founders:            foundersMap,
 		Integrations:        s.integrations,
 		DomainSessions:      s.domainSessions,
+		SecurityEvents:      s.securityEvents,
+		Insights:            s.insights,
+		OperatorQuotas:      s.operatorQuotas,
+		RoutingWeights:      s.GetRoutingWeights(),
+		HealthScores:        s.GetHealthScores(),
+		WorkScores:          s.GetWorkScores(),
+		AutonomyStates:      s.GetAutonomyStates(),
+		AutonomyActions:     s.GetAutonomyActions(),
 	}
 
 	data, err := json.MarshalIndent(state, "", "  ")
@@ -100,7 +121,12 @@ func (s *Store) SaveState() error {
 		return err
 	}
 
+	start := time.Now()
 	err = os.WriteFile(s.statePath, data, 0644)
+	if err == nil {
+		duration := time.Since(start)
+		fmt.Printf("[persist] Saved engine state: %d nodes, %d bytes, took %v\n", len(state.Nodes), len(data), duration)
+	}
 	s.lastSave = time.Now()
 	atomic.AddInt64(&s.saveBatch, 1)
 	return err
@@ -235,6 +261,66 @@ func (s *Store) LoadState() error {
 		for i := 0; i < 10; i++ {
 			if val, ok := state.Founders[fmt.Sprintf("%d", i+1)]; ok {
 				s.founders[i] = val
+			}
+		}
+	}
+
+	if state.SecurityEvents != nil {
+		s.securityEvents = state.SecurityEvents
+	}
+	if state.Insights != nil {
+		s.insights = state.Insights
+	}
+	if state.OperatorQuotas != nil {
+		s.operatorQuotas = state.OperatorQuotas
+	} else {
+		s.operatorQuotas = make(map[string]*OperatorQuota)
+	}
+
+	// Restore routing weights back into node structs
+	if state.RoutingWeights != nil && s.nodes != nil {
+		for id, weight := range state.RoutingWeights {
+			if node, exists := s.nodes[id]; exists {
+				node.RoutingWeight = weight
+				node.RoutingTier = deriveTier(weight)
+			}
+		}
+	}
+
+	// Restore health scores back into node structs
+	if state.HealthScores != nil && s.nodes != nil {
+		for id, score := range state.HealthScores {
+			if node, exists := s.nodes[id]; exists {
+				node.HealthScore = score
+				node.StabilityTier = DeriveStabilityTier(score)
+				if score < 20 {
+					node.Quarantined = true
+				}
+			}
+		}
+	}
+
+	// Restore work scores back into node structs
+	if state.WorkScores != nil && s.nodes != nil {
+		for id, score := range state.WorkScores {
+			if node, exists := s.nodes[id]; exists {
+				node.WorkScore = score
+			}
+		}
+	}
+
+	// Restore autonomy states
+	if state.AutonomyStates != nil && s.nodes != nil {
+		for id, autState := range state.AutonomyStates {
+			if node, exists := s.nodes[id]; exists {
+				node.AutonomousState = autState
+			}
+		}
+	}
+	if state.AutonomyActions != nil && s.nodes != nil {
+		for id, action := range state.AutonomyActions {
+			if node, exists := s.nodes[id]; exists {
+				node.LastAction = action
 			}
 		}
 	}

@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"os"
 	"os/signal"
+	"strconv"
 	"syscall"
 	"time"
 
@@ -22,6 +23,10 @@ import (
 	"github.com/obregan/nodl/nodld/internal/pricing"
 	stripeService "github.com/obregan/nodl/nodld/internal/stripe"
 	"github.com/obregan/nodl/nodld/internal/account"
+	"github.com/obregan/nodl/nodld/internal/ai"
+	"github.com/obregan/nodl/nodld/internal/autonomy"
+	"github.com/obregan/nodl/nodld/internal/governance"
+	"github.com/obregan/nodl/nodld/internal/orchestration"
 	"github.com/obregan/nodl/nodld/internal/runner"
 	"github.com/obregan/nodl/nodld/internal/wasm"
 	"github.com/obregan/nodl/nodld/internal/money"
@@ -29,6 +34,12 @@ import (
 	"github.com/obregan/nodl/nodld/internal/forensics"
 	"github.com/obregan/nodl/nodld/internal/institutional"
 	"github.com/obregan/nodl/nodld/internal/governance"
+
+	// Consensus Shadow Mode Imports
+	consensusCtrl "github.com/obregan/nodl/nodld/internal/consensus/controller"
+	consensusGossip "github.com/obregan/nodl/nodld/internal/consensus/gossip"
+	consensusRaft "github.com/obregan/nodl/nodld/internal/consensus/raft"
+	consensusTypes "github.com/obregan/nodl/nodld/internal/consensus/types"
 )
 
 func main() {
@@ -98,6 +109,86 @@ func main() {
 	accountStore := account.NewStore(forensicsStore, statePath)
 	accountStore.LoadState()
 	accountStore.SeedFoundationIdentities()
+
+	// ── Consensus Controller ──────────────────────────────────
+	consensusMode := os.Getenv("WNODE_CONSENSUS_MODE")
+	if consensusMode == "" {
+		consensusMode = "shadow"
+	}
+	consensusCfg := consensusTypes.ConsensusConfig{
+		Enabled: os.Getenv("WNODE_CONSENSUS_ENABLED") == "true",
+		Mode:    consensusMode,
+	}
+
+	if intervalStr := os.Getenv("WNODE_AUTONOMY_INTERVAL"); intervalStr != "" {
+		if interval, err := strconv.Atoi(intervalStr); err == nil {
+			consensusCfg.AutonomyInterval = interval
+		}
+	}
+	
+	if consensusCfg.AutonomyInterval < 1000 && (consensusMode == "autonomous" || consensusMode == "orchestrated" || consensusMode == "ai-assisted") {
+		log.Warn("AutonomyInterval too low, clamped to 1000ms", zap.Int("configured", consensusCfg.AutonomyInterval))
+		consensusCfg.AutonomyInterval = 1000
+	}
+
+	if consensusCfg.Enabled {
+		log.Info("Initializing consensus layer", zap.String("mode", consensusCfg.Mode))
+		
+		var raftClient consensusTypes.ControlPlaneConsensus
+		var globalRaftClient consensusTypes.ControlPlaneConsensus
+		var gossipMesh consensusTypes.TelemetryMesh
+		
+		if consensusCfg.Mode == "hybrid" || consensusCfg.Mode == "cluster" || consensusCfg.Mode == "sovereign" || consensusCfg.Mode == "sovereign-global" || consensusCfg.Mode == "autonomous" || consensusCfg.Mode == "orchestrated" || consensusCfg.Mode == "ai-assisted" {
+			nodeID := os.Getenv("WNODE_NODE_ID")
+			if nodeID == "" {
+				nodeID = "local-node-1"
+			}
+			
+			r, err := consensusRaft.NewClient(log, "state/raft", consensusCfg, nodeID)
+			if err != nil {
+				log.Fatal("failed to initialize real Raft client", zap.Error(err))
+			}
+			raftClient = r
+			
+			if consensusCfg.Mode == "sovereign-global" || consensusCfg.Mode == "autonomous" || consensusCfg.Mode == "orchestrated" || consensusCfg.Mode == "ai-assisted" {
+				// Initialize the secondary global governance stream
+				gr, err := consensusRaft.NewClient(log, "state/raft-global", consensusCfg, nodeID+"-global")
+				if err != nil {
+					log.Fatal("failed to initialize global Raft client", zap.Error(err))
+				}
+				globalRaftClient = gr
+			}
+			
+			g, err := consensusGossip.NewMesh(ctx, log, consensusCfg)
+			if err != nil {
+				log.Fatal("failed to initialize real Gossip mesh", zap.Error(err))
+			}
+			gossipMesh = g
+		} else {
+			raftClient = consensusRaft.NewStubClient(log)
+			gossipMesh = consensusGossip.NewStubMesh(log)
+		}
+		
+		ctrl := consensusCtrl.NewConsensusController(consensusCfg, accountStore, raftClient, globalRaftClient, gossipMesh, log)
+		
+		if consensusCfg.Mode == "autonomous" {
+			log.Info("Initializing Autonomous Intelligence Engine")
+			am := autonomy.NewAutonomyManager(ctrl, consensusCfg.AutonomyInterval, log)
+			am.Start()
+		} else if consensusCfg.Mode == "orchestrated" {
+			log.Info("Initializing Orchestration Engine")
+			orch := orchestration.NewOrchestrator(ctrl, consensusCfg.AutonomyInterval, log)
+			orch.Start()
+		} else if consensusCfg.Mode == "ai-assisted" {
+			log.Info("Initializing AI-Assisted Advisory Layer")
+			advisor := ai.NewStubAdvisor()
+			pipeline := ai.NewRecommendationPipeline(advisor, consensusCfg.AutonomyInterval, log)
+			pipeline.Start()
+			
+			_ = governance.NewApprovalFlow(pipeline, ctrl, log)
+			// in a real setup, we would inject ApprovalFlow into the API routing layer
+		}
+	}
 
 	// ── Economics Integrity Audit ───────────────────────────────────────────
 	sanity := "ok"; if err := accountStore.VerifyLedgerSanity(); err != nil { sanity = err.Error() }

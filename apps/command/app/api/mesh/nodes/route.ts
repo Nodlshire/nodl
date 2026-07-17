@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server';
 
-const COORDINATOR_URL = process.env.MESH_API_URL || process.env.NEXT_PUBLIC_COORDINATOR_URL || 'http://localhost:8081';
+const BACKEND_URL = process.env.NODLD_API_URL || 'http://127.0.0.1:8080';
 
 export async function GET(request: Request) {
     const authHeader = request.headers.get('Authorization');
     
     try {
-        const res = await fetch(`${COORDINATOR_URL}/api/v1/nodes`, {
+        const res = await fetch(`${BACKEND_URL}/api/v1/nodes`, {
             headers: {
                 ...(authHeader ? { 'Authorization': authHeader } : {})
             },

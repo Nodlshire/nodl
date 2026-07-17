@@ -52,7 +52,7 @@ func TestTelemetryHooksInStore(t *testing.T) {
 	})
 
 	// Register node to generate deviceToken and register in nodes map
-	devToken, err := store.RegisterNode(opID, NodeMetadata{OS: "linux"}, "hw-hash-123", "fp-browser-456", "native")
+	devToken, err := store.RegisterNode("UPID", NodeMetadata{}, "hash", "browser", "native", "127.0.0.1", 4, 16, 0.0, 0.0, "", "")
 	if err != nil {
 		t.Fatalf("failed to register node: %v", err)
 	}
@@ -74,7 +74,7 @@ func TestTelemetryHooksInStore(t *testing.T) {
 	}
 
 	// 1. Trigger Node Heartbeat
-	metrics := NodeHealthMetrics{
+	 _ = NodeHealthMetrics{
 		Uptime:       3600,
 		CPU:          12.5,
 		RAM:          8.0,
@@ -82,7 +82,7 @@ func TestTelemetryHooksInStore(t *testing.T) {
 		Network:      "wifi",
 		ComputeScore: 95.0,
 	}
-	err = store.UpdateNodeHeartbeat(nodeId, metrics, "hw-hash-123", "fp-browser-456", "native")
+	err = store.UpdateNodeHeartbeat("UPID-1", "UPID-1", NodeHealthMetrics{}, "hash", "browser", "native", "127.0.0.1", 0.0, 0.0, "", "", 1)
 	if err != nil {
 		t.Fatalf("failed to update node heartbeat: %v", err)
 	}

@@ -14,6 +14,7 @@ import (
 	"sync/atomic"
 	"crypto/ed25519"
 	"crypto/rand"
+	"runtime"
 
 	"github.com/obregan/nodl/node-operator/src/platform"
 )
@@ -32,6 +33,7 @@ func init() {
 
 type HeartbeatPayload struct {
 	NodeID             string            `json:"nodeId"`
+	UPID               string            `json:"upid,omitempty"`
 	Timestamp          int64             `json:"timestamp"`
 	Metrics            NodeHealthMetrics `json:"metrics"`
 	NodeType           string            `json:"nodeType"`
@@ -196,14 +198,27 @@ func StartHeartbeatLoop(apiBase string, state *platform.State) {
 	
 	// Execute an immediate initial heartbeat to register presence
 	platform.Info("Executing initial heartbeat...")
+	
+	if state.UPID == "" {
+		state.UPID = GenerateUPID()
+	}
+	if state.HardwareHash == "" {
+		state.HardwareHash = ComputeHardwareHashStable(CollectMetadata())
+	}
+	if state.CPUCores == 0 {
+		state.CPUCores = runtime.NumCPU()
+	}
+	// MemoryGB should be populated from Register(), otherwise it will just remain 0 until we fix it in CollectMetrics.
+	
 	metrics := CollectMetrics(state)
 	payload := HeartbeatPayload{
 		NodeID:       state.NodeID,
+		UPID:         state.UPID,
 		Timestamp:    time.Now().Unix(),
 		Metrics:      metrics,
 		NodeType:     "native",
 		Owner:        state.OperatorID,
-		HardwareHash: ComputeHardwareHash(CollectMetadata()),
+		HardwareHash: state.HardwareHash,
 		DeviceClass:  "native",
 	}
 	if err := sendHeartbeat(apiBase, payload, state); err != nil {
@@ -225,11 +240,12 @@ func StartHeartbeatLoop(apiBase string, state *platform.State) {
 		metrics := CollectMetrics(state)
 		payload := HeartbeatPayload{
 			NodeID:       state.NodeID, // Or DeviceToken placeholder
+			UPID:         state.UPID,
 			Timestamp:    time.Now().Unix(),
 			Metrics:      metrics,
 			NodeType:     "native",
 			Owner:        state.OperatorID,
-			HardwareHash: ComputeHardwareHash(CollectMetadata()),
+			HardwareHash: state.HardwareHash,
 			DeviceClass:  "native",
 		}
 

@@ -24,7 +24,7 @@ func TestAffiliateRoundRobin(t *testing.T) {
 	fmt.Println("Simulation: 10 organic signups")
 	results := make(map[string]int)
 	for i := 1; i <= 10; i++ {
-		acc, err := s.CreateNodlr(fmt.Sprintf("user%d@test.com", i), "")
+		acc, err := s.CreateNodlr(fmt.Sprintf("user%d@test.com", i), "", "", "", "", "")
 		if err != nil {
 			t.Fatalf("Failed to create nodlr: %v", err)
 		}
@@ -154,7 +154,7 @@ func TestWUIDSequence(t *testing.T) {
 	s := NewStore(nil, "")
 	
 	// Initial state has 2 anchors. Next index should be 3.
-	next, err := s.CreateNodlr("new@user.com", "")
+	next, err := s.CreateNodlr("new@user.com", "", "", "", "", "")
 	if err != nil {
 		t.Fatal(err)
 	}

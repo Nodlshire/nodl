@@ -8,10 +8,21 @@ const MESH_API_BASE = '/api/mesh';
 
 export interface MeshNode {
     nodeId: string;
-    status: "online" | "offline";
+    id: string;
+    upid: string;
+    status: "active" | "offline" | "online";
     lastHeartbeat: number;
+    lastHeartbeatIso: string;
+    lastSeen: string;
     load: number;
     capacity?: number;
+    trustScore: number;
+    tamperCount: number;
+    replayCount: number;
+    impersonationCount: number;
+    geoAnomalyCount: number;
+    lat: number;
+    lon: number;
 }
 
 export interface MeshTask {

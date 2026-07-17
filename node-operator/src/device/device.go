@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"net"
 	"net/http"
 	"os"
 	"os/exec"
@@ -32,6 +33,13 @@ type RegisterRequest struct {
 	HardwareHash       string       `json:"hardwareHash,omitempty"`
 	BrowserFingerprint string       `json:"browserFingerprint,omitempty"`
 	DeviceClass        string       `json:"deviceClass,omitempty"`
+	UPID               string       `json:"upid,omitempty"`
+	CPUCores           int          `json:"cpuCores,omitempty"`
+	MemoryGB           int          `json:"memoryGb,omitempty"`
+	Lat                float64      `json:"lat,omitempty"`
+	Lon                float64      `json:"lon,omitempty"`
+	Region             string       `json:"region,omitempty"`
+	Tier               string       `json:"tier,omitempty"`
 }
 
 type RegisterResponse struct {
@@ -40,14 +48,85 @@ type RegisterResponse struct {
 	Error       string `json:"error,omitempty"`
 }
 
-// ComputeHardwareHash creates a stable hardware SHA256 fingerprint.
-func ComputeHardwareHash(meta NodeMetadata) string {
+// ComputeHardwareHashStable creates a stable hardware SHA256 fingerprint.
+func ComputeHardwareHashStable(meta NodeMetadata) string {
 	h := sha256.New()
 	h.Write([]byte(meta.OS))
 	h.Write([]byte(meta.CPU))
-	h.Write([]byte(meta.RAM))
-	h.Write([]byte(meta.Hostname))
+	// Add MAC address if possible
+	interfaces, err := net.Interfaces()
+	if err == nil {
+		for _, i := range interfaces {
+			if i.Flags&net.FlagUp != 0 && i.Flags&net.FlagLoopback == 0 && len(i.HardwareAddr) > 0 {
+				h.Write([]byte(i.HardwareAddr.String()))
+				break
+			}
+		}
+	}
 	return hex.EncodeToString(h.Sum(nil))
+}
+
+// GenerateUPID generates a stable hardware identifier across reboots.
+func GenerateUPID() string {
+	var parts []string
+	
+	// Primary: MAC address of first non-loopback interface
+	interfaces, err := net.Interfaces()
+	if err == nil {
+		for _, i := range interfaces {
+			if i.Flags&net.FlagUp != 0 && i.Flags&net.FlagLoopback == 0 && len(i.HardwareAddr) > 0 {
+				parts = append(parts, i.HardwareAddr.String())
+				break
+			}
+		}
+	}
+	
+	// Secondary: CPU model
+	if runtime.GOOS == "linux" {
+		out, err := exec.Command("cat", "/proc/cpuinfo").Output()
+		if err == nil {
+			for _, line := range strings.Split(string(out), "\n") {
+				if strings.HasPrefix(line, "model name") {
+					parts = append(parts, strings.TrimSpace(strings.Split(line, ":")[1]))
+					break
+				}
+			}
+		}
+	} else if runtime.GOOS == "darwin" {
+		out, err := exec.Command("sysctl", "-n", "machdep.cpu.brand_string").Output()
+		if err == nil {
+			parts = append(parts, strings.TrimSpace(string(out)))
+		}
+	}
+	
+	idString := strings.Join(parts, "|")
+	if idString == "" {
+		idString = GenerateUUID() // Fallback
+	}
+	
+	h := sha256.Sum256([]byte(idString))
+	return hex.EncodeToString(h[:])
+}
+
+// DetectGeo attempts to locate the node geographically.
+func DetectGeo() (float64, float64) {
+	client := &http.Client{Timeout: 5 * time.Second}
+	resp, err := client.Get("http://ip-api.com/json/")
+	if err != nil {
+		platform.Warn("DetectGeo HTTP error: %v", err)
+		return 0, 0
+	}
+	defer resp.Body.Close()
+	
+	var geo struct {
+		Lat float64 `json:"lat"`
+		Lon float64 `json:"lon"`
+	}
+	if err := json.NewDecoder(resp.Body).Decode(&geo); err != nil {
+		platform.Warn("DetectGeo decode error: %v", err)
+		return 0, 0
+	}
+	return geo.Lat, geo.Lon
 }
 
 // GenerateUUID generates a pseudo-uuid (v4-like) for the device without external dependencies.
@@ -138,10 +217,33 @@ func Register(apiBase string, state *platform.State) error {
 		state.DeviceUUID = GenerateUUID()
 	}
 
+	if state.UPID == "" {
+		state.UPID = GenerateUPID()
+	}
+	lat, lon := DetectGeo()
+	state.Latitude = lat
+	state.Longitude = lon
+	
+	state.CPUCores = runtime.NumCPU()
+	var ramGB float64
+	fmt.Sscanf(meta.RAM, "%f GB", &ramGB)
+	state.MemoryGB = int(ramGB)
+
+	if state.HardwareHash == "" {
+		state.HardwareHash = ComputeHardwareHashStable(meta)
+	}
+
 	reqBody := RegisterRequest{
 		Metadata:     meta,
-		HardwareHash: ComputeHardwareHash(meta),
+		HardwareHash: state.HardwareHash,
 		DeviceClass:  "native",
+		UPID:         state.UPID,
+		CPUCores:     state.CPUCores,
+		MemoryGB:     state.MemoryGB,
+		Lat:          state.Latitude,
+		Lon:          state.Longitude,
+		Region:       state.Region,
+		Tier:         state.Tier,
 	}
 
 	jsonData, err := json.Marshal(reqBody)
@@ -149,7 +251,7 @@ func Register(apiBase string, state *platform.State) error {
 		return fmt.Errorf("failed to marshal request: %w", err)
 	}
 
-	url := fmt.Sprintf("%s/api/cmd/node/register", strings.TrimRight(apiBase, "/"))
+	url := fmt.Sprintf("%s/api/v1/nodes/register", strings.TrimRight(apiBase, "/"))
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
 	if err != nil {
 		return fmt.Errorf("failed to create request: %w", err)

@@ -1,6 +1,7 @@
 package account
 
 import (
+	"fmt"
 	"math"
 	"sort"
 	"time"
@@ -20,7 +21,12 @@ type OperatorReputation struct {
 	ComputeScore    float64   `json:"computeScore"`
 	Tier            int       `json:"tier"`
 	LongevityDays   int       `json:"longevityDays"`
-	UpdatedAt       time.Time `json:"updatedAt"`
+	TrustScore         float64   `json:"trustScore"`
+	TamperCount        int       `json:"tamperCount"`
+	ReplayCount        int       `json:"replayCount"`
+	ImpersonationCount int       `json:"impersonationCount"`
+	GeoAnomalyCount    int       `json:"geoAnomalyCount"`
+	UpdatedAt          time.Time `json:"updatedAt"`
 
 	// Auxiliary metrics for rates
 	AssignedShards  int `json:"assignedShards"`
@@ -239,7 +245,7 @@ func (s *Store) RecalculateReputationLocked(operatorID string) {
 	// Update node tiers
 	for _, n := range s.nodes {
 		if n.UserID == operatorID {
-			n.Tier = newTier
+			n.Tier = fmt.Sprintf("%d", newTier)
 		}
 	}
 

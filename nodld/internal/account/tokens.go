@@ -140,8 +140,9 @@ func (s *Store) GetTokenSummary(operatorID string) map[string]interface{} {
 				totalUptime += float64(n.Metrics.Uptime)
 				totalComputeScore += n.Metrics.ComputeScore
 			}
-			if n.Tier > maxTier {
-				maxTier = n.Tier
+			tierInt := getTierInt(n.Tier)
+			if tierInt > maxTier {
+				maxTier = tierInt
 			}
 		}
 	}

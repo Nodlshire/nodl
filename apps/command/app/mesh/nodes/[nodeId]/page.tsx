@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { getNode, listTasks, MeshNode, MeshTask } from "../../../lib/mesh-client";
 import { MeshHeader } from "../../components/MeshHeader";
-import { Server, Activity, Clock, Shield, History, Loader2, ChevronRight } from "lucide-react";
+import { Server, Activity, Clock, Shield, History, Loader2, ChevronRight, Brain } from "lucide-react";
 import Link from "next/link";
 
 export default function NodeDetailPage() {
@@ -17,6 +17,7 @@ export default function NodeDetailPage() {
     const { nodeId } = params;
     const [node, setNode] = useState<MeshNode | null>(null);
     const [tasks, setTasks] = useState<MeshTask[]>([]);
+    const [insights, setInsights] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -25,10 +26,14 @@ export default function NodeDetailPage() {
 
         Promise.all([
             getNode(nodeId),
-            listTasks()
-        ]).then(([nodeData, allTasks]) => {
+            listTasks(),
+            fetch('/api/mesh/insights', {
+                headers: { 'Authorization': `Bearer ${localStorage.getItem('nodl_jwt') || ''}` }
+            }).then(res => res.json()).catch(() => [])
+        ]).then(([nodeData, allTasks, allInsights]) => {
             setNode(nodeData);
             setTasks(allTasks.filter(t => t.nodeId === nodeId));
+            setInsights((allInsights || []).filter((i: any) => i.nodeId === nodeId || i.upid === nodeData.upid));
         }).catch(err => {
             setError(err.message);
         }).finally(() => {
@@ -59,7 +64,7 @@ export default function NodeDetailPage() {
 
             <div className="flex items-center justify-between bg-white/[0.02] border border-wnode-border-neutral p-4 rounded-lg">
                 <div className="flex items-center gap-3">
-                    <span className={`w-3 h-3 rounded-full ${node.status === "online" ? "bg-emerald-500 animate-pulse" : "bg-red-500"}`} />
+                    <span className={`w-3 h-3 rounded-full ${node.status === "active" ? "bg-emerald-500 animate-pulse" : "bg-red-500"}`} />
                     <span className="text-sm font-bold text-white uppercase tracking-widest">{node.status}</span>
                 </div>
                 <Link 
@@ -87,9 +92,87 @@ export default function NodeDetailPage() {
                 <div className="bg-white/[0.03] border border-wnode-border-neutral p-6 rounded-lg space-y-2">
                     <div className="text-xs font-medium text-white/40 uppercase tracking-wider">Last Heartbeat</div>
                     <div className="text-2xl font-bold text-white font-mono text-sm">
-                        {new Date(node.lastHeartbeat).toLocaleString()}
+                        {node.lastHeartbeatIso ? new Date(node.lastHeartbeatIso).toLocaleString() : new Date(node.lastHeartbeat).toLocaleString()}
                     </div>
-                    <div className="text-xs text-white/60">Last seen</div>
+                    <div className="text-xs text-white/60">Last Seen: {node.lastSeen ? new Date(node.lastSeen).toLocaleString() : "N/A"}</div>
+                </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="bg-white/[0.03] border border-wnode-border-neutral p-6 rounded-lg space-y-2">
+                    <div className="text-xs font-medium text-white/40 uppercase tracking-wider">Health Score</div>
+                    <div className="text-2xl font-bold text-white">{(node.healthScore || 0).toFixed(1)}</div>
+                </div>
+                <div className="bg-white/[0.03] border border-wnode-border-neutral p-6 rounded-lg space-y-2">
+                    <div className="text-xs font-medium text-white/40 uppercase tracking-wider">Stability Tier</div>
+                    <div className="text-2xl font-bold capitalize text-white">{node.stabilityTier || "Unknown"}</div>
+                </div>
+                <div className={`border p-6 rounded-lg space-y-2 ${node.quarantined ? 'bg-red-950/20 border-red-500/30' : 'bg-white/[0.03] border-wnode-border-neutral'}`}>
+                    <div className={`text-xs font-medium uppercase tracking-wider ${node.quarantined ? 'text-red-400' : 'text-white/40'}`}>Quarantine Status</div>
+                    <div className={`text-xl font-bold uppercase ${node.quarantined ? 'text-red-400' : 'text-green-400'}`}>{node.quarantined ? 'Quarantined' : 'Clear'}</div>
+                </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div className="bg-white/[0.03] border border-wnode-border-neutral p-6 rounded-lg space-y-2">
+                    <div className="text-xs font-medium text-white/40 uppercase tracking-wider">Compute Score</div>
+                    <div className="text-2xl font-bold text-white">{(node.computeScore || 0).toFixed(1)}</div>
+                </div>
+                <div className="bg-white/[0.03] border border-wnode-border-neutral p-6 rounded-lg space-y-2">
+                    <div className="text-xs font-medium text-white/40 uppercase tracking-wider">Load Factor</div>
+                    <div className="text-2xl font-bold text-white">{(node.loadFactor || 0).toFixed(1)}%</div>
+                </div>
+                <div className="bg-white/[0.03] border border-wnode-border-neutral p-6 rounded-lg space-y-2">
+                    <div className="text-xs font-medium text-white/40 uppercase tracking-wider">Load Tier</div>
+                    <div className="text-2xl font-bold capitalize text-white">{node.loadTier || "Unknown"}</div>
+                </div>
+                <div className="bg-white/[0.03] border border-wnode-border-neutral p-6 rounded-lg space-y-2 border-l-4 border-l-cyan-400">
+                    <div className="text-xs font-medium text-cyan-400 uppercase tracking-wider">Work Score</div>
+                    <div className="text-2xl font-bold text-white">{(node.workScore || 0).toFixed(1)}</div>
+                </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="bg-white/[0.03] border border-wnode-border-neutral p-6 rounded-lg space-y-2">
+                    <div className="text-xs font-medium text-white/40 uppercase tracking-wider">Autonomous State</div>
+                    <div className="text-2xl font-bold capitalize text-white">{node.autonomousState || "normal"}</div>
+                </div>
+                <div className="bg-white/[0.03] border border-wnode-border-neutral p-6 rounded-lg space-y-2">
+                    <div className="text-xs font-medium text-white/40 uppercase tracking-wider">Last Action</div>
+                    <div className="text-lg font-bold text-white">{node.lastAction || "none"}</div>
+                </div>
+                <div className="bg-white/[0.03] border border-wnode-border-neutral p-6 rounded-lg space-y-2">
+                    <div className="text-xs font-medium text-white/40 uppercase tracking-wider">Action Time</div>
+                    <div className="text-lg font-bold text-white font-mono text-sm">{node.lastActionAt ? new Date(node.lastActionAt).toLocaleString() : "N/A"}</div>
+                </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+                <div className={`border p-6 rounded-lg space-y-2 ${
+                    (node.trustScore || 100) > 80 ? "bg-green-400/5 border-green-400/20" :
+                    (node.trustScore || 100) >= 50 ? "bg-yellow-400/5 border-yellow-400/20" :
+                    "bg-red-400/5 border-red-400/20"
+                }`}>
+                    <div className="text-xs font-medium text-white/40 uppercase tracking-wider flex items-center gap-2">
+                        <Shield className="w-4 h-4" /> Trust Score
+                    </div>
+                    <div className="text-3xl font-bold text-white">{Math.floor(node.trustScore || 100)}</div>
+                </div>
+                <div className="bg-white/[0.03] border border-wnode-border-neutral p-6 rounded-lg space-y-2">
+                    <div className="text-xs font-medium text-white/40 uppercase tracking-wider">Tampers</div>
+                    <div className="text-2xl font-bold text-white">{node.tamperCount || 0}</div>
+                </div>
+                <div className="bg-white/[0.03] border border-wnode-border-neutral p-6 rounded-lg space-y-2">
+                    <div className="text-xs font-medium text-white/40 uppercase tracking-wider">Replays</div>
+                    <div className="text-2xl font-bold text-white">{node.replayCount || 0}</div>
+                </div>
+                <div className="bg-white/[0.03] border border-wnode-border-neutral p-6 rounded-lg space-y-2">
+                    <div className="text-xs font-medium text-white/40 uppercase tracking-wider">Spoofs</div>
+                    <div className="text-2xl font-bold text-white">{node.impersonationCount || 0}</div>
+                </div>
+                <div className="bg-white/[0.03] border border-wnode-border-neutral p-6 rounded-lg space-y-2">
+                    <div className="text-xs font-medium text-white/40 uppercase tracking-wider">Geo Anomalies</div>
+                    <div className="text-2xl font-bold text-white">{node.geoAnomalyCount || 0}</div>
                 </div>
             </div>
 
@@ -128,6 +211,46 @@ export default function NodeDetailPage() {
                             {tasks.length === 0 && (
                                 <tr>
                                     <td colSpan={4} className="px-6 py-8 text-center text-white/40 italic">No tasks currently assigned to this node.</td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div className="space-y-4">
+                <h3 className="text-lg font-medium text-white flex items-center gap-2">
+                    <Brain className="w-5 h-5 text-white/40" />
+                    Node Insights
+                </h3>
+                <div className="overflow-x-auto border border-wnode-border-neutral rounded-lg">
+                    <table className="w-full text-left text-sm">
+                        <thead className="bg-white/[0.03] text-white/40 uppercase text-[10px] font-bold tracking-widest">
+                            <tr>
+                                <th className="px-6 py-4">Severity</th>
+                                <th className="px-6 py-4">Message</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-white/5 bg-black">
+                            {insights.slice().reverse().slice(0, 10).map((ins) => (
+                                <tr key={ins.id} className="hover:bg-white/[0.02]">
+                                    <td className="px-6 py-4">
+                                        <span className={`px-2 py-1 rounded-full text-[10px] uppercase font-bold ${
+                                            ins.severity === 'critical' ? 'bg-red-500/10 text-red-400' :
+                                            ins.severity === 'warning' ? 'bg-amber-500/10 text-amber-400' :
+                                            'bg-blue-500/10 text-blue-400'
+                                        }`}>
+                                            {ins.severity}
+                                        </span>
+                                    </td>
+                                    <td className="px-6 py-4 text-white/80 text-xs">
+                                        {ins.message}
+                                    </td>
+                                </tr>
+                            ))}
+                            {insights.length === 0 && (
+                                <tr>
+                                    <td colSpan={2} className="px-6 py-8 text-center text-white/40 italic">No insights generated for this node.</td>
                                 </tr>
                             )}
                         </tbody>

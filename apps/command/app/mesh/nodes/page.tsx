@@ -40,6 +40,7 @@ export default function MeshNodesPage() {
                         <tr>
                             <th className="px-6 py-4">Node ID</th>
                             <th className="px-6 py-4">Status</th>
+                            <th className="px-6 py-4">Trust</th>
                             <th className="px-6 py-4">Last Heartbeat</th>
                             <th className="px-6 py-4">Load</th>
                             <th className="px-6 py-4 text-right">Actions</th>
@@ -55,13 +56,22 @@ export default function MeshNodesPage() {
                                 </td>
                                 <td className="px-6 py-4">
                                     <span className={`px-2 py-1 rounded-full text-[10px] uppercase font-bold ${
-                                        node.status === "online" ? "bg-green-400/10 text-green-400" : "bg-red-400/10 text-red-400"
+                                        node.status === "active" ? "bg-green-400/10 text-green-400" : "bg-red-400/10 text-red-400"
                                     }`}>
                                         {node.status}
                                     </span>
                                 </td>
+                                <td className="px-6 py-4">
+                                    <span className={`px-2 py-1 rounded-full text-[10px] uppercase font-bold ${
+                                        (node.trustScore || 100) > 80 ? "bg-green-400/10 text-green-400" :
+                                        (node.trustScore || 100) >= 50 ? "bg-yellow-400/10 text-yellow-400" :
+                                        "bg-red-400/10 text-red-400"
+                                    }`}>
+                                        {Math.floor(node.trustScore || 100)}
+                                    </span>
+                                </td>
                                 <td className="px-6 py-4 text-white/60 text-xs">
-                                    {new Date(node.lastHeartbeat).toLocaleString()}
+                                    {node.lastHeartbeatIso ? new Date(node.lastHeartbeatIso).toLocaleString() : new Date(node.lastHeartbeat).toLocaleString()}
                                 </td>
                                 <td className="px-6 py-4">
                                     <div className="flex items-center gap-2">

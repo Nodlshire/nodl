@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"sort"
+	"strconv"
 	"sync"
 	"time"
 
@@ -188,11 +189,11 @@ func (e *DistributedEngine) SubmitJob(action string, payload []string, desiredSh
 				validForPriority := false
 				switch priority {
 				case "high":
-					validForPriority = n.Tier == 1 || n.Tier == 2
+					validForPriority = n.Tier == "1" || n.Tier == "2"
 				case "normal":
-					validForPriority = n.Tier == 2 || n.Tier == 3
+					validForPriority = n.Tier == "2" || n.Tier == "3"
 				case "background":
-					validForPriority = n.Tier == 4 || n.Tier == 5
+					validForPriority = n.Tier == "4" || n.Tier == "5"
 				default:
 					validForPriority = true
 				}
@@ -299,6 +300,11 @@ func (e *DistributedEngine) SubmitJob(action string, payload []string, desiredSh
 		nodeAssigned := weightedPool[i%len(weightedPool)]
 		e.accountStore.IncrementShardCounter(nodeAssigned.UserID, "assigned")
 
+		nodeTierInt, _ := strconv.Atoi(nodeAssigned.Tier)
+		if nodeTierInt == 0 {
+			nodeTierInt = 1
+		}
+
 		job.Shards[i] = &Shard{
 			ParentTaskID:   jobID,
 			ShardIndex:     i,
@@ -306,7 +312,7 @@ func (e *DistributedEngine) SubmitJob(action string, payload []string, desiredSh
 			Payload:        slice,
 			AssignedNodeID: nodeAssigned.DeviceToken, // Routing uses secure token for simplicity in polling
 			Status:         "pending",
-			Tier:           nodeAssigned.Tier,
+			Tier:           nodeTierInt,
 			WU:             len(slice),
 		}
 		startIdx = endIdx

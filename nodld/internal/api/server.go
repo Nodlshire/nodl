@@ -12,7 +12,6 @@ import (
 	"sync"
 	"time"
 	"os"
-	"runtime"
 	"bufio"
 
 	"golang.org/x/crypto/bcrypt"
@@ -243,6 +242,13 @@ func (s *Server) registerRoutes() {
 	apiV1.Get("/reputation/ledger", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetReputationLedger)
 	apiV1.Get("/reputation/leaderboard", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetReputationLeaderboard)
 	apiV1.Post("/reputation/recalculate", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleReputationRecalculate)
+	apiV1.Get("/reputation/summary", s.requireAccess(account.RoleStandard, "command"), s.handleGetReputationSummary)
+	apiV1.Get("/insights", s.requireAccess(account.RoleStandard, "command"), s.handleGetInsights)
+	apiV1.Get("/governance/summary", s.requireAccess(account.RoleStandard, "command"), s.handleGovernanceSummary)
+	apiV1.Get("/routing/summary", s.requireAccess(account.RoleStandard, "command"), s.handleRoutingSummary)
+	apiV1.Get("/health/summary", s.requireAccess(account.RoleStandard, "command"), s.handleHealthSummary)
+	apiV1.Get("/load/summary", s.requireAccess(account.RoleStandard, "command"), s.handleLoadSummary)
+	apiV1.Get("/autonomy/summary", s.requireAccess(account.RoleStandard, "command"), s.handleAutonomySummary)
 
 	// Phase 17: Operator Identity API
 	apiV1.Get("/identity/status", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetIdentityStatus)
@@ -250,6 +256,10 @@ func (s *Server) registerRoutes() {
 	apiV1.Get("/identity/sybil", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetIdentitySybil)
 	apiV1.Get("/identity/ledger", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetIdentityLedger)
 	apiV1.Post("/identity/recalculate", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleRecalculateIdentity)
+
+	// Phase C.5: Security Events API
+	apiV1.Get("/security/events", s.requireAccess(account.RoleStandard, "command"), s.handleGetSecurityEvents)
+	apiV1.Post("/security/events", s.requireAccess(account.RoleStandard, "command"), s.handlePostSecurityEvent)
 
 	// Job CRUD (Moved under /api/v1)
 	apiV1.Get("/jobs", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handleListJobs)
@@ -519,44 +529,29 @@ func (s *Server) handleStats(c *fiber.Ctx) error {
 }
 
 func (s *Server) handleNodesSummary(c *fiber.Ctx) error {
-	totalNodes := 0
 	activeNodes := 0
+	offlineNodes := 0
+	totalCpuCores := 0
+	totalMemoryGb := 0
+
 	if s.accountStore != nil {
 		nodes := s.accountStore.ListAllNodes()
-		totalNodes = len(nodes)
 		for _, n := range nodes {
 			if n.Status == "active" {
 				activeNodes++
+			} else {
+				offlineNodes++
 			}
+			totalCpuCores += n.CPUCores
+			totalMemoryGb += n.MemoryGB
 		}
 	}
-
-	offlineNodes := totalNodes - activeNodes
-	if offlineNodes < 0 {
-		offlineNodes = 0
-	}
-
-	var memTotal float64
-	if data, err := os.ReadFile("/proc/meminfo"); err == nil {
-		for _, line := range strings.Split(string(data), "\n") {
-			fields := strings.Fields(line)
-			if len(fields) >= 2 && fields[0] == "MemTotal:" {
-				fmt.Sscanf(fields[1], "%f", &memTotal)
-				break
-			}
-		}
-	}
-	systemRamGb := int(memTotal / (1024 * 1024))
-	cpuCores := runtime.NumCPU()
-	networkSpeed := "10 Gbps"
 
 	return c.JSON(fiber.Map{
-		"totalNodes":   totalNodes,
-		"activeNodes":  activeNodes,
-		"offlineNodes": offlineNodes,
-		"cpuCores":     cpuCores,
-		"systemRamGb":  systemRamGb,
-		"networkSpeed": networkSpeed,
+		"totalCpuCores": totalCpuCores,
+		"totalMemoryGb": totalMemoryGb,
+		"activeNodes":   activeNodes,
+		"offlineNodes":  offlineNodes,
 	})
 }
 
@@ -1823,12 +1818,19 @@ func (s *Server) handleRegisterNode(c *fiber.Ctx) error {
 		HardwareHash       string               `json:"hardwareHash,omitempty"`
 		BrowserFingerprint string               `json:"browserFingerprint,omitempty"`
 		DeviceClass        string               `json:"deviceClass,omitempty"`
+		UPID               string               `json:"upid,omitempty"`
+		CPUCores           int                  `json:"cpuCores,omitempty"`
+		MemoryGB           int                  `json:"memoryGb,omitempty"`
+		Lat                float64              `json:"lat,omitempty"`
+		Lon                float64              `json:"lon,omitempty"`
+		Region             string               `json:"region,omitempty"`
+		Tier               string               `json:"tier,omitempty"`
 	}
 	if err := c.BodyParser(&req); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid request body"})
 	}
 
-	userId := account.AuthoritativeOwnerID 
+	userId := c.Locals("user_id").(string)
 
 	deviceClass := req.DeviceClass
 	if deviceClass == "" {
@@ -1839,7 +1841,7 @@ func (s *Server) handleRegisterNode(c *fiber.Ctx) error {
 		}
 	}
 
-	token, err := s.accountStore.RegisterNode(userId, req.Metadata, req.HardwareHash, req.BrowserFingerprint, deviceClass)
+	token, err := s.accountStore.RegisterNode(userId, req.Metadata, req.HardwareHash, req.BrowserFingerprint, deviceClass, req.UPID, req.CPUCores, req.MemoryGB, req.Lat, req.Lon, req.Region, req.Tier)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
 	}
@@ -1853,8 +1855,8 @@ func (s *Server) handleRegisterNode(c *fiber.Ctx) error {
 // handleGetNodeMe retrieves the requesting node's data.
 func (s *Server) handleGetNodeMe(c *fiber.Ctx) error {
 	nodeID := c.Locals("nodeId").(string)
-	node, exists := s.accountStore.GetNode(nodeID)
-	if !exists {
+	node, err := s.accountStore.GetNode(nodeID)
+	if err != nil {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "node not found"})
 	}
 	return c.JSON(node)
@@ -1883,11 +1885,17 @@ func (s *Server) handleHeartbeatNode(c *fiber.Ctx) error {
 	
 	var envelope struct {
 		Payload struct {
+			UPID               string                    `json:"upid,omitempty"`
 			Metrics            account.NodeHealthMetrics `json:"metrics"`
 			HardwareHash       string                    `json:"hardwareHash,omitempty"`
 			BrowserFingerprint string                    `json:"browserFingerprint,omitempty"`
 			DeviceClass        string                    `json:"deviceClass,omitempty"`
+			Lat                float64                   `json:"lat,omitempty"`
+			Lon                float64                   `json:"lon,omitempty"`
 		} `json:"payload"`
+		Sequence  int64  `json:"sequence"`
+		Signature []byte `json:"signature"`
+		PubKey    []byte `json:"pub_key"`
 	}
 	body := c.Body()
 	fmt.Printf("===================\nRAW HEARTBEAT BODY:\n%s\n===================\n", string(body))
@@ -1906,9 +1914,40 @@ func (s *Server) handleHeartbeatNode(c *fiber.Ctx) error {
 		}
 	}
 
-	if err := s.accountStore.UpdateNodeHeartbeat(nodeId, req.Metrics, req.HardwareHash, req.BrowserFingerprint, deviceClass, c.IP()); err != nil {
-		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	sigStr := base64.StdEncoding.EncodeToString(envelope.Signature)
+	pubStr := base64.StdEncoding.EncodeToString(envelope.PubKey)
+
+	payloadBytes, err := json.Marshal(envelope.Payload)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "failed to marshal payload"})
 	}
+
+	if err := account.VerifyHeartbeatSignature(pubStr, sigStr, payloadBytes); err != nil {
+		s.accountStore.RecordSecurityEvent(account.SecurityEvent{
+			Timestamp: time.Now().Format(time.RFC3339),
+			NodeID:    nodeId,
+			UPID:      req.UPID,
+			EventType: "signature_failure",
+			Severity:  "critical",
+			Details:   err.Error(),
+		})
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "signature verification failed"})
+	}
+
+	s.accountStore.EnqueueHeartbeat(account.HeartbeatJob{
+		UPID:               req.UPID,
+		NodeID:             nodeId,
+		Metrics:            req.Metrics,
+		HardwareHash:       req.HardwareHash,
+		BrowserFingerprint: req.BrowserFingerprint,
+		DeviceClass:        deviceClass,
+		IPAddress:          c.IP(),
+		Lat:                req.Lat,
+		Lon:                req.Lon,
+		Signature:          sigStr,
+		PubKey:             pubStr,
+		Sequence:           envelope.Sequence,
+	})
 
 	// Space Node Telemetry returns an earnings summary
 	var earningsSummary fiber.Map
@@ -2783,7 +2822,7 @@ func (s *Server) handleGetIdentityLinked(c *fiber.Ctx) error {
 
 	var result []*account.WnodeNode
 	for _, nodeID := range id.LinkedNodeIDs {
-		if node, exists := s.accountStore.GetNode(nodeID); exists {
+		if node, err := s.accountStore.GetNode(nodeID); err == nil {
 			result = append(result, node)
 		}
 	}
@@ -2934,4 +2973,65 @@ func (s *Server) handleTelemetryExport(c *fiber.Ctx) error {
 		records = []json.RawMessage{}
 	}
 	return c.JSON(records)
+}
+
+func (s *Server) handleGetSecurityEvents(c *fiber.Ctx) error {
+	return c.JSON(s.accountStore.GetSecurityEvents())
+}
+
+func (s *Server) handlePostSecurityEvent(c *fiber.Ctx) error {
+	var ev account.SecurityEvent
+	if err := c.BodyParser(&ev); err != nil {
+		return c.Status(400).JSON(fiber.Map{"error": "invalid event"})
+	}
+	s.accountStore.RecordSecurityEvent(ev)
+	return c.JSON(fiber.Map{"status": "ok"})
+}
+
+func (s *Server) handleGetReputationSummary(c *fiber.Ctx) error {
+	reps := s.accountStore.ListOperatorReputations()
+	return c.JSON(reps)
+}
+
+func (s *Server) handleGetInsights(c *fiber.Ctx) error {
+	return c.JSON(s.accountStore.GetInsights())
+}
+
+func (s *Server) handleGovernanceSummary(c *fiber.Ctx) error {
+	return c.JSON(fiber.Map{
+		"regions": s.accountStore.CountNodesByRegion(),
+		"shards":  s.accountStore.CountNodesByShard(),
+		"quotas":  s.accountStore.GetOperatorQuotas(),
+	})
+}
+
+func (s *Server) handleRoutingSummary(c *fiber.Ctx) error {
+	return c.JSON(fiber.Map{
+		"tiers": s.accountStore.CountNodesByRoutingTier(),
+		"weights": s.accountStore.GetRoutingWeights(),
+	})
+}
+
+func (s *Server) handleHealthSummary(c *fiber.Ctx) error {
+	return c.JSON(fiber.Map{
+		"stable":     s.accountStore.CountNodesByStability("stable"),
+		"degrading":  s.accountStore.CountNodesByStability("degrading"),
+		"unstable":   s.accountStore.CountNodesByStability("unstable"),
+		"critical":   s.accountStore.CountNodesByStability("critical"),
+		"quarantined": s.accountStore.CountQuarantinedNodes(),
+	})
+}
+
+func (s *Server) handleLoadSummary(c *fiber.Ctx) error {
+	return c.JSON(fiber.Map{
+		"tiers": s.accountStore.CountNodesByLoadTier(),
+		"workScores": s.accountStore.GetWorkScores(),
+	})
+}
+
+func (s *Server) handleAutonomySummary(c *fiber.Ctx) error {
+	return c.JSON(fiber.Map{
+		"states": s.accountStore.CountNodesByAutonomyState(),
+		"actions": s.accountStore.GetAutonomyActions(),
+	})
 }

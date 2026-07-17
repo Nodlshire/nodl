@@ -55,7 +55,7 @@
         "NODLR",
         "MESH"
       ],
-      "createdAt": "2026-07-15T16:54:34.383326869+02:00"
+      "createdAt": "2026-07-17T01:41:32.257803593+02:00"
     }
   },
   "invite": {
@@ -448,6 +448,15 @@
       "twoFAVerified": false,
       "expiresAt": "2026-07-16T15:29:27.525751133+02:00",
       "createdAt": "2026-07-15T15:29:27.52575149+02:00"
+    },
+    "ad0fede1-c2e4-4eba-85f0-23dcfe197afa": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-18T15:28:36.404908261+02:00",
+      "createdAt": "2026-07-17T15:28:36.404908641+02:00"
     },
     "b18d60f4-6c53-4114-a5cc-21b0b91459c6": {
       "wuid": "100001-0426-01-AA",

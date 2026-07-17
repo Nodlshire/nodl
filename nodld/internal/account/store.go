@@ -3,9 +3,12 @@ package account
 import (
 	"encoding/json"
 	"fmt"
+	"math"
 	"os"
 	"path/filepath"
+	"strconv"
 	"sync"
+	"sync/atomic"
 	"time"
 
 	"github.com/google/uuid"
@@ -14,6 +17,36 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+type NodeStore interface {
+	GetNode(id string) (*WnodeNode, error)
+	UpdateNodeHeartbeat(upid string, nodeID string, metrics NodeHealthMetrics,
+		hardwareHash string, browserFingerprint string, deviceClass string,
+		ipAddress string, lat float64, lon float64, signature string,
+		pubKey string, sequence int64) error
+	ListAllNodes() []*WnodeNode
+}
+
+type HeartbeatJob struct {
+	UPID               string
+	NodeID             string
+	Metrics            NodeHealthMetrics
+	HardwareHash       string
+	BrowserFingerprint string
+	DeviceClass        string
+	IPAddress          string
+	Lat                float64
+	Lon                float64
+	Signature          string
+	PubKey             string
+	Sequence           int64
+}
+
+type OperatorQuota struct {
+	OperatorID string `json:"operatorId"`
+	MaxNodes   int    `json:"maxNodes"`
+	Current    int    `json:"current"`
+}
+
 type Store struct {
 	mu                 sync.RWMutex
 	nodlrs             map[string]*Nodlr
@@ -21,10 +54,15 @@ type Store struct {
 	organicCount       int        // Total organic signups handled
 	pendingCommissions map[string][]CommissionRecord // NodlrID -> Records
 	nodes              map[string]*WnodeNode
+	operatorQuotas     map[string]*OperatorQuota
+	securityEvents     []SecurityEvent
+	insights           []Insight
 	meshClients        map[string]*MeshClient
 	pairingCodes       map[string]*PairingCode
 	forensics          *forensics.Store
 	statePath          string
+	securityLogPath    string
+	heartbeatJobs      chan HeartbeatJob
 
 	// Auth Tokens
 	inviteTokens     map[string]*InviteToken
@@ -76,6 +114,8 @@ type Store struct {
 	saveMu    sync.Mutex
 	lastSave  time.Time
 	saveBatch int64
+
+	heartbeatCounter int64
 
 	DB *bbolt.DB
 }
@@ -150,6 +190,8 @@ func NewStore(forensics *forensics.Store, statePath string) *Store {
 		identityLedger:      make([]*IdentityLedgerEntry, 0),
 		Telemetry:           NewTelemetryDispatcher("http://127.0.0.1:3001/api/intelligence/event"),
 		integrations:        make(map[string]*Integration),
+		hardwareMapping:     make(map[string]*WUIDHardwareMapping),
+		securityLogPath:     "/wnode/logs/security.log",
 	}
 	s.initInviteState()
 	s.loadState()
@@ -181,7 +223,7 @@ func (s *Store) runDowntimeWatchdog(interval time.Duration) {
 					node.Status = "offline"
 					
 					// Apply downtime penalty: -1 * BaseRateForTier
-					baseRate := GetBaseRateForTier(node.Tier)
+					baseRate := GetBaseRateForTier(getTierInt(node.Tier))
 					penalty := -1.0 * baseRate
 					
 					entry := &TokenLedgerEntry{
@@ -515,7 +557,7 @@ func (s *Store) CreateSpaceNode() (*Nodlr, string, error) {
 		CreatedAt:   time.Now(),
 		LastSeen:    time.Now(),
 		IsWASM:      false,
-		Tier:        1,
+		Tier:        "1",
 	}
 
 	go s.SaveState()
@@ -1122,15 +1164,19 @@ func (s *Store) ConsumePairingCode(code string, metadata NodeMetadata) (string, 
 }
 
 // RegisterNode creates a node directly for a user (browser connect flow).
-func (s *Store) RegisterNode(userId string, metadata NodeMetadata, hardwareHash string, browserFingerprint string, deviceClass string) (string, error) {
+func (s *Store) RegisterNode(userId string, metadata NodeMetadata, hardwareHash string, browserFingerprint string, deviceClass string, upid string, cpuCores int, memoryGb int, lat float64, lon float64, region string, tier string) (string, error) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 
 	deviceToken := uuid.New().String()
-	nodeId := s.nextNodeID(userId)
+	nodeId := upid
+	if nodeId == "" {
+		nodeId = s.nextNodeID(userId) // fallback if upid missing for browser flow
+	}
 
 	node := &WnodeNode{
 		ID:                 nodeId,
+		UPID:               upid,
 		UserID:             userId,
 		DeviceToken:        deviceToken,
 		Metadata:           metadata,
@@ -1140,6 +1186,12 @@ func (s *Store) RegisterNode(userId string, metadata NodeMetadata, hardwareHash 
 		HardwareHash:       hardwareHash,
 		BrowserFingerprint: browserFingerprint,
 		DeviceClass:        deviceClass,
+		CPUCores:           cpuCores,
+		MemoryGB:           memoryGb,
+		Latitude:           lat,
+		Longitude:          lon,
+		Region:             region,
+		Tier:               tier,
 	}
 
 	s.nodes[nodeId] = node
@@ -1161,14 +1213,17 @@ func (s *Store) RegisterNode(userId string, metadata NodeMetadata, hardwareHash 
 }
 
 // GetNode returns a specific node by its ID.
-func (s *Store) GetNode(nodeId string) (*WnodeNode, bool) {
+func (s *Store) GetNode(nodeId string) (*WnodeNode, error) {
 	s.DecayNodes()
 
 	s.mu.RLock()
 	defer s.mu.RUnlock()
 
 	node, ok := s.nodes[nodeId]
-	return node, ok
+	if !ok {
+		return nil, fmt.Errorf("node not found")
+	}
+	return node, nil
 }
 
 // GetNodeByToken retrieves a node by its long-lived secret.
@@ -1185,23 +1240,91 @@ func (s *Store) GetNodeByToken(token string) (*WnodeNode, bool) {
 }
 
 // UpdateNodeHeartbeat sets the LastSeen and Metrics for a node.
-func (s *Store) UpdateNodeHeartbeat(nodeID string, metrics NodeHealthMetrics, hardwareHash string, browserFingerprint string, deviceClass string, ipAddress string) error {
+func (s *Store) UpdateNodeHeartbeat(upid string, nodeID string, metrics NodeHealthMetrics, hardwareHash string, browserFingerprint string, deviceClass string, ipAddress string, lat float64, lon float64, signature string, pubKey string, sequence int64) error {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 
-	node, ok := s.nodes[nodeID]
+	count := atomic.AddInt64(&s.heartbeatCounter, 1)
+	if count%500 == 0 {
+		go s.AutonomousOptimizationCycle()
+	}
+
+	lookupID := upid
+	if lookupID == "" {
+		lookupID = nodeID
+	}
+
+	node, ok := s.nodes[lookupID]
 	if !ok {
 		return fmt.Errorf("node not found")
 	}
 
+	if err := s.EnforceOperatorQuota(node.UserID); err != nil {
+		return err
+	}
+
 	node.LastSeen = time.Now()
 
+	// Rate anomaly check
+	if !node.LastHeartbeat.IsZero() {
+		sinceHeartbeat := time.Since(node.LastHeartbeat).Seconds()
+		if sinceHeartbeat < 10 || sinceHeartbeat > 120 {
+			go s.RecordSecurityEvent(SecurityEvent{
+				Timestamp: time.Now().Format(time.RFC3339),
+				NodeID:    node.ID,
+				UPID:      node.UPID,
+				EventType: "rate_anomaly",
+				Severity:  "info",
+				Details:   fmt.Sprintf("Heartbeat interval %v seconds is outside expected bounds", sinceHeartbeat),
+			})
+		}
+	}
+
+	node.LastHeartbeat = time.Now()
+	node.LastHeartbeatISO = time.Now().Format(time.RFC3339)
+
+	if upid != "" && node.UPID != "" && upid != node.UPID {
+		go s.RecordSecurityEvent(SecurityEvent{
+			Timestamp: time.Now().Format(time.RFC3339),
+			NodeID:    node.ID,
+			UPID:      node.UPID,
+			EventType: "identity_mismatch",
+			Severity:  "critical",
+			Details:   fmt.Sprintf("Payload UPID %s does not match stored UPID %s", upid, node.UPID),
+		})
+		return fmt.Errorf("identity mismatch")
+	}
+
+	var geoLat, geoLon float64
 	if node.IPAddress != ipAddress && ipAddress != "" {
-		lat, lon, _ := GetGeoIPLookup().ResolveIP(ipAddress)
+		geoLat, geoLon, _ = GetGeoIPLookup().ResolveIP(ipAddress)
 		node.IPAddress = ipAddress
+		node.Latitude = geoLat
+		node.Longitude = geoLon
+	} else if ipAddress != "" {
+		// Just for anomaly checking if ip didn't change
+		geoLat, geoLon, _ = GetGeoIPLookup().ResolveIP(ipAddress)
+	}
+	
+	if lat != 0 {
+		if geoLat != 0 && (math.Abs(lat-geoLat) > 5.0 || math.Abs(lon-geoLon) > 5.0) {
+			go s.RecordSecurityEvent(SecurityEvent{
+				Timestamp: time.Now().Format(time.RFC3339),
+				NodeID:    node.ID,
+				UPID:      node.UPID,
+				EventType: "geo_anomaly",
+				Severity:  "warning",
+				Details:   fmt.Sprintf("Client geo (%f, %f) differs drastically from IP geo (%f, %f)", lat, lon, geoLat, geoLon),
+			})
+		}
 		node.Latitude = lat
+	}
+	if lon != 0 {
 		node.Longitude = lon
 	}
+	
+	node.Region = ResolveRegion(node.Latitude, node.Longitude)
+	node.Shard = AssignShard(node.UPID)
 
 	node.Metrics = &metrics
 	node.CPUCores = metrics.CPUCores
@@ -1210,9 +1333,65 @@ func (s *Store) UpdateNodeHeartbeat(nodeID string, metrics NodeHealthMetrics, ha
 	node.IsWASM = metrics.IsWASM
 	node.DowntimePenalized = false
 	node.DowntimeSlashed = false
-	node.HardwareHash = hardwareHash
+	if hardwareHash != "" && node.HardwareHash != "" && node.HardwareHash != hardwareHash {
+		go s.RecordSecurityEvent(SecurityEvent{
+			Timestamp: time.Now().Format(time.RFC3339),
+			NodeID:    node.ID,
+			UPID:      node.UPID,
+			EventType: "hardwarehash_tamper",
+			Severity:  "warning",
+			Details:   "Node reported a different hardware hash than previously stored",
+		})
+	}
+	if hardwareHash != "" {
+		node.HardwareHash = hardwareHash
+	}
 	node.BrowserFingerprint = browserFingerprint
 	node.DeviceClass = deviceClass
+
+	if pubKey != "" && node.PubKey != "" && pubKey != node.PubKey {
+		go s.RecordSecurityEvent(SecurityEvent{
+			Timestamp: time.Now().Format(time.RFC3339),
+			NodeID:    node.ID,
+			UPID:      node.UPID,
+			EventType: "impersonation_attempt",
+			Severity:  "critical",
+			Details:   "Heartbeat pub_key does not match node's registered pub_key",
+		})
+		return fmt.Errorf("impersonation attempt")
+	}
+	
+	if sequence != 0 {
+		if sequence == node.Sequence {
+			go s.RecordSecurityEvent(SecurityEvent{
+				Timestamp: time.Now().Format(time.RFC3339),
+				NodeID:    node.ID,
+				UPID:      node.UPID,
+				EventType: "replay_attack",
+				Severity:  "critical",
+				Details:   fmt.Sprintf("Replayed sequence number %d", sequence),
+			})
+			return fmt.Errorf("replay attack")
+		} else if sequence < node.Sequence {
+			go s.RecordSecurityEvent(SecurityEvent{
+				Timestamp: time.Now().Format(time.RFC3339),
+				NodeID:    node.ID,
+				UPID:      node.UPID,
+				EventType: "sequence_violation",
+				Severity:  "warning",
+				Details:   fmt.Sprintf("Sequence went backwards from %d to %d", node.Sequence, sequence),
+			})
+			return fmt.Errorf("sequence violation")
+		}
+	}
+
+	node.Signature = signature
+	if pubKey != "" && node.PubKey == "" {
+		node.PubKey = pubKey
+	}
+	if sequence > node.Sequence {
+		node.Sequence = sequence
+	}
 
 	tier := CalculateTier(metrics.ComputeScore)
 	if metrics.IsWASM {
@@ -1220,7 +1399,7 @@ func (s *Store) UpdateNodeHeartbeat(nodeID string, metrics NodeHealthMetrics, ha
 			tier = 4
 		}
 	}
-	node.Tier = tier
+	node.Tier = fmt.Sprintf("%d", tier)
 
 	// Minimum Stake Requirement check
 	stakedVal := 0.0
@@ -1228,7 +1407,7 @@ func (s *Store) UpdateNodeHeartbeat(nodeID string, metrics NodeHealthMetrics, ha
 		stakedVal = stake.Staked
 	}
 	if stakedVal < 100.0 {
-		node.Tier = 5
+		node.Tier = "5"
 	}
 
 	// Compute Global Reputation Score if metrics exist
@@ -1291,6 +1470,41 @@ func (s *Store) UpdateNodeHeartbeat(nodeID string, metrics NodeHealthMetrics, ha
 		},
 	})
 
+	node.RoutingWeight = s.CalculateRoutingWeight(node)
+	node.RoutingTier = deriveTier(node.RoutingWeight)
+
+	node.HealthScore = s.CalculateHealthScore(node)
+	node.StabilityTier = DeriveStabilityTier(node.HealthScore)
+
+	if node.HealthScore < 20 || node.RoutingTier == "quarantine" {
+		if !node.Quarantined {
+			node.Quarantined = true
+			go s.AddInsight(Insight{
+				Severity: "critical",
+				Category: "health",
+				NodeID: node.ID,
+				UPID: node.UPID,
+				OperatorID: node.UserID,
+				Message: "Node automatically quarantined due to critical health score or routing tier",
+			})
+		}
+	} else if node.HealthScore >= 40 && node.Quarantined {
+		node.Quarantined = false
+		go s.AddInsight(Insight{
+			Severity: "info",
+			Category: "health",
+			NodeID: node.ID,
+			UPID: node.UPID,
+			OperatorID: node.UserID,
+			Message: "Node automatically recovered from quarantine",
+		})
+	}
+
+	node.ComputeScore = s.CalculateComputeScore(node)
+	node.LoadFactor = s.CalculateLoadFactor(node)
+	node.LoadTier = DeriveLoadTier(node.LoadFactor)
+	node.WorkScore = s.CalculateWorkScore(node)
+
 	return nil
 }
 
@@ -1302,10 +1516,14 @@ func (s *Store) DecayNodes() {
 
 	now := time.Now()
 	for _, node := range s.nodes {
-		hoursOffline := now.Sub(node.LastSeen).Hours()
-		if hoursOffline > 1.0 && node.Status != "offline" {
+		secondsOffline := now.Sub(node.LastSeen).Seconds()
+		if secondsOffline > 90 && node.Status != "offline" {
 			node.Status = "offline"
+		} else if secondsOffline <= 90 && node.Status != "active" {
+			node.Status = "active"
 		}
+		
+		hoursOffline := now.Sub(node.LastSeen).Hours()
 		
 		if hoursOffline > 1.0 {
 			// Apply 0.95 multiplier per hour
@@ -1994,7 +2212,7 @@ func (s *Store) ConsumeHeadlessToken(tokenStr string, upid string, cpuCores int,
 	// Use UPID as the immutable key to eliminate ghost nodes
 	nodeID := upid
 	if nodeID == "" {
-		nodeID = fmt.Sprintf("HN-%s", uuid.New().String()[:8])
+		return nil, "", fmt.Errorf("upid cannot be empty")
 	}
 	deviceToken := uuid.New().String()
 
@@ -2011,13 +2229,14 @@ func (s *Store) ConsumeHeadlessToken(tokenStr string, upid string, cpuCores int,
 
 	node := &WnodeNode{
 		ID:          nodeID,
+		UPID:        nodeID,
 		UserID:      token.UserID,
 		DeviceToken: deviceToken,
 		Status:      "active",
 		CreatedAt:   time.Now(),
 		LastSeen:    time.Now(),
 		IsWASM:      false,
-		Tier:        1,
+		Tier:        "1",
 		CPUCores:    cpuCores,
 		MemoryGB:    memoryGb,
 	}
@@ -2025,4 +2244,539 @@ func (s *Store) ConsumeHeadlessToken(tokenStr string, upid string, cpuCores int,
 	s.nodes[nodeID] = node
 
 	return node, deviceToken, nil
+}
+func getTierInt(tier string) int {
+	t, err := strconv.Atoi(tier)
+	if err != nil {
+		return 1
+	}
+	return t
+}
+
+func (s *Store) RecalculateReputation() {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	// Reset operator reputations
+	s.operatorReputations = make(map[string]*OperatorReputation)
+
+	for _, node := range s.nodes {
+		opID := node.UserID
+		rep, ok := s.operatorReputations[opID]
+		if !ok {
+			rep = &OperatorReputation{
+				OperatorID: opID,
+			}
+			s.operatorReputations[opID] = rep
+		}
+
+		// Aggregate node-level tamper metrics into operator-level
+		rep.TamperCount += node.TamperCount
+		rep.ReplayCount += node.ReplayCount
+		rep.ImpersonationCount += node.ImpersonationCount
+		rep.GeoAnomalyCount += node.GeoAnomalyCount
+	}
+
+	// Compute trust scores (simple initial model):
+	// Start from 100, subtract weighted penalties.
+	for _, rep := range s.operatorReputations {
+		score := 100.0
+		score -= float64(rep.TamperCount) * 5.0
+		score -= float64(rep.ReplayCount) * 10.0
+		score -= float64(rep.ImpersonationCount) * 20.0
+		score -= float64(rep.GeoAnomalyCount) * 2.0
+		if score < 0 {
+			score = 0
+		}
+		rep.TrustScore = score
+	}
+
+	// Update node-level TrustScore based on operator-level and node metrics
+	for _, node := range s.nodes {
+		rep := s.operatorReputations[node.UserID]
+		base := rep.TrustScore
+		// Node-specific penalties
+		base -= float64(node.TamperCount) * 2.0
+		base -= float64(node.ReplayCount) * 4.0
+		base -= float64(node.ImpersonationCount) * 8.0
+		base -= float64(node.GeoAnomalyCount) * 1.0
+		if base < 0 {
+			base = 0
+		}
+		node.TrustScore = base
+		
+		s.EvaluateNodeInsights(node)
+	}
+
+	for opID, rep := range s.operatorReputations {
+		s.EvaluateOperatorInsights(opID, rep)
+	}
+}
+
+func (s *Store) ListOperatorReputations() []*OperatorReputation {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	out := make([]*OperatorReputation, 0, len(s.operatorReputations))
+	for _, r := range s.operatorReputations {
+		out = append(out, r)
+	}
+	return out
+}
+
+func (s *Store) GetSecurityEvents() []SecurityEvent {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	
+	cpy := make([]SecurityEvent, len(s.securityEvents))
+	copy(cpy, s.securityEvents)
+	return cpy
+}
+
+func (s *Store) InitHeartbeatPipeline(bufferSize, workers int) {
+	s.heartbeatJobs = make(chan HeartbeatJob, bufferSize)
+	for i := 0; i < workers; i++ {
+		go func() {
+			for job := range s.heartbeatJobs {
+				_ = s.UpdateNodeHeartbeat(
+					job.UPID,
+					job.NodeID,
+					job.Metrics,
+					job.HardwareHash,
+					job.BrowserFingerprint,
+					job.DeviceClass,
+					job.IPAddress,
+					job.Lat,
+					job.Lon,
+					job.Signature,
+					job.PubKey,
+					job.Sequence,
+				)
+			}
+		}()
+	}
+}
+
+func (s *Store) EnqueueHeartbeat(job HeartbeatJob) {
+	if s.heartbeatJobs == nil {
+		// default initialization: small buffer, few workers
+		s.InitHeartbeatPipeline(1024, 4)
+	}
+	s.heartbeatJobs <- job
+}
+
+func (s *Store) EnforceOperatorQuota(opID string) error {
+	if s.operatorQuotas == nil {
+		s.operatorQuotas = make(map[string]*OperatorQuota)
+	}
+	quota, ok := s.operatorQuotas[opID]
+	if !ok {
+		quota = &OperatorQuota{
+			OperatorID: opID,
+			MaxNodes:   1000,
+			Current:    0,
+		}
+		s.operatorQuotas[opID] = quota
+	}
+
+	count := 0
+	for _, n := range s.nodes {
+		if n.UserID == opID {
+			count++
+		}
+	}
+	quota.Current = count
+
+	if count > quota.MaxNodes {
+		go s.RecordSecurityEvent(SecurityEvent{
+			Timestamp: time.Now().Format(time.RFC3339),
+			EventType: "quota_violation",
+			Severity:  "critical",
+			Details:   fmt.Sprintf("Operator %s exceeded quota (max %d)", opID, quota.MaxNodes),
+		})
+		return fmt.Errorf("operator quota exceeded")
+	}
+	return nil
+}
+
+func (s *Store) CountNodesByRegion() map[string]int {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	res := make(map[string]int)
+	for _, n := range s.nodes {
+		if n.Region != "" {
+			res[n.Region]++
+		} else {
+			res["UNKNOWN"]++
+		}
+	}
+	return res
+}
+
+func (s *Store) CountNodesByShard() map[int]int {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	res := make(map[int]int)
+	for _, n := range s.nodes {
+		res[n.Shard]++
+	}
+	return res
+}
+
+func (s *Store) GetOperatorQuotas() map[string]*OperatorQuota {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	res := make(map[string]*OperatorQuota)
+	for k, v := range s.operatorQuotas {
+		res[k] = v
+	}
+	return res
+}
+
+func (s *Store) CalculateRoutingWeight(node *WnodeNode) float64 {
+	weight := node.TrustScore
+
+	// Check operator quota usage
+	if s.operatorQuotas != nil {
+		if quota, ok := s.operatorQuotas[node.UserID]; ok {
+			if float64(quota.Current)/float64(quota.MaxNodes) > 0.90 {
+				weight -= 10
+			}
+		}
+	}
+
+	if node.GeoAnomalyCount > 5 {
+		weight -= 20
+	}
+	if node.ImpersonationCount > 0 {
+		weight -= 30
+	}
+
+	if node.Region == "EU" || node.Region == "US" {
+		weight += 5
+	}
+
+	if weight < 0 {
+		weight = 0
+	}
+	if weight > 100 {
+		weight = 100
+	}
+
+	return weight
+}
+
+func deriveTier(weight float64) string {
+	if weight >= 80 {
+		return "gold"
+	}
+	if weight >= 50 {
+		return "silver"
+	}
+	if weight >= 20 {
+		return "bronze"
+	}
+	return "quarantine"
+}
+
+func (s *Store) CountNodesByRoutingTier() map[string]int {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	res := make(map[string]int)
+	for _, n := range s.nodes {
+		if n.RoutingTier != "" {
+			res[n.RoutingTier]++
+		} else {
+			res["unknown"]++
+		}
+	}
+	return res
+}
+
+func (s *Store) GetRoutingWeights() map[string]float64 {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	res := make(map[string]float64)
+	for _, n := range s.nodes {
+		res[n.ID] = n.RoutingWeight
+	}
+	return res
+}
+
+func (s *Store) CalculateHealthScore(node *WnodeNode) float64 {
+	score := 100.0
+
+	if node.ReplayCount > 0 {
+		score -= 20
+	}
+	if node.ImpersonationCount > 0 {
+		score -= 30
+	}
+	if node.GeoAnomalyCount > 3 {
+		score -= 10
+	}
+	if !node.LastHeartbeat.IsZero() && time.Since(node.LastHeartbeat).Seconds() > 120 {
+		score -= 10
+	}
+	if node.TrustScore < 40 {
+		score -= 20
+	}
+
+	if score < 0 {
+		score = 0
+	}
+	if score > 100 {
+		score = 100
+	}
+	return score
+}
+
+func DeriveStabilityTier(score float64) string {
+	if score >= 80 {
+		return "stable"
+	}
+	if score >= 50 {
+		return "degrading"
+	}
+	if score >= 20 {
+		return "unstable"
+	}
+	return "critical"
+}
+
+func (s *Store) CountNodesByStability(tier string) int {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	count := 0
+	for _, n := range s.nodes {
+		if n.StabilityTier == tier {
+			count++
+		}
+	}
+	return count
+}
+
+func (s *Store) CountQuarantinedNodes() int {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	count := 0
+	for _, n := range s.nodes {
+		if n.Quarantined {
+			count++
+		}
+	}
+	return count
+}
+
+func (s *Store) GetHealthScores() map[string]float64 {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	res := make(map[string]float64)
+	for _, n := range s.nodes {
+		res[n.ID] = n.HealthScore
+	}
+	return res
+}
+
+func (s *Store) CalculateComputeScore(node *WnodeNode) float64 {
+	base := float64(node.CPUCores * 10)
+	base += float64(node.MemoryGB * 2)
+	if base < 0 {
+		base = 0
+	}
+	if base > 200 {
+		base = 200
+	}
+	return base
+}
+
+func (s *Store) CalculateLoadFactor(node *WnodeNode) float64 {
+	load := 0.0
+	if node.Metrics != nil {
+		load = float64(node.Metrics.CurrentLoad) * 100
+	}
+	
+	if load < 0 {
+		load = 0
+	}
+	if load > 100 {
+		load = 100
+	}
+	return load
+}
+
+func DeriveLoadTier(load float64) string {
+	if load < 30 {
+		return "gold"
+	}
+	if load < 60 {
+		return "silver"
+	}
+	if load < 85 {
+		return "bronze"
+	}
+	return "critical"
+}
+
+func (s *Store) CalculateWorkScore(node *WnodeNode) float64 {
+	score := (node.RoutingWeight * 0.3) +
+		(node.HealthScore * 0.3) +
+		(node.ComputeScore * 0.2) +
+		((100 - node.LoadFactor) * 0.2)
+
+	if score < 0 {
+		score = 0
+	}
+	if score > 100 {
+		score = 100
+	}
+	return score
+}
+
+func (s *Store) SelectNodeForWork(shard int) *WnodeNode {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+
+	var best *WnodeNode
+	var maxScore float64 = -1
+
+	for _, n := range s.nodes {
+		if n.Shard == shard && !n.Quarantined {
+			if n.WorkScore > maxScore {
+				maxScore = n.WorkScore
+				best = n
+			}
+		}
+	}
+	return best
+}
+
+func (s *Store) SelectNodeForRegion(region string) *WnodeNode {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+
+	var best *WnodeNode
+	var maxScore float64 = -1
+
+	for _, n := range s.nodes {
+		if n.Region == region && !n.Quarantined {
+			if n.WorkScore > maxScore {
+				maxScore = n.WorkScore
+				best = n
+			}
+		}
+	}
+	return best
+}
+
+func (s *Store) CountNodesByLoadTier() map[string]int {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	res := make(map[string]int)
+	for _, n := range s.nodes {
+		if n.LoadTier != "" {
+			res[n.LoadTier]++
+		} else {
+			res["unknown"]++
+		}
+	}
+	return res
+}
+
+func (s *Store) GetWorkScores() map[string]float64 {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	res := make(map[string]float64)
+	for _, n := range s.nodes {
+		res[n.ID] = n.WorkScore
+	}
+	return res
+}
+
+func (s *Store) GetAutonomyStates() map[string]string {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	res := make(map[string]string)
+	for _, n := range s.nodes {
+		if n.AutonomousState != "" {
+			res[n.ID] = n.AutonomousState
+		}
+	}
+	return res
+}
+
+func (s *Store) AutonomousOptimizationCycle() {
+	s.mu.Lock()
+	var insightsToAdd []Insight
+
+	for _, node := range s.nodes {
+		node.RoutingWeight = s.CalculateRoutingWeight(node)
+		node.RoutingTier = deriveTier(node.RoutingWeight)
+		
+		node.HealthScore = s.CalculateHealthScore(node)
+		node.StabilityTier = DeriveStabilityTier(node.HealthScore)
+		
+		node.ComputeScore = s.CalculateComputeScore(node)
+		node.LoadFactor = s.CalculateLoadFactor(node)
+		node.LoadTier = DeriveLoadTier(node.LoadFactor)
+		node.WorkScore = s.CalculateWorkScore(node)
+
+		if node.HealthScore < 20 || node.RoutingTier == "quarantine" {
+			if !node.Quarantined {
+				node.Quarantined = true
+				insightsToAdd = append(insightsToAdd, Insight{
+					Severity:   "critical",
+					Category:   "health",
+					NodeID:     node.ID,
+					UPID:       node.UPID,
+					OperatorID: node.UserID,
+					Message:    "Node automatically quarantined due to critical health score or routing tier",
+				})
+			}
+		} else if node.HealthScore >= 40 && node.Quarantined {
+			node.Quarantined = false
+			insightsToAdd = append(insightsToAdd, Insight{
+				Severity:   "info",
+				Category:   "health",
+				NodeID:     node.ID,
+				UPID:       node.UPID,
+				OperatorID: node.UserID,
+				Message:    "Node automatically recovered from quarantine",
+			})
+		}
+
+		if autIns := s.EvaluateAutonomy(node); autIns != nil {
+			insightsToAdd = append(insightsToAdd, *autIns)
+		}
+	}
+	s.mu.Unlock()
+
+	for _, ins := range insightsToAdd {
+		s.AddInsight(ins)
+	}
+}
+
+func (s *Store) CountNodesByAutonomyState() map[string]int {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	res := make(map[string]int)
+	for _, n := range s.nodes {
+		if n.AutonomousState != "" {
+			res[n.AutonomousState]++
+		} else {
+			res["normal"]++
+		}
+	}
+	return res
+}
+
+func (s *Store) GetAutonomyActions() map[string]string {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	res := make(map[string]string)
+	for _, n := range s.nodes {
+		if n.LastAction != "" {
+			res[n.ID] = n.LastAction
+		}
+	}
+	return res
 }

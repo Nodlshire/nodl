@@ -18,7 +18,7 @@ func TestPriorityRouting(t *testing.T) {
 	dispatcher := NewDispatcher(jobStore, registry, accStore, nil, log)
 
 	// 1. Setup Sales Source (Nodlr)
-	salesSource, _ := accStore.CreateNodlr("sales@wnode.one", "")
+	salesSource, _ := accStore.CreateNodlr("sales@wnode.one", "", "", "", "", "")
 	salesSource.ID = "SALES_SOURCE_001"
 	accStore.AddNodlr(salesSource)
 

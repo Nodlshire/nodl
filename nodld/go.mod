@@ -18,8 +18,10 @@ require (
 
 require (
 	github.com/andybalholm/brotli v1.1.0 // indirect
+	github.com/armon/go-metrics v0.4.1 // indirect
 	github.com/benbjohnson/clock v1.3.5 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
+	github.com/boltdb/bolt v1.3.1 // indirect
 	github.com/boombuler/barcode v1.0.1-0.20190219062509-6c824513bacc // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/containerd/cgroups v1.1.0 // indirect
@@ -30,6 +32,7 @@ require (
 	github.com/docker/go-units v0.5.0 // indirect
 	github.com/elastic/gosigar v0.14.3 // indirect
 	github.com/fasthttp/websocket v1.5.8 // indirect
+	github.com/fatih/color v1.13.0 // indirect
 	github.com/flynn/noise v1.1.0 // indirect
 	github.com/francoispqt/gojay v1.2.13 // indirect
 	github.com/go-logr/logr v1.4.2 // indirect
@@ -41,9 +44,16 @@ require (
 	github.com/google/pprof v0.0.0-20241210010833-40e02aabc2ad // indirect
 	github.com/gorilla/websocket v1.5.3 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
+	github.com/hashicorp/go-hclog v1.6.2 // indirect
+	github.com/hashicorp/go-immutable-radix v1.0.0 // indirect
+	github.com/hashicorp/go-metrics v0.5.4 // indirect
+	github.com/hashicorp/go-msgpack v0.5.5 // indirect
+	github.com/hashicorp/go-msgpack/v2 v2.1.2 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
 	github.com/hashicorp/golang-lru v1.0.2 // indirect
 	github.com/hashicorp/golang-lru/v2 v2.0.7 // indirect
+	github.com/hashicorp/raft v1.7.3 // indirect
+	github.com/hashicorp/raft-boltdb v0.0.0-20260625132022-4f4a8eaa21e3 // indirect
 	github.com/huin/goupnp v1.3.0 // indirect
 	github.com/ipfs/boxo v0.24.3 // indirect
 	github.com/ipfs/go-cid v0.4.1 // indirect

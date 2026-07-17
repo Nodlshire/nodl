@@ -169,10 +169,13 @@ type Payout struct {
 
 // WnodeNode represents a physical or virtual machine connected to the network.
 type WnodeNode struct {
+	UPID               string             `json:"upid"`
 	CPUCores           int                `json:"cpu_cores"`
 	MemoryGB           int                `json:"memory_gb"`
 	Latitude           float64            `json:"lat"`
 	Longitude          float64            `json:"lon"`
+	Region             string             `json:"region"`
+	Tier               string             `json:"tier"`
 	IPAddress          string             `json:"ipAddress"`
 	ID                 string             `json:"id"`
 	UserID             string             `json:"userId"`
@@ -183,17 +186,37 @@ type WnodeNode struct {
 	Status             string             `json:"status"` // active, offline
 	CreatedAt          time.Time          `json:"createdAt"`
 	LastSeen           time.Time          `json:"lastSeen"`
-	LastHeartbeat      string             `json:"last_heartbeat"`
-	LastSeenAt         string             `json:"last_seen_at"`
-	Metrics            *NodeHealthMetrics `json:"metrics,omitempty"`
+	LastHeartbeat      time.Time          `json:"lastHeartbeat"`
+	LastHeartbeatISO   string             `json:"lastHeartbeatIso"`
+	Metrics            *NodeHealthMetrics `json:"metrics"`
 	GlobalScore        float64            `json:"globalScore"`
-	Tier               int                `json:"tier"` // Phase 11 capability tier (1-5)
 	IsWASM             bool               `json:"isWasm"`
 	DowntimePenalized  bool               `json:"downtimePenalized"`
 	DowntimeSlashed    bool               `json:"downtimeSlashed"`
-	HardwareHash       string             `json:"hardwareHash,omitempty"`
-	BrowserFingerprint string             `json:"browserFingerprint,omitempty"`
-	DeviceClass        string             `json:"deviceClass,omitempty"`
+	HardwareHash       string             `json:"hardware_hash"`
+	BrowserFingerprint string             `json:"browserFingerprint"`
+	DeviceClass        string             `json:"deviceClass"`
+	Signature          string             `json:"signature"`
+	PubKey             string             `json:"pub_key"`
+	Sequence           int64              `json:"sequence"`
+	TrustScore         float64            `json:"trustScore"`
+	TamperCount        int                `json:"tamperCount"`
+	ReplayCount        int                `json:"replayCount"`
+	ImpersonationCount int                `json:"impersonationCount"`
+	GeoAnomalyCount    int                `json:"geoAnomalyCount"`
+	Shard              int                `json:"shard"`
+	RoutingWeight      float64            `json:"routingWeight"`
+	RoutingTier        string             `json:"routingTier"`
+	HealthScore        float64            `json:"healthScore"`
+	StabilityTier      string             `json:"stabilityTier"`
+	Quarantined        bool               `json:"quarantined"`
+	ComputeScore       float64            `json:"computeScore"`
+	LoadFactor         float64            `json:"loadFactor"`
+	LoadTier           string             `json:"loadTier"`
+	WorkScore          float64            `json:"workScore"`
+	AutonomousState    string             `json:"autonomousState"`
+	LastAction         string             `json:"lastAction"`
+	LastActionAt       string             `json:"lastActionAt"`
 }
 
 func CalculateTier(computeScore float64) int {
@@ -226,16 +249,16 @@ type NodeHealthMetrics struct {
 	RAM         float64            `json:"ram"`
 	Disk        float64            `json:"disk"`
 	Uptime      int64              `json:"uptime"`
-	Temperature float64            `json:"temperature,omitempty"`
+	Temperature float64            `json:"temperature"`
 	Network     string             `json:"network"`
-	Reputation  *ReputationMetrics `json:"reputation,omitempty"`
+	Reputation  *ReputationMetrics `json:"reputation"`
 	CurrentLoad  int                `json:"currentLoad"`
 	ComputeScore float64            `json:"computeScore"`
 	CPUScore     float64            `json:"cpuScore"`
 	GPUScore     float64            `json:"gpuScore"`
 	MemoryScore  float64            `json:"memoryScore"`
 	IsWASM       bool               `json:"isWasm"`
-	TasksCompleted int              `json:"tasksCompleted,omitempty"`
+	TasksCompleted int              `json:"tasksCompleted"`
 }
 
 // NodeMetadata captures hardware or environment specs.

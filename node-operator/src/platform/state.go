@@ -9,18 +9,23 @@ import (
 
 // State represents the local configuration and authentication state of the node.
 type State struct {
-	Version         string `json:"version"`
-	SessionToken    string `json:"session_token,omitempty"`
-	OperatorID      string `json:"operator_id,omitempty"`
-	DeviceToken     string `json:"device_token,omitempty"`
-	NodeID            string `json:"node_id,omitempty"`
-	DeviceUUID        string `json:"device_uuid,omitempty"`
-	UPID              string `json:"upid,omitempty"`
-	CPUCores          int    `json:"cpu_cores,omitempty"`
-	MemoryGB          int    `json:"memory_gb,omitempty"`
-	MeshAPI           string `json:"mesh_api"`
-	HeartbeatOffset   int    `json:"heartbeat_offset"`
-	HeartbeatInterval int    `json:"heartbeat_interval"`
+	Version           string           `json:"version"`
+	SessionToken      string           `json:"session_token,omitempty"`
+	OperatorID        string           `json:"operator_id,omitempty"`
+	DeviceToken       string           `json:"device_token,omitempty"`
+	NodeID            string           `json:"node_id,omitempty"`
+	DeviceUUID        string           `json:"device_uuid,omitempty"`
+	UPID              string           `json:"upid,omitempty"`
+	CPUCores          int              `json:"cpu_cores,omitempty"`
+	MemoryGB          int              `json:"memory_gb,omitempty"`
+	Latitude          float64          `json:"lat,omitempty"`
+	Longitude         float64          `json:"lon,omitempty"`
+	Region            string           `json:"region,omitempty"`
+	Tier              string           `json:"tier,omitempty"`
+	HardwareHash      string           `json:"hardware_hash,omitempty"`
+	MeshAPI           string           `json:"mesh_api"`
+	HeartbeatOffset   int              `json:"heartbeat_offset"`
+	HeartbeatInterval int              `json:"heartbeat_interval"`
 	AuthenticatedAt   string           `json:"authenticated_at,omitempty"`
 	RegisteredAt      string           `json:"registered_at,omitempty"`
 	Reputation        *ReputationState `json:"reputation,omitempty"`

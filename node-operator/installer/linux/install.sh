@@ -7,10 +7,12 @@ case "$ARCH" in
     x86_64)
         TAR_FILE="nodl-core-linux-amd64.tar.gz"
         BIN_NAME="nodl-core-linux-amd64"
+        EXPECTED_HASH="da53a95e4ab4bd6f5aa0eda5aec09e820f27288b87088b91b734ad768ddb9c24"
         ;;
     aarch64|arm64)
         TAR_FILE="nodl-core-linux-arm64.tar.gz"
         BIN_NAME="nodl-core-linux-arm64"
+        EXPECTED_HASH="a45d27390b58882e10b15ad8e44c3394b6fc56a6ca5b0c162231e22f2f409b19"
         ;;
     *)
         echo "[-] Unsupported architecture: $ARCH"
@@ -24,6 +26,13 @@ sudo curl -fsSL -L "$BINARY_URL" -o "/tmp/$TAR_FILE" || {
   echo "[-] Failed to download binary from GitHub. Exiting."
   exit 1
 }
+echo "[+] Verifying checksum..."
+ACTUAL_HASH=$(sha256sum "/tmp/$TAR_FILE" | awk '{print $1}')
+if [ "$ACTUAL_HASH" != "$EXPECTED_HASH" ]; then
+    echo "[-] Checksum mismatch! Expected: $EXPECTED_HASH, Got: $ACTUAL_HASH"
+    exit 1
+fi
+echo "[+] Checksum verified."
 echo "[+] Extracting binary..."
 tar -xzf "/tmp/$TAR_FILE" -C /tmp
 sudo mv "/tmp/$BIN_NAME" /usr/local/bin/nodl-core

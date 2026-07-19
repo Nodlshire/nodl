@@ -118,33 +118,52 @@ func AuthenticateHeadless(apiBase, token string, state *platform.State) error {
 		return fmt.Errorf("failed to marshal registration body: %w", err)
 	}
 
-	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonBody))
-	if err != nil {
-		return fmt.Errorf("failed to create request: %w", err)
+	var bodyBytes []byte
+	var respStatusCode int
+
+	for {
+		req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonBody))
+		if err != nil {
+			return fmt.Errorf("failed to create request: %w", err)
+		}
+		req.Header.Set("Authorization", "Bearer "+token)
+		req.Header.Set("Content-Type", "application/json")
+
+		platform.Info("Authenticating headless node with API: %s (UPID: %s, CPUCores: %d, MemoryGB: %d)", url, state.UPID, state.CPUCores, state.MemoryGB)
+
+		client := &http.Client{Timeout: 10 * time.Second}
+		resp, err := client.Do(req)
+		if err != nil {
+			platform.Warn("Network error during headless authentication: %v. Retrying in 10s...", err)
+			time.Sleep(10 * time.Second)
+			continue
+		}
+
+		bodyBytes, err = io.ReadAll(resp.Body)
+		respStatusCode = resp.StatusCode
+		resp.Body.Close()
+
+		if err != nil {
+			platform.Warn("Failed to read response body: %v. Retrying in 10s...", err)
+			time.Sleep(10 * time.Second)
+			continue
+		}
+
+		if respStatusCode >= 500 {
+			platform.Warn("Infrastructure error (%d) during headless authentication: %s. Retrying in 10s...", respStatusCode, string(bodyBytes))
+			time.Sleep(10 * time.Second)
+			continue
+		}
+
+		break
 	}
-	req.Header.Set("Authorization", "Bearer "+token)
-	req.Header.Set("Content-Type", "application/json")
 
-	platform.Info("Authenticating headless node with API: %s (UPID: %s, CPUCores: %d, MemoryGB: %d)", url, state.UPID, state.CPUCores, state.MemoryGB)
-
-	client := &http.Client{Timeout: 10 * time.Second}
-	resp, err := client.Do(req)
-	if err != nil {
-		return fmt.Errorf("network error during headless authentication: %w", err)
-	}
-	defer resp.Body.Close()
-
-	bodyBytes, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return fmt.Errorf("failed to read response body: %w", err)
-	}
-
-	if resp.StatusCode != http.StatusOK {
+	if respStatusCode != http.StatusOK {
 		var errResp HeadlessConsumeResponse
 		if err := json.Unmarshal(bodyBytes, &errResp); err == nil && errResp.Error != "" {
-			return fmt.Errorf("headless authentication failed: %s (status %d)", errResp.Error, resp.StatusCode)
+			return fmt.Errorf("headless authentication failed: %s (status %d)", errResp.Error, respStatusCode)
 		}
-		return fmt.Errorf("headless authentication failed with status %d: %s", resp.StatusCode, string(bodyBytes))
+		return fmt.Errorf("headless authentication failed with status %d: %s", respStatusCode, string(bodyBytes))
 	}
 
 	var successResp HeadlessConsumeResponse

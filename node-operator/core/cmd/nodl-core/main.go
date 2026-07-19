@@ -39,7 +39,7 @@ func main() {
 		*apiBase = "https://space.nodl.it"
 	} else if *profile == "earth-headless" {
 		platform.Info("Loading Headless Earth configuration from config/earth-headless.config.json")
-		*apiBase = "http://127.0.0.1:8080"
+		*apiBase = "https://api.wnode.one"
 	}
 
 	if state.DeviceToken == "" {

@@ -58,7 +58,7 @@ func (c *MeshClient) Connect(url string) error {
 
 // dial establishes the raw WebSocket connection.
 func (c *MeshClient) dial() error {
-	ws, err := websocket.Dial(c.serverURL, "", "http://localhost/")
+	ws, err := websocket.Dial(c.serverURL, "", "https://api.wnode.one")
 	if err != nil {
 		return err
 	}

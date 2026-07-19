@@ -1,0 +1,49 @@
+#!/bin/bash
+set -e
+echo "[+] Starting WNode Operator Standalone Installation..."
+sudo mkdir -p /etc/wnode
+ARCH=$(uname -m)
+case "$ARCH" in
+    x86_64)
+        TAR_FILE="nodl-core-linux-amd64.tar.gz"
+        BIN_NAME="nodl-core-linux-amd64"
+        ;;
+    aarch64|arm64)
+        TAR_FILE="nodl-core-linux-arm64.tar.gz"
+        BIN_NAME="nodl-core-linux-arm64"
+        ;;
+    *)
+        echo "[-] Unsupported architecture: $ARCH"
+        exit 1
+        ;;
+esac
+echo "[+] Detected architecture: $ARCH. Target build: $TAR_FILE"
+BINARY_URL="https://github.com/wnodeltd/wnode/releases/download/v1.1.0/$TAR_FILE"
+echo "[+] Downloading binary from $BINARY_URL..."
+sudo curl -fsSL -L "$BINARY_URL" -o "/tmp/$TAR_FILE" || {
+  echo "[-] Failed to download binary from GitHub. Exiting."
+  exit 1
+}
+echo "[+] Extracting binary..."
+tar -xzf "/tmp/$TAR_FILE" -C /tmp
+sudo mv "/tmp/$BIN_NAME" /usr/local/bin/nodl-core
+sudo chmod +x /usr/local/bin/nodl-core
+echo "[+] Configuring systemd service..."
+sudo tee /etc/systemd/system/nodl-core.service > /dev/null << 'SVC'
+[Unit]
+Description=WNode Core Operator
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/nodl-core --profile=earth-headless --api="https://api.wnode.one"
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+SVC
+sudo systemctl daemon-reload
+sudo systemctl enable nodl-core.service
+sudo systemctl restart nodl-core.service
+echo "[+] WNode Operator successfully installed and started!"

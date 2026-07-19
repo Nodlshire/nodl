@@ -38,8 +38,8 @@ func (c *StripeClient) CreateConnectedAccount(operatorID string) (string, string
 	// Create the account link for onboarding
 	linkParams := &stripe.AccountLinkParams{
 		Account:    stripe.String(acc.ID),
-		RefreshURL: stripe.String("http://localhost:3000/onboard/refresh"), 
-		ReturnURL:  stripe.String("http://localhost:3000/onboard/success"), 
+		RefreshURL: stripe.String("https://api.wnode.one/onboard/refresh"), 
+		ReturnURL:  stripe.String("https://api.wnode.one/onboard/success"), 
 		Type:       stripe.String("account_onboarding"),
 	}
 

@@ -81,10 +81,11 @@ type Store struct {
 }
 
 type storeState struct {
-	OrganicCount  int    `json:"organic_count"`
-	MeshBucket    int    `json:"mesh_bucket"`
-	MeshSequence  int    `json:"mesh_sequence"`
-	MeshMonthYear string `json:"mesh_month_year"`
+	OrganicCount   int                       `json:"organic_count"`
+	MeshBucket     int                       `json:"mesh_bucket"`
+	MeshSequence   int                       `json:"mesh_sequence"`
+	MeshMonthYear  string                    `json:"mesh_month_year"`
+	HeadlessTokens map[string]*HeadlessToken `json:"headless_tokens"`
 }
 
 func NewStore(forensics *forensics.Store, statePath string) *Store {
@@ -247,6 +248,17 @@ func (s *Store) loadState() {
 		s.meshBucket = state.MeshBucket
 		s.meshSequence = state.MeshSequence
 		s.meshMonthYear = state.MeshMonthYear
+		
+		if state.HeadlessTokens != nil {
+			now := time.Now()
+			for k, t := range state.HeadlessTokens {
+				// Prune expired tokens to prevent state bloat
+				if now.After(t.ExpiresAt) {
+					continue
+				}
+				s.headlessTokens[k] = t
+			}
+		}
 	}
 }
 
@@ -255,10 +267,11 @@ func (s *Store) saveState() {
 		return
 	}
 	state := storeState{
-		OrganicCount:  s.organicCount,
-		MeshBucket:    s.meshBucket,
-		MeshSequence:  s.meshSequence,
-		MeshMonthYear: s.meshMonthYear,
+		OrganicCount:   s.organicCount,
+		MeshBucket:     s.meshBucket,
+		MeshSequence:   s.meshSequence,
+		MeshMonthYear:  s.meshMonthYear,
+		HeadlessTokens: s.headlessTokens,
 	}
 	data, _ := json.MarshalIndent(state, "", "  ")
 	_ = os.MkdirAll(filepath.Dir(s.statePath), 0755)

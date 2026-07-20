@@ -1643,17 +1643,6 @@ func (s *Store) GetOpportunityAudit(nodlrID string) *OpportunityAudit {
 			category := "HARDWARE_GAP"
 			reason := "Job required GPU or TEE compute tier"
 
-			// Mock logic for forensic demonstration
-			if r.TransactionID != "" {
-				b := r.TransactionID[0]
-				if b%3 == 0 {
-					category = "DOWNTIME"
-					reason = "Node was unhealthy or offline during scheduling"
-				} else if b%3 == 1 {
-					category = "CAPACITY_LIMIT"
-					reason = "Hardware exists, but cluster was at 100% capacity"
-				}
-			}
 
 			audit.Events = append(audit.Events, OpportunityEvent{
 				JobID:       r.TransactionID,

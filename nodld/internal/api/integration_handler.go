@@ -30,14 +30,11 @@ func (s *Server) handlePipelineInvoke(c *fiber.Ctx) error {
 	var customerID string
 	authHeader := c.Get("Authorization")
 	// Note: In a real system we would validate the auth header against API keys.
-	// For this phase, we mock customer determination or fall back to a default dev customer.
 	if authHeader != "" {
 		customerID = "cus_integration_" + integrationSlug
 	} else {
-		// Use dev customer if none provided
-		customerID = "mock_cus_default"
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "missing authentication"})
 	}
-
 	// If disabled externally but accessed internally, bypass billing
 	if !isExternalEnabled && isInternalCaller {
 		customerID = "internal_bypass"

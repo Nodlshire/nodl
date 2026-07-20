@@ -1905,24 +1905,9 @@ func (s *Server) handleHeartbeatNode(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
 	}
 
-	// Space Node Telemetry returns an earnings summary
-	var earningsSummary fiber.Map
-	nodeAcc, ok := s.accountStore.GetNodlr(nodeId)
-	if ok && nodeAcc.Archetype == account.ArchetypeAASP {
-		// Mock calculation for earnings/bonus
-		baseEarnings := float64(req.Metrics.TasksCompleted) * 0.05
-		bonusEarnings := float64(req.Metrics.Uptime) / 3600.0 * 0.10
-		earningsSummary = fiber.Map{
-			"totalEarnings": baseEarnings + bonusEarnings,
-			"bonus":         bonusEarnings,
-		}
-	}
+
 
 	res := fiber.Map{"status": "success"}
-	if earningsSummary != nil {
-		res["earningsSummary"] = earningsSummary
-	}
-
 	return c.JSON(res)
 }
 

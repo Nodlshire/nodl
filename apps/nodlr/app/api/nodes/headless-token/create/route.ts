@@ -10,7 +10,7 @@ export async function POST(request: Request) {
     }
 
     try {
-        const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8080";
+        const apiUrl = process.env.NODLD_API_URL || "https://api.wnode.one";
         
         const headers: Record<string, string> = {};
         if (authHeader) headers['Authorization'] = authHeader;

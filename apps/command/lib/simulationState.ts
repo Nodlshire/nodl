@@ -17,7 +17,7 @@ export const simulationState = {
 };
 
 export const enableSimulation = () => {
-    simulationState.enabled = true;
+    simulationState.enabled = false;
 };
 
 export const disableSimulation = () => {

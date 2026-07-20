@@ -37,21 +37,35 @@ echo "[+] Extracting binary..."
 tar -xzf "/tmp/$TAR_FILE" -C /tmp
 sudo mv "/tmp/$BIN_NAME" /usr/local/bin/nodl-core
 sudo chmod +x /usr/local/bin/nodl-core
+
+echo "[+] Setting up environment..."
+echo "NODLD_API_URL=https://api.wnode.one" | sudo tee /etc/wnode/.env > /dev/null
+
 echo "[+] Configuring systemd service..."
-sudo tee /etc/systemd/system/nodl-core.service > /dev/null << 'SVC'
+sudo curl -fsSL "https://raw.githubusercontent.com/wnodeltd/wnode/main/node-operator/installer/linux/nodl-core.service" -o /etc/systemd/system/nodl-core.service || sudo tee /etc/systemd/system/nodl-core.service > /dev/null << 'SVC'
 [Unit]
-Description=WNode Core Operator
-After=network.target
+Description=Wnode Operator Core Daemon
+Documentation=https://wnode.network/docs
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/nodl-core --profile=earth-headless --api="https://api.wnode.one"
-Restart=always
+User=root
+Group=root
+EnvironmentFile=-/etc/wnode/.env
+ExecStart=/usr/local/bin/nodl-core --profile=earth-headless --api=${NODLD_API_URL}
+Restart=on-failure
 RestartSec=5
+StandardOutput=journal
+StandardError=journal
+ProtectSystem=full
+PrivateTmp=true
 
 [Install]
 WantedBy=multi-user.target
 SVC
+
 sudo systemctl daemon-reload
 sudo systemctl enable nodl-core.service
 sudo systemctl restart nodl-core.service

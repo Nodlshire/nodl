@@ -3,16 +3,8 @@
 import { useState, useEffect } from "react";
 
 export default function LivePeerMap() {
-    const [activePeers, setActivePeers] = useState(124);
-    const [throughput, setThroughput] = useState("842.1");
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setThroughput((prev) => (parseFloat(prev) + (Math.random() - 0.5) * 2).toFixed(1));
-            setActivePeers((prev) => prev + (Math.random() > 0.5 ? 1 : -1));
-        }, 2000);
-        return () => clearInterval(interval);
-    }, []);
+    const [activePeers, setActivePeers] = useState(0);
+    const [throughput, setThroughput] = useState("0.0");
 
     return (
         <div className="surface-card p-6 relative overflow-hidden group">
@@ -36,32 +28,28 @@ export default function LivePeerMap() {
 
 
                 <div className="px-4 py-2 border border-crimson/20 text-crimson text-[10px] font-normal uppercase tracking-widest bg-crimson/5 rounded-[4px]">
-                    System Load: 14%
+                    System Load: 0%
                 </div>
 
             </div>
 
             <div className="aspect-[21/9] bg-black/40 border border-wnode-border-separator flex items-center justify-center relative bg-[url('https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg')] bg-no-repeat bg-contain bg-center opacity-30 grayscale invert brightness-50 rounded-[5px]">
 
-                {/* Simulated Peer Markers */}
-                <div className="absolute top-[30%] left-[20%] w-2 h-2 rounded-full bg-cyber-cyan shadow-[0_0_10px_#00f2ff]" />
-                <div className="absolute top-[40%] left-[45%] w-2 h-2 rounded-full bg-cyber-crimson shadow-[0_0_10px_#ff0055] animate-ping" />
-                <div className="absolute top-[25%] left-[80%] w-2 h-2 rounded-full bg-cyber-violet shadow-[0_0_10px_#9d00ff]" />
-                <div className="absolute top-[60%] left-[65%] w-2 h-2 rounded-full bg-cyber-cyan shadow-[0_0_10px_#00f2ff]" />
+                {/* Real Peer Markers will be rendered here based on telemetry */}
             </div>
 
             <div className="mt-8 grid grid-cols-3 gap-6 text-center">
                 <div>
                     <span className="text-[10px] font-normal uppercase tracking-widest text-white/40 block mb-1">Total Compute Hours</span>
-                    <span className="text-2xl font-normal text-white">8.4M</span>
+                    <span className="text-2xl font-normal text-white">0</span>
                 </div>
                 <div className="border-x border-wnode-border-neutral">
                     <span className="text-[10px] font-normal uppercase tracking-widest text-white/40 block mb-1">Verified Proofs</span>
-                    <span className="text-2xl font-normal text-white">142.1K</span>
+                    <span className="text-2xl font-normal text-white">0</span>
                 </div>
                 <div>
                     <span className="text-[10px] font-normal uppercase tracking-widest text-white/40 block mb-1">Uptime (Mesh)</span>
-                    <span className="text-2xl font-normal text-white">99.98%</span>
+                    <span className="text-2xl font-normal text-white">0.00%</span>
                 </div>
             </div>
 

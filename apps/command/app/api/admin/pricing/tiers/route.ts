@@ -1,15 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
-import { simulationState } from '../../../../../lib/simulationState';
 
 export async function GET(req: NextRequest) {
-    const cookieStore = await cookies();
-    const isSimulated = cookieStore.get('simulation')?.value === '1';
-    
-    if (isSimulated) {
-        return NextResponse.json(simulationState.pricingTiers);
-    }
-
     const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8080";
 
     try {
@@ -22,8 +14,7 @@ export async function GET(req: NextRequest) {
         });
 
         if (!res.ok) {
-            // Fallback to simulation data if backend is down but we want a UI
-            return NextResponse.json(simulationState.pricingTiers);
+            return NextResponse.json({ error: 'Backend unreachable' }, { status: res.status });
         }
 
         const data = await res.json();
@@ -31,6 +22,6 @@ export async function GET(req: NextRequest) {
 
     } catch (error) {
         console.error('[Pricing Tiers Route Error]:', error);
-        return NextResponse.json(simulationState.pricingTiers); // Safety fallback
+        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
 }

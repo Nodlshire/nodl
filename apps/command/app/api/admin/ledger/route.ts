@@ -1,26 +1,7 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
-import { simulationState } from '../../../../lib/simulationState';
 
 export async function GET() {
-    const cookieStore = await cookies();
-    const isSimulated = cookieStore.get('simulation')?.value === '1';
-    
-    if (isSimulated) {
-        const totalVolume = simulationState.ledgerTransactions.reduce((acc, tx) => acc + (tx.type === 'credit' ? tx.amount : 0), 0);
-        const platformFees = simulationState.ledgerTransactions.reduce((acc, tx) => acc + tx.fee, 0);
-        const pendingPayouts = simulationState.ledgerTransactions.reduce((acc, tx) => acc + (tx.status === 'pending' ? tx.amount : 0), 0);
-
-        return NextResponse.json({
-            transactions: simulationState.ledgerTransactions,
-            stats: {
-                totalVolume,
-                platformFees,
-                pendingPayouts
-            }
-        });
-    }
-
     const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8080";
 
     try {

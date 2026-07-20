@@ -17,18 +17,9 @@ export default function GrowthEnginePage() {
     const [nodes, setNodes] = useState<Node[]>([]);
 
     useEffect(() => {
-        // Mock data for the Growth Engine
-        const mockTree: Node[] = [
-            { id: "1", peerId: "12D3KooW...", health: 98, level: 1, commission: 45.20, children: [
-                { id: "1-1", peerId: "Secondary Node", health: 0, level: 2, commission: 12.40 },
-                { id: "1-2", peerId: "Secondary Node", health: 0, level: 2, commission: 8.50 },
-            ]},
-            { id: "2", peerId: "12D3KooX...", health: 42, level: 1, commission: 12.80 },
-            { id: "3", peerId: "12D3KooY...", health: 85, level: 1, commission: 33.10, children: [
-                { id: "3-1", peerId: "Secondary Node", health: 0, level: 2, commission: 5.20 },
-            ]},
-        ];
-        setNodes(mockTree);
+        // Mock data removed. In a real environment, fetch from API.
+        // For now, ensure real-time telemetry only by not displaying fake nodes.
+        setNodes([]);
     }, []);
 
     const totalL2Count = nodes.reduce((acc, n) => acc + (n.children?.length || 0), 0);

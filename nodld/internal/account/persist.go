@@ -33,6 +33,7 @@ type AuthState struct {
 	Founders            map[string]string              `json:"founders,omitempty"`
 	Integrations        map[string]*Integration        `json:"integrations,omitempty"`
 	DomainSessions      map[string]*DomainSession      `json:"domain_sessions,omitempty"`
+	HeadlessTokens      map[string]*HeadlessToken      `json:"headless_tokens,omitempty"`
 }
 
 func (s *Store) SaveState() error {
@@ -89,6 +90,7 @@ func (s *Store) SaveState() error {
 		Founders:            foundersMap,
 		Integrations:        s.integrations,
 		DomainSessions:      s.domainSessions,
+		HeadlessTokens:      s.headlessTokens,
 	}
 
 	data, err := json.MarshalIndent(state, "", "  ")
@@ -235,6 +237,15 @@ func (s *Store) LoadState() error {
 		for i := 0; i < 10; i++ {
 			if val, ok := state.Founders[fmt.Sprintf("%d", i+1)]; ok {
 				s.founders[i] = val
+			}
+		}
+	}
+	
+	if state.HeadlessTokens != nil {
+		now := time.Now()
+		for k, t := range state.HeadlessTokens {
+			if !now.After(t.ExpiresAt) {
+				s.headlessTokens[k] = t
 			}
 		}
 	}

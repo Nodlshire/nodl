@@ -149,7 +149,7 @@ func TestWasmCache(t *testing.T) {
 func TestWasmMemoryCap(t *testing.T) {
 	wasm := buildEchoWasm()
 	// Run with a very small memory cap (1MB = 16 pages). Module requests 1 page, so it should fit.
-	result, err := ExecuteWasm(context.Background(), wasm, "test", TaskLimits{MemoryMB: 1, CpuTimeoutMs: 3000})
+	result, err := ExecuteWasm(context.Background(), wasm, "test", TaskLimits{MemoryMB: 1, CpuTimeoutMs: 3000}, ExecutionOptions{})
 	if err != nil {
 		t.Fatalf("ExecuteWasm with small memory cap failed: %v", err)
 	}
@@ -163,7 +163,7 @@ func TestWasmMemoryCap(t *testing.T) {
 
 func TestWasmTimeout(t *testing.T) {
 	wasm := buildLoopWasm()
-	_, err := ExecuteWasm(context.Background(), wasm, "x", TaskLimits{MemoryMB: 1, CpuTimeoutMs: 500})
+	_, err := ExecuteWasm(context.Background(), wasm, "x", TaskLimits{MemoryMB: 1, CpuTimeoutMs: 500}, ExecutionOptions{})
 	if err == nil {
 		t.Fatal("expected timeout error, got nil")
 	}
@@ -177,7 +177,7 @@ func TestGpuStub(t *testing.T) {
 	r := wazero.NewRuntime(ctx)
 	defer r.Close(ctx)
 
-	err := RegisterHostFunctions(ctx, r)
+	err := RegisterHostFunctions(ctx, r, WasmCapabilities{}, ExecutionOptions{})
 	if err != nil {
 		t.Fatalf("RegisterHostFunctions failed: %v", err)
 	}

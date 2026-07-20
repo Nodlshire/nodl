@@ -82,7 +82,7 @@ func TestTelemetryHooksInStore(t *testing.T) {
 		Network:      "wifi",
 		ComputeScore: 95.0,
 	}
-	err = store.UpdateNodeHeartbeat(nodeId, metrics, "hw-hash-123", "fp-browser-456", "native")
+	err = store.UpdateNodeHeartbeat(nodeId, metrics, "hw-hash-123", "fp-browser-456", "native", "")
 	if err != nil {
 		t.Fatalf("failed to update node heartbeat: %v", err)
 	}

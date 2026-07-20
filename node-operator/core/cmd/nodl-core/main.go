@@ -66,6 +66,11 @@ func main() {
 			platform.Info("Hardware snapshot: UPID=%s CPUCores=%d MemoryGB=%d", state.UPID, state.CPUCores, state.MemoryGB)
 
 			if err := auth.AuthenticateHeadless(*apiBase, token, state); err != nil {
+				if strings.Contains(err.Error(), "status 40") {
+					log.Printf("Headless registration rejected (invalid or expired token). Purging token file.")
+					os.Remove(tokenFile)
+					log.Fatalf("Fatal: %v", err)
+				}
 				log.Fatalf("Headless registration failed: %v", err)
 			}
 			os.Remove(tokenFile)

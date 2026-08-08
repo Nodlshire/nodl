@@ -16,7 +16,7 @@ export default function TemplateIntegrationPage({
     const isEnterprise = integrationData.summary !== "PENDING VERIFICATION";
 
     return (
-        <div className="w-full max-w-[880px] mx-auto pb-24 mt-8">
+        <div className="w-full max-w-full mx-auto pb-24 mt-8">
             <BackButton />
             
             <div className="mt-8 mb-12 border-b border-slate-800 pb-8">

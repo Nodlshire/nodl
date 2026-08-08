@@ -50,7 +50,7 @@ export function Header() {
                 </div>
                 {currentTitle && (
                     <>
-                        <div className="h-6 w-[1px] bg-white/10" />
+                        <div className="h-6 w-full bg-white/10" />
                         <h2 className="text-sm font-black text-white tracking-[0.2em] uppercase leading-none">
                             {currentTitle}
                         </h2>
@@ -87,7 +87,7 @@ export function Header() {
                     </div>
                 </div>
 
-                <div className="h-6 w-[1px] bg-white/10 mx-1" />
+                <div className="h-6 w-full bg-white/10 mx-1" />
 
                 <IdentityHeader account={profile} />
             </div>

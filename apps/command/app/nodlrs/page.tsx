@@ -219,7 +219,7 @@ export default function UserCrmPage() {
                     <div className="relative">
                         <div 
                             onClick={() => setIsFilterOpen(!isFilterOpen)}
-                            className="bg-black/50 border border-wnode-border-neutral rounded-[5px] px-4 py-3 text-[13px] text-white cursor-pointer hover:border-white/20 transition-all min-w-[140px] flex justify-between items-center"
+                            className="bg-black/50 border border-wnode-border-neutral rounded-[5px] px-4 py-3 text-[13px] text-white cursor-pointer hover:border-white/20 transition-all min-w-full flex justify-between items-center"
                         >
                             <span className="truncate pr-4">
                                 {identityFilters.includes("All") || identityFilters.length === 0 
@@ -235,7 +235,7 @@ export default function UserCrmPage() {
                                     initial={{ opacity: 0, y: -5 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -5 }}
-                                    className="absolute top-full mt-2 w-full min-w-[200px] bg-[#0A0A0A] border border-wnode-border-neutral rounded-[5px] shadow-2xl z-50 overflow-hidden"
+                                    className="absolute top-full mt-2 w-full min-w-full bg-[#0A0A0A] border border-wnode-border-neutral rounded-[5px] shadow-2xl z-50 overflow-hidden"
                                 >
                                     <div className="flex flex-col max-h-[300px] overflow-y-auto custom-scrollbar">
                                         {["All", "Mesh", "Nodlr", "Founder", "Owner", "CMD", "Mesh In", "Nodlr In", "Tech Founder"].map(f => (

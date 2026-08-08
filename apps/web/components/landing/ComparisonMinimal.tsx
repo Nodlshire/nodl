@@ -55,7 +55,7 @@ export function ComparisonMinimal() {
         </h2>
 
         <div className="overflow-x-auto custom-scrollbar">
-          <div className="rounded-2xl border border-white/25 bg-white/[0.01] backdrop-blur-sm min-w-[600px] md:min-w-full overflow-hidden">
+          <div className="rounded-2xl border border-white/25 bg-white/[0.01] backdrop-blur-sm min-w-full md:min-w-full overflow-hidden">
             {/* Header Row */}
             <div className="grid grid-cols-3 border-b border-white/25 bg-white/[0.03]">
               <div className="p-4 md:p-6 text-center border-r border-white/15">
@@ -81,7 +81,7 @@ export function ComparisonMinimal() {
                   {/* Wenode Column */}
                   <div className="flex flex-col items-center justify-center p-4 md:p-6 border-r border-white/15 space-y-3">
                     <IconRenderer type={f.wnode} />
-                    <span className="text-[9px] md:text-xs text-white text-center font-bold uppercase tracking-tight max-w-[140px]">
+                    <span className="text-[9px] md:text-xs text-white text-center font-bold uppercase tracking-tight max-w-full">
                       <StatusLabel type={f.wnode} name={f.name} />
                     </span>
                   </div>
@@ -89,7 +89,7 @@ export function ComparisonMinimal() {
                   {/* Cloud Column */}
                   <div className="flex flex-col items-center justify-center p-4 md:p-6 border-r border-white/15 space-y-3">
                     <IconRenderer type={f.cloud} />
-                    <span className="text-[9px] md:text-xs text-gray-500 text-center font-bold uppercase tracking-widest max-w-[140px]">
+                    <span className="text-[9px] md:text-xs text-gray-500 text-center font-bold uppercase tracking-widest max-w-full">
                       <StatusLabel type={f.cloud} name={f.name} />
                     </span>
                   </div>
@@ -97,7 +97,7 @@ export function ComparisonMinimal() {
                   {/* Other Column */}
                   <div className="flex flex-col items-center justify-center p-4 md:p-6 space-y-3">
                     <IconRenderer type={f.other} />
-                    <span className="text-[9px] md:text-xs text-gray-600 text-center font-bold uppercase tracking-widest max-w-[140px]">
+                    <span className="text-[9px] md:text-xs text-gray-600 text-center font-bold uppercase tracking-widest max-w-full">
                       <StatusLabel type={f.other} name={f.name} />
                     </span>
                   </div>

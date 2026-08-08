@@ -165,7 +165,7 @@ export default function AffiliatePage() {
                             animate={{ x: 0 }}
                             exit={{ x: '100%' }}
                             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                            className="fixed right-0 top-0 bottom-0 w-[400px] bg-[#0a0a0a] border-l border-white/10 z-50 p-8 shadow-2xl flex flex-col overflow-y-auto"
+                            className="fixed right-0 top-0 bottom-0 w-full bg-[#0a0a0a] border-l border-white/10 z-50 p-8 shadow-2xl flex flex-col overflow-y-auto"
                         >
                             <div className="flex justify-between items-center mb-8 pb-6 border-b border-white/5">
                                 <div>

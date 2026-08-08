@@ -80,8 +80,8 @@ export default function DetailPanel({
                                 {footer}
                             </footer>
                         )}
-                        <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[#22D3EE]/5 rounded-full blur-[100px] pointer-events-none -z-10" />
-                        <div className="absolute bottom-0 left-0 w-[200px] h-[200px] bg-purple-500/5 rounded-full blur-[100px] pointer-events-none -z-10" />
+                        <div className="absolute top-0 right-0 w-full h-[300px] bg-[#22D3EE]/5 rounded-full blur-[100px] pointer-events-none -z-10" />
+                        <div className="absolute bottom-0 left-0 w-full h-[200px] bg-purple-500/5 rounded-full blur-[100px] pointer-events-none -z-10" />
                     </motion.div>
                 </>
             )}

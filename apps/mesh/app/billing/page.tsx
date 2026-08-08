@@ -185,7 +185,7 @@ export default function BillingPage() {
                         
                         <div className="space-y-1.5">
                             <span className="text-[9px] font-bold text-slate-500 uppercase tracking-widest block">Refill Amount</span>
-                            <div className="relative group/input max-w-[140px]">
+                            <div className="relative group/input max-w-full">
                                 <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-white/50">$</span>
                                 <input 
                                     type="text"

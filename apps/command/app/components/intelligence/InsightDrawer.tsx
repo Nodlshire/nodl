@@ -86,7 +86,7 @@ export default function InsightDrawer({ isOpen, onClose, insight }: InsightDrawe
           <div className="flex-1 flex flex-col opacity-100">
              {messages.length === 0 ? (
                <div className="flex-1 flex flex-col items-center justify-center text-center opacity-50 h-full">
-                 <p className="text-xs text-white/40 max-w-[250px]">
+                 <p className="text-xs text-white/40 max-w-full">
                    Ask Mesh Maestro to explain this insight, trace its root cause, or suggest optimizations.
                  </p>
                </div>

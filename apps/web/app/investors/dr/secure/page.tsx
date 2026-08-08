@@ -233,7 +233,7 @@ export default function SecureDataRoomPage() {
         return (
             <AppLayout>
                 <div className="bg-black text-white min-h-screen pt-32 pb-20 px-8 selection:bg-blue-500/30">
-                    <div className="max-w-[1400px] w-full mx-auto grid grid-cols-1 lg:grid-cols-4 gap-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+                    <div className="max-w-full w-full mx-auto grid grid-cols-1 lg:grid-cols-4 gap-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
                         
                         {/* LEFT SIDEBAR */}
                         <div className="lg:col-span-1 space-y-6">

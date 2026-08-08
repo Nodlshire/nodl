@@ -130,7 +130,7 @@ export default function IntegrationSlideout({ integration, isOpen, onClose, isLo
                 onClick={() => { if (!isEditing) onClose(); }}
             />
 
-            <div className={`fixed inset-y-0 right-0 w-[500px] max-w-full bg-[#0a0f1b] border-l border-white/10 z-50 transform transition-transform duration-300 ease-in-out shadow-2xl flex flex-col ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+            <div className={`fixed inset-y-0 right-0 w-full max-w-full bg-[#0a0f1b] border-l border-white/10 z-50 transform transition-transform duration-300 ease-in-out shadow-2xl flex flex-col ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                 {isLoading ? (
                     <div className="flex-1 flex items-center justify-center">
                         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#22D3EE]" />
@@ -152,7 +152,7 @@ export default function IntegrationSlideout({ integration, isOpen, onClose, isLo
                                             type="text"
                                             value={editForm.name || ""}
                                             onChange={(e) => setEditForm({...editForm, name: e.target.value})}
-                                            className="bg-black/50 border border-white/20 rounded px-2 py-1 text-white text-lg font-bold w-full max-w-[200px]"
+                                            className="bg-black/50 border border-white/20 rounded px-2 py-1 text-white text-lg font-bold w-full max-w-full"
                                             placeholder="Integration Name"
                                         />
                                     ) : (

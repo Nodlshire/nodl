@@ -198,7 +198,7 @@ export default function PricingPage() {
             </main>
 
             {/* Right side: Market Comparison Sidebar */}
-            <aside className="w-[400px] border-l border-wnode-border-neutral bg-black/40 backdrop-blur-xl flex flex-col hidden xl:flex overflow-hidden h-full">
+            <aside className="w-full border-l border-wnode-border-neutral bg-black/40 backdrop-blur-xl flex flex-col hidden xl:flex overflow-hidden h-full">
                 <div className="p-8 border-b border-wnode-border-neutral shrink-0">
                     <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-2">
@@ -571,7 +571,7 @@ function TierCard({ tier: initialTier, expanded, onToggle, competitors, onUpdate
                                 <button 
                                     onClick={() => onUpdate(tier)}
                                     disabled={isSaving}
-                                    className={`px-8 py-3 rounded-[5px] text-xs font-bold uppercase tracking-widest transition-all flex items-center justify-center gap-3 min-w-[200px] border shadow-lg ${isBelowFloor ? 'bg-slate-800 text-white/30 cursor-not-allowed border-wnode-border-separator' : 'bg-[#22D3EE] text-black hover:bg-[#22D3EE]/90 border-[#22D3EE] shadow-[#22D3EE]/20'}`}
+                                    className={`px-8 py-3 rounded-[5px] text-xs font-bold uppercase tracking-widest transition-all flex items-center justify-center gap-3 min-w-full border shadow-lg ${isBelowFloor ? 'bg-slate-800 text-white/30 cursor-not-allowed border-wnode-border-separator' : 'bg-[#22D3EE] text-black hover:bg-[#22D3EE]/90 border-[#22D3EE] shadow-[#22D3EE]/20'}`}
                                 >
                                     {isSaving ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                                     Update Protocol

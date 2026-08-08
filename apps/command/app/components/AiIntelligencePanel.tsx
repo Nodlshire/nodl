@@ -44,7 +44,7 @@ export default function AiIntelligencePanel() {
               {getStatusText()}
             </span>
           </div>
-          <span className="text-[14px] text-white/60 font-normal font-sans tracking-widest mt-0.5 truncate max-w-[150px]">
+          <span className="text-[14px] text-white/60 font-normal font-sans tracking-widest mt-0.5 truncate max-w-full">
             Model: {getModelName()}
           </span>
         </div>

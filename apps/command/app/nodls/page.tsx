@@ -356,7 +356,7 @@ export default function NodlsPage() {
                                                 <Zap className="w-4 h-4 text-purple-400 opacity-40" />
                                                 <span className="text-[11px] text-white/50 uppercase tracking-tighter">GPU Acceleration</span>
                                             </div>
-                                            <span className="text-[12px] text-purple-300 font-mono truncate max-w-[150px]">{selectedNodl.gpuModel || selectedNodl.gpu_model}</span>
+                                            <span className="text-[12px] text-purple-300 font-mono truncate max-w-full">{selectedNodl.gpuModel || selectedNodl.gpu_model}</span>
                                         </div>
                                     )}
                                 </div>

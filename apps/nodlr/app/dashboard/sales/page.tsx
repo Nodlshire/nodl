@@ -129,7 +129,7 @@ export default function MeshSalesPage() {
                                     <h2 className="text-lg font-bold text-white uppercase tracking-tight">Onboard Mesh Client</h2>
                                     <p className="text-slate-400 text-sm max-w-md">Every client that registers with your Invite Code earns you a 10% perpetual commission on their compute spend.</p>
                                 </div>
-                                <div className="bg-black/40 border border-white/10 rounded-xl p-4 flex items-center gap-6 min-w-[300px]">
+                                <div className="bg-black/40 border border-white/10 rounded-xl p-4 flex items-center gap-6 min-w-full">
                                     <div className="space-y-1 flex-1">
                                         <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Your Invite Code</span>
                                         <div className="text-lg font-mono text-white">{account?.nodlrId}</div>
@@ -297,7 +297,7 @@ export default function MeshSalesPage() {
                         </div>
                     </div>
 
-                    <p className="text-[11px] text-center text-slate-400 max-w-[200px]">
+                    <p className="text-[11px] text-center text-slate-400 max-w-full">
                         Percentage of your invitees' compute spend captured by your own nodes.
                     </p>
                 </div>

@@ -179,7 +179,7 @@ function OnboardingStatus() {
                     <CreditCard className="w-10 h-10 text-slate-500" />
                 </div>
                 <h2 className="text-2xl font-bold text-white mb-2 uppercase tracking-tight">Not Connected</h2>
-                <p className="text-slate-400 mb-8 text-sm leading-relaxed max-w-[280px] mx-auto">
+                <p className="text-slate-400 mb-8 text-sm leading-relaxed max-w-full mx-auto">
                     {`Please return to the main dashboard to link your account to the Wenode infrastructure.`}
                 </p>
                 <Link
@@ -247,7 +247,7 @@ export default function OnboardingReturnPage() {
         <main className="min-h-screen bg-[#080808] text-white flex flex-col items-center justify-center p-6 relative overflow-hidden font-roboto selection:bg-purple-500/40">
             {/* Mesh Backdrop */}
             <div className="absolute inset-0 z-0 pointer-events-none">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-600/5 blur-[120px] rounded-full animate-pulse-slow" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[800px] bg-purple-600/5 blur-[120px] rounded-full animate-pulse-slow" />
             </div>
 
             <div className="relative z-10 max-w-lg w-full">

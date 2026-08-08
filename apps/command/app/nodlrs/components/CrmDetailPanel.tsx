@@ -137,7 +137,7 @@ export default function CrmDetailPanel({
                 onClick={onClose}
             />
 
-            <div className={`fixed top-0 right-0 h-full w-[500px] bg-[#0A0A0A] border-l border-wnode-border-neutral z-[100] shadow-[0_0_50px_rgba(0,0,0,0.8)] transition-transform duration-500 ease-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+            <div className={`fixed top-0 right-0 h-full w-full bg-[#0A0A0A] border-l border-wnode-border-neutral z-[100] shadow-[0_0_50px_rgba(0,0,0,0.8)] transition-transform duration-500 ease-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                 <div className="p-8 space-y-10 h-full overflow-y-auto custom-scrollbar">
                     {/* Header Top */}
                     <div className="flex items-center justify-between">
@@ -259,7 +259,7 @@ export default function CrmDetailPanel({
                                     <div className="space-y-2">
                                         {lastMonthTxs.slice(0, 3).map(tx => (
                                             <div key={tx.id} className="flex justify-between items-center text-[12px]">
-                                                <span className="text-white/60 truncate max-w-[180px]">{tx.description}</span>
+                                                <span className="text-white/60 truncate max-w-full">{tx.description}</span>
                                                 <span className={`font-mono ${tx.amount > 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
                                                     {(tx.amount / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
                                                 </span>
@@ -324,7 +324,7 @@ export default function CrmDetailPanel({
                                         <div className="flex-1 flex justify-end items-center gap-3">
                                             <div 
                                                 onClick={() => person.affiliateReferrer && onNavigate?.(person.affiliateReferrer)}
-                                                className={`text-[13px] ${person.affiliateReferrer ? 'text-[#22D3EE] hover:underline cursor-pointer' : 'text-white/40 italic'} font-mono text-right truncate max-w-[200px]`}
+                                                className={`text-[13px] ${person.affiliateReferrer ? 'text-[#22D3EE] hover:underline cursor-pointer' : 'text-white/40 italic'} font-mono text-right truncate max-w-full`}
                                             >
                                                 {person.affiliateReferrer || "None"}
                                             </div>
@@ -558,7 +558,7 @@ function EditableField({
             <span className="text-[12px] text-white/40 font-normal">{label}</span>
             <div className="flex-1 flex justify-end items-center gap-3">
                 {isEditing ? (
-                    <div className="flex items-center gap-2 w-full max-w-[250px]">
+                    <div className="flex items-center gap-2 w-full max-w-full">
                         <input 
                             autoFocus
                             type="text" 
@@ -573,7 +573,7 @@ function EditableField({
                 ) : (
                     <div 
                         onClick={onEdit}
-                        className={`text-[13px] ${value ? 'text-white' : 'text-white/40 italic'} cursor-pointer hover:text-[#22D3EE] transition-colors ${mono ? 'font-mono' : ''} text-right truncate max-w-[200px]`}
+                        className={`text-[13px] ${value ? 'text-white' : 'text-white/40 italic'} cursor-pointer hover:text-[#22D3EE] transition-colors ${mono ? 'font-mono' : ''} text-right truncate max-w-full`}
                     >
                         {value || placeholder}
                     </div>

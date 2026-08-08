@@ -27,7 +27,7 @@ export default function Tooltip({ content, children }: TooltipProps) {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 10, scale: 0.95 }}
                         transition={{ duration: 0.15, ease: "easeOut" }}
-                        className="absolute z-[9999] bottom-full left-1/2 -translate-x-1/2 mb-3 px-4 py-2 bg-black/90 backdrop-blur-md border border-white/10 rounded-[6px] shadow-2xl pointer-events-none min-w-[200px] text-center"
+                        className="absolute z-[9999] bottom-full left-1/2 -translate-x-1/2 mb-3 px-4 py-2 bg-black/90 backdrop-blur-md border border-white/10 rounded-[6px] shadow-2xl pointer-events-none min-w-full text-center"
                     >
                         <span className="text-[11px] font-bold text-white leading-relaxed">
                             {content}

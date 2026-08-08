@@ -123,7 +123,7 @@ export default function NodeInspector({ nodeId, onClose }: NodeInspectorProps) {
                             <div className="p-3 ds-card space-y-3">
                                 <div className="flex items-center justify-between">
                                     <span className="ds-sub opacity-60">nodl.id</span>
-                                    <span className="text-[11px] font-mono text-white break-all text-right max-w-[200px]">{node.id}</span>
+                                    <span className="text-[11px] font-mono text-white break-all text-right max-w-full">{node.id}</span>
                                 </div>
                                 {nodlr && (
                                     <div className="flex items-center justify-between border-t border-wnode-border-separator pt-3">

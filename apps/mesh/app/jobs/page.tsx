@@ -294,7 +294,7 @@ export default function JobsPage() {
                             animate={{ x: 0 }}
                             exit={{ x: '100%' }}
                             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                            className="fixed top-0 right-0 h-full w-[450px] bg-[#080808] border-l border-white/10 z-[70] shadow-2xl overflow-y-auto"
+                            className="fixed top-0 right-0 h-full w-full bg-[#080808] border-l border-white/10 z-[70] shadow-2xl overflow-y-auto"
                         >
                             <div className="p-8 space-y-10">
                                 {/* Drawer Header */}

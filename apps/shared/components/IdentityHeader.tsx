@@ -83,7 +83,7 @@ export default function IdentityHeader({ account }: { account?: any }) {
     return (
         <div className="flex items-center gap-4 select-none">
             <div className="text-right flex flex-col items-end min-w-0">
-                <span className="text-[17px] text-white font-normal tracking-tight truncate max-w-[200px] font-sans">
+                <span className="text-[17px] text-white font-normal tracking-tight truncate max-w-full font-sans">
                     {identity.displayName}
                 </span>
                 <span className="text-[14px] text-[#3B82F6] font-normal tracking-widest uppercase mt-0.5 font-sans">

@@ -107,7 +107,7 @@ export default function SignaturePad({ onConfirm, onCancel }: SignaturePadProps)
                     onTouchEnd={stopDrawing}
                 />
             </div>
-            <div className="flex gap-4 w-full max-w-[500px]">
+            <div className="flex gap-4 w-full max-w-full">
                 <button onClick={handleClear} className="flex-1 py-3 px-4 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-sm font-bold uppercase tracking-widest transition-colors">Clear</button>
                 <button onClick={onCancel} className="flex-1 py-3 px-4 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-sm font-bold uppercase tracking-widest transition-colors">Cancel</button>
                 <button onClick={handleConfirm} className="flex-1 py-3 px-4 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-sm font-bold uppercase tracking-widest transition-colors shadow-[0_0_15px_rgba(37,99,235,0.2)]">Confirm</button>

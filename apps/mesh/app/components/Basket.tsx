@@ -19,7 +19,7 @@ export function Basket() {
                     <ShoppingBasket className={`w-8 h-8 ${totalItems > 0 ? 'text-mesh-emerald group-hover:text-black' : 'text-slate-400 group-hover:text-black'} transition-colors`} />
                     
                     {/* Quantity Bubble */}
-                    <div className="absolute -bottom-1 -right-1 bg-white text-black text-[8px] font-black uppercase tracking-tighter px-1.5 h-4 min-w-[16px] rounded-full flex items-center justify-center border border-black/10 shadow-lg z-10">
+                    <div className="absolute -bottom-1 -right-1 bg-white text-black text-[8px] font-black uppercase tracking-tighter px-1.5 h-4 min-w-full rounded-full flex items-center justify-center border border-black/10 shadow-lg z-10">
                         {totalItems}
                     </div>
                 </div>

@@ -245,7 +245,7 @@ export default function InstitutionalDashboard() {
                                         <td className="px-6 py-5 text-right text-emerald-400 font-mono">{formatCents(op.totalRevenue)}</td>
                                         <td className="px-6 py-5">
                                             <div className="flex items-center justify-center gap-2">
-                                                <div className="flex-1 max-w-[60px] h-1.5 bg-white/5 rounded-full overflow-hidden">
+                                                <div className="flex-1 max-w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
                                                     <div className="bg-emerald-500 h-full" style={{ width: '99%' }} />
                                                 </div>
                                                 <span className="text-[10px] text-emerald-400 font-bold tracking-tight">99.9%</span>

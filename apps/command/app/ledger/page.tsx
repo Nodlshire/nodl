@@ -210,7 +210,7 @@ export default function LedgerPage() {
                             <select 
                                 value={filterStatus}
                                 onChange={(e) => setFilterStatus(e.target.value)}
-                                className="bg-white/[0.03] border border-wnode-border-neutral rounded-[5px] px-4 py-3 text-[12px] focus:outline-none focus:border-[#22D3EE]/50 transition-all text-white/60 appearance-none min-w-[140px]"
+                                className="bg-white/[0.03] border border-wnode-border-neutral rounded-[5px] px-4 py-3 text-[12px] focus:outline-none focus:border-[#22D3EE]/50 transition-all text-white/60 appearance-none min-w-full"
                             >
                                 <option value="all">All Statuses</option>
                                 <option value="pending">Pending</option>

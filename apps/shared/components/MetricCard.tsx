@@ -30,7 +30,7 @@ export default function MetricCard({
     >
       {tooltip && showTooltip && (
         <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 z-[999] pointer-events-none">
-          <div className="bg-neutral-900 border border-white/10 text-[11px] text-slate-300 px-3 py-2 rounded-md shadow-[0_8px_32px_rgba(0,0,0,0.6)] whitespace-normal max-w-[240px] text-center leading-relaxed">
+          <div className="bg-neutral-900 border border-white/10 text-[11px] text-slate-300 px-3 py-2 rounded-md shadow-[0_8px_32px_rgba(0,0,0,0.6)] whitespace-normal max-w-full text-center leading-relaxed">
             {tooltip}
           </div>
           <div className="w-2 h-2 bg-neutral-900 border-b border-r border-white/10 rotate-45 absolute left-1/2 -translate-x-1/2 -bottom-1" />

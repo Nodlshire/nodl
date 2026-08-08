@@ -68,7 +68,7 @@ export default function OverviewPanel({ onCrmClick, onSectionClick }: OverviewPa
           >
             <div className="flex items-center gap-2">
               <div className="opacity-60 group-hover:opacity-100 transition-opacity">
-                {React.cloneElement(m.icon as React.ReactElement<any>, { className: "w-[18px] h-[18px] " + ((m.icon as React.ReactElement<any>).props.className || "") })}
+                {React.cloneElement(m.icon as React.ReactElement<any>, { className: "w-full h-[18px] " + ((m.icon as React.ReactElement<any>).props.className || "") })}
               </div>
               <span className="text-[11px] text-white uppercase tracking-widest font-semibold">{m.label}</span>
             </div>
@@ -85,7 +85,7 @@ export default function OverviewPanel({ onCrmClick, onSectionClick }: OverviewPa
           className="flex-1 min-w-0 bg-white/[0.02] border border-white/10 rounded-[5px] p-5 hover:bg-white/[0.04] hover:border-white/20 transition-all group cursor-pointer flex flex-col justify-between h-[100px]"
         >
           <div className="flex items-center gap-2">
-            <Shield className="w-[18px] h-[18px] text-cyan-400 opacity-60 group-hover:opacity-100 transition-opacity" />
+            <Shield className="w-full h-[18px] text-cyan-400 opacity-60 group-hover:opacity-100 transition-opacity" />
             <span className="text-[11px] text-white uppercase tracking-widest font-semibold">Infra Manager</span>
           </div>
           <div className="flex flex-col gap-0.5 overflow-hidden">

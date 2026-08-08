@@ -197,7 +197,7 @@ export default function CatalogPage() {
                             animate={{ x: 0 }}
                             exit={{ x: '100%' }}
                             transition={{ type: 'spring', damping: 30, stiffness: 200 }}
-                            className="fixed top-0 right-0 w-[400px] h-screen bg-black border-l border-white/10 z-[101] shadow-2xl flex flex-col"
+                            className="fixed top-0 right-0 w-full h-screen bg-black border-l border-white/10 z-[101] shadow-2xl flex flex-col"
                         >
                             <div className="p-8 border-b border-white/5 flex justify-between items-center bg-white/[0.02]">
                                 <div className="flex items-center gap-4">

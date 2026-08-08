@@ -161,7 +161,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
 
                 {/* Main Content Area */}
                 <main className="flex-1 overflow-visible min-w-0 flex flex-col lg:flex-row gap-12">
-                    <div className="flex-1 w-full max-w-[880px] mx-auto text-[#e5e7eb]">
+                    <div className="flex-1 w-full max-w-full mx-auto text-[#e5e7eb]">
                         {children}
                     </div>
 

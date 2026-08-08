@@ -65,7 +65,7 @@ export default function MeshNodesPage() {
                                 </td>
                                 <td className="px-6 py-4">
                                     <div className="flex items-center gap-2">
-                                        <div className="flex-1 min-w-[60px] max-w-[100px] bg-white/10 h-1.5 rounded-full overflow-hidden">
+                                        <div className="flex-1 min-w-full max-w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
                                             <div className="bg-cyan-400 h-full" style={{ width: `${node.load * 100}%` }} />
                                         </div>
                                         <span className="text-[10px] text-white/40">{(node.load * 100).toFixed(0)}%</span>

@@ -23,7 +23,7 @@ export default function Navbar() {
                     <span className="text-[10px] text-slate-500  uppercase tracking-widest">Available Hash</span>
                     <span className="text-xs text-cyber-cyan  font-bold glow-cyan tracking-tight">842.5 TH/s</span>
                 </div>
-                <div className="h-10 w-[1px] bg-white/10" />
+                <div className="h-10 w-full bg-white/10" />
                 <button className="px-5 py-2.5 rounded-full border border-cyber-cyan/30 bg-cyber-cyan/5 text-[10px] font-bold uppercase tracking-widest text-cyber-cyan hover:bg-cyber-cyan hover:text-obsidian transition-all">
                     $1,240.20
                 </button>

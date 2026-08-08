@@ -45,7 +45,7 @@ export default function TransparencyPage() {
             <div className="pt-32 pb-20 px-8 max-w-7xl mx-auto space-y-20">
                 {/* Hero / Pulse */}
                 <section className="text-center space-y-6 relative overflow-hidden py-12">
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-purple-600/5 blur-[100px] rounded-full -z-10" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[400px] bg-purple-600/5 blur-[100px] rounded-full -z-10" />
                     <h1 className="text-4xl md:text-6xl font-black tracking-tighter italic uppercase text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-500">
                         Network Proof of Reserve
                     </h1>

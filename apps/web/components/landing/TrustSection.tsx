@@ -8,7 +8,7 @@ export default function TrustSection({ onOpenModal }: TrustSectionProps) {
     return (
         <section className="py-40 bg-black border-t border-white/15 relative overflow-hidden">
             {/* Subtle Glow Background */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/5 blur-[120px] rounded-full pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[800px] bg-blue-600/5 blur-[120px] rounded-full pointer-events-none" />
 
             <div className="max-w-4xl mx-auto text-center px-8 fade-in-section relative z-10">
                 <h2 className="text-sm tracking-[0.4em] text-blue-500 uppercase mb-8 font-bold">Proof of Integrity</h2>
@@ -33,13 +33,13 @@ export default function TrustSection({ onOpenModal }: TrustSectionProps) {
                 <div className="mt-20 flex flex-col sm:flex-row items-center justify-center gap-6">
                     <button 
                         onClick={() => onOpenModal("beta_tester")}
-                        className="w-full sm:w-auto sm:min-w-[280px] bg-blue-600 hover:bg-blue-500 text-white text-lg font-bold px-10 py-5 rounded-none transition-all shadow-[0_0_40px_rgba(59,130,246,0.3)] uppercase tracking-widest"
+                        className="w-full sm:w-auto sm:min-w-full bg-blue-600 hover:bg-blue-500 text-white text-lg font-bold px-10 py-5 rounded-none transition-all shadow-[0_0_40px_rgba(59,130,246,0.3)] uppercase tracking-widest"
                     >
                         Become A Beta Tester
                     </button>
                     <button 
                         onClick={() => onOpenModal("investor")}
-                        className="w-full sm:w-auto sm:min-w-[280px] bg-purple-600 hover:bg-purple-500 text-white text-lg font-bold px-10 py-5 rounded-none transition-all shadow-[0_0_40px_rgba(168,85,247,0.4)] uppercase tracking-widest"
+                        className="w-full sm:w-auto sm:min-w-full bg-purple-600 hover:bg-purple-500 text-white text-lg font-bold px-10 py-5 rounded-none transition-all shadow-[0_0_40px_rgba(168,85,247,0.4)] uppercase tracking-widest"
                     >
                         JOIN WNODE WAITLIST
                     </button>

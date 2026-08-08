@@ -110,7 +110,7 @@ export default function MeshDashboard() {
     ];
 
     return (
-        <main className="p-6 space-y-6 max-w-[1600px] mx-auto pb-24 text-white/80">
+        <main className="p-6 space-y-6 max-w-full mx-auto pb-24 text-white/80">
             {/* CSS Shielding: Hide internal headers and normalize sub-view constraints */}
             <style jsx global>{`
                 .mesh-subview-wrapper header { display: none !important; }

@@ -82,7 +82,7 @@ export default function MachineList({ nodes }: MachineListProps) {
               </div>
             </div>
 
-            <div className="text-right min-w-[80px]">
+            <div className="text-right min-w-full">
               <div className="text-[10px] uppercase text-slate-500 mb-1">Usage</div>
               <div className="text-sm text-white font-mono">{node.cpu_load ? Math.round(parseFloat(node.cpu_load) * 100) : 0}%</div>
             </div>

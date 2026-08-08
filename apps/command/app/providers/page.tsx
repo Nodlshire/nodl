@@ -354,7 +354,7 @@ function Field({ label, value, mono, cyan, tag }: { label: string; value: any; m
                     {String(value)}
                 </span>
             ) : (
-                <span className={`text-[12px] ${cyan ? 'text-[#22D3EE]' : 'text-white'} ${mono ? 'font-mono tracking-tighter' : ''} max-w-[200px] text-right truncate`}>
+                <span className={`text-[12px] ${cyan ? 'text-[#22D3EE]' : 'text-white'} ${mono ? 'font-mono tracking-tighter' : ''} max-w-full text-right truncate`}>
                     {String(value ?? '—')}
                 </span>
             )}

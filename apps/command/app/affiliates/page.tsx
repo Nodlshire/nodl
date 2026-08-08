@@ -71,7 +71,7 @@ export default function AffiliatesPage() {
 
     return (
         <main className="flex-1 px-8 pt-3 pb-20 overflow-y-auto space-y-6 custom-scrollbar relative">
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#22D3EE]/5 rounded-full blur-[120px] pointer-events-none -z-10" />
+            <div className="absolute top-0 right-0 w-full h-[500px] bg-[#22D3EE]/5 rounded-full blur-[120px] pointer-events-none -z-10" />
 
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <SearchBar />

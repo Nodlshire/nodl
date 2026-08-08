@@ -97,7 +97,7 @@ export default function ConnectPage() {
                                     <Globe className="w-4 h-4 text-slate-500" />
                                     <div>
                                         <p className="text-[10px] text-slate-500 uppercase font-bold">OS</p>
-                                        <p className="text-sm text-slate-300 font-medium truncate max-w-[150px]">{metadata?.os || 'Unknown'}</p>
+                                        <p className="text-sm text-slate-300 font-medium truncate max-w-full">{metadata?.os || 'Unknown'}</p>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-3">

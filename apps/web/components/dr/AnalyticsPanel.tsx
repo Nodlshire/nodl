@@ -73,7 +73,7 @@ export default function AnalyticsPanel() {
 }
 
 const FunnelStep = ({ label, value, highlight }: { label: string, value: number, highlight?: boolean }) => (
-    <div className={`flex flex-col items-center justify-center p-4 rounded-lg border ${highlight ? 'border-blue-500/50 bg-blue-600/10' : 'border-white/10 bg-white/5'} min-w-[100px]`}>
+    <div className={`flex flex-col items-center justify-center p-4 rounded-lg border ${highlight ? 'border-blue-500/50 bg-blue-600/10' : 'border-white/10 bg-white/5'} min-w-full`}>
         <p className="text-2xl font-black mb-1">{value}</p>
         <p className={`text-[10px] uppercase tracking-widest ${highlight ? 'text-blue-400' : 'text-slate-400'}`}>{label}</p>
     </div>

@@ -151,7 +151,7 @@ export default function FleetMap({ nodes, nodlrs, loading, onNodeSelect }: MapPr
                     />
 
                     {/* Map Legend / Annunciator - Requirement 5 */}
-                    <div className="absolute bottom-6 left-6 z-10 bg-black/60 backdrop-blur-md p-3 border border-wnode-border-neutral rounded-[5px] flex flex-col gap-2 min-w-[160px] pointer-events-none">
+                    <div className="absolute bottom-6 left-6 z-10 bg-black/60 backdrop-blur-md p-3 border border-wnode-border-neutral rounded-[5px] flex flex-col gap-2 min-w-full pointer-events-none">
                         <div className="flex items-center justify-between gap-4">
                             <span className="text-[9px] text-[#b0bac3] uppercase tracking-widest font-bold">Active Nodes</span>
                             <span className="text-[10px] font-mono text-[#22D3EE] font-bold">{mappedNodes.length}</span>

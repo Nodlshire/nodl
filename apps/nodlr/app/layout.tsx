@@ -4,9 +4,10 @@ import { AuthProvider } from './components/AuthProvider';
 import { PageTitleProvider } from './components/PageTitleContext';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const providers = (
+  const ProvidersWrapper = ({ children: providerChildren }: { children: React.ReactNode }) => (
     <AuthProvider>
       <PageTitleProvider>
+        {providerChildren}
       </PageTitleProvider>
     </AuthProvider>
   );
@@ -14,7 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body data-portal="nodlr">
-        <CanonicalShell providers={providers}>
+        <CanonicalShell providers={ProvidersWrapper}>
           {children}
         </CanonicalShell>
       </body>

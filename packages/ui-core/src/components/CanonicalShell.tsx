@@ -1,10 +1,10 @@
 import React from 'react';
-const CanonicalShell = ({ providers, children }: any) => {
-  return (
+const CanonicalShell = ({ providers: Providers, children }: any) => {
+  const content = (
     <div className="min-h-screen bg-background text-foreground">
-      {providers}
       <main>{children}</main>
     </div>
   );
+  return Providers ? <Providers>{content}</Providers> : content;
 };
 export default CanonicalShell;

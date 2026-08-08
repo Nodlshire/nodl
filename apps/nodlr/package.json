@@ -16,7 +16,7 @@
         "@multiformats/multiaddr": "^12.1.0",
         "@stripe/connect-js": "^3.3.35",
         "@stripe/react-connect-js": "^3.3.34",
-        "@wnode/ui-core": "workspace:*",
+        "@wnode/ui-core": "file:../../packages/ui-core",
         "framer-motion": "^12.38.0",
         "leaflet": "^1.9.4",
         "libp2p": "^1.2.0",

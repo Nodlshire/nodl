@@ -27,7 +27,7 @@ export default function DetailPanel({ isOpen, onClose, node, affiliateData }: De
                 onClick={onClose}
             />
 
-            <div className={`fixed top-0 right-0 h-full w-[450px] bg-[#0A0A0A] border-l border-wnode-border-neutral z-[100] shadow-[0_0_50px_rgba(0,0,0,0.8)] transition-transform duration-500 ease-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+            <div className={`fixed top-0 right-0 h-full w-full max-w-md bg-[#09090b] border-l border-wnode-border-neutral z-[100] shadow-[0_0_50px_rgba(0,0,0,0.8)] transition-transform duration-500 ease-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
                 <div className="p-8 space-y-8 h-full overflow-y-auto custom-scrollbar">
                     <div className="flex items-center justify-between">
                         <div className="space-y-1">

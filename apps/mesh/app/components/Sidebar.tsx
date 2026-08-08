@@ -39,7 +39,7 @@ export default function Sidebar() {
     ];
 
     return (
-        <aside className="w-64 border-r border-white/10 hidden md:flex flex-col bg-[#080808] shrink-0 relative z-[100]">
+        <aside className="w-64 border-r border-neutral-800 hidden lg:flex flex-col bg-[#080808] shrink-0 relative z-[100]">
             <div className="pt-8 pl-8 mb-6 flex flex-col items-start gap-4 shrink-0">
                 <div className="flex flex-col items-start select-none gap-3">
                     <div className="flex flex-col items-center justify-center w-14">
@@ -64,7 +64,7 @@ export default function Sidebar() {
                             key={item.name}
                             href={item.href}
                             className={`flex items-center gap-3 px-6 py-4 rounded-none transition-all text-[10px] tracking-[0.2em] font-black uppercase ${isActive
-                                    ? 'bg-cyber-cyan/10 text-cyber-cyan border-l-2 border-cyber-cyan shadow-[0_0_15px_rgba(0,242,255,0.1)]'
+                                    ? 'bg-white/5 border border-white/10 text-white shadow-[0_0_10px_rgba(255,255,255,0.05)]'
                                     : 'text-slate-400 hover:text-white hover:bg-white/[0.03]'
                                 }`}
                         >

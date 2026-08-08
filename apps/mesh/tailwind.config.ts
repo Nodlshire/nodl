@@ -9,24 +9,17 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                background: "var(--background)",
-                foreground: "var(--foreground)",
-                emerald: {
-                    500: "#10b981",
-                },
-                gold: {
-                    500: "#f59e0b",
-                },
-                cyber: {
-                    cyan: "#00f2ff",
-                    violet: "#9d00ff",
-                },
-                obsidian: "#050505",
-            },
-            fontFamily: {
-                sans: ["var(--font-roboto)"],
-                mono: ["var(--font-roboto)"],
-            },
+                background: "#000000",
+                foreground: "#ffffff",
+                surface: "#09090b",
+                wnode: {
+                    green: "#00FF66",
+                    blue: "#0099FF",
+                    purple: "#A855F7",
+                    gold: "#FFB800",
+                    cyan: "#00F0FF"
+                }
+            }
         },
     },
     plugins: [],

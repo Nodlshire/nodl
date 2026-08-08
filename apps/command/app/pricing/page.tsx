@@ -65,7 +65,7 @@ import IdentityHeader from "@shared/components/IdentityHeader";
 import Tooltip from "../components/Tooltip";
 
 export default function PricingPage() {
-    usePageTitle("Pricing Protocol & Tier Matrix", "Autonomous economy management with real-time market-relative rate tuning.");
+    usePageTitle("SYSTEM OVERVIEW — GREEN TEST", "Autonomous economy management with real-time market-relative rate tuning.");
     const [tiers, setTiers] = useState<any[]>([]);
     const [expandedTiers, setExpandedTiers] = useState<Set<string>>(new Set());
     const [loading, setLoading] = useState(true);

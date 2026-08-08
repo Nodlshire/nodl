@@ -221,7 +221,7 @@ export default function FinancesPage() {
                 </main>
 
                 {/* Financial Detail Drawer */}
-                <div className={`fixed inset-y-0 right-0 w-[550px] bg-black border-l border-wnode-border-neutral z-[100] transition-transform duration-500 shadow-2xl ${selectedMetric ? 'translate-x-0' : 'translate-x-full'}`}>
+                <div className={`fixed inset-y-0 right-0 w-full max-w-lg bg-black border-l border-wnode-border-neutral z-[100] transition-transform duration-500 shadow-2xl ${selectedMetric ? 'translate-x-0' : 'translate-x-full'}`}>
                     {selectedMetric && (
                          <div className="flex flex-col h-full">
                             <header className="p-10 border-b border-wnode-border-neutral flex items-center justify-between bg-white/[0.02]">

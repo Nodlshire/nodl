@@ -87,7 +87,7 @@ export default function LoginPage() {
                         <h1 className="text-4xl font-bold text-white mb-2 tracking-tight uppercase">
                             Command
                         </h1>
-                        <p className="text-white/40 text-xs tracking-widest uppercase mt-2">Executive Control Access</p>
+                        <p className="text-white/40 text-xs tracking-widest uppercase mt-2">Executive Control Access CANARY_937_TEST_DO_NOT_IGNORE</p>
                     </div>
 
                     <form onSubmit={handleLogin} className="space-y-4">

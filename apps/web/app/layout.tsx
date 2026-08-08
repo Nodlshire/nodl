@@ -31,7 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <head>
                 <script defer src="https://stats.wnode.one/script.js" data-website-id="a4384d11-fbf7-4a2c-a8c8-08c252d96b54"></script>
             </head>
-            <body suppressHydrationWarning className={`${inter.variable} ${roboto.variable} ${spaceGrotesk.variable} antialiased bg-black text-slate-50 font-sans`}>
+            <body suppressHydrationWarning className={`min-h-screen w-full bg-black text-white flex flex-col lg:flex-row overflow-x-hidden ${inter.variable} ${roboto.variable} ${spaceGrotesk.variable} antialiased font-sans`}>
                 {children}
             </body>
         </html>

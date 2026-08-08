@@ -35,7 +35,7 @@ export default function InviteModal({ open, onClose, slot, onSend }: InviteModal
 
     return (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
-            <div className="w-full max-w-md bg-[#0A0A0A] border border-wnode-border-neutral rounded-[8px] shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200">
+            <div className="w-full max-w-md bg-[#09090b] border border-wnode-border-neutral rounded-[8px] shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200">
                 {/* Header */}
                 <div className="px-6 py-4 border-b border-wnode-border-separator flex items-center justify-between bg-white/[0.02]">
                     <div className="flex items-center gap-3">

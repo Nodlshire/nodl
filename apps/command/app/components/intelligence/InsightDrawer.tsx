@@ -49,7 +49,7 @@ export default function InsightDrawer({ isOpen, onClose, insight }: InsightDrawe
       />
       
       {/* Drawer */}
-      <div className="fixed right-0 top-0 h-full w-[400px] bg-[#0a0a0c] border-l border-wnode-border-neutral z-50 flex flex-col shadow-2xl transition-transform duration-300 ease-in-out transform translate-x-0">
+      <div className="fixed right-0 top-0 h-full w-full max-w-sm bg-[#09090b] border-l border-wnode-border-neutral z-50 flex flex-col shadow-2xl transition-transform duration-300 ease-in-out transform translate-x-0">
         
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-wnode-border-neutral bg-white/[0.02]">

@@ -9,22 +9,17 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                background: "var(--background)",
-                foreground: "var(--foreground)",
-                cyber: {
-                    cyan: "#00f2ff",
-                    violet: "#9d00ff",
-                },
-                obsidian: "#050505",
-            },
-            fontFamily: {
-                sans: ["var(--font-roboto)"],
-                mono: ["var(--font-roboto)"],
-            },
-            backgroundImage: {
-                "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-                "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-            },
+                background: "#000000",
+                foreground: "#ffffff",
+                surface: "#09090b",
+                wnode: {
+                    green: "#00FF66",
+                    blue: "#0099FF",
+                    purple: "#A855F7",
+                    gold: "#FFB800",
+                    cyan: "#00F0FF"
+                }
+            }
         },
     },
     plugins: [],

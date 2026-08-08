@@ -1,0 +1,939 @@
+{
+  "nodlrs": {
+    "100001-0426-01-AA": {
+      "id": "100001-0426-01-AA",
+      "email": "stephen@wnode.one",
+      "password": "command",
+      "displayName": "Stephen Soos",
+      "meshClientId": "",
+      "stripeConnectId": "",
+      "stripeAccountId": "",
+      "founderStripeAccountId": null,
+      "nodlrStripeAccountId": null,
+      "role": "owner",
+      "payoutStatus": "",
+      "payoutsEnabled": false,
+      "verificationStatus": "",
+      "integrityScore": 0,
+      "isFrozen": false,
+      "accruedFounderBalance": 0,
+      "walletBalance": 0,
+      "pendingBalanceCents": 0,
+      "escrowBalanceCents": 0,
+      "isFounder": false,
+      "payoutFrequency": "",
+      "status": {
+        "active": true,
+        "verification": "verified"
+      },
+      "isProtected": true,
+      "isSuperAdmin": true,
+      "onboardingComplete": true,
+      "verified": true,
+      "labels": [
+        "FOUNDER",
+        "NODLR",
+        "MESH"
+      ],
+      "createdAt": "2026-07-17T13:33:02.210231034Z",
+      "totpEnabled": false
+    }
+  },
+  "pending_commissions": {},
+  "organic_count": 0,
+  "mesh_bucket": 0,
+  "mesh_sequence": 0,
+  "mesh_month_year": "",
+  "crm_records": {
+    "100001-0426-01-AA": {
+      "nodlrId": "100001-0426-01-AA",
+      "businessName": "Wnode Sovereign Foundation",
+      "phone": "+1-555-0199",
+      "avatar": "",
+      "labels": [
+        "FOUNDER",
+        "NODLR",
+        "MESH"
+      ],
+      "createdAt": "2026-07-20T08:48:22.285316419Z"
+    }
+  },
+  "nodes": {
+    "HN-27e459dc": {
+      "cpu_cores": 0,
+      "memory_gb": 0,
+      "lat": 0,
+      "lon": 0,
+      "ipAddress": "",
+      "id": "HN-27e459dc",
+      "userId": "100001-0426-01-AA",
+      "operator_wuid": "",
+      "crm_link": "",
+      "metadata": {
+        "os": ""
+      },
+      "status": "offline",
+      "createdAt": "2026-07-19T14:24:48.651011173Z",
+      "lastSeen": "2026-07-19T14:24:48.651011221Z",
+      "last_heartbeat": "",
+      "last_seen_at": "",
+      "globalScore": 0,
+      "tier": 5,
+      "isWasm": false,
+      "downtimePenalized": true,
+      "downtimeSlashed": true
+    },
+    "HN-6e1b9664": {
+      "cpu_cores": 0,
+      "memory_gb": 0,
+      "lat": 0,
+      "lon": 0,
+      "ipAddress": "",
+      "id": "HN-6e1b9664",
+      "userId": "100001-0426-01-AA",
+      "operator_wuid": "",
+      "crm_link": "",
+      "metadata": {
+        "os": ""
+      },
+      "status": "offline",
+      "createdAt": "2026-07-17T14:45:08.670116452Z",
+      "lastSeen": "2026-07-17T14:45:08.670116508Z",
+      "last_heartbeat": "",
+      "last_seen_at": "",
+      "globalScore": 0,
+      "tier": 5,
+      "isWasm": false,
+      "downtimePenalized": true,
+      "downtimeSlashed": true
+    },
+    "HN-7b738c68": {
+      "cpu_cores": 0,
+      "memory_gb": 0,
+      "lat": 0,
+      "lon": 0,
+      "ipAddress": "",
+      "id": "HN-7b738c68",
+      "userId": "100001-0426-01-AA",
+      "operator_wuid": "",
+      "crm_link": "",
+      "metadata": {
+        "os": ""
+      },
+      "status": "offline",
+      "createdAt": "2026-07-19T14:22:36.105670023Z",
+      "lastSeen": "2026-07-19T14:22:36.105670076Z",
+      "last_heartbeat": "",
+      "last_seen_at": "",
+      "globalScore": 0,
+      "tier": 5,
+      "isWasm": false,
+      "downtimePenalized": true,
+      "downtimeSlashed": true
+    },
+    "HN-961e6510": {
+      "cpu_cores": 0,
+      "memory_gb": 0,
+      "lat": 0,
+      "lon": 0,
+      "ipAddress": "",
+      "id": "HN-961e6510",
+      "userId": "100001-0426-01-AA",
+      "operator_wuid": "",
+      "crm_link": "",
+      "metadata": {
+        "os": ""
+      },
+      "status": "offline",
+      "createdAt": "2026-07-19T14:34:33.058089745Z",
+      "lastSeen": "2026-07-19T14:34:33.058089791Z",
+      "last_heartbeat": "",
+      "last_seen_at": "",
+      "globalScore": 0,
+      "tier": 5,
+      "isWasm": false,
+      "downtimePenalized": true,
+      "downtimeSlashed": true
+    },
+    "HN-9bec7bf2": {
+      "cpu_cores": 0,
+      "memory_gb": 0,
+      "lat": 0,
+      "lon": 0,
+      "ipAddress": "",
+      "id": "HN-9bec7bf2",
+      "userId": "100001-0426-01-AA",
+      "operator_wuid": "",
+      "crm_link": "",
+      "metadata": {
+        "os": ""
+      },
+      "status": "offline",
+      "createdAt": "2026-07-19T14:30:47.216967205Z",
+      "lastSeen": "2026-07-19T14:30:47.21696727Z",
+      "last_heartbeat": "",
+      "last_seen_at": "",
+      "globalScore": 0,
+      "tier": 5,
+      "isWasm": false,
+      "downtimePenalized": true,
+      "downtimeSlashed": true
+    },
+    "TEST-UPID-123": {
+      "cpu_cores": 4,
+      "memory_gb": 16,
+      "lat": 0,
+      "lon": 0,
+      "ipAddress": "",
+      "id": "TEST-UPID-123",
+      "userId": "100001-0426-01-AA",
+      "operator_wuid": "",
+      "crm_link": "",
+      "metadata": {
+        "os": ""
+      },
+      "status": "offline",
+      "createdAt": "2026-07-20T04:02:13.680346844Z",
+      "lastSeen": "2026-07-20T04:02:13.680346895Z",
+      "last_heartbeat": "",
+      "last_seen_at": "",
+      "globalScore": 0,
+      "tier": 5,
+      "isWasm": false,
+      "downtimePenalized": true,
+      "downtimeSlashed": true
+    },
+    "cf1092f3f2d7e84d73619f79c0299baa781e8a83d95723c5e6db8eb504f8637f": {
+      "cpu_cores": 2,
+      "memory_gb": 5,
+      "lat": 0,
+      "lon": 0,
+      "ipAddress": "",
+      "id": "cf1092f3f2d7e84d73619f79c0299baa781e8a83d95723c5e6db8eb504f8637f",
+      "userId": "100001-0426-01-AA",
+      "operator_wuid": "",
+      "crm_link": "",
+      "metadata": {
+        "os": ""
+      },
+      "status": "active",
+      "createdAt": "2026-07-20T09:01:34.989029837Z",
+      "lastSeen": "2026-07-20T09:01:34.989029884Z",
+      "last_heartbeat": "",
+      "last_seen_at": "",
+      "globalScore": 0,
+      "tier": 1,
+      "isWasm": false,
+      "downtimePenalized": false,
+      "downtimeSlashed": false
+    }
+  },
+  "token_ledger": [
+    {
+      "entryId": "0a0eacc8-72bc-4aa8-92e4-c71bb314f6e8",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "downtime",
+      "shardId": "HN-6e1b9664",
+      "amount": -0.005,
+      "reason": "downtime_penalty",
+      "timestamp": "2026-07-17T14:46:39.040949224Z"
+    },
+    {
+      "entryId": "0c6352e0-2ebd-4b7b-b69c-c9be306f324f",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "",
+      "shardId": "",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-07-17T14:47:39.041063175Z"
+    },
+    {
+      "entryId": "a5c1a48a-9b3d-4513-b97f-c09fc5196f4c",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "downtime",
+      "shardId": "HN-7b738c68",
+      "amount": -0.005,
+      "reason": "downtime_penalty",
+      "timestamp": "2026-07-19T14:24:12.834526403Z"
+    },
+    {
+      "entryId": "4837351e-f529-4111-96cb-a1a0f7a72602",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "",
+      "shardId": "",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-07-19T14:25:12.833773915Z"
+    },
+    {
+      "entryId": "f192f143-bd5b-4df9-80ed-9f09e85bdb56",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "downtime",
+      "shardId": "HN-27e459dc",
+      "amount": -0.0001,
+      "reason": "downtime_penalty",
+      "timestamp": "2026-07-19T14:26:22.834316934Z"
+    },
+    {
+      "entryId": "55e87df0-f087-46b1-af7e-67220056a8ab",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "",
+      "shardId": "",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-07-19T14:27:22.834154312Z"
+    },
+    {
+      "entryId": "db98aeaf-dd12-437f-b31d-13c483796864",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "downtime",
+      "shardId": "HN-9bec7bf2",
+      "amount": -0.005,
+      "reason": "downtime_penalty",
+      "timestamp": "2026-07-19T14:32:22.833945642Z"
+    },
+    {
+      "entryId": "2f377fe1-704b-41e1-be7f-f2377cd3dfcd",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "",
+      "shardId": "",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-07-19T14:33:20.980151679Z"
+    },
+    {
+      "entryId": "868171a4-9312-4557-adec-7ec573fb6bbd",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "downtime",
+      "shardId": "HN-961e6510",
+      "amount": -0.005,
+      "reason": "downtime_penalty",
+      "timestamp": "2026-07-19T14:36:10.980194087Z"
+    },
+    {
+      "entryId": "5c6199ae-6573-43a5-8188-99b8fc283d91",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "",
+      "shardId": "",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-07-19T14:37:10.980556248Z"
+    },
+    {
+      "entryId": "1976bfdc-a42f-4c0d-97db-141857d306e5",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "downtime",
+      "shardId": "TEST-UPID-123",
+      "amount": -0.005,
+      "reason": "downtime_penalty",
+      "timestamp": "2026-07-20T04:03:44.660561618Z"
+    },
+    {
+      "entryId": "127fcd8d-4c6b-459b-a902-2f75a4d63a87",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "",
+      "shardId": "",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-07-20T04:04:44.660061842Z"
+    }
+  ],
+  "token_balances": {
+    "100001-0426-01-AA": {
+      "operatorId": "100001-0426-01-AA",
+      "balance": -60.02510000000001,
+      "updatedAt": "2026-07-20T04:04:44.66006324Z"
+    }
+  },
+  "operator_stakes": {
+    "100001-0426-01-AA": {
+      "operatorId": "100001-0426-01-AA",
+      "staked": 0,
+      "locked": 0,
+      "updatedAt": "2026-07-20T04:04:44.660055451Z"
+    }
+  },
+  "stake_ledger": [
+    {
+      "entryId": "9d812311-8af4-4339-a5f1-a4277d8d1350",
+      "operatorId": "100001-0426-01-AA",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-07-17T14:47:39.041065456Z"
+    },
+    {
+      "entryId": "9178d27b-cda6-414e-b973-6e7680764926",
+      "operatorId": "100001-0426-01-AA",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-07-19T14:25:12.833775706Z"
+    },
+    {
+      "entryId": "d7e12209-ca81-4a76-a8fa-ba4b0e46f66a",
+      "operatorId": "100001-0426-01-AA",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-07-19T14:27:22.834156506Z"
+    },
+    {
+      "entryId": "86776b61-2925-4908-9860-2daa3feb3ce7",
+      "operatorId": "100001-0426-01-AA",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-07-19T14:33:20.980154962Z"
+    },
+    {
+      "entryId": "c2906a96-4231-4612-ab98-9a0c60a3af29",
+      "operatorId": "100001-0426-01-AA",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-07-19T14:37:10.980558178Z"
+    },
+    {
+      "entryId": "570c348e-2c1d-49fd-b8fb-34cff70a1dc2",
+      "operatorId": "100001-0426-01-AA",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-07-20T04:04:44.660064577Z"
+    }
+  ],
+  "operator_reputations": {
+    "100001-0426-01-AA": {
+      "operatorId": "100001-0426-01-AA",
+      "score": 0.3505555555555555,
+      "reliability": 1,
+      "uptime": 0,
+      "successRate": 1,
+      "abandonmentRate": 0,
+      "slashes": 6,
+      "stakeLevel": 0,
+      "computeScore": 0,
+      "tier": 5,
+      "longevityDays": 2,
+      "updatedAt": "2026-07-20T04:04:44.660074265Z",
+      "assignedShards": 0,
+      "completedShards": 0,
+      "abandonedShards": 0
+    }
+  },
+  "reputation_ledger": [
+    {
+      "entryId": "59b49295-0656-4756-aad8-83e0759810f7",
+      "operatorId": "100001-0426-01-AA",
+      "delta": -0.20000000000000007,
+      "reason": "recalculate",
+      "timestamp": "2026-07-17T14:47:39.041074879Z"
+    },
+    {
+      "entryId": "cab22dc3-f369-44f7-aa78-0fc5e64283b2",
+      "operatorId": "100001-0426-01-AA",
+      "delta": -0.09999999999999998,
+      "reason": "recalculate",
+      "timestamp": "2026-07-19T14:27:22.834165403Z"
+    },
+    {
+      "entryId": "2d0fc879-b0b8-4454-9813-f103d8198948",
+      "operatorId": "100001-0426-01-AA",
+      "delta": -0.04999999999999999,
+      "reason": "recalculate",
+      "timestamp": "2026-07-19T14:33:20.980163452Z"
+    },
+    {
+      "entryId": "c289fcef-f3f3-4c6d-ba36-dcab57587c2c",
+      "operatorId": "100001-0426-01-AA",
+      "delta": -0.04999999999999999,
+      "reason": "recalculate",
+      "timestamp": "2026-07-19T14:37:10.980565595Z"
+    },
+    {
+      "entryId": "cbb8f5f7-80f6-494c-8676-df3d0f7082ed",
+      "operatorId": "100001-0426-01-AA",
+      "delta": -0.050000000000000044,
+      "reason": "recalculate",
+      "timestamp": "2026-07-20T04:04:44.660075548Z"
+    }
+  ],
+  "invite": {
+    "secret": "2232e6184f03dc1c9ff90187f8a3dbdd670333a1066102514eada2efc22f29827a35255a145810ef05be19d60b9dfaa9160b6ccf4e741ba657793a64cb8409b1",
+    "nextFounderIndex": 1,
+    "registry": {}
+  },
+  "founders": {
+    "1": "100001-0426-01-AA"
+  },
+  "integrations": {
+    "172c0483-4b85-4d1f-abf5-84bc598dab76": {
+      "id": "172c0483-4b85-4d1f-abf5-84bc598dab76",
+      "name": "AWS S3",
+      "slug": "aws-s3",
+      "status": "active",
+      "logo_url": "/integrations/aws/s3/logo.svg",
+      "join_date": "2026-06-17T13:33:02.210237951Z",
+      "active_date": "2026-07-07T13:33:02.210237951Z",
+      "currency": "USD",
+      "revenue": 0,
+      "details": {
+        "integration_path": "aws/s3"
+      },
+      "createdAt": "2026-07-17T13:33:02.210237951Z",
+      "updatedAt": "2026-07-17T13:33:02.210237951Z"
+    },
+    "1878ade6-4e90-42da-9985-7ac726fbfcc9": {
+      "id": "1878ade6-4e90-42da-9985-7ac726fbfcc9",
+      "name": "OpenAI API",
+      "slug": "ai-openai",
+      "status": "active",
+      "logo_url": "/integrations/ai/openai/logo.svg",
+      "join_date": "2026-06-17T13:33:02.210237951Z",
+      "active_date": "2026-07-07T13:33:02.210237951Z",
+      "currency": "USD",
+      "revenue": 0,
+      "details": {
+        "integration_path": "ai/openai"
+      },
+      "createdAt": "2026-07-17T13:33:02.210237951Z",
+      "updatedAt": "2026-07-17T13:33:02.210237951Z"
+    },
+    "235c4e27-abd8-49cb-afc2-8b8579ef62c8": {
+      "id": "235c4e27-abd8-49cb-afc2-8b8579ef62c8",
+      "name": "AWS Lambda",
+      "slug": "aws-lambda",
+      "status": "active",
+      "logo_url": "/integrations/aws/lambda/logo.svg",
+      "join_date": "2026-06-17T13:33:02.210237951Z",
+      "active_date": "2026-07-07T13:33:02.210237951Z",
+      "currency": "USD",
+      "revenue": 0,
+      "details": {
+        "integration_path": "aws/lambda"
+      },
+      "createdAt": "2026-07-17T13:33:02.210237951Z",
+      "updatedAt": "2026-07-17T13:33:02.210237951Z"
+    },
+    "2ebc7e18-dca8-4018-8846-2cb2c887754d": {
+      "id": "2ebc7e18-dca8-4018-8846-2cb2c887754d",
+      "name": "Azure Event Grid",
+      "slug": "azure-event-grid",
+      "status": "active",
+      "logo_url": "/integrations/azure/event-grid/logo.svg",
+      "join_date": "2026-06-17T13:33:02.210237951Z",
+      "active_date": "2026-07-07T13:33:02.210237951Z",
+      "currency": "USD",
+      "revenue": 0,
+      "details": {
+        "integration_path": "azure/event-grid"
+      },
+      "createdAt": "2026-07-17T13:33:02.210237951Z",
+      "updatedAt": "2026-07-17T13:33:02.210237951Z"
+    },
+    "33652e4b-286d-499f-bfea-41df9cd3a49d": {
+      "id": "33652e4b-286d-499f-bfea-41df9cd3a49d",
+      "name": "xAI Grok API",
+      "slug": "ai-xai-grok",
+      "status": "active",
+      "logo_url": "/integrations/ai/xai-grok/logo.svg",
+      "join_date": "2026-06-17T13:33:02.210237951Z",
+      "active_date": "2026-07-07T13:33:02.210237951Z",
+      "currency": "USD",
+      "revenue": 0,
+      "details": {
+        "integration_path": "ai/xai-grok"
+      },
+      "createdAt": "2026-07-17T13:33:02.210237951Z",
+      "updatedAt": "2026-07-17T13:33:02.210237951Z"
+    },
+    "4cda9cfc-7b94-4074-b1d0-b6942447491a": {
+      "id": "4cda9cfc-7b94-4074-b1d0-b6942447491a",
+      "name": "AWS SQS",
+      "slug": "aws-sqs",
+      "status": "active",
+      "logo_url": "/integrations/aws/sqs/logo.svg",
+      "join_date": "2026-06-17T13:33:02.210237951Z",
+      "active_date": "2026-07-07T13:33:02.210237951Z",
+      "currency": "USD",
+      "revenue": 0,
+      "details": {
+        "integration_path": "aws/sqs"
+      },
+      "createdAt": "2026-07-17T13:33:02.210237951Z",
+      "updatedAt": "2026-07-17T13:33:02.210237951Z"
+    },
+    "5d8b4f07-1d19-472a-925d-3191ab66c9f5": {
+      "id": "5d8b4f07-1d19-472a-925d-3191ab66c9f5",
+      "name": "Azure Blob Storage",
+      "slug": "azure-blob-storage",
+      "status": "active",
+      "logo_url": "/integrations/azure/blob-storage/logo.svg",
+      "join_date": "2026-06-17T13:33:02.210237951Z",
+      "active_date": "2026-07-07T13:33:02.210237951Z",
+      "currency": "USD",
+      "revenue": 0,
+      "details": {
+        "integration_path": "azure/blob-storage"
+      },
+      "createdAt": "2026-07-17T13:33:02.210237951Z",
+      "updatedAt": "2026-07-17T13:33:02.210237951Z"
+    },
+    "7899c244-cc27-4a20-b56d-db248246c871": {
+      "id": "7899c244-cc27-4a20-b56d-db248246c871",
+      "name": "Google Cloud Functions",
+      "slug": "gcp-cloud-functions",
+      "status": "active",
+      "logo_url": "/integrations/gcp/cloud-functions/logo.svg",
+      "join_date": "2026-06-17T13:33:02.210237951Z",
+      "active_date": "2026-07-07T13:33:02.210237951Z",
+      "currency": "USD",
+      "revenue": 0,
+      "details": {
+        "integration_path": "gcp/cloud-functions"
+      },
+      "createdAt": "2026-07-17T13:33:02.210237951Z",
+      "updatedAt": "2026-07-17T13:33:02.210237951Z"
+    },
+    "820b22ab-d450-4dfa-b1e7-8b0abef2b535": {
+      "id": "820b22ab-d450-4dfa-b1e7-8b0abef2b535",
+      "name": "Optimism",
+      "slug": "optimism",
+      "status": "live",
+      "logo_url": "/integrations/optimism/optimismlogo.svg",
+      "join_date": "2026-06-17T13:33:02.210237951Z",
+      "active_date": "2026-07-07T13:33:02.210237951Z",
+      "currency": "USD",
+      "revenue": 1523.5,
+      "details": {
+        "chainId": 10
+      },
+      "createdAt": "2026-07-17T13:33:02.210237951Z",
+      "updatedAt": "2026-07-17T13:33:02.210237951Z"
+    },
+    "8320477b-bda3-4dfc-9545-5968bd9ebfec": {
+      "id": "8320477b-bda3-4dfc-9545-5968bd9ebfec",
+      "name": "AWS EventBridge",
+      "slug": "aws-eventbridge",
+      "status": "active",
+      "logo_url": "/integrations/aws/eventbridge/logo.svg",
+      "join_date": "2026-06-17T13:33:02.210237951Z",
+      "active_date": "2026-07-07T13:33:02.210237951Z",
+      "currency": "USD",
+      "revenue": 0,
+      "details": {
+        "integration_path": "aws/eventbridge"
+      },
+      "createdAt": "2026-07-17T13:33:02.210237951Z",
+      "updatedAt": "2026-07-17T13:33:02.210237951Z"
+    },
+    "878eaf3f-f3a8-4777-94ec-8c9a71b7008f": {
+      "id": "878eaf3f-f3a8-4777-94ec-8c9a71b7008f",
+      "name": "Anthropic API",
+      "slug": "ai-anthropic",
+      "status": "active",
+      "logo_url": "/integrations/ai/anthropic/logo.svg",
+      "join_date": "2026-06-17T13:33:02.210237951Z",
+      "active_date": "2026-07-07T13:33:02.210237951Z",
+      "currency": "USD",
+      "revenue": 0,
+      "details": {
+        "integration_path": "ai/anthropic"
+      },
+      "createdAt": "2026-07-17T13:33:02.210237951Z",
+      "updatedAt": "2026-07-17T13:33:02.210237951Z"
+    },
+    "93ea51b3-6a80-44b5-8516-045688bde397": {
+      "id": "93ea51b3-6a80-44b5-8516-045688bde397",
+      "name": "Cloudflare Workers",
+      "slug": "edge-cloudflare-workers",
+      "status": "active",
+      "logo_url": "/integrations/edge/cloudflare-workers/logo.svg",
+      "join_date": "2026-06-17T13:33:02.210237951Z",
+      "active_date": "2026-07-07T13:33:02.210237951Z",
+      "currency": "USD",
+      "revenue": 0,
+      "details": {
+        "integration_path": "edge/cloudflare-workers"
+      },
+      "createdAt": "2026-07-17T13:33:02.210237951Z",
+      "updatedAt": "2026-07-17T13:33:02.210237951Z"
+    },
+    "b9954389-599b-49c8-872d-607395c8a3ac": {
+      "id": "b9954389-599b-49c8-872d-607395c8a3ac",
+      "name": "Google Vision API",
+      "slug": "gcp-vision-api",
+      "status": "active",
+      "logo_url": "/integrations/gcp/vision-api/logo.svg",
+      "join_date": "2026-06-17T13:33:02.210237951Z",
+      "active_date": "2026-07-07T13:33:02.210237951Z",
+      "currency": "USD",
+      "revenue": 0,
+      "details": {
+        "integration_path": "gcp/vision-api"
+      },
+      "createdAt": "2026-07-17T13:33:02.210237951Z",
+      "updatedAt": "2026-07-17T13:33:02.210237951Z"
+    },
+    "cb46d432-a6f7-4f28-8729-fbfbd4484e02": {
+      "id": "cb46d432-a6f7-4f28-8729-fbfbd4484e02",
+      "name": "Google Pub/Sub",
+      "slug": "gcp-pubsub",
+      "status": "active",
+      "logo_url": "/integrations/gcp/pubsub/logo.svg",
+      "join_date": "2026-06-17T13:33:02.210237951Z",
+      "active_date": "2026-07-07T13:33:02.210237951Z",
+      "currency": "USD",
+      "revenue": 0,
+      "details": {
+        "integration_path": "gcp/pubsub"
+      },
+      "createdAt": "2026-07-17T13:33:02.210237951Z",
+      "updatedAt": "2026-07-17T13:33:02.210237951Z"
+    },
+    "cf584cb0-bc7e-4001-aa2f-e8b60098df49": {
+      "id": "cf584cb0-bc7e-4001-aa2f-e8b60098df49",
+      "name": "Polygon",
+      "slug": "polygon",
+      "status": "live",
+      "logo_url": "/integrations/polygon/polygonlogo.svg",
+      "join_date": "2026-06-17T13:33:02.210237951Z",
+      "active_date": "2026-07-07T13:33:02.210237951Z",
+      "currency": "USD",
+      "revenue": 3240,
+      "details": {
+        "chainId": 137
+      },
+      "createdAt": "2026-07-17T13:33:02.210237951Z",
+      "updatedAt": "2026-07-17T13:33:02.210237951Z"
+    },
+    "d055e569-efda-4831-800d-7189d55c5df6": {
+      "id": "d055e569-efda-4831-800d-7189d55c5df6",
+      "name": "Vercel Serverless Functions",
+      "slug": "edge-vercel-serverless",
+      "status": "active",
+      "logo_url": "/integrations/edge/vercel-serverless/logo.svg",
+      "join_date": "2026-06-17T13:33:02.210237951Z",
+      "active_date": "2026-07-07T13:33:02.210237951Z",
+      "currency": "USD",
+      "revenue": 0,
+      "details": {
+        "integration_path": "edge/vercel-serverless"
+      },
+      "createdAt": "2026-07-17T13:33:02.210237951Z",
+      "updatedAt": "2026-07-17T13:33:02.210237951Z"
+    },
+    "d1a100cc-7561-419b-b6d3-cf58231bbd12": {
+      "id": "d1a100cc-7561-419b-b6d3-cf58231bbd12",
+      "name": "Solana",
+      "slug": "solana",
+      "status": "live",
+      "logo_url": "/integrations/solana/solanalogo.svg",
+      "join_date": "2026-06-17T13:33:02.210237951Z",
+      "active_date": "2026-07-07T13:33:02.210237951Z",
+      "currency": "USD",
+      "revenue": 5410.8,
+      "details": {
+        "network": "mainnet-beta"
+      },
+      "createdAt": "2026-07-17T13:33:02.210237951Z",
+      "updatedAt": "2026-07-17T13:33:02.210237951Z"
+    },
+    "d71b8dd5-ed7f-406c-b1b6-baa23fa84d8b": {
+      "id": "d71b8dd5-ed7f-406c-b1b6-baa23fa84d8b",
+      "name": "AWS SNS",
+      "slug": "aws-sns",
+      "status": "active",
+      "logo_url": "/integrations/aws/sns/logo.svg",
+      "join_date": "2026-06-17T13:33:02.210237951Z",
+      "active_date": "2026-07-07T13:33:02.210237951Z",
+      "currency": "USD",
+      "revenue": 0,
+      "details": {
+        "integration_path": "aws/sns"
+      },
+      "createdAt": "2026-07-17T13:33:02.210237951Z",
+      "updatedAt": "2026-07-17T13:33:02.210237951Z"
+    },
+    "e5200234-a1bf-4fa9-b883-7c01239aa8ff": {
+      "id": "e5200234-a1bf-4fa9-b883-7c01239aa8ff",
+      "name": "Discord",
+      "slug": "discord",
+      "status": "active",
+      "logo_url": "/integrations/discord/discordlogo.svg",
+      "join_date": "2026-06-17T13:33:02.210237951Z",
+      "active_date": "2026-07-07T13:33:02.210237951Z",
+      "currency": "USD",
+      "revenue": 0,
+      "details": {
+        "features": [
+          "notifications",
+          "alerts"
+        ]
+      },
+      "createdAt": "2026-07-17T13:33:02.210237951Z",
+      "updatedAt": "2026-07-17T13:33:02.210237951Z"
+    },
+    "f1e82e5c-ee3c-4cfe-a3fb-fdf8de36b941": {
+      "id": "f1e82e5c-ee3c-4cfe-a3fb-fdf8de36b941",
+      "name": "Google Cloud Run",
+      "slug": "gcp-cloud-run",
+      "status": "active",
+      "logo_url": "/integrations/gcp/cloud-run/logo.svg",
+      "join_date": "2026-06-17T13:33:02.210237951Z",
+      "active_date": "2026-07-07T13:33:02.210237951Z",
+      "currency": "USD",
+      "revenue": 0,
+      "details": {
+        "integration_path": "gcp/cloud-run"
+      },
+      "createdAt": "2026-07-17T13:33:02.210237951Z",
+      "updatedAt": "2026-07-17T13:33:02.210237951Z"
+    },
+    "f613537c-5c72-41ac-99e7-667c7aac390b": {
+      "id": "f613537c-5c72-41ac-99e7-667c7aac390b",
+      "name": "Azure Functions",
+      "slug": "azure-functions",
+      "status": "active",
+      "logo_url": "/integrations/azure/functions/logo.svg",
+      "join_date": "2026-06-17T13:33:02.210237951Z",
+      "active_date": "2026-07-07T13:33:02.210237951Z",
+      "currency": "USD",
+      "revenue": 0,
+      "details": {
+        "integration_path": "azure/functions"
+      },
+      "createdAt": "2026-07-17T13:33:02.210237951Z",
+      "updatedAt": "2026-07-17T13:33:02.210237951Z"
+    },
+    "f98011aa-b1b7-4a5f-9aa1-88c9918fb5ee": {
+      "id": "f98011aa-b1b7-4a5f-9aa1-88c9918fb5ee",
+      "name": "Stripe",
+      "slug": "stripe",
+      "status": "active",
+      "logo_url": "/integrations/stripe/stripelogo.svg",
+      "join_date": "2026-06-17T13:33:02.210237951Z",
+      "active_date": "2026-07-07T13:33:02.210237951Z",
+      "currency": "USD",
+      "revenue": 0,
+      "details": {
+        "mode": "connect"
+      },
+      "createdAt": "2026-07-17T13:33:02.210237951Z",
+      "updatedAt": "2026-07-17T13:33:02.210237951Z"
+    },
+    "fe9b5bdf-0777-48a8-a7f0-550adcee0f60": {
+      "id": "fe9b5bdf-0777-48a8-a7f0-550adcee0f60",
+      "name": "Google Cloud Storage",
+      "slug": "gcp-cloud-storage",
+      "status": "active",
+      "logo_url": "/integrations/gcp/cloud-storage/logo.svg",
+      "join_date": "2026-06-17T13:33:02.210237951Z",
+      "active_date": "2026-07-07T13:33:02.210237951Z",
+      "currency": "USD",
+      "revenue": 0,
+      "details": {
+        "integration_path": "gcp/cloud-storage"
+      },
+      "createdAt": "2026-07-17T13:33:02.210237951Z",
+      "updatedAt": "2026-07-17T13:33:02.210237951Z"
+    }
+  },
+  "domain_sessions": {
+    "152591ca-9eeb-4afa-bdce-2c3fd92f5177": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-20T12:32:14.156656272Z",
+      "createdAt": "2026-07-19T12:32:14.156656742Z"
+    },
+    "16ff767a-8769-44ba-84b8-f1e0baa84ad9": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-18T14:46:18.036803654Z",
+      "createdAt": "2026-07-17T14:46:18.036803815Z"
+    },
+    "438fa968-035c-44f2-b2f5-ddfff481735e": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-21T09:01:20.3672396Z",
+      "createdAt": "2026-07-20T09:01:20.367239948Z"
+    },
+    "72b23c6e-63af-4d80-a181-f39f4406e198": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-18T13:41:50.900525757Z",
+      "createdAt": "2026-07-17T13:41:50.900525913Z"
+    },
+    "805ec9a2-45d8-458e-9ec9-97c0a18606ae": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-18T13:40:29.119738263Z",
+      "createdAt": "2026-07-17T13:40:29.119738403Z"
+    },
+    "9dd189ff-c4d6-4870-a458-8112dac01468": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-21T03:58:01.946127343Z",
+      "createdAt": "2026-07-20T03:58:01.946127504Z"
+    },
+    "b0eaa3e1-db38-4fa1-8f75-a0f57b185033": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-21T03:58:06.942070707Z",
+      "createdAt": "2026-07-20T03:58:06.942070865Z"
+    },
+    "bf9dfdbe-dc5e-463f-ab48-9ef6b93fdf28": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "mesh",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-21T07:11:18.585459081Z",
+      "createdAt": "2026-07-20T07:11:18.585459316Z"
+    },
+    "cc005a4f-f7ae-4697-9c36-4b4b370f852f": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-18T14:28:15.61440663Z",
+      "createdAt": "2026-07-17T14:28:15.614406801Z"
+    },
+    "e7fcbc54-3f19-45d9-8e22-3b89b456db8c": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-07-21T04:40:36.460776555Z",
+      "createdAt": "2026-07-20T04:40:36.46077691Z"
+    }
+  },
+  "headless_tokens": {
+    "REG-d0c5d9ff-7064-4768-846b-0dffbf33821c": {
+      "token": "REG-d0c5d9ff-7064-4768-846b-0dffbf33821c",
+      "userId": "100001-0426-01-AA",
+      "profile": "earth-headless",
+      "expiresAt": "2026-07-20T10:01:20.658153266Z",
+      "used": true,
+      "createdAt": "2026-07-20T09:01:20.658153401Z"
+    }
+  }
+}

@@ -156,7 +156,7 @@ export default function PricingManager() {
             {/* Edit Modal Overlay */}
             {editingTier && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-xl animate-in fade-in duration-300">
-                    <div className="w-full max-w-xl bg-[#080808] border border-cyan-400/30 rounded-3xl p-8 shadow-[0_0_50px_rgba(34,211,238,0.15)] animate-in zoom-in-95 duration-200">
+                    <div className="w-full max-w-xl bg-[#09090b] border border-white/10 backdrop-blur-xl rounded-xl p-8 shadow-2xl animate-in zoom-in-95 duration-200">
                         <div className="flex items-center justify-between mb-8">
                             <h2 className="text-2xl font-black uppercase tracking-tight flex items-center gap-3">
                                 <Edit3 className="text-cyan-400" />

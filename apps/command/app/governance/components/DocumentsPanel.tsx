@@ -25,7 +25,7 @@ export default function DocumentsPanel() {
           <input 
             type="text" 
             placeholder="Search documents..." 
-            className="bg-black/40 border border-wnode-border-neutral rounded-[5px] pl-9 pr-4 py-1.5 text-[11px] text-white focus:outline-none focus:border-wnode-border-hover w-[240px]"
+            className="bg-black/40 border border-wnode-border-neutral rounded-[5px] pl-9 pr-4 py-1.5 text-[11px] text-white focus:outline-none focus:border-wnode-border-hover w-full max-w-xs"
             disabled
           />
         </div>
@@ -37,7 +37,7 @@ export default function DocumentsPanel() {
             <tr className="border-b border-wnode-border-neutral text-[10px] text-white/40 uppercase tracking-widest">
               <th className="pb-3 font-bold">Document Title</th>
               <th className="pb-3 font-bold text-right">Last Updated</th>
-              <th className="pb-3 font-bold text-right w-[100px]">Action</th>
+              <th className="pb-3 font-bold text-right w-24">Action</th>
             </tr>
           </thead>
           <tbody className="text-[12px]">

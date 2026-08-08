@@ -20,6 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <body
                 suppressHydrationWarning
                 data-portal="command"
+                data-canary="CANARY_937_TEST_DO_NOT_IGNORE"
                 style={{
                     backgroundColor: "black",
                     color: "white",

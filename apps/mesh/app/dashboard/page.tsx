@@ -59,54 +59,56 @@ export default function MeshDashboard() {
     return (
         <div className="flex flex-col gap-6 p-8 animate-in fade-in duration-700 w-full">
             {/* Dashboard Panel Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-6 relative z-50">
-                <div className="surface-card p-4 flex flex-col justify-between h-full hover:border-blue-500/20 transition-all">
-                    <span className="text-[10px] uppercase text-slate-500 tracking-widest flex items-center justify-between">
-                        Total Jobs <Server className="w-3 h-3 text-blue-500" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full relative z-50">
+                <div className="w-full bg-[#09090b] border border-white/10 backdrop-blur-xl rounded-xl p-6 shadow-2xl flex flex-col justify-between h-full transition-all duration-200">
+                    <span className="text-[11px] font-mono uppercase tracking-widest text-neutral-400 font-semibold flex items-center justify-between">
+                        Total Jobs <Server className="w-3 h-3 text-[#0099FF]" />
                     </span>
                     <div>
-                        <span className="text-2xl font-normal text-white tracking-tighter block">{totalJobs}</span>
-                        <span className="text-[9px] text-slate-500 uppercase block mt-1">Status: {lastJobStatus}</span>
+                        <span className="text-3xl font-mono font-bold text-white tracking-tight drop-shadow-[0_2px_10px_rgba(255,255,255,0.15)] block">{totalJobs}</span>
+                        <span className="text-[9px] text-neutral-400 uppercase block mt-1">Status: {lastJobStatus}</span>
                     </div>
                 </div>
 
-                <div className="surface-card p-4 flex flex-col justify-between h-full hover:border-emerald-500/20 transition-all">
-                    <span className="text-[10px] uppercase text-slate-500 tracking-widest flex items-center justify-between">
-                        Completed <CheckCircle2 className="w-3 h-3 text-mesh-emerald" />
+                <div className="w-full bg-[#09090b] border border-white/10 backdrop-blur-xl rounded-xl p-6 shadow-2xl flex flex-col justify-between h-full transition-all duration-200">
+                    <span className="text-[11px] font-mono uppercase tracking-widest text-neutral-400 font-semibold flex items-center justify-between">
+                        Completed <CheckCircle2 className="w-3 h-3 text-[#00FF66]" />
                     </span>
                     <div>
-                        <span className="text-2xl font-normal text-mesh-emerald tracking-tighter block">{completedJobs}</span>
-                        <span className="text-[9px] text-slate-500 uppercase block mt-1">Avg: {avgDuration}</span>
+                        <span className="text-3xl font-mono font-bold text-[#00FF66] tracking-tight drop-shadow-[0_2px_10px_rgba(255,255,255,0.15)] block">{completedJobs}</span>
+                        <span className="text-[9px] text-neutral-400 uppercase block mt-1">Avg: {avgDuration}</span>
                     </div>
                 </div>
 
-                <div className="surface-card p-4 flex flex-col justify-between h-full hover:border-amber-500/20 transition-all">
-                    <span className="text-[10px] uppercase text-slate-500 tracking-widest flex items-center justify-between">
-                        Running <Activity className="w-3 h-3 text-amber-500" />
+                <div className="w-full bg-[#09090b] border border-white/10 backdrop-blur-xl rounded-xl p-6 shadow-2xl flex flex-col justify-between h-full transition-all duration-200">
+                    <span className="text-[11px] font-mono uppercase tracking-widest text-neutral-400 font-semibold flex items-center justify-between">
+                        Running <Activity className="w-3 h-3 text-[#0099FF]" />
                     </span>
-                    <span className="text-2xl font-normal text-amber-500 tracking-tighter">{runningJobs}</span>
+                    <span className="text-3xl font-mono font-bold text-[#0099FF] tracking-tight drop-shadow-[0_2px_10px_rgba(255,255,255,0.15)]">{runningJobs}</span>
                 </div>
 
-                <div className="surface-card p-4 flex flex-col justify-between h-full hover:border-red-500/20 transition-all">
-                    <span className="text-[10px] uppercase text-slate-500 tracking-widest flex items-center justify-between">
+                <div className="w-full bg-[#09090b] border border-white/10 backdrop-blur-xl rounded-xl p-6 shadow-2xl flex flex-col justify-between h-full transition-all duration-200">
+                    <span className="text-[11px] font-mono uppercase tracking-widest text-neutral-400 font-semibold flex items-center justify-between">
                         Failed <AlertTriangle className="w-3 h-3 text-red-500" />
                     </span>
-                    <span className="text-2xl font-normal text-red-500 tracking-tighter">{failedJobs}</span>
+                    <span className="text-3xl font-mono font-bold text-red-500 tracking-tight drop-shadow-[0_2px_10px_rgba(255,255,255,0.15)]">{failedJobs}</span>
                 </div>
 
-                <div className="surface-card p-4 flex flex-col justify-between h-full hover:border-yellow-500/20 transition-all">
-                    <span className="text-[10px] uppercase text-slate-500 tracking-widest flex items-center justify-between">
-                        Credits <Wallet className="w-3 h-3 text-[#EAB308]" />
+                <div className="w-full bg-[#09090b] border border-white/10 backdrop-blur-xl rounded-xl p-6 shadow-2xl flex flex-col justify-between h-full transition-all duration-200">
+                    <span className="text-[11px] font-mono uppercase tracking-widest text-neutral-400 font-semibold flex items-center justify-between">
+                        Credits <Wallet className="w-3 h-3 text-[#FFB800]" />
                     </span>
-                    <span className="text-2xl font-normal text-white tracking-tighter">${balance.toFixed(2)}</span>
+                    <span className="text-3xl font-mono font-bold text-white tracking-tight drop-shadow-[0_2px_10px_rgba(255,255,255,0.15)] block">${balance.toFixed(2)}</span>
                 </div>
             </div>
 
             {/* Main Content */}
-            <div className="w-full flex flex-col gap-6">
+            <div className="w-full flex flex-col gap-6 overflow-x-hidden">
                 {/* Fleet Map */}
-                <div className="w-full h-[520px] min-h-[400px] flex flex-col rounded-xl border border-neutral-800 bg-neutral-900 p-4">
-                    {mounted && <FleetMap nodes={nodes || []} nodlrs={[]} loading={nodesLoading} onNodeSelect={(id) => console.log('Selected node:', id)} />}
+                <div className="w-full overflow-x-auto">
+                    <div className="w-full h-[520px] flex flex-col bg-[#09090b] border border-white/10 backdrop-blur-xl rounded-xl p-6 shadow-2xl">
+                        {mounted && <FleetMap nodes={nodes || []} nodlrs={[]} loading={nodesLoading} onNodeSelect={(id) => console.log('Selected node:', id)} />}
+                    </div>
                 </div>
             </div>
         </div>

@@ -163,14 +163,14 @@ export default function CommandCentrePage() {
     return (
         <>
             <main className="flex-1 px-8 pt-3 pb-20 overflow-y-auto space-y-6 custom-scrollbar relative">
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-400/5 rounded-full blur-[120px] pointer-events-none -z-10" />
+                <div className="absolute top-0 right-0 w-full max-w-full sm:max-w-md lg:max-w-none h-[500px] bg-cyan-400/5 rounded-full blur-[120px] pointer-events-none -z-10" />
 
                 <div className="flex items-center gap-6 justify-end">
                     {error && <span className="text-[10px] text-red-500 uppercase font-bold tracking-widest">{error}</span>}
                 </div>
 
                 {/* Row 1: Vitals + AI */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 -mt-1.5 [&>div]:!py-3.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full -mt-1.5 [&>div]:!py-3.5">
                     {metrics.map((m) => (
                         <MetricCard
                             key={m.label}
@@ -186,7 +186,7 @@ export default function CommandCentrePage() {
                 </div>
 
                 {/* Row 2: Operational Metrics */}
-                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
                     {operational.map((op) => (
                         <MetricCard
                             key={op.label}
@@ -200,12 +200,14 @@ export default function CommandCentrePage() {
                 </div>
 
                 {/* Full-Width Map Panel */}
-                <FleetMap
-                    nodes={nodes}
-                    nodlrs={nodlrs}
-                    loading={loading}
-                    onNodeSelect={handleNodeSelect}
-                />
+                <div className="w-full overflow-x-auto">
+                    <FleetMap
+                        nodes={nodes}
+                        nodlrs={nodlrs}
+                        loading={loading}
+                        onNodeSelect={handleNodeSelect}
+                    />
+                </div>
             </main>
 
             {/* Telemetry Feed */}
@@ -214,9 +216,11 @@ export default function CommandCentrePage() {
                     onClick={() => setIsTelemetryOpen(!isTelemetryOpen)}
                     className="w-full h-10 flex items-center justify-between px-8 hover:bg-neutral-900 transition-colors group"
                 >
-                    <div className="flex items-center gap-3">
-                        <Terminal className="w-4 h-4 text-cyan-400" />
-                        <span className="text-xs font-semibold text-neutral-400 group-hover:text-neutral-200 transition-colors uppercase tracking-widest">Live telemetry feed</span>
+                    <div className="flex items-end justify-between">
+                        <div>
+                            <h2 className="text-[20px] font-bold text-white uppercase tracking-wider font-sans">System Overview</h2>
+                            <p className="text-[12px] text-white/40 mt-1 font-mono uppercase tracking-widest">Global Network Telemetry - CANARY_937_TEST_DO_NOT_IGNORE</p>
+                        </div>
                     </div>
                     {isTelemetryOpen ? <ChevronDown className="w-4 h-4 text-neutral-500" /> : <ChevronUp className="w-4 h-4 text-neutral-500" />}
                 </button>

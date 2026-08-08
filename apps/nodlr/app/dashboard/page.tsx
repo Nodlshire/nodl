@@ -116,11 +116,11 @@ export default function DashboardPage() {
     }
 
     return (
-        <div className="max-w-7xl mx-auto space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 relative z-50">
+        <div className="max-w-7xl mx-auto space-y-8 w-full">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full relative z-50">
                 {/* Metric 1: Total Earnings */}
                 <Tooltip content="Cumulative revenue from hardware yield and affiliate lineage">
-                    <div className="surface-card p-4 flex flex-col justify-between h-full">
+                    <div className="w-full bg-[#09090b] border border-white/10 backdrop-blur-xl rounded-xl p-6 shadow-2xl flex flex-col justify-between h-full">
                         <span className="text-[10px] uppercase text-slate-500 tracking-widest">Total Earnings</span>
                         <span className="text-2xl font-bold text-[#FFD700] tracking-tighter">${totalEarnings.toFixed(2)}</span>
                     </div>
@@ -128,7 +128,7 @@ export default function DashboardPage() {
 
                 {/* Metric 2: L1 Affiliate Revenue */}
                 <Tooltip content="Realized commissions from your Level 1 direct network (3% lineage + 10% sales source)">
-                    <div className="surface-card p-4 flex flex-col justify-between h-full">
+                    <div className="w-full bg-[#09090b] border border-white/10 backdrop-blur-xl rounded-xl p-6 shadow-2xl flex flex-col justify-between h-full">
                         <span className="text-[10px] uppercase text-slate-500 tracking-widest flex items-center gap-2">
                             <div className="w-2 h-2 rounded-full bg-[#9333ea] shadow-[0_0_8px_rgba(147,51,234,0.6)]" />
                             L1 Affiliate Revenue
@@ -139,7 +139,7 @@ export default function DashboardPage() {
 
                 {/* Metric 3: L2 Affiliate Revenue */}
                 <Tooltip content="Realized commissions from your Level 2 indirect network (7% lineage override)">
-                    <div className="surface-card p-4 flex flex-col justify-between h-full">
+                    <div className="w-full bg-[#09090b] border border-white/10 backdrop-blur-xl rounded-xl p-6 shadow-2xl flex flex-col justify-between h-full">
                         <span className="text-[10px] uppercase text-slate-500 tracking-widest flex items-center gap-2">
                             <div className="w-2 h-2 rounded-full bg-[#FFA500] shadow-[0_0_8px_rgba(255,165,0,0.6)]" />
                             L2 Affiliate Revenue
@@ -150,7 +150,7 @@ export default function DashboardPage() {
 
                 {/* Metric 4: Global Rank */}
                 <Tooltip content="Your standing on the mesh network based on total yield, uptime, and node count">
-                    <div className="surface-card p-4 flex flex-col justify-between text-cyber-cyan border border-cyber-cyan/20 h-full">
+                    <div className="w-full bg-[#09090b] border border-white/10 backdrop-blur-xl rounded-xl p-6 shadow-2xl flex flex-col justify-between text-cyber-cyan h-full">
                         <span className="text-[10px] uppercase text-cyber-cyan opacity-70 tracking-widest font-bold">Global Rank</span>
                         <span className="text-2xl font-bold tracking-tighter">#{globalRank}</span>
                     </div>
@@ -161,13 +161,15 @@ export default function DashboardPage() {
                 {/* Main Content (Left) */}
                 <div className="lg:col-span-8 space-y-8">
                     {/* Fleet Map */}
-                    <div title="Geographic distribution and real-time status of your active nodes">
+                    <div title="Geographic distribution and real-time status of your active nodes" className="w-full overflow-x-auto">
+                        <div className="w-full">
                         <FleetMap 
                             nodes={nodes || []}
                             nodlrs={[]} // Placeholder for missing prop
                             loading={nodesLoading}
                             onNodeSelect={(id) => console.log('Selected node:', id)}
                         />
+                        </div>
                     </div>
                 </div>
 
@@ -188,7 +190,7 @@ export default function DashboardPage() {
 
                     {/* Infrastructure Snapshot */}
                     <div 
-                        className="surface-card p-6 space-y-6"
+                        className="w-full bg-[#09090b] border border-white/10 backdrop-blur-xl rounded-xl p-6 shadow-2xl space-y-6"
                         title="Aggregate hardware capabilities currently registered to your fleet"
                     >
                         <div className="flex items-center gap-2 border-b border-white/5 pb-3">

@@ -11,7 +11,8 @@ mkdir -p "$OUT_DIR" "$NODLR_OUT_DIR" /tmp/appimage-stage
 
 # 1. Compile native nodld-gui binary
 cd "$BUILD_DIR"
-/home/obregan/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.25.0.linux-amd64/bin/go build -o /tmp/appimage-stage/nodld-gui cmd/nodld-gui/main.go
+GO_BIN=$(which go 2>/dev/null || echo "/home/obregan/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.25.0.linux-amd64/bin/go")
+"$GO_BIN" build -o /tmp/appimage-stage/nodld-gui cmd/nodld-gui/main.go
 chmod +x /tmp/appimage-stage/nodld-gui
 
 # 2. Add Desktop entry and icon

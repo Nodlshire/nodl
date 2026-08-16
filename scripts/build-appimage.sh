@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
 
-PROJECT_DIR="/home/obregan/Documents/nodl"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 BUILD_DIR="$PROJECT_DIR/nodld"
 OUT_DIR="$PROJECT_DIR/apps/web/public/downloads"
 NODLR_OUT_DIR="$PROJECT_DIR/apps/nodlr/public/downloads"

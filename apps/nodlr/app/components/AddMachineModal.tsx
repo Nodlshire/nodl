@@ -113,18 +113,20 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                   <span className="text-sm text-slate-300 leading-relaxed block">Download the Nodlr Compute Agent for your system:</span>
                   <div className="grid grid-cols-1 gap-2">
                     {[
-                      { os: "macOS (Apple Silicon)", url: "https://github.com/wnodeltd/wnode/releases/download/v1.1.0/nodl-core-darwin-arm64.tar.gz" },
-                      { os: "macOS (Intel)", url: "https://github.com/wnodeltd/wnode/releases/download/v1.1.0/nodl-core-darwin-amd64.tar.gz" },
-                      { os: "Windows (amd64)", url: "https://github.com/wnodeltd/wnode/releases/download/v1.1.0/nodl-core-windows-amd64.zip" },
-                      { os: "Linux (amd64)", url: "https://github.com/wnodeltd/wnode/releases/download/v1.1.0/nodl-core-linux-amd64.tar.gz" },
-                      { os: "Linux (arm64)", url: "https://github.com/wnodeltd/wnode/releases/download/v1.1.0/nodl-core-linux-arm64.tar.gz" }
+                      { os: "Linux Desktop App (Fedora / Ubuntu / Debian GUI)", url: "/api/download/gui", desc: "Out-of-the-box Desktop Program with System Tray & Settings UI" },
+                      { os: "Linux Headless Binary (Server / Terminal CLI)", url: "/api/download/cli", desc: "Interactive CLI Command Menu (/menu) for Headless Servers" },
+                      { os: "macOS Desktop App (Apple Silicon / Intel)", url: "/api/download/gui", desc: "Out-of-the-box macOS Control App" },
+                      { os: "Windows (amd64 Executable)", url: "/api/download/gui", desc: "Out-of-the-box Windows Desktop Program" }
                     ].map(item => (
-                      <a key={item.os} href={item.url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between px-4 py-2.5 bg-white/5 border border-white/10 hover:bg-white/10 transition-all rounded-[4px] group">
+                      <a key={item.os} href={item.url} download className="flex items-center justify-between px-4 py-3 bg-white/5 border border-white/10 hover:bg-white/10 transition-all rounded-[6px] group">
                         <div className="flex items-center gap-3">
-                          <Download className="w-4 h-4 text-white/40 group-hover:text-cyber-cyan" />
-                          <span className="text-xs text-slate-300 font-bold tracking-wide">Download for {item.os}</span>
+                          <Download className="w-4 h-4 text-cyber-cyan group-hover:scale-110 transition-transform" />
+                          <div>
+                            <span className="text-xs text-white font-bold tracking-wide block">{item.os}</span>
+                            <span className="text-[10px] text-slate-400 font-medium block">{item.desc}</span>
+                          </div>
                         </div>
-                        <ChevronRight className="w-3 h-3 text-white/20" />
+                        <ChevronRight className="w-4 h-4 text-white/40 group-hover:text-white" />
                       </a>
                     ))}
                   </div>

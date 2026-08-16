@@ -4,7 +4,7 @@ module.exports = {
       name: "web",
       cwd: "/home/obregan/Documents/nodl/apps/web",
       script: "npm",
-      args: "start",
+      args: "run dev",
       env: { PORT: 3004 }
     },
     {

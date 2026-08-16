@@ -152,7 +152,7 @@
       "metadata": {
         "os": ""
       },
-      "status": "active",
+      "status": "offline",
       "createdAt": "2026-08-16T04:23:00.985483204+02:00",
       "lastSeen": "2026-08-16T04:24:05.877671365+02:00",
       "last_heartbeat": "",
@@ -175,8 +175,8 @@
       "globalScore": 0,
       "tier": 5,
       "isWasm": false,
-      "downtimePenalized": false,
-      "downtimeSlashed": false,
+      "downtimePenalized": true,
+      "downtimeSlashed": true,
       "hardwareHash": "hw-dna-debian-headless-server",
       "browserFingerprint": "native-nodld-v1.0.0",
       "deviceClass": "native-server"
@@ -194,7 +194,7 @@
       "metadata": {
         "os": ""
       },
-      "status": "active",
+      "status": "offline",
       "createdAt": "2026-08-16T04:23:00.9847835+02:00",
       "lastSeen": "2026-08-16T04:24:05.87630745+02:00",
       "last_heartbeat": "",
@@ -217,8 +217,8 @@
       "globalScore": 0,
       "tier": 5,
       "isWasm": false,
-      "downtimePenalized": false,
-      "downtimeSlashed": false,
+      "downtimePenalized": true,
+      "downtimeSlashed": true,
       "hardwareHash": "hw-dna-fedora-x86-64",
       "browserFingerprint": "native-nodld-v1.0.0",
       "deviceClass": "native-workstation"
@@ -260,13 +260,49 @@
       "amount": -5,
       "reason": "slash_downtime",
       "timestamp": "2026-08-16T04:22:34.301386623+02:00"
+    },
+    {
+      "entryId": "6c09870a-a8b1-48be-a6b5-99adc0f1d12f",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "downtime",
+      "shardId": "debian-upid-02",
+      "amount": -0.0001,
+      "reason": "downtime_penalty",
+      "timestamp": "2026-08-16T04:25:40.30081654+02:00"
+    },
+    {
+      "entryId": "a989a1d9-05a5-44aa-8499-f856c36c5eaf",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "downtime",
+      "shardId": "fedora-upid-01",
+      "amount": -0.0001,
+      "reason": "downtime_penalty",
+      "timestamp": "2026-08-16T04:25:40.30081654+02:00"
+    },
+    {
+      "entryId": "0d490a42-a0b3-4166-aa55-ab157e31f0d4",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "",
+      "shardId": "",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-08-16T04:26:40.301157541+02:00"
+    },
+    {
+      "entryId": "fedf2386-faf5-4fda-9ee9-6db31bbdcbde",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "",
+      "shardId": "",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-08-16T04:26:40.301183681+02:00"
     }
   ],
   "token_balances": {
     "100001-0426-01-AA": {
       "operatorId": "100001-0426-01-AA",
-      "balance": -7.5001999999999995,
-      "updatedAt": "2026-08-16T04:22:34.301386722+02:00"
+      "balance": -27.5004,
+      "updatedAt": "2026-08-16T04:26:40.301183803+02:00"
     }
   },
   "operator_stakes": {
@@ -274,7 +310,7 @@
       "operatorId": "100001-0426-01-AA",
       "staked": 0,
       "locked": 0,
-      "updatedAt": "2026-08-16T04:22:34.301386382+02:00"
+      "updatedAt": "2026-08-16T04:26:40.301183449+02:00"
     }
   },
   "stake_ledger": [
@@ -291,22 +327,36 @@
       "amount": -5,
       "reason": "slash_downtime",
       "timestamp": "2026-08-16T04:22:34.301386898+02:00"
+    },
+    {
+      "entryId": "e6e77a4a-ce00-4d29-a74d-6154f2de9b04",
+      "operatorId": "100001-0426-01-AA",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-08-16T04:26:40.301159162+02:00"
+    },
+    {
+      "entryId": "930f7b35-fc69-4945-9a02-4f27a0429826",
+      "operatorId": "100001-0426-01-AA",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-08-16T04:26:40.301183963+02:00"
     }
   ],
   "operator_reputations": {
     "100001-0426-01-AA": {
       "operatorId": "100001-0426-01-AA",
-      "score": 0.5900000000000001,
+      "score": 0.4150000000000001,
       "reliability": 1,
-      "uptime": 0.5,
+      "uptime": 0,
       "successRate": 1,
       "abandonmentRate": 0,
-      "slashes": 2,
+      "slashes": 4,
       "stakeLevel": 0,
       "computeScore": 0,
       "tier": 5,
       "longevityDays": 18,
-      "updatedAt": "2026-08-16T04:24:05.877726661+02:00",
+      "updatedAt": "2026-08-16T04:26:40.301184911+02:00",
       "assignedShards": 0,
       "completedShards": 0,
       "abandonedShards": 0
@@ -361,6 +411,20 @@
       "delta": 0.07999999999999996,
       "reason": "recalculate",
       "timestamp": "2026-08-16T04:24:05.877727351+02:00"
+    },
+    {
+      "entryId": "0a46e0d8-18c6-4e92-8ed8-b6a86cac13e1",
+      "operatorId": "100001-0426-01-AA",
+      "delta": -0.125,
+      "reason": "recalculate",
+      "timestamp": "2026-08-16T04:26:40.301168276+02:00"
+    },
+    {
+      "entryId": "b6b36913-3464-426a-9179-392078639846",
+      "operatorId": "100001-0426-01-AA",
+      "delta": -0.04999999999999999,
+      "reason": "recalculate",
+      "timestamp": "2026-08-16T04:26:40.301185201+02:00"
     }
   ],
   "operator_identities": {

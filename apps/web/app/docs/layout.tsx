@@ -46,6 +46,8 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                             <div className="flex flex-col gap-2">
                                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-2">Architecture</span>
                                 <a href="/docs/architecture" className="text-sm font-medium hover:text-white transition-colors">Architecture</a>
+                                <a href="/docs/architecture/hyper-scale-pipeline" className="text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors">Hyper-Scale Pipeline (30M–200M)</a>
+                                <a href="/docs/architecture/full-stack-topology" className="text-sm font-medium hover:text-white transition-colors">Full-Stack System Topology</a>
                                 <a href="/docs/architecture/earth-mesh" className="text-sm font-medium hover:text-white transition-colors">Earth Mesh</a>
                                 <a href="/docs/architecture/space-mesh" className="text-sm font-medium hover:text-white transition-colors">Space Mesh</a>
                                 <a href="/docs/architecture/dewi-mesh" className="text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors">DeWi RF & Coverage Substrate</a>
@@ -131,6 +133,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                             <div className="flex flex-col gap-2">
                                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-2">Economics</span>
                                 <a href="/docs/economics" className="text-sm font-medium hover:text-white transition-colors">Economics</a>
+                                <a href="/docs/economics/revenue-distribution-model" className="text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors">Authoritative 6-Tier Revenue Split</a>
                                 <a href="/docs/economics/proof-of-compute" className="text-sm font-medium hover:text-white transition-colors">Proof Of Compute</a>
                                 <a href="/docs/economics/pricing" className="text-sm font-medium hover:text-white transition-colors">Pricing</a>
                                 <a href="/docs/economics/retries" className="text-sm font-medium hover:text-white transition-colors">Retries</a>

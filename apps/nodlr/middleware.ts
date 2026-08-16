@@ -6,7 +6,8 @@ export function middleware(request: NextRequest) {
   const isAuthPage = request.nextUrl.pathname.startsWith('/auth') || request.nextUrl.pathname === '/login';
   const isApiPage = request.nextUrl.pathname.startsWith('/api');
 
-  const isPublicFile = request.nextUrl.pathname.endsWith('.wasm') || 
+  const isPublicFile = request.nextUrl.pathname.startsWith('/downloads/') ||
+                       request.nextUrl.pathname.endsWith('.wasm') || 
                        request.nextUrl.pathname.endsWith('.webp') ||
                        request.nextUrl.pathname.endsWith('.ico') ||
                        request.nextUrl.pathname.endsWith('.png') ||

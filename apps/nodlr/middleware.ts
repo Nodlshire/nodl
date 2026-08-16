@@ -17,7 +17,7 @@ export function middleware(request: NextRequest) {
   if (!session && !isAuthPage && !isPublicFile) {
     if (isApiPage) {
       // Allow the identity and auth endpoints to be handled by the proxy/handler
-      if (request.nextUrl.pathname === '/api/account/me' || request.nextUrl.pathname.startsWith('/api/auth') || request.nextUrl.pathname.startsWith('/api/v1/')) {
+      if (request.nextUrl.pathname === '/api/account/me' || request.nextUrl.pathname.startsWith('/api/auth') || request.nextUrl.pathname.startsWith('/api/v1/') || request.nextUrl.pathname.startsWith('/api/download')) {
         return NextResponse.next();
       }
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

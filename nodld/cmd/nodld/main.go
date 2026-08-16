@@ -28,6 +28,7 @@ import (
 	"github.com/obregan/nodl/nodld/internal/acquisition"
 	"github.com/obregan/nodl/nodld/internal/forensics"
 	"github.com/obregan/nodl/nodld/internal/institutional"
+	"github.com/obregan/nodl/nodld/internal/dewi"
 	"github.com/obregan/nodl/nodld/internal/governance"
 )
 
@@ -133,10 +134,32 @@ func main() {
 		log.Warn("Stripe is not configured — payment routes will return errors until STRIPE_SECRET_KEY is set")
 	}
 
-	// ── Pricing Engine ────────────────────────────────────────────────────────
+	// ── Pricing Engine & DeWi Flow-Through ────────────────────────────────────
 	pricingStore := pricing.NewStore()
+	flowThroughEngine := pricing.NewFlowThroughEngine(pricingStore, log)
 	pricingEngine := pricing.NewEngine(pricingStore, log)
 	go pricingEngine.Run(ctx)
+
+	// ── DeWi Adapter Manager ──────────────────────────────────────────────────
+	dewiCfg, _ := dewi.LoadConfig("dewi.yaml")
+	dewiMgr, err := dewi.NewManager(ctx, dewiCfg, log, func(ctx context.Context, p dewi.PacketDeliveryProof) error {
+		_, err := flowThroughEngine.AcceptProof(ctx, p)
+		return err
+	})
+	if err != nil {
+		log.Warn("DeWi manager initialization warning", zap.Error(err))
+	} else {
+		flowThroughEngine.RegisterOperatorKey(dewiCfg.DeWi.OperatorID, dewiMgr.PublicKey())
+		// Register adapters
+		dewiMgr.RegisterAdapter(dewi.NewReticulumTransport(dewiCfg.DeWi.Adapters.Reticulum, dewiMgr, log))
+		dewiMgr.RegisterAdapter(dewi.NewMeshtasticAdapter(dewiCfg.DeWi.Adapters.Meshtastic, dewiMgr, log))
+		dewiMgr.RegisterAdapter(dewi.NewLoRaWANForwarder(dewiCfg.DeWi.Adapters.LoRaWAN, dewiMgr, log))
+		dewiMgr.RegisterAdapter(dewi.NewAPRSDecoder(dewiCfg.DeWi.Adapters.APRS, dewiMgr, log))
+
+		if err := dewiMgr.Start(ctx); err != nil {
+			log.Warn("DeWi manager start warning", zap.Error(err))
+		}
+	}
 
 	// ── Account & Affiliate Store ─────────────────────────────────────────────
 	// (Moved up)
@@ -160,6 +183,12 @@ func main() {
 
 	// ── API Server ────────────────────────────────────────────────────────────
 	srv := api.New(dispatcher, store, pricingStore, accountStore, billingStore, govStore, stripeSvc, moneyHandler, acqHandler, instHandler, p2pHost, log, startTime)
+
+	// ── Register DeWi HTTP Handlers ───────────────────────────────────────────
+	if dewiMgr != nil {
+		dewiHandler := api.NewDeWiHandler(dewiMgr, flowThroughEngine)
+		dewiHandler.RegisterRoutes(srv.App())
+	}
 
 	// ── Settlement Scheduler ──────────────────────────────────────────────────
 	scheduler := account.NewScheduler(accountStore, stripeSvc, log)

@@ -1,5 +1,16 @@
 # Wnode Architecture — Space Mesh (Tier‑2)
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Wnode Architecture — Space Mesh (Tier‑2)** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 Space Mesh is Wnode’s Tier‑2 asynchronous, high‑parallelism execution layer.  
 It provides globally distributed, sovereign compute for workloads that do not require synchronous determinism, but still demand cryptographic lineage, deterministic reduction, and zero‑custody guarantees.
 
@@ -81,7 +92,7 @@ Suitable for:
 Earth Mesh:
 - synchronous
 - low-latency
-- deterministic WASM execution
+- deterministic Native Go execution
 - strict capability boundaries
 
 Space Mesh:

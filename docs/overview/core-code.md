@@ -1,9 +1,19 @@
 # Wnode Architecture — Core Code
 
-![diagram](/diagrams/core-artifacts.png)
 
-The Wnode Sovereign Mesh is built on a minimal, deterministic, cryptographically verifiable execution core.  
-Every component is designed to enforce safety, replayability, and zero‑custody guarantees.
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Wnode Architecture — Core Code** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
+![Core Artifacts Architecture](/diagrams/core-artifacts.png)
+
+The Wnode Sovereign Mesh is built on a minimal, deterministic, cryptographically verifiable execution core. Every component is designed to enforce safety, replayability, and zero-custody guarantees.
 
 This section defines the canonical artifacts that form the execution boundary of Wnode.
 
@@ -19,50 +29,47 @@ The declarative manifest defining:
 - resource limits  
 - deterministic configuration  
 
-The spec.yaml is compiled into an immutable artifact.  
-Nodes do not interpret configuration dynamically.
+The `spec.yaml` is compiled into an immutable artifact. Nodes do not interpret configuration dynamically.
 
 ---
 
 ### **2. Generated Go Handler**
 The Go handler is the strict execution boundary between:
-- WASM module  
+- Native Go kernel  
 - host capabilities  
 - daemon enforcement layer  
 
 It enforces:
 - deterministic timeouts  
-- cgroup isolation  
+- cgroup v2 isolation  
 - capability validation  
 - panic trapping  
-- RAM‑only execution  
+- RAM-only execution  
 
-The handler is generated from spec.yaml and is immutable.
+The handler is generated from `spec.yaml` and is immutable.
 
 ---
 
-### **3. WASM Runtime (Wazero)**
-The Wazero sandbox provides:
+### **3. Native Go Execution Runtime**
+The Native Go (`linux-amd64`) sandbox provides:
 - deterministic memory model  
-- air‑gapped execution  
+- SECCOMP isolated execution  
 - zero-retention semantics  
 - capability-scoped host functions  
 - reproducible behavior across all nodes  
 
-No filesystem.  
-No network stack.  
-No nondeterministic host behavior.
+No unauthorized filesystem access. No raw network stack access. No nondeterministic host behavior.
 
 ---
 
 ### **4. Capability Registry**
 The daemon-side registry enforces:
 - outbound I/O restrictions  
-- spec.yaml capability declarations  
+- `spec.yaml` capability declarations  
 - deterministic host-function mapping  
 - strict boundary checks  
 
-Unauthorized operations instantly trap the WASM module.
+Unauthorized operations instantly trap the execution kernel.
 
 ---
 
@@ -80,7 +87,7 @@ Nodes validate ingress **locally**, without contacting the orchestrator.
 ## Execution Boundary Guarantees
 
 The core code enforces:
-- deterministic WASM execution  
+- deterministic Native Go execution  
 - capability-scoped I/O  
 - cryptographically signed artifacts  
 - RAM-only execution  

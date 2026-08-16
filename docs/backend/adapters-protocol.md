@@ -1,5 +1,16 @@
 # Adapter Architecture (Protocol Level)
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Adapter Architecture (Protocol Level)** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## 1. Component Overview
 The Adapter Architecture subsystem defines the structural requirements for individual protocol integrations (e.g., Aave, Uniswap) to operate securely within the Sovereign Mesh.
 
@@ -8,7 +19,7 @@ Provides the pure-function translation layer between standard Mesh Workflow sche
 
 ## 3. Change Description (Before vs After)
 - **Before**: Adapters contained ad-hoc HTTP request logic, managing their own retries and latency handling.
-- **After**: Adapters are pure logic (WASM/JS). All I/O is yielded to the host orchestrator for Quorum execution.
+- **After**: Adapters are pure logic (Native Go/JS). All I/O is yielded to the host orchestrator for Quorum execution.
 
 ## 4. Deterministic Guarantees
 Adapters cannot produce variance. They receive state strings, and return state strings. All side-effects are banned.

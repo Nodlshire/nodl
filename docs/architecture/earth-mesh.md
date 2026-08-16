@@ -1,7 +1,18 @@
 # Wnode Architecture — Earth Mesh (Tier‑1)
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Wnode Architecture — Earth Mesh (Tier‑1)** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 The Earth Mesh is Wnode’s Tier‑1 deterministic execution layer.  
-It provides synchronous, high‑assurance compute using native Go handlers and WASM modules, enforced by strict capability boundaries and cryptographically verifiable ingress.
+It provides synchronous, high‑assurance compute using native Go handlers and Native Go modules, enforced by strict capability boundaries and cryptographically verifiable ingress.
 
 Earth Mesh nodes operate independently, validating ingress locally using signed routing epochs and executing workloads inside a deterministic, zero‑retention sandbox.
 
@@ -14,7 +25,7 @@ Earth Mesh nodes operate independently, validating ingress locally using signed 
 This diagram shows:
 - Earth Mesh nodes  
 - local ingress validation  
-- WASM execution boundary  
+- Native Go execution boundary  
 - capability registry  
 - telemetry emission  
 - orchestrator interaction (routing epochs + telemetry sink)
@@ -35,8 +46,8 @@ This ensures:
 - cryptographic authenticity  
 - deterministic ingress behavior  
 
-### **2. Deterministic WASM Execution**
-Nodes execute WASM modules inside a Wazero sandbox with:
+### **2. Deterministic Native Go Execution**
+Nodes execute Native Go modules inside a SECCOMP Sandbox sandbox with:
 - deterministic memory model  
 - air‑gapped isolation  
 - zero‑retention semantics  
@@ -68,7 +79,7 @@ Telemetry is never stored locally.
 This diagram illustrates:
 1. Signed request → node  
 2. Local ingress validation  
-3. WASM execution  
+3. Native Go execution  
 4. Capability enforcement  
 5. Telemetry emission  
 6. Encrypted result return
@@ -79,7 +90,7 @@ This diagram illustrates:
 
 Earth Mesh provides:
 - **<1ms** ingress validation latency  
-- **<10ms** WASM cold start  
+- **<10ms** Native Go cold start  
 - **<2ms** capability overhead  
 - deterministic replayability  
 - zero-custody security  

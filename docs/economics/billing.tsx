@@ -15,7 +15,7 @@ export default function StripeBillingEnginePage() {
 
             <h2 id="formal-execution-semantics">1. Formal Execution Semantics</h2>
             <p>
-                The Stripe Billing Engine operates as the definitive fiat ingress boundary. It executes synchronous cryptographic verification of Stripe HMAC webhooks before asynchronously converting them into verifiable Mesh AddBalance events. Once ingested, the fiat value is strictly transformed into integer-based <code>cents</code>, mathematically decoupling execution logic from floating-point currency representation. All resulting WASM execution follows a single linear memory model enforcing strict sandboxing (no WASI, no syscalls, no network, no filesystem). Substrate calls MUST be processed in DAG topological order, adhering to deterministic pointer bounds: <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>. Faults propagate via standardized trap codes uniformly.
+                The Stripe Billing Engine operates as the definitive fiat ingress boundary. It executes synchronous cryptographic verification of Stripe HMAC webhooks before asynchronously converting them into verifiable Mesh AddBalance events. Once ingested, the fiat value is strictly transformed into integer-based <code>cents</code>, mathematically decoupling execution logic from floating-point currency representation. All resulting Native Go execution follows a single linear memory model enforcing strict sandboxing (no WASI, no syscalls, no network, no filesystem). Substrate calls MUST be processed in DAG topological order, adhering to deterministic pointer bounds: <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>. Faults propagate via standardized trap codes uniformly.
             </p>
 
             <h2 id="invariants">2. Core Invariants</h2>
@@ -184,7 +184,7 @@ message FiatDepositEvent {
                     <line x1="450" y1="130" x2="550" y2="130" stroke="#444" strokeWidth="1.5" markerEnd="url(#arrowSolid)" />
                     
                     <rect x="550" y="110" width="150" height="40" rx="8" fill="#111" stroke="#444" strokeWidth="1.5" />
-                    <text x="625" y="135" fill="#ccc" fontSize="14" textAnchor="middle" fontWeight="bold">Earth Mesh (WASM)</text>
+                    <text x="625" y="135" fill="#ccc" fontSize="14" textAnchor="middle" fontWeight="bold">Earth Mesh (Native Go)</text>
                 </svg>
             </div>
         </>

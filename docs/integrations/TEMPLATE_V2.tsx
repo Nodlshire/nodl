@@ -53,7 +53,7 @@ export default function Page() {
             {/* SECTION 5 — Deterministic Execution Model */}
             <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Deterministic Execution Model</h2>
             <p className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">
-                The `{integration_name}` binary executes within the Sovereign Mesh WASM sandbox. External calls are routed through a deterministic proxy ensuring bit-for-bit equivalence across validation nodes, eliminating replay mismatch. The execution enforces strict memory bounds. State transitions require cryptographically signed payloads, which are verified before execution. If execution completes without out-of-bounds memory exhaustion, external call mocking failures, or syscall blocking, the resulting state is committed.
+                The `{integration_name}` binary executes within the Sovereign Mesh Native Go sandbox. External calls are routed through a deterministic proxy ensuring bit-for-bit equivalence across validation nodes, eliminating replay mismatch. The execution enforces strict memory bounds. State transitions require cryptographically signed payloads, which are verified before execution. If execution completes without out-of-bounds memory exhaustion, external call mocking failures, or syscall blocking, the resulting state is committed.
             </p>
 
             {/* SECTION 6 — Test Coverage & Results */}
@@ -81,13 +81,13 @@ export default function Page() {
             <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Ecosystem Impact</h2>
             <div className="text-[16px] leading-[1.7] text-[#e5e7eb] mb-[16px]">
                 {/* INJECT_SECTION_9_ECOSYSTEM_IMPACT */}
-                This integration does not define specific mesh ecosystem capabilities beyond standard WASM execution.
+                This integration does not define specific mesh ecosystem capabilities beyond standard Native Go execution.
             </div>
 
             {/* SECTION 10 — Failure Modes */}
             <h2 className="text-[22px] md:text-[24px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Failure Modes</h2>
             <ul className="text-[16px] leading-[1.7] text-[#e5e7eb] list-disc list-inside mb-[16px] space-y-[4px]">
-                <li><strong>WASM Traps:</strong> Triggered on panic, divide-by-zero, or stack overflow inside the `{integration_name}` module.</li>
+                <li><strong>Native Go Traps:</strong> Triggered on panic, divide-by-zero, or stack overflow inside the `{integration_name}` module.</li>
                 <li><strong>Signature Failures:</strong> Rejection of payloads lacking valid cryptographic signatures.</li>
                 <li><strong>Invalid Payloads:</strong> Decoding errors when the payload schema deviates from the expected struct parameters.</li>
                 <li><strong>Out-of-Bounds Memory:</strong> Exceeding the predefined memory boundary immediately terminates execution.</li>

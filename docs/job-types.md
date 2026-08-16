@@ -1,5 +1,16 @@
 # Job Types
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Job Types** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## Overview
 The wnode network supports multiple types of compute jobs, each designed to run entirely in RAM and stream through the Mesh without storage or retention. Job types define how workloads are structured, how they are executed, and how nodes determine whether they can accept them.
 

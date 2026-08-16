@@ -1,5 +1,16 @@
 # Network Architecture
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Network Architecture** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## Overview
 The wnode network is a decentralized compute mesh that connects node operators, job submitters, and the steward operated backend into a single coherent system. The architecture is designed to be simple, secure, and predictable, while remaining fully community owned. This document explains how the Mesh works, how compute flows through the system, and how the different components interact to create a reliable decentralized compute network.
 

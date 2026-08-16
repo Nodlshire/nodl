@@ -7,16 +7,43 @@ export default function OperatorGuide() {
         <>
             <div className="border-b border-slate-800 pb-8 mb-12">
                 <h1 className="text-5xl font-space-grotesk font-bold tracking-tighter mb-4 text-white">Node Operator Guide</h1>
-                <p className="text-xl text-slate-400 font-light leading-relaxed">
+                <p className="text-xl text-slate-400 font-light leading-relaxed mb-6 leading-relaxed">
                     Operating the physical backbone of the Wnode Sovereign Mesh. Hardware constraints, daemon management, and security responsibilities.
                 </p>
+            {/* Contextual Narrative Section (What, Why, How) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-10 not-prose">
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-emerald-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">WHAT IT IS</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Node Operator Guide Overview</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Core architectural specification detailing the operational mechanics, data protocols, and determinism constraints of Node Operator Guide within the Wnode mesh.
+                    </p>
+                </div>
+
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-cyan-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">WHY IT MATTERS</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Architectural Purpose</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Ensures zero-custody verification, high-throughput execution, and fault-tolerant node consensus across Earth &amp; Space mesh topologies.
+                    </p>
+                </div>
+
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-purple-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-purple-400">HOW IT OPERATES</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Native Go Engine</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Executed via SECCOMP-restricted Native Go modules (`linux-amd64`), validated with mTLS telemetry signatures and HMAC routing epochs.
+                    </p>
+                </div>
+            </div>
+
             </div>
 
             <h2 id="conceptual-overview">Conceptual Overview & Rationale</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 In many blockchain networks, running a node requires syncing a massive historical ledger (often 1TB+ of data) just to verify a single transaction. This prices out standard hardware operators.
             </p>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 <strong>The Rationale:</strong> Wnode is a compute mesh, not a storage ledger. Node Operators are entirely stateless. The only state a node stores is the compiled AST logic of the current integrations. This allows Wnode operators to spin up, authenticate, and begin routing paid tasks in under 60 seconds on standard NVMe hardware.
             </p>
 
@@ -108,24 +135,24 @@ network:
             </ul>
 
             <h2 id="security-boundaries">Security Boundaries & Invariants</h2>
-            <p>
-                <strong>Invariant:</strong> Your host machine is insulated from the payloads you execute. Wazero prevents filesystem access, and Linux cgroups prevent CPU/RAM starvation. An integration cannot "break out" of the node logic to access your root file system.
+            <p className="text-slate-300 leading-relaxed mb-6">
+                <strong>Invariant:</strong> Your host machine is insulated from the payloads you execute. SECCOMP Sandbox prevents filesystem access, and Linux cgroups prevent CPU/RAM starvation. An integration cannot "break out" of the node logic to access your root file system.
             </p>
 
             <h2 id="performance">Performance Characteristics</h2>
-            <p>
-                Operators are paid based on compute volume and latency. A properly tuned Tier-1 bare-metal server (e.g. AMD EPYC, 128GB RAM) can saturate a 10Gbps line with thousands of synchronous Wazero executions per second, maximizing reward yield.
+            <p className="text-slate-300 leading-relaxed mb-6">
+                Operators are paid based on compute volume and latency. A properly tuned Tier-1 bare-metal server (e.g. AMD EPYC, 128GB RAM) can saturate a 10Gbps line with thousands of synchronous SECCOMP Sandbox executions per second, maximizing reward yield.
             </p>
 
             <h2 id="responsibilities">Responsibilities</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8 not-prose">
                 <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl">
                     <h4 className="text-white font-bold mb-2">Operator</h4>
-                    <p className="text-sm text-slate-400">Never manually update the substrate repo. Let <code>nodld</code> handle the git hooks. Monitor your own bandwidth—if your ISP throttles you, your latency will spike and the Orchestrator will reduce your workload.</p>
+                    <p className="text-sm text-slate-400 mb-6 leading-relaxed">Never manually update the substrate repo. Let <code>nodld</code> handle the git hooks. Monitor your own bandwidth—if your ISP throttles you, your latency will spike and the Orchestrator will reduce your workload.</p>
                 </div>
                 <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl">
                     <h4 className="text-white font-bold mb-2">Developer</h4>
-                    <p className="text-sm text-slate-400">(N/A for this page, developers rely on the operators to maintain uptime.)</p>
+                    <p className="text-sm text-slate-400 mb-6 leading-relaxed">(N/A for this page, developers rely on the operators to maintain uptime.)</p>
                 </div>
             </div>
 
@@ -141,7 +168,7 @@ network:
 }`}</CodeBlock>
 
             <h2 id="cross-component">Cross-Component Interactions</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 The Node Operator is the physical muscle. It listens to the Orchestrator for workloads, uses the Substrate definitions to constrain execution, and emits Telemetry back to the Orchestrator to maintain routing health.
             </p>
 

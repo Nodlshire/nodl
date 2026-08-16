@@ -1,5 +1,16 @@
 # Mesh Security & Integrity
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Mesh Security & Integrity** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 The Wnode Sovereign Mesh enforces strict invariants to prevent tampering, impersonation, and non-deterministic behavior.
 
 ## Core Security Mechanisms
@@ -17,6 +28,7 @@ All mesh messages must include an `integrityProof` (MAC). The `MeshIntegrityVali
 The `MeshByzantineMonitor` heuristically evaluates node behavior. Incidents such as invalid proofs or inconsistent claims are tracked. Nodes exceeding the suspicion threshold are **quarantined**.
 
 > [!WARNING]
+
 > A quarantined node is ignored by the transport layer to prevent cascading failures. It does not crash the mesh.
 
 ### 4. Secure Deterministic Transport

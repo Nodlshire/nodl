@@ -1,5 +1,16 @@
 # Founder Economics
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Founder Economics** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## Overview
 Founder economics define the immutable economic rights of founders in the wnode network.  
 These rights are constitutional, permanent, and cannot be modified by:

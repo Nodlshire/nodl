@@ -1,5 +1,16 @@
 # Proof of Compute Pipeline
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Proof of Compute Pipeline** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## 1. Component Overview
 The Proof of Compute Pipeline generates cryptographic receipts verifying that a node accurately executed a deterministic workflow without tampering.
 
@@ -31,7 +42,7 @@ Produces a singular, immutable cryptographic proof that represents the entire st
 - Tree generation failures abort the workflow without committing state.
 
 ## 9. Security & Isolation
-- Signing keys are held in a secure enclave, completely isolated from the WASM execution context.
+- Signing keys are held in a secure enclave, completely isolated from the Native Go execution context.
 
 ## 10. RPC Trust Boundaries
 - Proofs are self-contained and do not rely on RPCs for validity after generation.

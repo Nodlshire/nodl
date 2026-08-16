@@ -1,5 +1,16 @@
 # Steward Constitution
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Steward Constitution** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## Overview
 The steward is the coordinating authority of the wnode network.  
 This document defines the **constitutional limits** of the steward — what it may do, what it must do, and what it is permanently forbidden from doing.

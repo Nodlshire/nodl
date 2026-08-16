@@ -1,168 +1,53 @@
-# Wnode Enterprise Architecture Specification
+# Wnode Enterprise Architecture Specification — arc42 System Specification
 
-The Wnode Sovereign Mesh is a deterministic, verifiable, auto-scaling compute substrate.  
-It executes immutable, signed WASM and Go artifacts across a decentralized network of operators.  
-The architecture enforces sovereign compute guarantees through deterministic execution, capability-scoped I/O, stateless orchestration, and cryptographically signed telemetry.
 
----
+> ### Contextual Architecture Narrative
 
-## Global Architecture Overview
+> - **WHAT**: Core architectural specification for **Wnode Enterprise Architecture Specification — arc42 System Specification** within the Wnode Sovereign Mesh network.
 
-Wnode is composed of three constitutional layers:
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
 
-### **1. Stateless Orchestrator Layer**
-- ingress validation  
-- routing epoch distribution  
-- mTLS telemetry sink  
-- no execution responsibilities  
-- horizontally scalable, zero SPOF  
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
 
-### **2. Earth Mesh (Tier‑1)**
-- synchronous execution  
-- native Go + WASM  
-- local ingress validation  
-- capability-scoped I/O  
-- deterministic execution  
 
-### **3. Space Mesh (Tier‑3)**
-- asynchronous MapReduce  
-- sharded workloads  
-- edge/off-grid operators  
-- deterministic reduction  
+
+> **Version:** Wnode Core Architecture v1.1.0  
+
+> **Status:** `Production Ready`  
+
+> **Determinism Profile:** Bare-Metal Go Binary Execution (`nodld`) + Ephemeral RAM Sandboxing  
+
+> **Capability Set:** Native Go System Daemons (97-98% Workloads), SECCOMP Sandbox Native Go Sandbox (2-3% Edge Fallback)  
+
+> **Supported Networks:** Bare-Metal Linux Node Operators (PM2 / Systemd Managed)  
+
+> **Adapter Hash:** `4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b`  
+
+> **Last Updated:** 2026-08-15  
 
 ---
 
-## Global Architecture Diagram
+## 2. Overview
+The Wnode Sovereign Compute Mesh is a deterministic, high-throughput compute substrate. It executes immutable, signed system workloads natively in Go (`nodld` / `nodl-core`) directly on bare-metal host Linux environments (accounting for 97-98% of all mesh compute), while utilizing WebAssembly (`seccomp-sandbox`) as a localized, air-gapped sandbox for untrusted tenant compute (2-3% of edge execution). Wnode eliminates Docker containers entirely to minimize virtualization overhead and guarantee low-latency, zero-storage execution.
 
-![Global Architecture Diagram](/diagrams/global-architecture.png)
+## 3. Rationale
+Containerized execution engines (e.g. Docker, Podman) introduce significant daemon overhead, slow cold-start latencies (>500ms), non-deterministic filesystem persistence risks, and kernel vulnerability attack surfaces. Wnode adopts a Go-native bare-metal system daemon model (`nodld`) managed directly by `systemd` or `pm2`. Workloads are decrypted directly in volatile RAM, executed in capability-scoped memory spaces, and purged immediately upon completion, guaranteeing zero storage retention and microsecond cold starts.
 
-This diagram shows:
-- orchestrator layer  
-- Earth Mesh  
-- Space Mesh  
-- ingress validation  
-- routing epoch distribution  
-- telemetry sink  
+## 4. Flow (Architecture & Transaction Lifecycle)
+![Wnode Canon Architecture Diagram](/diagrams/global-architecture.png)
 
----
+1. **Ingress Validation:** Clients submit cryptographically signed job envelopes. The stateless orchestrator layer validates ingress headers against active epoch routing tables.
+2. **Ephemeral RAM Decryption:** The bare-metal `nodld` daemon receives encrypted chunks and decrypts them exclusively in volatile RAM. No job data touches persistent disk.
+3. **Execution Routing:** Standard system tasks and high-performance compute execute natively in compiled Go. Multi-tenant edge tasks execute inside air-gapped `seccomp-sandbox` Native Go instances.
+4. **Buffer Purge & Telemetry:** Upon completion, job buffers are zero-overwritten in RAM, an Ed25519-signed telemetry proof is anchored to the Source of Truth (SOT) ledger, and results are returned over encrypted mTLS channels.
 
-## Execution Sequence Flow
+## 5. Core Code & API Surface
 
-1. Client sends an HMAC-signed request.  
-2. Node validates ingress using cached routing epoch.  
-3. Node executes WASM payload with strict capability enforcement.  
-4. Node emits cryptographically signed telemetry envelope.  
-5. Node returns encrypted execution result to the client.
+### Go Core Daemon Main Entrypoint (`nodld/cmd/nodld/main.go`)
+![Wnode Canon Architecture Diagram](/diagrams/global-architecture.png)
 
----
-
-## Execution Flow Diagram
-
-![Execution Flow Diagram](/diagrams/execution-flow.png)
-
----
-
-## Core Artifacts
-
-### **spec.yaml**
-Declarative manifest defining:
-- capabilities  
-- bindings  
-- resource limits  
-- deterministic configuration  
-
-### **Generated Go Handler**
-Strict execution boundary enforcing:
-- timeouts  
-- cgroups  
-- capability validation  
-- panic trapping  
-- RAM-only execution  
-
-### **WASM Runtime (Wazero)**
-Provides:
-- deterministic memory model  
-- air-gapped sandbox  
-- zero-retention semantics  
-- capability-scoped host functions  
-
-### **Capability Registry**
-Daemon-side enforcer of:
-- outbound I/O restrictions  
-- deterministic host-function mapping  
-- spec.yaml bindings  
-
-### **Routing Epoch Structure**
-Signed payload containing:
-- allowed routes  
-- ingress validation rules  
-- HMAC secrets  
-- deterministic routing tables  
-
----
-
-## Core Architecture Diagram
-
-![Core Artifacts Diagram](/diagrams/core-artifacts.png)
-
----
-
-## Failure Modes & Safety Boundaries
-
-- epoch expiration  
-- capability rejection  
-- WASM sandbox traps  
-- grace-based reputation decay  
-- offline operation  
-- telemetry delivery failure  
-
-All failure modes are deterministic, safe, and cryptographically accountable.
-
----
-
-## Security Invariants
-
-- deterministic execution  
-- zero custody  
-- zero retention  
-- capability-scoped I/O  
-- signed artifacts  
-- signed telemetry  
-- deterministic routing  
-
-These invariants cannot be bypassed.
-
----
-
-## Performance Characteristics
-
-- ingress validation: <1ms  
-- WASM cold start: <10ms  
-- capability overhead: <2ms  
-- epoch refresh: asynchronous, off critical path  
-
----
-
-## Responsibilities
-
-### Operator
-- maintain uptime  
-- protect identity keys  
-- ensure cgroups and sandboxing  
-
-### Developer
-- define accurate spec.yaml  
-- declare capabilities explicitly  
-- write deterministic WASM logic  
-
----
-
-## Telemetry Emission
-
-Telemetry is:
-- cryptographically signed  
-- mTLS-secured  
-- monotonic-countered  
-- zero-retention  
-
-No plaintext logs are ever emitted.
+## 11. References & Sources
+- **Daemon Source Path:** `file:///home/obregan/Documents/nodl/nodld/cmd/nodld/main.go`
+- **Native Compute Runner:** `file:///home/obregan/Documents/nodl/nodld/internal/runner/`
+- **Native Go Runtime Package:** `file:///home/obregan/Documents/nodl/nodld/internal/native-go/`
+- **UI Design System:** `file:///home/obregan/Documents/nodl/docs/UI_DESIGN_SYSTEM.md`

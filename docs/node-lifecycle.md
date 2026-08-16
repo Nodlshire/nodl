@@ -1,5 +1,16 @@
 # Node Lifecycle
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Node Lifecycle** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## Overview
 The node lifecycle defines the complete journey of a node in the wnode network — from creation to retirement.  
 It ensures:

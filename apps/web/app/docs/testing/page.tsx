@@ -7,16 +7,43 @@ export default function TestingAndVerification() {
         <>
             <div className="border-b border-slate-800 pb-8 mb-12">
                 <h1 className="text-5xl font-space-grotesk font-bold tracking-tighter mb-4 text-white">Testing & Verification</h1>
-                <p className="text-xl text-slate-400 font-light leading-relaxed">
+                <p className="text-xl text-slate-400 font-light leading-relaxed mb-6 leading-relaxed">
                     Zero-tolerance CI/CD validation. Ensuring absolute parity between the declarative specification and the execution footprint.
                 </p>
+            {/* Contextual Narrative Section (What, Why, How) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-10 not-prose">
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-emerald-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">WHAT IT IS</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Testing & Verification Overview</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Core architectural specification detailing the operational mechanics, data protocols, and determinism constraints of Testing & Verification within the Wnode mesh.
+                    </p>
+                </div>
+
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-cyan-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">WHY IT MATTERS</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Architectural Purpose</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Ensures zero-custody verification, high-throughput execution, and fault-tolerant node consensus across Earth &amp; Space mesh topologies.
+                    </p>
+                </div>
+
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-purple-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-purple-400">HOW IT OPERATES</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Native Go Engine</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Executed via SECCOMP-restricted Native Go modules (`linux-amd64`), validated with mTLS telemetry signatures and HMAC routing epochs.
+                    </p>
+                </div>
+            </div>
+
             </div>
 
             <h2 id="conceptual-overview">Conceptual Overview & Rationale</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 In a monolithic codebase, testing ensures the logic works. In a generative Substrate mesh, testing ensures the logic <strong>matches the contract</strong>.
             </p>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 <strong>The Rationale:</strong> The Orchestrator routes data based on the assumptions written in the <code>spec.yaml</code>. If a developer manually modifies the generated Go handler to consume 4GB of RAM, but the spec says 512MB, the Orchestrator will under-price the job and the Node Operator's physical hardware will crash. The <code>verify_substrate</code> check mathematically guarantees that the generated artifacts perfectly map to the YAML specification.
             </p>
 
@@ -109,12 +136,12 @@ export default function TestingAndVerification() {
             </ul>
 
             <h2 id="security-boundaries">Security Boundaries & Invariants</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 <strong>Invariant:</strong> The verification pipeline runs in an isolated, sandboxed Docker container during CI/CD. It is structurally impossible for an integration author to bypass or rewrite the verification pipeline script via their PR.
             </p>
 
             <h2 id="performance">Performance Characteristics</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 <code>verify_substrate</code> parses ASTs entirely in memory. Validating all 600+ integrations on the Wnode mesh requires roughly <code>2.4 seconds</code>, making it completely non-blocking for rapid CI/CD iteration.
             </p>
 
@@ -122,16 +149,16 @@ export default function TestingAndVerification() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8 not-prose">
                 <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl">
                     <h4 className="text-white font-bold mb-2">Operator Responsibilities</h4>
-                    <p className="text-sm text-slate-400">Rely on the fact that the Orchestrator will never feed you an integration that failed the verify step. You do not need to run verification locally.</p>
+                    <p className="text-sm text-slate-400 mb-6 leading-relaxed">Rely on the fact that the Orchestrator will never feed you an integration that failed the verify step. You do not need to run verification locally.</p>
                 </div>
                 <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl">
                     <h4 className="text-white font-bold mb-2">Developer Responsibilities</h4>
-                    <p className="text-sm text-slate-400">Always run the pipeline locally before pushing. Do not rely on CI to format or generate your code.</p>
+                    <p className="text-sm text-slate-400 mb-6 leading-relaxed">Always run the pipeline locally before pushing. Do not rely on CI to format or generate your code.</p>
                 </div>
             </div>
 
             <h2 id="telemetry">Telemetry Emitted</h2>
-            <p>The verifier emits standard out structured logs for CI tools:</p>
+            <p className="text-slate-300 leading-relaxed mb-6">The verifier emits standard out structured logs for CI tools:</p>
             <CodeBlock language="json" title="Verification Output">{`{
   "total_scanned": 582,
   "compliant": 582,
@@ -141,7 +168,7 @@ export default function TestingAndVerification() {
 }`}</CodeBlock>
 
             <h2 id="cross-component">Cross-Component Interactions</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 The Verifier bridges the gap between GitHub (the repository) and the Orchestrator. It acts as the final gatekeeper before the Orchestrator database synchronizes the new routing data.
             </p>
 

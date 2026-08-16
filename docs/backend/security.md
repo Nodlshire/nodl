@@ -1,5 +1,16 @@
 # Security Model
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Security Model** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## 1. Component Overview
 The Security Model subsystem dictates the trust boundaries, cryptographic enforcement, and threat mitigation strategies for the Sovereign Mesh.
 
@@ -30,7 +41,7 @@ Ensures deterministic cryptographic identities. A node's PubKey strictly defines
 - Unauthorized access attempts log a security event and drop the socket immediately.
 
 ## 9. Security & Isolation
-- Full physical and logical isolation between the host orchestration daemon and the V8/WASM isolates.
+- Full physical and logical isolation between the host orchestration daemon and the V8/Native Go isolates.
 
 ## 10. RPC Trust Boundaries
 - All external traffic is routed through egress proxies restricting IPs to known public RPCs only (preventing SSRF).

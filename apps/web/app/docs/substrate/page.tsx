@@ -7,16 +7,43 @@ export default function SubstrateGenerators() {
         <>
             <div className="border-b border-slate-800 pb-8 mb-12">
                 <h1 className="text-5xl font-space-grotesk font-bold tracking-tighter mb-4 text-white">Substrate Generators</h1>
-                <p className="text-xl text-slate-400 font-light leading-relaxed">
+                <p className="text-xl text-slate-400 font-light leading-relaxed mb-6 leading-relaxed">
                     The core AST compilers of the Wnode network. Abstracting boilerplate, enforcing strict bounds, and achieving mathematical parity across thousands of global Node Operators.
                 </p>
+            {/* Contextual Narrative Section (What, Why, How) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-10 not-prose">
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-emerald-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">WHAT IT IS</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Substrate Generators Overview</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Core architectural specification detailing the operational mechanics, data protocols, and determinism constraints of Substrate Generators within the Wnode mesh.
+                    </p>
+                </div>
+
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-cyan-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">WHY IT MATTERS</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Architectural Purpose</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Ensures zero-custody verification, high-throughput execution, and fault-tolerant node consensus across Earth &amp; Space mesh topologies.
+                    </p>
+                </div>
+
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-purple-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-purple-400">HOW IT OPERATES</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Native Go Engine</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Executed via SECCOMP-restricted Native Go modules (`linux-amd64`), validated with mTLS telemetry signatures and HMAC routing epochs.
+                    </p>
+                </div>
+            </div>
+
             </div>
 
             <h2 id="conceptual-overview">Conceptual Overview & Rationale</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 In standard decentralized architectures, the "node software" is monolithic. It contains massive switch statements and dynamic memory allocators to handle every possible integration scenario. This is highly inefficient and creates massive attack surfaces.
             </p>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 <strong>The Rationale:</strong> Wnode utilizes <code>intgen</code>, <code>nodegen</code>, and <code>spacegen</code> to perform Ahead-Of-Time (AOT) compilation. Instead of a monolithic node, Wnode operators run a lean daemon that dynamically loads only the precise, deterministically generated handlers they are routing. The generators strip away everything except exactly what the <code>spec.yaml</code> demands.
             </p>
 
@@ -56,7 +83,7 @@ export default function SubstrateGenerators() {
 
                     {/* Outputs */}
                     <text x="560" y="75" fill="#94a3b8" fontSize="12" textAnchor="start">- integration.json (Schema)</text>
-                    <text x="560" y="95" fill="#94a3b8" fontSize="12" textAnchor="start">- TS SDK / WASM Stubs</text>
+                    <text x="560" y="95" fill="#94a3b8" fontSize="12" textAnchor="start">- TS SDK / Native Go Stubs</text>
 
                     <text x="560" y="175" fill="#94a3b8" fontSize="12" textAnchor="start">- Go Handlers (Cgroup bounds)</text>
                     <text x="560" y="195" fill="#94a3b8" fontSize="12" textAnchor="start">- Telemetry Hooks</text>
@@ -109,7 +136,7 @@ package {{.PackageName}}
 import "context"
 
 type {{.StructName}} struct {
-    Runtime WASMRuntime
+    Runtime NativeGoRuntime
 }
 
 func (h *{{.StructName}}) Limits() ResourceBounds {
@@ -134,12 +161,12 @@ func (h *{{.StructName}}) Limits() ResourceBounds {
             </ul>
 
             <h2 id="security-boundaries">Security Boundaries & Invariants</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 <strong>Invariant:</strong> Generators cannot execute external code. They operate purely on static file analysis. This prevents a malicious `spec.yaml` from triggering remote code execution (RCE) during the CI/CD pipeline.
             </p>
 
             <h2 id="performance">Performance Characteristics</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 The Master Generator utilizes Go routines to process integrations concurrently. Compiling the ASTs for all 600+ integrations on the Wnode mesh takes approximately <code>~1.2 seconds</code> on a standard developer laptop.
             </p>
 
@@ -147,16 +174,16 @@ func (h *{{.StructName}}) Limits() ResourceBounds {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8 not-prose">
                 <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl">
                     <h4 className="text-white font-bold mb-2">Operator</h4>
-                    <p className="text-sm text-slate-400">Operators do not run the generators. They consume the compiled output provided by the Orchestrator's synchronization channel.</p>
+                    <p className="text-sm text-slate-400 mb-6 leading-relaxed">Operators do not run the generators. They consume the compiled output provided by the Orchestrator's synchronization channel.</p>
                 </div>
                 <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl">
                     <h4 className="text-white font-bold mb-2">Developer</h4>
-                    <p className="text-sm text-slate-400">Must run <code>generate_all</code> locally to produce the footprint, and commit both the spec and the footprint. Do not modify the output.</p>
+                    <p className="text-sm text-slate-400 mb-6 leading-relaxed">Must run <code>generate_all</code> locally to produce the footprint, and commit both the spec and the footprint. Do not modify the output.</p>
                 </div>
             </div>
 
             <h2 id="telemetry">Telemetry Emitted</h2>
-            <p>Generators emit build-time telemetry to the terminal stdout for CI/CD ingestion:</p>
+            <p className="text-slate-300 leading-relaxed mb-6">Generators emit build-time telemetry to the terminal stdout for CI/CD ingestion:</p>
             <CodeBlock language="json" title="Generator stdout log">{`{
   "event": "generation_complete",
   "integration_id": "190001-0626-01-IN",
@@ -167,7 +194,7 @@ func (h *{{.StructName}}) Limits() ResourceBounds {
 }`}</CodeBlock>
 
             <h2 id="cross-component">Cross-Component Interactions</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 The generated <code>integration.json</code> from <code>intgen</code> is ingested by the <strong>Orchestrator</strong> at runtime. The Go handlers generated by <code>nodegen</code> are ingested by the <strong>Node Operators</strong>.
             </p>
 

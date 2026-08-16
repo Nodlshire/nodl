@@ -99,17 +99,17 @@ export default function Header({ onContactClick }: HeaderProps) {
             } ${
                 isVisible ? "block" : "hidden"
             }`}>
-                <div className="max-w-7xl mx-auto px-8 flex justify-between items-center">
-                    <a href="/" className="flex items-center gap-4 group">
+                <div className="w-full px-6 md:px-12 flex justify-between items-center">
+                    <a href="/" className="flex items-center gap-4 group text-left shrink-0">
                         <img src="/logo.png" alt="WeNode" className="w-10 h-10 transition-transform group-hover:scale-110" />
-                        <div className="flex flex-col">
+                        <div className="flex flex-col text-left items-start">
                             <span className="font-space-grotesk text-2xl tracking-tighter font-bold text-white leading-none">WeNode</span>
                             <span className="text-[10px] uppercase tracking-widest text-blue-500 font-bold mt-1">AI Powered Planetary & Orbital Compute Mesh</span>
                         </div>
                     </a>
 
-                    <div className="flex items-center gap-6">
-                        <div className="hidden md:flex items-center gap-4 mr-4">
+                    <div className="flex items-center gap-6 ml-auto shrink-0">
+                        <div className="hidden md:flex items-center gap-4">
                             <a href="https://x.com/wnodemesh" target="_blank" rel="noopener noreferrer" className="inline-block hover:drop-shadow-[0_0_20px_#3b82f6] hover:scale-110 transition-all duration-300">
                                 <img src="/icons/x_neon.png" alt="X (Twitter)" className="h-16 w-auto brightness-125" />
                             </a>

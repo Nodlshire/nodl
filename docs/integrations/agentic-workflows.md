@@ -1,4 +1,15 @@
 # Agentic Workflows
+
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Agentic Workflows** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
 ### Deterministic, Capability-Driven Orchestration
 
 Wnode enables agentic workflows that operate with strong determinism, auditability, and correctness across chains, devices, services, and payment systems. Unlike probabilistic or heuristic agent frameworks, Wnode agents execute inside a sovereign deterministic compute mesh, where every decision path is reproducible and verifiable.

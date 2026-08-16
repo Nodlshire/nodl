@@ -1,5 +1,16 @@
 # Data Flow
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Data Flow** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## Overview
 The wnode network is designed around a simple and safe data flow model. Job payloads move through the system as encrypted streams, never stored, never retained, and never written to disk. The backend acts as a router, while nodes execute compute entirely in RAM. This document explains the complete lifecycle of data as it travels through the network.
 

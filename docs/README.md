@@ -1,5 +1,16 @@
 # Wnode Main Overview
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Wnode Main Overview** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## Overview
 Wnode is a decentralized, sovereign compute network designed to execute high-value tasks, ranging from general machine-to-machine (M2M) compute to highly optimized MEV extraction. 
 

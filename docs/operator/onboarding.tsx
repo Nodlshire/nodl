@@ -15,7 +15,7 @@ export default function OnboardingPipelinePage() {
 
             <h2 id="formal-execution-semantics">1. Formal Execution Semantics</h2>
             <p>
-                The Onboarding Pipeline operates as a highly restrictive, asynchronous state machine independent of the core execution mesh. It enforces a strict topological sort of verification phases: Cryptographic Identity Generation &rarr; Stake Verification &rarr; Synthetic Benchmark &rarr; Topology Assignment. Nodes cannot bypass any phase; failure at any step results in immediate connection termination and garbage collection of the pending node state. The synthetic benchmark enforces the core network rules: a single linear memory model, strict WASM sandboxing (no WASI, no syscalls, no network, no filesystem), and execution in DAG topological order. Memory is restricted to <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>, testing that the prospective node correctly normalizes all trap codes and fault pathways.
+                The Onboarding Pipeline operates as a highly restrictive, asynchronous state machine independent of the core execution mesh. It enforces a strict topological sort of verification phases: Cryptographic Identity Generation &rarr; Stake Verification &rarr; Synthetic Benchmark &rarr; Topology Assignment. Nodes cannot bypass any phase; failure at any step results in immediate connection termination and garbage collection of the pending node state. The synthetic benchmark enforces the core network rules: a single linear memory model, strict Native Go sandboxing (no WASI, no syscalls, no network, no filesystem), and execution in DAG topological order. Memory is restricted to <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>, testing that the prospective node correctly normalizes all trap codes and fault pathways.
             </p>
 
             <h2 id="invariants">2. Core Invariants</h2>
@@ -68,7 +68,7 @@ message NodeJoinRequest {
 
 message OnboardingChallenge {
   bytes nonce = 1;
-  bytes synthetic_wasm_blob = 2;
+  bytes synthetic_Native Go_blob = 2;
   uint64 expected_gas = 3;
 }`}</pre>
             </div>
@@ -93,7 +93,7 @@ message OnboardingChallenge {
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 text-emerald-400">Benchmark Challenge</td>
-                            <td className="p-4">Orchestrator transmits 250KB Wazero test</td>
+                            <td className="p-4">Orchestrator transmits 250KB SECCOMP Sandbox test</td>
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 text-blue-400">Determinism Proof</td>

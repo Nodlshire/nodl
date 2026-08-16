@@ -116,7 +116,7 @@ export default function DashboardPage() {
     }
 
     return (
-        <div className="max-w-7xl mx-auto space-y-8 w-full">
+        <div className="w-full space-y-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full relative z-50">
                 {/* Metric 1: Total Earnings */}
                 <Tooltip content="Cumulative revenue from hardware yield and affiliate lineage">

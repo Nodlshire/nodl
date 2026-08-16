@@ -7,16 +7,43 @@ export default function Specifications() {
         <>
             <div className="border-b border-slate-800 pb-8 mb-12">
                 <h1 className="text-5xl font-space-grotesk font-bold tracking-tighter mb-4 text-white">Integration Specifications</h1>
-                <p className="text-xl text-slate-400 font-light leading-relaxed">
+                <p className="text-xl text-slate-400 font-light leading-relaxed mb-6 leading-relaxed">
                     The declarative schema acting as the absolute source of truth for the Orchestrator, Node Operators, and CI/CD pipelines.
                 </p>
+            {/* Contextual Narrative Section (What, Why, How) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-10 not-prose">
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-emerald-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">WHAT IT IS</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Integration Specifications Overview</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Core architectural specification detailing the operational mechanics, data protocols, and determinism constraints of Integration Specifications within the Wnode mesh.
+                    </p>
+                </div>
+
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-cyan-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">WHY IT MATTERS</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Architectural Purpose</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Ensures zero-custody verification, high-throughput execution, and fault-tolerant node consensus across Earth &amp; Space mesh topologies.
+                    </p>
+                </div>
+
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-purple-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-purple-400">HOW IT OPERATES</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Native Go Engine</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Executed via SECCOMP-restricted Native Go modules (`linux-amd64`), validated with mTLS telemetry signatures and HMAC routing epochs.
+                    </p>
+                </div>
+            </div>
+
             </div>
 
             <h2 id="conceptual-overview">Conceptual Overview & Rationale</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 A <code>spec.yaml</code> is not simply a configuration file; it is a rigid cryptographic contract. It defines precisely how much computational power an integration is allowed to consume, how its payloads must be shaped, and what network vectors it can access.
             </p>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 <strong>The Rationale:</strong> By making the specification declarative and strictly typed, we eliminate whole classes of bugs—memory leaks from unbounded loops, unexpected API shapes from third-party clients, and rogue nodes allocating excessive compute to a single task. The specification guarantees that every participant on the mesh knows exactly what to expect before execution begins.
             </p>
 
@@ -99,7 +126,7 @@ job_template:
   action: "monitor_health_factor"
   priority: "critical"
   shard_count: 100
-  wasm_target: "health_evaluator.wasm"
+  native_target: "health_evaluator.native-go"
   
   node_job:
     execution_type: "native"
@@ -122,12 +149,12 @@ job_template:
             </ul>
 
             <h2 id="security-boundaries">Security Boundaries & Invariants</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 <strong>Invariant:</strong> The <code>hmac_secret_env</code> is just a string reference. The actual secret is NEVER stored in the repo or the YAML. It references a secure environment variable securely injected into the Orchestrator runtime via Kubernetes Secrets or AWS Secrets Manager.
             </p>
 
             <h2 id="performance">Performance Characteristics</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 Because YAML parsing is relatively slow (compared to JSON), the Orchestrator never parses YAML at runtime. <code>intgen</code> compiles the YAML into <code>integration.json</code> during CI/CD, allowing the Orchestrator to load schemas into memory in <code>O(1)</code> time using Go's <code>encoding/json</code> with pre-allocated structs.
             </p>
 
@@ -135,16 +162,16 @@ job_template:
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8 not-prose">
                 <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl">
                     <h4 className="text-white font-bold mb-2">Operator Responsibilities</h4>
-                    <p className="text-sm text-slate-400">Trust the spec. The Orchestrator guarantees the spec is valid before you receive it. Rely on the <code>required_resources</code> to schedule your container/cgroup bounds.</p>
+                    <p className="text-sm text-slate-400 mb-6 leading-relaxed">Trust the spec. The Orchestrator guarantees the spec is valid before you receive it. Rely on the <code>required_resources</code> to schedule your container/cgroup bounds.</p>
                 </div>
                 <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl">
                     <h4 className="text-white font-bold mb-2">Developer Responsibilities</h4>
-                    <p className="text-sm text-slate-400">Profile your WASM binary locally. If you specify <code>RAM: 128MB</code> in the YAML but your Rust logic allocates an array of 200MB, the Node Operator will instantly kill your job.</p>
+                    <p className="text-sm text-slate-400 mb-6 leading-relaxed">Profile your Native Go binary locally. If you specify <code>RAM: 128MB</code> in the YAML but your Go logic allocates an array of 200MB, the Node Operator will instantly kill your job.</p>
                 </div>
             </div>
 
             <h2 id="telemetry">Telemetry Emitted</h2>
-            <p>During the ingestion of a spec, the Orchestrator logs:</p>
+            <p className="text-slate-300 leading-relaxed mb-6">During the ingestion of a spec, the Orchestrator logs:</p>
             <CodeBlock language="json" title="Orchestrator Spec Ingestion Log">{`{
   "event": "spec_loaded",
   "integration_id": "10001-aave-liq",
@@ -154,8 +181,8 @@ job_template:
 }`}</CodeBlock>
 
             <h2 id="cross-component">Cross-Component Interactions</h2>
-            <p>
-                The `spec.yaml` influences every single component. It generates the TS SDK, defines the Wazero bounds for the Operator, shapes the DAG routing table for the Orchestrator, and sets the CI/CD pipeline tests.
+            <p className="text-slate-300 leading-relaxed mb-6">
+                The `spec.yaml` influences every single component. It generates the TS SDK, defines the SECCOMP Sandbox bounds for the Operator, shapes the DAG routing table for the Orchestrator, and sets the CI/CD pipeline tests.
             </p>
 
             <h2 id="best-practices">Best Practices & Anti-Patterns</h2>

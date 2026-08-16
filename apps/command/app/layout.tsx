@@ -1,24 +1,42 @@
-import React from 'react';
-import { CanonicalShell } from '@wnode/ui-core';
-import AuthGuard from './components/AuthGuard';
-import { PageTitleProvider } from './components/PageTitleContext';
+"use client";
+
+import React from "react";
+import { usePathname } from "next/navigation";
+import "./globals.css";
+
+import Shell from "./components/Shell";
+import AuthGuard from "./components/AuthGuard";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const ProvidersWrapper = ({ children: providerChildren }: { children: React.ReactNode }) => (
-    <AuthGuard>
-      <PageTitleProvider>
-        {providerChildren}
-      </PageTitleProvider>
-    </AuthGuard>
-  );
+    const pathname = usePathname();
 
-  return (
-    <html lang="en">
-      <body data-portal="command">
-        <CanonicalShell providers={ProvidersWrapper}>
-          {children}
-        </CanonicalShell>
-      </body>
-    </html>
-  );
+    return (
+        <html lang="en">
+            <head>
+                <meta httpEquiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: filesystem:;" />
+                <link rel="icon" href="/favicon.ico" />
+                <title>Wnode Command</title>
+            </head>
+            <body
+                suppressHydrationWarning
+                data-portal="command"
+                data-canary="CANARY_937_TEST_DO_NOT_IGNORE"
+                style={{
+                    backgroundColor: "black",
+                    color: "white",
+                    "--command-portal-glow-color": "#22D3EE",
+                } as React.CSSProperties}
+            >
+                    <AuthGuard>
+                        <React.Suspense fallback={<div className="h-screen w-screen bg-black" />}>
+                            {pathname?.startsWith("/auth") ? (
+                                children
+                            ) : (
+                                <Shell>{children}</Shell>
+                            )}
+                        </React.Suspense>
+                    </AuthGuard>
+            </body>
+        </html>
+    );
 }

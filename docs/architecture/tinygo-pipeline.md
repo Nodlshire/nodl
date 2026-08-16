@@ -1,19 +1,30 @@
 # Wnode Architecture — TinyGo Pipeline
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Wnode Architecture — TinyGo Pipeline** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ![diagram](/diagrams/tinygo-pipeline-overview.png)
 
 The TinyGo Pipeline is the constitutional build path for Wnode integrations.
 It ensures that all workloads entering the sovereign compute mesh are:
 
 - deterministic
-- WASM‑based
+- Native Go‑based
 - capability‑bounded
 - size‑bounded
 - signature‑verified
 - runtime‑validated
 
 TinyGo is used because it produces:
-- small WASM binaries
+- small Native Go binaries
 - predictable memory layouts
 - fast initialization
 - strict deterministic behavior
@@ -25,7 +36,7 @@ TinyGo is used because it produces:
 Developers write integrations in TinyGo using the Wnode SDK.
 
 The compiler produces:
-- WASM modules targeting **wasi**
+- Native Go modules targeting **wasi**
 - deterministic execution paths
 - predictable memory usage
 - minimal binary size
@@ -34,9 +45,9 @@ Invalid builds are rejected deterministically.
 
 ---
 
-## WASM Build Constraints
+## Native Go Build Constraints
 
-All WASM modules must satisfy:
+All Native Go modules must satisfy:
 
 - **Binary size < 500KB**
 - **Init time < 10ms**
@@ -55,7 +66,7 @@ These constraints ensure:
 
 ## Signature Generation
 
-Every WASM artifact is signed using:
+Every Native Go artifact is signed using:
 
 - developer identity
 - capability declaration
@@ -70,7 +81,7 @@ Unsigned artifacts are rejected.
 
 The registry stores:
 
-- signed WASM modules
+- signed Native Go modules
 - capability metadata
 - version history
 - size and memory constraints
@@ -84,11 +95,11 @@ The registry is constitutional and non‑authoritative.
 
 ---
 
-## Node Runtime Validation (Wazero)
+## Node Runtime Validation (SECCOMP Sandbox)
 
 ![diagram](/diagrams/tinygo-pipeline-flow.png)
 
-Nodes validate WASM modules using Wazero:
+Nodes validate Native Go modules using SECCOMP Sandbox:
 
 - signature verification
 - size constraint check
@@ -122,7 +133,7 @@ Telemetry envelopes are emitted after execution.
 
 The TinyGo Pipeline provides:
 
-- deterministic WASM builds
+- deterministic Native Go builds
 - strict capability enforcement
 - constitutional artifact validation
 - sovereign execution guarantees

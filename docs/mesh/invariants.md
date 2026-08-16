@@ -1,5 +1,16 @@
 # Sovereign Mesh Invariants
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Sovereign Mesh Invariants** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 The Wnode Sovereign Mesh operates under the following strict determinism and security invariants:
 
 1. **State Isolation**: Mesh modules do not independently mutate or hold state outside of what is deterministically passed through the gossip transport layer.

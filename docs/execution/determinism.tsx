@@ -41,12 +41,12 @@ export default function DeterminismPage() {
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 font-mono text-blue-400">Time</td>
                             <td className="p-4 font-mono">No access to system clock.</td>
-                            <td className="p-4">WASM Host blocks time syscalls.</td>
+                            <td className="p-4">Native Go Host blocks time syscalls.</td>
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 font-mono text-blue-400">Concurrency</td>
                             <td className="p-4 font-mono">Single-threaded linear execution.</td>
-                            <td className="p-4">WASM multi-threading disabled.</td>
+                            <td className="p-4">Native Go multi-threading disabled.</td>
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 font-mono text-blue-400">Float Parsing</td>
@@ -71,7 +71,7 @@ export default function DeterminismPage() {
             <h2 id="responsibilities">4. Responsibilities</h2>
             <ul className="list-disc pl-6 mb-6 text-slate-300">
                 <li><strong>Orchestrator:</strong> Ensures strict ordering of events via absolute Sequence IDs.</li>
-                <li><strong>Wazero Runtime:</strong> Sandboxes the substrate from non-deterministic host externalities.</li>
+                <li><strong>SECCOMP Sandbox Runtime:</strong> Sandboxes the substrate from non-deterministic host externalities.</li>
                 <li><strong>Generators:</strong> Embed static PRNG seeding algorithms derived from Orchestrator nonces.</li>
             </ul>
 
@@ -141,7 +141,7 @@ export default function DeterminismPage() {
             <ul className="list-disc pl-6 mb-6 text-slate-300">
                 <li><strong>Latency Bounds:</strong> <code>ExecTime &le; 50ms</code>, <code>RTT &le; 200ms</code>.</li>
                 <li><strong>Throughput Metrics:</strong> High <code>ops_per_sec</code> achieved via horizontal, independent sandboxes.</li>
-                <li><strong>Warm vs Cold Start:</strong> <code>ColdStart = initial WASM instantiation</code>, <code>WarmStart = cached instance reuse</code>.</li>
+                <li><strong>Warm vs Cold Start:</strong> <code>ColdStart = initial Native Go instantiation</code>, <code>WarmStart = cached instance reuse</code>.</li>
             </ul>
 
             <h2 id="cross-component">9. Cross-Component Interactions</h2>

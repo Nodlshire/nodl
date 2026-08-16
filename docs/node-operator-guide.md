@@ -1,5 +1,16 @@
 # Node Operator Guide
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Node Operator Guide** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## Overview
 A node operator, also called a nodlr, is a participant who contributes compute capacity to the wnode network by running one or more nodes. A nodlr can operate as many nodes as they want, as long as each node runs on its own machine. This document explains how node operators participate in the network, how nodes are managed, and how revenue is earned.
 
@@ -76,7 +87,7 @@ Nodes process jobs using a streaming, RAM-only execution model:
 1. **Task Polling**: The node worker continuously polls the dispatcher for assigned tasks.
 2. **Encrypted Streaming**: For streaming jobs, the node fetches encrypted chunks via a secure ephemeral XOR-scrambled pipe.
 3. **On-the-Fly Decryption**: The node decrypts chunks in RAM using the per-job XOR key provided in the assignment.
-4. **WASM Execution**: The decrypted bundle is executed in the isolated RAM-only WASM runner.
+4. **Native Go Execution**: The decrypted bundle is executed in the isolated RAM-only Native Go runner.
 5. **Mandatory RAM Wipe**: Immediately after execution, the node worker explicitly zeroes out the decrypted buffers in RAM to ensure zero forensic trace.
 
 No job data ever touches the node's disk.

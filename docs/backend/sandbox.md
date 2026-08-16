@@ -1,7 +1,18 @@
 # Sandbox Isolation
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Sandbox Isolation** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## 1. Component Overview
-The Sandbox Isolation subsystem provides the secure, deterministic environment where user-defined logic (WASM or pure JS) executes.
+The Sandbox Isolation subsystem provides the secure, deterministic environment where user-defined logic (Native Go or pure JS) executes.
 
 ## 2. Architectural Role
 The innermost execution core. It heavily restricts I/O, memory, and CPU cycles to guarantee safety and determinism.

@@ -1,0 +1,38 @@
+# dewi.yaml — Configuration for Wnode DeWi (Decentralized Wireless) Adapters
+dewi:
+  enabled: true
+  operator_id: "operator-node-001"
+  signing_key_path: "state/operator.ed25519"
+
+  adapters:
+    reticulum:
+      enabled: true
+      listen_tcp: 4001
+      listen_ws: 4002
+      max_connections: 100
+      announce_interval: 3600
+      persistence_path: "state/reticulum"
+
+    meshtastic:
+      enabled: true
+      serial_ports:
+        - "/dev/ttyUSB0"
+        - "/dev/ttyACM0"
+      baud: 115200
+      reconnect_interval_seconds: 10
+
+    lorawan:
+      enabled: true
+      semtech_udp_port: 1700
+      mqtt:
+        enabled: false
+        broker: "tcp://localhost:1883"
+
+    aprs:
+      enabled: false
+      tnc_serial: "/dev/ttyS1"
+      baud: 9600
+
+  metrics:
+    prometheus_enabled: true
+    listen_addr: ":9100"

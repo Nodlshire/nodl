@@ -15,7 +15,7 @@ export default function UIUXEnginePage() {
 
             <h2 id="formal-execution-semantics">1. Formal Execution Semantics</h2>
             <p>
-                The UI/UX Engine operates as a mathematically bound, deterministic renderer. It transforms strictly-typed JSON schemas from the Orchestrator into unshifting visual DOM hierarchies. The rendering pipeline is synchronous and pure; given identical state inputs, the UI Engine guarantees identical pixel-perfect output geometries across all supported browsers, with zero side effects permitted prior to user cryptographic signing. All signature execution utilizes a single linear memory model within an isolated WASM sandbox (no WASI, no syscalls, no network, no filesystem). Cryptographic calls process in DAG topological order, restricting memory to <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>, while returning standardized trap codes on failure.
+                The UI/UX Engine operates as a mathematically bound, deterministic renderer. It transforms strictly-typed JSON schemas from the Orchestrator into unshifting visual DOM hierarchies. The rendering pipeline is synchronous and pure; given identical state inputs, the UI Engine guarantees identical pixel-perfect output geometries across all supported browsers, with zero side effects permitted prior to user cryptographic signing. All signature execution utilizes a single linear memory model within an isolated Native Go sandbox (no WASI, no syscalls, no network, no filesystem). Cryptographic calls process in DAG topological order, restricting memory to <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>, while returning standardized trap codes on failure.
             </p>
 
             <h2 id="invariants">2. Core Invariants</h2>
@@ -131,7 +131,7 @@ export interface ClientAction {
                 <strong>Mitigation Structure:</strong>
                 <ul className="list-disc pl-6 mt-2 text-slate-300">
                     <li>Cryptographic Guarantees: blake3 hashing for state validation and ed25519 signatures for user intents.</li>
-                    <li>Deterministic Execution Rules: Strict pointer bounds, single linear memory, no syscalls, and no external entropy within the WASM signer.</li>
+                    <li>Deterministic Execution Rules: Strict pointer bounds, single linear memory, no syscalls, and no external entropy within the Native Go signer.</li>
                     <li>Economic Disincentives: Treating all UI inputs as fundamentally hostile until signed.</li>
                 </ul>
             </div>
@@ -182,7 +182,7 @@ export interface ClientAction {
                     <text x="150" y="125" fill="#888" fontSize="11" textAnchor="middle">React Virtual DOM</text>
 
                     <rect x="70" y="160" width="160" height="40" rx="8" fill="#111" stroke="#444" strokeWidth="1.5" />
-                    <text x="150" y="185" fill="#888" fontSize="11" textAnchor="middle">ED25519 Signer (WASM)</text>
+                    <text x="150" y="185" fill="#888" fontSize="11" textAnchor="middle">ED25519 Signer (Native Go)</text>
 
                     <line x1="250" y1="120" x2="480" y2="120" stroke="#444" strokeWidth="1.5" strokeDasharray="4 4" markerEnd="url(#arrowSolid)" />
                     <text x="365" y="110" fill="#888" fontSize="11" textAnchor="middle">WSS Diff Stream</text>

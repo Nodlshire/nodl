@@ -15,7 +15,7 @@ export default function TestingPage() {
 
             <h2 id="formal-execution-semantics">1. Formal Execution Semantics</h2>
             <p>
-                The Testing & Verification engine enforces static analysis and dynamic fuzzing as mandatory pre-conditions to deployment. It mathematically guarantees that compiled substrates contain zero imported system calls (WASI) and bound all memory allocations within the 32MB heap limit. Substrates are verified locally using identical runtime environments (Wazero) to prevent environment-specific branching logic. The local verification mimics the canonical single linear memory model, ensuring processing matches the required DAG topological order. The sandbox perfectly mimics the strict network isolation (no WASI, no syscalls, no network, no filesystem), validating adherence to <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>. Fuzzed faults trigger and map identically to live standardized trap paths.
+                The Testing & Verification engine enforces static analysis and dynamic fuzzing as mandatory pre-conditions to deployment. It mathematically guarantees that compiled substrates contain zero imported system calls (WASI) and bound all memory allocations within the 32MB heap limit. Substrates are verified locally using identical runtime environments (SECCOMP Sandbox) to prevent environment-specific branching logic. The local verification mimics the canonical single linear memory model, ensuring processing matches the required DAG topological order. The sandbox perfectly mimics the strict network isolation (no WASI, no syscalls, no network, no filesystem), validating adherence to <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>. Fuzzed faults trigger and map identically to live standardized trap paths.
             </p>
 
             <h2 id="invariants">2. Core Invariants</h2>
@@ -36,7 +36,7 @@ export default function TestingPage() {
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 font-mono text-blue-400">Isolation Guarantee</td>
-                            <td className="p-4">WASM_Imports &cap; System_Calls == &empty;</td>
+                            <td className="p-4">Native Go_Imports &cap; System_Calls == &empty;</td>
                             <td className="p-4">Static analysis for syscall imports.</td>
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
@@ -55,11 +55,11 @@ export default function TestingPage() {
 
             <h2 id="formal-interfaces">3. Formal Interface Definitions</h2>
             <p>
-                Developers interface with the testing engine via the `wnode` CLI tool, which wrappers the exact Rust/Go parsing logic used by the live node operators.
+                Developers interface with the testing engine via the `wnode` CLI tool, which wrappers the exact Go/Go parsing logic used by the live node operators.
             </p>
             <div className="bg-[#0f172a] rounded-lg p-6 border border-white/10 font-mono text-sm mb-8 text-emerald-300">
 <pre className="m-0 bg-transparent border-0">{`// Testing Interface
-$ wnode verify ./build/contract.wasm
+$ wnode verify ./build/contract.native-go
 > Analysing exports... OK [alloc, invoke]
 > Checking imports... OK [none]
 > Running 10,000 fuzz cycles... OK
@@ -78,7 +78,7 @@ $ wnode verify ./build/contract.wasm
                     <tbody className="divide-y divide-white/10 text-slate-400 font-mono text-xs">
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 text-slate-300">Compilation</td>
-                            <td className="p-4">Source &rarr; `cargo build --target wasm32-unknown-unknown`</td>
+                            <td className="p-4">Source &rarr; `cargo build --target linux-amd64`</td>
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 text-slate-300">Static Analysis</td>
@@ -116,7 +116,7 @@ $ wnode verify ./build/contract.wasm
                     <li>Network-level: CI/CD pipeline compromise.</li>
                     <li>Execution-level: Resource exhaustion (Halting Problem).</li>
                     <li>Economic-level: Free off-chain fuzzing abuse.</li>
-                    <li>Governance-level: Unauthorized Wazero parameter upgrades.</li>
+                    <li>Governance-level: Unauthorized SECCOMP Sandbox parameter upgrades.</li>
                     <li>Telemetry-level: Falsified test success signatures.</li>
                 </ul>
             </div>
@@ -134,7 +134,7 @@ $ wnode verify ./build/contract.wasm
 
             <h2 id="operator-lifecycle">6. Operator Lifecycle (Verification)</h2>
             <p>
-                Live Node Operators never compile code. They receive raw compiled `.wasm` bytecode. Before instantiating it, the node daemon (`nodld`) runs the exact same static analysis check the CI pipeline ran (validating exports/imports). If a malicious contract somehow bypassed CI, the live operators will automatically reject the binary format.
+                Live Node Operators never compile code. They receive raw compiled `.native-go` bytecode. Before instantiating it, the node daemon (`nodld`) runs the exact same static analysis check the CI pipeline ran (validating exports/imports). If a malicious contract somehow bypassed CI, the live operators will automatically reject the binary format.
             </p>
 
             <h2 id="economic-model">7. Economic Model</h2>
@@ -144,7 +144,7 @@ $ wnode verify ./build/contract.wasm
 
             <h2 id="governance-model">8. Governance Model</h2>
             <p>
-                The `wnode` CLI is open source and version-controlled. Any changes to the underlying simulation environment (e.g., updating the Wazero version or changing the gas cost of a WASM instruction) must parallel the on-chain parameter upgrades governed by the DAO.
+                The `wnode` CLI is open source and version-controlled. Any changes to the underlying simulation environment (e.g., updating the SECCOMP Sandbox version or changing the gas cost of a Native Go instruction) must parallel the on-chain parameter upgrades governed by the DAO.
             </p>
 
             <h2 id="performance">9. Performance Envelopes</h2>
@@ -168,7 +168,7 @@ $ wnode verify ./build/contract.wasm
                         </marker>
                     </defs>
                     <rect x="50" y="80" width="120" height="40" rx="8" fill="#111" stroke="#444" strokeWidth="1.5" />
-                    <text x="110" y="105" fill="#ccc" fontSize="14" textAnchor="middle" fontWeight="bold">Compiled .wasm</text>
+                    <text x="110" y="105" fill="#ccc" fontSize="14" textAnchor="middle" fontWeight="bold">Compiled .native-go</text>
 
                     <line x1="170" y1="100" x2="250" y2="100" stroke="#444" strokeWidth="1.5" markerEnd="url(#arrowSolid)" />
 

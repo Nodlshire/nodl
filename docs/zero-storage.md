@@ -1,5 +1,16 @@
 # Zero Storage
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Zero Storage** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## Overview
 Zero‑storage is one of the core constitutional guarantees of the wnode network.  
 It ensures that **no node ever writes user data to disk**, and that all job execution occurs entirely in volatile memory.
@@ -124,7 +135,7 @@ Zero‑storage violations are non‑recoverable without remediation.
 RAM‑only execution requires:
 
 - **Ephemeral XOR Decryption**: Each chunk is decrypted on-the-fly using the per-job key provided in the Job Envelope.
-- **Incremental Loading**: Decrypted data is fed into the execution engine (e.g., WASM) without persisting to disk.
+- **Incremental Loading**: Decrypted data is fed into the execution engine (e.g., Native Go) without persisting to disk.
 - **Mandatory Buffer Wipe**: All transient RAM buffers are explicitly zeroed out (wiped) after module compilation and execution.
 - **No Trace Retention**: All ephemeral keys and intermediate state are destroyed immediately upon job completion.
 

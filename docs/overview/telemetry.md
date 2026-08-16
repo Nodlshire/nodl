@@ -1,5 +1,16 @@
 # Wnode Architecture — Telemetry
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Wnode Architecture — Telemetry** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ![diagram](/diagrams/telemetry-pipeline.png)
 
 Telemetry in the Wnode Sovereign Mesh is cryptographically signed, mTLS‑secured, deterministic, and replayable.  
@@ -76,7 +87,7 @@ This preserves zero-custody and zero-retention guarantees.
 
 ## Telemetry Flow
 
-1. WASM module executes deterministically.  
+1. Native Go module executes deterministically.  
 2. Go handler collects deterministic metadata.  
 3. Node signs the telemetry envelope using hardware-bound keys.  
 4. Envelope is transmitted over mTLS to the orchestrator sink.  

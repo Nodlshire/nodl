@@ -1,5 +1,16 @@
 # Steward API
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Steward API** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## Overview
 The Steward API defines the communication interface between the steward and all other participants in the network:
 

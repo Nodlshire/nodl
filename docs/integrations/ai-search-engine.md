@@ -1,4 +1,15 @@
 # AI Search Engine
+
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **AI Search Engine** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
 Deterministic Search Across Integrations, Capabilities & Agent Intent
 
 The AI Search Engine is Wnode’s constitutional subsystem for deterministic search across integrations, capability graphs, and agent intent. It provides a sovereign, replay‑safe mechanism for selecting the correct integration, capability, or action based on constitutional rules and Routing Epochs.
@@ -20,7 +31,7 @@ This ensures agents always select the correct integration or capability path, wi
 The AI Search Engine is built on four constitutional components:
 
 ### 1. Deterministic Query Kernel
-Constructs and evaluates search queries using deterministic WASM execution.
+Constructs and evaluates search queries using deterministic Native Go execution.
 Inputs include:
 - Integration Manifests
 - Capability Graph
@@ -122,6 +133,6 @@ The AI Search Engine operates under strict constitutional guarantees:
 - Replay protection
 - Canonical envelopes
 - Capability isolation
-- WASM sandboxing
+- Native Go sandboxing
 
 These guarantees ensure search results are sovereign, safe, and reproducible across the entire mesh.

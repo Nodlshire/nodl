@@ -1,5 +1,16 @@
 # Code Examples
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Code Examples** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 This section provides deterministic, production‑grade examples for using the Wnode SDK across multiple languages and interfaces.  
 All examples follow sovereign compute rules:
 - no signing  

@@ -1,5 +1,16 @@
 # Revenue Model
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Revenue Model** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## Overview
 The wnode network uses a transparent and predictable revenue model that rewards participants for contributing compute capacity and growing the network. Revenue flows from job requesters to nodes, nodlrs, and founders based on compute provided and referral relationships. This document explains how revenue is generated, attributed, and distributed.
 

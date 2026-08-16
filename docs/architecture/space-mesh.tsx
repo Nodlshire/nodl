@@ -15,7 +15,7 @@ export default function SpaceMeshPage() {
 
             <h2 id="formal-execution-semantics">1. Formal Execution Semantics</h2>
             <p>
-                The Space Mesh provides high-latency, asynchronous execution liveness when Earth Mesh quorum cannot be reached. Satellites run highly restricted Wazero sandboxes tailored for low-memory overhead (`spacegen`). Execution semantics require payloads to be bundled with Forward Error Correction (FEC) codes to mathematically recover from bit flips caused by radiation. Output determinism relies on prolonged asynchronous BFT voting rather than sub-second synchrony. All orbital substrates execute in a single linear memory model enforcing strict WASM sandboxing (no WASI, no syscalls, no network, no filesystem). Substrate calls MUST be processed in DAG topological order, and memory adheres to standardized pointer bounds: <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>. Faults propagate via standardized trap codes deterministically.
+                The Space Mesh provides high-latency, asynchronous execution liveness when Earth Mesh quorum cannot be reached. Satellites run highly restricted SECCOMP Sandbox sandboxes tailored for low-memory overhead (`spacegen`). Execution semantics require payloads to be bundled with Forward Error Correction (FEC) codes to mathematically recover from bit flips caused by radiation. Output determinism relies on prolonged asynchronous BFT voting rather than sub-second synchrony. All orbital substrates execute in a single linear memory model enforcing strict Native Go sandboxing (no WASI, no syscalls, no network, no filesystem). Substrate calls MUST be processed in DAG topological order, and memory adheres to standardized pointer bounds: <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>. Faults propagate via standardized trap codes deterministically.
             </p>
 
             <h2 id="invariants">2. Core Invariants</h2>
@@ -93,7 +93,7 @@ message SpaceTelemetry {
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 text-purple-400">Orbital Execution</td>
-                            <td className="p-4">Satellite runs 16MB Heap WASM (2500ms)</td>
+                            <td className="p-4">Satellite runs 16MB Heap Native Go (2500ms)</td>
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 text-blue-400">Ground Station Downlink</td>
@@ -141,7 +141,7 @@ message SpaceTelemetry {
 
             <h2 id="operator-lifecycle">6. Operator Lifecycle within the Space Mesh</h2>
             <p>
-                Space operators are aerospace entities (e.g., SpaceX, private LEO operators). They flash the statically compiled `spacegen` WASM runtime onto their flight computers prior to launch, or via secured Over-The-Air (OTA) updates. They do not stake WNODE directly like Earth nodes; instead, they are bound by institutional SLA contracts negotiated by the Wnode DAO.
+                Space operators are aerospace entities (e.g., SpaceX, private LEO operators). They flash the statically compiled `spacegen` Native Go runtime onto their flight computers prior to launch, or via secured Over-The-Air (OTA) updates. They do not stake WNODE directly like Earth nodes; instead, they are bound by institutional SLA contracts negotiated by the Wnode DAO.
             </p>
 
             <h2 id="economic-model">7. Economic Model</h2>
@@ -184,7 +184,7 @@ message SpaceTelemetry {
 
                     <circle cx="420" cy="60" r="50" fill="#111" stroke="#444" strokeWidth="1.5" />
                     <text x="420" y="55" fill="#ccc" fontSize="14" textAnchor="middle" fontWeight="bold">LEO Node 1</text>
-                    <text x="420" y="75" fill="#888" fontSize="11" textAnchor="middle">16MB Heap WASM</text>
+                    <text x="420" y="75" fill="#888" fontSize="11" textAnchor="middle">16MB Heap Native Go</text>
 
                     <line x1="470" y1="60" x2="600" y2="60" stroke="#444" strokeWidth="1.5" strokeDasharray="4 4" markerEnd="url(#arrowSolid)" />
                     <text x="535" y="50" fill="#888" fontSize="11" textAnchor="middle">Inter-Satellite Link (ISL)</text>

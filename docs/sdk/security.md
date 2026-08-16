@@ -1,5 +1,16 @@
 # Security and Compliance
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Security and Compliance** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 Security in Wnode is enforced through constitutional constraints, deterministic execution guarantees, and strict zero‑custody rules.  
 The SDK must never introduce nondeterminism, state retention, or cryptographic risk.  
 All security behavior is explicit, auditable, and reproducible.

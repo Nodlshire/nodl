@@ -1,14 +1,25 @@
 # Workflow Engine
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Workflow Engine** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## 1. Component Overview
-The Workflow Engine is the core state machine that drives individual job manifests through a strict graph of deterministic steps, validating inputs, executing WASM blocks, and aggregating outputs.
+The Workflow Engine is the core state machine that drives individual job manifests through a strict graph of deterministic steps, validating inputs, executing Native Go blocks, and aggregating outputs.
 
 ## 2. Architectural Role
 Acts as the central execution loop per job. It coordinates with the Scheduler for timing, the Sandbox for execution, and the Quorum Layer for external data.
 
 ## 3. Change Description (Before vs After)
 - **Before**: Interpreted language scripts running with ad-hoc orchestration.
-- **After**: Strict Directed Acyclic Graph (DAG) state machine executing compiled WASM modules.
+- **After**: Strict Directed Acyclic Graph (DAG) state machine executing compiled Native Go modules.
 
 ## 4. Deterministic Guarantees
 Guarantees execution order is strictly topological and mathematically immutable given identical inputs.

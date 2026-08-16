@@ -1,5 +1,16 @@
 # Wnode Integrations Registry
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Wnode Integrations Registry** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 Wnode integration modules define canonical JSON workflows and strict deterministic parameters for external protocols. All modules are located in the `integrations/` directory of the SDKs.
 
 ## 1. Aave Health Monitor

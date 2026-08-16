@@ -1,10 +1,21 @@
 # Backend Architecture
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Backend Architecture** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## 1. Component Overview
 The Sovereign Mesh Backend Architecture represents the fundamental orchestration layer connecting disparate node operators into a unified, cryptographically verifiable compute mesh. It handles routing, validation, peer-to-peer gossip, and task assignment.
 
 ## 2. Architectural Role
-Acts as the central nervous system, strictly separating stateless orchestrators from stateful, isolated execution environments (V8 isolates and WASM instances).
+Acts as the central nervous system, strictly separating stateless orchestrators from stateful, isolated execution environments (V8 isolates and Native Go instances).
 
 ## 3. Change Description (Before vs After)
 - **Before**: Centralized, stateful orchestrator susceptible to race conditions and non-deterministic routing.

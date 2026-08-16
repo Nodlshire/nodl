@@ -1,5 +1,16 @@
 # Security Hardening
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Security Hardening** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## Overview
 The wnode network is designed with a layered security model that protects requesters, operators, nodes, and the steward. Security hardening ensures that jobs are executed safely, identities are protected, and the network remains resilient against abuse, fraud, and malicious behavior.
 

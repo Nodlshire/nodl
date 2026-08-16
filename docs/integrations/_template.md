@@ -1,8 +1,22 @@
 # Canonical Wnode Integration Documentation Template
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Canonical Wnode Integration Documentation Template** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 > **AG INSTRUCTION:** You MUST read this `_template.md` file before generating or updating any integration page under `/docs/integrations/`. 
+
 > You MUST validate the new or updated page against this template. You MUST include all required sections with extreme depth. 
+
 > You MUST enforce deterministic, mesh-safe, sovereign-compute framing. You MUST reject incomplete or low-quality pages and overwrite outdated pages with template-compliant versions.
+
 > **DO NOT** use generic marketing language. **DO NOT** invent non-deterministic capabilities. 
 
 ## 1. Executive Summary
@@ -51,7 +65,7 @@ Define how remote errors map to standard mesh errors:
 ## 7. Proof of Compute Pipeline
 - **RPC Normalization**: Steps to sanitize the RPC data.
 - **Calldata Hashing**: How inputs are hashed.
-- **WASM Execution Hashing**: How the adapter executes inside the WASM bound.
+- **Native Go Execution Hashing**: How the adapter executes inside the Native Go bound.
 - **Quorum Verification**: How multiple nodes agree on this integration's output.
 - **Replay Determinism**: Guaranteeing that re-running the integration with the same block tag yields the exact same state.
 

@@ -24,7 +24,7 @@ export default function MetricCard({
 
   return (
     <div 
-      className="relative w-full bg-[#09090b] border border-white/10 backdrop-blur-xl shadow-2xl rounded-xl p-6 flex flex-col gap-1 group truncate transition-all"
+      className="relative w-full bg-white/[0.03] border border-white/10 backdrop-blur-xl shadow-2xl rounded-xl p-3 sm:p-4 flex flex-col gap-1 group truncate transition-all"
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
     >
@@ -36,14 +36,14 @@ export default function MetricCard({
           <div className="w-2 h-2 bg-neutral-900 border-b border-r border-white/10 rotate-45 absolute left-1/2 -translate-x-1/2 -bottom-1" />
         </div>
       )}
-      <span className="uppercase tracking-wider text-xs text-neutral-400 font-sans">
+      <span className="uppercase tracking-wider text-[10px] text-neutral-400 font-sans">
         {label}
       </span>
       <div className="flex items-center justify-between">
         <div className="flex flex-col">
-          <span className={`font-mono text-xl tracking-tight text-white`}>{value}</span>
+          <span className={`font-mono text-lg tracking-tight text-white`}>{value}</span>
           {subValue && (
-            <span className="text-[14px] text-[#3B82F6] font-normal font-sans tracking-widest mt-0.5">
+            <span className="text-[11px] text-[#3B82F6] font-normal font-sans tracking-widest mt-0.5">
               {subValue}
             </span>
           )}

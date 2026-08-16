@@ -6,16 +6,43 @@ export default function DiagramLibrary() {
         <>
             <div className="border-b border-slate-800 pb-8 mb-12">
                 <h1 className="text-5xl font-space-grotesk font-bold tracking-tighter mb-4 text-white">Diagram Library</h1>
-                <p className="text-xl text-slate-400 font-light leading-relaxed">
+                <p className="text-xl text-slate-400 font-light leading-relaxed mb-6 leading-relaxed">
                     A centralized reference for the architectural topologies and sequence flows governing the Wnode Mesh.
                 </p>
+            {/* Contextual Narrative Section (What, Why, How) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-10 not-prose">
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-emerald-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">WHAT IT IS</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Diagram Library Overview</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Core architectural specification detailing the operational mechanics, data protocols, and determinism constraints of Diagram Library within the Wnode mesh.
+                    </p>
+                </div>
+
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-cyan-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">WHY IT MATTERS</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Architectural Purpose</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Ensures zero-custody verification, high-throughput execution, and fault-tolerant node consensus across Earth &amp; Space mesh topologies.
+                    </p>
+                </div>
+
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-purple-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-purple-400">HOW IT OPERATES</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Native Go Engine</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Executed via SECCOMP-restricted Native Go modules (`linux-amd64`), validated with mTLS telemetry signatures and HMAC routing epochs.
+                    </p>
+                </div>
+            </div>
+
             </div>
 
             <h2 id="conceptual-overview">Conceptual Overview & Rationale</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 Visualizing a decentralized network is fundamentally difficult because the topology is dynamic. A static box-and-wire diagram fails to capture the generative nature of the Substrate Model or the asynchronous routing of the DAG.
             </p>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 <strong>The Rationale:</strong> This library aggregates the canonical inline SVGs used throughout the documentation. These diagrams are strictly maintained to reflect the current runtime architecture.
             </p>
 
@@ -104,7 +131,7 @@ export default function DiagramLibrary() {
             </div>
 
             <h2 id="real-code-examples">Rendering Rules</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 All diagrams are implemented as raw SVG React components inline within the markdown/JSX files. This ensures zero external image dependencies, immediate load times, and perfect CSS variable inheritance (such as dark mode colors and standard Tailwind spacing).
             </p>
 
@@ -114,12 +141,12 @@ export default function DiagramLibrary() {
             </ul>
 
             <h2 id="security-boundaries">Security Boundaries & Invariants</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 <strong>Invariant:</strong> Diagrams must accurately represent the cryptographic trust boundaries. A solid line implies a verified, trusted connection. A dashed line implies an untrusted, physical network hop that requires envelope verification.
             </p>
 
             <h2 id="performance">Performance Characteristics</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 Inline SVGs parse alongside the HTML DOM. They have zero TTFB (Time to First Byte) latency compared to external <code>.png</code> or <code>.webp</code> assets.
             </p>
 
@@ -127,19 +154,19 @@ export default function DiagramLibrary() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8 not-prose">
                 <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl">
                     <h4 className="text-white font-bold mb-2">Operator Responsibilities</h4>
-                    <p className="text-sm text-slate-400">Review the diagrams to understand exactly where your hardware sits within the global topology.</p>
+                    <p className="text-sm text-slate-400 mb-6 leading-relaxed">Review the diagrams to understand exactly where your hardware sits within the global topology.</p>
                 </div>
                 <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl">
                     <h4 className="text-white font-bold mb-2">Developer Responsibilities</h4>
-                    <p className="text-sm text-slate-400">Do not introduce new structural components to your integration that violate the boundaries defined in these visual specifications.</p>
+                    <p className="text-sm text-slate-400 mb-6 leading-relaxed">Do not introduce new structural components to your integration that violate the boundaries defined in these visual specifications.</p>
                 </div>
             </div>
 
             <h2 id="telemetry">Telemetry Emitted</h2>
-            <p>(N/A - Documentation diagrams do not emit telemetry).</p>
+            <p className="text-slate-300 leading-relaxed mb-6">(N/A - Documentation diagrams do not emit telemetry).</p>
 
             <h2 id="cross-component">Cross-Component Interactions</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 The Diagram Library acts as a cross-functional index, tying together execution, security, and generation concepts.
             </p>
 

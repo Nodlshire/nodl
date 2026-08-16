@@ -1,5 +1,16 @@
 # Job Envelope Specification
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Job Envelope Specification** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 This document defines the structure and protocol for a **Job Envelope** within the wnode network. The Job Envelope is a modular, engine-agnostic container designed to transport compute workloads from a client to a node while maintaining strict privacy, security, and zero-storage guarantees.
 
 ---
@@ -24,8 +35,8 @@ The following fields define a canonical Job Envelope:
 | `job_id` | `UUID` | Globally unique identifier for the job. |
 | `client_id` | `String` | Mesh Client ID of the account submitting the job. |
 | `node_id` | `String` | (Optional at submission, required at dispatch) Mesh Client ID of the node selected for execution. |
-| `engine_type` | `String` | The required execution engine (e.g., `wasm`, `native`, `python`, `container`). |
-| `content_type` | `String` | The format of the payload (e.g., `application/wasm`, `application/x-binary`, `application/json`). |
+| `engine_type` | `String` | The required execution engine (e.g., `native-go`, `native`, `python`, `container`). |
+| `content_type` | `String` | The format of the payload (e.g., `application/native-go`, `application/x-binary`, `application/json`). |
 | `payload_stream` | `Stream` | An encrypted, chunked stream containing the job's instructions and input data. |
 | `metadata` | `Map` | (Optional) Key/value hints for engine-specific configuration (e.g., `ram_limit`, `timeout_ms`). |
 | `submitted_at` | `Timestamp` | RFC3339 timestamp of when the job was received by the backend. |
@@ -55,11 +66,11 @@ The **Job Envelope** serves as the header that logically links the stream to a s
 
 ## 4. Engine-Agnostic Design
 
-The Job Envelope treats the execution engine as a pluggable selector. The protocol does not care whether the payload is a WASM module, a native binary, or a script; it only cares that the `engine_type` and `content_type` are valid and supported by the target node.
+The Job Envelope treats the execution engine as a pluggable selector. The protocol does not care whether the payload is a Native Go module, a native binary, or a script; it only cares that the `engine_type` and `content_type` are valid and supported by the target node.
 
 This design allows:
 - **Scalability**: New engines can be added to the network by simply updating the `engine_type` registry.
-- **Flexibility**: The same envelope structure supports both browser-based WASM execution and high-performance native app execution.
+- **Flexibility**: The same envelope structure supports both browser-based Native Go execution and high-performance native app execution.
 
 ---
 
@@ -75,7 +86,7 @@ The Job Envelope reinforces the network's security architecture:
 
 ## 6. Compatibility with Current MVP
 
-The current MVP implementation may utilize whole-payload delivery for initial WASM testing. This specification represents the **target model** for the network's evolution. 
+The current MVP implementation may utilize whole-payload delivery for initial Native Go testing. This specification represents the **target model** for the network's evolution. 
 
 Staged migration will involve:
 1. Moving from UUID-based whole delivery to chunked streaming.

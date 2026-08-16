@@ -1,5 +1,16 @@
 # Mesh Workflow Coordination
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Mesh Workflow Coordination** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 In the Sovereign Mesh, complex workflows are executed across multiple deterministic nodes.
 
 ## The Coordinator

@@ -1,5 +1,16 @@
 # Aave
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Aave** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## 1. Summary
 The Aave integration connects the Sovereign Mesh deterministically to the Aave V3 protocol. It acts as a mesh-safe gateway ensuring that all interactions with Aave—such as reading pool states, checking health factors, and executing liquidations—are mathematically reproducible across nodes. By wrapping Aave's RPC endpoints in a strict, pure-function adapter, the Sovereign Mesh guarantees that no non-deterministic execution paths can breach the consensus layer or corrupt the proof of compute.
 
@@ -28,6 +39,7 @@ The Aave integration connects the Sovereign Mesh deterministically to the Aave V
 - **Capability Map**: Returns `{ canFetch: true, canSubmit: true, canValidate: true }`.
 
 ## 5. Canonical ABI Signatures
+
 ### Pool (`Pool.sol`)
 - **Function Selectors**:
   - `getUserAccountData(address user)` -> `0xbf92857c`
@@ -38,6 +50,7 @@ The Aave integration connects the Sovereign Mesh deterministically to the Aave V
   - `withdraw(address asset, uint256 amount, address to)` -> `0x69328dec`
   - `liquidationCall(address collateralAsset, address debtAsset, address user, uint256 debtToCover, bool receiveAToken)` -> `0x00a718a9`
   
+
 ### AaveOracle (`AaveOracle.sol`)
 - **Function Selectors**:
   - `getAssetPrice(address asset)` -> `0xb3596f07`
@@ -81,11 +94,12 @@ struct ReserveData {
 ## 7. Proof of Compute Pipeline
 - **RPC Normalization**: A workflow step requests `getUserAccountData` at a specific block height `N`.
 - **Calldata Hashing**: The step payload `{"asset": "0x...", "block": N}` is cryptographically hashed.
-- **WASM Execution Hashing**: The returned values (`totalCollateralBase`, `totalDebtBase`, and `healthFactor`) are decoded, converted to canonical strings, and hashed into the `payloadHash`.
+- **Native Go Execution Hashing**: The returned values (`totalCollateralBase`, `totalDebtBase`, and `healthFactor`) are decoded, converted to canonical strings, and hashed into the `payloadHash`.
 - **Quorum Verification**: Nodes 1, 2, and 3 simultaneously hit their respective RPCs at block `N`. If any RPC returns varying state (due to archive node syncing issues), the `payloadHash` diverges, and the network quarantines the out-of-sync node.
 - **Replay Determinism**: Because the call is explicitly bound to block `N`, any future replay of this workflow will query archive nodes at block `N`, guaranteeing identical output hashes perpetually.
 
 ## 8. Workflow Catalogue
+
 ### supply
 ```json
 {

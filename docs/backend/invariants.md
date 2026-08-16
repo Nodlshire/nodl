@@ -1,5 +1,16 @@
 # Invariants
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Invariants** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## 1. Component Overview
 The Invariants subsystem defines mathematically irrefutable constraints that the Sovereign Mesh relies upon for protocol safety, consensus integrity, and execution determinism.
 
@@ -32,7 +43,7 @@ Guarantees the system never enters an undefined or irreproducible state.
 - Invariant violation results in a `PANIC_INVARIANT_BREACH` and immediate node halt to prevent state corruption.
 
 ## 9. Security & Isolation
-- Invariants are checked at the host boundary, completely isolated from user WASM code.
+- Invariants are checked at the host boundary, completely isolated from user Native Go code.
 
 ## 10. RPC Trust Boundaries
 - Invariants apply to internal state; RPC data is sanitized before reaching invariant logic.

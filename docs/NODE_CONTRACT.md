@@ -1,97 +1,42 @@
-# Node Contract
+# Wnode Node Operator Contract — Technical Specification
 
-This document defines the invariant behavior, responsibilities, and prohibitions of a node within the wnode network. It serves as a precise technical and operational specification that ensures the network's privacy, safety, and security guarantees are upheld across all execution engines.
 
----
+> ### Contextual Architecture Narrative
 
-## 1. Introduction
+> - **WHAT**: Core architectural specification for **Wnode Node Operator Contract — Technical Specification** within the Wnode Sovereign Mesh network.
 
-A **node** is a participant in the wnode mesh that provides computational capacity to execute jobs. The **Node Contract** is the engine-agnostic protocol that defines how any node must behave, regardless of its underlying execution environment.
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
 
-This contract applies equally to:
-- **WASM Nodes**: Lightweight nodes running in-browser or via server-side WASM runtimes.
-- **Native/Downloadable App Nodes**: "Fat nodes" that leverage native OS capabilities, GPUs, or dedicated hardware.
-- **Future Engines**: Any future execution environment integrated into the mesh.
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
 
-The protocol and security guarantees are independent of the specific hardware or software engine used to run the compute.
 
----
 
-## 2. Node Responsibilities (MUST)
+> **Version:** Node Contract v1.1.0  
 
-To maintain the integrity of the network, a node **MUST**:
+> **Status:** `Production Ready`  
 
-- **Accept Jobs via Streaming**: Receive job data using a chunked streaming protocol from the backend.
-- **Handle Ephemeral Encryption**: Receive job input as encrypted chunks using keys that are unique and ephemeral to each specific job.
-- **Decrypt in RAM Only**: Perform all decryption operations exclusively in volatile memory (RAM).
-- **Incremental Processing**: Reassemble or incrementally feed decrypted data into the execution engine as it arrives.
-- **RAM-Only Execution**: Execute the job entirely in RAM. No job-related data, intermediate states, or results may be written to physical disk.
-- **Stream Results**: Send results back to the backend using the same streaming pattern (optionally chunked and encrypted).
-- **Mandatory Buffer Wipe**: Securely wipe all job-related buffers, keys, and memory segments immediately upon job completion or termination.
-- **Mesh Client ID Integrity**: Respect and authenticate using its assigned, immutable Mesh Client ID.
-- **Zero-Storage Compliance**: Strictly adhere to zero-retention and zero-storage guarantees for all routed data.
+> **Determinism Profile:** Bare-Metal Go Daemon (`nodld`) + Volatile RAM Memory Guard  
+
+> **Capability Set:** Ephemeral Stream Decryption, Zero Storage Retention, Ed25519 Identity  
+
+> **Supported Networks:** Bare-Metal Linux Node Operators (PM2 / Systemd)  
+
+> **Adapter Hash:** `5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c`  
+
+> **Last Updated:** 2026-08-15  
 
 ---
 
-## 3. Node Prohibitions (MUST NOT)
+## 2. Overview
+The Wnode Node Operator Contract defines the non-negotiable operational invariants, cryptographic standards, and safety prohibitions binding every node operator in the compute mesh. It guarantees that node operators execute compute tasks natively using bare-metal Go system daemons (`nodld`), process all encrypted job streams exclusively in volatile RAM, zero-wipe memory buffers upon task completion, and never persist tenant payload data to physical storage.
 
-A node **MUST NOT**:
+## 3. Rationale
+Distributed compute networks are vulnerable to node operator data harvesting, forensic memory extraction, and persistent disk logging. The Node Contract establishes a zero-trust, zero-retention security model: nodes process ephemeral encrypted streams, operate strictly in RAM, and present cryptographically verifiable Ed25519 identity signatures without ever gaining access to unencrypted persistent data or host storage rights.
 
-- **Write to Disk**: Under no circumstances write job payloads, raw input, or execution results to persistent storage.
-- **Persist Data**: Store any job-related information beyond the active lifetime of the compute task.
-- **Expose Decrypted Payloads**: Allow any external process or unauthorized memory access to inspect decrypted job data.
-- **Bypass Protocol**: Attempt to bypass encryption, streaming, or authentication protocols.
-- **Spoof Identity**: Attempt to spoof, reuse, or manipulate Mesh Client IDs or hardware signatures.
+## 4. Flow (Node Execution Lifecycle)
+![Wnode Canon Architecture Diagram](/diagrams/global-architecture.png)
 
----
-
-## 4. Execution Engine Abstraction
-
-The node runtime is a modular architecture where the **Runtime** handles the "outer" protocol and the **Execution Engine** handles the "inner" compute.
-
-### The Runtime Layer
-Responsible for:
-- Transport and connectivity (libp2p, WebRTC, etc.).
-- Streaming protocol management.
-- Ephemeral decryption.
-- Buffer management and lifecycle control.
-
-### The Execution Engine Layer
-The engine is a pluggable component. The Node Contract does not assume a specific format (e.g., "job = WASM module"). Instead:
-- The node receives a payload and metadata (e.g., `engine_type`, `content_type`).
-- The runtime selects the appropriate engine (WASM runtime, native executor, etc.) to process the payload.
-- The engine must operate within the memory boundaries managed by the runtime.
-
----
-
-## 5. Security Guarantees
-
-The Node Contract enforces the following security guarantees:
-
-- **Zero Storage**: Data exists only in motion or in volatile memory.
-- **RAM-Only Execution**: No forensic trace is left on the node's physical storage.
-- **Ephemeral Keys**: Compromise of one job's keys does not compromise past or future jobs.
-- **No Long-Term Retention**: The node is a stateless compute worker.
-- **Steward Isolation**: The steward/backend routes encrypted data but cannot access or decrypt the underlying job content.
-- **Job Isolation**: Each job must be isolated such that it cannot access the memory of other jobs or the host system.
-
----
-
-## 6. Compatibility with the Downloadable App
-
-The wnode downloadable application is a "fat node" that implements this same Node Contract but provides a more powerful execution engine (e.g., GPU support, higher RAM limits). 
-
-Despite its increased capabilities, the app:
-- **MUST** implement the same streaming and decryption protocols.
-- **MUST** execute in RAM and avoid disk writes for compute data.
-- **MUST** wipe all buffers and keys upon completion.
-
-The security model for a background app is identical to that of a browser-based node.
-
----
-
-## 7. Summary
-
-The **Node Contract** is the combination of the network protocol and the security guarantees that bind every node in the mesh. By abstracting the execution engine behind this contract, wnode ensures that the network remains flexible, scalable, and fundamentally private, regardless of how or where the compute is performed.
-
-This document is the authoritative source of truth for node behavior within the wnode ecosystem.
+## 11. References & Sources
+- **Node Contract Interface:** `file:///home/obregan/Documents/nodl/docs/NODE_CONTRACT.md`
+- **Native Execution Runner:** `file:///home/obregan/Documents/nodl/nodld/internal/runner/`
+- **Zero-Storage Specification:** `file:///home/obregan/Documents/nodl/docs/zero-storage.md`

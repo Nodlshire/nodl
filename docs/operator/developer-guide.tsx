@@ -15,7 +15,7 @@ export default function DeveloperGuidePage() {
 
             <h2 id="formal-execution-semantics">1. Formal Execution Semantics</h2>
             <p>
-                Developers must write substrates as pure, deterministic mathematical functions following a single linear memory model for all WASM substrates. A generated logic handler operates within a deterministic, single-threaded call sequence where all substrate calls MUST be processed in DAG topological order. Standard library access to non-deterministic interfaces is structurally blocked via strict WASM sandboxing (no WASI, no syscalls, no network, no filesystem). Developers must adhere to standardized pointer rules: <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>. All execution faults propagate through the same deterministic path, employing standardized trap codes and trap-on-fault behaviors to ensure identical loop boundaries and gas-metered execution ceilings across the mesh.
+                Developers must write substrates as pure, deterministic mathematical functions following a single linear memory model for all Native Go substrates. A generated logic handler operates within a deterministic, single-threaded call sequence where all substrate calls MUST be processed in DAG topological order. Standard library access to non-deterministic interfaces is structurally blocked via strict Native Go sandboxing (no WASI, no syscalls, no network, no filesystem). Developers must adhere to standardized pointer rules: <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>. All execution faults propagate through the same deterministic path, employing standardized trap codes and trap-on-fault behaviors to ensure identical loop boundaries and gas-metered execution ceilings across the mesh.
             </p>
 
             <h2 id="invariants">2. Core Invariants</h2>
@@ -82,11 +82,11 @@ pub extern "C" fn execute(
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 text-slate-300">Compilation</td>
-                            <td className="p-4">intgen compiles to Rust Stub</td>
+                            <td className="p-4">intgen compiles to Go Stub</td>
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 text-emerald-400">Logic Injection</td>
-                            <td className="p-4">Developer writes pure rust in handler.rs</td>
+                            <td className="p-4">Developer writes pure go in handler.rs</td>
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 text-blue-400">Local Fuzzing</td>
@@ -94,7 +94,7 @@ pub extern "C" fn execute(
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 text-purple-400">Mesh Deployment</td>
-                            <td className="p-4">WASM signed and broadcasted to Orchestrator</td>
+                            <td className="p-4">Native Go signed and broadcasted to Orchestrator</td>
                         </tr>
                     </tbody>
                 </table>
@@ -134,17 +134,17 @@ pub extern "C" fn execute(
 
             <h2 id="operator-lifecycle">6. Operator Lifecycle (Developer Impact)</h2>
             <p>
-                Developers do not directly choose operators. When a developer deploys a new Substrate version, operators implicitly fetch the WASM blob via `SyncManifest`. Developers must ensure their WASM binary size remains &lt; 2MB to prevent long cold-start latencies across the mesh.
+                Developers do not directly choose operators. When a developer deploys a new Substrate version, operators implicitly fetch the Native Go blob via `SyncManifest`. Developers must ensure their Native Go binary size remains &lt; 2MB to prevent long cold-start latencies across the mesh.
             </p>
 
             <h2 id="economic-model">7. Economic Model</h2>
             <p>
-                Developers who write highly optimized `O(1)` handlers consume less network gas, allowing their clients to execute transactions with lower API fees. Computationally heavy machine-learning WASM payloads will inherently cost clients significantly more WNODE per execution.
+                Developers who write highly optimized `O(1)` handlers consume less network gas, allowing their clients to execute transactions with lower API fees. Computationally heavy machine-learning Native Go payloads will inherently cost clients significantly more WNODE per execution.
             </p>
 
             <h2 id="governance-model">8. Governance Model</h2>
             <p>
-                If a developer deploys a Substrate that causes systemic instability or illegal operations, the DAO can execute a `DAO_SUBSTRATE_REVOKE` proposal. This forcefully removes the WASM hash from the global registry, immediately halting execution across all nodes.
+                If a developer deploys a Substrate that causes systemic instability or illegal operations, the DAO can execute a `DAO_SUBSTRATE_REVOKE` proposal. This forcefully removes the Native Go hash from the global registry, immediately halting execution across all nodes.
             </p>
 
             <h2 id="performance">9. Performance Envelopes</h2>
@@ -156,7 +156,7 @@ pub extern "C" fn execute(
 
             <h2 id="cross-component">10. Cross-Component Contracts</h2>
             <p>
-                The developer's WASM logic is bound strictly to the `spec.yaml` definition, which dictates exactly how the Client SDK and Orchestrator API serialize data. This structured payload is strictly injected by the Orchestrator into the handler's linear memory via the canonical <code>(ptr: i32, len: i32)</code> ABI and the <code>SyncManifest</code> pipeline.
+                The developer's Native Go logic is bound strictly to the `spec.yaml` definition, which dictates exactly how the Client SDK and Orchestrator API serialize data. This structured payload is strictly injected by the Orchestrator into the handler's linear memory via the canonical <code>(ptr: i32, len: i32)</code> ABI and the <code>SyncManifest</code> pipeline.
             </p>
 
             <h2 id="formal-diagrams">11. Formal Developer Execution Pipeline</h2>
@@ -185,7 +185,7 @@ pub extern "C" fn execute(
                     <line x1="600" y1="130" x2="680" y2="130" stroke="#444" strokeWidth="1.5" markerEnd="url(#arrowSolid)" />
                     
                     <rect x="680" y="110" width="100" height="40" rx="8" fill="#111" stroke="#444" strokeWidth="1.5" />
-                    <text x="730" y="135" fill="#888" fontSize="11" textAnchor="middle">.wasm Target</text>
+                    <text x="730" y="135" fill="#888" fontSize="11" textAnchor="middle">.native-go Target</text>
                 </svg>
             </div>
         </>

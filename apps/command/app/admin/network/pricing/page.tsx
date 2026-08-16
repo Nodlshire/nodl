@@ -19,11 +19,12 @@ import {
 interface Tier {
     id: string;
     name: string;
-    rate_th_sec: number;
-    cpu_cores: number;
-    gpu_model: string;
-    ram_gb: number;
-    description: string;
+    ratePerWU: number;
+    minCpuCores: number;
+    maxRamGb: number;
+    sandboxType: string;
+    status: string;
+    isCustom: boolean;
 }
 
 export default function PricingManager() {
@@ -35,11 +36,16 @@ export default function PricingManager() {
     const fetchTiers = async () => {
         try {
             const res = await fetch('/api/admin/pricing/tiers');
-            const data = await res.json();
-            setTiers(data);
-            setLoading(false);
+            if (res.ok) {
+                const data = await res.json();
+                setTiers(Array.isArray(data) ? data : (data?.tiers || []));
+            } else {
+                setTiers([]);
+            }
         } catch (err) {
             console.error(err);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -100,48 +106,48 @@ export default function PricingManager() {
             )}
 
             {/* Matrix Table */}
-            <div className="border border-wnode-border-separator bg-[#050505] rounded-2xl overflow-hidden shadow-2xl">
+            <div className="bg-[#050505] overflow-hidden w-full">
                 <table className="w-full text-left border-collapse">
                     <thead>
-                        <tr className="bg-white/5 border-b border-wnode-border-neutral">
-                            <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-white/60">Tier ID</th>
-                            <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-white/60">Rate ($/TH-sec)</th>
-                            <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-white/60">CPU</th>
-                            <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-white/60">GPU Model</th>
-                            <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-white/60">RAM</th>
-                            <th className="px-6 py-4 text-[11px] font-black uppercase tracking-widest text-white/60 text-left">Actions</th>
+                        <tr className="bg-[#0a0a0a]">
+                            <th className="px-4 py-3 text-[10px] font-black uppercase tracking-widest text-white/50">Tier ID</th>
+                            <th className="px-4 py-3 text-[10px] font-black uppercase tracking-widest text-white/50">Rate ($/WU)</th>
+                            <th className="px-4 py-3 text-[10px] font-black uppercase tracking-widest text-white/50">CPU</th>
+                            <th className="px-4 py-3 text-[10px] font-black uppercase tracking-widest text-white/50">Sandbox Type</th>
+                            <th className="px-4 py-3 text-[10px] font-black uppercase tracking-widest text-white/50">RAM</th>
+                            <th className="px-4 py-3 text-[10px] font-black uppercase tracking-widest text-white/50 text-left">Actions</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-white/5">
                         {tiers.map((tier) => (
                             <tr key={tier.id} className="hover:bg-cyan-400/[0.02] transition-colors group">
-                                <td className="px-6 py-6">
+                                <td className="px-4 py-3">
                                     <div className="flex items-center gap-3">
-                                        <div className="w-2 h-2 rounded-full bg-cyan-400 group-hover:shadow-[0_0_8px_#22d3ee]" />
+                                        <div className="w-1.5 h-1.5 bg-cyan-400 group-hover:shadow-[0_0_8px_#22d3ee]" />
                                         <div className="flex flex-col">
-                                            <span className="text-sm font-black uppercase tracking-tight">{tier.name}</span>
+                                            <span className="text-xs font-black uppercase tracking-tight">{tier.name}</span>
                                             <span className="text-[9px] text-white/40 font-bold uppercase tracking-widest">{tier.id}</span>
                                         </div>
                                     </div>
                                 </td>
-                                <td className="px-6 py-6 font-mono text-cyan-400 text-sm font-black">
-                                    ${tier.rate_th_sec.toFixed(4)}
+                                <td className="px-4 py-3 font-mono text-cyan-400 text-xs font-black">
+                                    ${tier.ratePerWU?.toFixed(4)}
                                 </td>
-                                <td className="px-6 py-6">
-                                    <span className="text-sm font-bold text-white/80">{tier.cpu_cores} vCPU</span>
+                                <td className="px-4 py-3">
+                                    <span className="text-xs font-bold text-white/80">{tier.minCpuCores} vCPU</span>
                                 </td>
-                                <td className="px-6 py-6">
-                                    <span className="text-[11px] font-black uppercase tracking-wider text-white/80 px-3 py-1 bg-white/5 border border-wnode-border-neutral rounded">
-                                        {tier.gpu_model}
+                                <td className="px-4 py-3">
+                                    <span className="text-[9px] font-black uppercase tracking-wider text-white/80 px-2 py-1 bg-white/5 rounded-none">
+                                        {tier.sandboxType === 'bare-metal' ? 'Bare-Metal' : 'WASM Sandbox'}
                                     </span>
                                 </td>
-                                <td className="px-6 py-6 font-bold text-white/80 text-sm">
-                                    {tier.ram_gb} GB
+                                <td className="px-4 py-3 font-bold text-white/80 text-xs">
+                                    {tier.maxRamGb} GB
                                 </td>
-                                <td className="px-6 py-6 text-left">
+                                <td className="px-4 py-3 text-left">
                                     <button 
                                         onClick={() => setEditingTier(tier)}
-                                        className="inline-flex items-center gap-2 px-6 py-2 bg-white/5 hover:bg-white/10 border border-wnode-border-neutral rounded-lg text-[10px] font-black uppercase tracking-widest transition-all hover:scale-105"
+                                        className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/5 hover:bg-white/10 rounded-none text-[9px] font-black uppercase tracking-widest transition-all"
                                     >
                                         <Edit3 className="w-3 h-3" />
                                         Edit
@@ -155,82 +161,88 @@ export default function PricingManager() {
 
             {/* Edit Modal Overlay */}
             {editingTier && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-xl animate-in fade-in duration-300">
-                    <div className="w-full max-w-xl bg-[#09090b] border border-white/10 backdrop-blur-xl rounded-xl p-8 shadow-2xl animate-in zoom-in-95 duration-200">
-                        <div className="flex items-center justify-between mb-8">
-                            <h2 className="text-2xl font-black uppercase tracking-tight flex items-center gap-3">
-                                <Edit3 className="text-cyan-400" />
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-300">
+                    <div className="w-full max-w-xl bg-[#0a0a0a] rounded-none p-6 shadow-2xl animate-in zoom-in-95 duration-200">
+                        <div className="flex items-center justify-between mb-6">
+                            <h2 className="text-lg font-black uppercase tracking-tight flex items-center gap-3">
+                                <Edit3 className="text-cyan-400 w-4 h-4" />
                                 Edit Tier: {editingTier.name}
                             </h2>
-                            <button onClick={() => setEditingTier(null)} className="p-2 hover:bg-white/10 rounded-full transition-colors">
-                                <X className="w-6 h-6 text-white/40" />
+                            <button onClick={() => setEditingTier(null)} className="p-2 hover:bg-white/5 rounded-none transition-colors">
+                                <X className="w-4 h-4 text-white/40" />
                             </button>
                         </div>
 
-                        <div className="space-y-6">
-                            <div className="grid grid-cols-2 gap-6">
+                        <div className="space-y-4">
+                            <div className="grid grid-cols-2 gap-4">
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-black uppercase tracking-widest text-white/40">Rate ($/TH-sec)</label>
+                                    <label className="text-[9px] font-black uppercase tracking-widest text-white/40">Rate ($/WU)</label>
                                     <input 
                                         type="number" 
                                         step="0.0001"
-                                        value={editingTier.rate_th_sec}
-                                        onChange={(e) => setEditingTier({...editingTier, rate_th_sec: parseFloat(e.target.value)})}
-                                        className="w-full bg-white/5 border border-wnode-border-neutral rounded-xl px-4 py-3 font-mono text-cyan-400 focus:outline-none focus:border-cyan-400/50"
+                                        value={editingTier.ratePerWU}
+                                        onChange={(e) => setEditingTier({...editingTier, ratePerWU: parseFloat(e.target.value)})}
+                                        className="w-full bg-[#111] border-none rounded-none px-3 py-2 font-mono text-cyan-400 text-xs focus:outline-none focus:bg-[#1a1a1a]"
                                     />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-black uppercase tracking-widest text-white/40">CPU Cores</label>
+                                    <label className="text-[9px] font-black uppercase tracking-widest text-white/40">CPU Cores</label>
                                     <input 
                                         type="number" 
-                                        value={editingTier.cpu_cores}
-                                        onChange={(e) => setEditingTier({...editingTier, cpu_cores: parseInt(e.target.value)})}
-                                        className="w-full bg-white/5 border border-wnode-border-neutral rounded-xl px-4 py-3 text-sm font-bold focus:outline-none focus:border-cyan-400/50"
+                                        value={editingTier.minCpuCores}
+                                        onChange={(e) => setEditingTier({...editingTier, minCpuCores: parseInt(e.target.value)})}
+                                        className="w-full bg-[#111] border-none rounded-none px-3 py-2 text-xs font-bold focus:outline-none focus:bg-[#1a1a1a]"
                                     />
                                 </div>
                             </div>
 
-                            <div className="space-y-2">
-                                <label className="text-[10px] font-black uppercase tracking-widest text-white/40">GPU Model</label>
-                                <input 
-                                    type="text" 
-                                    value={editingTier.gpu_model}
-                                    onChange={(e) => setEditingTier({...editingTier, gpu_model: e.target.value})}
-                                    className="w-full bg-white/5 border border-wnode-border-neutral rounded-xl px-4 py-3 text-sm font-bold uppercase focus:outline-none focus:border-cyan-400/50"
-                                />
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="space-y-2">
+                                    <label className="text-[9px] font-black uppercase tracking-widest text-white/40">RAM (GB)</label>
+                                    <input 
+                                        type="number" 
+                                        value={editingTier.maxRamGb}
+                                        onChange={(e) => setEditingTier({...editingTier, maxRamGb: parseInt(e.target.value)})}
+                                        className="w-full bg-[#111] border-none rounded-none px-3 py-2 text-xs font-bold focus:outline-none focus:bg-[#1a1a1a]"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-[9px] font-black uppercase tracking-widest text-white/40">Sandbox Type</label>
+                                    <select 
+                                        value={editingTier.sandboxType}
+                                        onChange={(e) => setEditingTier({...editingTier, sandboxType: e.target.value})}
+                                        className="w-full bg-[#111] border-none rounded-none px-3 py-2 text-xs font-bold uppercase focus:outline-none focus:bg-[#1a1a1a] appearance-none"
+                                    >
+                                        <option value="wasm">WASM Sandbox</option>
+                                        <option value="bare-metal">Bare-Metal</option>
+                                    </select>
+                                </div>
                             </div>
 
                             <div className="space-y-2">
-                                <label className="text-[10px] font-black uppercase tracking-widest text-white/40">RAM (GB)</label>
-                                <input 
-                                    type="number" 
-                                    value={editingTier.ram_gb}
-                                    onChange={(e) => setEditingTier({...editingTier, ram_gb: parseInt(e.target.value)})}
-                                    className="w-full bg-white/5 border border-wnode-border-neutral rounded-xl px-4 py-3 text-sm font-bold focus:outline-none focus:border-cyan-400/50"
-                                />
-                            </div>
-
-                            <div className="space-y-2">
-                                <label className="text-[10px) font-black uppercase tracking-widest text-white/40">Description</label>
-                                <textarea 
-                                    value={editingTier.description}
-                                    onChange={(e) => setEditingTier({...editingTier, description: e.target.value})}
-                                    className="w-full bg-white/5 border border-wnode-border-neutral rounded-xl px-4 py-3 text-sm font-medium h-24 focus:outline-none focus:border-cyan-400/50"
-                                />
+                                <label className="text-[9px] font-black uppercase tracking-widest text-white/40">Status</label>
+                                <select 
+                                    value={editingTier.status}
+                                    onChange={(e) => setEditingTier({...editingTier, status: e.target.value})}
+                                    className="w-full bg-[#111] border-none rounded-none px-3 py-2 text-xs font-bold uppercase focus:outline-none focus:bg-[#1a1a1a] appearance-none"
+                                >
+                                    <option value="Active">Active</option>
+                                    <option value="Deprecated">Deprecated</option>
+                                </select>
                             </div>
                         </div>
 
-                        <div className="mt-8 flex gap-3">
+                        <div className="mt-6 flex gap-2">
                             <button 
                                 onClick={() => handleUpdate(editingTier)}
-                                className="flex-1 bg-cyan-400 hover:bg-cyan-300 text-black font-black uppercase tracking-widest py-4 rounded-xl transition-all shadow-[0_0_20px_rgba(34,211,238,0.3)] flex items-center justify-center gap-2"
+                                className="flex-1 bg-cyan-400 hover:bg-cyan-300 text-black font-black uppercase tracking-widest py-2 rounded-none transition-all shadow-none flex items-center justify-center gap-2 text-[10px]"
                             >
-                                <Save className="w-5 h-5" />
+                                <Save className="w-3 h-3" />
                                 Commit Changes
                             </button>
                             <button 
                                 onClick={() => setEditingTier(null)}
-                                className="px-8 border border-wnode-border-neutral hover:bg-white/5 text-white/60 font-bold uppercase tracking-widest py-4 rounded-xl transition-all"
+                                className="px-6 bg-white/5 hover:bg-white/10 text-white/60 font-bold uppercase tracking-widest py-2 rounded-none transition-all text-[10px] border-none"
                             >
                                 Cancel
                             </button>

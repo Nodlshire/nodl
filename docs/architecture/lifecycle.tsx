@@ -74,14 +74,14 @@ export default function LifecyclePage() {
                     <text x="400" y="40" fill="#ccc" fontSize="14" textAnchor="middle" fontWeight="bold">CI / CD Pipeline</text>
                     
                     <rect x="575" y="20" width="150" height="30" rx="8" fill="#111" stroke="#444" strokeWidth="1.5" />
-                    <text x="650" y="40" fill="#ccc" fontSize="14" textAnchor="middle" fontWeight="bold">Mesh Node (Wazero)</text>
+                    <text x="650" y="40" fill="#ccc" fontSize="14" textAnchor="middle" fontWeight="bold">Mesh Node (SECCOMP Sandbox)</text>
 
                     <line x1="150" y1="100" x2="390" y2="100" stroke="#444" strokeWidth="1.5" markerEnd="url(#arrowSolid)" />
                     <text x="275" y="90" fill="#888" fontSize="11" textAnchor="middle">Push spec.yaml</text>
                     
                     <rect x="390" y="110" width="20" height="60" fill="#111" stroke="#444" strokeWidth="1.5" rx="8" />
                     <text x="420" y="130" fill="#888" fontSize="11">intgen + nodegen</text>
-                    <text x="420" y="145" fill="#888" fontSize="11">Compile .wasm</text>
+                    <text x="420" y="145" fill="#888" fontSize="11">Compile .native-go</text>
                     <text x="420" y="160" fill="#888" fontSize="11">Verify blake3</text>
 
                     <line x1="400" y1="190" x2="640" y2="190" stroke="#444" strokeWidth="1.5" markerEnd="url(#arrowSolid)" />
@@ -107,7 +107,7 @@ export default function LifecyclePage() {
             <ul className="space-y-2 mb-8 list-none pl-0">
                 <li><strong className="text-slate-200">1. Uninitialized:</strong> Blank directory. Empty <code>spec.yaml</code>.</li>
                 <li><strong className="text-blue-400">2. Generated:</strong> <code>intgen</code> has compiled the AST. Codec stubs exist.</li>
-                <li><strong className="text-purple-400">3. Verified:</strong> CI pipeline has verified deterministic output and <code>.wasm</code> bounds.</li>
+                <li><strong className="text-purple-400">3. Verified:</strong> CI pipeline has verified deterministic output and <code>.native-go</code> bounds.</li>
                 <li><strong className="text-emerald-400">4. Active:</strong> Quorum reached. Substrate mapped to memory on active nodes.</li>
                 <li><strong className="text-red-400">5. Tombstoned:</strong> Version deprecated or execution fault detected. Hash blacklisted.</li>
             </ul>
@@ -129,9 +129,9 @@ export default function LifecyclePage() {
 
             <h3 className="text-purple-400 mt-8 mb-4">Phase II: Substrate Generation (intgen)</h3>
             <ul className="list-disc pl-6 mb-6">
-                <li><strong>Purpose:</strong> Synthesize the immutable AST and Rust WASM endpoints.</li>
+                <li><strong>Purpose:</strong> Synthesize the immutable AST and Go Native Go endpoints.</li>
                 <li><strong>Inputs:</strong> Verified <code>spec.yaml</code>.</li>
-                <li><strong>Outputs:</strong> Go RPC handlers, Rust lib stubs, <code>nodegen</code> configurations.</li>
+                <li><strong>Outputs:</strong> Go RPC handlers, Go lib stubs, <code>nodegen</code> configurations.</li>
                 <li><strong>Invariants:</strong> Output must be 100% deterministic (byte-for-byte identical on any architecture).</li>
                 <li><strong>Failure Modes:</strong> Type generation drift if specification includes dynamic or floating-point unbounded arrays.</li>
                 <li><strong>Security Boundaries:</strong> Generator must not touch the filesystem outside the target integration directory.</li>
@@ -140,17 +140,17 @@ export default function LifecyclePage() {
                 <li><strong>Developer Responsibilities:</strong> Do not manually modify generated artifacts.</li>
             </ul>
 
-            <h3 className="text-emerald-400 mt-8 mb-4">Phase III: Execution (Wazero Sandbox)</h3>
+            <h3 className="text-emerald-400 mt-8 mb-4">Phase III: Execution (SECCOMP Sandbox Sandbox)</h3>
             <ul className="list-disc pl-6 mb-6">
                 <li><strong>Purpose:</strong> Execute the pure-functional state transitions using S(n+1) = f(S(n), P).</li>
                 <li><strong>Inputs:</strong> Binary event payload over HMAC-secured TCP.</li>
                 <li><strong>Outputs:</strong> Deterministic state diff.</li>
-                <li><strong>Invariants:</strong> Execution strictly follows a single linear memory model, processes in DAG topological order, enforces strict WASM sandboxing (no WASI, no syscalls, no network, no filesystem), restricts pointers to <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>, and normalizes all faults to standardized trap codes.</li>
+                <li><strong>Invariants:</strong> Execution strictly follows a single linear memory model, processes in DAG topological order, enforces strict Native Go sandboxing (no WASI, no syscalls, no network, no filesystem), restricts pointers to <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>, and normalizes all faults to standardized trap codes.</li>
                 <li><strong>Failure Modes:</strong> OOM Trap, Infinite Loop (timeout at 50ms), Floating Point divergence.</li>
-                <li><strong>Security Boundaries:</strong> Wazero entirely isolated from Node OS. No filesystem access.</li>
+                <li><strong>Security Boundaries:</strong> SECCOMP Sandbox entirely isolated from Node OS. No filesystem access.</li>
                 <li><strong>Performance:</strong> Sub-millisecond instantiation. &lt;10ms execution per event.</li>
                 <li><strong>Operator Responsibilities:</strong> Maintain hardware limits (Cgroups v2).</li>
-                <li><strong>Developer Responsibilities:</strong> Write highly optimized, allocation-minimized Rust code.</li>
+                <li><strong>Developer Responsibilities:</strong> Write highly optimized, allocation-minimized Go code.</li>
             </ul>
 
             <h2 id="hashing-rules">5. Substrate Hashing Rules</h2>
@@ -162,14 +162,14 @@ export default function LifecyclePage() {
                 &nbsp;&nbsp;Concat( <br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;Sort(Files(AST)),<br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;Protocol_Version,<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;Compiler_Target(wasm32-unknown-unknown)<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;Compiler_Target(linux-amd64)<br/>
                 &nbsp;&nbsp;) <br/>
                 )
             </div>
 
             <h2 id="node-sync">6. Node Synchronization Protocol</h2>
             <p>
-                Operators synchronize integration substrates asynchronously. The Orchestrator broadcasts a <code>SyncManifest</code> containing the new Substrate Hash. Nodes download the <code>.wasm</code> binary, verify the blake3 checksum locally, and hot-swap the pointer in memory using an atomic Compare-And-Swap (CAS) operation, ensuring zero downtime.
+                Operators synchronize integration substrates asynchronously. The Orchestrator broadcasts a <code>SyncManifest</code> containing the new Substrate Hash. Nodes download the <code>.native-go</code> binary, verify the blake3 checksum locally, and hot-swap the pointer in memory using an atomic Compare-And-Swap (CAS) operation, ensuring zero downtime.
             </p>
 
             <h2 id="ci-cd">7. CI/CD Enforcement Rules</h2>
@@ -178,8 +178,8 @@ export default function LifecyclePage() {
             </p>
             <ul className="list-decimal pl-6 mb-8 text-slate-300">
                 <li><code>npm run verify_substrate</code> exits with code 0.</li>
-                <li>Compiled <code>.wasm</code> payload is strictly less than 2,048 KB.</li>
-                <li>No external API calls exist in the WASM import table (checked via <code>wasm-objdump</code>).</li>
+                <li>Compiled <code>.native-go</code> payload is strictly less than 2,048 KB.</li>
+                <li>No external API calls exist in the Native Go import table (checked via <code>native-go-objdump</code>).</li>
                 <li>Substrate hash matches the registered genesis hash in the orchestrator ledger.</li>
             </ul>
 
@@ -196,7 +196,7 @@ export default function LifecyclePage() {
                     <tbody className="divide-y divide-white/10 text-slate-400">
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 font-mono text-red-400">OOM (Out of Memory)</td>
-                            <td className="p-4">WASM pointer exceeds linear memory bound</td>
+                            <td className="p-4">Native Go pointer exceeds linear memory bound</td>
                             <td className="p-4">Instant Trap. Node slashes executing shard.</td>
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
@@ -247,7 +247,7 @@ export default function LifecyclePage() {
 
             <h2 id="performance">10. Performance Envelopes</h2>
             <ul className="list-disc pl-6 mb-8 text-slate-300">
-                <li><strong>Latency Bounds:</strong> <code>ColdStart &le; 2ms</code> to instantiate WASM from compiled memory cache.</li>
+                <li><strong>Latency Bounds:</strong> <code>ColdStart &le; 2ms</code> to instantiate Native Go from compiled memory cache.</li>
                 <li><strong>Throughput Metrics:</strong> &gt; 10,000 <code>substrates_per_tick</code> per standard Operator core.</li>
                 <li><strong>Tick & Automation Timing:</strong> <code>WarmStart &le; 500µs</code> overhead per event invocation.</li>
                 <li><strong>Network Performance:</strong> Delta-compressed states sync in <code>RTT &le; 45ms</code> across global nodes.</li>
@@ -291,9 +291,9 @@ export default function LifecyclePage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
                 <div>
-                    <h4 className="text-emerald-400 font-bold mt-0 mb-2">Best Practice: Pre-allocate WASM Buffers</h4>
+                    <h4 className="text-emerald-400 font-bold mt-0 mb-2">Best Practice: Pre-allocate Native Go Buffers</h4>
                     <p className="text-slate-300 text-sm m-0">
-                        When writing Rust implementations, utilize <code>wee_alloc</code> or static buffers. Dynamic allocation inside the WebAssembly loop incurs severe CPU overhead and increases the risk of hitting the strict OOM fault domain limits.
+                        When writing Go implementations, utilize <code>wee_alloc</code> or static buffers. Dynamic allocation inside the WebAssembly loop incurs severe CPU overhead and increases the risk of hitting the strict OOM fault domain limits.
                     </p>
                 </div>
             </div>

@@ -25,12 +25,12 @@ func NewStore() *Store {
 
 	// Initialize Nodl Global Matrix
 	initialTiers := []*TierState{
-		{ID: TierTiny, Name: "Tiny", RateTHSec: 0.0006, Price: 0.0006, Capacity: "18.4 TH/s", CPUCores: 4, GPUModel: "No GPU", RAMGB: 8, Description: "Entry-level sandbox compute", Rule: PricingRule{Mode: "follow_market", Multiplier: 1.0}},
-		{ID: TierStandard, Name: "Standard", RateTHSec: 0.0018, Price: 0.0018, Capacity: "42.1 TH/s", CPUCores: 16, GPUModel: "T4 GPU", RAMGB: 32, Description: "Balanced general purpose", Rule: PricingRule{Mode: "follow_market", Multiplier: 1.0}},
-		{ID: TierHighRAM, Name: "High RAM", RateTHSec: 0.0028, Price: 0.0028, Capacity: "32.1 TH/s", CPUCores: 16, GPUModel: "No GPU", RAMGB: 256, Description: "Data intensive workloads", Rule: PricingRule{Mode: "follow_market", Multiplier: 1.0}},
-		{ID: TierBoost, Name: "Boost", RateTHSec: 0.0042, Price: 0.0042, Capacity: "128.5 TH/s", CPUCores: 32, GPUModel: "RTX 4090", RAMGB: 64, Description: "High-performance GPU compute", Rule: PricingRule{Mode: "follow_market", Multiplier: 1.0}},
-		{ID: TierUltra, Name: "Ultra", RateTHSec: 0.0084, Price: 0.0084, Capacity: "245.2 TH/s", CPUCores: 64, GPUModel: "2x RTX 4090", RAMGB: 128, Description: "Multi-GPU extreme performance", Rule: PricingRule{Mode: "follow_market", Multiplier: 1.0}},
-		{ID: TierDeccTee, Name: "DECC/TEE", RateTHSec: 0.0120, Price: 0.0120, Capacity: "12.4 TH/s", CPUCores: 24, GPUModel: "H100", RAMGB: 80, Description: "Encrypted confidential compute", Rule: PricingRule{Mode: "follow_market", Multiplier: 1.0}},
+		{ID: TierTiny, Name: "Tiny", RatePerWU: 0.0006, Price: 0.0006, Capacity: "18.4 TH/s", MinCpuCores: 4, GPUModel: "No GPU", MaxRamGb: 8, SandboxType: "wasm", Status: "Active", Description: "Entry-level sandbox compute", Rule: PricingRule{Mode: "follow_market", Multiplier: 1.0}},
+		{ID: TierStandard, Name: "Standard", RatePerWU: 0.0018, Price: 0.0018, Capacity: "42.1 TH/s", MinCpuCores: 16, GPUModel: "T4 GPU", MaxRamGb: 32, SandboxType: "bare-metal", Status: "Active", Description: "Balanced general purpose", Rule: PricingRule{Mode: "follow_market", Multiplier: 1.0}},
+		{ID: TierHighRAM, Name: "High RAM", RatePerWU: 0.0028, Price: 0.0028, Capacity: "32.1 TH/s", MinCpuCores: 16, GPUModel: "No GPU", MaxRamGb: 256, SandboxType: "bare-metal", Status: "Active", Description: "Data intensive workloads", Rule: PricingRule{Mode: "follow_market", Multiplier: 1.0}},
+		{ID: TierBoost, Name: "Boost", RatePerWU: 0.0042, Price: 0.0042, Capacity: "128.5 TH/s", MinCpuCores: 32, GPUModel: "RTX 4090", MaxRamGb: 64, SandboxType: "bare-metal", Status: "Active", Description: "High-performance GPU compute", Rule: PricingRule{Mode: "follow_market", Multiplier: 1.0}},
+		{ID: TierUltra, Name: "Ultra", RatePerWU: 0.0084, Price: 0.0084, Capacity: "245.2 TH/s", MinCpuCores: 64, GPUModel: "2x RTX 4090", MaxRamGb: 128, SandboxType: "bare-metal", Status: "Active", Description: "Multi-GPU extreme performance", Rule: PricingRule{Mode: "follow_market", Multiplier: 1.0}},
+		{ID: TierDeccTee, Name: "DECC/TEE", RatePerWU: 0.0120, Price: 0.0120, Capacity: "12.4 TH/s", MinCpuCores: 24, GPUModel: "H100", MaxRamGb: 80, SandboxType: "bare-metal", Status: "Active", Description: "Encrypted confidential compute", Rule: PricingRule{Mode: "follow_market", Multiplier: 1.0}},
 	}
 
 	for _, t := range initialTiers {
@@ -39,6 +39,14 @@ func NewStore() *Store {
 	}
 
 	return s
+}
+
+func (s *Store) AddTier(tier *TierState) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	tier.LastUpdate = time.Now()
+	s.state.Tiers[tier.ID] = tier
+	s.state.LastUpdate = time.Now()
 }
 
 func (s *Store) GetState() *GlobalPricingState {
@@ -110,9 +118,9 @@ func (e *Engine) refreshMarketData() {
 	
 	allRates := FetchAllMarketData()
 	
-	tiers := []TierID{TierTiny, TierStandard, TierHighRAM, TierBoost, TierUltra, TierDeccTee}
-	for _, t := range tiers {
-		e.updateTier(t, allRates)
+	state := e.store.GetState()
+	for id := range state.Tiers {
+		e.updateTier(id, allRates)
 	}
 }
 
@@ -153,38 +161,50 @@ func (e *Engine) updateTier(id TierID, allRates []MarketRate) {
 	ram := 0
 	desc := "Compute resource"
 	name := string(id)
-	cap := "0.0 TH/s"
-	switch id {
-	case TierTiny:
-		cores, gpu, ram, desc, name, cap = 4, "No GPU", 8, "Lightweight compute for basic microservices and testing.", "Tiny", "18.4 TH/s"
-	case TierStandard:
-		cores, gpu, ram, desc, name, cap = 16, "T4 GPU", 32, "Balanced performance for general-purpose workloads.", "Standard", "42.1 TH/s"
-	case TierHighRAM:
-		cores, gpu, ram, desc, name, cap = 16, "No GPU", 256, "Memory-optimized instance for large datasets.", "High RAM", "32.1 TH/s"
-	case TierBoost:
-		cores, gpu, ram, desc, name, cap = 32, "RTX 4090", 64, "High-performance compute for demanding applications.", "Boost", "128.5 TH/s"
-	case TierUltra:
-		cores, gpu, ram, desc, name, cap = 64, "2x RTX 4090", 128, "Maximum power for intensive processing tasks.", "Ultra", "245.2 TH/s"
-	case TierDeccTee:
-		cores, gpu, ram, desc, name, cap = 24, "H100", 80, "Secure enclave with Trusted Execution Environment.", "DECC/TEE", "12.4 TH/s"
-	}
+	cap := "Dynamic"
+	sandbox := "bare-metal"
+	status := "Active"
+	isCustom := false
 
-	// Carry over from existing if valid, otherwise use defaults above
 	if existing != nil {
-		if existing.CPUCores > 0 { cores = existing.CPUCores }
-		if existing.GPUModel != "" { gpu = existing.GPUModel }
-		if existing.RAMGB > 0 { ram = existing.RAMGB }
-		if existing.Description != "" { desc = existing.Description }
-		if existing.Name != "" { name = existing.Name }
-		if existing.Capacity != "" { cap = existing.Capacity }
+		cores = existing.MinCpuCores
+		gpu = existing.GPUModel
+		ram = existing.MaxRamGb
+		desc = existing.Description
+		name = existing.Name
+		cap = existing.Capacity
+		sandbox = existing.SandboxType
+		status = existing.Status
+		isCustom = existing.IsCustom
+	} else {
+		// Only apply defaults if totally new and not a recognized custom tier
+		switch id {
+		case TierTiny:
+			cores, gpu, ram, desc, name, cap, sandbox = 4, "No GPU", 8, "Lightweight compute for basic microservices and testing.", "Tiny", "18.4 TH/s", "wasm"
+		case TierStandard:
+			cores, gpu, ram, desc, name, cap = 16, "T4 GPU", 32, "Balanced performance for general-purpose workloads.", "Standard", "42.1 TH/s"
+		case TierHighRAM:
+			cores, gpu, ram, desc, name, cap = 16, "No GPU", 256, "Memory-optimized instance for large datasets.", "High RAM", "32.1 TH/s"
+		case TierBoost:
+			cores, gpu, ram, desc, name, cap = 32, "RTX 4090", 64, "High-performance compute for demanding applications.", "Boost", "128.5 TH/s"
+		case TierUltra:
+			cores, gpu, ram, desc, name, cap = 64, "2x RTX 4090", 128, "Maximum power for intensive processing tasks.", "Ultra", "245.2 TH/s"
+		case TierDeccTee:
+			cores, gpu, ram, desc, name, cap = 24, "H100", 80, "Secure enclave with Trusted Execution Environment.", "DECC/TEE", "12.4 TH/s"
+		default:
+			isCustom = true
+		}
 	}
 
 	newState := &TierState{
 		ID:            id,
 		Name:          name,
-		CPUCores:      cores,
+		MinCpuCores:   cores,
 		GPUModel:      gpu,
-		RAMGB:         ram,
+		MaxRamGb:      ram,
+		SandboxType:   sandbox,
+		Status:        status,
+		IsCustom:      isCustom,
 		Description:   desc,
 		Price:         effective,
 		Capacity:      cap,
@@ -192,7 +212,7 @@ func (e *Engine) updateTier(id TierID, allRates []MarketRate) {
 		Mean:          mean,
 		Volatility:    vol,
 		EffectiveRate: effective,
-		RateTHSec:     effective, // Sync for Command compat
+		RatePerWU:     effective, // Unified field mapping
 		Rule:          rule,
 		SMAs:          smas,
 		EMA:           ema,

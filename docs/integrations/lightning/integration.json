@@ -21,7 +21,7 @@
     }
   },
   "architecture": {
-    "wnode_interaction": "Wnode acts as a stateless, deterministic execution layer using WASM.",
+    "wnode_interaction": "Wnode acts as a stateless, deterministic execution layer using Native Go.",
     "read_write_flows": {
       "reads": "PENDING VERIFICATION",
       "writes": "PENDING VERIFICATION"
@@ -35,7 +35,7 @@
     ]
   },
   "security_determinism": {
-    "deterministic_reads_writes": "All reads and writes are securely executed in deterministic WASM containers.",
+    "deterministic_reads_writes": "All reads and writes are securely executed in deterministic Native Go containers.",
     "avoiding_hallucination": "PENDING VERIFICATION",
     "rpc_contract_validation": "Validates via Unknown"
   },

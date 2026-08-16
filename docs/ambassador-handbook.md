@@ -1,5 +1,16 @@
 # Wnode Ambassador Handbook: Perpetual Growth Agent Guide
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Wnode Ambassador Handbook: Perpetual Growth Agent Guide** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 Welcome to the Wnode Sales Force. As a Nodlr, you are not just a hardware operator; you are a **Perpetual Growth Agent**. By bringing clients to the mesh, you build a sovereign business that pays you forever.
 
 ---

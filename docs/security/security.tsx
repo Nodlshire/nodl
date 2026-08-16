@@ -18,8 +18,8 @@ export default function SecurityModelPage() {
                 <li><strong className="text-white">Definition:</strong> The formal cryptographic primitives and trust boundaries securing the execution mesh.</li>
                 <li><strong className="text-white">Responsibilities:</strong> Enforces a Zero-Trust operator model against hostile hardware and compromised operating systems.</li>
                 <li><strong className="text-white">Guarantees:</strong> Security relies entirely on algorithmic determinism, mathematical cryptography, and OS-level memory fences.</li>
-                <li><strong className="text-white">Requirements:</strong> ED25519 payload signatures, systemd Cgroups v2 limits, and Wazero Linear Memory trapping. Execution enforces a single linear memory model, DAG topological order, strict WASM sandboxing (no WASI, no syscalls, no network, no filesystem), pointer bounds <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>, and standardized trap semantics.</li>
-                <li><strong className="text-red-400">Prohibitions:</strong> Trusting unverified ingress data, executing without monotonic nonces, and allowing WASM host OS imports.</li>
+                <li><strong className="text-white">Requirements:</strong> ED25519 payload signatures, systemd Cgroups v2 limits, and SECCOMP Sandbox Linear Memory trapping. Execution enforces a single linear memory model, DAG topological order, strict Native Go sandboxing (no WASI, no syscalls, no network, no filesystem), pointer bounds <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>, and standardized trap semantics.</li>
+                <li><strong className="text-red-400">Prohibitions:</strong> Trusting unverified ingress data, executing without monotonic nonces, and allowing Native Go host OS imports.</li>
             </ul>
 
             <h2 id="invariants">2. Core Invariants</h2>
@@ -46,12 +46,12 @@ export default function SecurityModelPage() {
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 font-mono text-blue-400">Memory Integrity</td>
                             <td className="p-4">Index &lt; Linear_Memory.Len</td>
-                            <td className="p-4">WASM Host runtime boundary checks.</td>
+                            <td className="p-4">Native Go Host runtime boundary checks.</td>
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 font-mono text-blue-400">Network Egress</td>
                             <td className="p-4">Syscalls.Socket == Trap</td>
-                            <td className="p-4">Zero WASM Host Imports.</td>
+                            <td className="p-4">Zero Native Go Host Imports.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -65,12 +65,12 @@ export default function SecurityModelPage() {
 
             <h2 id="responsibilities">4. Responsibilities</h2>
             <p>
-                The <code>nodld</code> daemon is responsible for dropping unsigned packets before they consume WASM execution cycles. The Orchestrator is responsible for maintaining the monotonic nonce sequence to prevent replay attacks.
+                The <code>nodld</code> daemon is responsible for dropping unsigned packets before they consume Native Go execution cycles. The Orchestrator is responsible for maintaining the monotonic nonce sequence to prevent replay attacks.
             </p>
 
             <h2 id="boundaries">5. Boundaries</h2>
             <p>
-                The network boundary is secured via mTLS. The process boundary is secured via systemd Cgroups v2. The execution boundary is secured via the Wazero WebAssembly sandbox.
+                The network boundary is secured via mTLS. The process boundary is secured via systemd Cgroups v2. The execution boundary is secured via the SECCOMP Sandbox WebAssembly sandbox.
             </p>
 
             <h2 id="threat-model">6. Threat Model Detail</h2>
@@ -87,7 +87,7 @@ export default function SecurityModelPage() {
                 <strong>Attack Surfaces:</strong>
                 <ul className="list-disc pl-6 mt-2 text-slate-300">
                     <li>Network-level: Payload replay attacks and mTLS spoofing.</li>
-                    <li>Execution-level: Wazero sandbox memory scraping.</li>
+                    <li>Execution-level: SECCOMP Sandbox sandbox memory scraping.</li>
                     <li>Economic-level: Costly execution loops (gas depletion).</li>
                     <li>Governance-level: Invalid PK propagation.</li>
                     <li>Telemetry-level: Signature rejection spam.</li>
@@ -113,7 +113,7 @@ export default function SecurityModelPage() {
 
             <h2 id="cross-component">9. Cross-Component Interactions</h2>
             <p>
-                Orchestrators supply Public Keys via the <code>SyncManifest</code> payload during node initialization, strictly enforcing the canonical <code>(ptr: i32, len: i32)</code> WASM boundary.
+                Orchestrators supply Public Keys via the <code>SyncManifest</code> payload during node initialization, strictly enforcing the canonical <code>(ptr: i32, len: i32)</code> Native Go boundary.
             </p>
 
             <h2 id="telemetry">10. Telemetry Emitted</h2>
@@ -159,7 +159,7 @@ export default function SecurityModelPage() {
                     <rect x="340" y="70" width="190" height="80" rx="8" fill="#111" stroke="#444" strokeWidth="1.5" />
                     <text x="435" y="100" fill="#888" fontSize="11" textAnchor="middle">Verify(Payload, PK)</text>
                     <text x="435" y="120" fill="#888" fontSize="11" textAnchor="middle">Check Nonce &gt; State.Nonce</text>
-                    <text x="435" y="140" fill="#888" fontSize="11" textAnchor="middle">Pass to WASM Sandbox</text>
+                    <text x="435" y="140" fill="#888" fontSize="11" textAnchor="middle">Pass to Native Go Sandbox</text>
                 </svg>
             </div>
         </>

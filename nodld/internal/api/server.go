@@ -13,6 +13,7 @@ import (
 	"time"
 	"os"
 	"runtime"
+	"sort"
 	"bufio"
 
 	"golang.org/x/crypto/bcrypt"
@@ -338,6 +339,7 @@ func (s *Server) registerRoutes() {
 	// Overrides
 	s.app.Post("/pricing/override", s.requireAccess(account.RoleManagement, "command"), s.handleUpdatePricingRule)
 	s.app.Get("/v1/meta/tiers", s.requireAccess(account.RoleManagement, "command", "mesh"), s.handleGetMetaTiers)
+	s.app.Post("/v1/meta/tiers", s.requireAccess(account.RoleManagement, "command"), s.handleCreateMetaTier)
 	s.app.Patch("/v1/admin/tiers/:id", s.requireAccess(account.RoleManagement, "command"), s.handleUpdateAdminTier)
 	s.app.Post("/api/admin/resolve-flag", s.requireAccess(account.RoleManagement, "command"), s.handleResolveFlag)
 
@@ -349,6 +351,7 @@ func (s *Server) registerRoutes() {
 	apiV1.Get("/system/pulse", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handleGetSystemPulse)
 	apiV1.Get("/impact", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handleGetImpact)
 	apiV1.Get("/meta/tiers", s.requireAccess(account.RoleManagement, "command", "mesh"), s.handleGetMetaTiers)
+	apiV1.Post("/meta/tiers", s.requireAccess(account.RoleManagement, "command"), s.handleCreateMetaTier)
 	apiV1.Post("/nodes/pairing-code/create", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleCreatePairingCode)
 	apiV1.Post("/nodes/pairing-code/consume", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleConsumePairingCode)
 	apiV1.Post("/nodes/headless-token/create", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleCreateHeadlessToken)
@@ -1674,22 +1677,60 @@ func (s *Server) requireDeviceToken() fiber.Handler {
 func (s *Server) handleGetMetaTiers(c *fiber.Ctx) error {
 	state := s.pricingStore.GetState()
 	var list []*pricing.TierState
+
+	for _, t := range state.Tiers {
+		list = append(list, t)
+	}
 	
-	order := []pricing.TierID{
-		pricing.TierTiny, 
-		pricing.TierStandard, 
-		pricing.TierHighRAM, 
-		pricing.TierBoost, 
-		pricing.TierUltra, 
-		pricing.TierDeccTee,
+	// Sort to keep consistent order: predefined first, then custom
+	sort.SliceStable(list, func(i, j int) bool {
+		// If one is custom and the other isn't, standard goes first
+		if list[i].IsCustom != list[j].IsCustom {
+			return !list[i].IsCustom
+		}
+		return list[i].RatePerWU < list[j].RatePerWU
+	})
+
+	return c.JSON(list)
+}
+
+// handleCreateMetaTier allows CMD portal to dynamically inject new custom tiers
+func (s *Server) handleCreateMetaTier(c *fiber.Ctx) error {
+	var req struct {
+		Name        string  `json:"name"`
+		RatePerWU   float64 `json:"ratePerWU"`
+		MaxRamGb    int     `json:"maxRamGb"`
+		MinCpuCores int     `json:"minCpuCores"`
+		SandboxType string  `json:"sandboxType"`
+		Status      string  `json:"status"`
 	}
 
-	for _, id := range order {
-		if t, ok := state.Tiers[id]; ok {
-			list = append(list, t)
-		}
+	if err := c.BodyParser(&req); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid payload"})
 	}
-	return c.JSON(list)
+
+	id := pricing.TierID(fmt.Sprintf("custom-%d", time.Now().UnixMilli()))
+	
+	newTier := &pricing.TierState{
+		ID:            id,
+		Name:          req.Name,
+		RatePerWU:     req.RatePerWU,
+		MaxRamGb:      req.MaxRamGb,
+		MinCpuCores:   req.MinCpuCores,
+		SandboxType:   req.SandboxType,
+		Status:        req.Status,
+		IsCustom:      true,
+		Capacity:      "Dynamic",
+		LiveMarket:    req.RatePerWU,
+		Mean:          req.RatePerWU,
+		EffectiveRate: req.RatePerWU,
+		Price:         req.RatePerWU,
+		Description:   "Custom dynamically created tier",
+		GPUModel:      "Unspecified",
+	}
+
+	s.pricingStore.AddTier(newTier)
+	return c.Status(fiber.StatusCreated).JSON(newTier)
 }
 
 // handleUpdateAdminTier allows CMD portal to update tier specs/pricing.
@@ -1714,10 +1755,10 @@ func (s *Server) handleUpdateAdminTier(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "tier not found"})
 	}
 
-	if req.RateTHSec != nil { tier.RateTHSec = *req.RateTHSec }
-	if req.CPUCores != nil { tier.CPUCores = *req.CPUCores }
+	if req.RateTHSec != nil { tier.RatePerWU = *req.RateTHSec }
+	if req.CPUCores != nil { tier.MinCpuCores = *req.CPUCores }
 	if req.GPUModel != nil { tier.GPUModel = *req.GPUModel }
-	if req.RAMGB != nil { tier.RAMGB = *req.RAMGB }
+	if req.RAMGB != nil { tier.MaxRamGb = *req.RAMGB }
 	if req.Description != nil { tier.Description = *req.Description }
 
 	tier.LastUpdate = time.Now()
@@ -1726,7 +1767,7 @@ func (s *Server) handleUpdateAdminTier(c *fiber.Ctx) error {
 	s.Broadcast(fiber.Map{
 		"event": "tier.updated",
 		"id":    id,
-		"rate":  tier.RateTHSec,
+		"rate":  tier.RatePerWU,
 	})
 
 	return c.JSON(tier)

@@ -1,21 +1,21 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'SDK & WASM Stubs | WeNode',
+    title: 'SDK & Native Go Stubs | WeNode',
     description: 'Formal specification of the deterministic WebAssembly compilation target and SDK generation bounds.',
 };
 
-export default function SDKWasmPage() {
+export default function SDKNative GoPage() {
     return (
         <>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">SDK & WASM Stubs</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">SDK & Native Go Stubs</h1>
             <p className="text-xl text-slate-400 mb-8 border-b border-white/10 pb-8">
                 The strict interface definition connecting compiled WebAssembly execution modules with external interacting clients.
             </p>
 
             <h2 id="formal-execution-semantics">1. Formal Execution Semantics</h2>
             <p>
-                The SDK acts as the deterministic bridge between dynamic client environments (Node.js, Browser) and the static WASM execution environment. Semantics dictate that the SDK must serialize all JSON payloads into strict linear byte arrays conforming exactly to the single linear memory model. It mathematically guarantees that by the time a payload reaches the WASM stub, no dynamic padding or arbitrary allocation is required. All substrate calls MUST be processed in DAG topological order within a deterministic, single-threaded call sequence. The execution follows strict WASM sandboxing (no WASI, no syscalls, no network, no filesystem), utilizing identical trap-on-fault behavior. Pointer rules are standardized such that <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>. All execution faults propagate through the same deterministic path with standardized error envelopes and trap codes.
+                The SDK acts as the deterministic bridge between dynamic client environments (Node.js, Browser) and the static Native Go execution environment. Semantics dictate that the SDK must serialize all JSON payloads into strict linear byte arrays conforming exactly to the single linear memory model. It mathematically guarantees that by the time a payload reaches the Native Go stub, no dynamic padding or arbitrary allocation is required. All substrate calls MUST be processed in DAG topological order within a deterministic, single-threaded call sequence. The execution follows strict Native Go sandboxing (no WASI, no syscalls, no network, no filesystem), utilizing identical trap-on-fault behavior. Pointer rules are standardized such that <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>. All execution faults propagate through the same deterministic path with standardized error envelopes and trap codes.
             </p>
 
             <h2 id="invariants">2. Core Invariants</h2>
@@ -60,10 +60,10 @@ export default function SDKWasmPage() {
 
             <h2 id="formal-interfaces">3. Formal Interface Definitions</h2>
             <p>
-                The WASM stub exposes a rigid function signature that the Orchestrator uses to inject the SDK's serialized payload into the VM.
+                The Native Go stub exposes a rigid function signature that the Orchestrator uses to inject the SDK's serialized payload into the VM.
             </p>
             <div className="bg-[#0f172a] rounded-lg p-6 border border-white/10 font-mono text-sm mb-8 text-emerald-300">
-<pre className="m-0 bg-transparent border-0">{`// WASM Stub Interface (Go/Rust mapping)
+<pre className="m-0 bg-transparent border-0">{`// Native Go Stub Interface (Go/Go mapping)
 fn execute_transition(
     ptr: i32,
     len: i32
@@ -97,7 +97,7 @@ fn execute_transition(
                             <td className="p-4">Sig: 0xabcd1234...</td>
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
-                            <td className="p-4 text-purple-400">WASM Extraction</td>
+                            <td className="p-4 text-purple-400">Native Go Extraction</td>
                             <td className="p-4">Stub unwraps 0x32 (50) at pointer 0x1000</td>
                         </tr>
                     </tbody>
@@ -138,7 +138,7 @@ fn execute_transition(
 
             <h2 id="operator-lifecycle">6. Operator Lifecycle within SDK Bounds</h2>
             <p>
-                Operators do not execute the SDK; they execute the WASM stubs. An operator's lifecycle relies on the Orchestrator correctly authenticating the SDK's payload. If an operator's node attempts to process a mathematically malformed pointer mapping, the node initiates an automatic crash-loop backoff to prevent memory corruption.
+                Operators do not execute the SDK; they execute the Native Go stubs. An operator's lifecycle relies on the Orchestrator correctly authenticating the SDK's payload. If an operator's node attempts to process a mathematically malformed pointer mapping, the node initiates an automatic crash-loop backoff to prevent memory corruption.
             </p>
 
             <h2 id="economic-model">7. Economic Model</h2>
@@ -160,7 +160,7 @@ fn execute_transition(
 
             <h2 id="cross-component">10. Cross-Component Contracts</h2>
             <p>
-                The SDK acts as the client-side proxy to the Orchestrator API. The WASM stub acts as the host-side proxy to the WEX engine. They are bound symmetrically by the YAML Specification, meaning all payloads are structurally mapped to safely pass through the canonical <code>(ptr: i32, len: i32)</code> interface. This enforces strict linear memory boundaries and zero host-level bindings.
+                The SDK acts as the client-side proxy to the Orchestrator API. The Native Go stub acts as the host-side proxy to the WEX engine. They are bound symmetrically by the YAML Specification, meaning all payloads are structurally mapped to safely pass through the canonical <code>(ptr: i32, len: i32)</code> interface. This enforces strict linear memory boundaries and zero host-level bindings.
             </p>
 
             <h2 id="formal-diagrams">11. Formal SDK / Stub Pipeline DAG</h2>
@@ -190,7 +190,7 @@ fn execute_transition(
                     <line x1="600" y1="150" x2="680" y2="150" stroke="#444" strokeWidth="1.5" markerEnd="url(#arrowSolid)" />
                     
                     <rect x="680" y="130" width="100" height="40" rx="8" fill="#111" stroke="#444" strokeWidth="1.5" />
-                    <text x="730" y="155" fill="#888" fontSize="11" textAnchor="middle">WASM Stub</text>
+                    <text x="730" y="155" fill="#888" fontSize="11" textAnchor="middle">Native Go Stub</text>
                 </svg>
             </div>
         </>

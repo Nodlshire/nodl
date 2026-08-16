@@ -15,7 +15,7 @@ export default function SpecificationsPage() {
 
             <h2 id="formal-execution-semantics">1. Formal Execution Semantics</h2>
             <p>
-                The `spec.yaml` serves as the absolute origin of truth for memory alignment. The execution semantic dictates that all fields defined in the schema are laid out in linear WASM memory sequentially, packed according to `[#repr(C)]`. Bools consume 1 byte, u32 consumes 4 bytes, u64 consumes 8 bytes. No padding bytes are inserted by the compiler, guaranteeing an exact, deterministic pointer map accessible by the Orchestrator. The execution itself strictly obeys a single linear memory model, processes in DAG topological order, and restricts memory mapping to <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code> within a complete WASM sandbox (no WASI, no syscalls, no network, no filesystem) where all faults map to uniform trap codes.
+                The `spec.yaml` serves as the absolute origin of truth for memory alignment. The execution semantic dictates that all fields defined in the schema are laid out in linear Native Go memory sequentially, packed according to `[#repr(C)]`. Bools consume 1 byte, u32 consumes 4 bytes, u64 consumes 8 bytes. No padding bytes are inserted by the compiler, guaranteeing an exact, deterministic pointer map accessible by the Orchestrator. The execution itself strictly obeys a single linear memory model, processes in DAG topological order, and restricts memory mapping to <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code> within a complete Native Go sandbox (no WASI, no syscalls, no network, no filesystem) where all faults map to uniform trap codes.
             </p>
 
             <h2 id="invariants">2. Core Invariants</h2>
@@ -155,13 +155,13 @@ export default function SpecificationsPage() {
             <h2 id="performance">9. Performance Envelopes</h2>
             <ul className="list-disc pl-6 mb-6 text-slate-300">
                 <li><strong>Latency Bounds:</strong> JSON Validation in <code>ExecTime &le; 0.5ms</code> per incoming HTTP payload at the Orchestrator.</li>
-                <li><strong>Latency Bounds:</strong> Memory Mapping in <code>ExecTime &le; 0.1ms</code> to serialize valid JSON into the WASM linear memory struct format.</li>
+                <li><strong>Latency Bounds:</strong> Memory Mapping in <code>ExecTime &le; 0.1ms</code> to serialize valid JSON into the Native Go linear memory struct format.</li>
                 <li><strong>Throughput Metrics:</strong> <code>&gt; 100,000 ops_per_sec</code> globally.</li>
             </ul>
 
             <h2 id="cross-component">10. Cross-Component Contracts</h2>
             <p>
-                The <code>spec.yaml</code> structurally binds the Orchestrator (TypeScript/Go API) and the Execution Node (Rust/WASM). Schema definitions proposed by the DAO are propagated directly through the Orchestrator down to the nodes via the <code>SyncManifest</code> pipeline. Timing guarantees state that API schemas are refreshed within 5ms of a new Substrate generation.
+                The <code>spec.yaml</code> structurally binds the Orchestrator (TypeScript/Go API) and the Execution Node (Go/Native Go). Schema definitions proposed by the DAO are propagated directly through the Orchestrator down to the nodes via the <code>SyncManifest</code> pipeline. Timing guarantees state that API schemas are refreshed within 5ms of a new Substrate generation.
             </p>
 
             <h2 id="formal-diagrams">11. Formal Specification DAG</h2>
@@ -194,7 +194,7 @@ export default function SpecificationsPage() {
                     <line x1="620" y1="150" x2="700" y2="150" stroke="#444" strokeWidth="1.5" markerEnd="url(#arrowSolid)" />
                     
                     <rect x="700" y="130" width="80" height="40" rx="8" fill="#111" stroke="#444" strokeWidth="1.5" />
-                    <text x="740" y="155" fill="#888" fontSize="11" textAnchor="middle">WASM Node</text>
+                    <text x="740" y="155" fill="#888" fontSize="11" textAnchor="middle">Native Go Node</text>
                 </svg>
             </div>
         </>

@@ -1,6 +1,17 @@
 # Node Operator
 
-The Node Operator is the unified execution surface of the Wnode sovereign compute mesh. Every platform including Windows, macOS, Linux, Android, and Space Mesh, wraps the same deterministic nodl-core binary, ensuring identical execution semantics regardless of hardware, operating system, or physical environment. The Node Operator is the exclusive entry point for all module execution. It enforces deterministic compute (no host nondeterminism), capability-bounded I/O (HTTP, DB, GPU, FS, WASM), Routing Epoch governance (capability maps, profile selection, telemetry routing), and deterministic replay pipelines. All Node Operator variants have desktop, headless, Android support for both Earth Mesh and Space Mesh profiles. The profile simply changes the active Routing Epoch and capability map whilst  execution semantics remain identical.
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Node Operator** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
+The Node Operator is the unified execution surface of the Wnode sovereign compute mesh. Every platform including Windows, macOS, Linux, Android, and Space Mesh, wraps the same deterministic nodl-core binary, ensuring identical execution semantics regardless of hardware, operating system, or physical environment. The Node Operator is the exclusive entry point for all module execution. It enforces deterministic compute (no host nondeterminism), capability-bounded I/O (HTTP, DB, GPU, FS, Native Go), Routing Epoch governance (capability maps, profile selection, telemetry routing), and deterministic replay pipelines. All Node Operator variants have desktop, headless, Android support for both Earth Mesh and Space Mesh profiles. The profile simply changes the active Routing Epoch and capability map whilst  execution semantics remain identical.
 
 ## Download & Installation
 
@@ -32,7 +43,7 @@ The Desktop Node Operator provides a native graphical interface built using Fyne
 - Launch / terminate `nodl-core`
 - Display Mesh status (Earth / Space)
 - Display active Routing Epoch
-- Render capability map (HTTP, DB, GPU, FS, WASM)
+- Render capability map (HTTP, DB, GPU, FS, Native Go)
 - Show deterministic execution state
 - Toggle replay mode
 - Stream telemetry and logs in real time

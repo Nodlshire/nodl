@@ -1,5 +1,16 @@
 # Wnode Sovereign Compute Mesh (Phase 1.5)
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Wnode Sovereign Compute Mesh (Phase 1.5)** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 The Wnode Mesh is a deterministic, peer-to-peer compute substrate designed to execute external protocol workflows safely and deterministically without fully replicating a blockchain consensus engine. 
 
 ## Node Identity & Discovery

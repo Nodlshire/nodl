@@ -1,5 +1,16 @@
 # Proof of Compute Viewer
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Proof of Compute Viewer** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 The Proof of Compute Viewer exposes the `ProofOfCompute` JSON schemas to operators and developers, ensuring deterministic data trails can be audited intuitively.
 
 ## Validation

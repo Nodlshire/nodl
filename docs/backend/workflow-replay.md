@@ -1,5 +1,16 @@
 # Workflow Replay Engine
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Workflow Replay Engine** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## 1. Component Overview
 The Workflow Replay Engine allows network observers and validators to deterministically reconstruct the exact execution state of any historical workflow.
 
@@ -8,7 +19,7 @@ Acts as the arbitration core. If a node submits a proof, the Replay Engine allow
 
 ## 3. Change Description (Before vs After)
 - **Before**: Non-existent; state transitions were accepted blindly.
-- **After**: Full WASM instruction replay capability with block-bound RPC mocks.
+- **After**: Full Native Go instruction replay capability with block-bound RPC mocks.
 
 ## 4. Deterministic Guarantees
 Guarantees 100% bit-for-bit equivalence in execution trace generation given identical initial state bounds.
@@ -16,7 +27,7 @@ Guarantees 100% bit-for-bit equivalence in execution trace generation given iden
 ## 5. Execution Lifecycle
 1. Ingest historical `WorkflowManifest` and `BlockTag`.
 2. Mock network calls using historical RPC state.
-3. Re-execute WASM modules.
+3. Re-execute Native Go modules.
 4. Compare resulting `MerkleRoot` with the contested proof.
 
 ## 6. Interfaces & Contracts

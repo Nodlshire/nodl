@@ -15,7 +15,7 @@ export default function TelemetryPage() {
 
             <h2 id="formal-execution-semantics">1. Formal Execution Semantics</h2>
             <p>
-                The execution of telemetry extraction is strictly out-of-band relative to the WASM payload processing. The `nodld` daemon utilizes asynchronous OS threads to poll cgroups (for memory bounds) and internal Wazero metric counters. Telemetry serialization and WSS transmission execute without holding locks on the core WASM execution thread, ensuring 0ms latency impact on deterministic consensus. The core WASM payload execution remains bounded by a single linear memory model, processing sequentially in DAG topological order under strict WASM sandboxing (no WASI, no syscalls, no network, no filesystem). All memory pointers strictly enforce <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>, issuing deterministic standardized trap codes on any execution fault.
+                The execution of telemetry extraction is strictly out-of-band relative to the Native Go payload processing. The `nodld` daemon utilizes asynchronous OS threads to poll cgroups (for memory bounds) and internal SECCOMP Sandbox metric counters. Telemetry serialization and WSS transmission execute without holding locks on the core Native Go execution thread, ensuring 0ms latency impact on deterministic consensus. The core Native Go payload execution remains bounded by a single linear memory model, processing sequentially in DAG topological order under strict Native Go sandboxing (no WASI, no syscalls, no network, no filesystem). All memory pointers strictly enforce <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>, issuing deterministic standardized trap codes on any execution fault.
             </p>
 
             <h2 id="invariants">2. Core Invariants</h2>
@@ -68,12 +68,12 @@ export default function TelemetryPage() {
     "timestampMs": { "type": "integer" },
     "metrics": {
       "type": "object",
-      "required": ["tpsCurrent", "avgLatencyUs", "memoryUsedKb", "wasmTraps"],
+      "required": ["tpsCurrent", "avgLatencyUs", "memoryUsedKb", "Native GoTraps"],
       "properties": {
         "tpsCurrent": { "type": "integer" },
         "avgLatencyUs": { "type": "integer" },
         "memoryUsedKb": { "type": "integer", "maximum": 32768 },
-        "wasmTraps": { "type": "integer" }
+        "Native GoTraps": { "type": "integer" }
       }
     },
     "signature": { "type": "string", "pattern": "^0x[a-fA-F0-9]{128}$" }
@@ -97,7 +97,7 @@ export default function TelemetryPage() {
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 text-slate-300">Metric Aggregation</td>
-                            <td className="p-4">Wazero avg lat &rarr; 12.4ms</td>
+                            <td className="p-4">SECCOMP Sandbox avg lat &rarr; 12.4ms</td>
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 text-emerald-400">Cryptographic Signing</td>
@@ -154,7 +154,7 @@ export default function TelemetryPage() {
 
             <h2 id="economic-model">7. Economic Model</h2>
             <p>
-                Telemetry forms the basis of the `SLA_Multiplier`. Operators who consistently report and prove sub-10ms execution times and zero Wazero memory traps receive a higher multiple on their base WNODE epoch rewards compared to slower operators hovering near the 50ms watchdog boundary.
+                Telemetry forms the basis of the `SLA_Multiplier`. Operators who consistently report and prove sub-10ms execution times and zero SECCOMP Sandbox memory traps receive a higher multiple on their base WNODE epoch rewards compared to slower operators hovering near the 50ms watchdog boundary.
             </p>
 
             <h2 id="governance-model">8. Governance Model</h2>
@@ -171,7 +171,7 @@ export default function TelemetryPage() {
 
             <h2 id="cross-component">10. Cross-Component Contracts</h2>
             <p>
-                Telemetry payloads are fire-and-forget from the node's perspective, executed strictly asynchronously out-of-band from the WASM runtime. The Orchestrator ingests these JSON schemas at the expected heartbeat rate (1.0 Hz to 10.0 Hz), verifies the signature against the active node registry, and pipes the structured data into Prometheus/Grafana clusters for network-wide observability. Failure to maintain the heartbeat rate directly maps to SLA slashing rules, culminating in node ejection.
+                Telemetry payloads are fire-and-forget from the node's perspective, executed strictly asynchronously out-of-band from the Native Go runtime. The Orchestrator ingests these JSON schemas at the expected heartbeat rate (1.0 Hz to 10.0 Hz), verifies the signature against the active node registry, and pipes the structured data into Prometheus/Grafana clusters for network-wide observability. Failure to maintain the heartbeat rate directly maps to SLA slashing rules, culminating in node ejection.
             </p>
 
             <h2 id="formal-diagrams">11. Formal Telemetry DAG</h2>
@@ -186,7 +186,7 @@ export default function TelemetryPage() {
                     <text x="150" y="80" fill="#ccc" fontSize="14" textAnchor="middle" fontWeight="bold">nodld Daemon</text>
                     
                     <rect x="70" y="100" width="160" height="40" rx="8" fill="#111" stroke="#444" strokeWidth="1.5" />
-                    <text x="150" y="125" fill="#888" fontSize="11" textAnchor="middle">Wazero Core (Blocked)</text>
+                    <text x="150" y="125" fill="#888" fontSize="11" textAnchor="middle">SECCOMP Sandbox Core (Blocked)</text>
 
                     <rect x="70" y="160" width="160" height="40" rx="8" fill="#111" stroke="#444" strokeWidth="1.5" />
                     <text x="150" y="185" fill="#888" fontSize="11" textAnchor="middle">Telemetry Async Thread</text>

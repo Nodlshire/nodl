@@ -1,4 +1,15 @@
 # Optimisation Engine
+
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Optimisation Engine** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
 Sovereign Deterministic Optimisation for Integrations, Agents & Routing Epochs
 
 The Optimisation Engine is Wnode’s constitutional subsystem responsible for continuously improving the performance, safety, and determinism of all integrations and agent workflows. It operates as a deterministic optimisation kernel, replay‑safe, zero‑trust, and fully governed by Wnode’s constitutional rules.
@@ -124,6 +135,6 @@ The Optimisation Engine operates under strict constitutional guarantees:
 - Replay protection
 - Canonical envelopes
 - Capability isolation
-- WASM sandboxing
+- Native Go sandboxing
 
 These guarantees ensure the optimisation process is safe, reproducible, and sovereign across the entire mesh.

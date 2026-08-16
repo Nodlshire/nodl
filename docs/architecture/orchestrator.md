@@ -1,5 +1,16 @@
 # Wnode Architecture — Orchestrator (Tier‑0)
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Wnode Architecture — Orchestrator (Tier‑0)** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ![diagram](/diagrams/orchestrator-overview.png)
 
 The Orchestrator is Wnode’s Tier‑0 sovereign coordinator.
@@ -101,7 +112,7 @@ It does not interpret, transform, or store it.
 ### Earth Mesh (Tier‑1)
 - synchronous
 - low‑latency
-- deterministic WASM execution
+- deterministic Native Go execution
 - strict capability boundaries
 
 ### Space Mesh (Tier‑2)

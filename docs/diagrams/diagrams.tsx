@@ -17,8 +17,8 @@ export default function DiagramsPage() {
             <ul className="list-none pl-0 mb-8 space-y-4 text-slate-300">
                 <li><strong className="text-white">Definition:</strong> The formal visual specification modeling topological boundaries and data provenance.</li>
                 <li><strong className="text-white">Responsibilities:</strong> Translates hard architectural constraints into declarative SVG state machines.</li>
-                <li><strong className="text-white">Guarantees:</strong> 1:1 parity with the underlying Rust and Go execution codebases.</li>
-                <li><strong className="text-white">Requirements:</strong> Inline SVG implementation, zero external image requests, single linear memory modeling, DAG topological execution mapping, WASM sandbox boundary delineation (no WASI/syscalls), pointer bound visual representation (<code>Ptr &isin; [0, HeapSize)</code>, <code>Len &le; MaxBlock</code>), and trap fault visualization.</li>
+                <li><strong className="text-white">Guarantees:</strong> 1:1 parity with the underlying Go and Go execution codebases.</li>
+                <li><strong className="text-white">Requirements:</strong> Inline SVG implementation, zero external image requests, single linear memory modeling, DAG topological execution mapping, Native Go sandbox boundary delineation (no WASI/syscalls), pointer bound visual representation (<code>Ptr &isin; [0, HeapSize)</code>, <code>Len &le; MaxBlock</code>), and trap fault visualization.</li>
                 <li><strong className="text-red-400">Prohibitions:</strong> Illustrative abstractions and raster graphics (PNG/JPG).</li>
             </ul>
 
@@ -76,7 +76,7 @@ export default function DiagramsPage() {
             <p>Inputs: Systemic architectural blueprints. Outputs: Declarative SVG markup.</p>
 
             <h2 id="responsibilities">4. Responsibilities</h2>
-            <p>Maintain 1:1 parity with the actual Rust and Go codebases. If code diverges, the diagram must be updated in tandem via PR.</p>
+            <p>Maintain 1:1 parity with the actual Go and Go codebases. If code diverges, the diagram must be updated in tandem via PR.</p>
 
             <h2 id="boundaries">5. Boundaries</h2>
             <p>Diagrams strictly map the OSI layers 4 through 7.</p>

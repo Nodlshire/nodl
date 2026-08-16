@@ -80,17 +80,22 @@ type HistoryPoint struct {
 type TierState struct {
 	ID            TierID         `json:"id"`
 	Name          string         `json:"name"`
-	RateTHSec     float64        `json:"rate_th_sec"` // USD per TeraHash-Second
-	CPUCores      int            `json:"cpu_cores"`
+	RatePerWU     float64        `json:"ratePerWU"` // USD per Work Unit
+	MinCpuCores   int            `json:"minCpuCores"`
+	MaxRamGb      int            `json:"maxRamGb"`
+	SandboxType   string         `json:"sandboxType"` // "bare-metal" or "wasm"
+	Status        string         `json:"status"` // Active state
+	IsCustom      bool           `json:"isCustom"` // Differentiate dynamic tiers
+	
+	// Legacy / internal fields maintained for backward compat
 	GPUModel      string         `json:"gpu_model"`
-	RAMGB         int            `json:"ram_gb"`
 	Description   string         `json:"description"`
-	LiveMarket    float64        `json:"liveMarket"` // Raw median after normalization
+	LiveMarket    float64        `json:"liveMarket"` 
 	Mean          float64        `json:"mean"`
-	Volatility    float64        `json:"volatility"` // Standard deviation
+	Volatility    float64        `json:"volatility"`
 	EffectiveRate float64        `json:"effectiveRate"`
-	Price         float64        `json:"price"`    // USD per TeraHash-Second (Storefront compat)
-	Capacity      string         `json:"capacity"` // Human-readable network capacity
+	Price         float64        `json:"price"`    
+	Capacity      string         `json:"capacity"` 
 	Rule          PricingRule    `json:"rule"`
 	SMAs          SMAState       `json:"smas"`
 	EMA           float64        `json:"ema"`

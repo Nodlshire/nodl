@@ -1,7 +1,18 @@
 # Integration Registry
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Integration Registry** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## 1. Component Overview
-The Integration Registry is the centralized capability index within the node that maps logical integration names (e.g., `aave`, `uniswap`) to their deterministic WASM/JS execution adapters.
+The Integration Registry is the centralized capability index within the node that maps logical integration names (e.g., `aave`, `uniswap`) to their deterministic Native Go/JS execution adapters.
 
 ## 2. Architectural Role
 Acts as the dynamic linker for the Sovereign Mesh. When a workflow requests a protocol action, the Registry resolves it to the correct, version-locked adapter.
@@ -53,7 +64,7 @@ Guarantees that a workflow requesting `aave@v1.1.0` executes the exact cryptogra
 graph TD
     A[Workflow Engine] -->|Request 'aave'| B[Integration Registry]
     B -->|Check Hash| C[Local Disk Binaries]
-    C -->|Load WASM| B
+    C -->|Load Native Go| B
     B -->|Return Handle| A
 ```
 

@@ -1,5 +1,16 @@
 # Determinism Model
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Determinism Model** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## 1. Component Overview
 The Determinism Model subsystem governs how the Sovereign Mesh eliminates environmental, architectural, and temporal variances to ensure pure mathematical reproducibility across heterogeneous hardware.
 
@@ -16,7 +27,7 @@ Guarantees $f(x) = y$ universally, ensuring that execution hashes match exactly 
 ## 5. Execution Lifecycle
 1. Intercept system time requests (map to block time).
 2. Intercept random requests (map to seeded PRNG).
-3. Execute WASM step.
+3. Execute Native Go step.
 4. Verify execution step hash against quorum.
 
 ## 6. Interfaces & Contracts
@@ -52,7 +63,7 @@ Guarantees $f(x) = y$ universally, ensuring that execution hashes match exactly 
 ```mermaid
 graph LR
     A[Input] --> B[Determinism Bounds]
-    B --> C[WASM Engine]
+    B --> C[Native Go Engine]
     C --> D[Strict Output Hash]
 ```
 

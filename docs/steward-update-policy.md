@@ -1,5 +1,16 @@
 # Steward Update Policy
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Steward Update Policy** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## Overview
 The Steward Update Policy defines how the steward may update its own logic, runtime, and enforcement rules.  
 It ensures that updates:

@@ -36,6 +36,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                                 <a href="/docs/overview" className="text-sm font-medium hover:text-white transition-colors">Overview</a>
                                 <a href="/docs/overview/rationale" className="text-sm font-medium hover:text-white transition-colors">Rationale</a>
                                 <a href="/docs/overview/flow" className="text-sm font-medium hover:text-white transition-colors">Flow</a>
+                                <a href="/docs/overview/dewi-foundation" className="text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors">DeWi Transport Foundation</a>
                                 <a href="/docs/overview/core-code" className="text-sm font-medium hover:text-white transition-colors">Core Code</a>
                                 <a href="/docs/overview/failure-modes" className="text-sm font-medium hover:text-white transition-colors">Failure Modes</a>
                                 <a href="/docs/overview/invariants" className="text-sm font-medium hover:text-white transition-colors">Invariants</a>
@@ -47,12 +48,13 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                                 <a href="/docs/architecture" className="text-sm font-medium hover:text-white transition-colors">Architecture</a>
                                 <a href="/docs/architecture/earth-mesh" className="text-sm font-medium hover:text-white transition-colors">Earth Mesh</a>
                                 <a href="/docs/architecture/space-mesh" className="text-sm font-medium hover:text-white transition-colors">Space Mesh</a>
+                                <a href="/docs/architecture/dewi-mesh" className="text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors">DeWi RF & Coverage Substrate</a>
                                 <a href="/docs/architecture/orchestrator" className="text-sm font-medium hover:text-white transition-colors">Orchestrator</a>
                                 <a href="/docs/architecture/node-operator" className="text-sm font-medium hover:text-white transition-colors">Node Operator</a>
                                 <a href="/docs/architecture/mesh-routing" className="text-sm font-medium hover:text-white transition-colors">Mesh Routing</a>
                                 <a href="/docs/architecture/ingestion-pipeline" className="text-sm font-medium hover:text-white transition-colors">Ingestion Pipeline</a>
                                 <a href="/docs/architecture/tinygo-pipeline" className="text-sm font-medium hover:text-white transition-colors">TinyGo Pipeline</a>
-                                <a href="/docs/architecture/wasm-constraints" className="text-sm font-medium hover:text-white transition-colors">WASM Constraints</a>
+                                <a href="/docs/architecture/native-go-constraints" className="text-sm font-medium hover:text-white transition-colors">Native Go Constraints</a>
                                 <a href="/docs/architecture/hot-load-lifecycle" className="text-sm font-medium hover:text-white transition-colors">Hot Load Lifecycle</a>
                                 <a href="/docs/architecture/security-envelope" className="text-sm font-medium hover:text-white transition-colors">Security Envelope</a>
                             </div>
@@ -73,7 +75,8 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                             <div className="flex flex-col gap-2">
                                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-2">Execution</span>
                                 <a href="/docs/execution" className="text-sm font-medium hover:text-white transition-colors">Execution</a>
-                                <a href="/docs/execution/wasm-runtime" className="text-sm font-medium hover:text-white transition-colors">WASM Runtime</a>
+                                <a href="/docs/execution/native-go-runtime" className="text-sm font-medium hover:text-white transition-colors">Native Go Runtime</a>
+                                <a href="/docs/execution/dewi-engine" className="text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors">DeWi PoC Processing Engine</a>
                                 <a href="/docs/execution/pure-functions" className="text-sm font-medium hover:text-white transition-colors">Pure Functions</a>
                                 <a href="/docs/execution/panic-handling" className="text-sm font-medium hover:text-white transition-colors">Panic Handling</a>
                                 <a href="/docs/execution/timeouts" className="text-sm font-medium hover:text-white transition-colors">Timeouts</a>
@@ -100,6 +103,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-2">Operator</span>
                                 <a href="/docs/operator" className="text-sm font-medium hover:text-white transition-colors">Operator</a>
                                 <a href="/docs/operator/archetypes" className="text-sm font-medium hover:text-white transition-colors">Archetypes</a>
+                                <a href="/docs/operator/dewi-gateway" className="text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors">DeWi Gateway Setup</a>
                                 <a href="/docs/operator/earth-mesh" className="text-sm font-medium hover:text-white transition-colors">Earth Mesh</a>
                                 <a href="/docs/operator/space-mesh" className="text-sm font-medium hover:text-white transition-colors">Space Mesh</a>
                                 <a href="/docs/operator/security" className="text-sm font-medium hover:text-white transition-colors">Security</a>
@@ -144,13 +148,14 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
 
                             <div className="flex flex-col gap-2 mt-4">
                                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#10b981] mb-2">Protocol Deep-Dive</span>
+                                <a href="/docs/protocol-deep-dive/dewi-poc-spec" className="text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors">DeWi PoC & Spatial Index Spec</a>
                                 <a href="/docs/protocol-deep-dive/quorum-slashing" className="text-sm font-medium hover:text-white transition-colors">Quorum & Slashing</a>
                                 <a href="/docs/protocol-deep-dive/orchestrator-resilience" className="text-sm font-medium hover:text-white transition-colors">Orchestrator Resilience</a>
                                 <a href="/docs/protocol-deep-dive/tokenomics-integration" className="text-sm font-medium hover:text-white transition-colors">Tokenomics Integration</a>
                                 <a href="/docs/protocol-deep-dive/mesh-economics" className="text-sm font-medium hover:text-white transition-colors">Mesh Economics</a>
                                 <a href="/docs/protocol-deep-dive/websocket-protocol" className="text-sm font-medium hover:text-white transition-colors">WebSocket Protocol</a>
                                 <a href="/docs/protocol-deep-dive/error-codes" className="text-sm font-medium hover:text-white transition-colors">Error Codes</a>
-                                <a href="/docs/protocol-deep-dive/wasm-compatibility-matrix" className="text-sm font-medium hover:text-white transition-colors">WASM Compatibility Matrix</a>
+                                <a href="/docs/protocol-deep-dive/native-go-compatibility-matrix" className="text-sm font-medium hover:text-white transition-colors">Native Go Compatibility Matrix</a>
                                 <a href="/docs/protocol-deep-dive/data-retention-model" className="text-sm font-medium hover:text-white transition-colors">Data Retention Model</a>
                                 <a href="/docs/protocol-deep-dive/operator-onboarding" className="text-sm font-medium hover:text-white transition-colors">Operator Onboarding</a>
                                 <a href="/docs/protocol-deep-dive/disaster-recovery" className="text-sm font-medium hover:text-white transition-colors">Disaster Recovery</a>

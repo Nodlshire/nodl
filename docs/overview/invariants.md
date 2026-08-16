@@ -1,5 +1,16 @@
 # Wnode Architecture — Invariants
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Wnode Architecture — Invariants** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ![diagram](/diagrams/invariants-constitution.png)
 
 Wnode enforces a strict set of constitutional invariants that guarantee deterministic, safe, and sovereign execution across the entire mesh.  
@@ -17,7 +28,7 @@ All execution must be:
 - nondeterministic-free  
 
 This applies to:
-- WASM modules  
+- Native Go modules  
 - Go handlers  
 - capability host functions  
 - routing decisions  
@@ -85,7 +96,7 @@ All artifacts must be:
 - replayable  
 
 This applies to:
-- WASM modules  
+- Native Go modules  
 - Go handlers  
 - routing epochs  
 - telemetry envelopes  

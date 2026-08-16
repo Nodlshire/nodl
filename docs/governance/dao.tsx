@@ -15,7 +15,7 @@ export default function DAOGovernancePage() {
 
             <h2 id="formal-execution-semantics">1. Formal Execution Semantics</h2>
             <p>
-                DAO Governance operates as the sole root authority over global system parameters. It functions through a delayed, deterministic execution pipeline. Once a quorum is mathematically achieved, the parameter mutation is not applied instantly; instead, it is serialized and passed to the Automation Engine, which injects the state diff exactly at the specified future block height, guaranteeing that all nodes shift consensus rules simultaneously without human intervention. Enactment is executed within a single linear memory model enforcing strict WASM sandboxing (no WASI, no syscalls, no network, no filesystem). Substrate logic resolves in DAG topological order with memory isolated to <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>, triggering deterministic traps on fault.
+                DAO Governance operates as the sole root authority over global system parameters. It functions through a delayed, deterministic execution pipeline. Once a quorum is mathematically achieved, the parameter mutation is not applied instantly; instead, it is serialized and passed to the Automation Engine, which injects the state diff exactly at the specified future block height, guaranteeing that all nodes shift consensus rules simultaneously without human intervention. Enactment is executed within a single linear memory model enforcing strict Native Go sandboxing (no WASI, no syscalls, no network, no filesystem). Substrate logic resolves in DAG topological order with memory isolated to <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>, triggering deterministic traps on fault.
             </p>
 
             <h2 id="invariants">2. Core Invariants</h2>
@@ -55,7 +55,7 @@ export default function DAOGovernancePage() {
 
             <h2 id="formal-interfaces">3. Formal Interface Definitions</h2>
             <p>
-                Proposals are cast via ED25519-signed WASM payloads. There are no UI-specific administrative functions; the Orchestrator evaluates raw governance binary transactions exactly like standard user transfers.
+                Proposals are cast via ED25519-signed Native Go payloads. There are no UI-specific administrative functions; the Orchestrator evaluates raw governance binary transactions exactly like standard user transfers.
             </p>
             <div className="bg-[#0f172a] rounded-lg p-6 border border-white/10 font-mono text-sm mb-8 text-emerald-300">
 <pre className="m-0 bg-transparent border-0">{`// Protobuf: Governance Execution Payload

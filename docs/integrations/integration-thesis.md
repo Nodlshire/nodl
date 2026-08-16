@@ -1,10 +1,21 @@
 # Integration Thesis
+
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Integration Thesis** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
 (Wnode Sovereign Compute Substrate — Constitutional Integration Model)
 
 ## Introduction
-Wnode is fundamentally a sovereign compute substrate, not merely a WebAssembly (WASM) execution platform. It represents a unified fabric where integrations execute with identical fidelity across all environments—from Windows and Linux clusters to macOS desktops, Android mobile devices, and the specialized Space Mesh profile. This ubiquitous operation is facilitated by the `nodl-core` daemon, which serves as the primary sovereign compute fabric across the mesh.
+Wnode is fundamentally a sovereign compute substrate, not merely a WebAssembly (Native Go) execution platform. It represents a unified fabric where integrations execute with identical fidelity across all environments—from Windows and Linux clusters to macOS desktops, Android mobile devices, and the specialized Space Mesh profile. This ubiquitous operation is facilitated by the `nodl-core` daemon, which serves as the primary sovereign compute fabric across the mesh.
 
-Within this overarching substrate, the WASM sandbox exists not as the entirety of the system, but as one deterministic execution mode. It shares a singular constitutional foundation with native execution models, enforcing strict capability boundaries, immutable determinism, and zero-custody locality across the entire spectrum of supported architectures.
+Within this overarching substrate, the Native Go sandbox exists not as the entirety of the system, but as one deterministic execution mode. It shares a singular constitutional foundation with native execution models, enforcing strict capability boundaries, immutable determinism, and zero-custody locality across the entire spectrum of supported architectures.
 
 ## Deterministic Integration Theory
 The structural integrity of Wnode’s execution model is anchored by three foundational invariants:
@@ -23,12 +34,12 @@ Specifically, Routing Epochs define:
 - Replay mode requirements and execution auditing policies.
 - Profile-specific execution rules (e.g., Earth Mesh versus Space Mesh).
 
-This governance contract is absolute. Both the unified `nodl-core` processes and the embedded WASM sandboxes read from and obey the identical Epoch contract, ensuring synchronization of capabilities across the global fabric. Any modification to capability bounds or host exposure fundamentally requires the instantiation of a new Routing Epoch.
+This governance contract is absolute. Both the unified `nodl-core` processes and the embedded Native Go sandboxes read from and obey the identical Epoch contract, ensuring synchronization of capabilities across the global fabric. Any modification to capability bounds or host exposure fundamentally requires the instantiation of a new Routing Epoch.
 
 ## Integration Execution Model
 The Wnode substrate operates via a dual-mode execution architecture, governed by the same underlying constitutional principles:
 - **Native Execution via `nodl-core`**: High-performance, edge-proximate operations managed directly by the unified mesh daemon.
-- **Deterministic WASM Execution**: Isolated, memory-safe module execution within a strict sandbox.
+- **Deterministic Native Go Execution**: Isolated, memory-safe module execution within a strict sandbox.
 
 Regardless of the execution path, both modes universally share and enforce:
 - A deterministic core logic framework overriding host-dependent behavior.

@@ -1,5 +1,16 @@
 # Security Model
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Security Model** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## Overview
 The wnode network is designed to be secure by architecture, not by policy.  
 Security is enforced through:

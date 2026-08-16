@@ -10,12 +10,12 @@ export default function AutomationEnginePage() {
         <>
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Automation Engine</h1>
             <p className="text-xl text-slate-400 mb-8 border-b border-white/10 pb-8">
-                Strict, time-bound execution triggers enforcing chronological invariants within the WASM matrix.
+                Strict, time-bound execution triggers enforcing chronological invariants within the Native Go matrix.
             </p>
 
             <h2 id="formal-execution-semantics">1. Formal Execution Semantics</h2>
             <p>
-                The Automation Engine governs the strict chronological determinism of the network. It operates as a synthetic event generator at the Orchestrator layer. To ensure 100% determinism, WASM sandboxes are explicitly blocked from accessing system time. Instead, the Automation Engine generates cryptographically signed <code>Epoch_Tick</code> payloads containing monotonic timestamps and deterministic entropy, forcing all active smart contracts to evaluate their internal chronological queues synchronously during block execution. Substrate logic runs deterministically in DAG topological order, within a single linear memory model featuring strict sandboxing (no WASI, no syscalls, no network, no filesystem). All pointers are governed by <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>, triggering standardized trap paths on fault.
+                The Automation Engine governs the strict chronological determinism of the network. It operates as a synthetic event generator at the Orchestrator layer. To ensure 100% determinism, Native Go sandboxes are explicitly blocked from accessing system time. Instead, the Automation Engine generates cryptographically signed <code>Epoch_Tick</code> payloads containing monotonic timestamps and deterministic entropy, forcing all active smart contracts to evaluate their internal chronological queues synchronously during block execution. Substrate logic runs deterministically in DAG topological order, within a single linear memory model featuring strict sandboxing (no WASI, no syscalls, no network, no filesystem). All pointers are governed by <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>, triggering standardized trap paths on fault.
             </p>
 
             <h2 id="invariants">2. Core Invariants</h2>
@@ -91,7 +91,7 @@ message EpochTickEvent {
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 text-blue-400">Execution</td>
-                            <td className="p-4">WASM processes liquidation logic; Queue pops the task</td>
+                            <td className="p-4">Native Go processes liquidation logic; Queue pops the task</td>
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 text-purple-400">Post-Condition</td>
@@ -157,7 +157,7 @@ message EpochTickEvent {
 
             <h2 id="cross-component">10. Cross-Component Contracts</h2>
             <p>
-                Interfaces continuously with WEX & Smart Contracts by injecting <code>EpochTickEvent</code> payloads into the WASM substrate via the Orchestrator, ensuring chronological determinism. Integrates with the AI Orchestration Layer to facilitate autonomous daily AI inference routines without requiring human API calls.
+                Interfaces continuously with WEX & Smart Contracts by injecting <code>EpochTickEvent</code> payloads into the Native Go substrate via the Orchestrator, ensuring chronological determinism. Integrates with the AI Orchestration Layer to facilitate autonomous daily AI inference routines without requiring human API calls.
             </p>
 
             <h2 id="formal-diagrams">11. Formal Automation Injection DAG</h2>

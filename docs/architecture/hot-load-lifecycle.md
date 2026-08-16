@@ -1,5 +1,16 @@
 # Wnode Architecture — Hot‑Load Lifecycle
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Wnode Architecture — Hot‑Load Lifecycle** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ![diagram](/diagrams/hot-load-lifecycle-overview.png)
 
 The Hot‑Load Lifecycle defines how Wnode performs deterministic live module replacement within its sovereign compute mesh.  
@@ -11,7 +22,7 @@ Hot‑loading is constitutional — it follows strict validation, capability, an
 
 ## Updated Module Intake
 
-When a new WASM module arrives, nodes perform:
+When a new Native Go module arrives, nodes perform:
 
 - size check (< 500KB)
 - init time check (< 10ms)

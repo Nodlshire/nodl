@@ -1,5 +1,16 @@
 # Discord Governance Layer v1.0
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Discord Governance Layer v1.0** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## Purpose
 
 Discord is the primary communication and announcement platform for Wnode.  

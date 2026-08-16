@@ -1,5 +1,16 @@
 # Telemetry & Metrics
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Telemetry & Metrics** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## 1. Component Overview
 The Telemetry & Metrics subsystem handles the continuous emission, aggregation, and signing of node health and performance data to the central or decentralized logging sinks.
 
@@ -65,7 +76,7 @@ Telemetry buffers are pre-allocated rings.
 N/A.
 
 ## 19. Deterministic Workflow Scheduling
-Telemetry threads are lowest-priority to prevent stealing compute cycles from WASM sandboxes.
+Telemetry threads are lowest-priority to prevent stealing compute cycles from Native Go sandboxes.
 
 ## 20. Deterministic Compute Proofs
 N/A. Telemetry is purely observational.

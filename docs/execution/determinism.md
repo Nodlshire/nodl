@@ -4,6 +4,17 @@ title: Wnode Determinism Guidelines
 
 # Wnode Determinism Guidelines
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Wnode Determinism Guidelines** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## 1. Constitutional Doctrine
 
 Determinism is the constitutional law of Wnode. The Sovereign Mesh operates exclusively on the principle of absolute, mathematical reproducibility. Every subsystem—Mesh, Nodes, Steward, SDK, Integrations, AI, Routing, Sharding, Reduction, Identity, CRM, and WUID—is bound by these rules. There are no exceptions, no deviations, no nondeterminism, no heuristics, and no probabilistic behaviors in execution.

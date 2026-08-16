@@ -1,5 +1,16 @@
 # Backend Responsibilities
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Backend Responsibilities** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## Overview
 The steward backend is the coordination layer of the wnode network. It manages identity, routing, attribution, and job flow without ever storing or inspecting job data. This document defines what the backend is responsible for, what it guarantees, and what it explicitly does not do.
 

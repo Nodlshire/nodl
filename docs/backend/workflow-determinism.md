@@ -1,5 +1,16 @@
 # Workflow Determinism
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Workflow Determinism** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## 1. Component Overview
 The Workflow Determinism module defines the strict ruleset applied to all logic paths within the Workflow Engine to prevent state divergence.
 

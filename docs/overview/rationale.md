@@ -1,5 +1,16 @@
 # Wnode Architecture — Rationale
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Wnode Architecture — Rationale** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ![diagram](/diagrams/rationale-determinism.png)
 
 The Wnode Sovereign Mesh exists to solve a fundamental problem in distributed systems:  
@@ -33,7 +44,7 @@ Without determinism, distributed systems cannot provide:
 - safe multi‑operator participation  
 
 Wnode enforces determinism at every layer:
-- WASM sandbox  
+- Native Go sandbox  
 - Go handler boundary  
 - capability registry  
 - routing epoch validation  

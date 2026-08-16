@@ -15,7 +15,7 @@ export default function AIOrchestrationPage() {
 
             <h2 id="formal-execution-semantics">1. Formal Execution Semantics</h2>
             <p>
-                The AI Orchestration Layer imposes deterministic strictures upon non-deterministic neural network inference. It functions strictly as an asynchronous out-of-band middleware, decoupling the &gt;5 second latency of LLM APIs from the sub-50ms execution matrix. Responses are ingested back into the mesh exclusively via strictly-typed JSON schemas signed by the Orchestrator's institutional key, converting probabilistic output into verifiable data states. Resumed state execution operates deterministically within a single linear memory model, processing calls in DAG topological order. The WASM sandbox strictly enforces no WASI, no syscalls, no network, and no filesystem access, bounding memory to <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>. Faults during resumption trigger standardized trap codes.
+                The AI Orchestration Layer imposes deterministic strictures upon non-deterministic neural network inference. It functions strictly as an asynchronous out-of-band middleware, decoupling the &gt;5 second latency of LLM APIs from the sub-50ms execution matrix. Responses are ingested back into the mesh exclusively via strictly-typed JSON schemas signed by the Orchestrator's institutional key, converting probabilistic output into verifiable data states. Resumed state execution operates deterministically within a single linear memory model, processing calls in DAG topological order. The Native Go sandbox strictly enforces no WASI, no syscalls, no network, and no filesystem access, bounding memory to <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>. Faults during resumption trigger standardized trap codes.
             </p>
 
             <h2 id="invariants">2. Core Invariants</h2>
@@ -75,7 +75,7 @@ message LLMCallbackEvent {
                     <tbody className="divide-y divide-white/10 text-slate-400 font-mono text-xs">
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 text-slate-300">Request Emitted</td>
-                            <td className="p-4">WASM outputs `[AI_CALL, id: 0x4A, prompt: "..."]`</td>
+                            <td className="p-4">Native Go outputs `[AI_CALL, id: 0x4A, prompt: "..."]`</td>
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 text-slate-300">Async Orchestration</td>

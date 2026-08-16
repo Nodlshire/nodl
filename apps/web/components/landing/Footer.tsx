@@ -5,27 +5,27 @@ interface FooterProps {
 
 export default function Footer({ onContactClick }: FooterProps) {
     return (
-        <footer className="py-20 bg-black border-t border-white/15">
-            <div className="max-w-7xl mx-auto px-8 flex flex-col items-center gap-16">
+        <footer className="py-20 bg-black border-t border-white/15 w-full">
+            <div className="w-full px-6 md:px-12 flex flex-col items-start gap-16">
                 
-                {/* 1. Logo and Text at Top Center */}
-                <div className="flex flex-col items-center gap-4">
+                {/* 1. Logo and Text at Top Left (Left Justified) */}
+                <div className="flex flex-row items-center justify-start gap-4 w-full text-left">
                     <img src="/logo.png" alt="WeNode" className="w-12 h-12" />
-                    <div className="flex flex-col text-center">
-                        <span className="font-space-grotesk text-3xl tracking-tighter font-bold text-white leading-none">WeNode</span>
-                        <span className="text-[10px] uppercase tracking-widest text-blue-500 font-bold mt-2">AI Powered Planetary & Orbital Compute Mesh</span>
+                    <div className="flex flex-col text-left items-start">
+                        <span className="font-space-grotesk text-3xl tracking-tighter font-bold text-white leading-none text-left">Wnode — Planetary DePIN & DeWi Mesh</span>
+                        <span className="text-sm text-slate-400 font-medium max-w-md mt-2 text-left">A sovereign infrastructure network built from everyday devices. Compute. Connectivity. Routing. Earn for contributing real work.</span>
                     </div>
                 </div>
                 
-                {/* 2. Menu Columns (Evenly Spread) */}
-                <div className="w-full grid grid-cols-2 md:grid-cols-4 lg:flex lg:flex-row lg:justify-between gap-8 text-center md:text-left">
+                {/* 2. Menu Columns (Centrally Justified) */}
+                <div className="w-full flex flex-wrap justify-center items-start gap-8 md:gap-16 text-center">
                     {/* Home */}
-                    <div className="flex flex-col gap-4">
+                    <div className="flex flex-col items-center gap-4 text-center">
                         <a href="/" className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-2">Home</a>
                     </div>
                     
                     {/* About */}
-                    <div className="flex flex-col gap-4">
+                    <div className="flex flex-col items-center gap-4 text-center">
                         <span className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-2">About</span>
                         <a href="/about/founders-bio-note" className="text-white/70 hover:text-white text-xs transition-colors">Founder's Bio & Note</a>
                         <a href="/about/node-operator" className="text-white/70 hover:text-white text-xs transition-colors">Earth Mesh</a>
@@ -34,7 +34,7 @@ export default function Footer({ onContactClick }: FooterProps) {
                     </div>
                     
                     {/* Governance */}
-                    <div className="flex flex-col gap-4">
+                    <div className="flex flex-col items-center gap-4 text-center">
                         <span className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-2">Governance</span>
                         <a href="/governance/overview" className="text-white/70 hover:text-white text-xs transition-colors">Governance Overview</a>
                         <a href="/governance/constitution" className="text-white/70 hover:text-white text-xs transition-colors">Constitution</a>
@@ -45,21 +45,21 @@ export default function Footer({ onContactClick }: FooterProps) {
                     </div>
 
                     {/* Partners */}
-                    <div className="flex flex-col gap-4">
+                    <div className="flex flex-col items-center gap-4 text-center">
                         <span className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-2">Partners</span>
                         <a href="/partners" className="text-white/70 hover:text-white text-xs transition-colors">Tech Partners</a>
                         <a href="/chp" className="text-white/70 hover:text-white text-xs transition-colors">VIP 合作伙伴</a>
                     </div>
 
                     {/* Investors */}
-                    <div className="flex flex-col gap-4">
+                    <div className="flex flex-col items-center gap-4 text-center">
                         <span className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-2">Investors</span>
                         <a href="/investors/whitepaper" className="text-white/70 hover:text-white text-xs transition-colors">Whitepaper</a>
                         <a href="/investors/dr" className="text-white/70 hover:text-white text-xs transition-colors">Data Room</a>
                     </div>
 
                     {/* Legal */}
-                    <div className="flex flex-col gap-4">
+                    <div className="flex flex-col items-center gap-4 text-center">
                         <span className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-2">Legal</span>
                         <a href="/terms" className="text-white/70 hover:text-white text-xs transition-colors">Terms</a>
                         <a href="/privacy" className="text-white/70 hover:text-white text-xs transition-colors">Privacy</a>
@@ -67,7 +67,7 @@ export default function Footer({ onContactClick }: FooterProps) {
                     </div>
 
                     {/* Contact */}
-                    <div className="flex flex-col gap-4">
+                    <div className="flex flex-col items-center gap-4 text-center">
                         <button 
                             onClick={(e) => {
                                 if (onContactClick) {
@@ -75,7 +75,7 @@ export default function Footer({ onContactClick }: FooterProps) {
                                     onContactClick();
                                 }
                             }}
-                            className="text-white text-left md:text-left text-xs font-bold uppercase tracking-[0.2em] mb-2 hover:text-white/80 transition-colors"
+                            className="text-white text-center text-xs font-bold uppercase tracking-[0.2em] mb-2 hover:text-white/80 transition-colors"
                         >
                             Contact
                         </button>
@@ -83,8 +83,8 @@ export default function Footer({ onContactClick }: FooterProps) {
                 </div>
 
                 {/* Bottom Section: Socials, Address, Copyright */}
-                <div className="flex flex-col items-center gap-6 w-full pt-10 border-t border-white/10">
-                    <div className="flex items-center gap-6">
+                <div className="flex flex-col items-center gap-6 w-full pt-10 border-t border-white/10 text-center">
+                    <div className="flex items-center justify-center gap-6">
                         <a href="https://x.com/wnodemesh" target="_blank" rel="noopener noreferrer" className="inline-block hover:drop-shadow-[0_0_20px_#3b82f6] hover:scale-110 transition-all duration-300">
                             <img src="/icons/x_neon.png" alt="X (Twitter)" className="h-14 w-auto brightness-125" />
                         </a>
@@ -109,8 +109,8 @@ export default function Footer({ onContactClick }: FooterProps) {
                         Unit A 82 James Carter Road, Mildenhall Industrial Estate, Suffolk, United Kingdom, IP28 7DE
                     </div>
 
-                    <div className="text-white/20 font-bold uppercase tracking-widest text-[10px] mt-2">
-                        WeNode © 2026
+                    <div className="text-white/20 font-bold uppercase tracking-widest text-[10px] mt-2 text-center">
+                        Wnode © 2026
                     </div>
                 </div>
             </div>

@@ -1,5 +1,16 @@
 # Web3 Unification Substrate
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Web3 Unification Substrate** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 **Deterministic Modeling of Multi‑Chain State and Capabilities**
 
 The Web3 ecosystem remains fragmented across incompatible execution models, state semantics, and capability surfaces. Most existing “multi‑chain” solutions rely on RPC aggregation, heuristic routing, or bridge‑style abstractions that attempt to hide these differences rather than model them explicitly.

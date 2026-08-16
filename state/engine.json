@@ -55,7 +55,7 @@
         "NODLR",
         "MESH"
       ],
-      "createdAt": "2026-08-07T14:56:41.330398818+02:00"
+      "createdAt": "2026-08-12T09:53:18.531814691+02:00"
     }
   },
   "invite": {
@@ -440,6 +440,24 @@
     }
   },
   "domain_sessions": {
+    "07b8fde0-e86b-43c1-8237-cec870e5cfd7": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "mesh",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-08-17T03:37:07.369817009+02:00",
+      "createdAt": "2026-08-16T03:37:07.369817302+02:00"
+    },
+    "1788eafa-097a-4167-985d-59f4b3c937dc": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-08-13T09:55:09.539413706+02:00",
+      "createdAt": "2026-08-12T09:55:09.539414183+02:00"
+    },
     "20c9ea98-c419-4928-be12-265f4aa056fe": {
       "wuid": "100001-0426-01-AA",
       "domain": "command",
@@ -448,6 +466,15 @@
       "twoFAVerified": false,
       "expiresAt": "2026-08-09T09:23:49.894654805+02:00",
       "createdAt": "2026-08-08T09:23:49.894655062+02:00"
+    },
+    "2a2f0d98-8fda-49a0-a722-c64d4788ceca": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-08-13T10:40:11.611008155+02:00",
+      "createdAt": "2026-08-12T10:40:11.611008431+02:00"
     },
     "33f4fa6e-bb92-447d-a1fc-41469ba13b1c": {
       "wuid": "100001-0426-01-AA",
@@ -467,6 +494,24 @@
       "expiresAt": "2026-08-09T02:52:15.361541959+02:00",
       "createdAt": "2026-08-08T02:52:15.361542311+02:00"
     },
+    "44122bb3-86de-420d-99d9-8c59f739639e": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "command",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-08-13T13:35:39.720866532+02:00",
+      "createdAt": "2026-08-12T13:35:39.720866834+02:00"
+    },
+    "8d46120b-7c61-42d7-a27f-a9a102485f43": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-08-17T03:43:52.935321387+02:00",
+      "createdAt": "2026-08-16T03:43:52.935321674+02:00"
+    },
     "9b70acd2-8549-4f71-998f-457cd133ec88": {
       "wuid": "100001-0426-01-AA",
       "domain": "nodlr",
@@ -475,6 +520,15 @@
       "twoFAVerified": false,
       "expiresAt": "2026-08-08T15:27:11.52212347+02:00",
       "createdAt": "2026-08-07T15:27:11.522123651+02:00"
+    },
+    "aeda250d-6b74-4e78-93c9-7cb50dcfdbce": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "mesh",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-08-09T11:18:15.797911241+02:00",
+      "createdAt": "2026-08-08T11:18:15.797911544+02:00"
     },
     "bd884f2b-b139-4efd-b5c5-b74de5181493": {
       "wuid": "100001-0426-01-AA",
@@ -493,6 +547,15 @@
       "twoFAVerified": false,
       "expiresAt": "2026-08-07T08:10:59.090636793+02:00",
       "createdAt": "2026-08-06T08:10:59.09063708+02:00"
+    },
+    "c1f36d10-0347-41a0-9264-655dae10db83": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-08-15T14:30:49.102530084+02:00",
+      "createdAt": "2026-08-14T14:30:49.102530999+02:00"
     },
     "e979c667-3d3b-45f6-b276-8d3000fd3b77": {
       "wuid": "100001-0426-01-AA",
@@ -520,6 +583,15 @@
       "twoFAVerified": false,
       "expiresAt": "2026-08-08T16:03:54.086452086+02:00",
       "createdAt": "2026-08-07T16:03:54.086452472+02:00"
+    },
+    "ff5d3af4-f9b4-464e-9a5d-12c7c53f5651": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "mesh",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-08-15T14:30:56.136382239+02:00",
+      "createdAt": "2026-08-14T14:30:56.136382531+02:00"
     }
   }
 }

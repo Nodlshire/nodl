@@ -1,5 +1,16 @@
 # Locality Engine
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Locality Engine** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## Overview
 The Locality Engine determines how close a node is to a client — without ever knowing the client’s identity, location, or plaintext.  
 It is a core subsystem of the steward responsible for:

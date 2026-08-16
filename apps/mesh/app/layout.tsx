@@ -1,31 +1,37 @@
-import React from 'react';
-import { CanonicalShell } from '@wnode/ui-core';
-import { AuthProvider } from './components/AuthProvider';
-import { BillingProvider } from './components/BillingProvider';
-import { JobsProvider } from './components/JobsProvider';
+import type { Metadata } from "next";
+import { Roboto } from "next/font/google";
+import "./globals.css";
+import { AuthProvider } from "./components/AuthProvider";
+import { BillingProvider } from "./components/BillingProvider";
+import { JobsProvider } from "./components/JobsProvider";
 
-import { BasketProvider } from './components/BasketContext';
+import { NavWrapper } from "./components/NavWrapper";
+
+const roboto = Roboto({
+    subsets: ["latin"],
+    weight: ["100", "300", "400", "500", "700", "900"],
+    variable: "--font-roboto",
+});
+
+export const metadata: Metadata = {
+    title: "Wnode Mesh — Compute Marketplace",
+    description: "Access high-performance decentralized compute resources.",
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const ProvidersWrapper = ({ children: providerChildren }: { children: React.ReactNode }) => (
-    <AuthProvider>
-      <BillingProvider>
-        <JobsProvider>
-          <BasketProvider>
-            {providerChildren}
-          </BasketProvider>
-        </JobsProvider>
-      </BillingProvider>
-    </AuthProvider>
-  );
-
-  return (
-    <html lang="en">
-      <body data-portal="mesh">
-        <CanonicalShell providers={ProvidersWrapper}>
-          {children}
-        </CanonicalShell>
-      </body>
-    </html>
-  );
+    return (
+        <html lang="en" className="dark" suppressHydrationWarning>
+            <body data-portal="mesh" className={`${roboto.variable} antialiased bg-black text-white min-h-screen font-sans`} style={{ "--mesh-portal-glow-color": "#fcba03" } as any} suppressHydrationWarning>
+                <AuthProvider>
+                    <BillingProvider>
+                        <JobsProvider>
+                                <NavWrapper>
+                                    {children}
+                                </NavWrapper>
+                        </JobsProvider>
+                    </BillingProvider>
+                </AuthProvider>
+            </body>
+        </html>
+    );
 }

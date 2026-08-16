@@ -1,5 +1,16 @@
 # SDK API Reference
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **SDK API Reference** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 This API reference defines the canonical, deterministic interfaces exposed by the Wnode SDK.  
 All classes, functions, types, and constants follow sovereign compute rules:
 - no hidden defaults  
@@ -116,7 +127,7 @@ All functions are:
 
 ### `EngineType`
 - `"compute"`  
-- `"wasm"`  
+- `"native-go"`  
 - `"evm"`  
 - `"ai"`  
 

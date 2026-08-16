@@ -1,5 +1,16 @@
 # Market Monitoring
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Market Monitoring** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## Overview
 Market Monitoring is the steward’s system for tracking global compute prices, regional demand, node density, and energy‑adjusted costs.  
 Its purpose is to ensure that wnode compute remains:

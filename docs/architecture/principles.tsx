@@ -41,7 +41,7 @@ export default function PrinciplesPage() {
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 font-mono text-slate-500">L1 (Highest)</td>
                             <td className="p-4 font-bold text-red-400">Security & Isolation</td>
-                            <td className="p-4">Cgroups v2, mTLS, zero WASM OS imports.</td>
+                            <td className="p-4">Cgroups v2, mTLS, zero Native Go OS imports.</td>
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 font-mono text-slate-500">L2</td>
@@ -87,7 +87,7 @@ export default function PrinciplesPage() {
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 text-red-400">Filesystem Access</td>
                             <td className="p-4">L1 (Security)</td>
-                            <td className="p-4">Wazero traps on unknown host function.</td>
+                            <td className="p-4">SECCOMP Sandbox traps on unknown host function.</td>
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 text-blue-400">Time-Based Branching</td>
@@ -144,7 +144,7 @@ export default function PrinciplesPage() {
 
             <h2 id="cross-component">9. Cross-Component Interactions</h2>
             <p>
-                Generators (<code>intgen</code>, <code>nodegen</code>) embed these principles into the synthesized AST, explicitly enforcing the canonical <code>(ptr: i32, len: i32)</code> ABI. The output WASM binary is the mathematical manifestation of the Design Principles, integrated fully via the <code>SyncManifest</code>.
+                Generators (<code>intgen</code>, <code>nodegen</code>) embed these principles into the synthesized AST, explicitly enforcing the canonical <code>(ptr: i32, len: i32)</code> ABI. The output Native Go binary is the mathematical manifestation of the Design Principles, integrated fully via the <code>SyncManifest</code>.
             </p>
 
             <h2 id="telemetry">10. Telemetry Emitted</h2>

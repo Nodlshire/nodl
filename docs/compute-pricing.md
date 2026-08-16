@@ -1,5 +1,16 @@
 # Compute Pricing
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Compute Pricing** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## Overview
 Compute pricing in the wnode network is designed to be:
 

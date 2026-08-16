@@ -40,33 +40,65 @@ const Icons = {
 };
 
 export default function PersonasSection({ onOpenModal }: PersonasSectionProps) {
-    const personas = [
+    const earnFeatures = [
         {
-            title: "Evangelists",
-            description: "Help build the wnode movement. Spread the vision of decentralised compute sovereignty",
-            cta: "Join as Evangelist",
-            mode: "waitlist" as ModalMode,
-            icon: Icons.Megaphone,
-            borderColor: "border-amber-500/50",
-            iconColor: "text-amber-500"
+            title: "Compute Earnings",
+            description: "Paid for executing encrypted jobs.",
+            icon: Icons.Cpu,
+            borderColor: "border-blue-500/50",
+            iconColor: "text-blue-500"
         },
         {
-            title: "Node Owners",
-            description: "Secure your place in the future of the compute and machine economy. Be one of the first to join & earn",
-            cta: "JOIN WNODE WAITLIST",
-            mode: "investor" as ModalMode,
-            icon: Icons.Server,
+            title: "Routing Rewards",
+            description: "Earn from forwarding traffic in the DeWi mesh.",
+            icon: Icons.Zap,
+            borderColor: "border-purple-500/50",
+            iconColor: "text-purple-500"
+        },
+        {
+            title: "Mesh Participation",
+            description: "Nodes earn for uptime and contribution.",
+            icon: Icons.Shield,
+            borderColor: "border-lime-400/50",
+            iconColor: "text-lime-400"
+        },
+        {
+            title: "Stripe Payouts",
+            description: "Daily USD payouts, globally accessible.",
+            icon: Icons.Award,
             borderColor: "border-fuchsia-500/50",
             iconColor: "text-fuchsia-500"
         }
     ];
 
     return (
-        <section className="py-32 bg-black border-t border-white/15">
-            <div className="max-w-7xl mx-auto px-8">
-                {/* Wenode Economic Constitution Section */}
-                <div className="mb-40 p-12 border border-white/25 bg-white/[0.02] rounded-[2.5rem] space-y-10 max-w-5xl mx-auto backdrop-blur-3xl shadow-2xl">
-                    <h3 className="text-2xl font-bold uppercase tracking-[0.3em] text-blue-500 border-b border-white/25 pb-8 text-center">Wenode Economic Constitution</h3>
+        <section className="py-32 bg-black border-t border-white/15 text-center">
+            <div className="max-w-7xl mx-auto px-8 flex flex-col items-center">
+                
+                {/* Earn Section Header */}
+                <div className="text-center mb-16 max-w-4xl mx-auto">
+                    <h2 className="text-3xl md:text-5xl font-bold text-white uppercase tracking-tight mb-6 font-space-grotesk text-center">
+                        Earn USD Daily for Contributing Real Work
+                    </h2>
+                    <p className="text-xl text-slate-400 max-w-4xl mx-auto leading-relaxed text-center">
+                        Node operators receive daily USD payouts via Stripe for compute execution, wireless routing, and mesh participation. Whether you run a phone, laptop, home server, or USB radio node, your hardware becomes part of a sovereign infrastructure layer — and earns for the work it performs.
+                    </p>
+                </div>
+
+                {/* Earn Feature Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-24 w-full">
+                    {earnFeatures.map((f, i) => (
+                        <div key={i} className={`fade-in-section p-10 border ${f.borderColor} rounded-2xl bg-white/[0.01] hover:bg-white/[0.03] transition-all group shadow-[0_0_20px_rgba(0,0,0,0.5)] flex flex-col items-center text-center`}>
+                            <span className={`${f.iconColor} mb-8 block group-hover:scale-110 transition-transform`}><f.icon /></span>
+                            <h3 className="text-xl font-bold mb-4 text-white uppercase tracking-tight font-space-grotesk text-center">{f.title}</h3>
+                            <p className="text-slate-400 leading-relaxed text-base text-center">{f.description}</p>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Wnode Economic Constitution Section */}
+                <div className="mb-32 p-12 border border-white/25 bg-white/[0.02] rounded-[2.5rem] space-y-10 max-w-5xl mx-auto backdrop-blur-3xl shadow-2xl w-full">
+                    <h3 className="text-2xl font-bold uppercase tracking-[0.3em] text-blue-500 border-b border-white/25 pb-8 text-center">Wnode Economic Constitution</h3>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-10">
                         {/* Column 1 */}
@@ -125,45 +157,13 @@ export default function PersonasSection({ onOpenModal }: PersonasSectionProps) {
                     </p>
                 </div>
 
-                <div className="text-center mb-20">
-                    <h2 className="text-4xl md:text-5xl font-bold text-white uppercase tracking-tighter mb-8 font-space-grotesk">
-                        MachineFi – Devices earn for you
-                    </h2>
-                    <p className="text-xl text-slate-300 leading-relaxed max-w-4xl mx-auto mb-16">
-                        MachineFi is where machines become earners with devices proving real work and getting paid for it, autonomously and on‑chain. Wenode turns that idea into reality by letting any device sell compute into a global marketplace with verifiable, trustless payouts, to you
-                    </p>
-                    
-                    <div className="relative group max-w-5xl mx-auto">
-                        <div className="absolute inset-0 bg-blue-500/5 blur-[100px] rounded-full pointer-events-none" />
-                        <img 
-                            src="/machinefi.png" 
-                            alt="MachineFi Ecosystem" 
-                            className="relative w-full h-auto rounded-[2rem] border border-white/15 shadow-2xl transition-all duration-700 group-hover:border-blue-500/20" 
-                        />
-                    </div>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {personas.map((p, i) => (
-                        <div key={i} className={`fade-in-section p-12 border ${p.borderColor} rounded-[10px] bg-white/[0.01] flex flex-col justify-between hover:bg-white/[0.02] transition-all`}>
-                            <div>
-                                <div className="flex items-center gap-4 mb-6">
-                                    <span className={p.iconColor}><p.icon /></span>
-                                    <h3 className="text-3xl font-bold text-white uppercase tracking-tight font-space-grotesk">{p.title}</h3>
-                                </div>
-                                <p className="text-xl text-slate-400 mb-10 leading-relaxed">{p.description}</p>
-                            </div>
-                            <button 
-                                onClick={() => onOpenModal(p.mode)}
-                                className={`w-full font-bold py-5 uppercase tracking-widest transition-all ${
-                                    p.mode === "investor" 
-                                    ? "bg-purple-600 hover:bg-purple-500 text-white shadow-[0_0_40px_rgba(168,85,247,0.4)]" 
-                                    : "bg-transparent border border-blue-500/50 hover:bg-blue-500/10 text-blue-400"
-                                }`}
-                            >
-                                {p.cta}
-                            </button>
-                        </div>
-                    ))}
+                <div className="relative group max-w-5xl mx-auto w-full">
+                    <div className="absolute inset-0 bg-blue-500/5 blur-[100px] rounded-full pointer-events-none" />
+                    <img 
+                        src="/machinefi.png" 
+                        alt="MachineFi Ecosystem" 
+                        className="relative w-full h-auto rounded-[2rem] border border-white/15 shadow-2xl transition-all duration-700 group-hover:border-blue-500/20" 
+                    />
                 </div>
             </div>
         </section>

@@ -10,12 +10,12 @@ export default function CryptoConversionEnginePage() {
         <>
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Crypto Conversion Engine</h1>
             <p className="text-xl text-slate-400 mb-8 border-b border-white/10 pb-8">
-                Strict orchestration of EVM/WASM blockchain listeners, stablecoin settlement, and smart contract execution limits.
+                Strict orchestration of EVM/Native Go blockchain listeners, stablecoin settlement, and smart contract execution limits.
             </p>
 
             <h2 id="formal-execution-semantics">1. Formal Execution Semantics</h2>
             <p>
-                The Crypto Conversion Engine strictly abstracts external blockchain environments. It functions as a synchronous RPC monitoring daemon that reads external state, verifies block depth finality against hardcoded bounds, and deterministically injects parsed deposit events into the internal mesh as strictly typed, integer-bound payloads signed by the Orchestrator's ED25519 institutional key. Injected payloads are processed under a single linear memory model with strict WASM sandboxing (no WASI, no syscalls, no network, no filesystem). The execution follows DAG topological order, restricting pointers to <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>, resolving any faults via uniform trap semantics.
+                The Crypto Conversion Engine strictly abstracts external blockchain environments. It functions as a synchronous RPC monitoring daemon that reads external state, verifies block depth finality against hardcoded bounds, and deterministically injects parsed deposit events into the internal mesh as strictly typed, integer-bound payloads signed by the Orchestrator's ED25519 institutional key. Injected payloads are processed under a single linear memory model with strict Native Go sandboxing (no WASI, no syscalls, no network, no filesystem). The execution follows DAG topological order, restricting pointers to <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>, resolving any faults via uniform trap semantics.
             </p>
 
             <h2 id="invariants">2. Core Invariants</h2>
@@ -97,7 +97,7 @@ message CryptoIngressEvent {
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 text-purple-400">Mesh Insertion</td>
-                            <td className="p-4">WASM sandbox verifies signature, credits user</td>
+                            <td className="p-4">Native Go sandbox verifies signature, credits user</td>
                         </tr>
                     </tbody>
                 </table>

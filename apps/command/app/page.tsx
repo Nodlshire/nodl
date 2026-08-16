@@ -162,15 +162,15 @@ export default function CommandCentrePage() {
 
     return (
         <>
-            <main className="flex-1 px-8 pt-3 pb-20 overflow-y-auto space-y-6 custom-scrollbar relative">
-                <div className="absolute top-0 right-0 w-full max-w-full sm:max-w-md lg:max-w-none h-[500px] bg-cyan-400/5 rounded-full blur-[120px] pointer-events-none -z-10" />
+            <main className="w-full flex-1 px-4 sm:px-6 lg:px-8 pt-4 pb-28 overflow-y-auto space-y-6 custom-scrollbar relative">
+                <div className="absolute top-0 right-0 w-full h-[500px] bg-cyan-400/5 rounded-full blur-[120px] pointer-events-none -z-10" />
 
                 <div className="flex items-center gap-6 justify-end">
                     {error && <span className="text-[10px] text-red-500 uppercase font-bold tracking-widest">{error}</span>}
                 </div>
 
-                {/* Row 1: Vitals + AI */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full -mt-1.5 [&>div]:!py-3.5">
+                {/* Row 1: Vitals + AI (5 columns side-to-side) */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4 lg:gap-6 w-full -mt-1.5 [&>div]:!py-3.5">
                     {metrics.map((m) => (
                         <MetricCard
                             key={m.label}
@@ -185,8 +185,8 @@ export default function CommandCentrePage() {
                     <AiIntelligencePanel />
                 </div>
 
-                {/* Row 2: Operational Metrics */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
+                {/* Row 2: Operational Metrics (5 columns side-to-side) */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4 lg:gap-6 w-full">
                     {operational.map((op) => (
                         <MetricCard
                             key={op.label}
@@ -200,7 +200,7 @@ export default function CommandCentrePage() {
                 </div>
 
                 {/* Full-Width Map Panel */}
-                <div className="w-full overflow-x-auto">
+                <div className="w-full rounded-xl overflow-hidden border border-neutral-800 shadow-2xl">
                     <FleetMap
                         nodes={nodes}
                         nodlrs={nodlrs}
@@ -211,7 +211,7 @@ export default function CommandCentrePage() {
             </main>
 
             {/* Telemetry Feed */}
-            <div className={`fixed bottom-0 right-0 lg:left-64 bg-neutral-950 border-t border-neutral-800 z-[60] transition-all duration-300 ${isTelemetryOpen ? 'h-64' : 'h-10'}`}>
+            <div className={`fixed bottom-0 left-0 right-0 lg:left-64 bg-neutral-950 border-t border-neutral-800 z-[60] transition-all duration-300 ${isTelemetryOpen ? 'h-64' : 'h-10'}`}>
                 <button 
                     onClick={() => setIsTelemetryOpen(!isTelemetryOpen)}
                     className="w-full h-10 flex items-center justify-between px-8 hover:bg-neutral-900 transition-colors group"

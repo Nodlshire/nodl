@@ -7,16 +7,43 @@ export default function Lifecycle() {
         <>
             <div className="border-b border-slate-800 pb-8 mb-12">
                 <h1 className="text-5xl font-space-grotesk font-bold tracking-tighter mb-4 text-white">Integration Lifecycle</h1>
-                <p className="text-xl text-slate-400 font-light leading-relaxed">
+                <p className="text-xl text-slate-400 font-light leading-relaxed mb-6 leading-relaxed">
                     The strict, cryptographically verified pipeline that promotes a developer's idea into a globally executed reality on the Wnode Mesh.
                 </p>
+            {/* Contextual Narrative Section (What, Why, How) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-10 not-prose">
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-emerald-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">WHAT IT IS</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Integration Lifecycle Overview</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Core architectural specification detailing the operational mechanics, data protocols, and determinism constraints of Integration Lifecycle within the Wnode mesh.
+                    </p>
+                </div>
+
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-cyan-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">WHY IT MATTERS</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Architectural Purpose</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Ensures zero-custody verification, high-throughput execution, and fault-tolerant node consensus across Earth &amp; Space mesh topologies.
+                    </p>
+                </div>
+
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-purple-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-purple-400">HOW IT OPERATES</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Native Go Engine</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Executed via SECCOMP-restricted Native Go modules (`linux-amd64`), validated with mTLS telemetry signatures and HMAC routing epochs.
+                    </p>
+                </div>
+            </div>
+
             </div>
 
             <h2 id="conceptual-overview">Conceptual Overview & Rationale</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 In a typical startup, developers push code to a staging server, click around to test it, and then deploy it to production. In a decentralized Sovereign Mesh, there is no "staging server" that mimics 5,000 global bare-metal operators. 
             </p>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 <strong>The Rationale:</strong> The lifecycle of an integration must be perfectly determinable via the CI/CD pipeline before it ever touches a real node. The Substrate Generation pipeline acts as a dry-run factory, ensuring that if it compiles locally, it will execute flawlessly globally.
             </p>
 
@@ -40,7 +67,7 @@ export default function Lifecycle() {
                     <path d="M 320 120 L 390 120" fill="none" stroke="#64748b" strokeWidth="2" markerEnd="url(#arrowLife)" />
 
                     <rect x="390" y="100" width="120" height="40" rx="4" fill="#0f172a" stroke="#f59e0b" strokeWidth="2" />
-                    <text x="450" y="125" fill="white" fontSize="12" textAnchor="middle">3. WASM Authoring</text>
+                    <text x="450" y="125" fill="white" fontSize="12" textAnchor="middle">3. Native Go Authoring</text>
 
                     <path d="M 510 120 L 580 120" fill="none" stroke="#64748b" strokeWidth="2" markerEnd="url(#arrowLife)" />
 
@@ -112,12 +139,12 @@ jobs:
             </ul>
 
             <h2 id="security-boundaries">Security Boundaries & Invariants</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 <strong>Invariant:</strong> The Orchestrator operates on a Pull-Model for ingestion. It verifies the GitHub webhook cryptographic signature to ensure malicious actors cannot forge a "PR Merged" event and corrupt the Orchestrator's internal routing table.
             </p>
 
             <h2 id="performance">Performance Characteristics</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 The time from a GitHub Merge to Global Mesh Availability is roughly <code>45 seconds</code>. This includes the Orchestrator database sync (<code>&lt;2s</code>), the global WebSocket broadcast (<code>&lt;3s</code>), and the Node Operators executing <code>git pull</code> and running the Go compiler locally (<code>~40s</code>).
             </p>
 
@@ -125,11 +152,11 @@ jobs:
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8 not-prose">
                 <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl">
                     <h4 className="text-white font-bold mb-2">Operator Responsibilities</h4>
-                    <p className="text-sm text-slate-400">Keep the <code>nodld</code> daemon running. It automatically manages the git synchronization and compilation hooks. Intervening manually during a mesh upgrade will break the node.</p>
+                    <p className="text-sm text-slate-400 mb-6 leading-relaxed">Keep the <code>nodld</code> daemon running. It automatically manages the git synchronization and compilation hooks. Intervening manually during a mesh upgrade will break the node.</p>
                 </div>
                 <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl">
                     <h4 className="text-white font-bold mb-2">Developer Responsibilities</h4>
-                    <p className="text-sm text-slate-400">Respect the CI/CD pipeline. Do not push WASM binaries that haven't been thoroughly profiled locally. A memory leak merged into main will immediately trigger network-wide faults.</p>
+                    <p className="text-sm text-slate-400 mb-6 leading-relaxed">Respect the CI/CD pipeline. Do not push Native Go binaries that haven't been thoroughly profiled locally. A memory leak merged into main will immediately trigger network-wide faults.</p>
                 </div>
             </div>
 
@@ -143,7 +170,7 @@ jobs:
 }`}</CodeBlock>
 
             <h2 id="cross-component">Cross-Component Interactions</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 The lifecycle integrates GitHub infrastructure, Orchestrator APIs, Node Daemon background workers, and Go's native compilation toolchain (<code>go build</code>) executed dynamically on the operator's machine.
             </p>
 

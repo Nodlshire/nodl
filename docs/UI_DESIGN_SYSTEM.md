@@ -1,4 +1,15 @@
 # UI DESIGN SYSTEM
+
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **UI DESIGN SYSTEM** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
 This document is the non-negotiable Single Source of Truth (SOT) for all UI/UX components, CSS tokens, layout structures, and responsiveness across the Wnode monorepo. No component or page may deviate from these specifications.
 
 ## Typography Standard

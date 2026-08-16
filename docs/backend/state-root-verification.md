@@ -1,5 +1,16 @@
 # State-Root Verification
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **State-Root Verification** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## 1. Component Overview
 The State-Root Verification subsystem anchors the off-chain Sovereign Mesh to the on-chain reality of specific blockchain networks like Ethereum.
 

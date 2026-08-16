@@ -15,7 +15,7 @@ export default function SubstrateGeneratorsPage() {
 
             <h2 id="formal-execution-semantics">1. Formal Execution Semantics</h2>
             <p>
-                The `intgen` compiler parses declarative YAML into a pure-functional AST. The AST mapping is deterministically ordered lexicographically by key to guarantee a byte-identical code output across `linux/amd64`, `linux/arm64`, and `darwin/arm64` hosts. The memory model restricts the generated Rust structures to `[#repr(C)]` bounded alignment without heap-allocated vectors, ensuring zero garbage collection overhead.
+                The `intgen` compiler parses declarative YAML into a pure-functional AST. The AST mapping is deterministically ordered lexicographically by key to guarantee a byte-identical code output across `linux/amd64`, `linux/arm64`, and `darwin/arm64` hosts. The memory model restricts the generated Go structures to `[#repr(C)]` bounded alignment without heap-allocated vectors, ensuring zero garbage collection overhead.
             </p>
 
             <h2 id="invariants">2. Core Invariants</h2>
@@ -55,12 +55,12 @@ export default function SubstrateGeneratorsPage() {
 
             <h2 id="formal-interfaces">3. Formal Interface Definitions</h2>
             <p>
-                The `intgen` generator outputs a rigid JSON metadata file mapping the pointer sizes of the generated WASM binary, required by the Orchestrator for dynamic loading:
+                The `intgen` generator outputs a rigid JSON metadata file mapping the pointer sizes of the generated Native Go binary, required by the Orchestrator for dynamic loading:
             </p>
             <div className="bg-[#0f172a] rounded-lg p-6 border border-white/10 font-mono text-sm mb-8 text-emerald-300">
 <pre className="m-0 bg-transparent border-0">{`{
   "substrate_name": "wnode-token",
-  "wasm_export": "_start_execution",
+  "Native Go_export": "_start_execution",
   "memory_layout": {
     "payload_offset": 0,
     "payload_max_bytes": 1024,
@@ -90,7 +90,7 @@ export default function SubstrateGeneratorsPage() {
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 text-emerald-400">Target Output</td>
-                            <td className="p-4">Token_bg.wasm (1.2 MB)</td>
+                            <td className="p-4">Token_bg.native-go (1.2 MB)</td>
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 text-blue-400">Target Go Stubs</td>
@@ -138,7 +138,7 @@ export default function SubstrateGeneratorsPage() {
 
             <h2 id="operator-lifecycle">6. Operator Lifecycle within Substrate</h2>
             <p>
-                Node operators do not compile substrates manually. They ingest pre-compiled WASM binaries verified by the DAO. The operator lifecycle involves `Fetching_Substrate` &rarr; `Verifying_Hash` &rarr; `JIT_Compilation` &rarr; `Serving_State`.
+                Node operators do not compile substrates manually. They ingest pre-compiled Native Go binaries verified by the DAO. The operator lifecycle involves `Fetching_Substrate` &rarr; `Verifying_Hash` &rarr; `JIT_Compilation` &rarr; `Serving_State`.
             </p>
 
             <h2 id="economic-model">7. Economic Model</h2>
@@ -154,13 +154,13 @@ export default function SubstrateGeneratorsPage() {
             <h2 id="performance">9. Performance Envelopes</h2>
             <ul className="list-disc pl-6 mb-6 text-slate-300">
                 <li><strong>Latency Bounds:</strong> <code>ExecTime &le; 50ms</code> for AST Parsing.</li>
-                <li><strong>Warm vs Cold Start:</strong> <code>ColdStart = initial WASM instantiation</code> &le; 2ms.</li>
+                <li><strong>Warm vs Cold Start:</strong> <code>ColdStart = initial Native Go instantiation</code> &le; 2ms.</li>
                 <li><strong>Resource Pressure:</strong> Constrained <code>mem_pressure_mb</code> during LLVM compilation.</li>
             </ul>
 
             <h2 id="cross-component">10. Cross-Component Contracts</h2>
             <p>
-                The compiler outputs two hard contracts: the `.wasm` file for the `nodld` runtime, and the `.go` stubs for the Earth Mesh API gateway. The generated `.wasm` rigidly enforces the canonical <code>(ptr: i32, len: i32)</code> pointer-length ABI, ensuring strict linear memory boundaries and zero host-level bindings (no WASI or syscalls). The timing guarantee assumes that once a new WASM hash is proposed via the DAO, it takes 48 hours for the network to gossip and cache the new binary globally.
+                The compiler outputs two hard contracts: the `.native-go` file for the `nodld` runtime, and the `.go` stubs for the Earth Mesh API gateway. The generated `.native-go` rigidly enforces the canonical <code>(ptr: i32, len: i32)</code> pointer-length ABI, ensuring strict linear memory boundaries and zero host-level bindings (no WASI or syscalls). The timing guarantee assumes that once a new Native Go hash is proposed via the DAO, it takes 48 hours for the network to gossip and cache the new binary globally.
             </p>
 
             <h2 id="formal-diagrams">11. Formal Compiler Pipeline DAG</h2>
@@ -186,7 +186,7 @@ export default function SubstrateGeneratorsPage() {
 
                     <line x1="570" y1="80" x2="650" y2="80" stroke="#444" strokeWidth="1.5" markerEnd="url(#arrowGen)" />
                     <rect x="650" y="60" width="100" height="40" rx="4" fill="#111" stroke="#444" strokeWidth="1.5" />
-                    <text x="700" y="85" fill="#888" fontSize="12" textAnchor="middle">Target .wasm</text>
+                    <text x="700" y="85" fill="#888" fontSize="12" textAnchor="middle">Target .native-go</text>
 
                     <line x1="350" y1="170" x2="450" y2="220" stroke="#444" strokeWidth="1.5" markerEnd="url(#arrowGen)" />
                     <rect x="450" y="200" width="120" height="40" rx="4" fill="#111" stroke="#444" strokeWidth="1.5" />

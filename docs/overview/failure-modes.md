@@ -1,5 +1,16 @@
 # Wnode Architecture — Failure Modes
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Wnode Architecture — Failure Modes** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ![diagram](/diagrams/failure-modes-map.png)
 
 The Wnode Sovereign Mesh is designed to fail deterministically, safely, and verifiably.  
@@ -35,7 +46,7 @@ All outbound I/O is validated against:
 - daemon-side capability registry  
 - deterministic host-function boundaries  
 
-If a WASM module attempts unauthorized I/O:
+If a Native Go module attempts unauthorized I/O:
 - the operation traps instantly  
 - the module halts deterministically  
 - no partial execution occurs  
@@ -45,9 +56,9 @@ This is a constitutional safety invariant.
 
 ---
 
-## WASM Sandbox Traps
+## Native Go Sandbox Traps
 
-The Wazero runtime traps:
+The SECCOMP Sandbox runtime traps:
 - panics  
 - illegal memory access  
 - invalid host-function calls  

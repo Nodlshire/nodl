@@ -1,5 +1,16 @@
 # Wnode Architecture — Security Envelope
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Wnode Architecture — Security Envelope** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 <video src="/diagrams/security-envelope-overview.mp4" autoplay loop muted playsinline></video>
 
 The Security Envelope is the constitutional safety model of Wnode’s sovereign compute mesh.  
@@ -49,7 +60,7 @@ Unauthorized operations trap instantly.
 ### 4. Signed & Versioned Control
 All control surfaces are signed:
 - Routing Epochs
-- WASM modules
+- Native Go modules
 - telemetry envelopes
 - capability declarations
 
@@ -74,7 +85,7 @@ The envelope consists of seven deterministic layers:
 3. **Routing Epoch Validation**  
 4. **Capability Boundary Enforcement**  
 5. **Forbidden Syscall Firewall**  
-6. **Deterministic Runtime Validation (Wazero)**  
+6. **Deterministic Runtime Validation (SECCOMP Sandbox)**  
 7. **Zero‑Custody Telemetry Emission**
 
 Each layer is constitutional and cannot be bypassed.
@@ -169,7 +180,7 @@ Security boundary enforcement follows a strict deterministic sequence:
 5. Determinism check  
 6. Memory & size constraint check  
 7. Signature verification  
-8. Runtime admission (Wazero)  
+8. Runtime admission (SECCOMP Sandbox)  
 
 No randomness.  
 No heuristics.  
@@ -177,9 +188,9 @@ No nondeterministic ordering.
 
 ---
 
-## Runtime Admission (Wazero)
+## Runtime Admission (SECCOMP Sandbox)
 
-Wazero enforces:
+SECCOMP Sandbox enforces:
 - sandboxing  
 - memory limits  
 - capability boundaries  

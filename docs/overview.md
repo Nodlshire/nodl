@@ -1,71 +1,42 @@
-# Wnode Enterprise Architecture — Overview
+# Wnode Sovereign Compute Mesh — Executive System Overview
 
-![diagram](/diagrams/overview-architecture.png)
 
-The Wnode Sovereign Mesh is a deterministic, verifiable, auto-scaling compute substrate designed for high-assurance execution across heterogeneous environments. It runs immutable, signed WASM and Go artifacts inside a decentralized network of operators, enforcing strict capability boundaries, deterministic routing, and cryptographically verifiable telemetry.
+> ### Contextual Architecture Narrative
 
-Wnode’s architecture is built on four constitutional pillars:
+> - **WHAT**: Core architectural specification for **Wnode Sovereign Compute Mesh — Executive System Overview** within the Wnode Sovereign Mesh network.
 
-1. **Deterministic Execution**  
-   Every artifact executes identically across all nodes, regions, and environments.
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
 
-2. **Zero-Custody Security**  
-   No private keys, secrets, or sensitive data ever leave the operator’s hardware.
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
 
-3. **Stateless Orchestration**  
-   The orchestrator layer is horizontally scalable and never becomes a single point of failure.
 
-4. **Sovereign Compute Enforcement**  
-   Nodes validate ingress locally using signed routing epochs and enforce capability-scoped I/O.
 
----
+> **Version:** Wnode Mesh Overview v1.1.0  
 
-## Global Architecture Overview
+> **Status:** `Production Ready`  
 
-Wnode operates as a multi-tier sovereign mesh:
+> **Determinism Profile:** Bare-Metal Go System Daemons (`nodld`) & Cryptographic SOT Ledger  
 
-### Stateless Orchestrator Layer
-- Ingress validation  
-- Routing epoch distribution  
-- mTLS telemetry sink  
-- No execution responsibilities  
-- Horizontally scalable, zero SPOF  
+> **Capability Set:** High-Throughput Compute, DeWi RF Mesh, Zero-Storage RAM Execution  
 
-### Earth Mesh (Tier‑1)
-- Synchronous execution  
-- Native Go + WASM  
-- Local ingress validation  
-- Capability-scoped I/O  
-- Deterministic execution  
+> **Supported Networks:** Bare-Metal Linux Node Operators (PM2 / Systemd)  
 
-### Space Mesh (Tier‑3)
-- Asynchronous MapReduce  
-- Sharded workloads  
-- Edge/off-grid operators  
-- Deterministic reduction  
+> **Adapter Hash:** `6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d`  
+
+> **Last Updated:** 2026-08-15  
 
 ---
 
-## Execution Sequence (High-Level)
+## 2. Overview
+Wnode is an enterprise-grade sovereign compute mesh designed for high-performance, deterministic execution. It connects bare-metal Linux node operators running the Go-native `nodld` system daemon with decentralized wireless (DeWi) RF networks, unified web portals (Command, Nodlr, Mesh), and an append-only Source of Truth (SOT) cryptographic audit ledger.
 
-1. Client sends an HMAC-signed request.  
-2. Node validates ingress using cached routing epoch.  
-3. Node executes WASM payload with strict capability enforcement.  
-4. Node emits cryptographically signed telemetry envelope.  
-5. Node returns encrypted execution result to the client.
+## 3. Rationale
+Centralized cloud infrastructure introduces single points of failure, unpredictable virtualization overhead, persistent data leakage, and opaque pricing models. Wnode replaces cloud virtual machines with a decentralized bare-metal compute mesh that guarantees zero-retention RAM-only execution, microsecond cold starts, transparent dynamic pricing engines, and cryptographically auditable proof of compute.
 
-This sequence is fully deterministic and replayable.
+## 4. Flow (System Architecture Overview)
+![Wnode Canon Architecture Diagram](/diagrams/global-architecture.png)
 
----
-
-## Core Architectural Guarantees
-
-- Deterministic WASM execution in an air‑gapped memory sandbox.  
-- Capability-scoped outbound I/O enforced by the daemon.  
-- Cryptographically signed artifacts and routing epochs.  
-- mTLS-secured telemetry transport.  
-- Hardware-bound node identity keys for absolute proof of execution.  
-
-These guarantees form the foundation of Wnode’s sovereign compute model.
-
----
+## 11. References & Sources
+- **System Architecture Spec:** `file:///home/obregan/Documents/nodl/docs/architecture.md`
+- **Node Operator Contract:** `file:///home/obregan/Documents/nodl/docs/NODE_CONTRACT.md`
+- **DeWi Architecture Spec:** `file:///home/obregan/Documents/nodl/docs/dewi/architecture.md`

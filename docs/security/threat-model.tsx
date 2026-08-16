@@ -18,7 +18,7 @@ export default function ThreatModelPage() {
                 <li><strong className="text-white">Definition:</strong> The formal mapping of Byzantine Fault Tolerance bounds and adversarial matrices.</li>
                 <li><strong className="text-white">Responsibilities:</strong> Defines systemic algorithmic responses to adversarial state disruption.</li>
                 <li><strong className="text-white">Guarantees:</strong> State mutation accuracy is bound strictly by the `&gt; 2/3` execution quorum threshold.</li>
-                <li><strong className="text-white">Requirements:</strong> Cryptographic signatures, pre-execution checksum validations, single linear memory model, DAG topological ordering, strict WASM sandboxing (no WASI, syscalls, network, or filesystem), <code>Ptr &isin; [0, HeapSize)</code>, <code>Len &le; MaxBlock</code>, and deterministic trap semantics.</li>
+                <li><strong className="text-white">Requirements:</strong> Cryptographic signatures, pre-execution checksum validations, single linear memory model, DAG topological ordering, strict Native Go sandboxing (no WASI, syscalls, network, or filesystem), <code>Ptr &isin; [0, HeapSize)</code>, <code>Len &le; MaxBlock</code>, and deterministic trap semantics.</li>
                 <li><strong className="text-red-400">Prohibitions:</strong> Hardware enclave reliance and optimistic trust architectures.</li>
             </ul>
 
@@ -45,13 +45,13 @@ export default function ThreatModelPage() {
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 font-mono text-blue-400">Code Provenance</td>
-                            <td className="p-4">blake3(WASM) &equiv; Registry(CID)</td>
+                            <td className="p-4">blake3(Native Go) &equiv; Registry(CID)</td>
                             <td className="p-4">Pre-Execution blake3 Checksum</td>
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 font-mono text-blue-400">Memory Integrity</td>
-                            <td className="p-4">WASM_Bounds(Host) == Hard Fenced</td>
-                            <td className="p-4">Cgroups v2 & Wazero Linear Memory</td>
+                            <td className="p-4">Native Go_Bounds(Host) == Hard Fenced</td>
+                            <td className="p-4">Cgroups v2 & SECCOMP Sandbox Linear Memory</td>
                         </tr>
                     </tbody>
                 </table>
@@ -71,7 +71,7 @@ export default function ThreatModelPage() {
 
             <h2 id="boundaries">5. Boundaries</h2>
             <p>
-                The trust boundary terminates at the WASM binary. Anything outside the Wazero runtime (including the host OS, CPU architecture, and network stack) is treated as a malicious actor.
+                The trust boundary terminates at the Native Go binary. Anything outside the SECCOMP Sandbox runtime (including the host OS, CPU architecture, and network stack) is treated as a malicious actor.
             </p>
 
             <h2 id="threat-model">6. Threat Model Detail</h2>
@@ -88,7 +88,7 @@ export default function ThreatModelPage() {
                 <strong>Attack Surfaces:</strong>
                 <ul className="list-disc pl-6 mt-2 text-slate-300">
                     <li>Network-level: BFT quorum sybil attacks.</li>
-                    <li>Execution-level: Malicious WASM binary instantiation.</li>
+                    <li>Execution-level: Malicious Native Go binary instantiation.</li>
                     <li>Economic-level: Denial of service via free compute.</li>
                     <li>Governance-level: Bypassing decentralized registry logic.</li>
                     <li>Telemetry-level: Forged BFT consensus states.</li>
@@ -109,7 +109,7 @@ export default function ThreatModelPage() {
             <h2 id="performance">8. Performance Envelopes</h2>
             <ul className="list-disc pl-6 mb-8 text-slate-300">
                 <li><strong>Latency Bounds:</strong> Cryptographic verification (ED25519) consumes <code>ExecTime &le; 50µs</code> per payload.</li>
-                <li><strong>Resource Pressure:</strong> Memory sandbox bounds checking adds <code>cpu_pressure_pct &le; 0%</code> runtime overhead via Wazero AOT compilation.</li>
+                <li><strong>Resource Pressure:</strong> Memory sandbox bounds checking adds <code>cpu_pressure_pct &le; 0%</code> runtime overhead via SECCOMP Sandbox AOT compilation.</li>
             </ul>
 
             <h2 id="cross-component">9. Cross-Component Interactions</h2>
@@ -158,7 +158,7 @@ export default function ThreatModelPage() {
                     <text x="425" y="45" fill="#ccc" fontSize="14" textAnchor="middle" fontWeight="bold">Security Boundary (mTLS + Nonce)</text>
 
                     <circle cx="425" cy="100" r="30" fill="#111" stroke="#444" strokeWidth="1.5" />
-                    <text x="425" y="105" fill="#888" fontSize="11" textAnchor="middle">WASM</text>
+                    <text x="425" y="105" fill="#888" fontSize="11" textAnchor="middle">Native Go</text>
 
                     <line x1="300" y1="70" x2="330" y2="100" stroke="#444" strokeWidth="1.5" />
                     <line x1="300" y1="130" x2="330" y2="100" stroke="#444" strokeWidth="1.5" />

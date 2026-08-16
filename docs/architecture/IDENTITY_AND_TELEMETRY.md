@@ -1,5 +1,16 @@
 # Identity and Telemetry Architecture
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Identity and Telemetry Architecture** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## Multi-Role WUIDs
 The Sovereign Mesh employs a SOT-First, multi-role identity graph anchored entirely within the Go `bbolt` backend. A single cryptographic entity (WUID) seamlessly governs authorization across all node interfaces—including the Command portal, Founder dashboards, Owner profiles, standard Nodlr roles, and the physical Mesh client. 
 

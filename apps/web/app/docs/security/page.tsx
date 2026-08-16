@@ -7,17 +7,44 @@ export default function SecurityModel() {
         <>
             <div className="border-b border-slate-800 pb-8 mb-12">
                 <h1 className="text-5xl font-space-grotesk font-bold tracking-tighter mb-4 text-white">Security Model</h1>
-                <p className="text-xl text-slate-400 font-light leading-relaxed">
+                <p className="text-xl text-slate-400 font-light leading-relaxed mb-6 leading-relaxed">
                     Zero-trust architecture enforcing strict boundaries at ingress, execution, and telemetry. The network assumes all nodes are potentially malicious.
                 </p>
+            {/* Contextual Narrative Section (What, Why, How) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-10 not-prose">
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-emerald-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">WHAT IT IS</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Security Model Overview</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Core architectural specification detailing the operational mechanics, data protocols, and determinism constraints of Security Model within the Wnode mesh.
+                    </p>
+                </div>
+
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-cyan-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">WHY IT MATTERS</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Architectural Purpose</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Ensures zero-custody verification, high-throughput execution, and fault-tolerant node consensus across Earth &amp; Space mesh topologies.
+                    </p>
+                </div>
+
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-purple-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-purple-400">HOW IT OPERATES</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Native Go Engine</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Executed via SECCOMP-restricted Native Go modules (`linux-amd64`), validated with mTLS telemetry signatures and HMAC routing epochs.
+                    </p>
+                </div>
+            </div>
+
             </div>
 
             <h2 id="conceptual-overview">Conceptual Overview & Rationale</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 In a permissionless or semi-permissioned network, node operators cannot be trusted. If an operator discovers a high-value DeFi liquidation payload passing through their node, the incentive to intercept, rewrite, or delay that payload is massive.
             </p>
-            <p>
-                <strong>The Rationale:</strong> The Wnode security model strips trust from the operator entirely. We achieve this through cryptographic ingress envelopes (HMAC + Nonces), deterministic Wazero execution sandboxing, and Quorum Reduction.
+            <p className="text-slate-300 leading-relaxed mb-6">
+                <strong>The Rationale:</strong> The Wnode security model strips trust from the operator entirely. We achieve this through cryptographic ingress envelopes (HMAC + Nonces), deterministic SECCOMP Sandbox execution sandboxing, and Quorum Reduction.
             </p>
 
             <h2 id="architecture-diagram">The Security Envelope Architecture</h2>
@@ -47,10 +74,10 @@ export default function SecurityModel() {
                     <text x="400" y="80" fill="white" fontSize="14" fontWeight="bold" textAnchor="middle">Node Daemon (nodld)</text>
 
                     <rect x="330" y="110" width="140" height="160" rx="4" fill="#1e293b" stroke="#8b5cf6" strokeWidth="2" strokeDasharray="2 2" />
-                    <text x="400" y="135" fill="#8b5cf6" fontSize="12" fontWeight="bold" textAnchor="middle">Wazero Sandbox</text>
+                    <text x="400" y="135" fill="#8b5cf6" fontSize="12" fontWeight="bold" textAnchor="middle">SECCOMP Sandbox Sandbox</text>
 
                     <rect x="350" y="160" width="100" height="80" rx="4" fill="#0f172a" stroke="#cbd5e1" strokeWidth="1" />
-                    <text x="400" y="190" fill="white" fontSize="10" textAnchor="middle">WASM Execution</text>
+                    <text x="400" y="190" fill="white" fontSize="10" textAnchor="middle">Native Go Execution</text>
                     <text x="400" y="210" fill="#f43f5e" fontSize="10" textAnchor="middle">No SYS-CALLS</text>
 
                     <path d="M 490 175 L 590 175" fill="none" stroke="#64748b" strokeWidth="2" markerEnd="url(#arrowSec)" />
@@ -113,12 +140,12 @@ export default function SecurityModel() {
     return nil
 }`}</CodeBlock>
 
-            <CodeBlock language="go" title="internal/node/wazero_security.go (Wazero Sandbox Constraints)">{`// Wnode strict Wazero constraints
-func createSecureConfig() wazero.ModuleConfig {
-    return wazero.NewModuleConfig().
+            <CodeBlock language="go" title="internal/node/wazero_security.go (SECCOMP Sandbox Sandbox Constraints)">{`// Wnode strict SECCOMP Sandbox constraints
+func createSecureConfig() seccomp-sandbox.ModuleConfig {
+    return seccomp-sandbox.NewModuleConfig().
         // No filesystem access
-        WithFS(wazero.NewEmptyFS()).
-        // No environment variables passed to the WASM
+        WithFS(seccomp-sandbox.NewEmptyFS()).
+        // No environment variables passed to the Native Go
         WithEnv("NODE_ENV", "production").
         // Pre-allocate memory bounds to prevent memory bombs
         WithMemoryLimitPages(128) // 128 pages = 8MB
@@ -127,19 +154,19 @@ func createSecureConfig() wazero.ModuleConfig {
             <h2 id="failure-modes">Failure Modes & Error Handling</h2>
             <ul>
                 <li><strong>Timing Attacks:</strong> Standard string comparison (<code>==</code>) fails at the first incorrect character, allowing attackers to guess HMAC hashes byte-by-byte via latency measuring. The Orchestrator uses <code>subtle.ConstantTimeCompare</code> to guarantee uniform execution time.</li>
-                <li><strong>Memory Bombs:</strong> A malicious WASM binary might try to allocate 100GB of RAM to crash the Earth Mesh node. The <code>WithMemoryLimitPages</code> configuration traps the allocation instruction at the WebAssembly VM layer, returning an error to Go without touching host OS memory.</li>
+                <li><strong>Memory Bombs:</strong> A malicious Native Go binary might try to allocate 100GB of RAM to crash the Earth Mesh node. The <code>WithMemoryLimitPages</code> configuration traps the allocation instruction at the WebAssembly VM layer, returning an error to Go without touching host OS memory.</li>
             </ul>
 
             <h2 id="security-boundaries">Security Boundaries & Invariants</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 <strong>Invariant 1:</strong> The Node Operator never sees the HMAC secret. Signatures are validated by the Orchestrator before the payload is placed on the wire.
             </p>
-            <p>
-                <strong>Invariant 2:</strong> WASM modules have no system calls. They cannot read `/etc/passwd`, they cannot open a TCP socket, and they cannot access the system clock (which prevents complex cryptographic implementations inside WASM that rely on secure randomness without explicit host imports).
+            <p className="text-slate-300 leading-relaxed mb-6">
+                <strong>Invariant 2:</strong> Native Go modules have no system calls. They cannot read `/etc/passwd`, they cannot open a TCP socket, and they cannot access the system clock (which prevents complex cryptographic implementations inside Native Go that rely on secure randomness without explicit host imports).
             </p>
 
             <h2 id="performance">Performance Characteristics</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 HMAC-SHA256 validation is exceptionally fast, processing at ~500MB/s on standard CPUs. Nonce validation requires a single Redis <code>GET</code> operation (&lt;1ms). The security envelope adds a total of ~1.5ms overhead to the entire request lifecycle.
             </p>
 
@@ -147,11 +174,11 @@ func createSecureConfig() wazero.ModuleConfig {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8 not-prose">
                 <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl">
                     <h4 className="text-white font-bold mb-2">Operator Responsibilities</h4>
-                    <p className="text-sm text-slate-400">Protect the <code>DeviceToken</code>. If compromised, an attacker can siphon routed payloads meant for your node. Rotate the token via the CLI if you suspect a breach.</p>
+                    <p className="text-sm text-slate-400 mb-6 leading-relaxed">Protect the <code>DeviceToken</code>. If compromised, an attacker can siphon routed payloads meant for your node. Rotate the token via the CLI if you suspect a breach.</p>
                 </div>
                 <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl">
                     <h4 className="text-white font-bold mb-2">Developer Responsibilities</h4>
-                    <p className="text-sm text-slate-400">Keep your HMAC secret safe in your own environment (AWS KMS, Hashicorp Vault). Do not embed it in client-side code (browsers or mobile apps). SDK usage should be backend-only.</p>
+                    <p className="text-sm text-slate-400 mb-6 leading-relaxed">Keep your HMAC secret safe in your own environment (AWS KMS, Hashicorp Vault). Do not embed it in client-side code (browsers or mobile apps). SDK usage should be backend-only.</p>
                 </div>
             </div>
 
@@ -165,7 +192,7 @@ func createSecureConfig() wazero.ModuleConfig {
 }`}</CodeBlock>
 
             <h2 id="cross-component">Cross-Component Interactions</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 The security model forms a hard boundary between the external world and the Orchestrator, and a second hard boundary between the Orchestrator and the Node Daemon.
             </p>
 

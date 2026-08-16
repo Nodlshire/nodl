@@ -1,5 +1,16 @@
 # Nodlr Onboarding
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Nodlr Onboarding** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## Overview
 Nodlrs are the operators of nodes and the economic participants who earn from compute.  
 This document defines the **onboarding process** for new nodlrs — from first entry to full operational readiness — without repeating identity, attribution, pricing, or governance details covered elsewhere.

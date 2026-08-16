@@ -7,16 +7,43 @@ export default function ThreatModel() {
         <>
             <div className="border-b border-slate-800 pb-8 mb-12">
                 <h1 className="text-5xl font-space-grotesk font-bold tracking-tighter mb-4 text-white">Threat Model & Guarantees</h1>
-                <p className="text-xl text-slate-400 font-light leading-relaxed">
+                <p className="text-xl text-slate-400 font-light leading-relaxed mb-6 leading-relaxed">
                     A comprehensive analysis of adversarial vectors targeting the Wnode Mesh and the cryptographic invariants mitigating them.
                 </p>
+            {/* Contextual Narrative Section (What, Why, How) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-10 not-prose">
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-emerald-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">WHAT IT IS</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Threat Model & Guarantees Overview</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Core architectural specification detailing the operational mechanics, data protocols, and determinism constraints of Threat Model & Guarantees within the Wnode mesh.
+                    </p>
+                </div>
+
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-cyan-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">WHY IT MATTERS</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Architectural Purpose</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Ensures zero-custody verification, high-throughput execution, and fault-tolerant node consensus across Earth &amp; Space mesh topologies.
+                    </p>
+                </div>
+
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-purple-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-purple-400">HOW IT OPERATES</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Native Go Engine</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Executed via SECCOMP-restricted Native Go modules (`linux-amd64`), validated with mTLS telemetry signatures and HMAC routing epochs.
+                    </p>
+                </div>
+            </div>
+
             </div>
 
             <h2 id="conceptual-overview">Conceptual Overview & Rationale</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 Securing a centralized database requires a perimeter firewall. Securing a decentralized compute mesh requires mitigating attacks from <em>within</em> the perimeter. Node Operators have physical root access to the machines executing the network's code.
             </p>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 <strong>The Rationale:</strong> We assume every Node Operator is a highly sophisticated, well-funded adversary attempting to extract value, spoof executions, or disrupt network routing. The Threat Model explicitly defines these vectors and the architectural walls preventing them.
             </p>
 
@@ -108,17 +135,17 @@ func CalculateQuorum(results []ShardResult, requiredThreshold int) (string, erro
 
             <h2 id="failure-modes">Threat Vectors & Mitigations</h2>
             <ul>
-                <li><strong>Vector: Malicious Execution Sandbox Escape.</strong> An attacker crafts a WASM payload designed to exploit Wazero and gain root on the Operator machine. <br/><strong>Mitigation:</strong> Wazero is written in pure Go without CGO. There are no buffer overflows or memory unsafety issues common in C/C++ runtimes. Host system access is explicitly zeroed out at initialization.</li>
+                <li><strong>Vector: Malicious Execution Sandbox Escape.</strong> An attacker crafts a Native Go payload designed to exploit SECCOMP Sandbox and gain root on the Operator machine. <br/><strong>Mitigation:</strong> SECCOMP Sandbox is written in pure Go without CGO. There are no buffer overflows or memory unsafety issues common in C/C++ runtimes. Host system access is explicitly zeroed out at initialization.</li>
                 <li><strong>Vector: Sybil Quorum Spoofing.</strong> An attacker registers 1,000 fake nodes to flood a Space Mesh MapReduce job and force a fake quorum hash. <br/><strong>Mitigation:</strong> Node registration requires staking or authorized DeviceTokens. The DAG router explicitly selects geographically and topologically distant nodes for the same shard to prevent localized Sybil routing.</li>
             </ul>
 
             <h2 id="security-boundaries">Security Boundaries & Invariants</h2>
-            <p>
-                <strong>Invariant:</strong> The Orchestrator is the absolute boundary of trust. The DApp trusts the Orchestrator to validate signatures. The Operator trusts the Orchestrator to route safe WASM payloads. 
+            <p className="text-slate-300 leading-relaxed mb-6">
+                <strong>Invariant:</strong> The Orchestrator is the absolute boundary of trust. The DApp trusts the Orchestrator to validate signatures. The Operator trusts the Orchestrator to route safe Native Go payloads. 
             </p>
 
             <h2 id="performance">Performance Characteristics</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 Heuristic validation (detecting telemetry lies or DAG manipulation) runs entirely out-of-band via asynchronous background workers inside the Orchestrator. Threat mitigation adds zero latency to the critical execution path.
             </p>
 
@@ -126,11 +153,11 @@ func CalculateQuorum(results []ShardResult, requiredThreshold int) (string, erro
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8 not-prose">
                 <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl">
                     <h4 className="text-white font-bold mb-2">Operator Responsibilities</h4>
-                    <p className="text-sm text-slate-400">Do not attempt to reverse engineer payloads. If you inspect memory buffers to extract DApp data, you break the implicit contract. Traffic is monitored for packet manipulation.</p>
+                    <p className="text-sm text-slate-400 mb-6 leading-relaxed">Do not attempt to reverse engineer payloads. If you inspect memory buffers to extract DApp data, you break the implicit contract. Traffic is monitored for packet manipulation.</p>
                 </div>
                 <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl">
                     <h4 className="text-white font-bold mb-2">Developer Responsibilities</h4>
-                    <p className="text-sm text-slate-400">Encrypt PII before sending it into the mesh. While operators are sandboxed, memory is technically readable at the OS root level. Use asymmetric encryption for sensitive payloads.</p>
+                    <p className="text-sm text-slate-400 mb-6 leading-relaxed">Encrypt PII before sending it into the mesh. While operators are sandboxed, memory is technically readable at the OS root level. Use asymmetric encryption for sensitive payloads.</p>
                 </div>
             </div>
 
@@ -144,8 +171,8 @@ func CalculateQuorum(results []ShardResult, requiredThreshold int) (string, erro
 }`}</CodeBlock>
 
             <h2 id="cross-component">Cross-Component Interactions</h2>
-            <p>
-                The Threat Model touches the ingress API (DDoS protection), the DAG Router (Sybil protection), the Node Daemon (Cgroups), and the Execution Engine (Wazero sandboxing).
+            <p className="text-slate-300 leading-relaxed mb-6">
+                The Threat Model touches the ingress API (DDoS protection), the DAG Router (Sybil protection), the Node Daemon (Cgroups), and the Execution Engine (SECCOMP Sandbox sandboxing).
             </p>
 
             <h2 id="best-practices">Best Practices & Anti-Patterns</h2>

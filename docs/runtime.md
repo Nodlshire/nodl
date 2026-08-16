@@ -1,5 +1,16 @@
 # Wnode Runtime & Operator Guide
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Wnode Runtime & Operator Guide** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 The Wnode Sovereign Node CLI allows node operators to bootstrap the deterministic execution runtime, inspect proofs, and tail structured audit logs.
 
 ## Bootstrapping a Node

@@ -105,11 +105,11 @@ export default function Page() {
                 <div className="p-4 overflow-x-auto">
                     <pre className="text-[14px] font-mono text-[#e5e7eb] leading-[1.5]"><code>{`${integrationName}/
 ├── src/
-│   ├── main.go      (Core invariant logic & WASM entrypoint)
+│   ├── main.go      (Core invariant logic & Native Go entrypoint)
 │   ├── types.go     (Payload schemas & structs)
 │   └── main_test.go (Deterministic tests & fuzzing)
 ├── spec.yaml        (Mesh routing & constraints)
-├── manifest.json    (ABI configuration & WASM metadata)
+├── manifest.json    (ABI configuration & Native Go metadata)
 └── integration.json (Economics & directory metadata)`}</code></pre>
                 </div>
             </div>
@@ -118,7 +118,7 @@ export default function Page() {
             <h2 className="text-[22px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Metadata Explanation</h2>
             <ul className="text-[16px] leading-[1.7] text-[#e5e7eb] list-disc list-inside space-y-2 mb-[16px]">
                 <li><strong>spec.yaml:</strong> Defines the external dependencies, allowed RPC endpoint regexes, and memory bound configurations required by the orchestrator.</li>
-                <li><strong>manifest.json:</strong> Contains the SHA-256 Merkle root of the compiled `main.wasm` blob to guarantee binary integrity across the mesh.</li>
+                <li><strong>manifest.json:</strong> Contains the SHA-256 Merkle root of the compiled `main.native-go` blob to guarantee binary integrity across the mesh.</li>
                 <li><strong>integration.json:</strong> Maps the integration name, category, and tokenomic parameters (e.g., base WEX computation cost).</li>
             </ul>
 
@@ -206,7 +206,7 @@ export default function Page() {
             {/* 10. Failure-Mode Examples */}
             <h2 className="text-[22px] font-semibold text-[#f9fafb] mt-[32px] mb-[12px]">Failure-Mode Examples</h2>
             <ul className="text-[16px] leading-[1.7] text-[#e5e7eb] list-disc list-inside space-y-[4px] mb-[16px]">
-                <li><strong>WASM Failures:</strong> Memory limit exceeded (`panic: out of bounds`), divide-by-zero traps.</li>
+                <li><strong>Native Go Failures:</strong> Memory limit exceeded (`panic: out of bounds`), divide-by-zero traps.</li>
                 <li><strong>Deterministic Proxy Failures:</strong> Host HTTP timeout &gt; 50ms, Invalid JSON-RPC response from mocked endpoint.</li>
                 {failureModes.map((fm: string, i: number) => (
                     <li key={i}><strong>Protocol-Specific:</strong> {fm}</li>
@@ -221,14 +221,14 @@ export default function Page() {
                 <span className="text-slate-400 font-mono text-[12px] italic">    actor Client</span>
                 <span className="text-slate-400 font-mono text-[12px] italic">    participant Mesh as Sovereign Mesh</span>
                 <span className="text-slate-400 font-mono text-[12px] italic">    participant Proxy as Deterministic Proxy</span>
-                <span className="text-slate-400 font-mono text-[12px] italic">    participant WASM as {integrationName} WASM</span>
+                <span className="text-slate-400 font-mono text-[12px] italic">    participant Native Go as {integrationName} Native Go</span>
                 <span className="text-slate-400 font-mono text-[12px] italic">    participant Settlement as Operator Settlement</span>
                 <span className="text-slate-400 font-mono text-[12px] italic">    </span>
                 <span className="text-slate-400 font-mono text-[12px] italic">    Client-&gt;&gt;Mesh: Submit Task Payload</span>
-                <span className="text-slate-400 font-mono text-[12px] italic">    Mesh-&gt;&gt;WASM: Init Memory (Max 64 Pages)</span>
-                <span className="text-slate-400 font-mono text-[12px] italic">    WASM-&gt;&gt;Proxy: Execute RPC / ABI Request</span>
-                <span className="text-slate-400 font-mono text-[12px] italic">    Proxy--&gt;&gt;WASM: Deterministic Response</span>
-                <span className="text-slate-400 font-mono text-[12px] italic">    WASM-&gt;&gt;Mesh: Commit Deterministic State Hash</span>
+                <span className="text-slate-400 font-mono text-[12px] italic">    Mesh-&gt;&gt;Native Go: Init Memory (Max 64 Pages)</span>
+                <span className="text-slate-400 font-mono text-[12px] italic">    Native Go-&gt;&gt;Proxy: Execute RPC / ABI Request</span>
+                <span className="text-slate-400 font-mono text-[12px] italic">    Proxy--&gt;&gt;Native Go: Deterministic Response</span>
+                <span className="text-slate-400 font-mono text-[12px] italic">    Native Go-&gt;&gt;Mesh: Commit Deterministic State Hash</span>
                 <span className="text-slate-400 font-mono text-[12px] italic">    Mesh-&gt;&gt;Settlement: Yield WEX to Operator</span>
                 <span className="text-slate-500 font-mono text-[14px]">```</span>
             </div>

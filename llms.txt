@@ -1,0 +1,19 @@
+# Wnode Sovereign Compute Mesh — Documentation Sitemap & Discovery
+
+## Core Architecture & Documentation
+- [System Architecture](file:///home/obregan/Documents/nodl/docs/architecture.md)
+- [Security Model](file:///home/obregan/Documents/nodl/docs/security-model.md)
+- [UI Design System](file:///home/obregan/Documents/nodl/docs/UI_DESIGN_SYSTEM.md)
+
+## DeWi (Decentralized Wireless) Subsystem
+- [DeWi Subsystem Architecture (arc42)](file:///home/obregan/Documents/nodl/docs/dewi/architecture.md)
+- [DeWi 11-State Lifecycle Machine](file:///home/obregan/Documents/nodl/docs/dewi/state-machine.md)
+- [DeWi Frequency & Region Compliance (FRCL)](file:///home/obregan/Documents/nodl/docs/dewi/compliance.md)
+- [DeWi Proof Lineage & SOT Ledger](file:///home/obregan/Documents/nodl/docs/dewi/proof-lineage.md)
+- [DeWi Operator UI Panel (OUDP)](file:///home/obregan/Documents/nodl/docs/dewi/operator-ui.md)
+
+## Codebase Modules
+- Daemon Core (`nodld`): `file:///home/obregan/Documents/nodl/nodld/`
+- DeWi Subsystem: `file:///home/obregan/Documents/nodl/nodld/internal/dewi/`
+- TypeScript SDK: `file:///home/obregan/Documents/nodl/packages/wnode-sdk-ts/`
+- Command Portal UI: `file:///home/obregan/Documents/nodl/apps/command/`

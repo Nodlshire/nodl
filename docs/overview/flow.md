@@ -1,5 +1,16 @@
 # Wnode Architecture — Execution Flow
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Wnode Architecture — Execution Flow** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ![diagram](/diagrams/flow-sequence.png)
 
 The Wnode Sovereign Mesh executes workloads through a deterministic, cryptographically verifiable sequence.  
@@ -24,8 +35,8 @@ This flow eliminates nondeterministic scheduling, centralized bottlenecks, and o
    - zero dependency on orchestrator availability  
    - cryptographic authenticity  
 
-3. **Node → Deterministic WASM Execution**  
-   The node executes the WASM artifact inside an air‑gapped Wazero sandbox:
+3. **Node → Deterministic Native Go Execution**  
+   The node executes the Native Go artifact inside an air‑gapped SECCOMP Sandbox sandbox:
    - deterministic memory model  
    - capability‑scoped host functions  
    - RAM‑only execution  
@@ -37,7 +48,7 @@ This flow eliminates nondeterministic scheduling, centralized bottlenecks, and o
    - daemon‑side capability registry  
    - strict host‑function boundaries  
 
-   Unauthorized operations instantly trap the WASM module.
+   Unauthorized operations instantly trap the Native Go module.
 
 5. **Node → Telemetry Emission**  
    The node emits a cryptographically signed telemetry envelope containing:

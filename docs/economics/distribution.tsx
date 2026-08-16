@@ -15,7 +15,7 @@ export default function DistributionEnginePage() {
 
             <h2 id="formal-execution-semantics">1. Formal Execution Semantics</h2>
             <p>
-                The Money Distribution Engine enforces the ultimate cryptographic settlement phase of the network. It operates as an asynchronous, batched state transition function that converts purely internal ledger allocations into externally finalized blockchain transactions. It guarantees solvency by mathematically ensuring that no funds are bridged out without matching multi-sig destruction of the corresponding internal state. All internal state calculations execute within a single linear memory model under strict WASM sandboxing (no WASI, no syscalls, no network, no filesystem). Substrate logic runs deterministically in DAG topological order with memory isolated to <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>. All execution faults trigger standardized trap behavior.
+                The Money Distribution Engine enforces the ultimate cryptographic settlement phase of the network. It operates as an asynchronous, batched state transition function that converts purely internal ledger allocations into externally finalized blockchain transactions. It guarantees solvency by mathematically ensuring that no funds are bridged out without matching multi-sig destruction of the corresponding internal state. All internal state calculations execute within a single linear memory model under strict Native Go sandboxing (no WASI, no syscalls, no network, no filesystem). Substrate logic runs deterministically in DAG topological order with memory isolated to <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>. All execution faults trigger standardized trap behavior.
             </p>
 
             <h2 id="invariants">2. Core Invariants</h2>
@@ -141,7 +141,7 @@ message Payout {
 
             <h2 id="operator-lifecycle">6. Operator Lifecycle (TSS Participation)</h2>
             <p>
-                Tier-1 Operators run the TSS daemon as a parallel process to the standard WASM execution watchdog. They are economically incentivized to participate in signing rounds; failure to provide a signature share during a settlement epoch results in exclusion from the epoch's block rewards.
+                Tier-1 Operators run the TSS daemon as a parallel process to the standard Native Go execution watchdog. They are economically incentivized to participate in signing rounds; failure to provide a signature share during a settlement epoch results in exclusion from the epoch's block rewards.
             </p>
 
             <h2 id="economic-model">7. Economic Model</h2>

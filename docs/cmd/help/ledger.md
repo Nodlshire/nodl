@@ -1,5 +1,16 @@
 # Ledger (Financials)
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Ledger (Financials)** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 The Sovereign Money Engine is the authoritative financial core of the Wnode ecosystem.
 
 ![Ledger (Financials)](../screenshots/ledger-statements.png)

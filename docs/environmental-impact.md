@@ -1,5 +1,16 @@
 # Environmental Impact
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Environmental Impact** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## Overview
 The wnode network is the first compute platform whose architecture is inherently ecological.  
 It does not require new hyperscale datacenters, new land, new cooling systems, or new industrial infrastructure.  

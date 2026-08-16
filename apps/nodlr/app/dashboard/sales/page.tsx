@@ -103,7 +103,7 @@ export default function MeshSalesPage() {
     const currentAudit = audit || defaultAudit;
 
     return (
-        <div className="max-w-6xl mx-auto space-y-8 pb-12">
+        <div className="w-full space-y-8 pb-12">
             <header className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div className="space-y-1">
                     <h1 className="text-2xl font-bold text-white uppercase tracking-tight flex items-center gap-3">

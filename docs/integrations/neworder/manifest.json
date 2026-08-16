@@ -3,7 +3,7 @@
   "version": "Unknown",
   "description": "Deterministic execution manifest for neworder",
   "mesh_compatibility": "v1.0",
-  "entrypoint": "wasm/main.wasm",
+  "entrypoint": "native-go/main.native-go",
   "permissions": [
     "eth_call",
     "eth_getLogs"

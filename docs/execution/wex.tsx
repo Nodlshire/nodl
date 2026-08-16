@@ -15,7 +15,7 @@ export default function WEXSmartContractsPage() {
 
             <h2 id="formal-execution-semantics">1. Formal Execution Semantics</h2>
             <p>
-                WEX (WebAssembly Execution) enforces a single linear memory model for all WASM substrates utilizing a strict trap-on-fault semantic. Contracts run in a deterministic, single-threaded call sequence where all substrate calls MUST be processed in DAG topological order. WEX explicitly enforces strict WASM sandboxing (no WASI, no syscalls, no network, no filesystem). Memory pointer rules are standardized to: <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>. All execution faults propagate through the same deterministic path, normalizing trap codes (e.g., OOG, OOB) and removing any references to host-level concurrency or nondeterministic scheduling.
+                WEX (WebAssembly Execution) enforces a single linear memory model for all Native Go substrates utilizing a strict trap-on-fault semantic. Contracts run in a deterministic, single-threaded call sequence where all substrate calls MUST be processed in DAG topological order. WEX explicitly enforces strict Native Go sandboxing (no WASI, no syscalls, no network, no filesystem). Memory pointer rules are standardized to: <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>. All execution faults propagate through the same deterministic path, normalizing trap codes (e.g., OOG, OOB) and removing any references to host-level concurrency or nondeterministic scheduling.
             </p>
 
             <h2 id="invariants">2. Core Invariants</h2>
@@ -116,7 +116,7 @@ export default function WEXSmartContractsPage() {
                     <li>Network-level: Payload replay and routing eclipse.</li>
                     <li>Execution-level: Unbounded loops, recursive depth exhaustion, and memory ballooning.</li>
                     <li>Economic-level: Gas exhaustion and stake manipulation.</li>
-                    <li>Governance-level: Malicious WASM binary deployments.</li>
+                    <li>Governance-level: Malicious Native Go binary deployments.</li>
                     <li>Telemetry-level: Falsified execution metrics.</li>
                 </ul>
             </div>
@@ -144,7 +144,7 @@ export default function WEXSmartContractsPage() {
 
             <h2 id="governance-model">8. Governance Model</h2>
             <p>
-                WEX contracts are perfectly immutable. Once the DAO approves a contract hash via `DAO_WEX_DEPLOY`, it cannot be altered. Upgrades require deploying a completely new WASM binary under a new address, and initiating a `DAO_STATE_MIGRATION` transaction to port balances.
+                WEX contracts are perfectly immutable. Once the DAO approves a contract hash via `DAO_WEX_DEPLOY`, it cannot be altered. Upgrades require deploying a completely new Native Go binary under a new address, and initiating a `DAO_STATE_MIGRATION` transaction to port balances.
             </p>
 
             <h2 id="performance">9. Performance Envelopes</h2>
@@ -152,7 +152,7 @@ export default function WEXSmartContractsPage() {
                 <li><strong>Latency Bounds:</strong> <code>ExecTime &le; 50ms</code>, <code>RTT &le; 200ms</code>.</li>
                 <li><strong>Throughput Metrics:</strong> Scalable <code>ops_per_sec</code> via horizontal shards.</li>
                 <li><strong>Resource Pressure:</strong> Strict <code>mem_pressure_mb &le; 32MB</code>.</li>
-                <li><strong>Warm vs Cold Start:</strong> <code>ColdStart = initial WASM instantiation</code>, <code>WarmStart = cached instance reuse</code>.</li>
+                <li><strong>Warm vs Cold Start:</strong> <code>ColdStart = initial Native Go instantiation</code>, <code>WarmStart = cached instance reuse</code>.</li>
             </ul>
 
             <h2 id="cross-component">10. Cross-Component Contracts</h2>
@@ -181,7 +181,7 @@ export default function WEXSmartContractsPage() {
                     <line x1="320" y1="180" x2="450" y2="180" stroke="#444" strokeWidth="1.5" markerEnd="url(#arrowSolid)" />
 
                     <rect x="450" y="150" width="150" height="60" rx="8" fill="#111" stroke="#444" strokeWidth="1.5" />
-                    <text x="525" y="180" fill="#888" fontSize="11" textAnchor="middle">WASM Instruction Loop</text>
+                    <text x="525" y="180" fill="#888" fontSize="11" textAnchor="middle">Native Go Instruction Loop</text>
                 </svg>
             </div>
         </>

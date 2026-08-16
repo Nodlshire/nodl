@@ -15,7 +15,7 @@ export default function ExecutionModelPage() {
 
             <h2 id="formal-execution-semantics">1. Formal Execution Semantics</h2>
             <p>
-                The execution layer strictly enforces a single linear memory model for all WASM substrates. Operations are normalized to a deterministic, single-threaded call sequence where all substrate calls MUST be processed in DAG topological order. There is no host-level concurrency or nondeterministic scheduling. Memory is bound to <code>32MB</code> linearly, enforcing standard pointer rules: <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>. The WASM sandbox enforces strict isolation (no WASI, no syscalls, no network, no filesystem) and identical trap-on-fault behavior for any out-of-bounds pointer dereference. All execution faults propagate through the same deterministic path, utilizing standardized error envelopes, trap codes, and deterministic retry semantics.
+                The execution layer strictly enforces a single linear memory model for all Native Go substrates. Operations are normalized to a deterministic, single-threaded call sequence where all substrate calls MUST be processed in DAG topological order. There is no host-level concurrency or nondeterministic scheduling. Memory is bound to <code>32MB</code> linearly, enforcing standard pointer rules: <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>. The Native Go sandbox enforces strict isolation (no WASI, no syscalls, no network, no filesystem) and identical trap-on-fault behavior for any out-of-bounds pointer dereference. All execution faults propagate through the same deterministic path, utilizing standardized error envelopes, trap codes, and deterministic retry semantics.
             </p>
 
             <h2 id="invariants">2. Core Invariants</h2>
@@ -55,10 +55,10 @@ export default function ExecutionModelPage() {
 
             <h2 id="formal-interfaces">3. Formal Interface Definitions</h2>
             <p>
-                The WASM module must export the following `_start` interface, relying on pointer-length arguments passed through linear memory mapping:
+                The Native Go module must export the following `_start` interface, relying on pointer-length arguments passed through linear memory mapping:
             </p>
             <div className="bg-[#0f172a] rounded-lg p-6 border border-white/10 font-mono text-sm mb-8 text-emerald-300">
-<pre className="m-0 bg-transparent border-0">{`// WASM Linear Memory Interface
+<pre className="m-0 bg-transparent border-0">{`// Native Go Linear Memory Interface
 #[no_mangle]
 pub extern "C" fn execute(
     ptr: i32,
@@ -143,7 +143,7 @@ pub extern "C" fn execute(
             <p>
                 Execution directly bills the orchestrator per instruction executed. 
                 <br/>
-                <code className="text-blue-300 bg-blue-900/20 px-1.5 py-0.5 rounded">Execution_Cost = (WASM_Instructions * Base_Fee) + (Heap_Bytes * Memory_Fee)</code>
+                <code className="text-blue-300 bg-blue-900/20 px-1.5 py-0.5 rounded">Execution_Cost = (Native Go_Instructions * Base_Fee) + (Heap_Bytes * Memory_Fee)</code>
                 <br/>
                 This guarantees MEV capture remains proportional to raw computational load.
             </p>
@@ -158,7 +158,7 @@ pub extern "C" fn execute(
                 <li><strong>Latency Bounds:</strong> <code>ExecTime &le; 50ms</code>, <code>RTT &le; 200ms</code>.</li>
                 <li><strong>Throughput Metrics:</strong> High <code>ops_per_sec</code> and <code>substrates_per_tick</code>.</li>
                 <li><strong>Resource Pressure:</strong> Monitored <code>cpu_pressure_pct</code> and <code>mem_pressure_mb &le; 32MB</code>.</li>
-                <li><strong>Warm vs Cold Start:</strong> <code>ColdStart = initial WASM instantiation</code>, <code>WarmStart = cached instance reuse</code>.</li>
+                <li><strong>Warm vs Cold Start:</strong> <code>ColdStart = initial Native Go instantiation</code>, <code>WarmStart = cached instance reuse</code>.</li>
             </ul>
 
             <h2 id="cross-component">10. Cross-Component Contracts</h2>
@@ -185,7 +185,7 @@ pub extern "C" fn execute(
                     <line x1="150" y1="70" x2="250" y2="130" stroke="#444" strokeWidth="1.5" markerEnd="url(#arrowSolid)" />
 
                     <rect x="250" y="110" width="150" height="80" rx="8" fill="#111" stroke="#444" strokeWidth="1.5" />
-                    <text x="325" y="145" fill="#ccc" fontSize="14" textAnchor="middle" fontWeight="bold">WASM Box</text>
+                    <text x="325" y="145" fill="#ccc" fontSize="14" textAnchor="middle" fontWeight="bold">Native Go Box</text>
                     <text x="325" y="165" fill="#888" fontSize="11" textAnchor="middle">f(S(n), P)</text>
 
                     <line x1="400" y1="150" x2="500" y2="150" stroke="#444" strokeWidth="1.5" markerEnd="url(#arrowSolid)" />

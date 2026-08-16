@@ -1,5 +1,16 @@
 # Steward Governance
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Steward Governance** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## Overview
 The steward is the operational and governance authority of the wnode network.  
 It enforces rules, ensures fairness, maintains compliance, and protects the network’s constitutional principles.

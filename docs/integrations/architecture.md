@@ -1,5 +1,16 @@
 # Integrations Architecture
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Integrations Architecture** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 Wnode’s Integrations Architecture is a deterministic, constitutional framework that unifies external systems—blockchains, storage networks, identity providers, PSPs, and AI agents—into a single sovereign compute mesh. Every integration follows strict constitutional rules: deterministic execution, verifiable state, zero‑trust boundaries, and agent‑driven orchestration.
 
 ## Constitutional Layer Model
@@ -10,7 +21,7 @@ Wnode structures all integrations into four constitutional layers:
 
 ### 1. Protocol Layer
 Defines canonical interaction rules with external systems.
-- Deterministic WASM execution
+- Deterministic Native Go execution
 - Zero‑trust boundary enforcement
 - Cryptographic signature rules
 - Replay‑safe state transitions
@@ -44,7 +55,7 @@ Every integration follows a strict deterministic pipeline:
 
 - Agent Intent
 - Capability Resolution
-- Deterministic Envelope Construction (WASM)
+- Deterministic Envelope Construction (Native Go)
 - Adapter Invocation
 - State Verification
 - Sovereign Commit
@@ -106,6 +117,6 @@ All integrations operate under the same constitutional guarantees:
 - Replay protection
 - Canonical envelopes
 - Capability isolation
-- WASM sandboxing
+- Native Go sandboxing
 
 This ensures every integration behaves predictably, safely, and sovereignly across the entire mesh.

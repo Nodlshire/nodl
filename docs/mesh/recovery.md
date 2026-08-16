@@ -1,5 +1,16 @@
 # Crash Recovery
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Crash Recovery** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 The Sovereign Mesh supports deterministic crash recovery without relying on heavy external databases. It utilizes local snapshots and the append-only Event Journal.
 
 ## The Recovery Pipeline

@@ -1,5 +1,16 @@
 # Dashboard Overview
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Dashboard Overview** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 The Command Centre Operations dashboard provides a high-density, real-time visualization of the global mesh network.
 
 ![Dashboard Overview](../screenshots/dashboard-overview.png)

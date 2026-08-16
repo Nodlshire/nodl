@@ -1,5 +1,16 @@
 # Workflow Builder UI Bindings
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Workflow Builder UI Bindings** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 The Workflow Builder UI allows users to visually compose deterministic execution traces and preview them safely using the `@wnode/ui-adapter`.
 
 ## WorkflowPreviewer

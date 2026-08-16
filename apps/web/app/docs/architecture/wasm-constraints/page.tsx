@@ -5,7 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import { notFound } from 'next/navigation';
 
 export default function WasmConstraintsPage() {
-    const filePath = path.join(process.cwd(), '../../docs/architecture/wasm-constraints.md');
+    const filePath = path.join(process.cwd(), '../../docs/architecture/native-go-constraints.md');
 
     if (!fs.existsSync(filePath)) {
         notFound();

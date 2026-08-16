@@ -1,5 +1,16 @@
 # Job Creation and Metadata
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Job Creation and Metadata** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## Job Definition
 
 A Wnode job is a **deterministic, self‑describing execution unit**.  

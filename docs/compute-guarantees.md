@@ -1,5 +1,16 @@
 # Compute Guarantees
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Compute Guarantees** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## Overview
 The wnode network provides a set of strict compute guarantees that define how jobs are executed, how data is handled, and what requesters and operators can rely on. These guarantees ensure predictable, safe, and privacy-preserving execution across a decentralized network of independent nodes.
 

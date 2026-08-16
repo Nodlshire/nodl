@@ -1,5 +1,16 @@
 # Math Engine (RAY/WAD)
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Math Engine (RAY/WAD)** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## 1. Component Overview
 The Math Engine is a strictly typed BigInt abstraction used across the Mesh to eliminate floating-point variations when calculating DeFi protocols, fees, and economics.
 

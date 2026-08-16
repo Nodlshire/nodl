@@ -7,16 +7,43 @@ export default function RuntimeTelemetry() {
         <>
             <div className="border-b border-slate-800 pb-8 mb-12">
                 <h1 className="text-5xl font-space-grotesk font-bold tracking-tighter mb-4 text-white">Runtime Telemetry</h1>
-                <p className="text-xl text-slate-400 font-light leading-relaxed">
+                <p className="text-xl text-slate-400 font-light leading-relaxed mb-6 leading-relaxed">
                     Deterministic, continuous observability. The nervous system of the Wnode Mesh providing automated auto-healing and penalty slashing.
                 </p>
+            {/* Contextual Narrative Section (What, Why, How) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-10 not-prose">
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-emerald-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">WHAT IT IS</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Runtime Telemetry Overview</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Core architectural specification detailing the operational mechanics, data protocols, and determinism constraints of Runtime Telemetry within the Wnode mesh.
+                    </p>
+                </div>
+
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-cyan-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">WHY IT MATTERS</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Architectural Purpose</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Ensures zero-custody verification, high-throughput execution, and fault-tolerant node consensus across Earth &amp; Space mesh topologies.
+                    </p>
+                </div>
+
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-purple-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-purple-400">HOW IT OPERATES</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Native Go Engine</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Executed via SECCOMP-restricted Native Go modules (`linux-amd64`), validated with mTLS telemetry signatures and HMAC routing epochs.
+                    </p>
+                </div>
+            </div>
+
             </div>
 
             <h2 id="conceptual-overview">Conceptual Overview & Rationale</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 In standard web applications, telemetry is used by human engineers to debug errors on dashboards. In the Wnode Sovereign Mesh, telemetry is primarily consumed by <strong>machines</strong>. 
             </p>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 <strong>The Rationale:</strong> The Orchestrator requires real-time, high-fidelity data regarding the CPU pressure, memory usage, and task execution times of every Node Operator globally. This data is used to dynamically weight the DAG routing table. A node experiencing high memory pressure will automatically receive fewer payloads.
             </p>
 
@@ -100,7 +127,7 @@ export default function RuntimeTelemetry() {
 func (h *TaskHandler) Execute(ctx context.Context, payload []byte) ([]byte, error) {
     start := time.Now()
     
-    res, err := h.Runtime.CallWASM("execute", payload)
+    res, err := h.Runtime.CallNative("execute", payload)
     
     // Deterministic Hook
     latency := time.Since(start).Milliseconds()
@@ -129,12 +156,12 @@ func (h *TaskHandler) Execute(ctx context.Context, payload []byte) ([]byte, erro
             </ul>
 
             <h2 id="security-boundaries">Security Boundaries & Invariants</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 <strong>Invariant:</strong> Telemetry is one-way. Node Operators push state to the Orchestrator. The Orchestrator never pushes arbitrary commands back down the telemetry pipe. The pipe is strictly typed using Protocol Buffers or JSON schemas.
             </p>
 
             <h2 id="performance">Performance Characteristics</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 Heartbeats are tiny. A standard node heartbeat payload is <code>~250 bytes</code>. Sent every 5 seconds, this utilizes roughly <code>4kb/minute</code> of bandwidth, making it highly suitable for Tier-3 Space Operators running on metered satellite uplinks.
             </p>
 
@@ -142,11 +169,11 @@ func (h *TaskHandler) Execute(ctx context.Context, payload []byte) ([]byte, erro
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8 not-prose">
                 <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl">
                     <h4 className="text-white font-bold mb-2">Operator Responsibilities</h4>
-                    <p className="text-sm text-slate-400">Ensure outward-bound TCP connectivity over WSS (WebSocket Secure). Do not block egress traffic on port 443, or the Orchestrator will assume the node is offline.</p>
+                    <p className="text-sm text-slate-400 mb-6 leading-relaxed">Ensure outward-bound TCP connectivity over WSS (WebSocket Secure). Do not block egress traffic on port 443, or the Orchestrator will assume the node is offline.</p>
                 </div>
                 <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl">
                     <h4 className="text-white font-bold mb-2">Developer Responsibilities</h4>
-                    <p className="text-sm text-slate-400">Developers do not interact with telemetry APIs. The generative substrate handles it all natively based on your <code>spec.yaml</code> constraints.</p>
+                    <p className="text-sm text-slate-400 mb-6 leading-relaxed">Developers do not interact with telemetry APIs. The generative substrate handles it all natively based on your <code>spec.yaml</code> constraints.</p>
                 </div>
             </div>
 
@@ -160,7 +187,7 @@ func (h *TaskHandler) Execute(ctx context.Context, payload []byte) ([]byte, erro
 }`}</CodeBlock>
 
             <h2 id="cross-component">Cross-Component Interactions</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 Telemetry is the glue binding the execution layer to the routing layer. Node Operators report physical limits to the Orchestrator, which uses that data to safeguard the network against localized outages.
             </p>
 

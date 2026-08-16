@@ -15,7 +15,7 @@ export default function OperatorGuidePage() {
 
             <h2 id="formal-execution-semantics">1. Formal Execution Semantics</h2>
             <p>
-                The `nodld` daemon operates as a host-isolated process that acts as an execution slave to the Orchestrator. The daemon's execution semantics are entirely reactive. It opens a multiplexed mTLS stream to the Orchestrator, receives pre-validated `ExecutionJob` payloads, pins a Wazero instance to an available logical core, executes the transition within a 50ms absolute boundary, and streams back the `ExecutionResult`. The operator OS must never swap memory pages during this loop, as page-fault latency violates the deterministic timeout. Execution is bound to a single linear memory model, processes in strict DAG topological order, and enforces total WASM sandboxing (no WASI, no syscalls, no network, no filesystem). Memory is restricted to <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>, resolving all faults via standardized trap semantics.
+                The `nodld` daemon operates as a host-isolated process that acts as an execution slave to the Orchestrator. The daemon's execution semantics are entirely reactive. It opens a multiplexed mTLS stream to the Orchestrator, receives pre-validated `ExecutionJob` payloads, pins a SECCOMP Sandbox instance to an available logical core, executes the transition within a 50ms absolute boundary, and streams back the `ExecutionResult`. The operator OS must never swap memory pages during this loop, as page-fault latency violates the deterministic timeout. Execution is bound to a single linear memory model, processes in strict DAG topological order, and enforces total Native Go sandboxing (no WASI, no syscalls, no network, no filesystem). Memory is restricted to <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>, resolving all faults via standardized trap semantics.
             </p>
 
             <h2 id="invariants">2. Core Invariants</h2>
@@ -118,7 +118,7 @@ inbound_ports = [] # Strictly empty`}</pre>
                 <strong>Attack Surfaces:</strong>
                 <ul className="list-disc pl-6 mt-2 text-slate-300">
                     <li>Network-level: Man-in-the-middle interception of WSS streams.</li>
-                    <li>Execution-level: Container escape via malicious WASM payloads.</li>
+                    <li>Execution-level: Container escape via malicious Native Go payloads.</li>
                     <li>Economic-level: Stake hoarding and MEV extraction.</li>
                     <li>Governance-level: Running deprecated nodld clients.</li>
                     <li>Telemetry-level: Dropping prometheus egress to feign uptime.</li>
@@ -186,7 +186,7 @@ inbound_ports = [] # Strictly empty`}</pre>
                     <text x="400" y="115" fill="#888" fontSize="12" textAnchor="middle">Cgroup Watchdog (50ms)</text>
 
                     <rect x="320" y="140" width="160" height="40" rx="4" fill="#111" stroke="#444" strokeWidth="1.5" />
-                    <text x="400" y="165" fill="#888" fontSize="12" textAnchor="middle">Wazero JIT Core</text>
+                    <text x="400" y="165" fill="#888" fontSize="12" textAnchor="middle">SECCOMP Sandbox JIT Core</text>
 
                     <line x1="300" y1="180" x2="170" y2="180" stroke="#444" strokeWidth="1.5" markerEnd="url(#arrowOp)" />
                     <text x="235" y="200" fill="#888" fontSize="10" textAnchor="middle">WSS Stream (Results)</text>

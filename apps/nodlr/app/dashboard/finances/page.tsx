@@ -57,7 +57,7 @@ export default function FinancesPage() {
     const [selectedTimeframe, setSelectedTimeframe] = useState<typeof SUMMARY_LEDGER[0] | null>(null);
 
     return (
-        <div className="max-w-6xl mx-auto space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <div className="w-full space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
             {/* Header */}
             <div className="flex justify-between items-end border-b border-white/10 pb-6">
                 <div>

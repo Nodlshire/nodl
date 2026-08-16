@@ -1,5 +1,16 @@
 # Proof of Coverage: CTO-Level Backend Documentation
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Proof of Coverage: CTO-Level Backend Documentation** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## 1. Complete List of Backend Subsystems Documented
 1. MeshWorkflowEngine
 2. MeshWorkflowWorker (V8 isolate) / Sandbox
@@ -22,7 +33,7 @@
 19. Sandbox Isolation Model
 20. Security Boundaries
 21. Operator Controls
-22. WASM Execution Constraints
+22. Native Go Execution Constraints
 23. Deterministic Hashing Model
 24. Deterministic Memory Model
 25. Deterministic Invariants
@@ -59,7 +70,7 @@
 - **Sandbox Isolation Model** -> `sandbox.md`
 - **Security Boundaries** -> `security.md`
 - **Operator Controls** -> `operators.md`
-- **WASM Execution Constraints** -> `wasm-execution.md`
+- **Native Go Execution Constraints** -> `native-go-execution.md`
 - **Deterministic Hashing Model** -> `hash-model.md`
 - **Deterministic Memory Model** -> `memory-model.md`
 - **Deterministic Invariants** -> `invariants.md`
@@ -92,7 +103,7 @@
 - `operators.md`: Covers the secure local CLI tools and node capability toggles for hardware managers.
 - `integration-registry.md`: Maps logical integration names to deterministic execution handles dynamically.
 - `adapters-protocol.md`: Provides the canonical blueprint for writing pure-function I/O translation layers.
-- `wasm-execution.md`: Explains compilation, isolated linear memory bounding, and strict gas metering logic.
+- `native-go-execution.md`: Explains compilation, isolated linear memory bounding, and strict gas metering logic.
 - `math-engine.md`: Details the EVM-parity BigInt RAY/WAD mechanics used for all token operations.
 - `state-root-verification.md`: Explains MPT validation of external RPCs using localized Light Client syncs.
 - `hash-model.md`: Dictates the canonical JSON serialization and cascading SHA-256 string rules.

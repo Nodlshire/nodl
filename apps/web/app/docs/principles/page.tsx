@@ -7,16 +7,43 @@ export default function DesignPrinciples() {
         <>
             <div className="border-b border-slate-800 pb-8 mb-12">
                 <h1 className="text-5xl font-space-grotesk font-bold tracking-tighter mb-4 text-white">Design Principles</h1>
-                <p className="text-xl text-slate-400 font-light leading-relaxed">
+                <p className="text-xl text-slate-400 font-light leading-relaxed mb-6 leading-relaxed">
                     The absolute architectural commandments that dictate every engineering decision within the Wnode ecosystem.
                 </p>
+            {/* Contextual Narrative Section (What, Why, How) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-10 not-prose">
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-emerald-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">WHAT IT IS</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Design Principles Overview</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Core architectural specification detailing the operational mechanics, data protocols, and determinism constraints of Design Principles within the Wnode mesh.
+                    </p>
+                </div>
+
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-cyan-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">WHY IT MATTERS</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Architectural Purpose</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Ensures zero-custody verification, high-throughput execution, and fault-tolerant node consensus across Earth &amp; Space mesh topologies.
+                    </p>
+                </div>
+
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-purple-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-purple-400">HOW IT OPERATES</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Native Go Engine</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Executed via SECCOMP-restricted Native Go modules (`linux-amd64`), validated with mTLS telemetry signatures and HMAC routing epochs.
+                    </p>
+                </div>
+            </div>
+
             </div>
 
             <h2 id="conceptual-overview">Conceptual Overview & Rationale</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 Without dogmatic principles, complex distributed systems degrade into chaotic microservices connected by fragile webhooks. 
             </p>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 <strong>The Rationale:</strong> The Wnode principles ensure that no matter how complex an integration becomes, the foundational guarantees of the mesh—security, speed, and determinism—are never compromised.
             </p>
 
@@ -47,7 +74,7 @@ export default function DesignPrinciples() {
                     <text x="660" y="178" fill="#94a3b8" fontSize="10">Strict Mathematical Parity</text>
 
                     <path d="M 500 265 L 650 265" fill="none" stroke="#64748b" strokeWidth="1" markerEnd="url(#arrowPrin)" />
-                    <text x="660" y="268" fill="#94a3b8" fontSize="10">Bare-Metal Cgroups & Wazero</text>
+                    <text x="660" y="268" fill="#94a3b8" fontSize="10">Bare-Metal Cgroups & SECCOMP Sandbox</text>
                 </svg>
             </div>
 
@@ -72,7 +99,7 @@ export default function DesignPrinciples() {
                     <text x="600" y="40" fill="white" textAnchor="middle" fontWeight="bold">Architecture Review</text>
 
                     <line x1="200" y1="80" x2="590" y2="80" stroke="#f43f5e" strokeWidth="2" markerEnd="url(#seqArrowPrinFail)" />
-                    <text x="400" y="75" fill="#f43f5e" textAnchor="middle">"Use Docker instead of WASM for speed"</text>
+                    <text x="400" y="75" fill="#f43f5e" textAnchor="middle">"Use Docker instead of Native Go for speed"</text>
 
                     <rect x="585" y="100" width="30" height="30" fill="#f43f5e" fillOpacity="0.2" stroke="#f43f5e" />
                     <text x="625" y="115" fill="#f43f5e" textAnchor="start">Violates Security Principle</text>
@@ -83,13 +110,13 @@ export default function DesignPrinciples() {
             </div>
 
             <h2 id="real-code-examples">Enforcing Principles in Code</h2>
-            <p>Principles are meaningless if they are not enforced at compilation.</p>
+            <p className="text-slate-300 leading-relaxed mb-6">Principles are meaningless if they are not enforced at compilation.</p>
             <CodeBlock language="go" title="internal/compiler/validation.go">{`// Determinism Enforcement
-func validateWasmImports(module *wasm.Module) error {
+func validateNativeImports(module *native-go.Module) error {
     for _, imp := range module.Imports {
         // Explicitly block any HTTP or networking imports
         if imp.Module == "wasi_snapshot_preview1" && imp.Name == "sock_open" {
-            return errors.New("principle violation: WASM modules cannot perform networking")
+            return errors.New("principle violation: Native Go modules cannot perform networking")
         }
     }
     return nil
@@ -101,12 +128,12 @@ func validateWasmImports(module *wasm.Module) error {
             </ul>
 
             <h2 id="security-boundaries">Security Boundaries & Invariants</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 <strong>Invariant:</strong> Security is always paramount. If a performance optimization (like caching execution results on untrusted operators) compromises the security model, the optimization is rejected regardless of the speed benefit.
             </p>
 
             <h2 id="performance">Performance Characteristics</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 Strict adherence to these principles results in a highly predictable performance envelope. We trade edge-case optimization for absolute system reliability.
             </p>
 
@@ -114,19 +141,19 @@ func validateWasmImports(module *wasm.Module) error {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8 not-prose">
                 <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl">
                     <h4 className="text-white font-bold mb-2">Operator Responsibilities</h4>
-                    <p className="text-sm text-slate-400">Respect the physical security boundaries. Do not run nodes in environments where third parties have hypervisor access.</p>
+                    <p className="text-sm text-slate-400 mb-6 leading-relaxed">Respect the physical security boundaries. Do not run nodes in environments where third parties have hypervisor access.</p>
                 </div>
                 <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl">
                     <h4 className="text-white font-bold mb-2">Developer Responsibilities</h4>
-                    <p className="text-sm text-slate-400">Read and deeply internalize these three principles before authoring your first <code>spec.yaml</code>.</p>
+                    <p className="text-sm text-slate-400 mb-6 leading-relaxed">Read and deeply internalize these three principles before authoring your first <code>spec.yaml</code>.</p>
                 </div>
             </div>
 
             <h2 id="telemetry">Telemetry Emitted</h2>
-            <p>Violations of these principles at runtime emit critical security alerts.</p>
+            <p className="text-slate-300 leading-relaxed mb-6">Violations of these principles at runtime emit critical security alerts.</p>
 
             <h2 id="cross-component">Cross-Component Interactions</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 These principles are the DNA of the Orchestrator, the Operators, and the Substrate Generators.
             </p>
 

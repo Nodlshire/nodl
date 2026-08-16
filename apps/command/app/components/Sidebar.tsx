@@ -4,10 +4,15 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { 
-    LayoutDashboard, Activity, Shield, BarChart3, Sliders, Zap, LogOut, Users, Share2, DollarSign, Brain, History as HistoryIcon, ShieldAlert, Wallet, HelpCircle, Search as SearchIcon, Landmark, Coins, Lock, Award, Fingerprint
+    LayoutDashboard, Activity, Shield, BarChart3, Sliders, Zap, LogOut, Users, Share2, DollarSign, Brain, History as HistoryIcon, ShieldAlert, Wallet, HelpCircle, Search as SearchIcon, Landmark, Coins, Lock, Award, Fingerprint, X, Radio
 } from "lucide-react";
 
-export default function Sidebar() {
+interface SidebarProps {
+    isMobileMenuOpen: boolean;
+    setIsMobileMenuOpen: (open: boolean) => void;
+}
+
+export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }: SidebarProps) {
     const pathname = usePathname();
     const router = useRouter();
     const [user, setUser] = useState<any>(null);
@@ -56,6 +61,7 @@ export default function Sidebar() {
 
     const allItems = [
         { name: 'Dashboard', href: '/', icon: LayoutDashboard, roles: ['owner', 'management', 'customer_service', 'visitor'], iconColor: 'text-blue-400' },
+        { name: 'DeWi Mesh', href: '/dewi', icon: Radio, roles: ['owner', 'management', 'customer_service', 'visitor'], iconColor: 'text-[#22D3EE]' },
         { name: 'Intelligence', href: '/intelligence', icon: Brain, roles: ['owner', 'management', 'customer_service', 'visitor'], iconColor: 'text-purple-400' },
         { name: "Nodes", href: '/nodls', icon: Activity, roles: ['owner', 'management', 'customer_service', 'visitor'], iconColor: 'text-cyan-400' },
         { name: 'Pricing', href: '/pricing', icon: BarChart3, roles: ['owner', 'management', 'visitor'], iconColor: 'text-amber-400' },
@@ -72,24 +78,39 @@ export default function Sidebar() {
     const navItems = allItems.filter(item => item.roles.includes(role));
 
     return (
-        <aside className="fixed inset-y-0 left-0 w-64 bg-gradient-to-b from-[#0a0f1b] to-[#02040c] border-r border-wnode-border-separator hidden lg:flex flex-col z-50">
-            <div className="pt-[24px] pl-8 mb-12 flex flex-col items-start gap-4">
-                <Link href="/">
-                    <div className="flex flex-col items-start select-none gap-3">
-                        <div className="flex flex-col items-center justify-center w-14">
-                            <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto fill-white drop-shadow-sm">
-                                <path d="M 22 110 L 22 50 A 28 28 0 0 1 78 50 L 78 110" fill="none" stroke="white" strokeWidth="26" strokeLinecap="butt" />
-                                <circle cx="50" cy="72" r="16" />
-                            </svg>
-                            <span style={{ fontFamily: "'Roboto', sans-serif", fontSize: "14pt", fontWeight: "bold", color: "white", marginTop: "12px", lineHeight: "1", letterSpacing: "0.02em" }}>wnode</span>
+        <>
+            {/* Mobile Overlay */}
+            {isMobileMenuOpen && (
+                <div 
+                    className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40 lg:hidden"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                />
+            )}
+            
+            <aside className={`fixed inset-y-0 left-0 w-64 bg-gradient-to-b from-[#0a0f1b] to-[#02040c] border-r border-wnode-border-separator z-50 flex flex-col transform transition-transform duration-300 lg:translate-x-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+                <div className="pt-[24px] pl-8 pr-4 mb-12 flex items-start justify-between">
+                    <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
+                        <div className="flex flex-col items-start select-none gap-3">
+                            <div className="flex flex-col items-center justify-center w-14">
+                                <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto fill-white drop-shadow-sm">
+                                    <path d="M 22 110 L 22 50 A 28 28 0 0 1 78 50 L 78 110" fill="none" stroke="white" strokeWidth="26" strokeLinecap="butt" />
+                                    <circle cx="50" cy="72" r="16" />
+                                </svg>
+                                <span style={{ fontFamily: "'Roboto', sans-serif", fontSize: "14pt", fontWeight: "bold", color: "white", marginTop: "12px", lineHeight: "1", letterSpacing: "0.02em" }}>wnode</span>
+                            </div>
+                            <div className="flex flex-col items-start mt-4">
+                                <span className="text-[10px] font-bold tracking-[0.4em] text-[#22D3EE] drop-shadow-[0_0_8px_rgba(34,211,238,0.4)]">WNODE COMMAND</span>
+                                <span className="text-[10px] text-white/60 mt-1 uppercase tracking-widest font-bold">Executive Control</span>
+                            </div>
                         </div>
-                        <div className="flex flex-col items-start mt-4">
-                            <span className="text-[10px] font-bold tracking-[0.4em] text-[#22D3EE] drop-shadow-[0_0_8px_rgba(34,211,238,0.4)]">WNODE COMMAND</span>
-                            <span className="text-[10px] text-white/60 mt-1 uppercase tracking-widest font-bold">Executive Control</span>
-                        </div>
-                    </div>
-                </Link>
-            </div>
+                    </Link>
+                    <button 
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="lg:hidden p-1.5 text-white/50 hover:text-white rounded-md hover:bg-white/5"
+                    >
+                        <X className="w-5 h-5" />
+                    </button>
+                </div>
             
             <nav className="flex-1 px-3 space-y-1">
 
@@ -100,6 +121,7 @@ export default function Sidebar() {
                         <React.Fragment key={item.name}>
                             <Link 
                                 href={item.href}
+                                onClick={() => setIsMobileMenuOpen(false)}
                                 className={`w-full flex items-center gap-3 px-5 py-2.5 text-[14px] font-medium rounded-[5px] transition-all relative group ${
                                     isActive 
                                     ? 'bg-[#22D3EE]/10 text-white border border-[#22D3EE]/30 shadow-[inset_0_0_12px_rgba(34,211,238,0.1)]' 
@@ -123,7 +145,7 @@ export default function Sidebar() {
                 {mounted && (
                     <button 
                         onClick={handleLogout}
-                        className="mt-2 flex items-center gap-3 px-5 py-2.5 text-[14px] font-normal text-red-400 hover:text-red-300 transition-colors rounded-[5px] hover:bg-red-400/5"
+                        className="mt-2 flex items-center gap-3 px-5 py-2.5 text-[14px] font-normal text-red-400 hover:text-red-300 transition-colors rounded-[5px] hover:bg-red-400/5 w-full text-left"
                     >
                         <LogOut className="w-4 h-4" />
                         Logout
@@ -131,6 +153,7 @@ export default function Sidebar() {
                 )}
             </nav>
 
-        </aside>
+            </aside>
+        </>
     );
 }

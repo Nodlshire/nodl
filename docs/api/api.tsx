@@ -15,7 +15,7 @@ export default function APIReferencePage() {
 
             <h2 id="formal-execution-semantics">1. Formal Execution Semantics</h2>
             <p>
-                The API operates under strict decoupled asynchronous semantics. The ingress layer mathematically validates cryptographic signatures and schema conformity, but it does NOT execute state transitions. Valid payloads are enqueued into the high-throughput memory bus and broadcasted to the Earth Mesh via WSS. The API returns an immediate <code>202 Accepted</code> with a deterministic transaction hash, allowing the client to poll for finality without blocking the connection thread. All downstream execution follows a single linear memory model, processes in DAG topological order, and adheres to strict WASM sandboxing (no WASI, no syscalls, no network, no filesystem) where <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>. All execution faults propagate deterministically with standardized error envelopes.
+                The API operates under strict decoupled asynchronous semantics. The ingress layer mathematically validates cryptographic signatures and schema conformity, but it does NOT execute state transitions. Valid payloads are enqueued into the high-throughput memory bus and broadcasted to the Earth Mesh via WSS. The API returns an immediate <code>202 Accepted</code> with a deterministic transaction hash, allowing the client to poll for finality without blocking the connection thread. All downstream execution follows a single linear memory model, processes in DAG topological order, and adheres to strict Native Go sandboxing (no WASI, no syscalls, no network, no filesystem) where <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>. All execution faults propagate deterministically with standardized error envelopes.
             </p>
 
             <h2 id="invariants">2. Core Invariants</h2>
@@ -162,7 +162,7 @@ Body:
 
             <h2 id="cross-component">10. Cross-Component Contracts</h2>
             <p>
-                The API binds the untrusted Client SDK to the trusted Node Operator network. It acts as the ultimate cryptographic firewall, ensuring that <code>nodld</code> never processes an invalid JSON struct. Validated requests are piped directly into the Orchestrator's <code>SyncManifest</code>, bridging external RPC to the internal WASM matrix.
+                The API binds the untrusted Client SDK to the trusted Node Operator network. It acts as the ultimate cryptographic firewall, ensuring that <code>nodld</code> never processes an invalid JSON struct. Validated requests are piped directly into the Orchestrator's <code>SyncManifest</code>, bridging external RPC to the internal Native Go matrix.
             </p>
 
             <h2 id="formal-diagrams">11. Formal API Ingress DAG</h2>

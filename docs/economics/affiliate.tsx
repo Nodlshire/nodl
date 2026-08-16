@@ -15,7 +15,7 @@ export default function AffiliateEnginePage() {
 
             <h2 id="formal-execution-semantics">1. Formal Execution Semantics</h2>
             <p>
-                The Affiliate Engine functions as a deterministic state machine managing complex referral hierarchies. It executes recursive, integer-bound split distributions across immutable attribution graphs. The logic guarantees that for any block of network revenue, the sum of all distributed fractional payouts mathematically equals exactly 100% of the input value, with zero precision loss. The distribution logic executes within a single linear memory model featuring strict WASM sandboxing (no WASI, no syscalls, no network, no filesystem). It guarantees DAG topological order for all payouts, with memory strictly adhering to <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>. Calculation faults immediately trigger a deterministic trap sequence.
+                The Affiliate Engine functions as a deterministic state machine managing complex referral hierarchies. It executes recursive, integer-bound split distributions across immutable attribution graphs. The logic guarantees that for any block of network revenue, the sum of all distributed fractional payouts mathematically equals exactly 100% of the input value, with zero precision loss. The distribution logic executes within a single linear memory model featuring strict Native Go sandboxing (no WASI, no syscalls, no network, no filesystem). It guarantees DAG topological order for all payouts, with memory strictly adhering to <code>Ptr &isin; [0, HeapSize)</code> and <code>Len &le; MaxBlock</code>. Calculation faults immediately trigger a deterministic trap sequence.
             </p>
 
             <h2 id="invariants">2. Core Invariants</h2>
@@ -143,7 +143,7 @@ message RevenueSplitEvent {
 
             <h2 id="operator-lifecycle">6. Operator Lifecycle (Affiliate Processing)</h2>
             <p>
-                Operators process Affiliate Engine logic synchronously as part of the standard block execution pipeline. Because recursive tree traversal can consume significant memory, WASM handlers strictly trap and fail any attribution tree deeper than 10 levels, slashing the transaction initiator for excessive gas consumption.
+                Operators process Affiliate Engine logic synchronously as part of the standard block execution pipeline. Because recursive tree traversal can consume significant memory, Native Go handlers strictly trap and fail any attribution tree deeper than 10 levels, slashing the transaction initiator for excessive gas consumption.
             </p>
 
             <h2 id="economic-model">7. Economic Model</h2>

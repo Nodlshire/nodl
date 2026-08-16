@@ -7,16 +7,43 @@ export default function ApiReference() {
         <>
             <div className="border-b border-slate-800 pb-8 mb-12">
                 <h1 className="text-5xl font-space-grotesk font-bold tracking-tighter mb-4 text-white">API Reference</h1>
-                <p className="text-xl text-slate-400 font-light leading-relaxed">
+                <p className="text-xl text-slate-400 font-light leading-relaxed mb-6 leading-relaxed">
                     The external boundary. Integrating decentralized applications with the Orchestrator via secure, signed REST HTTP calls.
                 </p>
+            {/* Contextual Narrative Section (What, Why, How) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-10 not-prose">
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-emerald-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">WHAT IT IS</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">API Reference Overview</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Core architectural specification detailing the operational mechanics, data protocols, and determinism constraints of API Reference within the Wnode mesh.
+                    </p>
+                </div>
+
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-cyan-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">WHY IT MATTERS</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Architectural Purpose</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Ensures zero-custody verification, high-throughput execution, and fault-tolerant node consensus across Earth &amp; Space mesh topologies.
+                    </p>
+                </div>
+
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-purple-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-purple-400">HOW IT OPERATES</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Native Go Engine</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Executed via SECCOMP-restricted Native Go modules (`linux-amd64`), validated with mTLS telemetry signatures and HMAC routing epochs.
+                    </p>
+                </div>
+            </div>
+
             </div>
 
             <h2 id="conceptual-overview">Conceptual Overview & Rationale</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 In standard peer-to-peer systems, clients interact directly with nodes. This exposes node IPs to the public internet, opening them to targeted DDoS attacks and Sybil manipulation.
             </p>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 <strong>The Rationale:</strong> Wnode uses a gateway model. The Orchestrator exposes a hardened HTTP REST API. Clients never speak to Node Operators directly. The Orchestrator acts as a load balancer, reverse proxy, and cryptographic firewall.
             </p>
 
@@ -60,7 +87,7 @@ export default function ApiReference() {
             <h2 id="endpoints">Core Endpoints</h2>
 
             <h3 id="post-submit" className="text-2xl mt-8 mb-4 border-b border-slate-800 pb-2">POST /rpc/v1/submit</h3>
-            <p>Submits a payload for synchronous execution (Earth Mesh) or asynchronous routing (Space Mesh).</p>
+            <p className="text-slate-300 leading-relaxed mb-6">Submits a payload for synchronous execution (Earth Mesh) or asynchronous routing (Space Mesh).</p>
 
             <CodeBlock language="json" title="Request Payload">{`{
   "integration_id": "190001-0626-01-IN",
@@ -86,7 +113,7 @@ export default function ApiReference() {
 }`}</CodeBlock>
 
             <h3 id="get-status" className="text-2xl mt-8 mb-4 border-b border-slate-800 pb-2">GET /rpc/v1/status/{`{job_id}`}</h3>
-            <p>Queries the status of an asynchronous Space Mesh job.</p>
+            <p className="text-slate-300 leading-relaxed mb-6">Queries the status of an asynchronous Space Mesh job.</p>
 
             <CodeBlock language="json" title="Response (200 OK)">{`{
   "job_id": "job_9x8c7v6b5n4m",
@@ -105,12 +132,12 @@ export default function ApiReference() {
             </ul>
 
             <h2 id="security-boundaries">Security Boundaries & Invariants</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 <strong>Invariant:</strong> The Orchestrator's API is stateless. It does not cache your payloads, nor does it store your execution results permanently. If you do not capture a 200 OK response on an Earth Mesh job, that result is gone forever. You must resubmit.
             </p>
 
             <h2 id="performance">Performance Characteristics</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 The API gateway is globally distributed via Cloudflare Workers and Anycast routing. The TLS termination happens at the edge, meaning the connection overhead is minimal. Latency from payload submission to Orchestrator ingestion is generally <code>&lt;30ms</code> worldwide.
             </p>
 
@@ -118,11 +145,11 @@ export default function ApiReference() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8 not-prose">
                 <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl">
                     <h4 className="text-white font-bold mb-2">Operator</h4>
-                    <p className="text-sm text-slate-400">Node Operators do not serve HTTP traffic. They use binary TCP protocols for speed.</p>
+                    <p className="text-sm text-slate-400 mb-6 leading-relaxed">Node Operators do not serve HTTP traffic. They use binary TCP protocols for speed.</p>
                 </div>
                 <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl">
                     <h4 className="text-white font-bold mb-2">Developer</h4>
-                    <p className="text-sm text-slate-400">Implement idempotency. If an HTTP request times out, you must be able to safely retry it without double-charging a user or duplicating a database entry.</p>
+                    <p className="text-sm text-slate-400 mb-6 leading-relaxed">Implement idempotency. If an HTTP request times out, you must be able to safely retry it without double-charging a user or duplicating a database entry.</p>
                 </div>
             </div>
 
@@ -137,7 +164,7 @@ export default function ApiReference() {
 }`}</CodeBlock>
 
             <h2 id="cross-component">Cross-Component Interactions</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 The API is the entrypoint. It reads from the Substrate definitions to validate the request, pushes it down the TCP socket to the Execution Model on the Node Operator, and pipes the result back up to the client.
             </p>
 

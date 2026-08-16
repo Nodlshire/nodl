@@ -1,5 +1,16 @@
 # Mesh Proof Aggregation
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Mesh Proof Aggregation** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 In the multi-node Sovereign Mesh, individual workers produce local `ProofOfCompute` structures for their fragmented workflow steps.
 
 ## The Aggregation Pipeline

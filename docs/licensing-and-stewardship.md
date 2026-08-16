@@ -1,5 +1,16 @@
 # Licensing and Stewardship
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Licensing and Stewardship** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 ## Overview
 The wnode network is a community owned DePIN for decentralized compute. The network itself is sovereign and belongs entirely to its participants. Alongside this community ownership, there exists a separate commercial layer, the stewardship license, which defines who is responsible for operating, maintaining, and safeguarding the Mesh.
 

@@ -1,8 +1,19 @@
-# Wnode Architecture — WASM Constraints
+# Wnode Architecture — Native Go Constraints
 
-![diagram](/diagrams/wasm-constraints-overview.png)
 
-WASM Constraints are the constitutional boundaries that make Wnode’s execution deterministic, safe, and sovereign.
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Wnode Architecture — Native Go Constraints** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
+![diagram](/diagrams/native-go-constraints-overview.png)
+
+Native Go Constraints are the constitutional boundaries that make Wnode’s execution deterministic, safe, and sovereign.
 Every module must satisfy strict limits before it is admitted to the mesh.
 
 Constraints are enforced on:
@@ -21,7 +32,7 @@ No module can bypass these constraints.
 
 ## Binary Size Limit
 
-All WASM modules must satisfy:
+All Native Go modules must satisfy:
 
 - **Binary size < 500KB**
 
@@ -120,33 +131,33 @@ No module can exceed its declared capabilities.
 
 ---
 
-## WASM Validation Flow
+## Native Go Validation Flow
 
-![diagram](/diagrams/wasm-validation-flow.png)
+![diagram](/diagrams/native-go-validation-flow.png)
 
 Validation is deterministic:
 
-1. WASM module → size check  
+1. Native Go module → size check  
 2. Init time check  
 3. Memory pages check  
 4. Forbidden syscall scan  
 5. Determinism check  
 6. Capability boundary check  
 7. Signature verification  
-8. Runtime admission (Wazero)  
+8. Runtime admission (SECCOMP Sandbox)  
 
 Invalid modules are rejected before execution.
 
 ---
 
-## Runtime Admission (Wazero)
+## Runtime Admission (SECCOMP Sandbox)
 
 Only validated modules are admitted to:
 
 - Earth Mesh (Tier‑1)
 - Space Mesh (Tier‑2)
 
-Wazero enforces:
+SECCOMP Sandbox enforces:
 
 - sandboxing
 - memory limits
@@ -157,7 +168,7 @@ Wazero enforces:
 
 ## Summary
 
-WASM Constraints provide:
+Native Go Constraints provide:
 
 - deterministic execution guarantees
 - strict resource bounds

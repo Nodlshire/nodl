@@ -40,8 +40,8 @@ export default function GlossaryPage() {
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 font-mono text-blue-400 font-bold align-top">Substrate</td>
-                            <td className="p-4">A byte-compiled WebAssembly module (WASM) generated deterministically from an Integration Spec.</td>
-                            <td className="p-4">Executes within the Wazero sandbox. Maximum memory bound: 32MB.</td>
+                            <td className="p-4">A byte-compiled WebAssembly module (Native Go) generated deterministically from an Integration Spec.</td>
+                            <td className="p-4">Executes within the SECCOMP Sandbox sandbox. Maximum memory bound: 32MB.</td>
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 font-mono text-purple-400 font-bold align-top">Orchestrator</td>
@@ -56,7 +56,7 @@ export default function GlossaryPage() {
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 font-mono text-amber-400 font-bold align-top">State Diff</td>
                             <td className="p-4">A minimal binary payload representing the byte-for-byte delta mutation resulting from executing a payload against the Substrate.</td>
-                            <td className="p-4">Emitted by Wazero to nodld via pointer extraction.</td>
+                            <td className="p-4">Emitted by SECCOMP Sandbox to nodld via pointer extraction.</td>
                         </tr>
                         <tr className="hover:bg-white/[0.02]">
                             <td className="p-4 font-mono text-rose-400 font-bold align-top">Slashing</td>

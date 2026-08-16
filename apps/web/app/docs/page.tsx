@@ -7,24 +7,51 @@ export default function ArchitectureOverview() {
         <>
             <div className="border-b border-slate-800 pb-8 mb-12">
                 <h1 className="text-5xl font-space-grotesk font-bold tracking-tighter mb-4 text-white">Architecture Overview</h1>
-                <p className="text-xl text-slate-400 font-light leading-relaxed">
+                <p className="text-xl text-slate-400 font-light leading-relaxed mb-6 leading-relaxed">
                     The Wnode Sovereign Mesh is a deterministic, verifiable, and auto-scaling compute substrate. 
-                    It executes immutable, signed WASM/Go artifacts deployed across a decentralized network. 
+                    It executes immutable, signed Native Go/Go artifacts deployed across a decentralized network. 
                     The network features a stateless, horizontally scalable orchestrator layer, 
-                    local ingress validation via signed routing epochs, capability-based WASM execution, 
+                    local ingress validation via signed routing epochs, capability-based Native Go execution, 
                     hardened telemetry via mTLS and signed envelopes, and a multi-dimensional reputation and grace system for node reliability.
                 </p>
+            {/* Contextual Narrative Section (What, Why, How) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-10 not-prose">
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-emerald-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">WHAT IT IS</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Architecture Overview Overview</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Core architectural specification detailing the operational mechanics, data protocols, and determinism constraints of Architecture Overview within the Wnode mesh.
+                    </p>
+                </div>
+
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-cyan-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">WHY IT MATTERS</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Architectural Purpose</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Ensures zero-custody verification, high-throughput execution, and fault-tolerant node consensus across Earth &amp; Space mesh topologies.
+                    </p>
+                </div>
+
+                <div className="bg-slate-900/80 p-6 rounded-2xl border border-purple-500/30">
+                    <span className="text-xs font-bold uppercase tracking-widest text-purple-400">HOW IT OPERATES</span>
+                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Native Go Engine</h3>
+                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
+                        Executed via SECCOMP-restricted Native Go modules (`linux-amd64`), validated with mTLS telemetry signatures and HMAC routing epochs.
+                    </p>
+                </div>
+            </div>
+
             </div>
 
             <h2 id="conceptual-overview">Conceptual Overview & Rationale</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 Wnode abandons traditional container orchestration in favor of a strictly generative <strong>Substrate Model</strong>. 
                 Instead of accepting opaque, mutable Docker containers that introduce zero-day vulnerabilities and unpredictable state, 
                 Wnode strictly ingests declarative <code>spec.yaml</code> definitions.
             </p>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 <strong>The Rationale:</strong> In a trustless decentralized network, running a black-box container is inherently unsafe. 
-                By compiling a declarative <code>spec.yaml</code> into an immutable, deterministic artifact (WASM or native Go), Wnode guarantees 
+                By compiling a declarative <code>spec.yaml</code> into an immutable, deterministic artifact (Native Go or native Go), Wnode guarantees 
                 identical execution environments globally. This deterministic execution, combined with capability-based host extensions, 
                 provides a perfect balance between airtight safety and real-world utility. Furthermore, by distributing signed routing epochs to nodes for local validation, 
                 we remove central bottlenecks, enabling the orchestrator to scale horizontally without becoming a Single Point of Failure (SPOF) for ingress traffic.
@@ -61,7 +88,7 @@ export default function ArchitectureOverview() {
                     {/* Earth Mesh */}
                     <rect x="100" y="220" width="240" height="140" rx="8" fill="url(#gradEarth)" stroke="#10b981" strokeWidth="2" />
                     <text x="220" y="245" fill="white" fontSize="16" fontWeight="bold" textAnchor="middle">Earth Mesh (Tier-1)</text>
-                    <text x="220" y="265" fill="#94a3b8" fontSize="12" textAnchor="middle">Synchronous Execution (WASM/Go)</text>
+                    <text x="220" y="265" fill="#94a3b8" fontSize="12" textAnchor="middle">Synchronous Execution (Native Go/Go)</text>
                     <text x="220" y="285" fill="#94a3b8" fontSize="12" textAnchor="middle">Local Ingress Validation</text>
                     <rect x="130" y="310" width="180" height="40" rx="4" fill="#0f172a" stroke="#10b981" strokeWidth="1" />
                     <text x="220" y="335" fill="#10b981" fontSize="12" textAnchor="middle">Capability-Scoped Outbound I/O</text>
@@ -108,7 +135,7 @@ export default function ArchitectureOverview() {
                     <text x="675" y="110" fill="#94a3b8" textAnchor="start">2. Validate locally using cached Routing Epoch</text>
 
                     <rect x="635" y="125" width="30" height="20" fill="#10b981" fillOpacity="0.2" stroke="#10b981" />
-                    <text x="675" y="140" fill="#94a3b8" textAnchor="start">3. Execute WASM with Capability Enforcement</text>
+                    <text x="675" y="140" fill="#94a3b8" textAnchor="start">3. Execute Native Go with Capability Enforcement</text>
 
                     <rect x="635" y="155" width="30" height="20" fill="#10b981" fillOpacity="0.2" stroke="#10b981" />
                     <text x="675" y="170" fill="#94a3b8" textAnchor="start">4. Emit Signed Telemetry Envelope</text>
@@ -119,14 +146,14 @@ export default function ArchitectureOverview() {
             </div>
 
             <h2 id="real-code-examples">Core Code Artifacts</h2>
-            <p>To fully grasp the architecture, you must understand how a declarative YAML becomes an executable WASM capability boundary.</p>
+            <p className="text-slate-300 leading-relaxed mb-6">To fully grasp the architecture, you must understand how a declarative YAML becomes an executable Native Go capability boundary.</p>
 
             <CodeBlock language="yaml" title="spec.yaml (Declarative Target)">{`id: "hello-world-01"
 strict_mode: true
 job_template:
   action: "execute_hello"
   node_job:
-    execution_type: "wasm"
+    execution_type: "native-go"
     timeout_ms: 500
     capabilities:
       https_bindings:
@@ -134,14 +161,14 @@ job_template:
       db_bindings:
         - "primary_pg"`}</CodeBlock>
 
-            <CodeBlock language="go" title="WASM Runtime & Capabilities (Daemon)">{`// Parses routing epochs and validates capability scopes
-func ExecuteWasm(ctx context.Context, payload []byte, caps WasmCapabilities) {
-    // Epoch validated locally. Enforce declared capabilities via Wazero host funcs.
+            <CodeBlock language="go" title="Native Go Runtime & Capabilities (Daemon)">{`// Parses routing epochs and validates capability scopes
+func ExecuteNative(ctx context.Context, payload []byte, caps NativeCapabilities) {
+    // Epoch validated locally. Enforce declared capabilities via SECCOMP Sandbox host funcs.
     RegisterHostFunctions(ctx, r, caps)
     
-    // Wazero strictly limits capabilities like http_request and db_query 
+    // SECCOMP Sandbox strictly limits capabilities like http_request and db_query 
     // to the bindings explicitly permitted in the signed spec.yaml payload.
-    res, err := r.CallWASM("process_task", payload)
+    res, err := r.CallNative("process_task", payload)
 }`}</CodeBlock>
 
             <CodeBlock language="go" title="Routing Epoch Structure">{`type RoutingEpoch struct {
@@ -155,33 +182,33 @@ func ExecuteWasm(ctx context.Context, payload []byte, caps WasmCapabilities) {
             <h2 id="failure-modes">Failure Modes & Error Handling</h2>
             <ul>
                 <li><strong>Epoch Expiration:</strong> If the locally cached routing epoch expires, the node rejects all ingress traffic safely until a new signed epoch is successfully fetched.</li>
-                <li><strong>Capability Rejection:</strong> If a WASM module attempts an I/O operation not explicitly declared in its <code>spec.yaml</code>, the host function instantly traps the call, logging a capability rejection.</li>
-                <li><strong>WASM Sandbox Traps:</strong> Panics or out-of-bounds memory accesses within the WASM module are trapped securely by the Wazero runtime without affecting the underlying host.</li>
+                <li><strong>Capability Rejection:</strong> If a Native Go module attempts an I/O operation not explicitly declared in its <code>spec.yaml</code>, the host function instantly traps the call, logging a capability rejection.</li>
+                <li><strong>Native Go Sandbox Traps:</strong> Panics or out-of-bounds memory accesses within the Native Go module are trapped securely by the SECCOMP Sandbox runtime without affecting the underlying host.</li>
                 <li><strong>Grace-Based Reputation Decay:</strong> Nodes are not instantly slashed for transient failures. Instead, the reputation system uses a continuous grace window and multi-dimensional scoring (uptime, tasks, thermal, heartbeat). Repeated failures cause exponential score decay.</li>
                 <li><strong>Offline Operation:</strong> During temporary Orchestrator downtime, nodes continue to process tasks seamlessly, relying on their cached routing epochs and local HMAC ingress validation.</li>
             </ul>
 
             <h2 id="security-boundaries">Security Boundaries & Invariants</h2>
-            <p>
-                <strong>Invariant 1:</strong> WASM execution is strictly deterministic by default. All execution takes place within an air-gapped memory sandbox.
+            <p className="text-slate-300 leading-relaxed mb-6">
+                <strong>Invariant 1:</strong> Native Go execution is strictly deterministic by default. All execution takes place within an air-gapped memory sandbox.
             </p>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 <strong>Invariant 2:</strong> All outbound I/O is capability-scoped. Functions can only access external networks or databases if the capability is cryptographically signed in the spec payload.
             </p>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 <strong>Invariant 3:</strong> Artifacts and routing epochs are cryptographically signed. Nodes verify the SHA-256 hash and ed25519 signature before execution or ingress allowance.
             </p>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 <strong>Invariant 4:</strong> Node identity keys provide absolute cryptographic proof of execution. All telemetry is secured via mTLS transport and wrapped in signed envelopes.
             </p>
 
             <h2 id="performance">Performance Characteristics</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 The architecture is heavily optimized for edge deployment.
                 <ul>
                     <li><strong>Local Ingress Validation Latency:</strong> &lt; 1ms overhead for local HMAC and epoch route validation.</li>
-                    <li><strong>WASM Cold Start:</strong> &lt; 10ms utilizing pre-compiled runtime caches.</li>
-                    <li><strong>Capability Overhead:</strong> &lt; 2ms penalty for bridging host-function capabilities from the WASM guest to the Go daemon.</li>
+                    <li><strong>Native Go Cold Start:</strong> &lt; 10ms utilizing pre-compiled runtime caches.</li>
+                    <li><strong>Capability Overhead:</strong> &lt; 2ms penalty for bridging host-function capabilities from the Native Go guest to the Go daemon.</li>
                     <li><strong>Epoch Refresh Intervals:</strong> Epochs are asynchronously refreshed every 10 minutes, entirely outside the execution critical path.</li>
                 </ul>
             </p>
@@ -190,16 +217,16 @@ func ExecuteWasm(ctx context.Context, payload []byte, caps WasmCapabilities) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8 not-prose">
                 <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl">
                     <h4 className="text-white font-bold mb-2">Operator Responsibilities</h4>
-                    <p className="text-sm text-slate-400">Maintain high node uptime. Protect the local node identity keys securely. Ensure host OS cgroups and sandboxing features are correctly enabled to support the daemon.</p>
+                    <p className="text-sm text-slate-400 mb-6 leading-relaxed">Maintain high node uptime. Protect the local node identity keys securely. Ensure host OS cgroups and sandboxing features are correctly enabled to support the daemon.</p>
                 </div>
                 <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl">
                     <h4 className="text-white font-bold mb-2">Developer Responsibilities</h4>
-                    <p className="text-sm text-slate-400">Define accurate <code>spec.yaml</code> manifests. Explicitly declare any required HTTP or DB capabilities. Write highly deterministic WASM logic.</p>
+                    <p className="text-sm text-slate-400 mb-6 leading-relaxed">Define accurate <code>spec.yaml</code> manifests. Explicitly declare any required HTTP or DB capabilities. Write highly deterministic Native Go logic.</p>
                 </div>
             </div>
 
             <h2 id="telemetry">Telemetry Emitted</h2>
-            <p>Telemetry is never transmitted in plaintext. All telemetry utilizes mTLS transport and is cryptographically signed by the node's identity key, including a monotonic sequence counter to prevent replay attacks.</p>
+            <p className="text-slate-300 leading-relaxed mb-6">Telemetry is never transmitted in plaintext. All telemetry utilizes mTLS transport and is cryptographically signed by the node's identity key, including a monotonic sequence counter to prevent replay attacks.</p>
             <CodeBlock language="json" title="Signed Telemetry Envelope">{`{
   "sequence": 4092,
   "pub_key": "abc123def456...",
@@ -214,7 +241,7 @@ func ExecuteWasm(ctx context.Context, payload []byte, caps WasmCapabilities) {
 }`}</CodeBlock>
 
             <h2 id="cross-component">Cross-Component Interactions</h2>
-            <p>
+            <p className="text-slate-300 leading-relaxed mb-6">
                 Nodes operate entirely independently based on locally cached routing epochs. 
                 The Orchestrator functions exclusively as a stateless, horizontally scalable routing table publisher and authenticated telemetry sink. 
                 Telemetry interaction is secured via mTLS, ensuring end-to-end encryption and node authenticity.

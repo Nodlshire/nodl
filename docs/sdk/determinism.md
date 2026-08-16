@@ -1,5 +1,16 @@
 # Deterministic Execution in SDK
 
+
+> ### Contextual Architecture Narrative
+
+> - **WHAT**: Core architectural specification for **Deterministic Execution in SDK** within the Wnode Sovereign Mesh network.
+
+> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+
+> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+
+
+
 Deterministic execution is the constitutional foundation of Wnode.  
 The SDK must guarantee that every job, shard, routing plan, and reduction step is reproducible across all environments.
 

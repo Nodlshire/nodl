@@ -33,7 +33,7 @@ export default function AffiliatePage() {
 
 
     return (
-        <div className="max-w-5xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
+        <div className="w-full space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
             {/* Header */}
             <div className="flex justify-between items-end border-b border-white/10 pb-6">
                 <div>

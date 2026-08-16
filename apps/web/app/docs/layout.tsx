@@ -104,6 +104,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                             <div className="flex flex-col gap-2">
                                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-2">Operator</span>
                                 <a href="/docs/operator" className="text-sm font-medium hover:text-white transition-colors">Operator</a>
+                                <a href="/docs/operator/desktop-gui-and-cli-menu" className="text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors">Desktop GUI & Interactive Menu</a>
                                 <a href="/docs/operator/archetypes" className="text-sm font-medium hover:text-white transition-colors">Archetypes</a>
                                 <a href="/docs/operator/dewi-gateway" className="text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors">DeWi Gateway Setup</a>
                                 <a href="/docs/operator/earth-mesh" className="text-sm font-medium hover:text-white transition-colors">Earth Mesh</a>

@@ -113,10 +113,12 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                   <span className="text-sm text-slate-300 leading-relaxed block">Download the Nodlr Compute Agent for your system:</span>
                   <div className="grid grid-cols-1 gap-2">
                     {[
-                      { os: "Linux Desktop App (Fedora / Ubuntu / Debian AppImage)", url: "/downloads/Wnode-Node-Operator-x86_64.AppImage", desc: "Out-of-the-box Point & Click Desktop Application" },
-                      { os: "Linux Headless Binary (Server / Terminal CLI)", url: "/downloads/nodld", desc: "Interactive CLI Command Menu (/menu) for Headless Servers" },
-                      { os: "macOS Desktop App (Apple Silicon / Intel)", url: "/downloads/Wnode-Node-Operator-x86_64.AppImage", desc: "Out-of-the-box macOS Control App" },
-                      { os: "Windows (amd64 Executable)", url: "/downloads/Wnode-Node-Operator-x86_64.AppImage", desc: "Out-of-the-box Windows Desktop Program" }
+                      { os: "Linux x86_64 Binary (Fedora / Ubuntu / Debian / Arch)", url: "/downloads/wnode-node-operator", desc: "Terminal Launch: chmod +x wnode-node-operator && ./wnode-node-operator" },
+                      { os: "Linux ARM64 Binary (Raspberry Pi 4/5 / Graviton / Ampere)", url: "/downloads/wnode-node-operator-linux-arm64", desc: "Terminal Launch: chmod +x wnode-node-operator-linux-arm64 && ./wnode-node-operator-linux-arm64" },
+                      { os: "Linux Headless CLI x86_64 (Server / Daemon)", url: "/downloads/nodld", desc: "Terminal Launch: chmod +x nodld && ./nodld menu" },
+                      { os: "Linux Headless CLI ARM64 (Server / Daemon)", url: "/downloads/nodld-arm64", desc: "Terminal Launch: chmod +x nodld-arm64 && ./nodld-arm64 menu" },
+                      { os: "macOS Executable App (Apple Silicon / Intel)", url: "/downloads/wnode-node-operator-mac", desc: "Native macOS Executable Application" },
+                      { os: "Windows Executable Program (.exe)", url: "/downloads/wnode-node-operator.exe", desc: "Native Windows Desktop Executable (.exe)" }
                     ].map(item => (
                       <a key={item.os} href={item.url} download className="flex items-center justify-between px-4 py-3 bg-white/5 border border-white/10 hover:bg-white/10 transition-all rounded-[6px] group">
                         <div className="flex items-center gap-3">

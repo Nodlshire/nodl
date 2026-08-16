@@ -48,6 +48,10 @@ func NewLoRaWANForwarder(cfg LoRaWANConfig, mgr *Manager, log *zap.Logger) *LoRa
 	}
 }
 
+func (l *LoRaWANForwarder) Capability() AdapterCapabilityModel {
+	return NewDefaultCapabilityModel("lorawan", "Semtech UDP LoRaWAN Packet Forwarder")
+}
+
 func (l *LoRaWANForwarder) Name() string {
 	return string(ProtocolLoRaWAN)
 }

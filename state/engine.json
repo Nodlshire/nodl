@@ -55,9 +55,352 @@
         "NODLR",
         "MESH"
       ],
-      "createdAt": "2026-08-16T03:49:44.297862429+02:00"
+      "createdAt": "2026-08-16T04:24:00.302454843+02:00"
     }
   },
+  "nodes": {
+    "HN-5578aa47": {
+      "cpu_cores": 0,
+      "memory_gb": 0,
+      "lat": 0,
+      "lon": 0,
+      "ipAddress": "",
+      "id": "HN-5578aa47",
+      "userId": "100001-0426-01-AA",
+      "operator_wuid": "",
+      "crm_link": "",
+      "metadata": {
+        "os": ""
+      },
+      "status": "offline",
+      "createdAt": "2026-08-16T04:19:56.227484021+02:00",
+      "lastSeen": "2026-08-16T04:19:56.231444+02:00",
+      "last_heartbeat": "",
+      "last_seen_at": "",
+      "metrics": {
+        "cpuCores": 0,
+        "memoryGb": 0,
+        "cpu": 0,
+        "ram": 0,
+        "disk": 0,
+        "uptime": 0,
+        "network": "",
+        "currentLoad": 0,
+        "computeScore": 0,
+        "cpuScore": 0,
+        "gpuScore": 0,
+        "memoryScore": 0,
+        "isWasm": false
+      },
+      "globalScore": 0,
+      "tier": 5,
+      "isWasm": false,
+      "downtimePenalized": true,
+      "downtimeSlashed": true,
+      "deviceClass": "native"
+    },
+    "HN-77518357": {
+      "cpu_cores": 0,
+      "memory_gb": 0,
+      "lat": 0,
+      "lon": 0,
+      "ipAddress": "",
+      "id": "HN-77518357",
+      "userId": "100001-0426-01-AA",
+      "operator_wuid": "",
+      "crm_link": "",
+      "metadata": {
+        "os": ""
+      },
+      "status": "offline",
+      "createdAt": "2026-08-16T04:19:56.22635916+02:00",
+      "lastSeen": "2026-08-16T04:19:56.229172579+02:00",
+      "last_heartbeat": "",
+      "last_seen_at": "",
+      "metrics": {
+        "cpuCores": 0,
+        "memoryGb": 0,
+        "cpu": 0,
+        "ram": 0,
+        "disk": 0,
+        "uptime": 0,
+        "network": "",
+        "currentLoad": 0,
+        "computeScore": 0,
+        "cpuScore": 0,
+        "gpuScore": 0,
+        "memoryScore": 0,
+        "isWasm": false
+      },
+      "globalScore": 0,
+      "tier": 5,
+      "isWasm": false,
+      "downtimePenalized": true,
+      "downtimeSlashed": true,
+      "deviceClass": "native"
+    },
+    "debian-upid-02": {
+      "cpu_cores": 0,
+      "memory_gb": 0,
+      "lat": 0,
+      "lon": 0,
+      "ipAddress": "127.0.0.1",
+      "id": "debian-upid-02",
+      "userId": "100001-0426-01-AA",
+      "operator_wuid": "",
+      "crm_link": "",
+      "metadata": {
+        "os": ""
+      },
+      "status": "active",
+      "createdAt": "2026-08-16T04:23:00.985483204+02:00",
+      "lastSeen": "2026-08-16T04:24:05.877671365+02:00",
+      "last_heartbeat": "",
+      "last_seen_at": "",
+      "metrics": {
+        "cpuCores": 0,
+        "memoryGb": 0,
+        "cpu": 0,
+        "ram": 0,
+        "disk": 0,
+        "uptime": 86400,
+        "network": "",
+        "currentLoad": 0,
+        "computeScore": 0,
+        "cpuScore": 0,
+        "gpuScore": 0,
+        "memoryScore": 0,
+        "isWasm": false
+      },
+      "globalScore": 0,
+      "tier": 5,
+      "isWasm": false,
+      "downtimePenalized": false,
+      "downtimeSlashed": false,
+      "hardwareHash": "hw-dna-debian-headless-server",
+      "browserFingerprint": "native-nodld-v1.0.0",
+      "deviceClass": "native-server"
+    },
+    "fedora-upid-01": {
+      "cpu_cores": 0,
+      "memory_gb": 0,
+      "lat": 0,
+      "lon": 0,
+      "ipAddress": "127.0.0.1",
+      "id": "fedora-upid-01",
+      "userId": "100001-0426-01-AA",
+      "operator_wuid": "",
+      "crm_link": "",
+      "metadata": {
+        "os": ""
+      },
+      "status": "active",
+      "createdAt": "2026-08-16T04:23:00.9847835+02:00",
+      "lastSeen": "2026-08-16T04:24:05.87630745+02:00",
+      "last_heartbeat": "",
+      "last_seen_at": "",
+      "metrics": {
+        "cpuCores": 0,
+        "memoryGb": 0,
+        "cpu": 0,
+        "ram": 0,
+        "disk": 0,
+        "uptime": 14400,
+        "network": "",
+        "currentLoad": 0,
+        "computeScore": 0,
+        "cpuScore": 0,
+        "gpuScore": 0,
+        "memoryScore": 0,
+        "isWasm": false
+      },
+      "globalScore": 0,
+      "tier": 5,
+      "isWasm": false,
+      "downtimePenalized": false,
+      "downtimeSlashed": false,
+      "hardwareHash": "hw-dna-fedora-x86-64",
+      "browserFingerprint": "native-nodld-v1.0.0",
+      "deviceClass": "native-workstation"
+    }
+  },
+  "token_ledger": [
+    {
+      "entryId": "bc588c94-7593-4602-839a-f7a279e13fe9",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "downtime",
+      "shardId": "HN-77518357",
+      "amount": -0.0001,
+      "reason": "downtime_penalty",
+      "timestamp": "2026-08-16T04:21:34.300170967+02:00"
+    },
+    {
+      "entryId": "6b42e565-6afc-4929-b90f-75d9848998a1",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "downtime",
+      "shardId": "HN-5578aa47",
+      "amount": -0.0001,
+      "reason": "downtime_penalty",
+      "timestamp": "2026-08-16T04:21:34.300170967+02:00"
+    },
+    {
+      "entryId": "fa76732a-1afd-4d3d-9073-21823ddcb4c5",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "",
+      "shardId": "",
+      "amount": -2.5,
+      "reason": "slash_downtime",
+      "timestamp": "2026-08-16T04:22:34.301355345+02:00"
+    },
+    {
+      "entryId": "c5cbd04c-3a21-4864-a267-9dc22c5f8644",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "",
+      "shardId": "",
+      "amount": -5,
+      "reason": "slash_downtime",
+      "timestamp": "2026-08-16T04:22:34.301386623+02:00"
+    }
+  ],
+  "token_balances": {
+    "100001-0426-01-AA": {
+      "operatorId": "100001-0426-01-AA",
+      "balance": -7.5001999999999995,
+      "updatedAt": "2026-08-16T04:22:34.301386722+02:00"
+    }
+  },
+  "operator_stakes": {
+    "100001-0426-01-AA": {
+      "operatorId": "100001-0426-01-AA",
+      "staked": 0,
+      "locked": 0,
+      "updatedAt": "2026-08-16T04:22:34.301386382+02:00"
+    }
+  },
+  "stake_ledger": [
+    {
+      "entryId": "76645456-9177-498d-9ec9-758b40c5c42f",
+      "operatorId": "100001-0426-01-AA",
+      "amount": -2.5,
+      "reason": "slash_downtime",
+      "timestamp": "2026-08-16T04:22:34.301359249+02:00"
+    },
+    {
+      "entryId": "d4af30bc-0966-4f4e-8c63-e109a0352f26",
+      "operatorId": "100001-0426-01-AA",
+      "amount": -5,
+      "reason": "slash_downtime",
+      "timestamp": "2026-08-16T04:22:34.301386898+02:00"
+    }
+  ],
+  "operator_reputations": {
+    "100001-0426-01-AA": {
+      "operatorId": "100001-0426-01-AA",
+      "score": 0.5900000000000001,
+      "reliability": 1,
+      "uptime": 0.5,
+      "successRate": 1,
+      "abandonmentRate": 0,
+      "slashes": 2,
+      "stakeLevel": 0,
+      "computeScore": 0,
+      "tier": 5,
+      "longevityDays": 18,
+      "updatedAt": "2026-08-16T04:24:05.877726661+02:00",
+      "assignedShards": 0,
+      "completedShards": 0,
+      "abandonedShards": 0
+    }
+  },
+  "reputation_ledger": [
+    {
+      "entryId": "2b5f54a5-4bbf-4098-b63c-c2637d23efe8",
+      "operatorId": "100001-0426-01-AA",
+      "delta": 0.0050000000000000044,
+      "reason": "recalculate",
+      "timestamp": "2026-08-16T04:19:56.229428325+02:00"
+    },
+    {
+      "entryId": "5e84d049-2f63-4755-af6a-2112c7b69f5c",
+      "operatorId": "100001-0426-01-AA",
+      "delta": -0.20000000000000007,
+      "reason": "recalculate",
+      "timestamp": "2026-08-16T04:22:34.301369304+02:00"
+    },
+    {
+      "entryId": "33a2c872-0bc5-4484-8efa-04cd7e4412fd",
+      "operatorId": "100001-0426-01-AA",
+      "delta": -0.04999999999999993,
+      "reason": "recalculate",
+      "timestamp": "2026-08-16T04:22:34.301388222+02:00"
+    },
+    {
+      "entryId": "f2f013aa-cecf-4797-87fc-b1f5aeee56d4",
+      "operatorId": "100001-0426-01-AA",
+      "delta": -0.1,
+      "reason": "identity_instability_penalty",
+      "timestamp": "2026-08-16T04:24:05.876331899+02:00"
+    },
+    {
+      "entryId": "b2578754-5e7d-44bb-b937-5533f5a829af",
+      "operatorId": "100001-0426-01-AA",
+      "delta": 0.15500000000000003,
+      "reason": "recalculate",
+      "timestamp": "2026-08-16T04:24:05.876338301+02:00"
+    },
+    {
+      "entryId": "d58554b7-36d9-4970-95d3-867f7b852378",
+      "operatorId": "100001-0426-01-AA",
+      "delta": -0.1,
+      "reason": "identity_instability_penalty",
+      "timestamp": "2026-08-16T04:24:05.877716376+02:00"
+    },
+    {
+      "entryId": "123cd6ca-2fbd-4ff1-914e-caf4f02f94be",
+      "operatorId": "100001-0426-01-AA",
+      "delta": 0.07999999999999996,
+      "reason": "recalculate",
+      "timestamp": "2026-08-16T04:24:05.877727351+02:00"
+    }
+  ],
+  "operator_identities": {
+    "100001-0426-01-AA": {
+      "operatorId": "100001-0426-01-AA",
+      "hardwareHash": "hw-dna-debian-headless-server",
+      "browserFingerprint": "native-nodld-v1.0.0",
+      "deviceClass": "native-server",
+      "firstSeen": "2026-08-16T04:19:56.229173664+02:00",
+      "lastSeen": "2026-08-16T04:24:05.87768004+02:00",
+      "trustLevel": 0.6000000000000001,
+      "sybilSuspected": false,
+      "linkedNodeIds": [],
+      "changeCount24h": 2,
+      "lastChangeTime": "2026-08-16T04:24:05.877713888+02:00"
+    }
+  },
+  "identity_ledger": [
+    {
+      "entryId": "a579b959-963c-4f33-a91e-9f57878e18cd",
+      "operatorId": "100001-0426-01-AA",
+      "delta": 0,
+      "reason": "identity_initialized",
+      "timestamp": "2026-08-16T04:19:56.22917947+02:00"
+    },
+    {
+      "entryId": "659daa56-e1c0-4e9b-baf5-0e4e58dfbfdc",
+      "operatorId": "100001-0426-01-AA",
+      "delta": -0.19999999999999996,
+      "reason": "identity_mismatch_heartbeat",
+      "timestamp": "2026-08-16T04:24:05.8763119+02:00"
+    },
+    {
+      "entryId": "adb28689-a4bf-49d3-a66f-69c920530f4a",
+      "operatorId": "100001-0426-01-AA",
+      "delta": -0.19999999999999996,
+      "reason": "identity_mismatch_heartbeat",
+      "timestamp": "2026-08-16T04:24:05.877688474+02:00"
+    }
+  ],
   "invite": {
     "secret": "d1b8aaeaef46e45059f49912f64668454b228dca0d2c928c85483c458a7549ec2f1e9d8702d664e9601a909613a48a8e8fc8bf950c76c8751b7beb8d89d36a54",
     "nextFounderIndex": 1,
@@ -467,6 +810,15 @@
       "expiresAt": "2026-08-09T09:23:49.894654805+02:00",
       "createdAt": "2026-08-08T09:23:49.894655062+02:00"
     },
+    "28f19c86-5bbc-414a-be0d-844f578a1568": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-08-17T04:20:08.422927331+02:00",
+      "createdAt": "2026-08-16T04:20:08.422927618+02:00"
+    },
     "2a2f0d98-8fda-49a0-a722-c64d4788ceca": {
       "wuid": "100001-0426-01-AA",
       "domain": "command",
@@ -494,6 +846,15 @@
       "expiresAt": "2026-08-09T02:52:15.361541959+02:00",
       "createdAt": "2026-08-08T02:52:15.361542311+02:00"
     },
+    "43927d7f-2fac-4719-af35-40c56c0c1c23": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-08-17T04:18:33.506506306+02:00",
+      "createdAt": "2026-08-16T04:18:33.506506745+02:00"
+    },
     "44122bb3-86de-420d-99d9-8c59f739639e": {
       "wuid": "100001-0426-01-AA",
       "domain": "command",
@@ -502,6 +863,15 @@
       "twoFAVerified": false,
       "expiresAt": "2026-08-13T13:35:39.720866532+02:00",
       "createdAt": "2026-08-12T13:35:39.720866834+02:00"
+    },
+    "79d2cb1d-dc53-4111-aa9a-6220c01e537c": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-08-17T04:18:39.402548817+02:00",
+      "createdAt": "2026-08-16T04:18:39.402548924+02:00"
     },
     "8d46120b-7c61-42d7-a27f-a9a102485f43": {
       "wuid": "100001-0426-01-AA",
@@ -520,6 +890,15 @@
       "twoFAVerified": false,
       "expiresAt": "2026-08-08T15:27:11.52212347+02:00",
       "createdAt": "2026-08-07T15:27:11.522123651+02:00"
+    },
+    "a795bb61-deae-4d05-9b2c-2bb05f17a2bd": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-08-17T04:20:20.258680877+02:00",
+      "createdAt": "2026-08-16T04:20:20.258681229+02:00"
     },
     "aeda250d-6b74-4e78-93c9-7cb50dcfdbce": {
       "wuid": "100001-0426-01-AA",
@@ -592,6 +971,40 @@
       "twoFAVerified": false,
       "expiresAt": "2026-08-15T14:30:56.136382239+02:00",
       "createdAt": "2026-08-14T14:30:56.136382531+02:00"
+    }
+  },
+  "headless_tokens": {
+    "REG-aebf42b5-59d3-4789-bc59-0705e8e8fbfc": {
+      "token": "REG-aebf42b5-59d3-4789-bc59-0705e8e8fbfc",
+      "userId": "100001-0426-01-AA",
+      "profile": "earth-headless",
+      "expiresAt": "2026-08-16T05:24:05.873927218+02:00",
+      "used": true,
+      "createdAt": "2026-08-16T04:24:05.873927292+02:00"
+    },
+    "REG-d1928674-efa0-4508-a550-73960bd1e880": {
+      "token": "REG-d1928674-efa0-4508-a550-73960bd1e880",
+      "userId": "100001-0426-01-AA",
+      "profile": "earth-headless",
+      "expiresAt": "2026-08-16T05:23:00.98293817+02:00",
+      "used": true,
+      "createdAt": "2026-08-16T04:23:00.982938241+02:00"
+    },
+    "REG-e17109e3-a2aa-4740-a539-136b98a6f116": {
+      "token": "REG-e17109e3-a2aa-4740-a539-136b98a6f116",
+      "userId": "100001-0426-01-AA",
+      "profile": "earth-headless",
+      "expiresAt": "2026-08-16T05:24:05.872889373+02:00",
+      "used": true,
+      "createdAt": "2026-08-16T04:24:05.872889455+02:00"
+    },
+    "REG-f92a8d8f-9f3b-4ca5-9ef8-f22d765c1172": {
+      "token": "REG-f92a8d8f-9f3b-4ca5-9ef8-f22d765c1172",
+      "userId": "100001-0426-01-AA",
+      "profile": "earth-headless",
+      "expiresAt": "2026-08-16T05:23:00.983910888+02:00",
+      "used": true,
+      "createdAt": "2026-08-16T04:23:00.98391098+02:00"
     }
   }
 }

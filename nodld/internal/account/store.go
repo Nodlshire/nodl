@@ -150,6 +150,7 @@ func NewStore(forensics *forensics.Store, statePath string) *Store {
 		operatorIdentities:  make(map[string]*OperatorIdentity),
 		identityLedger:      make([]*IdentityLedgerEntry, 0),
 		Telemetry:           NewTelemetryDispatcher("http://127.0.0.1:3001/api/intelligence/event"),
+		hardwareMapping:     make(map[string]*WUIDHardwareMapping),
 		integrations:        make(map[string]*Integration),
 	}
 	s.initInviteState()
@@ -1261,6 +1262,9 @@ func (s *Store) UpdateNodeHeartbeat(nodeID string, metrics NodeHealthMetrics, ha
 
 	// Hardware mapping
 	if hardwareHash != "" {
+		if s.hardwareMapping == nil {
+			s.hardwareMapping = make(map[string]*WUIDHardwareMapping)
+		}
 		s.hardwareMapping[hardwareHash] = &WUIDHardwareMapping{
 			WUID:               node.UserID,
 			HardwareHash:       hardwareHash,

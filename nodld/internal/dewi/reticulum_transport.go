@@ -45,6 +45,10 @@ func NewReticulumTransport(cfg ReticulumConfig, mgr *Manager, log *zap.Logger) *
 	}
 }
 
+func (r *ReticulumTransport) Capability() AdapterCapabilityModel {
+	return NewDefaultCapabilityModel("reticulum", "Reticulum Mesh Transport")
+}
+
 func (r *ReticulumTransport) Name() string {
 	return string(ProtocolReticulum)
 }

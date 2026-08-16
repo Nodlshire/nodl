@@ -44,6 +44,10 @@ func NewAPRSDecoder(cfg APRSConfig, mgr *Manager, log *zap.Logger) *APRSDecoder 
 	}
 }
 
+func (a *APRSDecoder) Capability() AdapterCapabilityModel {
+	return NewDefaultCapabilityModel("aprs", "APRS AX.25 TNC Packet Decoder")
+}
+
 func (a *APRSDecoder) Name() string {
 	return string(ProtocolAPRS)
 }

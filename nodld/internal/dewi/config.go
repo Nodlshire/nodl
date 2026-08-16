@@ -15,6 +15,7 @@ type Config struct {
 type DeWiConfig struct {
 	Enabled        bool           `yaml:"enabled"`
 	OperatorID     string         `yaml:"operator_id"`
+	Region         string         `yaml:"region"`
 	SigningKeyPath string         `yaml:"signing_key_path"`
 	TX             TXConfig       `yaml:"tx"`
 	Adapters       AdaptersConfig `yaml:"adapters"`
@@ -22,12 +23,13 @@ type DeWiConfig struct {
 }
 
 type TXConfig struct {
-	Enabled                  bool   `yaml:"enabled"`
-	OperatorApprovalRequired bool   `yaml:"operator_approval_required"`
-	ApprovalRecordPath       string `yaml:"approval_record_path"`
-	Jurisdiction             string `yaml:"jurisdiction"`
-	MaxTxPerMinute           int    `yaml:"max_tx_per_minute"`
-	MaxTxBytesPerDay         int64  `yaml:"max_tx_bytes_per_day"`
+	Enabled                  bool    `yaml:"enabled"`
+	DutyCycleCap             float64 `yaml:"duty_cycle_cap"`
+	OperatorApprovalRequired bool    `yaml:"operator_approval_required"`
+	ApprovalRecordPath       string  `yaml:"approval_record_path"`
+	Jurisdiction             string  `yaml:"jurisdiction"`
+	MaxTxPerMinute           int     `yaml:"max_tx_per_minute"`
+	MaxTxBytesPerDay         int64   `yaml:"max_tx_bytes_per_day"`
 }
 
 type AdapterTXConfig struct {
@@ -90,9 +92,11 @@ func DefaultConfig() *Config {
 		DeWi: DeWiConfig{
 			Enabled:        true,
 			OperatorID:     "operator-default",
+			Region:         "EU868",
 			SigningKeyPath: "state/operator.ed25519",
 			TX: TXConfig{
 				Enabled:                  false, // Disabled by default
+				DutyCycleCap:             0.01,
 				OperatorApprovalRequired: true,
 				ApprovalRecordPath:       "/tmp/ui-core-migration/reports/tx_approvals",
 				Jurisdiction:             "US-FCC-PART15",

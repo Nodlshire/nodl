@@ -41,6 +41,10 @@ func NewMeshtasticAdapter(cfg MeshtasticConfig, mgr *Manager, log *zap.Logger) *
 	}
 }
 
+func (m *MeshtasticAdapter) Capability() AdapterCapabilityModel {
+	return NewDefaultCapabilityModel("meshtastic", "Meshtastic LoRa Serial Adapter")
+}
+
 func (m *MeshtasticAdapter) Name() string {
 	return string(ProtocolMeshtastic)
 }

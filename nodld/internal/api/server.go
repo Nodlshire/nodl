@@ -362,8 +362,8 @@ func (s *Server) registerRoutes() {
 	apiV1.Get("/nodes/me", s.requireDeviceToken(), s.handleGetNodeMe)
 	apiV1.Get("/nodes/work", s.requireDeviceToken(), s.handleGetNodeWork)
 	apiV1.Post("/nodes/work/result", s.requireDeviceToken(), s.handlePostNodeWorkResult)
-	apiV1.Get("/nodes", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handleListNodes)
-	apiV1.Get("/nodes/summary", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handleNodesSummary)
+	apiV1.Get("/nodes", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleListNodes)
+	apiV1.Get("/nodes/summary", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleNodesSummary)
 
 	// Distributed Compute Engine (Phase 10)
 	apiV1.Post("/jobs/distributed", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handlePostDistributedJob)

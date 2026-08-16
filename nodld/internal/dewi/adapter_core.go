@@ -3,7 +3,6 @@ package dewi
 
 import (
 	"context"
-	"time"
 )
 
 // Adapter is the canonical interface that all DeWi hardware/protocol adapters must implement.
@@ -22,12 +21,6 @@ type Adapter interface {
 
 	// Metrics returns Prometheus-compatible runtime metrics.
 	Metrics() AdapterMetrics
-
-	// Capability returns the declared hardware and protocol capability model.
-	Capability() AdapterCapabilityModel
-
-	// State returns the current deterministic lifecycle state of the adapter.
-	State() AdapterState
 }
 
 // AdapterConfig holds system-wide configuration for the DeWi subsystem.

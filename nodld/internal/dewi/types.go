@@ -17,31 +17,6 @@ const (
 	ProtocolAPRS       Protocol = "aprs"
 )
 
-// Config is an alias/wrapper for AdapterConfig for backward compatibility.
-type Config struct {
-	DeWi AdapterConfig `yaml:"dewi" json:"dewi"`
-}
-
-// DefaultConfig returns reasonable default settings for DeWi.
-func DefaultConfig() *Config {
-	return &Config{
-		DeWi: AdapterConfig{
-			Enabled:    true,
-			OperatorID: "op-default-node",
-			Region:     "EU868",
-			TX: TXSafetyConfig{
-				Enabled:       false, // TX disabled by default
-				MaxPowerdBm:   14,
-				DutyCycleCap:  0.01,
-				RequireSigned: true,
-			},
-			BufferConfig: BufferPolicyConfig{
-				MaxRingBuffer:  1000,
-				DropPolicyRing: "drop_oldest",
-			},
-		},
-	}
-}
 
 // AdapterStatus is the health & state snapshot exposed to dashboards.
 type AdapterStatus struct {

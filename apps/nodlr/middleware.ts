@@ -11,7 +11,8 @@ export function middleware(request: NextRequest) {
                        request.nextUrl.pathname.endsWith('.ico') ||
                        request.nextUrl.pathname.endsWith('.png') ||
                        request.nextUrl.pathname.endsWith('.svg') ||
-                       request.nextUrl.pathname.startsWith('/install/');
+                       request.nextUrl.pathname.startsWith('/install/') ||
+                       request.nextUrl.pathname.startsWith('/api/download');
 
   // If no session and trying to access protected page
   if (!session && !isAuthPage && !isPublicFile) {

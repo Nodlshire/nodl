@@ -47,6 +47,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-2">Architecture</span>
                                 <a href="/docs/architecture" className="text-sm font-medium hover:text-white transition-colors">Architecture</a>
                                 <a href="/docs/architecture/hyper-scale-pipeline" className="text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors">Hyper-Scale Pipeline (30M–200M)</a>
+                                <a href="/docs/architecture/ai-and-autonomy-model" className="text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors">AI Autonomy & Optimization Model</a>
                                 <a href="/docs/architecture/full-stack-topology" className="text-sm font-medium hover:text-white transition-colors">Full-Stack System Topology</a>
                                 <a href="/docs/architecture/earth-mesh" className="text-sm font-medium hover:text-white transition-colors">Earth Mesh</a>
                                 <a href="/docs/architecture/space-mesh" className="text-sm font-medium hover:text-white transition-colors">Space Mesh</a>

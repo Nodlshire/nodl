@@ -77,17 +77,20 @@ func (f *FlowThroughEngine) AcceptProof(ctx context.Context, proof dewi.PacketDe
 		grossUSD = proof.ProcessingCost
 	}
 
-	// 4. Calculate 70/20/10 Revenue Split
-	operatorShare := grossUSD * 0.70  // 70% operator payout
-	platformShare := grossUSD * 0.20  // 20% platform fee
-	affiliateShare := grossUSD * 0.10 // 10% affiliate pool
+	// 4. Calculate Authoritative 6-Tier Revenue Split (100.0% Total)
+	nodlrShare := grossUSD * 0.70          // 70% Nodlr (Node Operator)
+	salesSourceShare := grossUSD * 0.10    // 10% Sales Source Commission
+	affiliateL1Share := grossUSD * 0.03    // 3% Affiliate Level 1
+	affiliateL2Share := grossUSD * 0.07    // 7% Affiliate Level 2
+	stewardFeeShare := grossUSD * 0.07     // 7% Steward Fee (Treasury & Operations)
+	founderShare := grossUSD * 0.03        // 3% Founder Lifelong Affiliate Commission (100001-0426-01-AA)
 
 	settlement := dewi.SettlementResult{
 		SettlementID:     "stl-" + uuid.New().String()[:8],
 		ProofID:          proof.ProofID,
-		OperatorShareUSD: operatorShare,
-		PlatformShareUSD: platformShare,
-		AffiliateShareUSD: affiliateShare,
+		OperatorShareUSD: nodlrShare,
+		PlatformShareUSD: stewardFeeShare,
+		AffiliateShareUSD: affiliateL1Share + affiliateL2Share + salesSourceShare + founderShare,
 		Timestamp:        time.Now().UTC(),
 	}
 
@@ -100,12 +103,15 @@ func (f *FlowThroughEngine) AcceptProof(ctx context.Context, proof dewi.PacketDe
 		f.settlements = f.settlements[len(f.settlements)-5000:]
 	}
 
-	f.log.Info("settled DeWi packet proof",
+	f.log.Info("settled DeWi packet proof with 6-tier revenue distribution",
 		zap.String("proofId", proof.ProofID),
 		zap.String("protocol", proof.Protocol),
-		zap.Float64("operatorUSD", operatorShare),
-		zap.Float64("platformUSD", platformShare),
-		zap.Float64("affiliateUSD", affiliateShare),
+		zap.Float64("nodlrUSD", nodlrShare),
+		zap.Float64("salesSourceUSD", salesSourceShare),
+		zap.Float64("affiliateL1USD", affiliateL1Share),
+		zap.Float64("affiliateL2USD", affiliateL2Share),
+		zap.Float64("stewardFeeUSD", stewardFeeShare),
+		zap.Float64("founderUSD", founderShare),
 	)
 
 	return settlement, nil

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Wnode Node Operator
+Comment=Out-of-the-box Sovereign Mesh Node Operator & Settings Control Panel
+Exec=/usr/local/bin/nodld-gui
+Icon=utilities-terminal
+Terminal=false
+Type=Application
+Categories=Utility;Network;System;
+StartupNotify=true

@@ -28,11 +28,21 @@ import (
 	"github.com/obregan/nodl/nodld/internal/acquisition"
 	"github.com/obregan/nodl/nodld/internal/forensics"
 	"github.com/obregan/nodl/nodld/internal/institutional"
+	"github.com/obregan/nodl/nodld/internal/cli"
 	"github.com/obregan/nodl/nodld/internal/dewi"
 	"github.com/obregan/nodl/nodld/internal/governance"
 )
 
 func main() {
+	if len(os.Args) > 1 && (os.Args[1] == "menu" || os.Args[1] == "--menu" || os.Args[1] == "-m") {
+		menuCfg := &cli.MenuConfig{
+			PauseOnUserActivity: true,
+		}
+		cli.RunInteractiveMenu(menuCfg, func() {
+			fmt.Println("[+] Bootstrapping Wnode Engine Daemon...")
+		})
+		return
+	}
 	// ── Config ───────────────────────────────────────────────────────────────
 	cfg, err := config.Load()
 	if err != nil {

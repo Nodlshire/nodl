@@ -113,10 +113,10 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                   <span className="text-sm text-slate-300 leading-relaxed block">Download the Nodlr Compute Agent for your system:</span>
                   <div className="grid grid-cols-1 gap-2">
                     {[
-                      { os: "Linux Desktop App (Fedora / Ubuntu / Debian GUI)", url: "/api/download/gui", desc: "Out-of-the-box Desktop Program with System Tray & Settings UI" },
-                      { os: "Linux Headless Binary (Server / Terminal CLI)", url: "/api/download/cli", desc: "Interactive CLI Command Menu (/menu) for Headless Servers" },
-                      { os: "macOS Desktop App (Apple Silicon / Intel)", url: "/api/download/gui", desc: "Out-of-the-box macOS Control App" },
-                      { os: "Windows (amd64 Executable)", url: "/api/download/gui", desc: "Out-of-the-box Windows Desktop Program" }
+                      { os: "Linux Desktop App (Fedora / Ubuntu / Debian GUI)", url: "/downloads/wnode-node-operator-gui", desc: "Out-of-the-box Desktop Program with System Tray & Settings UI" },
+                      { os: "Linux Headless Binary (Server / Terminal CLI)", url: "/downloads/nodld", desc: "Interactive CLI Command Menu (/menu) for Headless Servers" },
+                      { os: "macOS Desktop App (Apple Silicon / Intel)", url: "/downloads/wnode-node-operator-gui", desc: "Out-of-the-box macOS Control App" },
+                      { os: "Windows (amd64 Executable)", url: "/downloads/wnode-node-operator-gui", desc: "Out-of-the-box Windows Desktop Program" }
                     ].map(item => (
                       <a key={item.os} href={item.url} download className="flex items-center justify-between px-4 py-3 bg-white/5 border border-white/10 hover:bg-white/10 transition-all rounded-[6px] group">
                         <div className="flex items-center gap-3">

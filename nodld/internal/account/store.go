@@ -1360,7 +1360,7 @@ func (s *Store) ListNodes(userId string) []*WnodeNode {
 
 	list := make([]*WnodeNode, 0)
 	for id, n := range s.nodes {
-		if strings.HasPrefix(id, "HN-") || strings.HasPrefix(id, "debian-") || strings.HasPrefix(id, "fedora-") {
+		if n.Status == "offline" || strings.HasPrefix(id, "HN-") || strings.HasPrefix(id, "debian-") || strings.HasPrefix(id, "fedora-") || strings.HasPrefix(id, "TEST-UPID") || len(id) > 40 {
 			delete(s.nodes, id)
 			continue
 		}
@@ -1378,7 +1378,7 @@ func (s *Store) ListAllNodes() []*WnodeNode {
 
 	list := make([]*WnodeNode, 0)
 	for id, n := range s.nodes {
-		if strings.HasPrefix(id, "HN-") || strings.HasPrefix(id, "debian-") || strings.HasPrefix(id, "fedora-") {
+		if n.Status == "offline" || strings.HasPrefix(id, "HN-") || strings.HasPrefix(id, "debian-") || strings.HasPrefix(id, "fedora-") || strings.HasPrefix(id, "TEST-UPID") || len(id) > 40 {
 			delete(s.nodes, id)
 			continue
 		}
@@ -1392,7 +1392,7 @@ func (s *Store) PurgeLegacyMockNodes() {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	for id, node := range s.nodes {
-		if node.Status == "offline" || strings.HasPrefix(id, "HN-") || strings.HasPrefix(id, "debian-") || strings.HasPrefix(id, "fedora-") {
+		if node.Status == "offline" || strings.HasPrefix(id, "HN-") || strings.HasPrefix(id, "debian-") || strings.HasPrefix(id, "fedora-") || strings.HasPrefix(id, "TEST-UPID") || len(id) > 40 {
 			delete(s.nodes, id)
 		}
 	}

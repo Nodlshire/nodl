@@ -1372,15 +1372,16 @@ func (s *Store) nextNodeID(userID string) string {
 	return fmt.Sprintf("%s-%06d", userID, count+1)
 }
 
-// ListNodes returns all nodes belonging to a specific user.
+// ListNodes returns all nodes belonging to a specific user or all nodes if requested by owner/unassigned.
 func (s *Store) ListNodes(userId string) []*WnodeNode {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	s.DecayNodes()
 
 	list := make([]*WnodeNode, 0)
+	isOwner := userId == AuthoritativeOwnerID || userId == ""
 	for _, n := range s.nodes {
-		if (n.UserID == userId || userId == "") && n.Status != "purged" {
+		if (isOwner || n.UserID == userId || n.UserID == "") && n.Status != "purged" {
 			list = append(list, n)
 		}
 	}

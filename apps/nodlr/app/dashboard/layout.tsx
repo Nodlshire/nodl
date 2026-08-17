@@ -104,7 +104,16 @@ export default function DashboardLayout({
 
     const handleLogout = () => {
         document.cookie = "nodlr_session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-        router.push('/login');
+        document.cookie = "nodlr_session_id=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        document.cookie = "nodl_session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        document.cookie = "cmd_session=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        if (typeof window !== "undefined") {
+            localStorage.removeItem('nodl_jwt');
+            localStorage.removeItem('nodlr_session_id');
+            localStorage.removeItem('nodlr_session');
+            localStorage.removeItem('nodl_user_id');
+        }
+        window.location.href = '/login';
     };
 
     return (

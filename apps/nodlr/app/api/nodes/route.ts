@@ -25,18 +25,29 @@ export async function GET(request: Request) {
         // Fetch all nodes from the Coordinator
         const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8080";
         
-        const headers: Record<string, string> = {};
+        const headers: Record<string, string> = { 'Connection': 'close' };
         if (authHeader) headers['Authorization'] = authHeader;
         if (userId) headers['x-user-id'] = userId;
         if (cookieHeader) headers['Cookie'] = cookieHeader;
 
-        const res = await fetch(`${apiUrl}/api/v1/nodes`, {
-            headers,
-            cache: 'no-store'
-        });
+        let attempts = 0;
+        let res: Response | null = null;
 
-        if (!res.ok) {
-            console.warn(`Coordinator returned status ${res.status} for /api/v1/nodes. Returning empty array.`);
+        while (attempts < 3) {
+            attempts++;
+            try {
+                res = await fetch(`${apiUrl}/api/v1/nodes`, {
+                    headers,
+                    cache: 'no-store'
+                });
+                if (res) break;
+            } catch (err) {
+                await new Promise(r => setTimeout(r, 150));
+            }
+        }
+
+        if (!res || !res.ok) {
+            console.warn(`Coordinator returned status ${res?.status} for /api/v1/nodes. Returning empty array.`);
             return NextResponse.json([]);
         }
 

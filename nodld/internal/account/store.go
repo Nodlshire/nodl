@@ -156,7 +156,6 @@ func NewStore(forensics *forensics.Store, statePath string) *Store {
 	}
 	s.initInviteState()
 	s.loadState()
-	s.PurgeLegacyMockNodes()
 	s.SeedFoundationIdentities()
 	s.SeedIntegrations()
 	go s.runDowntimeWatchdog(10 * time.Second)

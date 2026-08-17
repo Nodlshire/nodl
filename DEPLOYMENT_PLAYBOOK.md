@@ -21,6 +21,8 @@ The repository lives strictly in `/home/obregan/wnode`. Any other folders (like 
     The server should only pull from the main branch of origin after the developer has successfully pushed from their local machine.
 *   **Rule 3: Port Mappings Are Fixed**
     `command` must run strictly on port 3001 and `nodlr` strictly on port 3002. Never swap them.
+*   **Rule 4: Never Run Streaming PM2 Log Commands (`pm2 logs`)**
+    `pm2 logs` streams output continuously without exiting, causing subshell tasks to hang indefinitely. Use non-blocking `pm2 status` or read log files directly with `tail -n 30 ~/.pm2/logs/<app>-out.log`.
 
 ## 3. Targeted Deployment Playbooks (Copy/Paste as Needed)
 These modular instructions let you update one part of the system without touching or rebuilding the others.

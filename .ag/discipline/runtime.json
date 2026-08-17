@@ -8,7 +8,8 @@
     "systemctl restart",
     "npm run dev & sleep",
     "npm run dev && sleep",
-    "node server.js & sleep"
+    "node server.js & sleep",
+    "pm2 logs"
   ],
   "requireExplicitApproval": true,
   "message": "Runtime teardown commands are forbidden unless Stephen explicitly authorizes them."

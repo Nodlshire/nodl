@@ -33,9 +33,16 @@ export default function HardwarePage() {
     refresh();
   };
 
-  const removeNode = (id: string, e?: React.MouseEvent) => {
+  const removeNode = async (id: string, e?: React.MouseEvent) => {
     e?.stopPropagation();
-    console.log('Remove node:', id);
+    try {
+      const token = typeof window !== 'undefined' ? localStorage.getItem('nodl_jwt') || localStorage.getItem('nodlr_session_id') : null;
+      const headers: Record<string, string> = {};
+      if (token) headers['Authorization'] = `Bearer ${token}`;
+      await fetch(`/api/v1/nodes/${id}`, { method: 'DELETE', headers });
+    } catch (err) {
+      console.error('Failed to delete node:', err);
+    }
     if (selectedNode?.id === id) {
       setSelectedNode(null);
     }

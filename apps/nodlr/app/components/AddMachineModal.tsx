@@ -84,32 +84,32 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
     "linux-ubuntu": {
       name: "Ubuntu 22.04 / 24.04 LTS (x86_64)",
       desc: "Ubuntu Linux Desktop & Server installer script with token integration.",
-      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/wnode-node-operator -o wnode-node-operator && chmod +x wnode-node-operator && ./wnode-node-operator --token=${activeTokenDisplay}`
+      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/wnode-node-operator -o wnode-node-operator && chmod +x wnode-node-operator && WNODE_API_BASE=https://nodlr.wnode.one ./wnode-node-operator --token=${activeTokenDisplay}`
     },
     "linux-debian": {
       name: "Debian 11 / 12 Bookworm (x86_64)",
       desc: "Native Debian Linux package executable command.",
-      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/wnode-node-operator -o wnode-node-operator && chmod +x wnode-node-operator && ./wnode-node-operator --token=${activeTokenDisplay}`
+      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/wnode-node-operator -o wnode-node-operator && chmod +x wnode-node-operator && WNODE_API_BASE=https://nodlr.wnode.one ./wnode-node-operator --token=${activeTokenDisplay}`
     },
     "linux-fedora": {
       name: "Fedora / RHEL / CentOS / AlmaLinux (x86_64)",
       desc: "RPM-compatible Linux distribution terminal command.",
-      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/wnode-node-operator -o wnode-node-operator && chmod +x wnode-node-operator && ./wnode-node-operator --token=${activeTokenDisplay}`
+      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/wnode-node-operator -o wnode-node-operator && chmod +x wnode-node-operator && WNODE_API_BASE=https://nodlr.wnode.one ./wnode-node-operator --token=${activeTokenDisplay}`
     },
     "linux-arch": {
       name: "Arch Linux / Manjaro (x86_64)",
       desc: "Arch Linux rolling release terminal command.",
-      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/wnode-node-operator -o wnode-node-operator && chmod +x wnode-node-operator && ./wnode-node-operator --token=${activeTokenDisplay}`
+      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/wnode-node-operator -o wnode-node-operator && chmod +x wnode-node-operator && WNODE_API_BASE=https://nodlr.wnode.one ./wnode-node-operator --token=${activeTokenDisplay}`
     },
     "linux-alpine": {
       name: "Alpine Linux (musl x86_64)",
       desc: "Lightweight Alpine Linux musl-compiled binary execution command.",
-      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/wnode-node-operator-musl -o wnode-node-operator && chmod +x wnode-node-operator && ./wnode-node-operator --token=${activeTokenDisplay}`
+      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/wnode-node-operator-musl -o wnode-node-operator && chmod +x wnode-node-operator && WNODE_API_BASE=https://nodlr.wnode.one ./wnode-node-operator --token=${activeTokenDisplay}`
     },
     "linux-arm64": {
       name: "Linux ARM64 / Raspberry Pi 4/5 (aarch64)",
       desc: "64-bit ARM architecture binary command for single-board computers.",
-      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/wnode-node-operator-linux-arm64 -o wnode-node-operator && chmod +x wnode-node-operator && ./wnode-node-operator --token=${activeTokenDisplay}`
+      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/wnode-node-operator-linux-arm64 -o wnode-node-operator && chmod +x wnode-node-operator && WNODE_API_BASE=https://nodlr.wnode.one ./wnode-node-operator --token=${activeTokenDisplay}`
     }
   };
 
@@ -117,42 +117,42 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
     "headless-debian": {
       name: "Debian 11 / 12 Bookworm (x86_64)",
       desc: "Installs compiled Go daemon (nodld) background service for Debian Linux servers.",
-      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld -o nodld && chmod +x nodld && ./nodld daemon --token=${activeTokenDisplay}`
+      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld -o nodld && chmod +x nodld && WNODE_API_BASE=https://nodlr.wnode.one ./nodld daemon --token=${activeTokenDisplay}`
     },
     "headless-ubuntu": {
       name: "Ubuntu 22.04 / 24.04 LTS (x86_64)",
       desc: "Systemd background daemon service installer for Ubuntu Linux servers.",
-      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld -o nodld && chmod +x nodld && ./nodld daemon --token=${activeTokenDisplay}`
+      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld -o nodld && chmod +x nodld && WNODE_API_BASE=https://nodlr.wnode.one ./nodld daemon --token=${activeTokenDisplay}`
     },
     "headless-fedora": {
       name: "Fedora / RHEL / CentOS / AlmaLinux (x86_64)",
       desc: "RPM-compatible Linux systemd background daemon service.",
-      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld -o nodld && chmod +x nodld && ./nodld daemon --token=${activeTokenDisplay}`
+      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld -o nodld && chmod +x nodld && WNODE_API_BASE=https://nodlr.wnode.one ./nodld daemon --token=${activeTokenDisplay}`
     },
     "headless-arch": {
       name: "Arch Linux / Manjaro (x86_64)",
       desc: "Arch Linux systemd background daemon service installation command.",
-      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld -o nodld && chmod +x nodld && ./nodld daemon --token=${activeTokenDisplay}`
+      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld -o nodld && chmod +x nodld && WNODE_API_BASE=https://nodlr.wnode.one ./nodld daemon --token=${activeTokenDisplay}`
     },
     "headless-alpine": {
       name: "Alpine Linux (musl x86_64)",
       desc: "Lightweight OpenRC musl daemon service command for Alpine Linux.",
-      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld-musl -o nodld && chmod +x nodld && ./nodld daemon --token=${activeTokenDisplay}`
+      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld-musl -o nodld && chmod +x nodld && WNODE_API_BASE=https://nodlr.wnode.one ./nodld daemon --token=${activeTokenDisplay}`
     },
     "headless-arm64": {
       name: "Linux ARM64 / Raspberry Pi 4/5 (aarch64)",
       desc: "64-bit ARM background daemon service for single-board computers & Graviton servers.",
-      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld-arm64 -o nodld && chmod +x nodld && ./nodld daemon --token=${activeTokenDisplay}`
+      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld-arm64 -o nodld && chmod +x nodld && WNODE_API_BASE=https://nodlr.wnode.one ./nodld daemon --token=${activeTokenDisplay}`
     },
     "headless-mac": {
       name: "macOS Headless Daemon (Launchd / Background Daemon)",
       desc: "Configures background Launchd daemon for Apple Silicon and Intel Macs.",
-      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld-mac -o nodld && chmod +x nodld && ./nodld daemon --token=${activeTokenDisplay}`
+      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld-mac -o nodld && chmod +x nodld && WNODE_API_BASE=https://nodlr.wnode.one ./nodld daemon --token=${activeTokenDisplay}`
     },
     "headless-windows": {
       name: "Windows Headless Service (PowerShell / Windows Service)",
       desc: "Downloads background Windows Service binary and registers automatic startup service.",
-      cmd: `iwr -useb https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld.exe -OutFile nodld.exe; .\\nodld.exe daemon --token=${activeTokenDisplay}`
+      cmd: `$env:WNODE_API_BASE='https://nodlr.wnode.one'; iwr -useb https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld.exe -OutFile nodld.exe; .\\nodld.exe daemon --token=${activeTokenDisplay}`
     }
   };
 

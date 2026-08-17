@@ -364,6 +364,7 @@ func (s *Server) registerRoutes() {
 	apiV1.Post("/nodes/work/result", s.requireDeviceToken(), s.handlePostNodeWorkResult)
 	apiV1.Get("/nodes", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleListNodes)
 	apiV1.Get("/nodes/summary", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleNodesSummary)
+	apiV1.Delete("/nodes/:id", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleDeleteNode)
 
 	// Distributed Compute Engine (Phase 10)
 	apiV1.Post("/jobs/distributed", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handlePostDistributedJob)
@@ -1913,9 +1914,27 @@ func (s *Server) handleGetNodeMe(c *fiber.Ctx) error {
 }
 
 func (s *Server) handleListNodes(c *fiber.Ctx) error {
-	userId := account.AuthoritativeOwnerID 
-	nodes := s.accountStore.ListNodes(userId)
+	wuid, _, _ := s.resolveIdentity(c)
+	if wuid == "" {
+		wuid = c.Get("x-user-id")
+	}
+	if wuid == "" {
+		wuid = account.AuthoritativeOwnerID
+	}
+	nodes := s.accountStore.ListNodes(wuid)
 	return c.JSON(nodes)
+}
+
+func (s *Server) handleDeleteNode(c *fiber.Ctx) error {
+	nodeId := c.Params("id")
+	if nodeId == "" {
+		return c.Status(400).JSON(fiber.Map{"error": "node id required"})
+	}
+	success := s.accountStore.DeleteNode(nodeId)
+	if !success {
+		return c.Status(404).JSON(fiber.Map{"error": "node not found"})
+	}
+	return c.JSON(fiber.Map{"status": "deleted", "id": nodeId})
 }
 
 func (s *Server) handleVerifyToken(c *fiber.Ctx) error {

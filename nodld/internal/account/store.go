@@ -1358,11 +1358,7 @@ func (s *Store) ListNodes(userId string) []*WnodeNode {
 	s.DecayNodes()
 
 	list := make([]*WnodeNode, 0)
-	for id, n := range s.nodes {
-		if n.Status == "offline" || strings.HasPrefix(id, "HN-") || strings.HasPrefix(id, "debian-") || strings.HasPrefix(id, "fedora-") || strings.HasPrefix(id, "TEST-UPID") || len(id) > 40 {
-			delete(s.nodes, id)
-			continue
-		}
+	for _, n := range s.nodes {
 		if (n.UserID == userId || userId == "") && n.Status != "purged" {
 			list = append(list, n)
 		}
@@ -1376,26 +1372,24 @@ func (s *Store) ListAllNodes() []*WnodeNode {
 	defer s.mu.Unlock()
 
 	list := make([]*WnodeNode, 0)
-	for id, n := range s.nodes {
-		if n.Status == "offline" || strings.HasPrefix(id, "HN-") || strings.HasPrefix(id, "debian-") || strings.HasPrefix(id, "fedora-") || strings.HasPrefix(id, "TEST-UPID") || len(id) > 40 {
-			delete(s.nodes, id)
-			continue
+	for _, n := range s.nodes {
+		if n.Status != "purged" {
+			list = append(list, n)
 		}
-		list = append(list, n)
 	}
 	return list
 }
 
-// PurgeLegacyMockNodes purges offline legacy test nodes that haven't sent a live heartbeat.
-func (s *Store) PurgeLegacyMockNodes() {
+// DeleteNode removes a node by ID from memory and state.
+func (s *Store) DeleteNode(nodeID string) bool {
 	s.mu.Lock()
 	defer s.mu.Unlock()
-	for id, node := range s.nodes {
-		if node.Status == "offline" || strings.HasPrefix(id, "HN-") || strings.HasPrefix(id, "debian-") || strings.HasPrefix(id, "fedora-") || strings.HasPrefix(id, "TEST-UPID") || len(id) > 40 {
-			delete(s.nodes, id)
-		}
+	if _, exists := s.nodes[nodeID]; exists {
+		delete(s.nodes, nodeID)
+		go s.SaveState()
+		return true
 	}
-	go s.SaveState()
+	return false
 }
 
 // GetGlobalLedgerStats returns platform-wide aggregated financials from the authoritative commissions ledger.

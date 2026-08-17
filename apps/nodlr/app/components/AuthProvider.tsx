@@ -41,8 +41,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // 2. Call /api/account/me in background
         const fetchSession = async () => {
             try {
-                const token = typeof window !== 'undefined' ? localStorage.getItem('nodl_jwt') : null;
-                const userId = typeof window !== 'undefined' ? localStorage.getItem('nodl_user_id') : null;
+                const token = typeof window !== 'undefined' ? (localStorage.getItem('nodl_jwt') || localStorage.getItem('nodlr_session_id')) : null;
+                const userId = typeof window !== 'undefined' ? (localStorage.getItem('nodl_user_id') || localStorage.getItem('nodlr_user_id')) : null;
                 const headers: Record<string, string> = {};
                 if (token && token !== 'null' && token !== 'undefined') {
                     headers['Authorization'] = `Bearer ${token}`;
@@ -51,7 +51,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                     headers['X-User-ID'] = userId;
                 }
 
-                const res = await fetch('/api/account/me', { credentials: 'include', headers, method: 'GET' });
+                const res = await fetch('/api/account/me', { cache: 'no-store', credentials: 'include', headers, method: 'GET' });
                 if (res.ok) {
                     const data = await res.json();
                     data.id = data.id || data.ID || data.wuid || data.WnodeID;

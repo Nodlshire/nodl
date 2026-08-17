@@ -30,20 +30,22 @@ export async function POST(request: Request) {
             const proto = request.headers.get('x-forwarded-proto') || '';
             const isProd = host.includes('wnode.one') || proto === 'https';
 
-            response.cookies.set('nodlr_session', data.session_id, {
+            const cookieOptions: any = {
                 httpOnly: true,
                 secure: isProd,
                 sameSite: 'lax',
                 path: '/',
                 maxAge: 86400,
-            });
+            };
+            if (isProd) {
+                cookieOptions.domain = '.wnode.one';
+            }
+
+            response.cookies.set('nodlr_session', data.session_id, cookieOptions);
 
             response.cookies.set('nodl_session', data.session_id, {
+                ...cookieOptions,
                 httpOnly: false,
-                secure: isProd,
-                sameSite: 'lax',
-                path: '/',
-                maxAge: 86400,
             });
         }
 

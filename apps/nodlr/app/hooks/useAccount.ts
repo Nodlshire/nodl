@@ -36,6 +36,7 @@ export function useAccount() {
                 }
 
                 const res = await fetch('/api/account/me', {
+                    cache: 'no-store',
                     credentials: 'include',
                     headers
                 });

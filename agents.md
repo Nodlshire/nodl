@@ -109,3 +109,8 @@ For every executed command in Operational Mode or Deployment, you must log:
 - **Prohibited External Export Paths**: NEVER export, create, or target `/home/obregan/.hermes` or any other external/non-legitimate workspace paths in command lines or scripts.
 - **Standard Execution PATH**: Rely strictly on standard system PATH paths (`/usr/bin`, `/bin`, `/usr/local/bin`, `/usr/local/go/bin`, or workspace-local `node_modules/.bin`) within `/home/obregan/Documents/nodl`.
 
+## 7. Strict Background Task & Polling Prohibition
+
+- **No Timer Scheduling or Test Loops**: NEVER use background timer scheduling tools (`schedule`), polling loops, or recurring background tasks to check, verify, or re-run terminal/SSH test commands (such as python/curl test scripts).
+- **Synchronous Execution Only**: Execute commands synchronously, wait for output directly, report findings to the user, and immediately stop. Never set background timers or polling timers.
+

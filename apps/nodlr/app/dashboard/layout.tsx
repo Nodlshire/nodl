@@ -13,7 +13,14 @@ import useSWR from 'swr';
 import { normalizeAccount } from '@shared/lib/identity';
 import IdentityHeader from '@shared/components/IdentityHeader';
 
-const fetcher = (url: string) => fetch(url).then(res => res.json());
+const fetcher = (url: string) => {
+    const token = typeof window !== 'undefined' ? localStorage.getItem('nodl_jwt') : null;
+    const headers: Record<string, string> = {};
+    if (token && token !== 'null' && token !== 'undefined') {
+        headers['Authorization'] = `Bearer ${token}`;
+    }
+    return fetch(url, { credentials: 'include', headers }).then(res => res.json());
+};
 
 const navigation = [
     { name: 'Overview', href: '/dashboard', icon: LayoutDashboard, color: 'text-[#22d3ee]' },

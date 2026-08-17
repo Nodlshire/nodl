@@ -3,7 +3,13 @@ import { featureFlags } from '@/lib/featureFlags';
 
 export function useProviderNodes() {
     const fetcher = async (url: string) => {
-        const res = await fetch(url);
+        const token = typeof window !== 'undefined' ? localStorage.getItem('nodl_jwt') : null;
+        const headers: Record<string, string> = {};
+        if (token && token !== 'null' && token !== 'undefined') {
+            headers['Authorization'] = `Bearer ${token}`;
+        }
+
+        const res = await fetch(url, { credentials: 'include', headers });
 
         if (!res.ok) {
             const error = new Error('An error occurred while fetching nodes.');

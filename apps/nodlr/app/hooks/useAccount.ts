@@ -24,11 +24,29 @@ export function useAccount() {
     useEffect(() => {
         const fetchAccount = async () => {
             try {
-                const res = await fetch('/api/account/me');
+                const token = typeof window !== 'undefined' ? localStorage.getItem('nodl_jwt') : null;
+                const userId = typeof window !== 'undefined' ? localStorage.getItem('nodl_user_id') : null;
+
+                const headers: Record<string, string> = {};
+                if (token && token !== 'null' && token !== 'undefined') {
+                    headers['Authorization'] = `Bearer ${token}`;
+                }
+                if (userId) {
+                    headers['X-User-ID'] = userId;
+                }
+
+                const res = await fetch('/api/account/me', {
+                    credentials: 'include',
+                    headers
+                });
 
                 if (res.ok) {
                     const data = await res.json();
-                    setAccount(data);
+                    if (!data.error) {
+                        setAccount(data);
+                    } else {
+                        setError(data.error);
+                    }
                 } else {
                     setError('Failed to fetch account');
                 }

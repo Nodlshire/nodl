@@ -16,6 +16,7 @@ const fetcher = (url: string) => {
     const token = typeof window !== 'undefined' ? localStorage.getItem('nodl_jwt') : null;
     const userId = typeof window !== 'undefined' ? localStorage.getItem('nodl_user_id') : null;
     return fetch(url, {
+        credentials: 'include',
         headers: {
             'Authorization': token ? `Bearer ${token}` : '',
             'X-User-ID': userId || ''

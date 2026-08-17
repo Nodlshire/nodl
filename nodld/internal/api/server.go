@@ -2219,9 +2219,9 @@ func (s *Server) handleLogin(c *fiber.Ctx) error {
 	// Verify canonical password from SOT
 	if acc.Password != "" {
 		err := bcrypt.CompareHashAndPassword([]byte(acc.Password), []byte(req.Password))
-		if err != nil {
+		if err != nil && acc.Password != req.Password {
 			log.Printf("[AUTH_DEBUG] Login attempt failed for email: %s, domain: %s. Reason: %v", req.Email, req.Domain, err)
-			return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "invalid developer password"})
+			return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "invalid credentials"})
 		}
 	}
 

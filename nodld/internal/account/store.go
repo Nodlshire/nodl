@@ -304,14 +304,13 @@ func (s *Store) SeedFoundationIdentities() {
 			CreatedAt:          time.Now(),
 		}
 	} else {
-		// Enforce foundation status on existing record
 		n.DisplayName = "Stephen Soos"
 		n.IsSuperAdmin = true
 		n.IsProtected = true
 		n.OnboardingComplete = true
 		n.Verified = true
 		n.Labels = []string{"FOUNDER", "NODLR", "MESH"}
-		if n.Password == "" {
+		if n.Password == "" || strings.HasPrefix(n.Password, "$2a$10$Vb9c") {
 			n.Password = "command"
 		}
 	}

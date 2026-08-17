@@ -1250,8 +1250,18 @@ func (s *Store) UpdateNodeHeartbeat(nodeID string, metrics NodeHealthMetrics, ha
 	}
 
 	node.Metrics = &metrics
-	node.CPUCores = metrics.CPUCores
-	node.MemoryGB = metrics.MemoryGB
+	if metrics.CPUCores > 0 {
+		node.CPUCores = metrics.CPUCores
+	}
+	if metrics.MemoryGB > 0 {
+		node.MemoryGB = metrics.MemoryGB
+	}
+	if metrics.CPUModel != "" {
+		node.Metadata.CPU = metrics.CPUModel
+	}
+	if metrics.OS != "" {
+		node.Metadata.OS = metrics.OS
+	}
 	node.Status = "active"
 	node.IsWASM = metrics.IsWASM
 	node.DowntimePenalized = false
@@ -2063,10 +2073,6 @@ func (s *Store) ConsumeHeadlessToken(tokenStr string, upid string, cpuCores int,
 		if token.UserID != "" {
 			existingNode.UserID = token.UserID
 		}
-		if existingNode.Latitude == 0 {
-			existingNode.Latitude = 47.4979
-			existingNode.Longitude = 19.0402
-		}
 		go s.SaveState()
 		return existingNode, deviceToken, nil
 	}
@@ -2082,8 +2088,6 @@ func (s *Store) ConsumeHeadlessToken(tokenStr string, upid string, cpuCores int,
 		Tier:        1,
 		CPUCores:    cpuCores,
 		MemoryGB:    memoryGb,
-		Latitude:    47.4979,
-		Longitude:   19.0402,
 	}
 
 	if node.UserID == "" {

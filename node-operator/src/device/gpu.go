@@ -23,43 +23,75 @@ func DetectGPU() *GPUInfo {
 }
 
 func detectGPULinux() *GPUInfo {
-	// Try NVIDIA first via procfs
+	// 1. Try nvidia-smi first for exact NVIDIA GPU name
+	out, err := exec.Command("nvidia-smi", "--query-gpu=name", "--format=csv,noheader").Output()
+	if err == nil && len(strings.TrimSpace(string(out))) > 0 {
+		modelName := strings.TrimSpace(strings.Split(string(out), "\n")[0])
+		return &GPUInfo{Vendor: "NVIDIA", Model: modelName}
+	}
+
+	// 2. Try procfs for NVIDIA
 	matches, err := filepath.Glob("/proc/driver/nvidia/gpus/*/information")
 	if err == nil && len(matches) > 0 {
 		data, err := os.ReadFile(matches[0])
 		if err == nil {
-			info := &GPUInfo{Vendor: "NVIDIA", VramMB: 0}
+			info := &GPUInfo{Vendor: "NVIDIA"}
 			lines := strings.Split(string(data), "\n")
 			for _, line := range lines {
 				if strings.HasPrefix(line, "Model:") {
 					info.Model = strings.TrimSpace(strings.TrimPrefix(line, "Model:"))
 				}
 			}
-			return info
+			if info.Model != "" {
+				return info
+			}
 		}
 	}
-	
-	// Fallback to sysfs DRM for AMD/Intel
+
+	// 3. Try lspci for exact PCI VGA/3D device string
+	lspciOut, lspciErr := exec.Command("lspci").Output()
+	if lspciErr == nil {
+		for _, line := range strings.Split(string(lspciOut), "\n") {
+			lower := strings.ToLower(line)
+			if strings.Contains(lower, "vga compatible controller") || strings.Contains(lower, "3d controller") || strings.Contains(lower, "display controller") {
+				parts := strings.SplitN(line, ": ", 2)
+				if len(parts) == 2 {
+					model := strings.TrimSpace(parts[1])
+					vendor := "Unknown"
+					if strings.Contains(strings.ToLower(model), "nvidia") {
+						vendor = "NVIDIA"
+					} else if strings.Contains(strings.ToLower(model), "amd") || strings.Contains(strings.ToLower(model), "radeon") {
+						vendor = "AMD"
+					} else if strings.Contains(strings.ToLower(model), "intel") {
+						vendor = "Intel"
+					}
+					return &GPUInfo{Vendor: vendor, Model: model}
+				}
+			}
+		}
+	}
+
+	// 4. Fallback to sysfs DRM
 	drmMatches, err := filepath.Glob("/sys/class/drm/card0/device/vendor")
 	if err == nil && len(drmMatches) > 0 {
 		vendorData, _ := os.ReadFile(drmMatches[0])
 		vendorID := strings.TrimSpace(string(vendorData))
 		
-		info := &GPUInfo{VramMB: 0}
+		info := &GPUInfo{}
 		switch vendorID {
 		case "0x10de":
 			info.Vendor = "NVIDIA"
+			info.Model = "NVIDIA GPU"
 		case "0x1002":
 			info.Vendor = "AMD"
+			info.Model = "AMD GPU"
 		case "0x8086":
 			info.Vendor = "Intel"
-		default:
-			info.Vendor = "Unknown"
+			info.Model = "Intel Graphics"
 		}
-		
-		// Attempt to read sysfs config for basic naming if possible, but sysfs names are cryptic.
-		info.Model = "Generic Compute Node"
-		return info
+		if info.Vendor != "" {
+			return info
+		}
 	}
 
 	return nil

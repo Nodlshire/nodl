@@ -48,7 +48,32 @@ func CollectMetrics(state *platform.State) NodeHealthMetrics {
 
 	if runtime.GOOS == "linux" {
 		// Linux specific metrics
-		
+
+		// CPU Model Name
+		if cpuData, err := os.ReadFile("/proc/cpuinfo"); err == nil {
+			for _, line := range strings.Split(string(cpuData), "\n") {
+				if strings.HasPrefix(line, "model name") {
+					parts := strings.SplitN(line, ":", 2)
+					if len(parts) == 2 {
+						metrics.CPUModel = strings.TrimSpace(parts[1])
+						break
+					}
+				}
+			}
+		}
+
+		// OS Pretty Name
+		if osData, err := os.ReadFile("/etc/os-release"); err == nil {
+			for _, line := range strings.Split(string(osData), "\n") {
+				if strings.HasPrefix(line, "PRETTY_NAME=") {
+					pretty := strings.TrimPrefix(line, "PRETTY_NAME=")
+					pretty = strings.Trim(pretty, "\"")
+					metrics.OS = pretty
+					break
+				}
+			}
+		}
+
 		// CPU Load (approx via /proc/loadavg)
 		loadData, err := os.ReadFile("/proc/loadavg")
 		if err == nil {

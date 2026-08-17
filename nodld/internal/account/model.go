@@ -222,6 +222,8 @@ type ReputationMetrics struct {
 type NodeHealthMetrics struct {
 	CPUCores    int                `json:"cpuCores"`
 	MemoryGB    int                `json:"memoryGb"`
+	CPUModel    string             `json:"cpuModel,omitempty"`
+	OS          string             `json:"os,omitempty"`
 	CPU         float64            `json:"cpu"`
 	RAM         float64            `json:"ram"`
 	Disk        float64            `json:"disk"`

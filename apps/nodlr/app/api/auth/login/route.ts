@@ -37,6 +37,14 @@ export async function POST(request: Request) {
                 path: '/',
                 maxAge: 86400,
             });
+
+            response.cookies.set('nodl_session', data.session_id, {
+                httpOnly: false,
+                secure: isProd,
+                sameSite: 'lax',
+                path: '/',
+                maxAge: 86400,
+            });
         }
 
         return response;

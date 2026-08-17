@@ -10,6 +10,11 @@ export async function GET(req: NextRequest) {
             'Content-Type': 'application/json'
         };
 
+        const authHeader = req.headers.get('authorization');
+        if (authHeader) {
+            fetchHeaders['Authorization'] = authHeader;
+        }
+
         const rawCookie = req.headers.get('cookie') || req.headers.get('x-debug-cookie');
         console.log("[PROXY DEBUG] RAW COOKIE FROM BROWSER:", rawCookie);
 
@@ -30,6 +35,11 @@ export async function GET(req: NextRequest) {
                 fetchHeaders['Cookie'] = `nodlr_session=${sessionToken}`;
             } else {
                 fetchHeaders['Cookie'] = rawCookie;
+            }
+        } else if (authHeader && authHeader.startsWith('Bearer ')) {
+            const tokenFromAuth = authHeader.substring(7).trim();
+            if (tokenFromAuth && tokenFromAuth !== 'null' && tokenFromAuth !== 'undefined') {
+                fetchHeaders['Cookie'] = `nodlr_session=${tokenFromAuth}`;
             }
         }
         

@@ -23,7 +23,7 @@ interface NodlDevice {
 }
 
 export default function HardwarePage() {
-  const { nodes: nodls, loading, refresh } = useProviderNodes();
+  const { nodes: nodls, loading, refresh, mutate } = useProviderNodes();
   const [selectedNode, setSelectedNode] = useState<NodlDevice | null>(null);
   const [copiedToken, setCopiedToken] = useState(false);
 
@@ -35,17 +35,33 @@ export default function HardwarePage() {
 
   const removeNode = async (id: string, e?: React.MouseEvent) => {
     e?.stopPropagation();
-    try {
-      const token = typeof window !== 'undefined' ? localStorage.getItem('nodl_jwt') || localStorage.getItem('nodlr_session_id') : null;
-      const headers: Record<string, string> = {};
-      if (token) headers['Authorization'] = `Bearer ${token}`;
-      await fetch(`/api/v1/nodes/${id}`, { method: 'DELETE', headers });
-    } catch (err) {
-      console.error('Failed to delete node:', err);
-    }
+    
+    // 1. Immediately close slide-out drawer if open
     if (selectedNode?.id === id) {
       setSelectedNode(null);
     }
+
+    // 2. Optimistically update local SWR cache so node disappears instantly from UI
+    if (mutate && Array.isArray(nodls)) {
+      mutate(nodls.filter((n: NodlDevice) => n.id !== id), false);
+    }
+
+    // 3. Send API delete requests to Go backend
+    try {
+      const token = typeof window !== 'undefined' ? (localStorage.getItem('nodl_jwt') || localStorage.getItem('nodlr_session_id')) : null;
+      const headers: Record<string, string> = {};
+      if (token) headers['Authorization'] = `Bearer ${token}`;
+      
+      // Try DELETE first, then fallback POST
+      const res = await fetch(`/api/v1/nodes/${id}`, { method: 'DELETE', headers });
+      if (!res.ok) {
+        await fetch(`/api/v1/nodes/${id}/delete`, { method: 'POST', headers });
+      }
+    } catch (err) {
+      console.error('Failed to delete node:', err);
+    }
+
+    // 4. Re-sync with backend
     refresh();
   };
 

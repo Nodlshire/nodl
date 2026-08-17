@@ -3,7 +3,7 @@ import { featureFlags } from '@/lib/featureFlags';
 
 export function useProviderNodes() {
     const fetcher = async (url: string) => {
-        const token = typeof window !== 'undefined' ? localStorage.getItem('nodl_jwt') : null;
+        const token = typeof window !== 'undefined' ? (localStorage.getItem('nodl_jwt') || localStorage.getItem('nodlr_session_id')) : null;
         const headers: Record<string, string> = {};
         if (token && token !== 'null' && token !== 'undefined') {
             headers['Authorization'] = `Bearer ${token}`;
@@ -35,6 +35,7 @@ export function useProviderNodes() {
         nodes: Array.isArray(data) ? data : [],
         loading: isLoading,
         error,
-        refresh: mutate
+        refresh: mutate,
+        mutate
     };
 }

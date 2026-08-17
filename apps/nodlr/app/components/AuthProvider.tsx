@@ -82,7 +82,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         };
 
         fetchSession();
-    }, []);
+    }, [pathname]);
 
     // 3. Prevent infinite loops and redirect only if definitely no user and not on login page
     useEffect(() => {

@@ -168,7 +168,7 @@ export default function LoginPage() {
                 if (data.requires_2fa) {
                     setTotpRequired(true);
                 } else {
-                    router.push('/dashboard');
+                    window.location.href = '/dashboard';
                 }
             } else {
                 setError(data.error || 'Invalid credentials.');

@@ -90,11 +90,16 @@ type storeState struct {
 }
 
 func NewStore(forensics *forensics.Store, statePath string) *Store {
-	dbPath := filepath.Join(filepath.Dir(statePath), "engine.db")
+	var dbPath string
+	if statePath == "" {
+		dbPath = filepath.Join(os.TempDir(), fmt.Sprintf("nodl_test_%d_%d.db", os.Getpid(), time.Now().UnixNano()))
+	} else {
+		dbPath = filepath.Join(filepath.Dir(statePath), "engine.db")
+	}
 	os.MkdirAll(filepath.Dir(dbPath), 0755)
-	db, err := bbolt.Open(dbPath, 0600, nil)
+	db, err := bbolt.Open(dbPath, 0600, &bbolt.Options{Timeout: 2 * time.Second})
 	if err != nil {
-		panic(fmt.Errorf("failed to open bbolt db: %v", err))
+		panic(fmt.Errorf("failed to open bbolt db (%s): %v", dbPath, err))
 	}
 	db.Update(func(tx *bbolt.Tx) error {
 		b, _ := tx.CreateBucketIfNotExists([]byte("nodlrs"))

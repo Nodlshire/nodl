@@ -91,13 +91,13 @@ type storeState struct {
 
 func NewStore(forensics *forensics.Store, statePath string) *Store {
 	var dbPath string
-	if statePath == "" || strings.HasSuffix(os.Args[0], ".test") {
+	if statePath == "" {
 		dbPath = filepath.Join(os.TempDir(), fmt.Sprintf("nodl_test_%d_%d.db", os.Getpid(), time.Now().UnixNano()))
 	} else {
 		dbPath = filepath.Join(filepath.Dir(statePath), "engine.db")
 	}
 	os.MkdirAll(filepath.Dir(dbPath), 0755)
-	db, err := bbolt.Open(dbPath, 0600, &bbolt.Options{Timeout: 500 * time.Millisecond})
+	db, err := bbolt.Open(dbPath, 0600, &bbolt.Options{Timeout: 50 * time.Millisecond})
 	if err != nil {
 		// Fallback to temp DB if primary DB is locked by running server process
 		dbPath = filepath.Join(os.TempDir(), fmt.Sprintf("nodl_fallback_%d_%d.db", os.Getpid(), time.Now().UnixNano()))

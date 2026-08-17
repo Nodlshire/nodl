@@ -164,7 +164,10 @@ export default function LoginPage() {
             if (res.ok) {
                 if (data.session_id && typeof window !== "undefined") {
                     localStorage.setItem('nodl_jwt', data.session_id);
+                    localStorage.setItem('nodlr_session_id', data.session_id);
+                    localStorage.setItem('nodlr_session', JSON.stringify(data.user || data));
                     localStorage.setItem('nodl_user_id', data.user_id || '100001-0426-01-AA');
+                    document.cookie = `nodlr_session=${data.session_id}; path=/; max-age=86400; SameSite=Lax; Secure`;
                 }
                 if (data.requires_2fa) {
                     setTotpRequired(true);

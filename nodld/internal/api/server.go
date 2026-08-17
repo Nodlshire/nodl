@@ -1234,12 +1234,19 @@ func (s *Server) handleGetAffiliateTree(c *fiber.Ctx) error {
 
 // resolveIdentity extracts the user ID from session cookies or a development bypass.
 func (s *Server) resolveIdentity(c *fiber.Ctx) (string, string, string) {
-	// 1. Bearer Token Authorization header resolution
-	if authHeader := c.Get("Authorization"); strings.HasPrefix(authHeader, "Bearer ") {
-		token := strings.TrimPrefix(authHeader, "Bearer ")
-		if token != "" {
-			if sess, ok := s.accountStore.GetSession(token); ok {
-				return sess.WUID, string(sess.Role), sess.Domain
+	// 1. Bearer Token Authorization header resolution (case-insensitive for HTTP/2 & proxies)
+	authHeader := c.Get("Authorization")
+	if authHeader == "" {
+		authHeader = c.Get("authorization")
+	}
+	if authHeader != "" {
+		parts := strings.SplitN(authHeader, " ", 2)
+		if len(parts) == 2 && strings.EqualFold(parts[0], "Bearer") {
+			token := strings.TrimSpace(parts[1])
+			if token != "" {
+				if sess, ok := s.accountStore.GetSession(token); ok {
+					return sess.WUID, string(sess.Role), sess.Domain
+				}
 			}
 		}
 	}

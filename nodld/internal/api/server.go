@@ -141,10 +141,11 @@ func New(dispatcher *jobs.Dispatcher, store *jobs.Store, pricingStore *pricing.S
 	distEngine := compute.NewDistributedEngine(accountStore, billingStore)
 
 	app := fiber.New(fiber.Config{
-		ReadTimeout:  10 * time.Second,
-		WriteTimeout: 10 * time.Second,
+		ReadTimeout:             60 * time.Second,
+		WriteTimeout:            60 * time.Second,
+		IdleTimeout:             120 * time.Second,
 		EnableTrustedProxyCheck: true,
-		ProxyHeader: fiber.HeaderXForwardedFor,
+		ProxyHeader:             fiber.HeaderXForwardedFor,
 		// Return structured JSON on panics
 		ErrorHandler: func(c *fiber.Ctx, err error) error {
 			code := fiber.StatusInternalServerError

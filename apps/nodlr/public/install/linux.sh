@@ -22,8 +22,8 @@ else
     exit 1
 fi
 
-BINARY_NAME="nodl-core-${OS}-${ARCH}"
-DOWNLOAD_URL="https://github.com/wnode/node-operator/releases/download/${VERSION}/${BINARY_NAME}"
+BINARY_NAME="nodl-core"
+DOWNLOAD_URL="https://nodlr.wnode.one/api/download/cli"
 
 INSTALL_DIR="/opt/wnode"
 BIN_DIR="/usr/local/bin"

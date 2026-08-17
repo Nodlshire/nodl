@@ -9,24 +9,24 @@ export async function GET(
     const { platform } = await params;
 
     // Resolve binary path
-    const guiBinaryPath = path.join(process.cwd(), '../../nodld-gui');
-    const cliBinaryPath = path.join(process.cwd(), '../../nodld_bin');
+    const homeDir = process.env.HOME || '/home/obregan';
+    const cliBinaryPath = path.join(homeDir, 'wnode/nodld_bin');
+    const guiBinaryPath = path.join(homeDir, 'wnode/nodld-gui');
 
-    let targetPath = guiBinaryPath;
-    let fileName = 'wnode-node-operator-gui';
+    let targetPath = cliBinaryPath;
+    let fileName = 'nodl-core';
 
-    if (platform === 'cli' || platform === 'linux-cli') {
-        targetPath = cliBinaryPath;
-        fileName = 'nodld';
+    if (platform === 'gui' || platform === 'desktop') {
+        targetPath = guiBinaryPath;
+        fileName = 'wnode-node-operator-gui';
     }
 
     if (!fs.existsSync(targetPath)) {
-        // Fallback to searching current directory or parent
-        const altPath = path.join(process.cwd(), 'nodld-gui');
+        const altPath = path.join(process.cwd(), '../../nodld_bin');
         if (fs.existsSync(altPath)) {
             targetPath = altPath;
         } else {
-            return new NextResponse('Binary build artifact not found', { status: 404 });
+            return new NextResponse('Binary build artifact not found on server', { status: 404 });
         }
     }
 

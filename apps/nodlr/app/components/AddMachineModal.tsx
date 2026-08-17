@@ -28,12 +28,17 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
     setLoadingToken(true);
     try {
       const jwt = typeof window !== "undefined" ? localStorage.getItem("nodl_jwt") : null;
+      const headers: Record<string, string> = {
+        "Content-Type": "application/json"
+      };
+      if (jwt && jwt !== "null") {
+        headers["Authorization"] = `Bearer ${jwt}`;
+      }
+
       const res = await fetch(`/api/nodes/headless-token/create`, {
         method: "POST",
-        headers: {
-          "Authorization": jwt ? `Bearer ${jwt}` : "",
-          "Content-Type": "application/json"
-        }
+        credentials: "include",
+        headers
       });
       if (res.ok) {
         const data = await res.json();
@@ -302,14 +307,14 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
               <div className="space-y-1">
                 <h4 className="text-sm font-bold text-cyan-400 flex items-center gap-2">
                   <Monitor className="w-4 h-4" />
-                  <span>Option 1 Configuration — Desktop Applications (Windows, macOS & Linux)</span>
+                  <span>Option 1 Configuration — Desktop Applications (Windows & macOS)</span>
                 </h4>
                 <p className="text-[11px] text-slate-400">
                   Download the desktop app for your operating system. Installs executable shortcuts directly into your system Applications folder and Desktop.
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-auto">
                 <a 
                   href="https://github.com/wnodeltd/wnode/releases/latest/download/wnode-node-operator.exe" 
                   download 
@@ -354,30 +359,6 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                   </div>
                   <div className="mt-3 text-[10px] text-cyan-400 font-bold flex items-center justify-between">
                     <span>Download .dmg</span>
-                    <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </a>
-
-                <a 
-                  href="https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/wnode-node-operator" 
-                  download="wnode-node-operator"
-                  className="p-3.5 bg-cyan-950/20 border border-cyan-500/30 hover:border-cyan-400 hover:bg-cyan-950/40 transition-all rounded-xl group flex flex-col justify-between"
-                >
-                  <div className="space-y-1.5">
-                    <div className="w-7 h-7 rounded-lg bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold">
-                      <Download className="w-3.5 h-3.5" />
-                    </div>
-                    <div>
-                      <span className="text-xs font-bold text-white block group-hover:text-cyan-300">
-                        Linux Operator Binary (x86_64)
-                      </span>
-                      <span className="text-[10px] text-slate-400 block mt-0.5">
-                        Native Linux Executable (x86_64)
-                      </span>
-                    </div>
-                  </div>
-                  <div className="mt-3 text-[10px] text-cyan-400 font-bold flex items-center justify-between">
-                    <span>Download Binary</span>
                     <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </a>

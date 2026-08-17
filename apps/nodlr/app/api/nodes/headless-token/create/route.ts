@@ -15,7 +15,26 @@ export async function POST(request: Request) {
         const headers: Record<string, string> = {};
         if (authHeader) headers['Authorization'] = authHeader;
         if (userId) headers['x-user-id'] = userId;
-        if (cookieHeader) headers['Cookie'] = cookieHeader;
+
+        if (cookieHeader) {
+            const cookies = cookieHeader.split(';').map(c => {
+                const parts = c.split('=');
+                return { name: parts[0].trim(), value: parts.slice(1).join('=').trim() };
+            }).filter(c => c.name);
+
+            let sessionToken = '';
+            const targetCookies = ['__Host-nodlr_session', '__Secure-nodlr_session', 'nodlr_session', 'cmd_session', 'nodl_session'];
+            for (const target of targetCookies) {
+                const found = cookies.find(c => c.name === target);
+                if (found) { sessionToken = found.value; break; }
+            }
+
+            if (sessionToken) {
+                headers['Cookie'] = `nodlr_session=${sessionToken}`;
+            } else {
+                headers['Cookie'] = cookieHeader;
+            }
+        }
 
         const res = await fetch(`${apiUrl}/api/v1/nodes/headless-token/create`, {
             method: 'POST',

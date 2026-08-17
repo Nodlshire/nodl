@@ -7,7 +7,8 @@ export async function GET(req: NextRequest) {
 
     try {
         const fetchHeaders: Record<string, string> = {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Connection': 'close'
         };
 
         let sessionToken = '';

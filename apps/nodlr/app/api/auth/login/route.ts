@@ -7,8 +7,10 @@ export async function POST(request: Request) {
 
         const res = await fetch(`${apiUrl}/api/v1/auth/login`, {
             method: 'POST',
+            cache: 'no-store',
             headers: { 
                 'Content-Type': 'application/json',
+                'Connection': 'close',
                 'X-Forwarded-Proto': request.headers.get('x-forwarded-proto') || 'https'
             },
             body: JSON.stringify(body),

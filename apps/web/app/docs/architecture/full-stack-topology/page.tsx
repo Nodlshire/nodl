@@ -5,7 +5,13 @@ import ReactMarkdown from 'react-markdown';
 import { notFound } from 'next/navigation';
 
 export default function FullStackTopologyPage() {
-    const filePath = path.join(process.cwd(), '../../docs/architecture/full-stack-topology.md');
+    let filePath = path.join(process.cwd(), '../../docs/architecture/full-stack-topology.md');
+    if (!fs.existsSync(filePath)) {
+        filePath = path.join(process.cwd(), 'docs/architecture/full-stack-topology.md');
+    }
+    if (!fs.existsSync(filePath)) {
+        filePath = path.join(process.cwd(), '../docs/architecture/full-stack-topology.md');
+    }
 
     if (!fs.existsSync(filePath)) {
         notFound();

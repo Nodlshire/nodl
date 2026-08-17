@@ -5,7 +5,13 @@ import ReactMarkdown from 'react-markdown';
 import { notFound } from 'next/navigation';
 
 export default function RevenueDistributionModelPage() {
-    const filePath = path.join(process.cwd(), '../../docs/economics/revenue-distribution-model.md');
+    let filePath = path.join(process.cwd(), '../../docs/economics/revenue-distribution-model.md');
+    if (!fs.existsSync(filePath)) {
+        filePath = path.join(process.cwd(), 'docs/economics/revenue-distribution-model.md');
+    }
+    if (!fs.existsSync(filePath)) {
+        filePath = path.join(process.cwd(), '../docs/economics/revenue-distribution-model.md');
+    }
 
     if (!fs.existsSync(filePath)) {
         notFound();

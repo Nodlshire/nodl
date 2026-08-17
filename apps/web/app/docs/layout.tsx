@@ -136,6 +136,8 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-2">Economics</span>
                                 <a href="/docs/economics" className="text-sm font-medium hover:text-white transition-colors">Economics</a>
                                 <a href="/docs/economics/revenue-distribution-model" className="text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors">Authoritative 6-Tier Revenue Split</a>
+                                <a href="/docs/reference/economics/affiliate-system" className="text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors">Affiliate System & Math Spec</a>
+                                <a href="/docs/reference/operator/affiliate-guide" className="text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors">Affiliate Simple User Guide</a>
                                 <a href="/docs/economics/proof-of-compute" className="text-sm font-medium hover:text-white transition-colors">Proof Of Compute</a>
                                 <a href="/docs/economics/pricing" className="text-sm font-medium hover:text-white transition-colors">Pricing</a>
                                 <a href="/docs/economics/retries" className="text-sm font-medium hover:text-white transition-colors">Retries</a>

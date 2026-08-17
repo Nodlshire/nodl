@@ -8,23 +8,7 @@ This document provides a comprehensive technical specification of the **Wnode So
 
 The AI Autonomy Engine is a closed-loop, deterministic optimization model built directly into the core `nodld` Go daemon and server mesh controllers. It governs node resource allocation, self-healing, predictive task scheduling, dynamic tier pricing, and automated telemetry health verification without requiring manual operator intervention.
 
-```
-+---------------------------------------------------------------------------------------+
-|                             AI AUTONOMY CONTROL LOOP                                  |
-+---------------------------------------------------------------------------------------+
-|                                                                                       |
-|   +-----------------------+        +----------------------+       +---------------+   |
-|   | Telemetry Ingestion   | ------>| Feature Extraction & | ----> | Predictive ML |   |
-|   | (Heartbeats/Protobuf) |        | Metric Vectorizing   |       | Locality Scorer|  |
-|   +-----------------------+        +----------------------+       +---------------+   |
-|               ^                                                           |           |
-|               |                                                           v           |
-|   +-----------------------+        +----------------------+       +---------------+   |
-|   | Self-Healing Adjust   | <------| State Engine Update  | <---- | Dynamic Rate  |   |
-|   | (Quarantine / Backoff)|        | (Health/Trust/Score) |       | Allocation    |   |
-|   +-----------------------+        +----------------------+       +---------------+   |
-+---------------------------------------------------------------------------------------+
-```
+![Wnode Sovereign Mesh AI Autonomy Control Loop Architecture](/diagrams/ai_autonomy_engine_diagram.png)
 
 ---
 

@@ -4,13 +4,13 @@ import path from 'path';
 import ReactMarkdown from 'react-markdown';
 import { notFound } from 'next/navigation';
 
-export default function DesktopGuiAndCliMenuPage() {
-    let filePath = path.join(process.cwd(), '../../docs/operator/desktop-gui-and-cli-menu.md');
+export default function AffiliateSystemDocPage() {
+    let filePath = path.join(process.cwd(), '../../docs/economics/affiliate-system.md');
     if (!fs.existsSync(filePath)) {
-        filePath = path.join(process.cwd(), 'docs/operator/desktop-gui-and-cli-menu.md');
+        filePath = path.join(process.cwd(), 'docs/economics/affiliate-system.md');
     }
     if (!fs.existsSync(filePath)) {
-        filePath = path.join(process.cwd(), '../docs/operator/desktop-gui-and-cli-menu.md');
+        filePath = path.join(process.cwd(), '../docs/economics/affiliate-system.md');
     }
 
     if (!fs.existsSync(filePath)) {

@@ -8,20 +8,7 @@ This specification details the mathematical architecture and settlement executio
 
 All network revenue generated through compute execution, bandwidth routing, and DeWi wireless relay services is settled across a **6-Tier Authoritative Distribution Matrix** summing to **100.0%**:
 
-```
-+-----------------------------------------------------------------------+
-|                 GROSS NETWORK INFLOW REVENUE (100.0%)                  |
-+---+---------------+---------------+---------------+---------------+---+
-    |               |               |               |               |
-    | 70.0%         | 10.0%         | 3.0%          | 7.0%          | 7.0%      | 3.0%
-    v               v               v               v               v           v
-+-------+       +-------+       +-------+       +-------+       +-------+   +-------+
-| NODLR |       | SALES |       |AFFILI-|       |AFFILI-|       |STEWARD|   |FOUNDER|
-| OPERA-|       | SOURCE|       | ATE   |       | ATE   |       |  FEE  |   | LIFELONG|
-|  TOR  |       | COMM. |       | LEVEL1|       | LEVEL2|       | (7.0%)|   | (3.0%)|
-|(70.0%)|       |(10.0%)|       | (3.0%)|       | (7.0%)|       +-------+   +-------+
-+-------+       +-------+       +-------+       +-------+
-```
+![Wnode Sovereign DePIN 6-Tier Revenue Split Architecture](/diagrams/affiliate_depin_engine_diagram.png)
 
 ### Detailed Share Breakdown
 

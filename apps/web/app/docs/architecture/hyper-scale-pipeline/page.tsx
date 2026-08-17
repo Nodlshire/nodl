@@ -5,7 +5,13 @@ import ReactMarkdown from 'react-markdown';
 import { notFound } from 'next/navigation';
 
 export default function HyperScalePipelinePage() {
-    const filePath = path.join(process.cwd(), '../../docs/architecture/hyper-scale-pipeline.md');
+    let filePath = path.join(process.cwd(), '../../docs/architecture/hyper-scale-pipeline.md');
+    if (!fs.existsSync(filePath)) {
+        filePath = path.join(process.cwd(), 'docs/architecture/hyper-scale-pipeline.md');
+    }
+    if (!fs.existsSync(filePath)) {
+        filePath = path.join(process.cwd(), '../docs/architecture/hyper-scale-pipeline.md');
+    }
 
     if (!fs.existsSync(filePath)) {
         notFound();

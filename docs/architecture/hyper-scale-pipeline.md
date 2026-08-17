@@ -22,25 +22,7 @@ At global scale, telemetry heartbeats present massive continuous data ingress de
 
 To prevent network link saturation and reduce raw load on backend ingestion servers by **90%**, Wnode implements two core client-side optimization layers:
 
-```
-+-------------------------------------------------------------------+
-|                        NODE OPERATOR DAEMON                       |
-|                                                                   |
-|   +-----------------------+           +-----------------------+   |
-|   | Adaptive Heartbeat    |           | Binary Protobuf       |   |
-|   | Dynamic Backoff Engine|           | Delta State Diff      |   |
-|   | (30s -> 300s Backoff) |           | (~50 Bytes vs 500B)   |   |
-|   +-----------+-----------+           +-----------+-----------+   |
-+---------------+-----------------------------------+---------------+
-                |                                   |
-                +-----------------+-----------------+
-                                  |
-                                  v
-                  +---------------+---------------+
-                  |  Stateless Edge Ingest Proxy  |
-                  |   (Cloudflare / NGINX L7)     |
-                  +---------------+---------------+
-```
+![Wnode Sovereign Mesh Hyper-Scale Ingestion Pipeline Architecture](/diagrams/hyper_scale_ingestion_pipeline.png)
 
 ### A. Adaptive Heartbeat Scaling (Dynamic Backoff)
 - **Active / Compute State**: Nodes running active distributed workloads or experiencing telemetry variance submit heartbeats every **30 seconds**.
@@ -57,26 +39,7 @@ To prevent network link saturation and reduce raw load on backend ingestion serv
 
 Synchronous disk persistence on HTTP ingest endpoints creates severe I/O bottlenecks. Wnode decouples ingestion via a **Stateless Edge Gateway & Distributed Log Queue**:
 
-```
-+-----------------------+     +-----------------------+     +-----------------------+
-|  Stateless Ingest     |     |  Stateless Ingest     |     |  Stateless Ingest     |
-|  Gateway Worker #1    |     |  Gateway Worker #2    |     |  Gateway Worker #N    |
-+-----------+-----------+     +-----------+-----------+     +-----------+-----------+
-            |                             |                             |
-            +-----------------------------+-----------------------------+
-                                          |
-                                          v
-                      +-------------------+-------------------+
-                      |   DISTRIBUTED EVENT LOG CLUSTER   |
-                      |   (NATS JetStream / Apache Kafka) |
-                      +-------------------+-------------------+
-                                          |
-                                          v
-                      +-------------------+-------------------+
-                      |    TIME-SERIES SHARD CONSUMERS    |
-                      |    (ClickHouse / ScyllaDB Cluster)|
-                      +---------------------------------------+
-```
+![Wnode Distributed Ingestion & Event Queue Topology Architecture](/diagrams/hyper_scale_ingestion_pipeline.png)
 
 1. **Stateless Go Ingest Gateways**: Lightweight Go HTTP workers behind Cloudflare/HAProxy ingest incoming binary telemetry envelopes, validate authentication signatures, and return HTTP 200 within **< 1 millisecond**.
 2. **NATS JetStream / Apache Kafka**: Ingest gateways immediately push telemetry packets into partitioned in-memory topic queues (`telemetry.heartbeats.*`).
@@ -120,23 +83,10 @@ To prevent browser crash when visualizing millions of nodes in Command Centre (`
 
 To ensure 100% server uptime during catastrophic network spikes (e.g. 50M nodes reconnecting simultaneously post-outage), Go ingest workers utilize **Fixed-Size Lockless Ring Buffers**:
 
-```
- [ Incoming Telemetry Burst ]
-              |
-              v
-   +---------------------+
-   |  Lockless Ring      |
-   |  Buffer (Fixed RAM) |
-   +----------+----------+
-              |
-     Is Buffer > 90% Full?
-        /          \
-      YES           NO
-      /              \
-     v                v
-[ Drop Low-Priority ] [ Ingest & Process ]
-[ Vitals (CPU/RAM)  ] [ Critical Events  ]
-```
+![Wnode Zero-Crash Lockless Ring Buffer Architecture](/diagrams/ai_autonomy_engine_diagram.png)
+
+- **Memory Caps**: Ingest workers pre-allocate fixed-size ring buffers in RAM. Memory allocation remains static (**O(1) memory footprint**), preventing Out-Of-Memory (OOM) crashes.
+- **Priority Event Dropping**: If buffer utilization exceeds 90%, non-critical metrics (e.g. minor CPU fluctuations) are dropped gracefully while critical state transitions (Node Online/Offline, Proofs, Slashing) are prioritized.
 
 - **Memory Caps**: Ingest workers pre-allocate fixed-size ring buffers in RAM. Memory allocation remains static (**O(1) memory footprint**), preventing Out-Of-Memory (OOM) crashes.
 - **Priority Event Dropping**: If buffer utilization exceeds 90%, non-critical metrics (e.g. minor CPU fluctuations) are dropped gracefully while critical state transitions (Node Online/Offline, Proofs, Slashing) are prioritized.

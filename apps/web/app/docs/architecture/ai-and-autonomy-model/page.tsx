@@ -5,7 +5,13 @@ import ReactMarkdown from 'react-markdown';
 import { notFound } from 'next/navigation';
 
 export default function AiAndAutonomyModelPage() {
-    const filePath = path.join(process.cwd(), '../../docs/architecture/ai-and-autonomy-model.md');
+    let filePath = path.join(process.cwd(), '../../docs/architecture/ai-and-autonomy-model.md');
+    if (!fs.existsSync(filePath)) {
+        filePath = path.join(process.cwd(), 'docs/architecture/ai-and-autonomy-model.md');
+    }
+    if (!fs.existsSync(filePath)) {
+        filePath = path.join(process.cwd(), '../docs/architecture/ai-and-autonomy-model.md');
+    }
 
     if (!fs.existsSync(filePath)) {
         notFound();

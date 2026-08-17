@@ -2234,14 +2234,18 @@ func (s *Server) handleLogin(c *fiber.Ctx) error {
 		cookieName = "mesh_session"
 	}
 
-	secureFlag := true
-	domainFlag := ".wnode.one"
-	sameSiteFlag := "None"
+	hostHeader := c.Hostname()
+	protoHeader := c.Get("X-Forwarded-Proto")
+	isHTTPS := protoHeader == "https" || c.Protocol() == "https" || strings.Contains(hostHeader, "wnode.one")
 
-	if strings.TrimSpace(os.Getenv("DEVELOPMENT_MODE")) == "true" {
-		secureFlag = false
-		domainFlag = ""
-		sameSiteFlag = "Lax"
+	secureFlag := isHTTPS
+	domainFlag := ""
+	if strings.Contains(hostHeader, "wnode.one") {
+		domainFlag = ".wnode.one"
+	}
+	sameSiteFlag := "Lax"
+	if isHTTPS {
+		sameSiteFlag = "None"
 	}
 
 	c.Cookie(&fiber.Cookie{

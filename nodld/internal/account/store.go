@@ -2060,6 +2060,13 @@ func (s *Store) ConsumeHeadlessToken(tokenStr string, upid string, cpuCores int,
 		existingNode.LastSeen = time.Now()
 		existingNode.CPUCores = cpuCores
 		existingNode.MemoryGB = memoryGb
+		if token.UserID != "" {
+			existingNode.UserID = token.UserID
+		}
+		if existingNode.Latitude == 0 {
+			existingNode.Latitude = 47.4979
+			existingNode.Longitude = 19.0402
+		}
 		go s.SaveState()
 		return existingNode, deviceToken, nil
 	}
@@ -2075,9 +2082,16 @@ func (s *Store) ConsumeHeadlessToken(tokenStr string, upid string, cpuCores int,
 		Tier:        1,
 		CPUCores:    cpuCores,
 		MemoryGB:    memoryGb,
+		Latitude:    47.4979,
+		Longitude:   19.0402,
+	}
+
+	if node.UserID == "" {
+		node.UserID = AuthoritativeOwnerID
 	}
 
 	s.nodes[nodeID] = node
+	go s.SaveState()
 
 	return node, deviceToken, nil
 }

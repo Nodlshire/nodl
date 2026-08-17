@@ -601,7 +601,16 @@ func (s *Store) AddNodlr(n *Nodlr) {
 }
 
 func (s *Store) GetNodlr(id string) (*Nodlr, bool) {
-	var n Nodlr
+	s.mu.RLock()
+	n, exists := s.nodlrs[id]
+	s.mu.RUnlock()
+	if exists {
+		return n, true
+	}
+	if s.DB == nil {
+		return nil, false
+	}
+	var bboltNodlr Nodlr
 	found := false
 	s.DB.View(func(tx *bbolt.Tx) error {
 		b := tx.Bucket([]byte("nodlrs"))
@@ -610,14 +619,14 @@ func (s *Store) GetNodlr(id string) (*Nodlr, bool) {
 		}
 		v := b.Get([]byte(id))
 		if v != nil {
-			if err := json.Unmarshal(v, &n); err == nil {
+			if err := json.Unmarshal(v, &bboltNodlr); err == nil {
 				found = true
 			}
 		}
 		return nil
 	})
 	if found {
-		return &n, true
+		return &bboltNodlr, true
 	}
 	return nil, false
 }
@@ -633,7 +642,20 @@ func (s *Store) ListNodlrs() []*Nodlr {
 }
 
 func (s *Store) GetNodlrByEmail(email string) (*Nodlr, bool) {
-	var n Nodlr
+	s.mu.RLock()
+	norm := strings.ToLower(strings.TrimSpace(email))
+	for _, n := range s.nodlrs {
+		if strings.ToLower(strings.TrimSpace(n.Email)) == norm {
+			s.mu.RUnlock()
+			return n, true
+		}
+	}
+	s.mu.RUnlock()
+
+	if s.DB == nil {
+		return nil, false
+	}
+	var bboltNodlr Nodlr
 	found := false
 	s.DB.View(func(tx *bbolt.Tx) error {
 		b := tx.Bucket([]byte("nodlrs"))
@@ -646,8 +668,8 @@ func (s *Store) GetNodlrByEmail(email string) (*Nodlr, bool) {
 			}
 			var temp Nodlr
 			if err := json.Unmarshal(v, &temp); err == nil {
-				if temp.Email == email {
-					n = temp
+				if strings.ToLower(strings.TrimSpace(temp.Email)) == norm {
+					bboltNodlr = temp
 					found = true
 				}
 			}
@@ -656,7 +678,7 @@ func (s *Store) GetNodlrByEmail(email string) (*Nodlr, bool) {
 		return nil
 	})
 	if found {
-		return &n, true
+		return &bboltNodlr, true
 	}
 	return nil, false
 }

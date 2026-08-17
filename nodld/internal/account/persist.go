@@ -54,9 +54,8 @@ func (s *Store) SaveState() error {
 	}
 
 	s.mu.RLock()
-	defer s.mu.RUnlock()
-
 	if s.statePath == "" {
+		s.mu.RUnlock()
 		return nil
 	}
 
@@ -94,6 +93,8 @@ func (s *Store) SaveState() error {
 	}
 
 	data, err := json.MarshalIndent(state, "", "  ")
+	s.mu.RUnlock()
+
 	if err != nil {
 		return err
 	}

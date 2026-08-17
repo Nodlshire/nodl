@@ -102,3 +102,10 @@ For every executed command in Operational Mode or Deployment, you must log:
 - Exact command
 - Declared scope / Workflow objective
 - Why you believe it is allowed under this policy
+
+## 6. Strict Workspace Directory & Execution Scope Rules
+
+- **Workspace Boundaries**: All commands, scripts, builds, and output artifacts MUST strictly execute inside the designated workspace directory `/home/obregan/Documents/nodl`.
+- **Prohibited External Export Paths**: NEVER export, create, or target `/home/obregan/.hermes` or any other external/non-legitimate workspace paths in command lines or scripts.
+- **Standard Execution PATH**: Rely strictly on standard system PATH paths (`/usr/bin`, `/bin`, `/usr/local/bin`, `/usr/local/go/bin`, or workspace-local `node_modules/.bin`) within `/home/obregan/Documents/nodl`.
+

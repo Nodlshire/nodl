@@ -199,10 +199,10 @@ export default function DashboardPage() {
                         </div>
                         <div className="space-y-4">
                             {[
-                                { label: 'CPU Cores', value: '112 Cores' },
-                                { label: 'VRAM Pool', value: '128GB' },
-                                { label: 'System RAM', value: '512GB' },
-                                { label: 'Network', value: '10 Gbps' }
+                                { label: 'CPU Cores', value: `${(nodes || []).reduce((acc: number, n: any) => acc + (parseInt(n.cpu_specs) || 0), 0)} Cores` },
+                                { label: 'VRAM Pool', value: `${(nodes || []).reduce((acc: number, n: any) => acc + (parseInt(n.gpu_specs) || 0), 0)}GB` },
+                                { label: 'System RAM', value: `${(nodes || []).reduce((acc: number, n: any) => acc + (parseInt(n.ram_total) || 0), 0)}GB` },
+                                { label: 'Network', value: (nodes && nodes.length > 0) ? '1 Gbps' : '0 Gbps' }
                             ].map(stat => (
                                 <div key={stat.label} className="flex justify-between items-center">
                                     <span className="text-[11px] text-slate-500 uppercase tracking-tight font-normal">{stat.label}</span>

@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"runtime"
 	"sync"
 	"time"
@@ -97,11 +98,10 @@ const htmlTemplate = `<!DOCTYPE html>
 </head>
 <body>
     <div class="header">
-        <div class="brand">
-            <div class="logo-icon">W</div>
+        <div class="brand" style="display: flex; align-items: center; gap: 12px;">
+            <img src="https://raw.githubusercontent.com/wnodeltd/wnode/main/web/images/logo%205s.png" style="height: 36px; width: auto;" alt="wnode" />
             <div class="title-group">
-                <h1>Wnode Node Operator</h1>
-                <p>Native Desktop Sovereign Mesh App</p>
+                <h1 style="font-size: 18px; font-weight: 800; color: #ffffff; margin: 0;">Wnode Node Operator</h1>
             </div>
         </div>
         <div id="statusBadge" class="status-badge">
@@ -150,16 +150,16 @@ const htmlTemplate = `<!DOCTYPE html>
             </div>
         </div>
 
-        <!-- Live Vitals & Earnings -->
+        <!-- Live Vitals & Workloads -->
         <div class="card">
             <div class="card-title">
-                <span>Real-Time Vitals & Earnings</span>
+                <span>Real-Time Vitals & Workloads</span>
                 <span style="color: #10b981; font-size: 11px;">Live Sync</span>
             </div>
 
             <div class="vitals-grid">
                 <div class="vital-box">
-                    <div class="vital-label">CPU Footprint</div>
+                    <div class="vital-label">Node CPU Load</div>
                     <div id="cpuVal" class="vital-val">14.2%</div>
                 </div>
                 <div class="vital-box">
@@ -167,7 +167,7 @@ const htmlTemplate = `<!DOCTYPE html>
                     <div id="ramVal" class="vital-val">42.8%</div>
                 </div>
                 <div class="vital-box">
-                    <div class="vital-label">Spatial Hex</div>
+                    <div class="vital-label">Network Region (H3 Hex)</div>
                     <div id="hexVal" class="vital-val" style="font-size: 11px; margin-top: 8px;">88194ad2a3fffff</div>
                 </div>
                 <div class="vital-box">
@@ -176,8 +176,21 @@ const htmlTemplate = `<!DOCTYPE html>
                 </div>
             </div>
 
-            <div style="background: #020617; border: 1px solid #1e293b; border-radius: 8px; padding: 14px; font-size: 12px; color: #94a3b8; display: flex; align-items: center; justify-content: space-between;">
-                <span>SECCOMP Native Sandbox</span>
+            <!-- Active Workloads Indicator -->
+            <div style="background: #020617; border: 1px solid #1e293b; border-radius: 8px; padding: 12px 14px; margin-top: 12px; font-size: 12px; color: #94a3b8; display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                    <span style="font-weight: 700; color: #f8fafc; block;">Active Workloads</span>
+                    <span style="font-size: 10px; color: #64748b; block;">Current compute tasks processing</span>
+                </div>
+                <span style="color: #38bdf8; font-weight: 700; font-family: monospace;">0 Tasks (Idle / Standing By)</span>
+            </div>
+
+            <!-- Security Sandbox Indicator -->
+            <div style="background: #020617; border: 1px solid #1e293b; border-radius: 8px; padding: 12px 14px; margin-top: 8px; font-size: 12px; color: #94a3b8; display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                    <span style="font-weight: 700; color: #f8fafc; block;">Task Security Sandbox</span>
+                    <span style="font-size: 10px; color: #64748b; block;">Isolated sandbox protecting host system & files</span>
+                </div>
                 <span style="color: #10b981; font-weight: 700;">ACTIVE</span>
             </div>
         </div>
@@ -306,7 +319,10 @@ func launchNativeAppWindow(targetURL string) {
 		{"google-chrome-stable", []string{fmt.Sprintf("--app=%s", targetURL), fmt.Sprintf("--user-data-dir=%s", appDataDir), "--window-size=920,660", "--title=Wnode Node Operator"}},
 		{"brave-browser", []string{fmt.Sprintf("--app=%s", targetURL), fmt.Sprintf("--user-data-dir=%s", appDataDir), "--window-size=920,660", "--title=Wnode Node Operator"}},
 		{"msedge", []string{fmt.Sprintf("--app=%s", targetURL), fmt.Sprintf("--user-data-dir=%s", appDataDir), "--window-size=920,660", "--title=Wnode Node Operator"}},
+		{"vivaldi", []string{fmt.Sprintf("--app=%s", targetURL), fmt.Sprintf("--user-data-dir=%s", appDataDir), "--window-size=920,660", "--title=Wnode Node Operator"}},
+		{"opera", []string{fmt.Sprintf("--app=%s", targetURL), fmt.Sprintf("--user-data-dir=%s", appDataDir), "--window-size=920,660", "--title=Wnode Node Operator"}},
 		{"epiphany", []string{fmt.Sprintf("--app=%s", targetURL)}},
+		{"firefox", []string{"--new-window", targetURL}},
 	}
 
 	for _, runner := range appRunners {
@@ -326,7 +342,46 @@ func launchNativeAppWindow(targetURL string) {
 	}
 }
 
+func installLinuxDesktopLauncher(execPath string) {
+	if runtime.GOOS != "linux" {
+		return
+	}
+	home, err := os.UserHomeDir()
+	if err != nil {
+		return
+	}
+	appsDir := filepath.Join(home, ".local", "share", "applications")
+	os.MkdirAll(appsDir, 0755)
+
+	desktopContent := fmt.Sprintf(`[Desktop Entry]
+Type=Application
+Name=Wnode Node Operator
+Comment=DeWi Network Compute Node Operator Control Panel
+Exec=%s
+Icon=system-run
+Terminal=false
+Categories=Utility;Network;
+StartupWMClass=wnode-node-operator
+`, execPath)
+
+	desktopFilePath := filepath.Join(appsDir, "wnode-node-operator.desktop")
+	os.WriteFile(desktopFilePath, []byte(desktopContent), 0755)
+
+	desktopFolder := filepath.Join(home, "Desktop")
+	if info, err := os.Stat(desktopFolder); err == nil && info.IsDir() {
+		shortcutPath := filepath.Join(desktopFolder, "wnode-node-operator.desktop")
+		os.WriteFile(shortcutPath, []byte(desktopContent), 0755)
+	}
+
+	exec.Command("update-desktop-database", appsDir).Run()
+	fmt.Printf("[+] Installed Desktop Application Shortcut: %s\n", desktopFilePath)
+}
+
 func main() {
+	if exePath, err := os.Executable(); err == nil {
+		installLinuxDesktopLauncher(exePath)
+	}
+
 	port := startLocalServer()
 	url := fmt.Sprintf("http://127.0.0.1:%d", port)
 
@@ -339,3 +394,4 @@ func main() {
 
 	launchNativeAppWindow(url)
 }
+

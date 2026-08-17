@@ -113,14 +113,11 @@ export default function DashboardLayout({
             <aside className="fixed inset-y-0 left-0 w-64 bg-[#080808] border-r border-white/10 hidden lg:flex flex-col z-50">
                 <div className="pt-8 pl-8 mb-6 flex flex-col items-start gap-4 shrink-0">
                     <div className="flex flex-col items-start select-none gap-3">
-                        <div className="flex flex-col items-center justify-center w-14">
-                            <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto fill-white drop-shadow-sm">
-                                <path d="M 22 110 L 22 50 A 28 28 0 0 1 78 50 L 78 110" fill="none" stroke="white" strokeWidth="26" strokeLinecap="butt" />
-                                <circle cx="50" cy="72" r="16" />
-                            </svg>
-                            <span style={{ fontFamily: "'Roboto', sans-serif", fontSize: "14pt", fontWeight: "bold", color: "white", marginTop: "12px", lineHeight: "1", letterSpacing: "0.02em" }}>wnode</span>
+                        <div className="flex flex-col items-start justify-center">
+                            <img src="/images/logo_5s.png" className="w-12 h-auto" alt="wnode" />
+                            <span style={{ fontFamily: "'Roboto', sans-serif", fontSize: "14pt", fontWeight: "bold", color: "white", marginTop: "8px", lineHeight: "1", letterSpacing: "0.02em" }}>wnode</span>
                         </div>
-                        <div className="flex flex-col items-start mt-2">
+                        <div className="flex flex-col items-start mt-1">
                             <span className="text-[10px] font-normal tracking-[0.4em] text-[#ffff00]">NODLR DASHBOARD</span>
                         </div>
                     </div>

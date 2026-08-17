@@ -103,10 +103,35 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
   };
 
   const headlessVariants: Record<string, { name: string; desc: string; cmd: string }> = {
-    "headless-linux": {
-      name: "Linux Headless Daemon (Systemd / Background Service)",
-      desc: "Installs compiled Go daemon (nodld) to run as an unassisted background service.",
+    "headless-debian": {
+      name: "Debian 11 / 12 Bookworm (x86_64)",
+      desc: "Installs compiled Go daemon (nodld) background service for Debian Linux servers.",
       cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld -o nodld && chmod +x nodld && ./nodld daemon --token=${activeTokenDisplay}`
+    },
+    "headless-ubuntu": {
+      name: "Ubuntu 22.04 / 24.04 LTS (x86_64)",
+      desc: "Systemd background daemon service installer for Ubuntu Linux servers.",
+      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld -o nodld && chmod +x nodld && ./nodld daemon --token=${activeTokenDisplay}`
+    },
+    "headless-fedora": {
+      name: "Fedora / RHEL / CentOS / AlmaLinux (x86_64)",
+      desc: "RPM-compatible Linux systemd background daemon service.",
+      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld -o nodld && chmod +x nodld && ./nodld daemon --token=${activeTokenDisplay}`
+    },
+    "headless-arch": {
+      name: "Arch Linux / Manjaro (x86_64)",
+      desc: "Arch Linux systemd background daemon service installation command.",
+      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld -o nodld && chmod +x nodld && ./nodld daemon --token=${activeTokenDisplay}`
+    },
+    "headless-alpine": {
+      name: "Alpine Linux (musl x86_64)",
+      desc: "Lightweight OpenRC musl daemon service command for Alpine Linux.",
+      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld-musl -o nodld && chmod +x nodld && ./nodld daemon --token=${activeTokenDisplay}`
+    },
+    "headless-arm64": {
+      name: "Linux ARM64 / Raspberry Pi 4/5 (aarch64)",
+      desc: "64-bit ARM background daemon service for single-board computers & Graviton servers.",
+      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld-arm64 -o nodld && chmod +x nodld && ./nodld daemon --token=${activeTokenDisplay}`
     },
     "headless-mac": {
       name: "macOS Headless Daemon (Launchd / Background Daemon)",
@@ -119,6 +144,14 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
       cmd: `iwr -useb https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld.exe -OutFile nodld.exe; .\\nodld.exe daemon --token=${activeTokenDisplay}`
     }
   };
+
+  const cliCheatSheet = [
+    { cmd: "nodld status", desc: "Check live daemon connection, telemetry & hardware health" },
+    { cmd: "nodld logs", desc: "Tail real-time daemon execution and workload logs" },
+    { cmd: "nodld restart", desc: "Restart background daemon service" },
+    { cmd: "nodld stop", desc: "Gracefully halt background daemon service" },
+    { cmd: "./wnode-node-operator --help", desc: "Display interactive CLI menu & flag configuration" }
+  ];
 
   return (
     <div 
@@ -259,64 +292,93 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
           
           {/* OPTION 1 DETAILS (Cyber Cyan) */}
           {selectedOption === 1 && (
-            <div className="space-y-4 flex-1 flex flex-col justify-between">
+            <div className="space-y-3 flex-1 flex flex-col justify-between">
               <div className="space-y-1">
                 <h4 className="text-sm font-bold text-cyan-400 flex items-center gap-2">
                   <Monitor className="w-4 h-4" />
-                  <span>Option 1 Configuration — Windows & macOS Desktop Apps</span>
+                  <span>Option 1 Configuration — Desktop Applications (Windows, macOS & Linux)</span>
                 </h4>
                 <p className="text-[11px] text-slate-400">
-                  Download the active executable for your platform. Double-click to launch your node control panel.
+                  Download the desktop app for your operating system. Installs executable shortcuts directly into your system Applications folder and Desktop.
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 my-auto">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-auto">
                 <a 
                   href="https://github.com/wnodeltd/wnode/releases/latest/download/wnode-node-operator.exe" 
                   download 
-                  className="p-4 bg-cyan-950/20 border border-cyan-500/30 hover:border-cyan-400 hover:bg-cyan-950/40 transition-all rounded-xl group flex items-center justify-between"
+                  className="p-3.5 bg-cyan-950/20 border border-cyan-500/30 hover:border-cyan-400 hover:bg-cyan-950/40 transition-all rounded-xl group flex flex-col justify-between"
                 >
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold">
-                      <Download className="w-4 h-4" />
+                  <div className="space-y-1.5">
+                    <div className="w-7 h-7 rounded-lg bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold">
+                      <Download className="w-3.5 h-3.5" />
                     </div>
                     <div>
                       <span className="text-xs font-bold text-white block group-hover:text-cyan-300">
                         Windows Executable (.exe)
                       </span>
-                      <span className="text-[10px] text-slate-400 block">
-                        Native Windows 10/11 Application
+                      <span className="text-[10px] text-slate-400 block mt-0.5">
+                        Native Windows Desktop Program
                       </span>
                     </div>
                   </div>
-                  <ChevronRight className="w-4 h-4 text-cyan-400 group-hover:translate-x-1 transition-transform" />
+                  <div className="mt-3 text-[10px] text-cyan-400 font-bold flex items-center justify-between">
+                    <span>Download .exe</span>
+                    <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </a>
 
                 <a 
                   href="https://github.com/wnodeltd/wnode/releases/latest/download/wnode-node-operator-mac.dmg" 
                   download 
-                  className="p-4 bg-cyan-950/20 border border-cyan-500/30 hover:border-cyan-400 hover:bg-cyan-950/40 transition-all rounded-xl group flex items-center justify-between"
+                  className="p-3.5 bg-cyan-950/20 border border-cyan-500/30 hover:border-cyan-400 hover:bg-cyan-950/40 transition-all rounded-xl group flex flex-col justify-between"
                 >
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold">
-                      <Download className="w-4 h-4" />
+                  <div className="space-y-1.5">
+                    <div className="w-7 h-7 rounded-lg bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold">
+                      <Download className="w-3.5 h-3.5" />
                     </div>
                     <div>
                       <span className="text-xs font-bold text-white block group-hover:text-cyan-300">
-                        macOS Universal App (.dmg)
+                        macOS Universal (.dmg)
                       </span>
-                      <span className="text-[10px] text-slate-400 block">
+                      <span className="text-[10px] text-slate-400 block mt-0.5">
                         Apple Silicon & Intel Universal
                       </span>
                     </div>
                   </div>
-                  <ChevronRight className="w-4 h-4 text-cyan-400 group-hover:translate-x-1 transition-transform" />
+                  <div className="mt-3 text-[10px] text-cyan-400 font-bold flex items-center justify-between">
+                    <span>Download .dmg</span>
+                    <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </a>
+
+                <div className="p-3.5 bg-cyan-950/20 border border-cyan-500/30 rounded-xl flex flex-col justify-between">
+                  <div className="space-y-1.5">
+                    <div className="w-7 h-7 rounded-lg bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold">
+                      <Terminal className="w-3.5 h-3.5" />
+                    </div>
+                    <div>
+                      <span className="text-xs font-bold text-white block">
+                        Linux Desktop (.desktop)
+                      </span>
+                      <span className="text-[10px] text-slate-400 block mt-0.5">
+                        Installs Application Menu & Taskbar Icon
+                      </span>
+                    </div>
+                  </div>
+                  <button 
+                    onClick={() => handleCopy("curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/wnode-node-operator -o wnode-node-operator && chmod +x wnode-node-operator && ./wnode-node-operator", "linux-desktop")}
+                    className="mt-3 text-[10px] bg-cyan-400 hover:bg-cyan-300 text-black font-bold py-1 px-2 rounded flex items-center justify-between transition-colors"
+                  >
+                    <span>{copied === "linux-desktop" ? "✓ Copied Installer" : "Copy Linux App Installer"}</span>
+                    <Copy className="w-3 h-3" />
+                  </button>
+                </div>
               </div>
 
-              <div className="p-3 rounded-lg bg-cyan-950/20 border border-cyan-500/20 text-[11px] text-slate-300 flex items-center gap-2">
+              <div className="p-2.5 rounded-lg bg-cyan-950/20 border border-cyan-500/20 text-[11px] text-slate-300 flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-cyan-400 shrink-0" />
-                <span>Double-click the downloaded executable to open your node control panel. No command line required.</span>
+                <span>On Linux, running the app once automatically installs a clickable icon in your Applications folder and Taskbar.</span>
               </div>
             </div>
           )}
@@ -490,6 +552,21 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                     </div>
                   </div>
                 )}
+              </div>
+
+              {/* CLI Command Reference Box */}
+              <div className="p-3 rounded-xl bg-purple-950/20 border border-purple-500/20 space-y-1.5">
+                <span className="text-[10px] font-bold text-purple-400 uppercase tracking-wider block">
+                  CLI & Daemon Command Reference:
+                </span>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-1.5 font-mono text-[10px]">
+                  {cliCheatSheet.map(item => (
+                    <div key={item.cmd} className="bg-black/60 px-2 py-1 rounded border border-white/10 flex items-center justify-between">
+                      <span className="text-purple-300 font-bold">{item.cmd}</span>
+                      <span className="text-slate-400 text-[9px] truncate ml-2">{item.desc}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
 
             </div>

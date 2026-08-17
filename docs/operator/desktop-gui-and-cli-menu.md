@@ -1,48 +1,68 @@
-# Desktop GUI Applet & Interactive Terminal Menu Guide
+# Desktop GUI Applet, Desktop Launcher & Headless Daemon Guide
 
-This guide details the two execution modes of the Wnode Node Operator software suite: the **Out-of-the-Box Desktop GUI Applet (`nodld-gui`)** designed for non-technical desktop users, and the **Interactive Headless Terminal Menu (`./nodld menu`)** designed for server operators.
+This guide details the three deployment modes of the Wnode Node Operator software suite: the **Out-of-the-Box Desktop Applet & Desktop Launcher**, the **Interactive Terminal CLI Mode**, and the **Unassisted Headless Background Daemon (`nodld`)**.
 
 ---
-
-## 1. Desktop GUI Applet (`nodld-gui`) — Out-of-the-Box Mode
-
-For desktop environments (Fedora 43, Ubuntu, Debian, Arch Linux), the Node Operator operates as a standard desktop application with zero terminal configuration required.
 
 ![Wnode Node Operator Desktop GUI & Interactive Terminal Interface](/diagrams/operator_cli_desktop_interface.png)
 
-### Key Desktop Features
+---
 
-1. **GNOME / KDE Desktop Integration**:
-   - Double-clicking `nodld-gui` or launching **Wnode Node Operator** from the Fedora Application Launcher starts the app.
-   - Automatically registers `wnode-node-operator.desktop` in `~/.local/share/applications/`.
-2. **System Tray / Taskbar Status Icon**:
-   - 🟢 **Green (Active)**: Node is online, routing telemetry, and accepting compute workloads.
-   - 🟡 **Yellow (Resting)**: Node is resting automatically because user PC activity (mouse/keyboard) was detected.
-   - 🔴 **Red (Off)**: Node is turned off by user toggle.
-3. **Smart Idle Detection (User Preference)**:
-   - When enabled, the node monitors system input devices and pauses compute workloads during active user interaction, ensuring zero impact on your gaming, work, or browsing performance.
-4. **Custom Work & Rest Schedules**:
-   - Allows setting dedicated active hours (e.g. Work overnight 11 PM – 7 AM, Rest during office hours).
+## 1. Desktop Application Mode (Windows, macOS & Linux)
+
+For desktop environments (Fedora, Ubuntu, Debian, Arch Linux, macOS, Windows 10/11), the Node Operator operates as a standalone desktop application with zero terminal complexity required.
+
+### Linux Application Launcher & Desktop Icon Setup
+
+Running the application once automatically creates a native `.desktop` application menu launcher in `~/.local/share/applications/wnode-node-operator.desktop` and a shortcut on your Desktop:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/wnode-node-operator -o wnode-node-operator && chmod +x wnode-node-operator && ./wnode-node-operator
+```
+
+#### Key Desktop App Features
+- **Application Folder & Taskbar Integration**: Access **Wnode Node Operator** directly from your GNOME App Grid, KDE Launcher, or Fedora Taskbar.
+- **Smart Idle Sensing**: Automatically pauses compute tasks when mouse or keyboard activity is detected, maintaining zero latency during gaming or productivity.
+- **Custom Active Hours**: Configure custom work/rest schedules (e.g., execute workloads overnight between 11 PM – 7 AM).
 
 ---
 
-## 2. Interactive Headless Terminal Menu (`./nodld menu`)
+## 2. Linux Compute Node (Interactive CLI Mode)
 
-For headless servers, remote SSH sessions, or CLI users, running `./nodld menu` (or `./nodld --menu`) opens an interactive text-based control panel:
+For terminal users and remote Linux workstations, running the operator in interactive CLI mode provides real-time telemetry streaming and token configuration:
 
-![Wnode Node Operator Interactive Terminal Menu](/diagrams/operator_cli_desktop_interface.png)
-  [5] View Real-Time Telemetry & Vitals
-  [6] Install Systemd Background Service
-  [7] Exit
-=================================================================
- Select option [1-7]: 
+```bash
+./wnode-node-operator --token=WNODE-AUTH-YOUR_ACCOUNT_TOKEN
 ```
 
-### CLI Menu Commands & Capabilities
+---
 
-- **Option 1 (Start Daemon)**: Bootstraps the Go mesh engine, registers SECCOMP sandboxes, and enters live telemetry reporting mode.
-- **Option 2 (Claim Token Pairing)**: Prompts for your Nodlr Portal / Command Centre registration token (`REG-xxx`) to link node telemetry with your account.
-- **Option 3 (Schedule Configuration)**: Guided setup for active work and rest hours.
-- **Option 4 (Smart Idle Toggle)**: Instantly toggles PC user activity sensing ON or OFF.
-- **Option 5 (Telemetry Inspection)**: Displays live CPU/RAM footprint, H3 spatial hex code, WorkScore, and SECCOMP security status.
-- **Option 6 (Automated Systemd Service Builder)**: Generates and installs systemd background service entries (`sudo systemctl enable --now nodld`).
+## 3. Headless Background Daemon Setup (Debian, Ubuntu, Fedora, Arch, Alpine, ARM64, macOS, Windows)
+
+For headless servers, remote SSH instances, or production clusters, the compiled Go daemon (`nodld`) runs as an unassisted background service without GUI overhead.
+
+### Distribution Installation Commands
+
+| OS Environment | Target Architecture | Service Installation Command |
+| :--- | :--- | :--- |
+| **Debian 11 / 12 (Bookworm)** | `x86_64` | `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld -o nodld && chmod +x nodld && ./nodld daemon --token=WNODE-AUTH-TOKEN` |
+| **Ubuntu 22.04 / 24.04 LTS** | `x86_64` | `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld -o nodld && chmod +x nodld && ./nodld daemon --token=WNODE-AUTH-TOKEN` |
+| **Fedora / RHEL / CentOS** | `x86_64` | `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld -o nodld && chmod +x nodld && ./nodld daemon --token=WNODE-AUTH-TOKEN` |
+| **Arch Linux / Manjaro** | `x86_64` | `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld -o nodld && chmod +x nodld && ./nodld daemon --token=WNODE-AUTH-TOKEN` |
+| **Alpine Linux (musl)** | `musl x86_64` | `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld-musl -o nodld && chmod +x nodld && ./nodld daemon --token=WNODE-AUTH-TOKEN` |
+| **Linux ARM64 / RPi 4/5** | `aarch64` | `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld-arm64 -o nodld && chmod +x nodld && ./nodld daemon --token=WNODE-AUTH-TOKEN` |
+| **macOS Headless Daemon** | `Apple / Intel` | `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld-mac -o nodld && chmod +x nodld && ./nodld daemon --token=WNODE-AUTH-TOKEN` |
+| **Windows Headless Service** | `x86_64` | `iwr -useb https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld.exe -OutFile nodld.exe; .\nodld.exe daemon --token=WNODE-AUTH-TOKEN` |
+
+---
+
+## 4. CLI & Daemon Command Reference Table
+
+| Command | Operational Scope | Description & Primary Purpose |
+| :--- | :--- | :--- |
+| **`nodld status`** | Telemetry Inspection | Displays real-time connection state, H3 spatial index, WorkScore, and active workloads. |
+| **`nodld logs`** | System Diagnostics | Tails live background daemon execution, P2P mesh discovery, and workload logs. |
+| **`nodld restart`** | Process Control | Restarts the background daemon service and reconnects to the DeWi mesh network. |
+| **`nodld stop`** | Process Control | Gracefully halts background daemon execution and releases network ports. |
+| **`./wnode-node-operator --help`** | Help & Flags | Displays interactive CLI menu, configuration flags, and custom token pairing parameters. |
+

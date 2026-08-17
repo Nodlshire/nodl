@@ -73,7 +73,7 @@ export default function LoginPage() {
                 if (data.requires_2fa) {
                     setTotpRequired(true);
                 } else {
-                    window.location.href = '/dashboard';
+                    router.push('/dashboard');
                 }
             } else {
                 setError(data.error || 'Google Sign-In failed');
@@ -95,7 +95,7 @@ export default function LoginPage() {
                 body: JSON.stringify({ code: totpCode, domain: 'nodlr' })
             });
             if (res.ok) {
-                window.location.href = '/dashboard';
+                router.push('/dashboard');
             } else {
                 setError('Invalid TOTP code');
             }
@@ -170,7 +170,7 @@ export default function LoginPage() {
                 if (data.requires_2fa) {
                     setTotpRequired(true);
                 } else {
-                    window.location.href = '/dashboard';
+                    router.push('/dashboard');
                 }
             } else {
                 setError(data.error || 'Invalid credentials.');

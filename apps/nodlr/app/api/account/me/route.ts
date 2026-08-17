@@ -10,11 +10,7 @@ export async function GET(req: NextRequest) {
             'Content-Type': 'application/json'
         };
 
-        const authHeader = req.headers.get('authorization');
-        if (authHeader) {
-            fetchHeaders['Authorization'] = authHeader;
-        }
-
+        let sessionToken = '';
         const rawCookie = req.headers.get('cookie') || req.headers.get('x-debug-cookie');
         console.log("[PROXY DEBUG] RAW COOKIE FROM BROWSER:", rawCookie);
 
@@ -24,23 +20,28 @@ export async function GET(req: NextRequest) {
                 return { name: parts[0].trim(), value: parts.slice(1).join('=').trim() };
             }).filter(c => c.name);
 
-            let sessionToken = '';
             const targetCookies = ['__Host-nodlr_session', '__Secure-nodlr_session', 'nodlr_session', 'cmd_session', 'nodl_session'];
             for (const target of targetCookies) {
                 const found = cookies.find(c => c.name === target);
                 if (found) { sessionToken = found.value; break; }
             }
+        }
 
-            if (sessionToken) {
-                fetchHeaders['Cookie'] = `nodlr_session=${sessionToken}`;
-            } else {
-                fetchHeaders['Cookie'] = rawCookie;
+        const authHeader = req.headers.get('authorization');
+        if (authHeader) {
+            fetchHeaders['Authorization'] = authHeader;
+            if (!sessionToken && authHeader.startsWith('Bearer ')) {
+                const tokenFromAuth = authHeader.substring(7).trim();
+                if (tokenFromAuth && tokenFromAuth !== 'null' && tokenFromAuth !== 'undefined') {
+                    sessionToken = tokenFromAuth;
+                }
             }
-        } else if (authHeader && authHeader.startsWith('Bearer ')) {
-            const tokenFromAuth = authHeader.substring(7).trim();
-            if (tokenFromAuth && tokenFromAuth !== 'null' && tokenFromAuth !== 'undefined') {
-                fetchHeaders['Cookie'] = `nodlr_session=${tokenFromAuth}`;
-            }
+        }
+
+        if (sessionToken) {
+            fetchHeaders['Cookie'] = `nodlr_session=${sessionToken}`;
+        } else if (rawCookie) {
+            fetchHeaders['Cookie'] = rawCookie;
         }
         
         console.log("[PROXY DEBUG] FINAL COOKIE SENT TO BACKEND:", fetchHeaders['Cookie']);

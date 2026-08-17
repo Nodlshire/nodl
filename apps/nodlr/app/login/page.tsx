@@ -168,6 +168,8 @@ export default function LoginPage() {
                     localStorage.setItem('nodlr_session', JSON.stringify(data.user || data));
                     localStorage.setItem('nodl_user_id', data.user_id || '100001-0426-01-AA');
                     document.cookie = `nodlr_session=${data.session_id}; path=/; max-age=86400; SameSite=Lax; Secure`;
+                    document.cookie = `nodlr_session_id=${data.session_id}; path=/; max-age=86400; SameSite=Lax; Secure`;
+                    document.cookie = `nodl_session=${data.session_id}; path=/; max-age=86400; SameSite=Lax; Secure`;
                 }
                 if (data.requires_2fa) {
                     setTotpRequired(true);

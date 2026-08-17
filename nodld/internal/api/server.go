@@ -1259,20 +1259,6 @@ func (s *Server) resolveIdentity(c *fiber.Ctx) (string, string, string) {
 		if sessionID := c.Cookies(cookieName); sessionID != "" {
 			sess, ok := s.accountStore.GetSession(sessionID)
 			if ok {
-				expectedDomain := ""
-				switch cookieName {
-				case "cmd_session":
-					expectedDomain = "command"
-				case "nodlr_session":
-					expectedDomain = "nodlr"
-				case "mesh_session":
-					expectedDomain = "mesh"
-				}
-
-				if expectedDomain != "" && sess.Domain != expectedDomain {
-					s.log.Debug("[AUTH] Skipping non-matching domain cookie", zap.String("id", sess.WUID), zap.String("cookie", cookieName), zap.String("session_domain", sess.Domain))
-					continue
-				}
 				return sess.WUID, string(sess.Role), sess.Domain
 			}
 		}
@@ -2277,13 +2263,7 @@ func (s *Server) handleLogin(c *fiber.Ctx) error {
 
 	secureFlag := isHTTPS
 	domainFlag := ""
-	if strings.Contains(hostHeader, "wnode.one") {
-		domainFlag = ".wnode.one"
-	}
 	sameSiteFlag := "Lax"
-	if isHTTPS {
-		sameSiteFlag = "None"
-	}
 
 	c.Cookie(&fiber.Cookie{
 		Name:     cookieName,

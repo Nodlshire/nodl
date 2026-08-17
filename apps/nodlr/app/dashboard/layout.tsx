@@ -82,13 +82,6 @@ export default function DashboardLayout({
         window.location.reload(); // Will trigger the wizard in page.tsx
     };
 
-    useEffect(() => {
-        if (!loading && !account) {
-            console.warn('[Dashboard Guard] Access denied. Redirecting to login.');
-            router.push('/login');
-        }
-    }, [account, loading, router]);
-
     if (!mounted || loading) {
         return (
             <div className="min-h-screen bg-black flex items-center justify-center">

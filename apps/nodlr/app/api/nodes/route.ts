@@ -36,14 +36,8 @@ export async function GET(request: Request) {
         });
 
         if (!res.ok) {
-            // If the Coordinator returns 401/403, we return an empty list gracefully
-            if (res.status === 401 || res.status === 403) {
-                console.warn(`Coordinator returned ${res.status} for /api/v1/nodes. Returning empty list.`);
-                return NextResponse.json([]);
-            }
-            const errorText = await res.text();
-            console.error(`Coordinator error (${res.status}): ${errorText}`);
-            return NextResponse.json({ error: `Coordinator error: ${res.status}` }, { status: res.status });
+            console.warn(`Coordinator returned status ${res.status} for /api/v1/nodes. Returning empty array.`);
+            return NextResponse.json([]);
         }
 
         const nodes = await res.json();
@@ -76,6 +70,6 @@ export async function GET(request: Request) {
         return NextResponse.json(providerNodes);
     } catch (err) {
         console.error('Nodlr API /api/nodes failure:', err);
-        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+        return NextResponse.json([]);
     }
 }

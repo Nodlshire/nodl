@@ -161,6 +161,10 @@ export default function LoginPage() {
 
             const data = await res.json();
             if (res.ok) {
+                if (data.session_id && typeof window !== "undefined") {
+                    localStorage.setItem('nodl_jwt', data.session_id);
+                    localStorage.setItem('nodl_user_id', data.user_id || '100001-0426-01-AA');
+                }
                 if (data.requires_2fa) {
                     setTotpRequired(true);
                 } else {

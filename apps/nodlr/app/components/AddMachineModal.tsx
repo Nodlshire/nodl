@@ -16,7 +16,7 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
   const [loadingToken, setLoadingToken] = useState(false);
   const [copied, setCopied] = useState("");
   const [selectedLinuxVariant, setSelectedLinuxVariant] = useState("linux-ubuntu");
-  const [selectedHeadlessOs, setSelectedHeadlessOs] = useState("headless-linux");
+  const [selectedHeadlessOs, setSelectedHeadlessOs] = useState("headless-ubuntu");
 
   const generateToken = async () => {
     setLoadingToken(true);

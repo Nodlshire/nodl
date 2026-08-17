@@ -133,9 +133,12 @@ export default function FleetMap({
     }, [id]);
 
     useEffect(() => {
-        if (!mapRef.current || !markersRef.current || !L || !mappedNodes.length) return;
+        if (!mapRef.current || !markersRef.current || !L) return;
 
         markersRef.current.clearLayers();
+        if (mapRef.current) mapRef.current.invalidateSize();
+
+        if (!mappedNodes.length) return;
 
         mappedNodes.forEach((node: any) => {
             const status = node.status?.toLowerCase() || "active";

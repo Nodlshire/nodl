@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { X, Copy, Check, Download, Terminal, Monitor, Server, Lock, Key, Sparkles, ChevronRight } from "lucide-react";
 
@@ -17,6 +17,12 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
   const [copied, setCopied] = useState("");
   const [selectedLinuxVariant, setSelectedLinuxVariant] = useState("linux-ubuntu");
   const [selectedHeadlessOs, setSelectedHeadlessOs] = useState("headless-ubuntu");
+
+  useEffect(() => {
+    if (isOpen && !token && !loadingToken) {
+      generateToken();
+    }
+  }, [isOpen]);
 
   const generateToken = async () => {
     setLoadingToken(true);
@@ -352,28 +358,29 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                   </div>
                 </a>
 
-                <div className="p-3.5 bg-cyan-950/20 border border-cyan-500/30 rounded-xl flex flex-col justify-between">
+                <a 
+                  href="https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/wnode-node-operator" 
+                  download="wnode-node-operator"
+                  className="p-3.5 bg-cyan-950/20 border border-cyan-500/30 hover:border-cyan-400 hover:bg-cyan-950/40 transition-all rounded-xl group flex flex-col justify-between"
+                >
                   <div className="space-y-1.5">
                     <div className="w-7 h-7 rounded-lg bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold">
-                      <Terminal className="w-3.5 h-3.5" />
+                      <Download className="w-3.5 h-3.5" />
                     </div>
                     <div>
-                      <span className="text-xs font-bold text-white block">
-                        Linux Desktop (.desktop)
+                      <span className="text-xs font-bold text-white block group-hover:text-cyan-300">
+                        Linux Operator Binary (x86_64)
                       </span>
                       <span className="text-[10px] text-slate-400 block mt-0.5">
-                        Installs Application Menu & Taskbar Icon
+                        Native Linux Executable (x86_64)
                       </span>
                     </div>
                   </div>
-                  <button 
-                    onClick={() => handleCopy("curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/wnode-node-operator -o wnode-node-operator && chmod +x wnode-node-operator && ./wnode-node-operator", "linux-desktop")}
-                    className="mt-3 text-[10px] bg-cyan-400 hover:bg-cyan-300 text-black font-bold py-1 px-2 rounded flex items-center justify-between transition-colors"
-                  >
-                    <span>{copied === "linux-desktop" ? "✓ Copied Installer" : "Copy Linux App Installer"}</span>
-                    <Copy className="w-3 h-3" />
-                  </button>
-                </div>
+                  <div className="mt-3 text-[10px] text-cyan-400 font-bold flex items-center justify-between">
+                    <span>Download Binary</span>
+                    <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </a>
               </div>
 
               <div className="p-2.5 rounded-lg bg-cyan-950/20 border border-cyan-500/20 text-[11px] text-slate-300 flex items-center gap-2">
@@ -463,6 +470,25 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                         <span>{copied === selectedLinuxVariant ? "Copied" : "Copy"}</span>
                       </button>
                     </div>
+
+                    <div className="flex flex-wrap items-center gap-2 pt-1">
+                      <a
+                        href="https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/wnode-node-operator"
+                        download="wnode-node-operator"
+                        className="px-3 py-1.5 bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-300 font-bold rounded-lg text-xs transition-colors flex items-center gap-1.5"
+                      >
+                        <Download className="w-3.5 h-3.5" />
+                        <span>Download Linux Binary (x86_64)</span>
+                      </a>
+                      <a
+                        href="https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/wnode-node-operator-linux-arm64"
+                        download="wnode-node-operator-arm64"
+                        className="px-3 py-1.5 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 font-bold rounded-lg text-xs transition-colors flex items-center gap-1.5"
+                      >
+                        <Download className="w-3.5 h-3.5" />
+                        <span>Download Linux ARM64 Binary</span>
+                      </a>
+                    </div>
                   </div>
                 )}
               </div>
@@ -549,6 +575,25 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                         {copied === selectedHeadlessOs ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
                         <span>{copied === selectedHeadlessOs ? "Copied" : "Copy"}</span>
                       </button>
+                    </div>
+
+                    <div className="flex flex-wrap items-center gap-2 pt-1">
+                      <a
+                        href="https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld"
+                        download="nodld"
+                        className="px-3 py-1.5 bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/40 text-purple-300 font-bold rounded-lg text-xs transition-colors flex items-center gap-1.5"
+                      >
+                        <Download className="w-3.5 h-3.5" />
+                        <span>Download nodld Daemon (x86_64)</span>
+                      </a>
+                      <a
+                        href="https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld-arm64"
+                        download="nodld-arm64"
+                        className="px-3 py-1.5 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/30 text-purple-400 font-bold rounded-lg text-xs transition-colors flex items-center gap-1.5"
+                      >
+                        <Download className="w-3.5 h-3.5" />
+                        <span>Download nodld Daemon (ARM64)</span>
+                      </a>
                     </div>
                   </div>
                 )}

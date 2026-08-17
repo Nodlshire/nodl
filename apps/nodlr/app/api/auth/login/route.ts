@@ -39,10 +39,6 @@ export async function POST(request: Request) {
                 path: '/',
                 maxAge: 86400,
             };
-            if (isProd) {
-                cookieOptions.domain = '.wnode.one';
-            }
-
             response.cookies.set('nodlr_session', data.session_id, cookieOptions);
 
             response.cookies.set('nodl_session', data.session_id, {

@@ -55,7 +55,7 @@ export default function DashboardPage() {
         const skipped = localStorage.getItem('nodl_skip_onboarding') === 'true';
         setHasSkipped(skipped);
         
-        if (accountData && accountData.status !== 'active' && !skipped) {
+        if (accountData && !accountData.error && accountData.status && accountData.status !== 'active' && !skipped) {
             setShowWizard(true);
         } else {
             setShowWizard(false);

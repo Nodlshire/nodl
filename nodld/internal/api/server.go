@@ -1234,12 +1234,21 @@ func (s *Server) handleGetAffiliateTree(c *fiber.Ctx) error {
 
 // resolveIdentity extracts the user ID from session cookies or a development bypass.
 func (s *Server) resolveIdentity(c *fiber.Ctx) (string, string, string) {
-	// 1. Production Path: Domain-scoped Session Cookies
-	for _, cookieName := range []string{"cmd_session", "nodlr_session", "mesh_session"} {
+	// 1. Bearer Token Authorization header resolution
+	if authHeader := c.Get("Authorization"); strings.HasPrefix(authHeader, "Bearer ") {
+		token := strings.TrimPrefix(authHeader, "Bearer ")
+		if token != "" {
+			if sess, ok := s.accountStore.GetSession(token); ok {
+				return sess.WUID, string(sess.Role), sess.Domain
+			}
+		}
+	}
+
+	// 2. Production Path: Domain-scoped Session Cookies
+	for _, cookieName := range []string{"nodlr_session", "cmd_session", "mesh_session"} {
 		if sessionID := c.Cookies(cookieName); sessionID != "" {
 			sess, ok := s.accountStore.GetSession(sessionID)
 			if ok {
-				// Verify domain isolation: cmd_session must match "command" domain
 				expectedDomain := ""
 				switch cookieName {
 				case "cmd_session":
@@ -1250,9 +1259,9 @@ func (s *Server) resolveIdentity(c *fiber.Ctx) (string, string, string) {
 					expectedDomain = "mesh"
 				}
 
-				if sess.Domain != expectedDomain {
-					s.log.Warn("[AUTH] Cross-domain session misuse attempt", zap.String("id", sess.WUID), zap.String("session_domain", sess.Domain), zap.String("request_domain", expectedDomain))
-					return "", "", ""
+				if expectedDomain != "" && sess.Domain != expectedDomain {
+					s.log.Debug("[AUTH] Skipping non-matching domain cookie", zap.String("id", sess.WUID), zap.String("cookie", cookieName), zap.String("session_domain", sess.Domain))
+					continue
 				}
 				return sess.WUID, string(sess.Role), sess.Domain
 			}

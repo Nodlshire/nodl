@@ -166,7 +166,6 @@ export default function LoginPage() {
                     localStorage.setItem('nodl_user_id', data.user_id || '100001-0426-01-AA');
                     const isSecure = window.location.protocol === 'https:';
                     document.cookie = `nodlr_session=${data.session_id}; path=/; max-age=86400; SameSite=Lax; ${isSecure ? 'Secure;' : ''}`;
-                    document.cookie = `cmd_session=${data.session_id}; path=/; max-age=86400; SameSite=Lax; ${isSecure ? 'Secure;' : ''}`;
                 }
                 if (data.requires_2fa) {
                     setTotpRequired(true);

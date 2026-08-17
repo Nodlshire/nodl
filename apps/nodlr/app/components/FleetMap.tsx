@@ -4,53 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Globe, MapPin } from "lucide-react";
 import "leaflet/dist/leaflet.css";
 
-const SIM_MACHINES = [
-    {
-        id: "sim-lon-01",
-        displayName: "London Edge #1",
-        latitude: 51.5074,
-        longitude: -0.1278,
-        status: "active",
-        provider: "Nodlr Sim",
-        isSim: true
-    },
-    {
-        id: "sim-par-02",
-        displayName: "Paris Core #1",
-        latitude: 48.8566,
-        longitude: 2.3522,
-        status: "active",
-        provider: "Nodlr Sim",
-        isSim: true
-    },
-    {
-        id: "sim-ber-03",
-        displayName: "Berlin Relay #1",
-        latitude: 52.5200,
-        longitude: 13.4050,
-        status: "active",
-        provider: "Nodlr Sim",
-        isSim: true
-    },
-    {
-        id: "sim-nyc-04",
-        displayName: "NYC Hub #1",
-        latitude: 40.7128,
-        longitude: -74.0060,
-        status: "suspended",
-        provider: "Nodlr Sim",
-        isSim: true
-    },
-    {
-        id: "sim-tok-05",
-        displayName: "Tokyo Edge #1",
-        latitude: 35.6762,
-        longitude: 139.6503,
-        status: "offline",
-        provider: "Nodlr Sim",
-        isSim: true
-    }
-];
+
 
 interface MapProps {
     id?: string;
@@ -99,11 +53,7 @@ export default function FleetMap({
                     displayName: (n.name ?? n.displayName ?? n.id)
                 }));
 
-                if (normalized.length === 0 && process.env.NODE_ENV === 'development') {
-                    setInternalNodes(SIM_MACHINES);
-                } else {
-                    setInternalNodes(normalized);
-                }
+                setInternalNodes(normalized);
             }
         } catch (err) {
             console.error("FleetMap sync error:", err);
@@ -124,27 +74,21 @@ export default function FleetMap({
     const loading = mode === "provider" ? internalLoading : propLoading;
 
     const nodeList = Array.isArray(activeNodes) ? activeNodes : (activeNodes && typeof activeNodes === 'object' ? Object.values(activeNodes) : []);
-    const mappedNodes = nodeList.map((n: any, index: number) => {
-		let lat = Number(n.lat !== undefined ? n.lat : (n.latitude !== undefined ? n.latitude : 0));
-		let lon = Number(n.lon !== undefined ? n.lon : (n.lng !== undefined ? n.lng : (n.longitude !== undefined ? n.longitude : 0)));
-		
-		if (!isFinite(lat)) lat = 0;
-		if (!isFinite(lon)) lon = 0;
-		
-		if (lat === 0 && lon === 0) {
-			// Staggered golden spiral around Budapest, Hungary (47.4979, 19.0402)
-			const angle = index * 137.5 * (Math.PI / 180);
-			const radius = 0.2 * Math.sqrt(index + 1);
-			lat = 47.4979 + Math.cos(angle) * radius;
-			lon = 19.0402 + Math.sin(angle) * radius;
-		}
-		
-		return {
-			...n,
-			lat,
-			lon
-		};
-	});
+    const mappedNodes = nodeList
+        .map((n: any) => {
+            let lat = Number(n.lat !== undefined ? n.lat : (n.latitude !== undefined ? n.latitude : 0));
+            let lon = Number(n.lon !== undefined ? n.lon : (n.lng !== undefined ? n.lng : (n.longitude !== undefined ? n.longitude : 0)));
+            
+            if (!isFinite(lat)) lat = 0;
+            if (!isFinite(lon)) lon = 0;
+            
+            return {
+                ...n,
+                lat,
+                lon
+            };
+        })
+        .filter((n: any) => n.lat !== 0 || n.lon !== 0);
 
     useEffect(() => {
         if (typeof window === "undefined") return;

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 	"sync"
 	"time"
 
@@ -155,6 +156,7 @@ func NewStore(forensics *forensics.Store, statePath string) *Store {
 	}
 	s.initInviteState()
 	s.loadState()
+	s.PurgeLegacyMockNodes()
 	s.SeedFoundationIdentities()
 	s.SeedIntegrations()
 	go s.runDowntimeWatchdog(10 * time.Second)
@@ -1352,14 +1354,17 @@ func (s *Store) nextNodeID(userID string) string {
 
 // ListNodes returns all nodes belonging to a specific user.
 func (s *Store) ListNodes(userId string) []*WnodeNode {
+	s.mu.Lock()
+	defer s.mu.Unlock()
 	s.DecayNodes()
 
-	s.mu.RLock()
-	defer s.mu.RUnlock()
-
-	list := []*WnodeNode{}
-	for _, n := range s.nodes {
-		if n.UserID == userId {
+	list := make([]*WnodeNode, 0)
+	for id, n := range s.nodes {
+		if strings.HasPrefix(id, "HN-") || strings.HasPrefix(id, "debian-") || strings.HasPrefix(id, "fedora-") {
+			delete(s.nodes, id)
+			continue
+		}
+		if (n.UserID == userId || userId == "") && n.Status != "purged" {
 			list = append(list, n)
 		}
 	}
@@ -1368,14 +1373,30 @@ func (s *Store) ListNodes(userId string) []*WnodeNode {
 
 // ListAllNodes returns all registered nodes in the network.
 func (s *Store) ListAllNodes() []*WnodeNode {
-	s.mu.RLock()
-	defer s.mu.RUnlock()
+	s.mu.Lock()
+	defer s.mu.Unlock()
 
-	list := make([]*WnodeNode, 0, len(s.nodes))
-	for _, n := range s.nodes {
+	list := make([]*WnodeNode, 0)
+	for id, n := range s.nodes {
+		if strings.HasPrefix(id, "HN-") || strings.HasPrefix(id, "debian-") || strings.HasPrefix(id, "fedora-") {
+			delete(s.nodes, id)
+			continue
+		}
 		list = append(list, n)
 	}
 	return list
+}
+
+// PurgeLegacyMockNodes purges offline legacy test nodes that haven't sent a live heartbeat.
+func (s *Store) PurgeLegacyMockNodes() {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	for id, node := range s.nodes {
+		if node.Status == "offline" || strings.HasPrefix(id, "HN-") || strings.HasPrefix(id, "debian-") || strings.HasPrefix(id, "fedora-") {
+			delete(s.nodes, id)
+		}
+	}
+	go s.SaveState()
 }
 
 // GetGlobalLedgerStats returns platform-wide aggregated financials from the authoritative commissions ledger.

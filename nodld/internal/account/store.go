@@ -1333,12 +1333,7 @@ func (s *Store) UpdateNodeHeartbeat(nodeID string, metrics NodeHealthMetrics, ha
 	return nil
 }
 
-// DecayNodes applies reputation penalties for nodes that are offline.
-// It applies a 5% penalty per hour offline to the GlobalScore.
-func (s *Store) DecayNodes() {
-	s.mu.Lock()
-	defer s.mu.Unlock()
-
+func (s *Store) DecayNodesLocked() {
 	now := time.Now()
 	for _, node := range s.nodes {
 		hoursOffline := now.Sub(node.LastSeen).Hours()
@@ -1361,6 +1356,14 @@ func (s *Store) DecayNodes() {
 	}
 }
 
+// DecayNodes applies reputation penalties for nodes that are offline.
+// It applies a 5% penalty per hour offline to the GlobalScore.
+func (s *Store) DecayNodes() {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	s.DecayNodesLocked()
+}
+
 // nextNodeID generates the next formatted ID for a user's node.
 func (s *Store) nextNodeID(userID string) string {
 	count := 0
@@ -1376,7 +1379,7 @@ func (s *Store) nextNodeID(userID string) string {
 func (s *Store) ListNodes(userId string) []*WnodeNode {
 	s.mu.Lock()
 	defer s.mu.Unlock()
-	s.DecayNodes()
+	s.DecayNodesLocked()
 
 	list := make([]*WnodeNode, 0)
 	isOwner := userId == AuthoritativeOwnerID || userId == ""

@@ -20,16 +20,14 @@ export async function GET(req: NextRequest) {
             }).filter(c => c.name);
 
             let sessionToken = '';
-            const targetCookies = ['__Host-nodlr_session', '__Secure-nodlr_session', 'nodlr_session'];
+            const targetCookies = ['__Host-nodlr_session', '__Secure-nodlr_session', 'nodlr_session', 'cmd_session', 'nodl_session'];
             for (const target of targetCookies) {
                 const found = cookies.find(c => c.name === target);
                 if (found) { sessionToken = found.value; break; }
             }
 
             if (sessionToken) {
-                const cleanedCookies = cookies.filter(c => !targetCookies.includes(c.name));
-                cleanedCookies.push({ name: 'nodlr_session', value: sessionToken });
-                fetchHeaders['Cookie'] = cleanedCookies.map(c => `${c.name}=${c.value}`).join('; ');
+                fetchHeaders['Cookie'] = `nodlr_session=${sessionToken}`;
             } else {
                 fetchHeaders['Cookie'] = rawCookie;
             }

@@ -27,13 +27,13 @@ export async function POST(request: Request) {
         
         if (data.session_id) {
             const host = request.headers.get('host') || '';
-            const isProd = host.includes('wnode.one');
+            const proto = request.headers.get('x-forwarded-proto') || '';
+            const isProd = host.includes('wnode.one') || proto === 'https';
 
             response.cookies.set('nodlr_session', data.session_id, {
                 httpOnly: true,
                 secure: isProd,
-                sameSite: isProd ? 'none' : 'lax',
-                domain: isProd ? '.wnode.one' : undefined,
+                sameSite: 'lax',
                 path: '/',
                 maxAge: 86400,
             });

@@ -316,7 +316,7 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-auto">
                 <a 
-                  href="/api/download/windows" 
+                  href="/download/windows" 
                   download 
                   className="p-3.5 bg-cyan-950/20 border border-cyan-500/30 hover:border-cyan-400 hover:bg-cyan-950/40 transition-all rounded-xl group flex flex-col justify-between"
                 >
@@ -340,7 +340,7 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                 </a>
 
                 <a 
-                  href="/api/download/mac" 
+                  href="/download/mac" 
                   download 
                   className="p-3.5 bg-cyan-950/20 border border-cyan-500/30 hover:border-cyan-400 hover:bg-cyan-950/40 transition-all rounded-xl group flex flex-col justify-between"
                 >
@@ -454,7 +454,7 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
 
                     <div className="flex flex-wrap items-center gap-2 pt-1">
                       <a
-                        href="/api/download/linux"
+                        href="/download/linux"
                         download="nodl-core"
                         className="px-3 py-1.5 bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-300 font-bold rounded-lg text-xs transition-colors flex items-center gap-1.5"
                       >
@@ -462,7 +462,7 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                         <span>Download Linux Binary (x86_64)</span>
                       </a>
                       <a
-                        href="/api/download/linux-arm64"
+                        href="/download/linux-arm64"
                         download="nodl-core-arm64"
                         className="px-3 py-1.5 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 font-bold rounded-lg text-xs transition-colors flex items-center gap-1.5"
                       >
@@ -560,7 +560,7 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
 
                     <div className="flex flex-wrap items-center gap-2 pt-1">
                       <a
-                        href="/api/download/linux"
+                        href="/download/linux"
                         download="nodl-core"
                         className="px-3 py-1.5 bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/40 text-purple-300 font-bold rounded-lg text-xs transition-colors flex items-center gap-1.5"
                       >
@@ -568,7 +568,7 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                         <span>Download nodl-core Daemon (x86_64)</span>
                       </a>
                       <a
-                        href="/api/download/linux-arm64"
+                        href="/download/linux-arm64"
                         download="nodl-core-arm64"
                         className="px-3 py-1.5 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/30 text-purple-400 font-bold rounded-lg text-xs transition-colors flex items-center gap-1.5"
                       >

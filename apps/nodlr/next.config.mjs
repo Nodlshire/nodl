@@ -10,7 +10,10 @@ const nextConfig = {
             {
                 source: "/:path*",
                 headers: [
-                    { key: "Cache-Control", value: "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0" },
+                    { key: "Cache-Control", value: "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0, s-maxage=0" },
+                    { key: "CDN-Cache-Control", value: "no-store" },
+                    { key: "Cloudflare-CDN-Cache-Control", value: "no-store" },
+                    { key: "Surrogate-Control", value: "no-store" },
                     { key: "Pragma", value: "no-cache" },
                     { key: "Expires", value: "0" },
                 ],
@@ -30,6 +33,14 @@ const nextConfig = {
         return [
             {
                 source: '/_next/static/chunks/app/dashboard/layout-7dc2105c8cc44854.js',
+                destination: '/api/stale-chunk',
+            },
+            {
+                source: '/_next/static/chunks/app/dashboard/page-d36639171acfc3ca.js',
+                destination: '/api/stale-chunk',
+            },
+            {
+                source: '/_next/static/chunks/app/layout-fc766acf5e785799.js',
                 destination: '/api/stale-chunk',
             },
             {

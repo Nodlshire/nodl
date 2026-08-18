@@ -1,5 +1,8 @@
 "use client";
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 import { useState, useEffect } from "react";
 import { Zap, TrendingUp, Cpu, Server, Activity, Plus } from 'lucide-react';
 import { motion, AnimatePresence } from "framer-motion";

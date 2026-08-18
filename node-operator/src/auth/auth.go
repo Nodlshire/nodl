@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"os"
+	"path/filepath"
 	"strings"
 	"time"
 
@@ -184,5 +186,35 @@ func AuthenticateHeadless(apiBase, token string, state *platform.State) error {
 
 	platform.Info("Headless authentication successful. Node ID: %s", successResp.NodeID)
 	return nil
+}
+
+// PairDesktopToken checks ~/.wnode/token or an explicit token argument to auto-register desktop nodes.
+func PairDesktopToken(apiBase string, token string, state *platform.State) error {
+	if state.DeviceToken != "" {
+		return nil // Already authenticated
+	}
+
+	tokenToUse := strings.TrimSpace(token)
+	tokenFile := ""
+
+	if tokenToUse == "" {
+		if home, err := os.UserHomeDir(); err == nil {
+			tokenFile = filepath.Join(home, ".wnode", "token")
+			if data, err := os.ReadFile(tokenFile); err == nil {
+				tokenToUse = strings.TrimSpace(string(data))
+			}
+		}
+	}
+
+	if tokenToUse == "" {
+		return fmt.Errorf("no token provided and no ~/.wnode/token file found")
+	}
+
+	err := AuthenticateHeadless(apiBase, tokenToUse, state)
+	if err == nil && tokenFile != "" {
+		// Clean up single-use token file after successful pairing
+		_ = os.Remove(tokenFile)
+	}
+	return err
 }
 

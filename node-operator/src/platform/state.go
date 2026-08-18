@@ -24,6 +24,15 @@ type State struct {
 	AuthenticatedAt   string           `json:"authenticated_at,omitempty"`
 	RegisteredAt      string           `json:"registered_at,omitempty"`
 	Reputation        *ReputationState `json:"reputation,omitempty"`
+	Schedule          *ScheduleConfig  `json:"schedule,omitempty"`
+}
+
+// ScheduleConfig holds active work windows for desktop and headless nodes.
+type ScheduleConfig struct {
+	Enabled   bool     `json:"enabled"`
+	StartTime string   `json:"start_time"` // "23:00" (HH:MM 24h format)
+	EndTime   string   `json:"end_time"`   // "07:00" (HH:MM 24h format)
+	Days      []string `json:"days"`       // ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 }
 
 // ReputationState holds local rolling metrics for Node performance and rewards.

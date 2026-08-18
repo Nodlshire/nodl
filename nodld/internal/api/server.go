@@ -42,22 +42,23 @@ import (
 
 // Server is the Fiber-based HTTP/WebSocket API server.
 type Server struct {
-	app          *fiber.App
-	dispatcher   *jobs.Dispatcher
-	store        *jobs.Store
-	host         *p2p.Host
-	hub          *wsHub
-	pricingStore *pricing.Store
-	accountStore *account.Store
-	billingStore *account.BillingStore
-	stripeSvc    *stripe.Service
-	moneyHandler *money.Handler
-	acqHandler   *acquisition.Handler
-	instHandler  *institutional.Handler
-	govHandler   *governance.API
-	distEngine   *compute.DistributedEngine
-	log          *zap.Logger
-	startTime    time.Time
+	app              *fiber.App
+	dispatcher       *jobs.Dispatcher
+	store            *jobs.Store
+	host             *p2p.Host
+	hub              *wsHub
+	pricingStore     *pricing.Store
+	accountStore     *account.Store
+	billingStore     *account.BillingStore
+	stripeSvc        *stripe.Service
+	moneyHandler     *money.Handler
+	acqHandler       *acquisition.Handler
+	instHandler      *institutional.Handler
+	govHandler       *governance.API
+	distEngine       *compute.DistributedEngine
+	log              *zap.Logger
+	startTime        time.Time
+	heartbeatLimiter sync.Map // node_id → last heartbeat time.Time
 }
 
 // wsHub manages active WebSocket connections and broadcasts events.
@@ -359,7 +360,7 @@ func (s *Server) registerRoutes() {
 	apiV1.Post("/nodes/headless-token/consume", s.handleConsumeHeadlessToken)
 	apiV1.Post("/nodes/register", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleRegisterNode)
 	apiV1.Get("/nodes/verify-token", s.requireDeviceToken(), s.handleVerifyToken)
-	apiV1.Post("/nodes/heartbeat", s.requireDeviceToken(), s.handleHeartbeatNode)
+	apiV1.Post("/nodes/heartbeat", s.requireDeviceToken(), s.heartbeatRateLimit(), s.handleHeartbeatNode)
 	apiV1.Get("/nodes/me", s.requireDeviceToken(), s.handleGetNodeMe)
 	apiV1.Get("/nodes/work", s.requireDeviceToken(), s.handleGetNodeWork)
 	apiV1.Post("/nodes/work/result", s.requireDeviceToken(), s.handlePostNodeWorkResult)
@@ -1653,6 +1654,36 @@ func (s *Server) handleResolveFlag(c *fiber.Ctx) error {
 
 	s.host.Registry().ResolveFlag(req.HardwareDNA, req.Action)
 	return c.SendStatus(fiber.StatusOK)
+}
+
+// heartbeatRateLimit enforces a per-node cooldown of 10 seconds between heartbeats.
+// This prevents a single misbehaving node from flooding the backend while allowing
+// normal 30-second heartbeat intervals with generous headroom for retries.
+// Runs AFTER requireDeviceToken(), so c.Locals("node_id") is guaranteed to be set.
+func (s *Server) heartbeatRateLimit() fiber.Handler {
+	return func(c *fiber.Ctx) error {
+		nodeID, _ := c.Locals("node_id").(string)
+		if nodeID == "" {
+			return c.Next() // Fallback: let requireDeviceToken handle auth failure
+		}
+
+		now := time.Now()
+		const cooldown = 10 * time.Second
+
+		if lastRaw, ok := s.heartbeatLimiter.Load(nodeID); ok {
+			if last, ok := lastRaw.(time.Time); ok {
+				if now.Sub(last) < cooldown {
+					return c.Status(429).JSON(fiber.Map{
+						"error":      "rate limited",
+						"retry_after": fmt.Sprintf("%.0fs", (cooldown - now.Sub(last)).Seconds()),
+					})
+				}
+			}
+		}
+
+		s.heartbeatLimiter.Store(nodeID, now)
+		return c.Next()
+	}
 }
 
 // requireDeviceToken authenticates a machine using its long-lived device token.

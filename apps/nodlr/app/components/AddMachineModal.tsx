@@ -84,84 +84,84 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
     "linux-ubuntu": {
       name: "Ubuntu 22.04 / 24.04 LTS (x86_64)",
       desc: "Ubuntu Linux Desktop & Server installer script with token integration.",
-      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/wnode-node-operator -o wnode-node-operator && chmod +x wnode-node-operator && WNODE_API_BASE=https://nodlr.wnode.one ./wnode-node-operator --token=${activeTokenDisplay}`
+      cmd: `curl -s https://nodlr.wnode.one/install/linux.sh | bash -s -- ${activeTokenDisplay}`
     },
     "linux-debian": {
       name: "Debian 11 / 12 Bookworm (x86_64)",
       desc: "Native Debian Linux package executable command.",
-      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/wnode-node-operator -o wnode-node-operator && chmod +x wnode-node-operator && WNODE_API_BASE=https://nodlr.wnode.one ./wnode-node-operator --token=${activeTokenDisplay}`
+      cmd: `curl -s https://nodlr.wnode.one/install/linux.sh | bash -s -- ${activeTokenDisplay}`
     },
     "linux-fedora": {
       name: "Fedora / RHEL / CentOS / AlmaLinux (x86_64)",
       desc: "RPM-compatible Linux distribution terminal command.",
-      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/wnode-node-operator -o wnode-node-operator && chmod +x wnode-node-operator && WNODE_API_BASE=https://nodlr.wnode.one ./wnode-node-operator --token=${activeTokenDisplay}`
+      cmd: `curl -s https://nodlr.wnode.one/install/linux.sh | bash -s -- ${activeTokenDisplay}`
     },
     "linux-arch": {
       name: "Arch Linux / Manjaro (x86_64)",
       desc: "Arch Linux rolling release terminal command.",
-      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/wnode-node-operator -o wnode-node-operator && chmod +x wnode-node-operator && WNODE_API_BASE=https://nodlr.wnode.one ./wnode-node-operator --token=${activeTokenDisplay}`
+      cmd: `curl -s https://nodlr.wnode.one/install/linux.sh | bash -s -- ${activeTokenDisplay}`
     },
     "linux-alpine": {
       name: "Alpine Linux (musl x86_64)",
       desc: "Lightweight Alpine Linux musl-compiled binary execution command.",
-      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/wnode-node-operator-musl -o wnode-node-operator && chmod +x wnode-node-operator && WNODE_API_BASE=https://nodlr.wnode.one ./wnode-node-operator --token=${activeTokenDisplay}`
+      cmd: `curl -s https://nodlr.wnode.one/install/linux.sh | bash -s -- ${activeTokenDisplay}`
     },
     "linux-arm64": {
       name: "Linux ARM64 / Raspberry Pi 4/5 (aarch64)",
       desc: "64-bit ARM architecture binary command for single-board computers.",
-      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/wnode-node-operator-linux-arm64 -o wnode-node-operator && chmod +x wnode-node-operator && WNODE_API_BASE=https://nodlr.wnode.one ./wnode-node-operator --token=${activeTokenDisplay}`
+      cmd: `curl -s https://nodlr.wnode.one/install/linux.sh | bash -s -- ${activeTokenDisplay}`
     }
   };
 
   const headlessVariants: Record<string, { name: string; desc: string; cmd: string }> = {
     "headless-debian": {
       name: "Debian 11 / 12 Bookworm (x86_64)",
-      desc: "Installs compiled Go daemon (nodld) background service for Debian Linux servers.",
-      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld -o nodld && chmod +x nodld && WNODE_API_BASE=https://nodlr.wnode.one ./nodld daemon --token=${activeTokenDisplay}`
+      desc: "Installs compiled Go daemon (nodl-core) background service for Debian Linux servers.",
+      cmd: `curl -s https://nodlr.wnode.one/install/linux.sh | bash -s -- ${activeTokenDisplay}`
     },
     "headless-ubuntu": {
       name: "Ubuntu 22.04 / 24.04 LTS (x86_64)",
       desc: "Systemd background daemon service installer for Ubuntu Linux servers.",
-      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld -o nodld && chmod +x nodld && WNODE_API_BASE=https://nodlr.wnode.one ./nodld daemon --token=${activeTokenDisplay}`
+      cmd: `curl -s https://nodlr.wnode.one/install/linux.sh | bash -s -- ${activeTokenDisplay}`
     },
     "headless-fedora": {
       name: "Fedora / RHEL / CentOS / AlmaLinux (x86_64)",
       desc: "RPM-compatible Linux systemd background daemon service.",
-      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld -o nodld && chmod +x nodld && WNODE_API_BASE=https://nodlr.wnode.one ./nodld daemon --token=${activeTokenDisplay}`
+      cmd: `curl -s https://nodlr.wnode.one/install/linux.sh | bash -s -- ${activeTokenDisplay}`
     },
     "headless-arch": {
       name: "Arch Linux / Manjaro (x86_64)",
       desc: "Arch Linux systemd background daemon service installation command.",
-      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld -o nodld && chmod +x nodld && WNODE_API_BASE=https://nodlr.wnode.one ./nodld daemon --token=${activeTokenDisplay}`
+      cmd: `curl -s https://nodlr.wnode.one/install/linux.sh | bash -s -- ${activeTokenDisplay}`
     },
     "headless-alpine": {
       name: "Alpine Linux (musl x86_64)",
       desc: "Lightweight OpenRC musl daemon service command for Alpine Linux.",
-      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld-musl -o nodld && chmod +x nodld && WNODE_API_BASE=https://nodlr.wnode.one ./nodld daemon --token=${activeTokenDisplay}`
+      cmd: `curl -s https://nodlr.wnode.one/install/linux.sh | bash -s -- ${activeTokenDisplay}`
     },
     "headless-arm64": {
       name: "Linux ARM64 / Raspberry Pi 4/5 (aarch64)",
       desc: "64-bit ARM background daemon service for single-board computers & Graviton servers.",
-      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld-arm64 -o nodld && chmod +x nodld && WNODE_API_BASE=https://nodlr.wnode.one ./nodld daemon --token=${activeTokenDisplay}`
+      cmd: `curl -s https://nodlr.wnode.one/install/linux.sh | bash -s -- ${activeTokenDisplay}`
     },
     "headless-mac": {
       name: "macOS Headless Daemon (Launchd / Background Daemon)",
       desc: "Configures background Launchd daemon for Apple Silicon and Intel Macs.",
-      cmd: `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld-mac -o nodld && chmod +x nodld && WNODE_API_BASE=https://nodlr.wnode.one ./nodld daemon --token=${activeTokenDisplay}`
+      cmd: `curl -s https://nodlr.wnode.one/install/mac.sh | bash -s -- ${activeTokenDisplay}`
     },
     "headless-windows": {
       name: "Windows Headless Service (PowerShell / Windows Service)",
       desc: "Downloads background Windows Service binary and registers automatic startup service.",
-      cmd: `$env:WNODE_API_BASE='https://nodlr.wnode.one'; iwr -useb https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld.exe -OutFile nodld.exe; .\\nodld.exe daemon --token=${activeTokenDisplay}`
+      cmd: `$env:WNODE_API_BASE='https://nodlr.wnode.one'; iwr -useb https://nodlr.wnode.one/downloads/nodl-core.exe -OutFile nodl-core.exe; .\\nodl-core.exe daemon --token=${activeTokenDisplay}`
     }
   };
 
   const cliCheatSheet = [
-    { cmd: "nodld status", desc: "Check live daemon connection, telemetry & hardware health" },
-    { cmd: "nodld logs", desc: "Tail real-time daemon execution and workload logs" },
-    { cmd: "nodld restart", desc: "Restart background daemon service" },
-    { cmd: "nodld stop", desc: "Gracefully halt background daemon service" },
-    { cmd: "./wnode-node-operator --help", desc: "Display interactive CLI menu & flag configuration" }
+    { cmd: "nodl-core status", desc: "Check live daemon connection, telemetry & hardware health" },
+    { cmd: "nodl-core logs", desc: "Tail real-time daemon execution and workload logs" },
+    { cmd: "sudo systemctl restart wnode-no", desc: "Restart background daemon service" },
+    { cmd: "sudo systemctl stop wnode-no", desc: "Gracefully halt background daemon service" },
+    { cmd: "nodl-core --help", desc: "Display interactive CLI menu & flag configuration" }
   ];
 
   return (
@@ -316,7 +316,7 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-auto">
                 <a 
-                  href="https://github.com/wnodeltd/wnode/releases/latest/download/wnode-node-operator.exe" 
+                  href="/downloads/nodl-core.exe" 
                   download 
                   className="p-3.5 bg-cyan-950/20 border border-cyan-500/30 hover:border-cyan-400 hover:bg-cyan-950/40 transition-all rounded-xl group flex flex-col justify-between"
                 >
@@ -340,7 +340,7 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                 </a>
 
                 <a 
-                  href="https://github.com/wnodeltd/wnode/releases/latest/download/wnode-node-operator-mac.dmg" 
+                  href="/downloads/nodl-core-mac.dmg" 
                   download 
                   className="p-3.5 bg-cyan-950/20 border border-cyan-500/30 hover:border-cyan-400 hover:bg-cyan-950/40 transition-all rounded-xl group flex flex-col justify-between"
                 >
@@ -454,16 +454,16 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
 
                     <div className="flex flex-wrap items-center gap-2 pt-1">
                       <a
-                        href="https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/wnode-node-operator"
-                        download="wnode-node-operator"
+                        href="/downloads/nodl-core"
+                        download="nodl-core"
                         className="px-3 py-1.5 bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-300 font-bold rounded-lg text-xs transition-colors flex items-center gap-1.5"
                       >
                         <Download className="w-3.5 h-3.5" />
                         <span>Download Linux Binary (x86_64)</span>
                       </a>
                       <a
-                        href="https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/wnode-node-operator-linux-arm64"
-                        download="wnode-node-operator-arm64"
+                        href="/downloads/nodl-core-arm64"
+                        download="nodl-core-arm64"
                         className="px-3 py-1.5 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 font-bold rounded-lg text-xs transition-colors flex items-center gap-1.5"
                       >
                         <Download className="w-3.5 h-3.5" />
@@ -560,20 +560,20 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
 
                     <div className="flex flex-wrap items-center gap-2 pt-1">
                       <a
-                        href="https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld"
-                        download="nodld"
+                        href="/downloads/nodl-core"
+                        download="nodl-core"
                         className="px-3 py-1.5 bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/40 text-purple-300 font-bold rounded-lg text-xs transition-colors flex items-center gap-1.5"
                       >
                         <Download className="w-3.5 h-3.5" />
-                        <span>Download nodld Daemon (x86_64)</span>
+                        <span>Download nodl-core Daemon (x86_64)</span>
                       </a>
                       <a
-                        href="https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld-arm64"
-                        download="nodld-arm64"
+                        href="/downloads/nodl-core-arm64"
+                        download="nodl-core-arm64"
                         className="px-3 py-1.5 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/30 text-purple-400 font-bold rounded-lg text-xs transition-colors flex items-center gap-1.5"
                       >
                         <Download className="w-3.5 h-3.5" />
-                        <span>Download nodld Daemon (ARM64)</span>
+                        <span>Download nodl-core Daemon (ARM64)</span>
                       </a>
                     </div>
                   </div>

@@ -29,11 +29,15 @@ const nextConfig = {
     async rewrites() {
         return [
             {
+                source: '/_next/static/chunks/app/dashboard/layout-7dc2105c8cc44854.js',
+                destination: '/api/stale-chunk',
+            },
+            {
                 source: '/api/v1/:path*',
                 destination: 'http://127.0.0.1:8080/api/v1/:path*',
             },
             {
-                source: '/api/:path((?!download).*)',
+                source: '/api/:path((?!download|stale-chunk).*)',
                 destination: 'http://127.0.0.1:8080/api/v1/:path*',
             },
         ];

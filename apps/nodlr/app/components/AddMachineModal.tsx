@@ -454,26 +454,28 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                 </div>
 
                 {/* Command Output Block */}
-                <div className="relative group">
+                <div className="space-y-2">
                   <pre className="p-3 bg-black/80 border border-white/15 rounded-xl text-[11px] font-mono text-emerald-400 overflow-x-auto whitespace-pre-wrap break-all leading-relaxed shadow-inner">
                     {linuxVariants[selectedLinuxVariant]?.cmd}
                   </pre>
-                  <button
-                    onClick={() => handleCopy(linuxVariants[selectedLinuxVariant]?.cmd || "", "opt2")}
-                    className="absolute top-2 right-2 p-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/30 transition-all flex items-center gap-1 text-[10px] font-bold"
-                  >
-                    {copied === "opt2" ? (
-                      <>
-                        <Check className="w-3.5 h-3.5" />
-                        <span>Copied!</span>
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="w-3.5 h-3.5" />
-                        <span>Copy Command</span>
-                      </>
-                    )}
-                  </button>
+                  <div className="flex justify-end pt-0.5">
+                    <button
+                      onClick={() => handleCopy(linuxVariants[selectedLinuxVariant]?.cmd || "", "opt2")}
+                      className="px-3 py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/30 transition-all flex items-center gap-1.5 text-[11px] font-bold"
+                    >
+                      {copied === "opt2" ? (
+                        <>
+                          <Check className="w-3.5 h-3.5" />
+                          <span>Copied!</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3.5 h-3.5" />
+                          <span>Copy Command</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -540,26 +542,28 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                 </div>
 
                 {/* Command Output Block */}
-                <div className="relative group">
+                <div className="space-y-2">
                   <pre className="p-3 bg-black/80 border border-white/15 rounded-xl text-[11px] font-mono text-purple-300 overflow-x-auto whitespace-pre-wrap break-all leading-relaxed shadow-inner">
                     {headlessVariants[selectedHeadlessOs]?.cmd}
                   </pre>
-                  <button
-                    onClick={() => handleCopy(headlessVariants[selectedHeadlessOs]?.cmd || "", "opt3")}
-                    className="absolute top-2 right-2 p-1.5 rounded-lg bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 border border-purple-500/30 transition-all flex items-center gap-1 text-[10px] font-bold"
-                  >
-                    {copied === "opt3" ? (
-                      <>
-                        <Check className="w-3.5 h-3.5" />
-                        <span>Copied!</span>
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="w-3.5 h-3.5" />
-                        <span>Copy Command</span>
-                      </>
-                    )}
-                  </button>
+                  <div className="flex justify-end pt-0.5">
+                    <button
+                      onClick={() => handleCopy(headlessVariants[selectedHeadlessOs]?.cmd || "", "opt3")}
+                      className="px-3 py-1.5 rounded-lg bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 border border-purple-500/30 transition-all flex items-center gap-1.5 text-[11px] font-bold"
+                    >
+                      {copied === "opt3" ? (
+                        <>
+                          <Check className="w-3.5 h-3.5" />
+                          <span>Copied!</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3.5 h-3.5" />
+                          <span>Copy Command</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
                 </div>
               </div>
 

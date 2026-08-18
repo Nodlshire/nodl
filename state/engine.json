@@ -3,7 +3,7 @@
     "100001-0426-01-AA": {
       "id": "100001-0426-01-AA",
       "email": "stephen@wnode.one",
-      "password": "$2a$10$Vb9cM3C/BfLg4Wz2k9WXO.j81o9GZJ2W.xY2QhF5M7c8Ff.j3hP9y",
+      "password": "command",
       "displayName": "Stephen Soos",
       "meshClientId": "",
       "stripeConnectId": "",
@@ -55,7 +55,7 @@
         "NODLR",
         "MESH"
       ],
-      "createdAt": "2026-08-17T08:24:04.414216009+02:00"
+      "createdAt": "2026-08-18T15:48:57.698943676+02:00"
     }
   },
   "invite": {
@@ -476,6 +476,15 @@
       "expiresAt": "2026-08-18T09:01:28.440148125+02:00",
       "createdAt": "2026-08-17T09:01:28.440148382+02:00"
     },
+    "59ef578b-6485-4d25-bda5-8a5c3a0aced5": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-08-19T15:59:34.056436231+02:00",
+      "createdAt": "2026-08-18T15:59:34.056436405+02:00"
+    },
     "7620776d-323f-43fc-b763-d3f24c3efafc": {
       "wuid": "100001-0426-01-AA",
       "domain": "nodlr",
@@ -493,6 +502,15 @@
       "twoFAVerified": false,
       "expiresAt": "2026-08-18T08:50:43.108917933+02:00",
       "createdAt": "2026-08-17T08:50:43.108918324+02:00"
+    },
+    "78ca2eec-e48d-4df3-b4b1-281426748933": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-08-19T15:57:07.291668433+02:00",
+      "createdAt": "2026-08-18T15:57:07.291668534+02:00"
     },
     "8cb4e925-fadb-48e7-a3c8-6ba70649dc8c": {
       "wuid": "100001-0426-01-AA",
@@ -512,6 +530,24 @@
       "expiresAt": "2026-08-18T09:01:38.506876808+02:00",
       "createdAt": "2026-08-17T09:01:38.506877101+02:00"
     },
+    "a1839b6d-5c82-4322-9082-e514708408f4": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-08-19T15:38:31.221911705+02:00",
+      "createdAt": "2026-08-18T15:38:31.221911812+02:00"
+    },
+    "a8e3a320-daee-41be-bb1a-cd2102b476a5": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-08-19T16:04:03.92316746+02:00",
+      "createdAt": "2026-08-18T16:04:03.923167555+02:00"
+    },
     "b8242ffd-8b5f-497e-b06f-c61a16ff134c": {
       "wuid": "100001-0426-01-AA",
       "domain": "nodlr",
@@ -530,6 +566,15 @@
       "expiresAt": "2026-08-18T09:01:25.972559543+02:00",
       "createdAt": "2026-08-17T09:01:25.972559847+02:00"
     },
+    "cf8bd88c-0194-456a-9481-d692eaeb9c37": {
+      "wuid": "100001-0426-01-AA",
+      "domain": "nodlr",
+      "role": "owner",
+      "twoFAEnabled": false,
+      "twoFAVerified": false,
+      "expiresAt": "2026-08-19T16:01:24.272689728+02:00",
+      "createdAt": "2026-08-18T16:01:24.272689873+02:00"
+    },
     "f7d2207e-f3d4-48f1-8632-6f03966bd3a0": {
       "wuid": "100001-0426-01-AA",
       "domain": "nodlr",
@@ -541,77 +586,77 @@
     }
   },
   "headless_tokens": {
-    "REG-0f9612e4-b23f-4f7a-9293-92666aae1696": {
-      "token": "REG-0f9612e4-b23f-4f7a-9293-92666aae1696",
+    "REG-0a1b254e-c29a-4ba2-9722-b46bc66ed47f": {
+      "token": "REG-0a1b254e-c29a-4ba2-9722-b46bc66ed47f",
       "userId": "100001-0426-01-AA",
       "profile": "earth-headless",
-      "expiresAt": "2026-08-17T10:09:52.305749705+02:00",
+      "expiresAt": "2026-08-18T16:59:14.504930461+02:00",
       "used": false,
-      "createdAt": "2026-08-17T09:09:52.305749779+02:00"
+      "createdAt": "2026-08-18T15:59:14.504930611+02:00"
     },
-    "REG-10fce3df-053c-477e-9c35-6bf354f45ac6": {
-      "token": "REG-10fce3df-053c-477e-9c35-6bf354f45ac6",
+    "REG-0f6b73eb-c331-4777-b286-222831ef3adb": {
+      "token": "REG-0f6b73eb-c331-4777-b286-222831ef3adb",
       "userId": "100001-0426-01-AA",
       "profile": "earth-headless",
-      "expiresAt": "2026-08-17T10:09:49.207528379+02:00",
+      "expiresAt": "2026-08-18T17:04:05.729411037+02:00",
       "used": false,
-      "createdAt": "2026-08-17T09:09:49.207528476+02:00"
+      "createdAt": "2026-08-18T16:04:05.729411278+02:00"
     },
-    "REG-1b4b5caf-73a7-44cd-81b4-79228d372a59": {
-      "token": "REG-1b4b5caf-73a7-44cd-81b4-79228d372a59",
+    "REG-1d1847ef-300e-467b-9cd7-b57e82982adc": {
+      "token": "REG-1d1847ef-300e-467b-9cd7-b57e82982adc",
       "userId": "100001-0426-01-AA",
       "profile": "earth-headless",
-      "expiresAt": "2026-08-17T10:09:51.089381661+02:00",
+      "expiresAt": "2026-08-18T16:52:09.749747843+02:00",
       "used": false,
-      "createdAt": "2026-08-17T09:09:51.089381749+02:00"
+      "createdAt": "2026-08-18T15:52:09.749748182+02:00"
     },
-    "REG-1e321142-58e1-4559-8c7f-d17e702d2387": {
-      "token": "REG-1e321142-58e1-4559-8c7f-d17e702d2387",
+    "REG-2abf8565-892e-4079-80ef-048e72d17d75": {
+      "token": "REG-2abf8565-892e-4079-80ef-048e72d17d75",
       "userId": "100001-0426-01-AA",
       "profile": "earth-headless",
-      "expiresAt": "2026-08-17T09:57:47.704986018+02:00",
+      "expiresAt": "2026-08-18T16:59:35.688048997+02:00",
       "used": false,
-      "createdAt": "2026-08-17T08:57:47.704986112+02:00"
+      "createdAt": "2026-08-18T15:59:35.688049084+02:00"
     },
-    "REG-553fdae6-9dd2-4cfb-9b90-6309ee1134fb": {
-      "token": "REG-553fdae6-9dd2-4cfb-9b90-6309ee1134fb",
+    "REG-5b823c9c-72f9-460f-be31-2bed4d0bcb72": {
+      "token": "REG-5b823c9c-72f9-460f-be31-2bed4d0bcb72",
       "userId": "100001-0426-01-AA",
       "profile": "earth-headless",
-      "expiresAt": "2026-08-17T10:04:38.944502466+02:00",
+      "expiresAt": "2026-08-18T16:38:43.408708832+02:00",
       "used": false,
-      "createdAt": "2026-08-17T09:04:38.944502519+02:00"
+      "createdAt": "2026-08-18T15:38:43.408708946+02:00"
     },
-    "REG-710abbf5-25cd-4e24-b670-d5af04cc6e52": {
-      "token": "REG-710abbf5-25cd-4e24-b670-d5af04cc6e52",
+    "REG-72281856-94a9-4a55-ac01-a5baff08ce20": {
+      "token": "REG-72281856-94a9-4a55-ac01-a5baff08ce20",
       "userId": "100001-0426-01-AA",
       "profile": "earth-headless",
-      "expiresAt": "2026-08-17T10:04:22.361239646+02:00",
+      "expiresAt": "2026-08-18T16:56:54.833609977+02:00",
       "used": false,
-      "createdAt": "2026-08-17T09:04:22.36123974+02:00"
+      "createdAt": "2026-08-18T15:56:54.833610166+02:00"
     },
-    "REG-7618c581-ebdf-4eda-9177-419c1b375f1f": {
-      "token": "REG-7618c581-ebdf-4eda-9177-419c1b375f1f",
+    "REG-8238bba6-f05c-4d36-aa5e-35e593fe6075": {
+      "token": "REG-8238bba6-f05c-4d36-aa5e-35e593fe6075",
       "userId": "100001-0426-01-AA",
       "profile": "earth-headless",
-      "expiresAt": "2026-08-17T10:04:16.170649633+02:00",
+      "expiresAt": "2026-08-18T16:57:11.173560752+02:00",
       "used": false,
-      "createdAt": "2026-08-17T09:04:16.170649739+02:00"
+      "createdAt": "2026-08-18T15:57:11.173560893+02:00"
     },
-    "REG-7afffdce-6f23-4ea4-8c2e-24fd077a467c": {
-      "token": "REG-7afffdce-6f23-4ea4-8c2e-24fd077a467c",
+    "REG-92ba76f3-dabc-4b56-8fc8-59042e3be991": {
+      "token": "REG-92ba76f3-dabc-4b56-8fc8-59042e3be991",
       "userId": "100001-0426-01-AA",
       "profile": "earth-headless",
-      "expiresAt": "2026-08-17T10:04:20.266105651+02:00",
+      "expiresAt": "2026-08-18T17:01:25.978786302+02:00",
       "used": false,
-      "createdAt": "2026-08-17T09:04:20.266106065+02:00"
+      "createdAt": "2026-08-18T16:01:25.978786674+02:00"
     },
-    "REG-b6606b9a-c414-49ad-89b0-2954c693f0eb": {
-      "token": "REG-b6606b9a-c414-49ad-89b0-2954c693f0eb",
+    "REG-aca0754b-42b5-4d17-b9cb-83c8dfbec2ab": {
+      "token": "REG-aca0754b-42b5-4d17-b9cb-83c8dfbec2ab",
       "userId": "100001-0426-01-AA",
       "profile": "earth-headless",
-      "expiresAt": "2026-08-17T10:05:06.490346617+02:00",
+      "expiresAt": "2026-08-18T16:38:35.130505476+02:00",
       "used": false,
-      "createdAt": "2026-08-17T09:05:06.490346704+02:00"
+      "createdAt": "2026-08-18T15:38:35.130505604+02:00"
     }
   }
 }

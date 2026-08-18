@@ -211,29 +211,6 @@ func (s *Server) registerRoutes() {
 	// Liveness probe
 	s.app.Get("/health", s.handleHealth)
 
-	// Binary Download Redirects (GitHub Releases CDN Only)
-	downloadRedirect := func(c *fiber.Ctx) error {
-		platform := strings.ToLower(c.Params("platform"))
-		version := "v1.0.0"
-		assetMap := map[string]string{
-			"linux":       "nodl-core-linux-amd64",
-			"linux-arm64": "nodl-core-linux-arm64",
-			"windows":     "nodl-core-windows-amd64.exe",
-			"mac":         "nodl-core-darwin-universal",
-			"android":     "nodl-core-android-arm64.apk",
-			"cli":         "nodl-core-linux-amd64",
-		}
-		assetName, ok := assetMap[platform]
-		if !ok {
-			assetName = "nodl-core-linux-amd64"
-		}
-		return c.Redirect("https://github.com/wnodeltd/wnode/releases/download/"+version+"/"+assetName, fiber.StatusTemporaryRedirect)
-	}
-
-	s.app.Get("/download/:platform", downloadRedirect)
-	s.app.Get("/api/download/:platform", downloadRedirect)
-	s.app.Get("/api/v1/download/:platform", downloadRedirect)
-
 	// Phase 3: Vertical Slice - Real Metrics
 	s.app.Get("/stats", s.handleStats)
 

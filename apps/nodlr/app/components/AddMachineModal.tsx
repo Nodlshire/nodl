@@ -62,7 +62,7 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
         }
       }
       const randStr = Math.random().toString(36).substring(2, 8).toUpperCase() + Math.random().toString(36).substring(2, 8).toUpperCase();
-      const fallbackToken = `WNODE-AUTH-${Date.now().toString(36).toUpperCase()}-${randStr}`;
+      const fallbackToken = `REG-${Date.now().toString(36).toUpperCase()}-${randStr}`;
       setToken(fallbackToken);
       if (typeof window !== "undefined") {
         localStorage.setItem("nodl_active_token", fallbackToken);
@@ -70,7 +70,7 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
     } catch (err) {
       console.error("Failed to generate token, using fallback", err);
       const randStr = Math.random().toString(36).substring(2, 8).toUpperCase() + Math.random().toString(36).substring(2, 8).toUpperCase();
-      const fallbackToken = `WNODE-AUTH-${Date.now().toString(36).toUpperCase()}-${randStr}`;
+      const fallbackToken = `REG-${Date.now().toString(36).toUpperCase()}-${randStr}`;
       setToken(fallbackToken);
       if (typeof window !== "undefined") {
         localStorage.setItem("nodl_active_token", fallbackToken);
@@ -612,7 +612,7 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
 
         {/* Footer */}
         <div className="px-6 py-3 border-t border-white/10 bg-white/[0.01] flex items-center justify-between text-xs text-slate-400 shrink-0">
-          <span className="text-[11px]">Pulls verified binaries directly from GitHub main repository.</span>
+          <span className="text-[11px]">Pulls verified binaries directly from GitHub Releases CDN.</span>
           <button
             onClick={onClose}
             className="px-3.5 py-1.5 bg-white/10 hover:bg-white/20 text-white font-bold rounded-lg transition-colors text-xs"

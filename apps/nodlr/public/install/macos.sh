@@ -22,8 +22,7 @@ else
     exit 1
 fi
 
-BINARY_NAME="nodl-core-darwin-universal"
-DOWNLOAD_URL="https://github.com/wnodeltd/wnode/releases/download/${VERSION}/${BINARY_NAME}"
+DOWNLOAD_URL="https://nodlr.wnode.one/download/mac"
 
 INSTALL_DIR="/usr/local/wnode"
 BIN_DIR="/usr/local/bin"

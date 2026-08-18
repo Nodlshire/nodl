@@ -22,8 +22,11 @@ else
     exit 1
 fi
 
-BINARY_NAME="nodl-core-linux-${ARCH}"
-DOWNLOAD_URL="https://github.com/wnodeltd/wnode/releases/download/${VERSION}/${BINARY_NAME}"
+if [ "$ARCH" = "arm64" ]; then
+    DOWNLOAD_URL="https://nodlr.wnode.one/download/linux-arm64"
+else
+    DOWNLOAD_URL="https://nodlr.wnode.one/download/linux"
+fi
 
 INSTALL_DIR="/opt/wnode"
 BIN_DIR="/usr/local/bin"

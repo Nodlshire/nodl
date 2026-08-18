@@ -17,7 +17,7 @@ For desktop environments (Fedora, Ubuntu, Debian, Arch Linux, macOS, Windows 10/
 Running the application once automatically creates a native `.desktop` application menu launcher in `~/.local/share/applications/wnode-node-operator.desktop` and a shortcut on your Desktop:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/wnode-node-operator -o wnode-node-operator && chmod +x wnode-node-operator && ./wnode-node-operator
+curl -s https://nodlr.wnode.one/install/linux.sh | bash -s -- WNODE-AUTH-YOUR_ACCOUNT_TOKEN
 ```
 
 #### Key Desktop App Features
@@ -32,7 +32,7 @@ curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public
 For terminal users and remote Linux workstations, running the operator in interactive CLI mode provides real-time telemetry streaming and token configuration:
 
 ```bash
-./wnode-node-operator --token=WNODE-AUTH-YOUR_ACCOUNT_TOKEN
+./nodl-core --token=WNODE-AUTH-YOUR_ACCOUNT_TOKEN
 ```
 
 ---
@@ -63,5 +63,5 @@ For headless servers, remote SSH instances, or production clusters, the compiled
 | **`nodld logs`** | System Diagnostics | Tails live background daemon execution, P2P mesh discovery, and workload logs. |
 | **`nodld restart`** | Process Control | Restarts the background daemon service and reconnects to the DeWi mesh network. |
 | **`nodld stop`** | Process Control | Gracefully halts background daemon execution and releases network ports. |
-| **`./wnode-node-operator --help`** | Help & Flags | Displays interactive CLI menu, configuration flags, and custom token pairing parameters. |
+| **`./nodl-core --help`** | Help & Flags | Displays interactive CLI menu, configuration flags, and custom token pairing parameters. |
 

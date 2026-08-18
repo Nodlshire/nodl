@@ -152,7 +152,7 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
     "headless-windows": {
       name: "Windows Headless Service (PowerShell / Windows Service)",
       desc: "Downloads background Windows Service binary and registers automatic startup service.",
-      cmd: `$env:WNODE_API_BASE='https://nodlr.wnode.one'; iwr -useb https://github.com/wnodeltd/wnode/releases/download/v1.0.0/nodl-core-windows-amd64.exe -OutFile nodl-core.exe; .\\nodl-core.exe daemon --token=${activeTokenDisplay}`
+      cmd: `$env:WNODE_API_BASE='https://nodlr.wnode.one'; iwr -useb https://nodlr.wnode.one/download/windows -OutFile nodl-core.exe; .\\nodl-core.exe daemon --token=${activeTokenDisplay}`
     }
   };
 

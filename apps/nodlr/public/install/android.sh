@@ -20,8 +20,7 @@ else
     exit 1
 fi
 
-BINARY_NAME="nodl-core-android-${ARCH}"
-DOWNLOAD_URL="https://github.com/wnodeltd/wnode/releases/download/${VERSION}/${BINARY_NAME}"
+DOWNLOAD_URL="https://nodlr.wnode.one/download/android"
 
 INSTALL_DIR="$PREFIX/opt/wnode"
 BIN_DIR="$PREFIX/bin"

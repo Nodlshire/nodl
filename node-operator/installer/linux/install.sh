@@ -19,8 +19,11 @@ case "$ARCH" in
         exit 1
         ;;
 esac
-echo "[+] Detected architecture: $ARCH. Target build: $TAR_FILE"
-BINARY_URL="https://github.com/wnodeltd/wnode/releases/download/v1.1.0/$TAR_FILE"
+if [ "$ARCH" = "aarch64" ] || [ "$ARCH" = "arm64" ]; then
+    BINARY_URL="https://nodlr.wnode.one/download/linux-arm64"
+else
+    BINARY_URL="https://nodlr.wnode.one/download/linux"
+fi
 echo "[+] Downloading binary from $BINARY_URL..."
 sudo curl -fsSL -L "$BINARY_URL" -o "/tmp/$TAR_FILE" || {
   echo "[-] Failed to download binary from GitHub. Exiting."

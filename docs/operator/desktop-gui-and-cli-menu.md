@@ -45,14 +45,13 @@ For headless servers, remote SSH instances, or production clusters, the compiled
 
 | OS Environment | Target Architecture | Service Installation Command |
 | :--- | :--- | :--- |
-| **Debian 11 / 12 (Bookworm)** | `x86_64` | `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld -o nodld && chmod +x nodld && ./nodld daemon --token=WNODE-AUTH-TOKEN` |
-| **Ubuntu 22.04 / 24.04 LTS** | `x86_64` | `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld -o nodld && chmod +x nodld && ./nodld daemon --token=WNODE-AUTH-TOKEN` |
-| **Fedora / RHEL / CentOS** | `x86_64` | `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld -o nodld && chmod +x nodld && ./nodld daemon --token=WNODE-AUTH-TOKEN` |
-| **Arch Linux / Manjaro** | `x86_64` | `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld -o nodld && chmod +x nodld && ./nodld daemon --token=WNODE-AUTH-TOKEN` |
-| **Alpine Linux (musl)** | `musl x86_64` | `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld-musl -o nodld && chmod +x nodld && ./nodld daemon --token=WNODE-AUTH-TOKEN` |
-| **Linux ARM64 / RPi 4/5** | `aarch64` | `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld-arm64 -o nodld && chmod +x nodld && ./nodld daemon --token=WNODE-AUTH-TOKEN` |
-| **macOS Headless Daemon** | `Apple / Intel` | `curl -fsSL https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld-mac -o nodld && chmod +x nodld && ./nodld daemon --token=WNODE-AUTH-TOKEN` |
-| **Windows Headless Service** | `x86_64` | `iwr -useb https://raw.githubusercontent.com/wnodeltd/wnode/main/apps/web/public/downloads/nodld.exe -OutFile nodld.exe; .\nodld.exe daemon --token=WNODE-AUTH-TOKEN` |
+| **Debian 11 / 12 (Bookworm)** | `x86_64` | `curl -s https://nodlr.wnode.one/install/linux.sh | bash -s -- WNODE-AUTH-TOKEN` |
+| **Ubuntu 22.04 / 24.04 LTS** | `x86_64` | `curl -s https://nodlr.wnode.one/install/linux.sh | bash -s -- WNODE-AUTH-TOKEN` |
+| **Fedora / RHEL / CentOS** | `x86_64` | `curl -s https://nodlr.wnode.one/install/linux.sh | bash -s -- WNODE-AUTH-TOKEN` |
+| **Arch Linux / Manjaro** | `x86_64` | `curl -s https://nodlr.wnode.one/install/linux.sh | bash -s -- WNODE-AUTH-TOKEN` |
+| **Linux ARM64 / RPi 4/5** | `aarch64` | `curl -s https://nodlr.wnode.one/install/linux.sh | bash -s -- WNODE-AUTH-TOKEN` |
+| **macOS Headless Daemon** | `Apple / Intel` | `curl -s https://nodlr.wnode.one/install/mac.sh | bash -s -- WNODE-AUTH-TOKEN` |
+| **Windows Headless Service** | `x86_64` | `iwr -useb https://github.com/wnodeltd/wnode/releases/download/v1.0.0/nodl-core-windows-amd64.exe -OutFile nodl-core.exe; .\nodl-core.exe daemon --token=WNODE-AUTH-TOKEN` |
 
 ---
 

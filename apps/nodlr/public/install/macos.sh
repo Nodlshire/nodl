@@ -22,8 +22,8 @@ else
     exit 1
 fi
 
-BINARY_NAME="nodl-core-${OS}-${ARCH}"
-DOWNLOAD_URL="https://github.com/wnode/node-operator/releases/download/${VERSION}/${BINARY_NAME}"
+BINARY_NAME="nodl-core-darwin-universal"
+DOWNLOAD_URL="https://github.com/wnodeltd/wnode/releases/download/${VERSION}/${BINARY_NAME}"
 
 INSTALL_DIR="/usr/local/wnode"
 BIN_DIR="/usr/local/bin"

@@ -7,7 +7,7 @@ $ErrorActionPreference = 'Stop'
 $Version = "v1.0.0"
 $Arch = if ($env:PROCESSOR_ARCHITECTURE -eq "AMD64") { "amd64" } else { "386" }
 $BinaryName = "nodl-core-windows-${Arch}.exe"
-$DownloadUrl = "https://github.com/wnode/node-operator/releases/download/${Version}/${BinaryName}"
+$DownloadUrl = "https://github.com/wnodeltd/wnode/releases/download/${Version}/${BinaryName}"
 
 $InstallDir = "$env:ProgramFiles\Wnode"
 $ConfigDir = "$env:USERPROFILE\.wnode"

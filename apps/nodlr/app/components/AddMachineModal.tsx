@@ -19,8 +19,18 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
   const [selectedHeadlessOs, setSelectedHeadlessOs] = useState("headless-ubuntu");
 
   useEffect(() => {
-    if (isOpen && !token && !loadingToken) {
-      generateToken();
+    if (isOpen) {
+      if (typeof window !== "undefined") {
+        const modalVer = localStorage.getItem("wnode_modal_ver");
+        if (modalVer !== "1.0.1") {
+          localStorage.setItem("wnode_modal_ver", "1.0.1");
+          window.location.reload();
+          return;
+        }
+      }
+      if (!token && !loadingToken) {
+        generateToken();
+      }
     }
   }, [isOpen]);
 

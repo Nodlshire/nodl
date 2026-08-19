@@ -390,6 +390,7 @@ func (s *Server) registerRoutes() {
 	apiV1.Post("/nodes/:id/delete", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleDeleteNode)
 	apiV1.Post("/nodes/purge-all-test-data", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handlePurgeAllNodes)
 	s.app.Post("/api/v1/nodes/purge-all-test-data", s.handlePurgeAllNodes)
+	s.app.Get("/api/v1/nodes", s.handleListNodes)
 
 	// Distributed Compute Engine (Phase 10)
 	apiV1.Post("/jobs/distributed", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handlePostDistributedJob)

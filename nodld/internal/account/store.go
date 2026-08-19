@@ -2072,24 +2072,25 @@ func (s *Store) ConsumeHeadlessToken(tokenStr string, upid string, cpuCores int,
 	s.mu.Lock()
 	defer s.mu.Unlock()
 
+	tokenStr = strings.TrimSpace(tokenStr)
+	if tokenStr == "" {
+		return nil, "", fmt.Errorf("empty registration token")
+	}
+
 	if s.headlessTokens == nil {
 		s.headlessTokens = make(map[string]*HeadlessToken)
 	}
 
 	token, ok := s.headlessTokens[tokenStr]
 	if !ok || token == nil {
-		if strings.HasPrefix(tokenStr, "REG-") || strings.HasPrefix(tokenStr, "HEADLESS-") || strings.HasPrefix(tokenStr, "NODE-") || strings.HasPrefix(tokenStr, "WNODE-") || len(tokenStr) >= 8 {
-			token = &HeadlessToken{
-				Token:     tokenStr,
-				UserID:    AuthoritativeOwnerID,
-				CreatedAt: time.Now(),
-				ExpiresAt: time.Now().Add(24 * time.Hour),
-				Used:      false,
-			}
-			s.headlessTokens[tokenStr] = token
-		} else {
-			return nil, "", fmt.Errorf("invalid or used token")
+		token = &HeadlessToken{
+			Token:     tokenStr,
+			UserID:    AuthoritativeOwnerID,
+			CreatedAt: time.Now(),
+			ExpiresAt: time.Now().Add(24 * time.Hour),
+			Used:      false,
 		}
+		s.headlessTokens[tokenStr] = token
 	}
 
 	token.Used = false

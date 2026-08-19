@@ -82,15 +82,15 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
 
   const activeTokenDisplay = token || "YOUR_TOKEN";
 
-  const directLinuxCmd = `curl -L https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-core-linux-amd64 -o nodl-core && chmod +x nodl-core && WNODE_API_BASE=https://nodlr.wnode.one ./nodl-core daemon --token=${activeTokenDisplay}`;
-  const directArm64Cmd = `curl -L https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-core-linux-arm64 -o nodl-core && chmod +x nodl-core && WNODE_API_BASE=https://nodlr.wnode.one ./nodl-core daemon --token=${activeTokenDisplay}`;
-  const directMacCmd = `curl -L https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-core-darwin-arm64 -o nodl-core && chmod +x nodl-core && WNODE_API_BASE=https://nodlr.wnode.one ./nodl-core daemon --token=${activeTokenDisplay}`;
-  const directWinCmd = `iwr -useb https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-core-windows-amd64.exe -OutFile nodl-core.exe; $env:WNODE_API_BASE='https://nodlr.wnode.one'; .\\nodl-core.exe daemon --token=${activeTokenDisplay}`;
+  const directLinuxCmd = `curl -L https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-desktop-linux-amd64 -o nodl-desktop && chmod +x nodl-desktop && WNODE_API_BASE=https://nodlr.wnode.one ./nodl-desktop --token=${activeTokenDisplay}`;
+  const directArm64Cmd = `curl -L https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-desktop-linux-arm64 -o nodl-desktop && chmod +x nodl-desktop && WNODE_API_BASE=https://nodlr.wnode.one ./nodl-desktop --token=${activeTokenDisplay}`;
+  const directMacCmd = `curl -L https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-desktop-darwin-arm64 -o nodl-desktop && chmod +x nodl-desktop && WNODE_API_BASE=https://nodlr.wnode.one ./nodl-desktop --token=${activeTokenDisplay}`;
+  const directWinCmd = `iwr -useb https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-desktop-windows-amd64.exe -OutFile nodl-desktop.exe; $env:WNODE_API_BASE='https://nodlr.wnode.one'; .\\nodl-desktop.exe --token=${activeTokenDisplay}`;
 
   const linuxVariants: Record<string, { name: string; desc: string; cmd: string }> = {
     "linux-ubuntu": {
       name: "Ubuntu 22.04 / 24.04 LTS (x86_64)",
-      desc: "Direct GitHub Releases binary download for Ubuntu Linux.",
+      desc: "Autostart Desktop App & Control Panel for Ubuntu Linux.",
       cmd: directLinuxCmd
     },
     "linux-debian": {

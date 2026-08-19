@@ -6,7 +6,9 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"os"
 	"os/exec"
+	"path/filepath"
 	"runtime"
 	"strings"
 
@@ -109,6 +111,14 @@ var pageHTML = `<!DOCTYPE html>
                 </div>
 
                 <button type="submit">Save Schedule Settings</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h3 style="margin-top:0; font-size:15px; color:#e2e8f0;">System Autostart & Application Shortcuts</h3>
+            <p style="font-size:13px; color:#94a3b8; margin-bottom:12px;">Keep Wnode Operator running automatically in the background on system boot with Application Menu and Desktop shortcuts.</p>
+            <form action="/shortcuts" method="POST">
+                <button type="submit" style="background:#059669;">Install Shortcuts & Enable Autostart on Boot</button>
             </form>
         </div>
     </div>
@@ -220,6 +230,25 @@ func main() {
 		http.Redirect(w, r, "/", http.StatusSeeOther)
 	})
 
+	http.HandleFunc("/shortcuts", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method == "POST" {
+			if err := installDesktopShortcuts(); err != nil {
+				data := buildPageData(state, apiBase, fmt.Sprintf("Failed to install autostart shortcuts: %v", err), "error")
+				tmpl.Execute(w, data)
+				return
+			}
+			data := buildPageData(state, apiBase, "Desktop & Application Menu shortcuts installed successfully! Autostart enabled.", "success")
+			tmpl.Execute(w, data)
+			return
+		}
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+	})
+
+	// Automatically ensure system autostart and desktop shortcuts on launch
+	go func() {
+		_ = installDesktopShortcuts()
+	}()
+
 	url := fmt.Sprintf("http://127.0.0.1:%s", *flagPort)
 	log.Printf("Wnode Desktop Control Panel running on %s", url)
 
@@ -284,4 +313,96 @@ func openBrowser(url string) {
 	if err != nil {
 		log.Printf("Could not auto-open browser: %v", err)
 	}
+}
+
+func installDesktopShortcuts() error {
+	exePath, err := os.Executable()
+	if err != nil {
+		return err
+	}
+	home, err := os.UserHomeDir()
+	if err != nil {
+		return err
+	}
+
+	if runtime.GOOS == "linux" {
+		desktopContent := fmt.Sprintf(`[Desktop Entry]
+Name=Wnode Control Panel
+Comment=Sovereign Mesh Node Operator & Control Panel
+Exec=%s
+Icon=utilities-terminal
+Terminal=false
+Type=Application
+Categories=Utility;Network;System;
+StartupNotify=true
+`, exePath)
+
+		// 1. Application Menu Entry
+		appDir := filepath.Join(home, ".local", "share", "applications")
+		_ = os.MkdirAll(appDir, 0755)
+		_ = os.WriteFile(filepath.Join(appDir, "wnode-operator.desktop"), []byte(desktopContent), 0755)
+
+		// 2. Desktop Shortcut
+		desktopDir := filepath.Join(home, "Desktop")
+		if _, err := os.Stat(desktopDir); err == nil {
+			_ = os.WriteFile(filepath.Join(desktopDir, "Wnode-Operator.desktop"), []byte(desktopContent), 0755)
+		}
+
+		// 3. Autostart Launcher
+		autostartDir := filepath.Join(home, ".config", "autostart")
+		_ = os.MkdirAll(autostartDir, 0755)
+		autostartContent := fmt.Sprintf(`[Desktop Entry]
+Name=Wnode Control Panel
+Comment=Sovereign Mesh Node Operator Autostart
+Exec=%s --no-browser
+Terminal=false
+Type=Application
+X-GNOME-Autostart-enabled=true
+`, exePath)
+		_ = os.WriteFile(filepath.Join(autostartDir, "wnode-operator.desktop"), []byte(autostartContent), 0755)
+
+		// 4. Systemd User Service
+		systemdDir := filepath.Join(home, ".config", "systemd", "user")
+		_ = os.MkdirAll(systemdDir, 0755)
+		svcContent := fmt.Sprintf(`[Unit]
+Description=Wnode Operator Control Panel Daemon
+After=network.target
+
+[Service]
+ExecStart=%s --no-browser
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target
+`, exePath)
+		_ = os.WriteFile(filepath.Join(systemdDir, "wnode-operator.service"), []byte(svcContent), 0644)
+		_ = exec.Command("systemctl", "--user", "daemon-reload").Run()
+		_ = exec.Command("systemctl", "--user", "enable", "wnode-operator").Run()
+	} else if runtime.GOOS == "darwin" {
+		launchAgents := filepath.Join(home, "Library", "LaunchAgents")
+		_ = os.MkdirAll(launchAgents, 0755)
+		plist := fmt.Sprintf(`<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>one.wnode.operator</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>%s</string>
+        <string>--no-browser</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+</dict>
+</plist>`, exePath)
+		_ = os.WriteFile(filepath.Join(launchAgents, "one.wnode.operator.plist"), []byte(plist), 0644)
+	} else if runtime.GOOS == "windows" {
+		cmd := exec.Command("reg", "add", "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", "/v", "WnodeOperator", "/t", "REG_SZ", "/d", fmt.Sprintf("\"%s\" --no-browser", exePath), "/f")
+		_ = cmd.Run()
+	}
+	return nil
 }

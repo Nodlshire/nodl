@@ -2090,13 +2090,10 @@ func (s *Store) ConsumeHeadlessToken(tokenStr string, upid string, cpuCores int,
 		} else {
 			return nil, "", fmt.Errorf("invalid or used token")
 		}
-	} else if token.Used {
-		token.Used = false
-		token.ExpiresAt = time.Now().Add(24 * time.Hour)
 	}
-	if time.Now().After(token.ExpiresAt) {
-		return nil, "", fmt.Errorf("token expired")
-	}
+
+	token.Used = false
+	token.ExpiresAt = time.Now().Add(24 * time.Hour)
 
 	// Mark as used
 	token.Used = true

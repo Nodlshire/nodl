@@ -213,6 +213,12 @@ func (s *Server) registerRoutes() {
 
 	// Phase 3: Vertical Slice - Real Metrics
 	s.app.Get("/stats", s.handleStats)
+	s.app.Get("/api/cmd/node/epoch", s.handleGetEpoch)
+	s.app.Get("/api/v1/cmd/node/epoch", s.handleGetEpoch)
+	s.app.Get("/api/v1/nodes/epoch", s.handleGetEpoch)
+	s.app.Get("/api/nodes/epoch", s.handleGetEpoch)
+	s.app.Get("/cmd/node/epoch", s.handleGetEpoch)
+	s.app.Get("/nodes/epoch", s.handleGetEpoch)
 
 	// Peer information
 	s.app.Get("/peers", s.handlePeers)

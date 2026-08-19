@@ -248,6 +248,7 @@ type NodeMetadata struct {
 	CPU         string `json:"cpu,omitempty"`
 	GPU         string `json:"gpu,omitempty"`
 	RAM         string `json:"ram,omitempty"`
+	Arch        string `json:"arch,omitempty"`
 }
 
 // PairingCode represents a short-lived link between a user and a pending node.

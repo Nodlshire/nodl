@@ -4,6 +4,7 @@ package device
 
 import (
 	"os"
+	"os/exec"
 	"runtime"
 	"strconv"
 	"strings"
@@ -47,7 +48,12 @@ func CollectMetrics(state *platform.State) NodeHealthMetrics {
 	}
 
 	if runtime.GOOS == "linux" {
-		// Linux specific metrics
+		// Architecture
+		if out, err := exec.Command("uname", "-m").Output(); err == nil && len(strings.TrimSpace(string(out))) > 0 {
+			metrics.Arch = strings.TrimSpace(string(out))
+		} else {
+			metrics.Arch = runtime.GOARCH
+		}
 
 		// CPU Model Name
 		if cpuData, err := os.ReadFile("/proc/cpuinfo"); err == nil {
@@ -118,9 +124,9 @@ func CollectMetrics(state *platform.State) NodeHealthMetrics {
 					used = total - free - buffers - cached
 				}
 				metrics.CPUCores = runtime.NumCPU()
-				if total > 1000000000 {
-					metrics.MemoryGB = int(total / (1024 * 1024 * 1024))
-				} else {
+				// memTotal in /proc/meminfo is in kB; round to nearest GB
+				metrics.MemoryGB = int((total + 524288) / 1048576)
+				if metrics.MemoryGB == 0 {
 					metrics.MemoryGB = int(total / (1024 * 1024))
 				}
 				metrics.RAM = used / total

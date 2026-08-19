@@ -20,6 +20,7 @@ type NodeHealthMetrics struct {
 	MemoryGB    int                `json:"memoryGb"`
 	CPUModel    string             `json:"cpuModel,omitempty"`
 	OS          string             `json:"os,omitempty"`
+	Arch        string             `json:"arch,omitempty"`
 	CPU         float64            `json:"cpu"`
 	RAM         float64            `json:"ram"`
 	Disk        float64            `json:"disk"`

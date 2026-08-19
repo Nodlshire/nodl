@@ -67,8 +67,8 @@ export async function GET(request: Request) {
             const cores = n.cpu_cores || n.CPUCores || n.cpuCores;
             const memory = n.memory_gb || n.MemoryGB || n.memoryGb;
             const gpu = n.gpu_model || n.GPUModel || n.gpuModel || n.metadata?.gpu;
-            const osName = n.os || n.OS || n.metadata?.os;
-            const archName = n.arch || n.Arch || n.metadata?.arch;
+            const osName = n.os || n.OS || n.metadata?.os || n.metrics?.os;
+            const archName = n.arch || n.Arch || n.metadata?.arch || n.metrics?.arch;
             const isOnline = n.status === 'active' || (n.lastSeen && Date.now() - new Date(n.lastSeen).getTime() < 300000);
 
             return {
@@ -77,9 +77,9 @@ export async function GET(request: Request) {
                 lat: n.lat ?? n.latitude ?? (n.location?.lat) ?? (n.Latitude) ?? 47.4979,
                 lon: n.lon ?? n.longitude ?? (n.location?.lon) ?? (n.Longitude) ?? 19.0402,
                 status: isOnline ? 'Active' : 'Offline',
-                cpu_specs: cores ? `${cores} Cores` : (n.metadata?.cpu || 'N/A'),
+                cpu_specs: n.metadata?.cpu || (cores ? `${cores} Cores` : 'N/A'),
                 gpu_specs: gpu || 'N/A',
-                ram_total: memory ? `${memory}GB` : (n.metadata?.ram || 'N/A'),
+                ram_total: n.metadata?.ram || (memory ? `${memory}GB` : 'N/A'),
                 uptime: isOnline ? 'Online' : 'Offline',
                 last_seen: n.last_seen || n.lastSeen || n.last_heartbeat || n.last_seen_at || 'N/A',
                 os: osName || 'N/A',

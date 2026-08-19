@@ -49,8 +49,16 @@ func detectGPULinux() *GPUInfo {
 	}
 
 	// 3. Try lspci for exact PCI VGA/3D device string
-	lspciOut, lspciErr := exec.Command("lspci").Output()
-	if lspciErr == nil {
+	lspciCmds := []string{"lspci", "/usr/bin/lspci", "/usr/sbin/lspci", "/sbin/lspci"}
+	var lspciOut []byte
+	var lspciErr error
+	for _, cmdPath := range lspciCmds {
+		lspciOut, lspciErr = exec.Command(cmdPath).Output()
+		if lspciErr == nil && len(lspciOut) > 0 {
+			break
+		}
+	}
+	if lspciErr == nil && len(lspciOut) > 0 {
 		for _, line := range strings.Split(string(lspciOut), "\n") {
 			lower := strings.ToLower(line)
 			if strings.Contains(lower, "vga compatible controller") || strings.Contains(lower, "3d controller") || strings.Contains(lower, "display controller") {

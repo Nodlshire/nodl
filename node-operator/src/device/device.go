@@ -25,6 +25,7 @@ type NodeMetadata struct {
 	CPU       string `json:"cpu,omitempty"`
 	GPU       string `json:"gpu,omitempty"`
 	RAM       string `json:"ram,omitempty"`
+	Arch      string `json:"arch,omitempty"`
 	MachineID string `json:"machineId,omitempty"`
 }
 
@@ -99,10 +100,10 @@ func GenerateUUID() string {
 		b[0:4], b[4:6], b[6:8], b[8:10], b[10:16])
 }
 
-// CollectMetadata gathers hardware information using stdlib and common OS commands.
+// CollectMetadata gathers hardware information using stdlib and common OS files/commands.
 func CollectMetadata() NodeMetadata {
 	meta := NodeMetadata{
-		OS: runtime.GOOS,
+		OS:        runtime.GOOS,
 		MachineID: GetMachineID(),
 	}
 
@@ -112,13 +113,33 @@ func CollectMetadata() NodeMetadata {
 	
 	meta.UserAgent = fmt.Sprintf("Wnode/Operator-0.1.0 (%s; %s)", runtime.GOOS, runtime.GOARCH)
 
+	// Architecture from uname -m or GOARCH
+	if out, err := exec.Command("uname", "-m").Output(); err == nil && len(strings.TrimSpace(string(out))) > 0 {
+		meta.Arch = strings.TrimSpace(string(out))
+	} else {
+		meta.Arch = runtime.GOARCH
+	}
+
 	// CPU Cores
 	meta.CPU = fmt.Sprintf("%d cores", runtime.NumCPU())
 
-	// Try to get more specific CPU info (Linux/macOS)
 	if runtime.GOOS == "linux" {
-		out, err := exec.Command("cat", "/proc/cpuinfo").Output()
-		if err == nil {
+		// Real OS Pretty Name from /etc/os-release
+		if osData, err := os.ReadFile("/etc/os-release"); err == nil {
+			for _, line := range strings.Split(string(osData), "\n") {
+				if strings.HasPrefix(line, "PRETTY_NAME=") {
+					pretty := strings.TrimPrefix(line, "PRETTY_NAME=")
+					pretty = strings.Trim(pretty, "\"")
+					if pretty != "" {
+						meta.OS = pretty
+					}
+					break
+				}
+			}
+		}
+
+		// Real CPU Model Name from /proc/cpuinfo
+		if out, err := os.ReadFile("/proc/cpuinfo"); err == nil {
 			for _, line := range strings.Split(string(out), "\n") {
 				if strings.HasPrefix(line, "model name") {
 					parts := strings.Split(line, ":")
@@ -130,35 +151,44 @@ func CollectMetadata() NodeMetadata {
 			}
 		}
 
-		// Try to get total RAM
-		out, err = exec.Command("awk", "/MemTotal/ {print $2}", "/proc/meminfo").Output()
-		if err == nil {
-			kb := 0
-			fmt.Sscanf(string(out), "%d", &kb)
-			if kb > 0 {
-				meta.RAM = fmt.Sprintf("%.1f GB", float64(kb)/(1024*1024))
+		// Real RAM Total from /proc/meminfo
+		if out, err := os.ReadFile("/proc/meminfo"); err == nil {
+			for _, line := range strings.Split(string(out), "\n") {
+				if strings.HasPrefix(line, "MemTotal:") {
+					fields := strings.Fields(line)
+					if len(fields) >= 2 {
+						kb := 0
+						fmt.Sscanf(fields[1], "%d", &kb)
+						if kb > 0 {
+							gb := float64(kb) / (1024 * 1024)
+							meta.RAM = fmt.Sprintf("%.1f GB", gb)
+						}
+					}
+					break
+				}
 			}
 		}
 
-		// Try to detect NVIDIA GPU
-		_, err = os.Stat("/proc/driver/nvidia/version")
-		if err == nil {
-			meta.GPU = "NVIDIA (detected)"
+		// Real GPU Model
+		if gpu := DetectGPU(); gpu != nil && gpu.Model != "" {
+			meta.GPU = gpu.Model
 		}
 
 	} else if runtime.GOOS == "darwin" {
-		out, err := exec.Command("sysctl", "-n", "machdep.cpu.brand_string").Output()
-		if err == nil {
+		if out, err := exec.Command("sysctl", "-n", "machdep.cpu.brand_string").Output(); err == nil {
 			meta.CPU = fmt.Sprintf("%s (%d cores)", strings.TrimSpace(string(out)), runtime.NumCPU())
 		}
 		
-		out, err = exec.Command("sysctl", "-n", "hw.memsize").Output()
-		if err == nil {
+		if out, err := exec.Command("sysctl", "-n", "hw.memsize").Output(); err == nil {
 			bytes := 0
 			fmt.Sscanf(strings.TrimSpace(string(out)), "%d", &bytes)
 			if bytes > 0 {
 				meta.RAM = fmt.Sprintf("%.1f GB", float64(bytes)/(1024*1024*1024))
 			}
+		}
+
+		if gpu := DetectGPU(); gpu != nil && gpu.Model != "" {
+			meta.GPU = gpu.Model
 		}
 	}
 

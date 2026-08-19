@@ -32,6 +32,10 @@ const nextConfig = {
     async rewrites() {
         return [
             {
+                source: '/ws',
+                destination: 'http://127.0.0.1:8080/ws',
+            },
+            {
                 source: '/_next/static/chunks/app/dashboard/layout-7dc2105c8cc44854.js',
                 destination: '/api/stale-chunk',
             },

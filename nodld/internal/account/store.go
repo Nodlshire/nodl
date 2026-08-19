@@ -1273,6 +1273,12 @@ func (s *Store) UpdateNodeHeartbeat(nodeID string, metrics NodeHealthMetrics, ha
 	if metrics.OS != "" {
 		node.Metadata.OS = metrics.OS
 	}
+	if metrics.Arch != "" {
+		node.Metadata.Arch = metrics.Arch
+	}
+	if metrics.GPU != nil && metrics.GPU.Model != "" {
+		node.Metadata.GPU = metrics.GPU.Model
+	}
 	node.Status = "active"
 	node.IsWASM = metrics.IsWASM
 	node.DowntimePenalized = false

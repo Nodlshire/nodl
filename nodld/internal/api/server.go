@@ -388,6 +388,8 @@ func (s *Server) registerRoutes() {
 	apiV1.Get("/nodes/summary", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleNodesSummary)
 	apiV1.Delete("/nodes/:id", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleDeleteNode)
 	apiV1.Post("/nodes/:id/delete", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleDeleteNode)
+	apiV1.Post("/nodes/purge-all-test-data", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handlePurgeAllNodes)
+	s.app.Post("/api/v1/nodes/purge-all-test-data", s.handlePurgeAllNodes)
 
 	// Distributed Compute Engine (Phase 10)
 	apiV1.Post("/jobs/distributed", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handlePostDistributedJob)
@@ -1995,6 +1997,11 @@ func (s *Server) handleDeleteNode(c *fiber.Ctx) error {
 		return c.Status(404).JSON(fiber.Map{"error": "node not found"})
 	}
 	return c.JSON(fiber.Map{"status": "deleted", "id": nodeId})
+}
+
+func (s *Server) handlePurgeAllNodes(c *fiber.Ctx) error {
+	count := s.accountStore.PurgeAllNodes()
+	return c.JSON(fiber.Map{"status": "purged", "deletedCount": count})
 }
 
 func (s *Server) handleVerifyToken(c *fiber.Ctx) error {

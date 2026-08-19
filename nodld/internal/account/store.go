@@ -1437,6 +1437,17 @@ func (s *Store) DeleteNode(nodeID string) bool {
 	return false
 }
 
+// PurgeAllNodes purges all registered node state and headless test tokens.
+func (s *Store) PurgeAllNodes() int {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	count := len(s.nodes)
+	s.nodes = make(map[string]*WnodeNode)
+	s.headlessTokens = make(map[string]*HeadlessToken)
+	go s.SaveState()
+	return count
+}
+
 // GetGlobalLedgerStats returns platform-wide aggregated financials from the authoritative commissions ledger.
 func (s *Store) GetGlobalLedgerStats() (totalCompute, totalPaid, totalPending int64) {
 	s.mu.RLock()

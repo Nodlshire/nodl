@@ -14,6 +14,7 @@ export function middleware(request: NextRequest) {
     const isPublicApi = path === '/api/account/me' || 
                         path.startsWith('/api/auth') || 
                         path.startsWith('/api/nodes') || 
+                        path.startsWith('/api/cmd') ||
                         path.startsWith('/api/avatar') || 
                         path.startsWith('/api/discord') || 
                         path.startsWith('/api/v1/') || 

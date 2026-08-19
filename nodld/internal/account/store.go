@@ -1241,12 +1241,23 @@ func (s *Store) UpdateNodeHeartbeat(nodeID string, metrics NodeHealthMetrics, ha
 	}
 
 	node.LastSeen = time.Now()
+	nowISO := time.Now().UTC().Format(time.RFC3339)
+	node.LastHeartbeat = nowISO
+	node.LastSeenAt = nowISO
 
-	if node.IPAddress != ipAddress && ipAddress != "" {
+	if node.OperatorWUID == "" && node.UserID != "" {
+		node.OperatorWUID = node.UserID
+	}
+
+	if (node.IPAddress != ipAddress && ipAddress != "") || (node.Latitude == 0 && node.Longitude == 0) {
 		lat, lon, _ := GetGeoIPLookup().ResolveIP(ipAddress)
-		node.IPAddress = ipAddress
-		node.Latitude = lat
-		node.Longitude = lon
+		if ipAddress != "" {
+			node.IPAddress = ipAddress
+		}
+		if lat != 0 || lon != 0 {
+			node.Latitude = lat
+			node.Longitude = lon
+		}
 	}
 
 	node.Metrics = &metrics
@@ -2097,26 +2108,32 @@ func (s *Store) ConsumeHeadlessToken(tokenStr string, upid string, cpuCores int,
 		existingNode.DeviceToken = deviceToken
 		existingNode.Status = "active"
 		existingNode.LastSeen = time.Now()
+		existingNode.LastHeartbeat = time.Now().UTC().Format(time.RFC3339)
+		existingNode.LastSeenAt = time.Now().UTC().Format(time.RFC3339)
 		existingNode.CPUCores = cpuCores
 		existingNode.MemoryGB = memoryGb
 		if token.UserID != "" {
 			existingNode.UserID = token.UserID
+			existingNode.OperatorWUID = token.UserID
 		}
 		go s.SaveState()
 		return existingNode, deviceToken, nil
 	}
 
 	node := &WnodeNode{
-		ID:          nodeID,
-		UserID:      token.UserID,
-		DeviceToken: deviceToken,
-		Status:      "active",
-		CreatedAt:   time.Now(),
-		LastSeen:    time.Now(),
-		IsWASM:      false,
-		Tier:        1,
-		CPUCores:    cpuCores,
-		MemoryGB:    memoryGb,
+		ID:            nodeID,
+		UserID:        token.UserID,
+		OperatorWUID:  token.UserID,
+		DeviceToken:   deviceToken,
+		Status:        "active",
+		CreatedAt:     time.Now(),
+		LastSeen:      time.Now(),
+		LastHeartbeat: time.Now().UTC().Format(time.RFC3339),
+		LastSeenAt:    time.Now().UTC().Format(time.RFC3339),
+		IsWASM:        false,
+		Tier:          1,
+		CPUCores:      cpuCores,
+		MemoryGB:      memoryGb,
 	}
 
 	if node.UserID == "" {

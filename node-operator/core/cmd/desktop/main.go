@@ -188,10 +188,11 @@ func main() {
 		log.Printf("[SCHEDULER] State transition: paused=%v", isPaused)
 	})
 
-	// Start Background Telemetry Loop if paired
+	// Start Background Telemetry & Epoch Sync Loops if paired
 	if state.DeviceToken != "" {
-		log.Printf("[TELEMETRY] Starting epoch sync loop for UPID=%s", state.UPID)
+		log.Printf("[TELEMETRY] Starting epoch sync & heartbeat loop for UPID=%s", state.UPID)
 		go device.StartEpochSyncLoop(apiBase, state)
+		go device.StartHeartbeatLoop(apiBase, state)
 	}
 
 	tmpl := template.Must(template.New("page").Parse(pageHTML))
@@ -212,6 +213,7 @@ func main() {
 				}
 				// Start telemetry on successful pairing
 				go device.StartEpochSyncLoop(apiBase, state)
+				go device.StartHeartbeatLoop(apiBase, state)
 				data := buildPageData(state, apiBase, "Operator successfully paired to Nodlr account!", "success")
 				tmpl.Execute(w, data)
 				return
@@ -319,14 +321,31 @@ func openBrowser(url string) {
 	var err error
 	switch runtime.GOOS {
 	case "linux":
-		err = exec.Command("xdg-open", url).Start()
+		if _, errLook := exec.LookPath("google-chrome"); errLook == nil {
+			err = exec.Command("google-chrome", "--app="+url, "--user-data-dir="+filepath.Join(os.TempDir(), "wnode-app-profile")).Start()
+		} else if _, errLook := exec.LookPath("chromium-browser"); errLook == nil {
+			err = exec.Command("chromium-browser", "--app="+url, "--user-data-dir="+filepath.Join(os.TempDir(), "wnode-app-profile")).Start()
+		} else if _, errLook := exec.LookPath("chromium"); errLook == nil {
+			err = exec.Command("chromium", "--app="+url, "--user-data-dir="+filepath.Join(os.TempDir(), "wnode-app-profile")).Start()
+		} else if _, errLook := exec.LookPath("brave-browser"); errLook == nil {
+			err = exec.Command("brave-browser", "--app="+url, "--user-data-dir="+filepath.Join(os.TempDir(), "wnode-app-profile")).Start()
+		} else {
+			err = exec.Command("xdg-open", url).Start()
+		}
 	case "windows":
-		err = exec.Command("rundll32", "url.dll,FileProtocolHandler", url).Start()
+		if _, errLook := exec.LookPath("msedge"); errLook == nil {
+			err = exec.Command("msedge", "--app="+url).Start()
+		} else {
+			err = exec.Command("rundll32", "url.dll,FileProtocolHandler", url).Start()
+		}
 	case "darwin":
-		err = exec.Command("open", url).Start()
+		err = exec.Command("open", "-a", "Google Chrome", "--args", "--app="+url).Start()
+		if err != nil {
+			err = exec.Command("open", url).Start()
+		}
 	}
 	if err != nil {
-		log.Printf("Could not auto-open browser: %v", err)
+		log.Printf("Could not auto-open desktop window: %v", err)
 	}
 }
 

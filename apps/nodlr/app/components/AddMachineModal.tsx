@@ -82,10 +82,10 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
 
   const activeTokenDisplay = token || "YOUR_TOKEN";
 
-  const directLinuxCmd = `curl -L https://github.com/wnodeltd/wnode/releases/download/v1.0.2/nodl-core-linux-amd64 -o nodl-core && chmod +x nodl-core && WNODE_API_BASE=https://nodlr.wnode.one ./nodl-core daemon --token=${activeTokenDisplay}`;
-  const directArm64Cmd = `curl -L https://github.com/wnodeltd/wnode/releases/download/v1.0.2/nodl-core-linux-arm64 -o nodl-core && chmod +x nodl-core && WNODE_API_BASE=https://nodlr.wnode.one ./nodl-core daemon --token=${activeTokenDisplay}`;
-  const directMacCmd = `curl -L https://github.com/wnodeltd/wnode/releases/download/v1.0.2/nodl-core-darwin-arm64 -o nodl-core && chmod +x nodl-core && WNODE_API_BASE=https://nodlr.wnode.one ./nodl-core daemon --token=${activeTokenDisplay}`;
-  const directWinCmd = `iwr -useb https://github.com/wnodeltd/wnode/releases/download/v1.0.2/nodl-core-windows-amd64.exe -OutFile nodl-core.exe; $env:WNODE_API_BASE='https://nodlr.wnode.one'; .\\nodl-core.exe daemon --token=${activeTokenDisplay}`;
+  const directLinuxCmd = `curl -L https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-core-linux-amd64 -o nodl-core && chmod +x nodl-core && WNODE_API_BASE=https://nodlr.wnode.one ./nodl-core daemon --token=${activeTokenDisplay}`;
+  const directArm64Cmd = `curl -L https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-core-linux-arm64 -o nodl-core && chmod +x nodl-core && WNODE_API_BASE=https://nodlr.wnode.one ./nodl-core daemon --token=${activeTokenDisplay}`;
+  const directMacCmd = `curl -L https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-core-darwin-arm64 -o nodl-core && chmod +x nodl-core && WNODE_API_BASE=https://nodlr.wnode.one ./nodl-core daemon --token=${activeTokenDisplay}`;
+  const directWinCmd = `iwr -useb https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-core-windows-amd64.exe -OutFile nodl-core.exe; $env:WNODE_API_BASE='https://nodlr.wnode.one'; .\\nodl-core.exe daemon --token=${activeTokenDisplay}`;
 
   const linuxVariants: Record<string, { name: string; desc: string; cmd: string }> = {
     "linux-ubuntu": {
@@ -315,7 +315,7 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-auto">
                 <a 
-                  href="https://github.com/wnodeltd/wnode/releases/download/v1.0.2/nodl-core-windows-amd64.exe" 
+                  href="https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-core-windows-amd64.exe" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3.5 bg-cyan-950/20 border border-cyan-500/30 hover:border-cyan-400 hover:bg-cyan-950/40 transition-all rounded-xl group flex flex-col justify-between"
@@ -340,7 +340,7 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                 </a>
 
                 <a 
-                  href="https://github.com/wnodeltd/wnode/releases/download/v1.0.2/nodl-core-darwin-arm64" 
+                  href="https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-core-darwin-arm64" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3.5 bg-cyan-950/20 border border-cyan-500/30 hover:border-cyan-400 hover:bg-cyan-950/40 transition-all rounded-xl group flex flex-col justify-between"
@@ -365,7 +365,7 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                 </a>
 
                 <a 
-                  href="https://github.com/wnodeltd/wnode/releases/download/v1.0.2/nodl-core-linux-amd64" 
+                  href="https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-core-linux-amd64" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3.5 bg-cyan-950/20 border border-cyan-500/30 hover:border-cyan-400 hover:bg-cyan-950/40 transition-all rounded-xl group flex flex-col justify-between"

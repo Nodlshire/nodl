@@ -152,8 +152,23 @@ func main() {
 	}
 
 	apiBase := *flagAPI
-	if state.MeshAPI != "" {
+	if envApi := os.Getenv("WNODE_API_BASE"); envApi != "" {
+		apiBase = envApi
+	}
+	if state.MeshAPI == "" || strings.Contains(state.MeshAPI, "127.0.0.1:3001") || strings.Contains(state.MeshAPI, "localhost:3000") {
+		state.MeshAPI = apiBase
+	} else {
 		apiBase = state.MeshAPI
+	}
+
+	// Ensure UPID is hydrated immediately
+	if state.UPID == "" {
+		bootMeta := device.CollectMetadata()
+		state.UPID = device.ComputeHardwareHash(bootMeta)
+		bootMetrics := device.CollectMetrics(state)
+		state.CPUCores = bootMetrics.CPUCores
+		state.MemoryGB = bootMetrics.MemoryGB
+		_ = platform.SaveState(state)
 	}
 
 	// Auto-pair if token is provided or present in ~/.wnode/token

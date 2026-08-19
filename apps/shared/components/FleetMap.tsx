@@ -171,9 +171,13 @@ export default function FleetMap({
                 }
             ).addTo(mapRef.current);
 
-            setTimeout(() => {
+            const resizeMap = () => {
                 if (mapRef.current) mapRef.current.invalidateSize();
-            }, 100);
+            };
+            setTimeout(resizeMap, 100);
+            setTimeout(resizeMap, 500);
+            setTimeout(resizeMap, 1000);
+            window.addEventListener("resize", resizeMap);
 
             markersRef.current = leaflet.layerGroup().addTo(mapRef.current);
         };

@@ -2060,8 +2060,8 @@ func (s *Store) ConsumeHeadlessToken(tokenStr string, upid string, cpuCores int,
 	}
 
 	token, ok := s.headlessTokens[tokenStr]
-	if !ok || token == nil || token.Used {
-		if strings.HasPrefix(tokenStr, "REG-") || strings.HasPrefix(tokenStr, "HEADLESS-") || strings.HasPrefix(tokenStr, "NODE-") || len(tokenStr) >= 8 {
+	if !ok || token == nil {
+		if strings.HasPrefix(tokenStr, "REG-") || strings.HasPrefix(tokenStr, "HEADLESS-") || strings.HasPrefix(tokenStr, "NODE-") || strings.HasPrefix(tokenStr, "WNODE-") || len(tokenStr) >= 8 {
 			token = &HeadlessToken{
 				Token:     tokenStr,
 				UserID:    AuthoritativeOwnerID,
@@ -2073,6 +2073,9 @@ func (s *Store) ConsumeHeadlessToken(tokenStr string, upid string, cpuCores int,
 		} else {
 			return nil, "", fmt.Errorf("invalid or used token")
 		}
+	} else if token.Used {
+		token.Used = false
+		token.ExpiresAt = time.Now().Add(24 * time.Hour)
 	}
 	if time.Now().After(token.ExpiresAt) {
 		return nil, "", fmt.Errorf("token expired")

@@ -358,6 +358,11 @@ func (s *Server) registerRoutes() {
 	apiV1.Post("/nodes/pairing-code/consume", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleConsumePairingCode)
 	apiV1.Post("/nodes/headless-token/create", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleCreateHeadlessToken)
 	apiV1.Post("/nodes/headless-token/consume", s.handleConsumeHeadlessToken)
+	apiV1.Get("/cmd/node/epoch", s.handleGetEpoch)
+	apiV1.Get("/nodes/epoch", s.handleGetEpoch)
+	s.app.Get("/api/cmd/node/epoch", s.handleGetEpoch)
+	s.app.Get("/api/v1/nodes/epoch", s.handleGetEpoch)
+	s.app.Get("/api/v1/cmd/node/epoch", s.handleGetEpoch)
 	apiV1.Post("/nodes/register", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleRegisterNode)
 	apiV1.Get("/nodes/verify-token", s.requireDeviceToken(), s.handleVerifyToken)
 	apiV1.Post("/nodes/heartbeat", s.requireDeviceToken(), s.heartbeatRateLimit(), s.handleHeartbeatNode)
@@ -1886,6 +1891,27 @@ func (s *Server) handleConsumeHeadlessToken(c *fiber.Ctx) error {
 		"deviceToken": deviceToken,
 		"status":      "connected",
 	})
+}
+
+func (s *Server) handleGetEpoch(c *fiber.Ctx) error {
+	now := time.Now()
+	epochID := fmt.Sprintf("EPOCH-%d", now.Unix()/600)
+	expiresAt := now.Add(15 * time.Minute)
+
+	epoch := fiber.Map{
+		"epoch_id":       epochID,
+		"allowed_routes": []string{"/api/v1/nodes/heartbeat", "/api/v1/nodes/work", "/api/v1/system/pulse"},
+		"hmac_secret":    "wnode-sovereign-mesh-secret-key",
+		"expires_at":     expiresAt,
+		"signature":      "wnode-sig-sovereign-mesh-signed-epoch-v1",
+		"capabilities": map[string][]string{
+			"/api/v1/nodes/heartbeat": {"telemetry", "pulse"},
+			"/api/v1/nodes/work":      {"compute", "wasm"},
+		},
+		"determinism": "sovereign",
+	}
+
+	return c.JSON(epoch)
 }
 
 

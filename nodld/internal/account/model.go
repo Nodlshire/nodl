@@ -209,6 +209,12 @@ func CalculateTier(computeScore float64) int {
 	return 5
 }
 
+type GPUInfo struct {
+	Vendor string `json:"vendor"`
+	Model  string `json:"model"`
+	VramMB int    `json:"vramMB"`
+}
+
 type ReputationMetrics struct {
 	LocalScore         float64 `json:"localScore"`
 	UptimeHours        int64   `json:"uptimeHours"`
@@ -224,6 +230,8 @@ type NodeHealthMetrics struct {
 	MemoryGB    int                `json:"memoryGb"`
 	CPUModel    string             `json:"cpuModel,omitempty"`
 	OS          string             `json:"os,omitempty"`
+	Arch        string             `json:"arch,omitempty"`
+	GPU         *GPUInfo           `json:"gpu,omitempty"`
 	CPU         float64            `json:"cpu"`
 	RAM         float64            `json:"ram"`
 	Disk        float64            `json:"disk"`

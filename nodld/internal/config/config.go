@@ -38,7 +38,11 @@ type Config struct {
 // Environment variables always override .env values.
 func Load() (*Config, error) {
 	// Best-effort load of .env — search local CWD, nodld, and root wnode directories
-	_ = godotenv.Load(".env", "nodld/.env", "/home/obregan/wnode/nodld/.env", "/home/obregan/wnode/.env")
+	for _, envFile := range []string{".env", "nodld/.env", "/home/obregan/wnode/nodld/.env", "/home/obregan/wnode/.env"} {
+		if _, err := os.Stat(envFile); err == nil {
+			_ = godotenv.Overload(envFile)
+		}
+	}
 
 	cfg := &Config{
 		APIPort:               getEnvInt("API_PORT", 8080),

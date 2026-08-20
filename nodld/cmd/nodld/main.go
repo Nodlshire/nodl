@@ -141,7 +141,9 @@ func main() {
 		log,
 	)
 	if !stripeSvc.IsConfigured() {
-		log.Warn("Stripe is not configured — payment routes will return errors until STRIPE_SECRET_KEY is set")
+		log.Warn("Stripe is not configured — payment routes will return errors until STRIPE_SECRET_KEY is set", zap.Int("keyLen", len(cfg.StripeSecretKey)))
+	} else {
+		log.Info("✅ Stripe Connect payment & payout engine online", zap.Int("keyLen", len(cfg.StripeSecretKey)))
 	}
 
 	// ── Pricing Engine & DeWi Flow-Through ────────────────────────────────────

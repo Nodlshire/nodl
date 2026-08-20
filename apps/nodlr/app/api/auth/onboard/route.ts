@@ -5,7 +5,7 @@ export async function POST(request: Request) {
         const body = await request.json();
         const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8080";
 
-        const res = await fetch(`${apiUrl}/api/v1/auth/onboard`, {
+        const res = await fetch(`${apiUrl}/api/v1/auth/signup`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body),

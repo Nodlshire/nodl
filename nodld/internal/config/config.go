@@ -37,8 +37,8 @@ type Config struct {
 // Load reads from a .env file (if present) and then from the environment.
 // Environment variables always override .env values.
 func Load() (*Config, error) {
-	// Best-effort load of .env — ignore error if file doesn't exist
-	_ = godotenv.Load()
+	// Best-effort load of .env — search local CWD, nodld, and root wnode directories
+	_ = godotenv.Load(".env", "nodld/.env", "/home/obregan/wnode/nodld/.env", "/home/obregan/wnode/.env")
 
 	cfg := &Config{
 		APIPort:               getEnvInt("API_PORT", 8080),

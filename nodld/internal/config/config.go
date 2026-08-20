@@ -51,6 +51,13 @@ func Load() (*Config, error) {
 		LogLevel:              getEnv("LOG_LEVEL", "info"),
 	}
 
+	if cfg.StripeSecretKey != "" {
+		os.Setenv("STRIPE_SECRET_KEY", cfg.StripeSecretKey)
+	}
+	if cfg.StripeWebhookSecret != "" {
+		os.Setenv("STRIPE_WEBHOOK_SECRET", cfg.StripeWebhookSecret)
+	}
+
 	if err := cfg.validate(); err != nil {
 		return nil, fmt.Errorf("config validation failed: %w", err)
 	}

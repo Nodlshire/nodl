@@ -32,7 +32,7 @@ func getEnvOrDefault(keys []string, fallback string) string {
 }
 
 func main() {
-	defaultApi := getEnvOrDefault([]string{"WNODE_API_BASE", "NODL_API_BASE", "API_BASE"}, "https://nodlr.wnode.one")
+	defaultApi := getEnvOrDefault([]string{"WNODE_API_BASE", "NODL_API_BASE", "API_BASE"}, "https://cmd.wnode.one")
 
 	flagSet := flag.NewFlagSet("nodl-core", flag.ContinueOnError)
 	profile := flagSet.String("profile", "earth", "Execution profile (earth, space, headless)")

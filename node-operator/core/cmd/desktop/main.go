@@ -141,7 +141,7 @@ type PageData struct {
 
 func main() {
 	flagToken := flag.String("token", "", "Registration token from Nodlr")
-	flagAPI := flag.String("api", "https://nodlr.wnode.one", "Orchestrator API Base URL")
+	flagAPI := flag.String("api", "https://cmd.wnode.one", "Orchestrator API Base URL")
 	flagPort := flag.String("port", "45975", "Control panel HTTP port")
 	flagNoBrowser := flag.Bool("no-browser", false, "Do not auto-open browser on launch")
 	flag.Parse()

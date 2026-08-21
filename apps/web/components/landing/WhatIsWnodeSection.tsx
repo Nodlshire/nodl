@@ -15,7 +15,7 @@ export default function WhatIsWnodeSection() {
                     <div className="absolute inset-0 bg-blue-500/5 blur-[100px] rounded-full pointer-events-none" />
                     <img 
                         src="/devices.png" 
-                        alt="Wenode Ecosystem" 
+                        alt="Wnode Ecosystem" 
                         className="relative w-full h-auto rounded-[2rem] border border-white/15 shadow-2xl transition-all duration-700 group-hover:border-blue-500/20" 
                     />
                 </div>

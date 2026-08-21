@@ -368,7 +368,7 @@ export default function SecureDataRoomPage() {
                     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700 text-center">
                         <div>
                             <h2 className="text-2xl font-black lowercase tracking-tighter mb-2">Secure Access</h2>
-                            <p className="text-xs text-slate-500 uppercase tracking-widest">WeNode Data Room</p>
+                            <p className="text-xs text-slate-500 uppercase tracking-widest">Wnode Data Room</p>
                         </div>
                         
                         <div className="space-y-4">

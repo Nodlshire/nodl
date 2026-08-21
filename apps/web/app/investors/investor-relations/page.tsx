@@ -52,12 +52,12 @@ export default function InvestorRelationsPage() {
                         {/* Introduction */}
                         <div className="text-lg text-slate-400 leading-relaxed space-y-6 border-l-2 border-blue-500/30 pl-8 py-2">
                             <p>
-                                At Wenode, investor relations are built on transparency, trust, and long-term value.  
-                                Our goal is to maintain a clear, continuous dialogue between the Wenode DAO, our contributors, and our investors — ensuring that every stakeholder understands how the network evolves, performs, and grows.
+                                At Wnode, investor relations are built on transparency, trust, and long-term value.  
+                                Our goal is to maintain a clear, continuous dialogue between the Wnode DAO, our contributors, and our investors — ensuring that every stakeholder understands how the network evolves, performs, and grows.
                             </p>
                             <p>
                                 We treat investor relations as a living system — not a quarterly ritual.  
-                                Each cycle of communication strengthens the foundation of the Wenode Mesh and reinforces our shared vision of a planetary compute network owned by its community.
+                                Each cycle of communication strengthens the foundation of the Wnode Mesh and reinforces our shared vision of a planetary compute network owned by its community.
                             </p>
                         </div>
 
@@ -77,7 +77,7 @@ export default function InvestorRelationsPage() {
                                             Item 1: Detailed Pitch Deck
                                         </h3>
                                         <p className="text-lg text-slate-400 leading-relaxed">
-                                            This deck provides a full, end‑to‑end view of Wenode and the market forces driving the opportunity, the architecture powering the mesh, the fiat‑first economic engine, the governance model, and the roadmap to planetary activation. It is designed for investors, partners, and technical evaluators who want a deeper understanding of the system.
+                                            This deck provides a full, end‑to‑end view of Wnode and the market forces driving the opportunity, the architecture powering the mesh, the fiat‑first economic engine, the governance model, and the roadmap to planetary activation. It is designed for investors, partners, and technical evaluators who want a deeper understanding of the system.
                                         </p>
                                         <div className="pt-2">
                                             <a 
@@ -101,9 +101,9 @@ export default function InvestorRelationsPage() {
                                     { t: "Strategy & Outlook", d: "Clear quarterly updates outlining network growth, governance progress, and strategic milestones." },
                                     { t: "Regular Communication", d: "Consistent performance updates and open access to governance discussions." },
                                     { t: "Feedback Loop", d: "Insights from investors and node operators feed directly into our roadmap and tokenomics adjustments." },
-                                    { t: "Market Intelligence", d: "Monitoring global compute trends and AI infrastructure developments to align Wenode’s strategy with real-world demand." },
+                                    { t: "Market Intelligence", d: "Monitoring global compute trends and AI infrastructure developments to align Wnode’s strategy with real-world demand." },
                                     { t: "Building Trust", d: "Every decision is transparent, every report verifiable, every outcome measurable." },
-                                    { t: "Long-Term Value", d: "Sustainable growth, not speculation — ensuring Wenode remains a stable, high-integrity ecosystem." }
+                                    { t: "Long-Term Value", d: "Sustainable growth, not speculation — ensuring Wnode remains a stable, high-integrity ecosystem." }
                                 ].map(item => (
                                     <li key={item.t} className="p-6 bg-white/[0.02] border border-white/5 rounded-sm space-y-3">
                                         <h3 className="text-white font-bold text-sm uppercase tracking-widest">{item.t}</h3>
@@ -116,7 +116,7 @@ export default function InvestorRelationsPage() {
                         {/* Growth & Capital */}
                         <Section id="growth-capital" title="Growth & Capital">
                             <p className="text-xl text-white font-medium leading-relaxed">
-                                Wenode’s capital strategy is simple: <span className="text-blue-500">Real compute, real revenue, real value.</span>
+                                Wnode’s capital strategy is simple: <span className="text-blue-500">Real compute, real revenue, real value.</span>
                             </p>
                             <p>
                                 Node operators earn in USD and tokens, while investors participate in a transparent, verifiable economy backed by tangible compute output.  
@@ -151,7 +151,7 @@ export default function InvestorRelationsPage() {
                             </h2>
                             <div className="text-lg text-slate-400 leading-relaxed space-y-6">
                                 <p>
-                                    Wenode’s investor relations are about clarity, accountability, and shared progress.  
+                                    Wnode’s investor relations are about clarity, accountability, and shared progress.  
                                     We believe that open communication builds trust, and trust builds value.
                                 </p>
                                 <p className="text-white font-bold tracking-tight">

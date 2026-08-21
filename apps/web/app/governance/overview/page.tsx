@@ -10,7 +10,7 @@ export default function GovernanceOverviewPage() {
                     
                     {/* Hero Section */}
                     <div className="space-y-6 text-center md:text-left">
-                        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white font-space-grotesk uppercase">Wenode Governance</h1>
+                        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white font-space-grotesk uppercase">Wnode Governance</h1>
                         <p className="text-lg text-slate-400 max-w-2xl leading-relaxed">
                             A sovereign, community-owned governance system built on 1 Soul = 1 Vote.
                         </p>
@@ -20,7 +20,7 @@ export default function GovernanceOverviewPage() {
                     <div className="w-full border border-white/10 rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(59,130,246,0.1)]">
                         <img 
                             src="/governance_model.png" 
-                            alt="Wenode Governance Architecture" 
+                            alt="Wnode Governance Architecture" 
                             className="w-full h-auto" 
                         />
                     </div>
@@ -31,14 +31,14 @@ export default function GovernanceOverviewPage() {
                         <section className="space-y-4">
                             <h2 className="text-xl font-bold text-white uppercase tracking-tight font-space-grotesk border-b border-white/10 pb-2">1. What Governance Is</h2>
                             <p className="text-slate-400 leading-relaxed">
-                                Governance at Wenode is the collective process by which the community makes decisions, manages the Treasury, and evolves the network protocol. It ensures that the Mesh remains a public good, independent of central authorities and resilient to capture.
+                                Governance at Wnode is the collective process by which the community makes decisions, manages the Treasury, and evolves the network protocol. It ensures that the Mesh remains a public good, independent of central authorities and resilient to capture.
                             </p>
                         </section>
 
                         <section className="space-y-4">
                             <h2 className="text-xl font-bold text-white uppercase tracking-tight font-space-grotesk border-b border-white/10 pb-2">2. Governance Hierarchy</h2>
                             <p className="text-slate-400 leading-relaxed mb-4">
-                                The Wenode authority structure is designed to balance community sovereignty with technical and operational expertise:
+                                The Wnode authority structure is designed to balance community sovereignty with technical and operational expertise:
                             </p>
                             <div className="flex flex-wrap gap-4 font-mono text-[10px] uppercase tracking-widest text-blue-500 font-black">
                                 <span className="px-3 py-1 bg-white/5 rounded-sm">Constitution</span>
@@ -58,7 +58,7 @@ export default function GovernanceOverviewPage() {
                         <section className="space-y-4">
                             <h2 className="text-xl font-bold text-white uppercase tracking-tight font-space-grotesk border-b border-white/10 pb-2">3. Souls & Identity</h2>
                             <p className="text-slate-400 leading-relaxed">
-                                Unlike traditional DAOs where voting power is bought with tokens, Wenode uses a "Soul" system. Every verified individual holds exactly one Soul, granting them exactly one vote. This ensures that governance is human-centric and resistant to whale dominance.
+                                Unlike traditional DAOs where voting power is bought with tokens, Wnode uses a "Soul" system. Every verified individual holds exactly one Soul, granting them exactly one vote. This ensures that governance is human-centric and resistant to whale dominance.
                             </p>
                         </section>
 

@@ -6,17 +6,17 @@ export default function TermsPage() {
             <div className="relative pt-40 pb-24 px-8">
                 <div className="max-w-4xl mx-auto">
                     <div className="fade-in-section text-slate-300 whitespace-pre-wrap font-sans text-lg">
-{`Wnode Ltd. (trading as Wenode) — Terms of Service
+{`Wnode Ltd. (trading as Wnode) — Terms of Service
 Last Updated: April 2026
 
-These Terms of Service (“Terms”) govern your access to and use of the Wenode platform, including all dashboards, node management tools, APIs, and related services (“Service”). By accessing or using the Service, you agree to be bound by these Terms.
+These Terms of Service (“Terms”) govern your access to and use of the Wnode platform, including all dashboards, node management tools, APIs, and related services (“Service”). By accessing or using the Service, you agree to be bound by these Terms.
 
 1. Who We Are
-Wnode Ltd. (trading as Wenode)
+Wnode Ltd. (trading as Wnode)
 Registered in the United Kingdom
 Contact: team1@wnode.one
 
-Wenode provides sovereign mesh infrastructure, distributed compute orchestration, and related digital services.
+Wnode provides sovereign mesh infrastructure, distributed compute orchestration, and related digital services.
 
 2. Eligibility and Account Registration
 To use the Service, you must:
@@ -29,7 +29,7 @@ You are responsible for all activity conducted under your account.
 
 3. Acceptable Use
 You agree not to:
-• Interfere with or disrupt the Wenode Mesh  
+• Interfere with or disrupt the Wnode Mesh  
 • Attempt to bypass authentication, security, or rate limits  
 • Use the Service for unlawful, harmful, or abusive purposes  
 • Deploy nodes or workloads that violate applicable law  
@@ -39,7 +39,7 @@ You agree not to:
 Wnode reserves the right to suspend or terminate accounts that violate these rules.
 
 4. Ownership and Intellectual Property
-The Wenode platform, including software, documentation, branding, and infrastructure, is the property of Wnode Ltd.
+The Wnode platform, including software, documentation, branding, and infrastructure, is the property of Wnode Ltd.
 
 You retain ownership of:
 • Your node hardware  
@@ -47,19 +47,19 @@ You retain ownership of:
 • Your compute contributions  
 • Any workloads you deploy  
 
-Wenode does not claim ownership over user‑generated compute or network assets.
+Wnode does not claim ownership over user‑generated compute or network assets.
 
 5. Licence to Use the Service
 Wnode grants you a limited, revocable, non‑exclusive, non‑transferable licence to access and use the Service in accordance with these Terms.
 
 This licence does not permit:
 • Reselling or sublicensing the Service  
-• Creating derivative works of Wenode software  
+• Creating derivative works of Wnode software  
 • Automated scraping or data extraction  
 • Circumventing technical protections  
 
 6. Service Availability and Modifications
-Wenode aims for high availability but does not guarantee uninterrupted uptime.  
+Wnode aims for high availability but does not guarantee uninterrupted uptime.  
 We may modify, update, or discontinue features at any time to maintain security, performance, or compliance.
 
 7. Beta Features
@@ -73,11 +73,11 @@ All payments are processed securely through third‑party providers such as Stri
 Failure to pay may result in suspension of access.
 
 9. Data Protection and Privacy
-Our processing of personal data is governed by the Wenode Privacy Policy.  
+Our processing of personal data is governed by the Wnode Privacy Policy.  
 By using the Service, you acknowledge that essential operational data will be processed to provide secure access.
 
 10. Security Responsibilities
-Wenode implements industry‑standard security measures, but you are responsible for:
+Wnode implements industry‑standard security measures, but you are responsible for:
 • Securing your devices and nodes  
 • Protecting your login credentials  
 • Ensuring your workloads comply with law and policy  
@@ -86,7 +86,7 @@ You must notify us immediately of any suspected breach.
 
 11. Third‑Party Services
 Some features may integrate with third‑party providers.  
-Wenode is not responsible for the availability, security, or policies of third‑party services.
+Wnode is not responsible for the availability, security, or policies of third‑party services.
 
 12. Limitation of Liability
 To the maximum extent permitted by law:
@@ -124,7 +124,7 @@ Any disputes shall be resolved in the courts of England and Wales.
 For legal, technical, or compliance inquiries:
 team1@wnode.one
 
-Wnode Ltd. (trading as Wenode)
+Wnode Ltd. (trading as Wnode)
 Registered in the United Kingdom`}
                     </div>
                 </div>

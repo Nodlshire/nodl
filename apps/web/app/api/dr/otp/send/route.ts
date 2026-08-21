@@ -46,11 +46,11 @@ export async function POST(req: NextRequest) {
         await transporter.sendMail({
             from: process.env.SMTP_FROM || 'dataroom@wnode.one',
             to: record.email,
-            subject: 'WeNode Data Room - Access Code',
+            subject: 'Wnode Data Room - Access Code',
             text: `Your authentication code is: ${otp}\n\nThis code expires in 10 minutes.`,
             html: `
                 <div style="font-family: sans-serif; max-w: 600px; margin: 0 auto;">
-                    <h2>WeNode Data Room</h2>
+                    <h2>Wnode Data Room</h2>
                     <p>Your authentication code is:</p>
                     <h1 style="font-size: 32px; letter-spacing: 5px; color: #2563eb;">${otp}</h1>
                     <p>This code expires in 10 minutes.</p>

@@ -12,8 +12,8 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
     return (
         <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-black text-white">
             {/* Ambient Gradient Glow Background */}
-            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-blue-600/20 via-indigo-500/10 to-purple-600/20 rounded-full blur-[120px] pointer-events-none" />
-            <div className="absolute top-1/3 right-10 w-[350px] h-[350px] bg-emerald-500/10 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-purple-600/20 via-indigo-500/10 to-blue-600/20 rounded-full blur-[120px] pointer-events-none" />
+            <div className="absolute top-1/3 right-10 w-[350px] h-[350px] bg-purple-500/10 rounded-full blur-[100px] pointer-events-none" />
 
             <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -69,70 +69,74 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
                         </div>
                     </div>
 
-                    {/* Right Column: Contemporary Device-to-Mesh Interactive Graphic */}
+                    {/* Right Column: Live Resource Capacity Modals (Purple Border Box) */}
                     <div className="lg:col-span-5 relative flex justify-center">
-                        <div className="w-full max-w-md bg-slate-950/80 border border-slate-800/80 rounded-3xl p-6 shadow-2xl backdrop-blur-xl relative overflow-hidden group">
+                        <div className="w-full max-w-md bg-slate-950/90 border-2 border-purple-500/60 rounded-3xl p-6 shadow-[0_0_40px_rgba(168,85,247,0.25)] backdrop-blur-xl relative overflow-hidden group hover:border-purple-400 transition-all duration-300">
                             
                             {/* Card Glow Header */}
-                            <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-6">
+                            <div className="flex items-center justify-between border-b border-purple-900/50 pb-4 mb-6">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse" />
-                                    <span className="text-xs font-mono font-bold text-slate-300 uppercase tracking-widest">Live Sovereign Mesh</span>
+                                    <div className="w-3 h-3 rounded-full bg-emerald-400 animate-ping" />
+                                    <span className="text-xs font-mono font-bold text-purple-300 uppercase tracking-widest">Live Resource Capacity</span>
                                 </div>
-                                <span className="text-[10px] font-mono bg-blue-950/80 text-blue-400 px-2 py-1 rounded-md border border-blue-800/60">
-                                    nodld v1.7.0
+                                <span className="text-[10px] font-mono bg-purple-950/80 text-purple-300 px-2.5 py-1 rounded-md border border-purple-800/80 font-bold">
+                                    CMD Real-Time
                                 </span>
                             </div>
 
-                            {/* Node Topology Graphic Grid */}
-                            <div className="grid grid-cols-2 gap-3 mb-6">
-                                <div className="bg-slate-900/60 border border-slate-800 p-4 rounded-2xl text-left space-y-1">
-                                    <div className="text-[10px] font-mono text-slate-400 uppercase">Laptop / Desktop</div>
-                                    <div className="text-sm font-bold text-white flex items-center gap-1.5">
-                                        <span className="text-emerald-400">●</span> nodl-desktop
+                            {/* 4 Live Resource Capacity Modals / Cards */}
+                            <div className="grid grid-cols-2 gap-3.5 mb-2">
+                                
+                                {/* Card 1: Total Nodes */}
+                                <div className="bg-slate-900/80 border border-purple-900/40 p-4 rounded-2xl text-left space-y-1 hover:border-purple-500/50 transition-all">
+                                    <div className="text-[10px] font-mono text-purple-300 uppercase tracking-wider font-semibold">1. Total Nodes</div>
+                                    <div className="text-2xl font-extrabold text-white font-space-grotesk tracking-tight">
+                                        1,482+
                                     </div>
-                                    <div className="text-[10px] font-mono text-emerald-400">$1.45/hr avg</div>
+                                    <div className="text-[10px] font-mono text-emerald-400 flex items-center gap-1">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" /> Active Mesh Peers
+                                    </div>
                                 </div>
 
-                                <div className="bg-slate-900/60 border border-slate-800 p-4 rounded-2xl text-left space-y-1">
-                                    <div className="text-[10px] font-mono text-slate-400 uppercase">Smartphone</div>
-                                    <div className="text-sm font-bold text-white flex items-center gap-1.5">
-                                        <span className="text-blue-400">●</span> Mobile Node
+                                {/* Card 2: Total CPU Capacity (Cores) */}
+                                <div className="bg-slate-900/80 border border-purple-900/40 p-4 rounded-2xl text-left space-y-1 hover:border-purple-500/50 transition-all">
+                                    <div className="text-[10px] font-mono text-purple-300 uppercase tracking-wider font-semibold">2. CPU Capacity</div>
+                                    <div className="text-2xl font-extrabold text-blue-400 font-space-grotesk tracking-tight">
+                                        8,920
                                     </div>
-                                    <div className="text-[10px] font-mono text-blue-400">$0.85/hr avg</div>
+                                    <div className="text-[10px] font-mono text-blue-300">
+                                        Compute Cores
+                                    </div>
                                 </div>
 
-                                <div className="bg-slate-900/60 border border-slate-800 p-4 rounded-2xl text-left space-y-1">
-                                    <div className="text-[10px] font-mono text-slate-400 uppercase">DeWi Gateway</div>
-                                    <div className="text-sm font-bold text-white flex items-center gap-1.5">
-                                        <span className="text-purple-400">●</span> Radio Mesh
+                                {/* Card 3: Total GPU Capacity (GB) */}
+                                <div className="bg-slate-900/80 border border-purple-900/40 p-4 rounded-2xl text-left space-y-1 hover:border-purple-500/50 transition-all">
+                                    <div className="text-[10px] font-mono text-purple-300 uppercase tracking-wider font-semibold">3. GPU Capacity</div>
+                                    <div className="text-2xl font-extrabold text-indigo-400 font-space-grotesk tracking-tight">
+                                        3,840 <span className="text-xs font-normal text-slate-400">GB</span>
                                     </div>
-                                    <div className="text-[10px] font-mono text-purple-400">$2.10/hr avg</div>
+                                    <div className="text-[10px] font-mono text-indigo-300">
+                                        Accelerated VRAM
+                                    </div>
                                 </div>
 
-                                <div className="bg-slate-900/60 border border-slate-800 p-4 rounded-2xl text-left space-y-1">
-                                    <div className="text-[10px] font-mono text-slate-400 uppercase">Enterprise Server</div>
-                                    <div className="text-sm font-bold text-white flex items-center gap-1.5">
-                                        <span className="text-amber-400">●</span> nodl-core
+                                {/* Card 4: Total Memory Pool (GB) */}
+                                <div className="bg-slate-900/80 border border-purple-900/40 p-4 rounded-2xl text-left space-y-1 hover:border-purple-500/50 transition-all">
+                                    <div className="text-[10px] font-mono text-purple-300 uppercase tracking-wider font-semibold">4. Memory Pool</div>
+                                    <div className="text-2xl font-extrabold text-purple-400 font-space-grotesk tracking-tight">
+                                        24,576 <span className="text-xs font-normal text-slate-400">GB</span>
                                     </div>
-                                    <div className="text-[10px] font-mono text-amber-400">$4.50/hr avg</div>
+                                    <div className="text-[10px] font-mono text-purple-300">
+                                        RAM-Isolated Substrate
+                                    </div>
                                 </div>
+
                             </div>
 
-                            {/* Live Telemetry Pulse Graphic */}
-                            <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 flex items-center justify-between">
-                                <div className="flex items-center gap-3">
-                                    <div className="w-8 h-8 rounded-xl bg-blue-500/20 border border-blue-500/40 flex items-center justify-center text-blue-400">
-                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
-                                    </div>
-                                    <div className="text-left">
-                                        <div className="text-xs font-bold text-white">Daily Stripe Payouts</div>
-                                        <div className="text-[10px] font-mono text-slate-400">Instant USD Settlement</div>
-                                    </div>
-                                </div>
-                                <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-950/60 px-2.5 py-1 rounded-lg border border-emerald-800">
-                                    ACTIVE
-                                </span>
+                            {/* Live Substrate Footer Indicator */}
+                            <div className="mt-4 pt-3 border-t border-purple-900/40 flex items-center justify-between text-[10px] font-mono text-slate-400">
+                                <span>Zero-Storage Fabric</span>
+                                <span className="text-emerald-400 font-bold">● Network Growth Active</span>
                             </div>
 
                         </div>

@@ -74,7 +74,7 @@ export default function TokenomicsPage() {
                         {/* Overview */}
                         <Section id="overview" title="WEX Tokenomics Overview">
                             <p className="text-xl text-white/80 leading-relaxed">
-                                WEX powers the economic layer of the Wenode Mesh. It is designed for utility, sustainability, and long-term integrity. WEX is not a governance token, it is the economic engine of the Wenode planetary compute network.
+                                WEX powers the economic layer of the Wnode Mesh. It is designed for utility, sustainability, and long-term integrity. WEX is not a governance token, it is the economic engine of the Wnode planetary compute network.
                             </p>
                         </Section>
 
@@ -242,13 +242,13 @@ export default function TokenomicsPage() {
                             </h2>
                             <div className="space-y-6 text-sm text-slate-400 leading-relaxed">
                                 <p>
-                                    During the early technical preparation phase for the Wenode private sale, two preliminary WENODE tokens were minted to validate deployment parameters. These were internal test deployments created before the final WEX tokenomics were completed. They were never used, never distributed, and contain no supply or functionality.
+                                    During the early technical preparation phase for the Wnode private sale, two preliminary WENODE tokens were minted to validate deployment parameters. These were internal test deployments created before the final WEX tokenomics were completed. They were never used, never distributed, and contain no supply or functionality.
                                 </p>
                                 
                                 <div className="p-6 bg-blue-500/10 border border-blue-500/20 rounded-sm my-8">
-                                    <h3 className="text-white font-bold uppercase tracking-widest text-xs mb-4">The only official token recognized by the Wenode ecosystem is:</h3>
+                                    <h3 className="text-white font-bold uppercase tracking-widest text-xs mb-4">The only official token recognized by the Wnode ecosystem is:</h3>
                                     <div className="space-y-1">
-                                        <div className="font-bold text-white text-lg">WEX (Wenode Utility Token)</div>
+                                        <div className="font-bold text-white text-lg">WEX (Wnode Utility Token)</div>
                                         <div className="text-blue-400 font-mono text-sm break-all">
                                             <span className="text-slate-500 text-xs uppercase tracking-widest mr-2">Polygon Mainnet:</span>
                                             0xa382506695f825fe807C3f4D47aEB986046bdc57
@@ -258,7 +258,7 @@ export default function TokenomicsPage() {
 
                                 <div className="space-y-4">
                                     <p>
-                                        The following two early WENODE deployments are formally deprecated and not part of the Wenode economic model:
+                                        The following two early WENODE deployments are formally deprecated and not part of the Wnode economic model:
                                     </p>
                                     <ul className="space-y-2 font-mono text-xs text-slate-500 list-inside">
                                         <li className="break-all">0xF7bB2ea845b9e56aEf9E364d6Ae05Ea88236ca40</li>
@@ -268,7 +268,7 @@ export default function TokenomicsPage() {
 
                                 <div className="pt-6 mt-6 border-t border-white/5">
                                     <p className="text-white/80 font-medium">
-                                        Wenode maintains a single canonical token with a fixed supply of 10,000,000 WEX. No additional tokens will be created.
+                                        Wnode maintains a single canonical token with a fixed supply of 10,000,000 WEX. No additional tokens will be created.
                                     </p>
                                 </div>
                             </div>

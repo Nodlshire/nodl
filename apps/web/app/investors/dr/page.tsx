@@ -22,7 +22,7 @@ export default function DataRoomLandingPage() {
                     {/* Hero Section */}
                     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
                         <h1 className="text-5xl md:text-7xl font-black lowercase tracking-tighter">
-                            WeNode Investor <span className="text-blue-500">Data Room</span>
+                            Wnode Investor <span className="text-blue-500">Data Room</span>
                         </h1>
                         <p className="text-xl md:text-2xl text-slate-400 font-light max-w-2xl mx-auto">
                             Confidential materials for qualified investors.

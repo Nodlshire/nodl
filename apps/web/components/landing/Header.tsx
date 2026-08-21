@@ -101,9 +101,9 @@ export default function Header({ onContactClick }: HeaderProps) {
             }`}>
                 <div className="w-full px-6 md:px-12 flex justify-between items-center">
                     <a href="/" className="flex items-center gap-4 group text-left shrink-0">
-                        <img src="/logo.png" alt="WeNode" className="w-10 h-10 transition-transform group-hover:scale-110" />
+                        <img src="/logo.png" alt="Wnode" className="w-10 h-10 transition-transform group-hover:scale-110" />
                         <div className="flex flex-col text-left items-start">
-                            <span className="font-space-grotesk text-2xl tracking-tighter font-bold text-white leading-none">WeNode</span>
+                            <span className="font-space-grotesk text-2xl tracking-tighter font-bold text-white leading-none">Wnode</span>
                             <span className="text-[10px] uppercase tracking-widest text-blue-500 font-bold mt-1">AI Powered Planetary & Orbital Compute Mesh</span>
                         </div>
                     </a>

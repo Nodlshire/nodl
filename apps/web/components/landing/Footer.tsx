@@ -10,10 +10,10 @@ export default function Footer({ onContactClick }: FooterProps) {
                 
                 {/* 1. Logo and Text at Top Left (Left Justified) */}
                 <div className="flex flex-row items-center justify-start gap-4 w-full text-left">
-                    <img src="/logo.png" alt="WeNode" className="w-12 h-12" />
+                    <img src="/logo.png" alt="Wnode" className="w-12 h-12" />
                     <div className="flex flex-col text-left items-start">
-                        <span className="font-space-grotesk text-3xl tracking-tighter font-bold text-white leading-none text-left">Wnode — Planetary DePIN & DeWi Mesh</span>
-                        <span className="text-sm text-slate-400 font-medium max-w-md mt-2 text-left">A sovereign infrastructure network built from everyday devices. Compute. Connectivity. Routing. Earn for contributing real work.</span>
+                        <span className="font-space-grotesk text-3xl tracking-tighter font-bold text-white leading-none text-left">Wnode</span>
+                        <span className="text-sm text-slate-400 font-medium max-w-md mt-2 text-left">Planetary DePIN & DeWi Mesh</span>
                     </div>
                 </div>
                 

@@ -51,7 +51,7 @@ export function ComparisonMinimal() {
     <section className="w-full bg-black py-24 px-8 overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-5xl font-bold text-center text-white mb-20 uppercase tracking-tighter">
-          How Wenode Compares
+          How Wnode Compares
         </h2>
 
         <div className="overflow-x-auto custom-scrollbar">
@@ -59,7 +59,7 @@ export function ComparisonMinimal() {
             {/* Header Row */}
             <div className="grid grid-cols-3 border-b border-white/25 bg-white/[0.03]">
               <div className="p-4 md:p-6 text-center border-r border-white/15">
-                <h3 className="text-white font-bold text-xs md:text-base uppercase tracking-[0.2em]">Wenode</h3>
+                <h3 className="text-white font-bold text-xs md:text-base uppercase tracking-[0.2em]">Wnode</h3>
               </div>
               <div className="p-4 md:p-6 text-center border-r border-white/15">
                 <h3 className="text-gray-500 font-bold text-xs md:text-base uppercase tracking-[0.1em]">AWS / GCP / Azure</h3>
@@ -78,7 +78,7 @@ export function ComparisonMinimal() {
                     i !== features.length - 1 ? "border-b border-white/15" : ""
                   }`}
                 >
-                  {/* Wenode Column */}
+                  {/* Wnode Column */}
                   <div className="flex flex-col items-center justify-center p-4 md:p-6 border-r border-white/15 space-y-3">
                     <IconRenderer type={f.wnode} />
                     <span className="text-[9px] md:text-xs text-white text-center font-bold uppercase tracking-tight max-w-full">

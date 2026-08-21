@@ -6,7 +6,7 @@ export default function GovernanceRolesPage() {
     const roles = [
         {
             title: "Founder",
-            desc: "The architect and creator of the Wenode Mesh. Responsible for the initial governance framework, protocol design, and long-term strategic vision.",
+            desc: "The architect and creator of the Wnode Mesh. Responsible for the initial governance framework, protocol design, and long-term strategic vision.",
             limits: "Authority is constitutionally defined and subject to progressive decentralisation.",
             authority: "Permanent seat on the Founder Board; constitutional guardianship."
         },
@@ -56,7 +56,7 @@ export default function GovernanceRolesPage() {
                     <div className="space-y-4">
                         <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-white font-space-grotesk uppercase">Roles & Responsibilities</h1>
                         <p className="text-slate-400 max-w-2xl leading-relaxed">
-                            A clear definition of duties, limits, and authority within the Wenode governance architecture.
+                            A clear definition of duties, limits, and authority within the Wnode governance architecture.
                         </p>
                     </div>
 

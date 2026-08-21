@@ -17,7 +17,7 @@ export default function BetaSection({ onOpenModal }: BetaSectionProps) {
                     </h2>
                     
                     <p className="text-xl md:text-2xl text-slate-300 leading-relaxed max-w-4xl mx-auto mb-16">
-                        Wenode is opening its sovereign compute layer to a small group of developers ready to shape the foundations of a decentralised network economy. Beta contributors will work directly with the primitives that turn relationships, hardware, and participation into durable economic value. Those who help iterate the mesh will be recognised accordingly and rewarded significantly.
+                        Wnode is opening its sovereign compute layer to a small group of developers ready to shape the foundations of a decentralised network economy. Beta contributors will work directly with the primitives that turn relationships, hardware, and participation into durable economic value. Those who help iterate the mesh will be recognised accordingly and rewarded significantly.
                     </p>
 
                     <div className="flex flex-col items-center gap-4">

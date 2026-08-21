@@ -28,13 +28,13 @@ export default function CTAModal({ isOpen, onClose, mode }: CTAModalProps) {
             tag: "beta_tester"
         },
         waitlist: {
-            title: "Champion Wenode",
-            line: "Help us to promote Wenode to your audience and champion our movement",
+            title: "Champion Wnode",
+            line: "Help us to promote Wnode to your audience and champion our movement",
             tag: "waitlist"
         },
         developer: {
             title: "Beta Developer",
-            line: "Get early access and start building on the Wenode mesh.",
+            line: "Get early access and start building on the Wnode mesh.",
             tag: "developer"
         },
         investor: {

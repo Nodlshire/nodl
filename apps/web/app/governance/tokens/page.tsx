@@ -11,7 +11,7 @@ export default function TokenModelPage() {
                     <div className="space-y-4">
                         <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-white font-space-grotesk uppercase">Token Model & Economics</h1>
                         <p className="text-slate-400 max-w-2xl leading-relaxed">
-                            The dual-token architecture driving the Wenode economy: separating identity and governance from utility and value.
+                            The dual-token architecture driving the Wnode economy: separating identity and governance from utility and value.
                         </p>
                     </div>
 
@@ -86,7 +86,7 @@ export default function TokenModelPage() {
                         <div className="p-8 bg-blue-500/5 border border-blue-500/10 rounded-sm">
                             <h3 className="text-blue-500 font-bold text-sm uppercase tracking-widest mb-4">Why tokens do NOT grant governance power</h3>
                             <p className="text-sm text-slate-300 leading-relaxed">
-                                Traditional token-based voting (1 Token = 1 Vote) inevitably leads to plutocratic control, where the wealthiest participants dictate protocol direction. Wenode rejects this model. By decoupling economic value (WnodeToken) from governance power (SoulToken), we ensure that the network remains accountable to its human community, not its capital holders.
+                                Traditional token-based voting (1 Token = 1 Vote) inevitably leads to plutocratic control, where the wealthiest participants dictate protocol direction. Wnode rejects this model. By decoupling economic value (WnodeToken) from governance power (SoulToken), we ensure that the network remains accountable to its human community, not its capital holders.
                             </p>
                         </div>
                     </section>

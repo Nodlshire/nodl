@@ -6,20 +6,20 @@ export default function PrivacyPage() {
             <div className="relative pt-40 pb-24 px-8">
                 <div className="max-w-4xl mx-auto">
                     <div className="fade-in-section text-slate-300 whitespace-pre-wrap font-sans text-lg">
-{`Wnode Ltd. (trading as Wenode) — Privacy Policy
+{`Wnode Ltd. (trading as Wnode) — Privacy Policy
 Last Updated: April 2026
 
-Wnode Ltd., trading as Wenode (“we”, “us”, “our”), is committed to digital sovereignty, privacy-first design, and strict data minimisation. This Privacy Policy explains how we collect, use, store, and protect personal data across the Wenode platform, including our dashboards, authentication systems, and protected services.
+Wnode Ltd., trading as Wnode (“we”, “us”, “our”), is committed to digital sovereignty, privacy-first design, and strict data minimisation. This Privacy Policy explains how we collect, use, store, and protect personal data across the Wnode platform, including our dashboards, authentication systems, and protected services.
 
 1. Who We Are
-Wnode Ltd. (trading as Wenode)
+Wnode Ltd. (trading as Wnode)
 Registered in the United Kingdom
 Contact: team1@wnode.one
 
 We operate privacy-first infrastructure and do not engage in advertising, behavioural tracking, or data monetisation.
 
 2. Data We Collect
-We collect only the minimum personal data required to operate the Wenode platform securely and effectively.
+We collect only the minimum personal data required to operate the Wnode platform securely and effectively.
 
 2.1 Account Information
 • Name  
@@ -56,7 +56,7 @@ We use personal data solely for:
 • Secure authentication  
 • Session continuity  
 • Fraud prevention and security monitoring  
-• Providing access to Wenode dashboards  
+• Providing access to Wnode dashboards  
 • System maintenance and performance optimisation  
 • Responding to support requests  
 
@@ -64,7 +64,7 @@ All processing is limited to what is necessary for platform operation.
 
 5. Legal Basis for Processing
 Under UK GDPR and EU GDPR, our processing is based on:
-• Article 6(1)(b) — performance of a contract (providing the Wenode service)  
+• Article 6(1)(b) — performance of a contract (providing the Wnode service)  
 • Article 6(1)(f) — legitimate interests (security, fraud prevention, platform stability)  
 
 We do not rely on consent for any processing activity except where legally required.
@@ -81,7 +81,7 @@ We do not use advertising cookies, analytics cookies that identify individuals, 
 7. Data Storage and Retention
 We retain personal data only for as long as necessary to:
 • Maintain active accounts  
-• Provide the Wenode service  
+• Provide the Wnode service  
 • Meet legal and security obligations  
 
 Session data is short-lived and automatically expires.  
@@ -123,7 +123,7 @@ We implement:
 • Continuous monitoring for abuse and intrusion attempts  
 
 12. Children’s Data
-Wenode is not intended for individuals under 18.  
+Wnode is not intended for individuals under 18.  
 We do not knowingly collect data from minors.
 
 13. Changes to This Policy

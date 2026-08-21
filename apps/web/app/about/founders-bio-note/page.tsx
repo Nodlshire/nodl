@@ -34,13 +34,13 @@ export default function FoundersNotePage() {
                         <div className="space-y-8 text-slate-300 text-lg md:text-xl leading-relaxed font-light">
                             <h2 className="text-2xl md:text-3xl font-bold text-white uppercase tracking-tighter border-b border-white/10 pb-4">BIO - Stephen Soos</h2>
                             <p>
-                                Stephen Soos is the founder, architect, and developer of Wenode, a sovereign, zero-trust compute network built from almost nothing. After four years living through the war in Ukraine, enduring blackouts, freezing winters, and martial law, Stephen relocated to Hungary with only what fitted in his car. With no capital, no team, and sleeping on a sofa, he built the entire Wenode MVP on a Lenovo M700 “potato,” a re-engineered Dell T1500, and a stack of broken laptops he revived by hand.
+                                Stephen Soos is the founder, architect, and developer of Wnode, a sovereign, zero-trust compute network built from almost nothing. After four years living through the war in Ukraine, enduring blackouts, freezing winters, and martial law, Stephen relocated to Hungary with only what fitted in his car. With no capital, no team, and sleeping on a sofa, he built the entire Wnode MVP on a Lenovo M700 “potato,” a re-engineered Dell T1500, and a stack of broken laptops he revived by hand.
                             </p>
                             <p>
                                 A lifelong systems architect, Stephen has spent decades building early ecommerce platforms, cloud-connected print systems, medical hardware, and full-stack ecosystems that scaled to seven-figure revenues and public listings. His mission now is singular: connect billions of existing devices into a global compute layer that reduces e-waste, eliminates unnecessary datacenters, and gives everyday people a meaningful income stream in the emerging compute economy.
                             </p>
                             <p>
-                                Wenode is the culmination of a lifetime of building, and the belief that decentralisation should serve everyone, not just hyperscalers.
+                                Wnode is the culmination of a lifetime of building, and the belief that decentralisation should serve everyone, not just hyperscalers.
                             </p>
 
                             <h2 className="text-2xl md:text-3xl font-bold text-white uppercase tracking-tighter border-b border-white/10 pb-4 pt-12">Founders Note</h2>
@@ -67,13 +67,13 @@ export default function FoundersNotePage() {
                             </p>
 
                             <p>
-                                Wenode is the conductor that turns that hum into harmony without uprooting a single acacia tree or evicting 
+                                Wnode is the conductor that turns that hum into harmony without uprooting a single acacia tree or evicting 
                                 a single creature. Not a bee displaced, not a mole disturbed. Every phone, every EV, every robot, every smart TV, 
                                 every IoT device, every server, old or new, is part of a global fabric of compute that is astonishingly vast and wildly underused.
                             </p>
 
                             <p>
-                                Wenode Mesh isn’t a data centre, a satellite array, or some crypto‑bro hypervisor. It is the connection and 
+                                Wnode Mesh isn’t a data centre, a satellite array, or some crypto‑bro hypervisor. It is the connection and 
                                 harmonisation of that planetary hum into a living, breathing orchestration of compute that dwarfs the combined 
                                 power of the corporate incumbents, and it’s already in your pocket, your home, your office, your car, even the fields.
                             </p>
@@ -84,7 +84,7 @@ export default function FoundersNotePage() {
                             </p>
 
                             <p>
-                                Wenode transforms everyday hardware into income‑generating nodes, giving people real economic agency while 
+                                Wnode transforms everyday hardware into income‑generating nodes, giving people real economic agency while 
                                 reducing the ecological cost of compute. No more digging. No more water‑hungry cooling. No more landfill cycles.
                             </p>
 

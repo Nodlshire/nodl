@@ -6,29 +6,34 @@ export const dynamic = 'force-dynamic';
 export async function GET() {
     try {
         let nodes: any[] = [];
-        const BACKEND_URL = process.env.NODLD_API_URL || 'http://127.0.0.1:8080';
+        const backendUrls = [
+            'http://127.0.0.1:8080',
+            'http://192.168.1.140:8080',
+            process.env.NODLD_API_URL
+        ].filter(Boolean);
         
-        // 1. Try querying nodld API
-        try {
-            const res = await fetch(`${BACKEND_URL}/api/v1/nodes`, { 
-                cache: 'no-store',
-                headers: { 'x-user-id': '100001-0426-01-AA' }
-            });
-            if (res.ok) {
-                const data = await res.json();
-                if (Array.isArray(data)) {
-                    nodes = data;
+        // 1. Try querying nodld API endpoints
+        for (const url of backendUrls) {
+            try {
+                const res = await fetch(`${url}/api/v1/nodes`, { 
+                    cache: 'no-store',
+                    headers: { 'x-user-id': '100001-0426-01-AA' }
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    if (Array.isArray(data) && data.length > 0) {
+                        nodes = data;
+                        break;
+                    }
                 }
-            }
-        } catch (err) {
-            // API query failed, fallback to direct state read
+            } catch (err) {}
         }
 
         // 2. Fallback to state engine.json if empty
         if (nodes.length === 0) {
             const paths = [
-                '/home/obregan/Documents/nodl/services/nodld/state/engine.json',
-                '/home/obregan/wnode/services/nodld/state/engine.json'
+                '/home/obregan/wnode/services/nodld/state/engine.json',
+                '/home/obregan/Documents/nodl/services/nodld/state/engine.json'
             ];
             for (const p of paths) {
                 if (fs.existsSync(p)) {

@@ -318,35 +318,7 @@ func generateTimeOptions() []string {
 }
 
 func openBrowser(url string) {
-	var err error
-	switch runtime.GOOS {
-	case "linux":
-		if _, errLook := exec.LookPath("google-chrome"); errLook == nil {
-			err = exec.Command("google-chrome", "--app="+url, "--user-data-dir="+filepath.Join(os.TempDir(), "wnode-app-profile")).Start()
-		} else if _, errLook := exec.LookPath("chromium-browser"); errLook == nil {
-			err = exec.Command("chromium-browser", "--app="+url, "--user-data-dir="+filepath.Join(os.TempDir(), "wnode-app-profile")).Start()
-		} else if _, errLook := exec.LookPath("chromium"); errLook == nil {
-			err = exec.Command("chromium", "--app="+url, "--user-data-dir="+filepath.Join(os.TempDir(), "wnode-app-profile")).Start()
-		} else if _, errLook := exec.LookPath("brave-browser"); errLook == nil {
-			err = exec.Command("brave-browser", "--app="+url, "--user-data-dir="+filepath.Join(os.TempDir(), "wnode-app-profile")).Start()
-		} else {
-			err = exec.Command("xdg-open", url).Start()
-		}
-	case "windows":
-		if _, errLook := exec.LookPath("msedge"); errLook == nil {
-			err = exec.Command("msedge", "--app="+url).Start()
-		} else {
-			err = exec.Command("rundll32", "url.dll,FileProtocolHandler", url).Start()
-		}
-	case "darwin":
-		err = exec.Command("open", "-a", "Google Chrome", "--args", "--app="+url).Start()
-		if err != nil {
-			err = exec.Command("open", url).Start()
-		}
-	}
-	if err != nil {
-		log.Printf("Could not auto-open desktop window: %v", err)
-	}
+	launchNativeAppWindow(url)
 }
 
 func installDesktopShortcuts() error {

@@ -70,10 +70,76 @@ func saveToQueue(payload HeartbeatPayload) {
 
 	queue = append(queue, payload)
 	
+	// Cap queue to 200 items maximum to prevent memory/disk bloat
+	const maxQueueSize = 200
+	if len(queue) > maxQueueSize {
+		queue = queue[len(queue)-maxQueueSize:]
+	}
+
 	if newData, err := json.MarshalIndent(queue, "", "  "); err == nil {
 		_ = os.WriteFile(path, newData, 0600)
 		platform.Info("Saved heartbeat to offline queue (Queue size: %d)", len(queue))
 	}
+}
+
+func sendBatchHeartbeat(apiBase string, payloads []HeartbeatPayload, state *platform.State) error {
+	url := fmt.Sprintf("%s/api/v1/nodes/heartbeat/batch", strings.TrimRight(apiBase, "/"))
+
+	type Envelope struct {
+		Payload   HeartbeatPayload `json:"payload"`
+		Sequence  uint64           `json:"sequence"`
+		Signature []byte           `json:"signature"`
+		PubKey    []byte           `json:"pub_key"`
+	}
+
+	var batch []Envelope
+	for _, p := range payloads {
+		seq := atomic.AddUint64(&telemetrySeq, 1)
+		rawPayload, _ := json.Marshal(p)
+		sig := ed25519.Sign(nodePrivKey, rawPayload)
+		batch = append(batch, Envelope{
+			Payload:   p,
+			Sequence:  seq,
+			Signature: sig,
+			PubKey:    nodePubKey,
+		})
+	}
+
+	reqBody, err := json.Marshal(map[string]interface{}{
+		"batch": batch,
+	})
+	if err != nil {
+		return err
+	}
+
+	req, err := http.NewRequest("POST", url, bytes.NewBuffer(reqBody))
+	if err != nil {
+		return err
+	}
+
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Authorization", "Bearer "+state.DeviceToken)
+
+	tlsConfig := &tls.Config{MinVersion: tls.VersionTLS13}
+	client := &http.Client{
+		Timeout:   10 * time.Second,
+		Transport: &http.Transport{TLSClientConfig: tlsConfig},
+	}
+
+	resp, err := client.Do(req)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode == http.StatusTooManyRequests {
+		return fmt.Errorf("429 Too Many Requests")
+	}
+	if resp.StatusCode != http.StatusOK {
+		return fmt.Errorf("unexpected status code: %d", resp.StatusCode)
+	}
+
+	return nil
 }
 
 func flushQueue(apiBase string, state *platform.State) {
@@ -94,21 +160,56 @@ func flushQueue(apiBase string, state *platform.State) {
 
 	platform.Info("Flushing %d queued heartbeats...", len(queue))
 
-	var failed []HeartbeatPayload
-	for _, payload := range queue {
-		if err := sendHeartbeat(apiBase, payload, state); err != nil {
-			platform.Error("Failed to flush queued heartbeat: %v", err)
-			failed = append(failed, payload)
+	const batchSize = 50
+	var remaining []HeartbeatPayload
+	rateLimited := false
+
+	for i := 0; i < len(queue); i += batchSize {
+		end := i + batchSize
+		if end > len(queue) {
+			end = len(queue)
+		}
+		chunk := queue[i:end]
+
+		err := sendBatchHeartbeat(apiBase, chunk, state)
+		if err != nil {
+			if strings.Contains(err.Error(), "429") {
+				platform.Warn("[BACKPRESSURE] Server rate-limited backlog flush (HTTP 429). Halting queue flush.")
+				rateLimited = true
+				remaining = append(remaining, queue[i:]...)
+				break
+			}
+			// Fallback to individual sending with 250ms pacing
+			for idx, p := range chunk {
+				if sErr := sendHeartbeat(apiBase, p, state); sErr != nil {
+					if strings.Contains(sErr.Error(), "429") {
+						platform.Warn("[BACKPRESSURE] Rate-limited (HTTP 429). Halting queue flush.")
+						rateLimited = true
+						remaining = append(remaining, chunk[idx:]...)
+						remaining = append(remaining, queue[end:]...)
+						break
+					}
+					remaining = append(remaining, p)
+				}
+				time.Sleep(250 * time.Millisecond)
+			}
+			if rateLimited {
+				break
+			}
 		}
 	}
 
-	if len(failed) > 0 {
-		if newData, err := json.MarshalIndent(failed, "", "  "); err == nil {
+	if len(remaining) > 0 {
+		const maxQueue = 200
+		if len(remaining) > maxQueue {
+			remaining = remaining[len(remaining)-maxQueue:]
+		}
+		if newData, err := json.MarshalIndent(remaining, "", "  "); err == nil {
 			_ = os.WriteFile(path, newData, 0600)
 		}
 	} else {
 		_ = os.Remove(path)
-		platform.Info("Offline queue flushed successfully.")
+		platform.Info("Offline telemetry queue successfully flushed.")
 	}
 }
 

@@ -103,7 +103,11 @@ func (s *Store) SaveState() error {
 		return err
 	}
 
-	err = os.WriteFile(s.statePath, data, 0644)
+	tmpPath := s.statePath + ".tmp"
+	if err := os.WriteFile(tmpPath, data, 0644); err != nil {
+		return err
+	}
+	err = os.Rename(tmpPath, s.statePath)
 	s.lastSave = time.Now()
 	atomic.AddInt64(&s.saveBatch, 1)
 	return err

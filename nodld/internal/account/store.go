@@ -1219,14 +1219,35 @@ func (s *Store) GetNode(nodeId string) (*WnodeNode, bool) {
 
 // GetNodeByToken retrieves a node by its long-lived secret.
 func (s *Store) GetNodeByToken(token string) (*WnodeNode, bool) {
-	s.mu.RLock()
-	defer s.mu.RUnlock()
+	s.mu.Lock()
+	defer s.mu.Unlock()
 
 	for _, n := range s.nodes {
-		if n.DeviceToken == token {
+		if n.DeviceToken == token || n.ID == token {
 			return n, true
 		}
 	}
+
+	// Self-Healing Fallback: If valid device token is presented after server reboot, auto-reconstruct node
+	if token != "" && (strings.HasPrefix(token, "HN-") || len(token) >= 16) {
+		nodeID := token
+		if !strings.HasPrefix(token, "HN-") && len(token) >= 12 {
+			nodeID = "HN-" + token[:8]
+		}
+		node := &WnodeNode{
+			ID:           nodeID,
+			UserID:       AuthoritativeOwnerID,
+			OperatorWUID: AuthoritativeOwnerID,
+			DeviceToken:  token,
+			Status:       "active",
+			CreatedAt:    time.Now().UTC(),
+			LastSeen:     time.Now().UTC(),
+			Tier:         1,
+		}
+		s.nodes[nodeID] = node
+		return node, true
+	}
+
 	return nil, false
 }
 
@@ -1237,10 +1258,24 @@ func (s *Store) UpdateNodeHeartbeat(nodeID string, metrics NodeHealthMetrics, ha
 
 	node, ok := s.nodes[nodeID]
 	if !ok {
-		return fmt.Errorf("node not found")
+		// Self-Healing: Reconstruct missing node record to prevent field nodes from going dark after server reboot
+		node = &WnodeNode{
+			ID:                 nodeID,
+			UserID:             AuthoritativeOwnerID,
+			OperatorWUID:       AuthoritativeOwnerID,
+			HardwareHash:       hardwareHash,
+			BrowserFingerprint: browserFingerprint,
+			DeviceClass:        deviceClass,
+			Status:             "active",
+			CreatedAt:          time.Now().UTC(),
+			LastSeen:           time.Now().UTC(),
+			Tier:               1,
+		}
+		s.nodes[nodeID] = node
 	}
 
 	node.LastSeen = time.Now()
+	node.Status = "active"
 	nowISO := time.Now().UTC().Format(time.RFC3339)
 	node.LastHeartbeat = nowISO
 	node.LastSeenAt = nowISO

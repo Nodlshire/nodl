@@ -381,6 +381,7 @@ func (s *Server) registerRoutes() {
 	apiV1.Post("/nodes/register", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleRegisterNode)
 	apiV1.Get("/nodes/verify-token", s.requireDeviceToken(), s.handleVerifyToken)
 	apiV1.Post("/nodes/heartbeat", s.requireDeviceToken(), s.heartbeatRateLimit(), s.handleHeartbeatNode)
+	apiV1.Post("/nodes/heartbeat/batch", s.requireDeviceToken(), s.heartbeatRateLimit(), s.handleBatchHeartbeatNode)
 	apiV1.Get("/nodes/me", s.requireDeviceToken(), s.handleGetNodeMe)
 	apiV1.Get("/nodes/work", s.requireDeviceToken(), s.handleGetNodeWork)
 	apiV1.Post("/nodes/work/result", s.requireDeviceToken(), s.handlePostNodeWorkResult)
@@ -1694,9 +1695,11 @@ func (s *Server) heartbeatRateLimit() fiber.Handler {
 		if lastRaw, ok := s.heartbeatLimiter.Load(nodeID); ok {
 			if last, ok := lastRaw.(time.Time); ok {
 				if now.Sub(last) < cooldown {
+					retrySeconds := int((cooldown - now.Sub(last)).Seconds()) + 1
+					c.Set("Retry-After", fmt.Sprintf("%d", retrySeconds))
 					return c.Status(429).JSON(fiber.Map{
-						"error":      "rate limited",
-						"retry_after": fmt.Sprintf("%.0fs", (cooldown - now.Sub(last)).Seconds()),
+						"error":       "rate limited",
+						"retry_after": fmt.Sprintf("%ds", retrySeconds),
 					})
 				}
 			}
@@ -1883,11 +1886,27 @@ func (s *Server) handleCreateHeadlessToken(c *fiber.Ctx) error {
 
 func (s *Server) handleConsumeHeadlessToken(c *fiber.Ctx) error {
 	authHeader := c.Get("Authorization")
-	if !strings.HasPrefix(authHeader, "Bearer ") {
-		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "missing or invalid Authorization header"})
+	tokenStr := ""
+	if strings.HasPrefix(authHeader, "Bearer ") {
+		tokenStr = strings.TrimPrefix(authHeader, "Bearer ")
 	}
-
-	tokenStr := strings.TrimPrefix(authHeader, "Bearer ")
+	if tokenStr == "" {
+		var reqBody struct {
+			Token    string `json:"token"`
+			UPID     string `json:"upid"`
+			CPUCores int    `json:"cpuCores"`
+			MemoryGB int    `json:"memoryGb"`
+		}
+		if err := c.BodyParser(&reqBody); err == nil && reqBody.Token != "" {
+			tokenStr = reqBody.Token
+		}
+	}
+	if tokenStr == "" {
+		tokenStr = c.Query("token")
+	}
+	if tokenStr == "" {
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "missing or invalid token"})
+	}
 	
 	type HeadlessConsumeBody struct {
 		UPID     string `json:"upid"`
@@ -2051,6 +2070,47 @@ func (s *Server) handleHeartbeatNode(c *fiber.Ctx) error {
 
 	res := fiber.Map{"status": "success"}
 	return c.JSON(res)
+}
+
+func (s *Server) handleBatchHeartbeatNode(c *fiber.Ctx) error {
+	nodeId := c.Locals("node_id").(string)
+
+	var req struct {
+		Batch []struct {
+			Payload struct {
+				Metrics            account.NodeHealthMetrics `json:"metrics"`
+				HardwareHash       string                    `json:"hardwareHash,omitempty"`
+				BrowserFingerprint string                    `json:"browserFingerprint,omitempty"`
+				DeviceClass        string                    `json:"deviceClass,omitempty"`
+			} `json:"payload"`
+		} `json:"batch"`
+	}
+
+	if err := c.BodyParser(&req); err != nil || len(req.Batch) == 0 {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid batch payload"})
+	}
+
+	ingested := 0
+	for _, item := range req.Batch {
+		p := item.Payload
+		deviceClass := p.DeviceClass
+		if deviceClass == "" {
+			if p.Metrics.IsWASM {
+				deviceClass = "wasm"
+			} else {
+				deviceClass = "native"
+			}
+		}
+		if err := s.accountStore.UpdateNodeHeartbeat(nodeId, p.Metrics, p.HardwareHash, p.BrowserFingerprint, deviceClass, c.IP()); err == nil {
+			ingested++
+		}
+	}
+
+	return c.JSON(fiber.Map{
+		"status":   "success",
+		"ingested": ingested,
+		"total":    len(req.Batch),
+	})
 }
 
 func (s *Server) handleGenerateSpaceNodePayload(c *fiber.Ctx) error {

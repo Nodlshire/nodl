@@ -1,6 +1,28 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
+function createRedirectResponse(request: NextRequest, targetPath: string): NextResponse {
+  const forwardedHost = request.headers.get('x-forwarded-host');
+  const hostHeader = request.headers.get('host');
+  const rawHost = forwardedHost || hostHeader || 'cmd.wnode.one';
+  
+  let host = rawHost;
+  if (host.includes('localhost') || host.includes('127.0.0.1')) {
+    host = 'cmd.wnode.one';
+  }
+  
+  const proto = request.headers.get('x-forwarded-proto') || 'https';
+  const redirectUrl = `${proto}://${host}${targetPath}`;
+  
+  return new NextResponse(null, {
+    status: 307,
+    headers: {
+      'Location': redirectUrl,
+      'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate'
+    }
+  });
+}
+
 export function middleware(request: NextRequest) {
   const session = request.cookies.get('cmd_session')?.value;
   const authHeader = request.headers.get('Authorization');
@@ -16,7 +38,6 @@ export function middleware(request: NextRequest) {
   // If no session and no auth token and trying to access protected page
   if (!session && !hasAuthToken && !isAuthPage && !isPublicFile) {
     if (isApiPage) {
-      // Allow the identity and auth endpoints to be handled by the proxy/handler
       if (request.nextUrl.pathname === '/api/account/me' || 
           request.nextUrl.pathname.startsWith('/api/auth') ||
           request.nextUrl.pathname.startsWith('/api/v1/') ||
@@ -28,29 +49,17 @@ export function middleware(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const url = request.nextUrl.clone();
-    url.pathname = '/auth/login';
-    return NextResponse.redirect(url);
+    return createRedirectResponse(request, '/auth/login');
   }
 
-  
   if (session && isAuthPage) {
-    const url = request.nextUrl.clone();
-    url.pathname = '/';
-    return NextResponse.redirect(url);
+    return createRedirectResponse(request, '/');
   }
   return NextResponse.next();
 }
 
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * - logo.webp (institutional logo)
-     */
     '/((?!_next/static|_next/image|favicon.ico|logo.webp).*)',
   ],
 };

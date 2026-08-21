@@ -87,6 +87,10 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
   const directMacCmd = `curl -L https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-desktop-darwin-arm64 -o nodl-desktop && chmod +x nodl-desktop && WNODE_API_BASE=https://nodlr.wnode.one ./nodl-desktop --token=${activeTokenDisplay}`;
   const directWinCmd = `iwr -useb https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-desktop-windows-amd64.exe -OutFile nodl-desktop.exe; $env:WNODE_API_BASE='https://nodlr.wnode.one'; .\\nodl-desktop.exe --token=${activeTokenDisplay}`;
 
+  const headlessLinuxCmd = `curl -L https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-core-linux-amd64 -o nodl-core && chmod +x nodl-core && WNODE_API_BASE=https://nodlr.wnode.one ./nodl-core --token=${activeTokenDisplay}`;
+  const headlessArm64Cmd = `curl -L https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-core-linux-arm64 -o nodl-core && chmod +x nodl-core && WNODE_API_BASE=https://nodlr.wnode.one ./nodl-core --token=${activeTokenDisplay}`;
+  const headlessMacCmd = `curl -L https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-core-darwin-arm64 -o nodl-core && chmod +x nodl-core && WNODE_API_BASE=https://nodlr.wnode.one ./nodl-core --token=${activeTokenDisplay}`;
+
   const linuxVariants: Record<string, { name: string; desc: string; cmd: string }> = {
     "linux-ubuntu": {
       name: "Ubuntu 22.04 / 24.04 LTS (x86_64)",
@@ -124,37 +128,37 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
     "headless-debian": {
       name: "Debian 11 / 12 Bookworm (x86_64)",
       desc: "Direct GitHub Releases binary download for Debian Linux headless server.",
-      cmd: directLinuxCmd
+      cmd: headlessLinuxCmd
     },
     "headless-ubuntu": {
       name: "Ubuntu 22.04 / 24.04 LTS (x86_64)",
       desc: "Direct GitHub Releases binary download for Ubuntu Linux headless server.",
-      cmd: directLinuxCmd
+      cmd: headlessLinuxCmd
     },
     "headless-fedora": {
       name: "Fedora / RHEL / CentOS / AlmaLinux (x86_64)",
       desc: "Direct GitHub Releases binary download for Fedora/RHEL headless server.",
-      cmd: directLinuxCmd
+      cmd: headlessLinuxCmd
     },
     "headless-arch": {
       name: "Arch Linux / Manjaro (x86_64)",
       desc: "Direct GitHub Releases binary download for Arch Linux headless server.",
-      cmd: directLinuxCmd
+      cmd: headlessLinuxCmd
     },
     "headless-alpine": {
       name: "Alpine Linux (musl x86_64)",
       desc: "Direct GitHub Releases binary download for Alpine Linux headless server.",
-      cmd: directLinuxCmd
+      cmd: headlessLinuxCmd
     },
     "headless-arm64": {
       name: "Linux ARM64 / Raspberry Pi 4/5 (aarch64)",
       desc: "Direct GitHub Releases binary download for ARM64 headless server.",
-      cmd: directArm64Cmd
+      cmd: headlessArm64Cmd
     },
     "headless-mac": {
       name: "macOS Headless Daemon (Apple Silicon & Intel)",
       desc: "Direct GitHub Releases binary download for macOS terminal/background daemon.",
-      cmd: directMacCmd
+      cmd: headlessMacCmd
     },
     "headless-windows": {
       name: "Windows Headless Service (PowerShell)",

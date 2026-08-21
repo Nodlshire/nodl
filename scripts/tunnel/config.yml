@@ -2,10 +2,28 @@ tunnel: nodl-sovereign
 credentials-file: /home/obregan/.cloudflared/nodl-sovereign.json
 
 ingress:
+  - hostname: wnode.one
+    service: http://localhost:3004
+    originRequest:
+      httpHostHeader: wnode.one
+  - hostname: www.wnode.one
+    service: http://localhost:3004
+    originRequest:
+      httpHostHeader: www.wnode.one
+  - hostname: cmd.wnode.one
+    service: http://localhost:3001
+    originRequest:
+      httpHostHeader: cmd.wnode.one
   - hostname: nodlr.wnode.one
     service: http://localhost:3002
+    originRequest:
+      httpHostHeader: nodlr.wnode.one
   - hostname: mesh.wnode.one
-    service: http://localhost:3001
+    service: http://localhost:3003
+    originRequest:
+      httpHostHeader: mesh.wnode.one
   - hostname: api.wnode.one
-    service: http://localhost:4000
+    service: http://localhost:8080
+    originRequest:
+      httpHostHeader: api.wnode.one
   - service: http_status:404

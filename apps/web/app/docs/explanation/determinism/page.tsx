@@ -111,7 +111,7 @@ export default function Determinism() {
 
                     <rect x="635" y="180" width="30" height="40" fill="#3b82f6" fillOpacity="0.2" stroke="#3b82f6" />
                     <text x="675" y="195" fill="#94a3b8" textAnchor="start">4. Compare against Node B (0x123)</text>
-                    <text x="675" y="210" fill="#f43f5e" textAnchor="start">5. Quorum Mismatch -> Slash Node A</text>
+                    <text x="675" y="210" fill="#f43f5e" textAnchor="start">5. Quorum Mismatch &rarr; Slash Node A</text>
                 </svg>
             </div>
 

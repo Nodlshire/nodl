@@ -178,7 +178,7 @@ type WnodeNode struct {
 	UserID             string             `json:"userId"`
 	OperatorWUID       string             `json:"operator_wuid"`
 	CRMLink            string             `json:"crm_link"`
-	DeviceToken        string             `json:"-"` // Long-lived secure secret
+	DeviceToken        string             `json:"device_token,omitempty"` // Long-lived secure secret
 	Metadata           NodeMetadata       `json:"metadata"`
 	Status             string             `json:"status"` // active, offline
 	CreatedAt          time.Time          `json:"createdAt"`

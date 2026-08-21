@@ -55,9 +55,443 @@
         "NODLR",
         "MESH"
       ],
-      "createdAt": "2026-08-18T16:18:12.181689823+02:00"
+      "createdAt": "2026-08-21T02:20:39.519944811+02:00"
     }
   },
+  "nodes": {
+    "HN-27e459dc": {
+      "cpu_cores": 0,
+      "memory_gb": 0,
+      "lat": 0,
+      "lon": 0,
+      "ipAddress": "",
+      "id": "HN-27e459dc",
+      "userId": "100001-0426-01-AA",
+      "operator_wuid": "100001-0426-01-AA",
+      "crm_link": "",
+      "metadata": {
+        "os": ""
+      },
+      "status": "offline",
+      "createdAt": "2026-07-19T14:24:48.651011173Z",
+      "lastSeen": "2026-08-20T14:20:36.330894Z",
+      "last_heartbeat": "2026-08-20T14:20:36.330894+00:00",
+      "last_seen_at": "2026-08-20T14:20:36.330894+00:00",
+      "globalScore": 0,
+      "tier": 5,
+      "isWasm": false,
+      "downtimePenalized": true,
+      "downtimeSlashed": true
+    },
+    "HN-6e1b9664": {
+      "cpu_cores": 0,
+      "memory_gb": 0,
+      "lat": 0,
+      "lon": 0,
+      "ipAddress": "",
+      "id": "HN-6e1b9664",
+      "userId": "100001-0426-01-AA",
+      "operator_wuid": "100001-0426-01-AA",
+      "crm_link": "",
+      "metadata": {
+        "os": ""
+      },
+      "status": "offline",
+      "createdAt": "2026-07-17T14:45:08.670116452Z",
+      "lastSeen": "2026-08-20T14:20:36.330894Z",
+      "last_heartbeat": "2026-08-20T14:20:36.330894+00:00",
+      "last_seen_at": "2026-08-20T14:20:36.330894+00:00",
+      "globalScore": 0,
+      "tier": 5,
+      "isWasm": false,
+      "downtimePenalized": true,
+      "downtimeSlashed": true
+    },
+    "HN-7b738c68": {
+      "cpu_cores": 0,
+      "memory_gb": 0,
+      "lat": 0,
+      "lon": 0,
+      "ipAddress": "",
+      "id": "HN-7b738c68",
+      "userId": "100001-0426-01-AA",
+      "operator_wuid": "100001-0426-01-AA",
+      "crm_link": "",
+      "metadata": {
+        "os": ""
+      },
+      "status": "offline",
+      "createdAt": "2026-07-19T14:22:36.105670023Z",
+      "lastSeen": "2026-08-20T14:20:36.330894Z",
+      "last_heartbeat": "2026-08-20T14:20:36.330894+00:00",
+      "last_seen_at": "2026-08-20T14:20:36.330894+00:00",
+      "globalScore": 0,
+      "tier": 5,
+      "isWasm": false,
+      "downtimePenalized": true,
+      "downtimeSlashed": true
+    },
+    "HN-961e6510": {
+      "cpu_cores": 0,
+      "memory_gb": 0,
+      "lat": 0,
+      "lon": 0,
+      "ipAddress": "",
+      "id": "HN-961e6510",
+      "userId": "100001-0426-01-AA",
+      "operator_wuid": "100001-0426-01-AA",
+      "crm_link": "",
+      "metadata": {
+        "os": ""
+      },
+      "status": "offline",
+      "createdAt": "2026-07-19T14:34:33.058089745Z",
+      "lastSeen": "2026-08-20T14:20:36.330894Z",
+      "last_heartbeat": "2026-08-20T14:20:36.330894+00:00",
+      "last_seen_at": "2026-08-20T14:20:36.330894+00:00",
+      "globalScore": 0,
+      "tier": 5,
+      "isWasm": false,
+      "downtimePenalized": true,
+      "downtimeSlashed": true
+    },
+    "HN-9bec7bf2": {
+      "cpu_cores": 0,
+      "memory_gb": 0,
+      "lat": 0,
+      "lon": 0,
+      "ipAddress": "",
+      "id": "HN-9bec7bf2",
+      "userId": "100001-0426-01-AA",
+      "operator_wuid": "100001-0426-01-AA",
+      "crm_link": "",
+      "metadata": {
+        "os": ""
+      },
+      "status": "offline",
+      "createdAt": "2026-07-19T14:30:47.216967205Z",
+      "lastSeen": "2026-08-20T14:20:36.330894Z",
+      "last_heartbeat": "2026-08-20T14:20:36.330894+00:00",
+      "last_seen_at": "2026-08-20T14:20:36.330894+00:00",
+      "globalScore": 0,
+      "tier": 5,
+      "isWasm": false,
+      "downtimePenalized": true,
+      "downtimeSlashed": true
+    },
+    "TEST-UPID-123": {
+      "cpu_cores": 4,
+      "memory_gb": 16,
+      "lat": 0,
+      "lon": 0,
+      "ipAddress": "",
+      "id": "TEST-UPID-123",
+      "userId": "100001-0426-01-AA",
+      "operator_wuid": "100001-0426-01-AA",
+      "crm_link": "",
+      "metadata": {
+        "os": ""
+      },
+      "status": "offline",
+      "createdAt": "2026-07-20T04:02:13.680346844Z",
+      "lastSeen": "2026-08-20T14:20:36.330894Z",
+      "last_heartbeat": "2026-08-20T14:20:36.330894+00:00",
+      "last_seen_at": "2026-08-20T14:20:36.330894+00:00",
+      "globalScore": 0,
+      "tier": 5,
+      "isWasm": false,
+      "downtimePenalized": true,
+      "downtimeSlashed": true
+    },
+    "cf1092f3f2d7e84d73619f79c0299baa781e8a83d95723c5e6db8eb504f8637f": {
+      "cpu_cores": 2,
+      "memory_gb": 5,
+      "lat": 0,
+      "lon": 0,
+      "ipAddress": "",
+      "id": "cf1092f3f2d7e84d73619f79c0299baa781e8a83d95723c5e6db8eb504f8637f",
+      "userId": "100001-0426-01-AA",
+      "operator_wuid": "100001-0426-01-AA",
+      "crm_link": "",
+      "metadata": {
+        "os": ""
+      },
+      "status": "offline",
+      "createdAt": "2026-07-20T09:01:34.989029837Z",
+      "lastSeen": "2026-08-20T14:20:36.330894Z",
+      "last_heartbeat": "2026-08-20T14:20:36.330894+00:00",
+      "last_seen_at": "2026-08-20T14:20:36.330894+00:00",
+      "globalScore": 0,
+      "tier": 5,
+      "isWasm": false,
+      "downtimePenalized": true,
+      "downtimeSlashed": true
+    }
+  },
+  "token_ledger": [
+    {
+      "entryId": "12facf36-27a3-4e2a-b67d-f849a17e0f79",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "downtime",
+      "shardId": "HN-9bec7bf2",
+      "amount": -0.0001,
+      "reason": "downtime_penalty",
+      "timestamp": "2026-08-20T16:22:11.273885304+02:00"
+    },
+    {
+      "entryId": "1ba68c77-b3f2-49aa-b7fe-5c3155dc0be1",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "downtime",
+      "shardId": "TEST-UPID-123",
+      "amount": -0.0001,
+      "reason": "downtime_penalty",
+      "timestamp": "2026-08-20T16:22:11.273885304+02:00"
+    },
+    {
+      "entryId": "8d914d7e-2417-44d4-afee-a1f288e80340",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "downtime",
+      "shardId": "cf1092f3f2d7e84d73619f79c0299baa781e8a83d95723c5e6db8eb504f8637f",
+      "amount": -0.005,
+      "reason": "downtime_penalty",
+      "timestamp": "2026-08-20T16:22:11.273885304+02:00"
+    },
+    {
+      "entryId": "247fce45-a1d9-4f1d-9397-5b2d01c668c5",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "downtime",
+      "shardId": "HN-27e459dc",
+      "amount": -0.0001,
+      "reason": "downtime_penalty",
+      "timestamp": "2026-08-20T16:22:11.273885304+02:00"
+    },
+    {
+      "entryId": "5920a9f5-f579-451c-9bc7-e5354849298b",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "downtime",
+      "shardId": "HN-6e1b9664",
+      "amount": -0.0001,
+      "reason": "downtime_penalty",
+      "timestamp": "2026-08-20T16:22:11.273885304+02:00"
+    },
+    {
+      "entryId": "8f584206-5ba0-494d-bd9a-f8c3b1ef9545",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "downtime",
+      "shardId": "HN-7b738c68",
+      "amount": -0.0001,
+      "reason": "downtime_penalty",
+      "timestamp": "2026-08-20T16:22:11.273885304+02:00"
+    },
+    {
+      "entryId": "ef2909da-1b64-4403-9137-b126a32de5fa",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "downtime",
+      "shardId": "HN-961e6510",
+      "amount": -0.0001,
+      "reason": "downtime_penalty",
+      "timestamp": "2026-08-20T16:22:11.273885304+02:00"
+    },
+    {
+      "entryId": "421f872a-450e-4b64-bcdb-08da5752edbc",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "",
+      "shardId": "",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-08-20T16:23:11.273768498+02:00"
+    },
+    {
+      "entryId": "6d8c8828-f4f8-4105-8a75-945c18c80fa3",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "",
+      "shardId": "",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-08-20T16:23:11.273796463+02:00"
+    },
+    {
+      "entryId": "c74472e8-97de-42aa-bfdc-56bee40cdd9a",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "",
+      "shardId": "",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-08-20T16:23:11.273804022+02:00"
+    },
+    {
+      "entryId": "7fb6d729-74f1-449f-a360-52d29770bed0",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "",
+      "shardId": "",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-08-20T16:23:11.273814451+02:00"
+    },
+    {
+      "entryId": "0817dc4e-fa99-4ec2-b6d6-ef2f10f4dbf4",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "",
+      "shardId": "",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-08-20T16:23:11.273819568+02:00"
+    },
+    {
+      "entryId": "e72f8201-fae4-4b37-a3c0-b1f564f81eed",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "",
+      "shardId": "",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-08-20T16:23:11.273823056+02:00"
+    },
+    {
+      "entryId": "649c0e4f-5db9-4810-80f0-ce7dd9ee8327",
+      "operatorId": "100001-0426-01-AA",
+      "jobId": "",
+      "shardId": "",
+      "amount": -15,
+      "reason": "slash_downtime",
+      "timestamp": "2026-08-20T16:23:11.273827884+02:00"
+    }
+  ],
+  "token_balances": {
+    "100001-0426-01-AA": {
+      "operatorId": "100001-0426-01-AA",
+      "balance": -75.0056,
+      "updatedAt": "2026-08-20T16:23:11.273827969+02:00"
+    }
+  },
+  "operator_stakes": {
+    "100001-0426-01-AA": {
+      "operatorId": "100001-0426-01-AA",
+      "staked": 0,
+      "locked": 0,
+      "updatedAt": "2026-08-20T16:23:11.27382754+02:00"
+    }
+  },
+  "stake_ledger": [
+    {
+      "entryId": "7310274e-fe13-478f-ad9e-177f47cde0eb",
+      "operatorId": "100001-0426-01-AA",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-08-20T16:23:11.273770018+02:00"
+    },
+    {
+      "entryId": "bcc54bca-2b0f-45f6-9542-fbce6b8fb2b3",
+      "operatorId": "100001-0426-01-AA",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-08-20T16:23:11.273797175+02:00"
+    },
+    {
+      "entryId": "f5c34909-d4da-46ad-a0d0-1d3312af1c1f",
+      "operatorId": "100001-0426-01-AA",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-08-20T16:23:11.273804393+02:00"
+    },
+    {
+      "entryId": "429222a7-3e58-4b40-96d5-1ed931feee3a",
+      "operatorId": "100001-0426-01-AA",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-08-20T16:23:11.273815028+02:00"
+    },
+    {
+      "entryId": "bc1ef73b-adf1-43c1-9c56-0fd702a25099",
+      "operatorId": "100001-0426-01-AA",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-08-20T16:23:11.273819845+02:00"
+    },
+    {
+      "entryId": "088edad9-b83f-495e-89b3-c81d69bcd6c6",
+      "operatorId": "100001-0426-01-AA",
+      "amount": -10,
+      "reason": "slash_downtime",
+      "timestamp": "2026-08-20T16:23:11.273823317+02:00"
+    },
+    {
+      "entryId": "77f2d509-9075-4250-a243-b1d02fa714ca",
+      "operatorId": "100001-0426-01-AA",
+      "amount": -15,
+      "reason": "slash_downtime",
+      "timestamp": "2026-08-20T16:23:11.273828125+02:00"
+    }
+  ],
+  "operator_reputations": {
+    "100001-0426-01-AA": {
+      "operatorId": "100001-0426-01-AA",
+      "score": 0.30083333333333334,
+      "reliability": 1,
+      "uptime": 0,
+      "successRate": 1,
+      "abandonmentRate": 0,
+      "slashes": 7,
+      "stakeLevel": 0,
+      "computeScore": 0,
+      "tier": 5,
+      "longevityDays": 3,
+      "updatedAt": "2026-08-20T16:23:11.273828958+02:00",
+      "assignedShards": 0,
+      "completedShards": 0,
+      "abandonedShards": 0
+    }
+  },
+  "reputation_ledger": [
+    {
+      "entryId": "773ab8c3-4175-4ce4-9e36-0e8d096870f1",
+      "operatorId": "100001-0426-01-AA",
+      "delta": -0.19916666666666671,
+      "reason": "recalculate",
+      "timestamp": "2026-08-20T16:23:11.273778608+02:00"
+    },
+    {
+      "entryId": "290c46c8-07a3-4ec4-9fa2-e64fe568e6ae",
+      "operatorId": "100001-0426-01-AA",
+      "delta": -0.04999999999999993,
+      "reason": "recalculate",
+      "timestamp": "2026-08-20T16:23:11.273798465+02:00"
+    },
+    {
+      "entryId": "60c78560-4fe5-4347-9d22-37dfc2e0d665",
+      "operatorId": "100001-0426-01-AA",
+      "delta": -0.050000000000000044,
+      "reason": "recalculate",
+      "timestamp": "2026-08-20T16:23:11.273810147+02:00"
+    },
+    {
+      "entryId": "f56b3182-174e-47a3-8370-2eb8e647b64c",
+      "operatorId": "100001-0426-01-AA",
+      "delta": -0.04999999999999999,
+      "reason": "recalculate",
+      "timestamp": "2026-08-20T16:23:11.273816586+02:00"
+    },
+    {
+      "entryId": "bef0de0b-0197-4aea-9f0a-a7531b566f38",
+      "operatorId": "100001-0426-01-AA",
+      "delta": -0.04999999999999999,
+      "reason": "recalculate",
+      "timestamp": "2026-08-20T16:23:11.273821032+02:00"
+    },
+    {
+      "entryId": "df2f78b5-5728-4f91-ab3d-2c432b779c1e",
+      "operatorId": "100001-0426-01-AA",
+      "delta": -0.050000000000000044,
+      "reason": "recalculate",
+      "timestamp": "2026-08-20T16:23:11.2738244+02:00"
+    },
+    {
+      "entryId": "bab529dc-6a7b-4d50-8f1c-09753588eeba",
+      "operatorId": "100001-0426-01-AA",
+      "delta": -0.04999999999999999,
+      "reason": "recalculate",
+      "timestamp": "2026-08-20T16:23:11.273829275+02:00"
+    }
+  ],
   "invite": {
     "secret": "dd3c941353be54cd501b6a8797c2a95c71aee50a7a746b89aa6090685b2f27ddd64a1a93993e36896869e77270af313f1d0c604006e3363d8103434762607f81",
     "nextFounderIndex": 1,
@@ -583,80 +1017,6 @@
       "twoFAVerified": false,
       "expiresAt": "2026-08-18T09:57:09.628250102+02:00",
       "createdAt": "2026-08-17T09:57:09.62825037+02:00"
-    }
-  },
-  "headless_tokens": {
-    "REG-0a1b254e-c29a-4ba2-9722-b46bc66ed47f": {
-      "token": "REG-0a1b254e-c29a-4ba2-9722-b46bc66ed47f",
-      "userId": "100001-0426-01-AA",
-      "profile": "earth-headless",
-      "expiresAt": "2026-08-18T16:59:14.504930461+02:00",
-      "used": false,
-      "createdAt": "2026-08-18T15:59:14.504930611+02:00"
-    },
-    "REG-0f6b73eb-c331-4777-b286-222831ef3adb": {
-      "token": "REG-0f6b73eb-c331-4777-b286-222831ef3adb",
-      "userId": "100001-0426-01-AA",
-      "profile": "earth-headless",
-      "expiresAt": "2026-08-18T17:04:05.729411037+02:00",
-      "used": false,
-      "createdAt": "2026-08-18T16:04:05.729411278+02:00"
-    },
-    "REG-1d1847ef-300e-467b-9cd7-b57e82982adc": {
-      "token": "REG-1d1847ef-300e-467b-9cd7-b57e82982adc",
-      "userId": "100001-0426-01-AA",
-      "profile": "earth-headless",
-      "expiresAt": "2026-08-18T16:52:09.749747843+02:00",
-      "used": false,
-      "createdAt": "2026-08-18T15:52:09.749748182+02:00"
-    },
-    "REG-2abf8565-892e-4079-80ef-048e72d17d75": {
-      "token": "REG-2abf8565-892e-4079-80ef-048e72d17d75",
-      "userId": "100001-0426-01-AA",
-      "profile": "earth-headless",
-      "expiresAt": "2026-08-18T16:59:35.688048997+02:00",
-      "used": false,
-      "createdAt": "2026-08-18T15:59:35.688049084+02:00"
-    },
-    "REG-5b823c9c-72f9-460f-be31-2bed4d0bcb72": {
-      "token": "REG-5b823c9c-72f9-460f-be31-2bed4d0bcb72",
-      "userId": "100001-0426-01-AA",
-      "profile": "earth-headless",
-      "expiresAt": "2026-08-18T16:38:43.408708832+02:00",
-      "used": false,
-      "createdAt": "2026-08-18T15:38:43.408708946+02:00"
-    },
-    "REG-72281856-94a9-4a55-ac01-a5baff08ce20": {
-      "token": "REG-72281856-94a9-4a55-ac01-a5baff08ce20",
-      "userId": "100001-0426-01-AA",
-      "profile": "earth-headless",
-      "expiresAt": "2026-08-18T16:56:54.833609977+02:00",
-      "used": false,
-      "createdAt": "2026-08-18T15:56:54.833610166+02:00"
-    },
-    "REG-8238bba6-f05c-4d36-aa5e-35e593fe6075": {
-      "token": "REG-8238bba6-f05c-4d36-aa5e-35e593fe6075",
-      "userId": "100001-0426-01-AA",
-      "profile": "earth-headless",
-      "expiresAt": "2026-08-18T16:57:11.173560752+02:00",
-      "used": false,
-      "createdAt": "2026-08-18T15:57:11.173560893+02:00"
-    },
-    "REG-92ba76f3-dabc-4b56-8fc8-59042e3be991": {
-      "token": "REG-92ba76f3-dabc-4b56-8fc8-59042e3be991",
-      "userId": "100001-0426-01-AA",
-      "profile": "earth-headless",
-      "expiresAt": "2026-08-18T17:01:25.978786302+02:00",
-      "used": false,
-      "createdAt": "2026-08-18T16:01:25.978786674+02:00"
-    },
-    "REG-aca0754b-42b5-4d17-b9cb-83c8dfbec2ab": {
-      "token": "REG-aca0754b-42b5-4d17-b9cb-83c8dfbec2ab",
-      "userId": "100001-0426-01-AA",
-      "profile": "earth-headless",
-      "expiresAt": "2026-08-18T16:38:35.130505476+02:00",
-      "used": false,
-      "createdAt": "2026-08-18T15:38:35.130505604+02:00"
     }
   }
 }

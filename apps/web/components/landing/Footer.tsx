@@ -13,7 +13,7 @@ export default function Footer({ onContactClick }: FooterProps) {
                     <img src="/logo.png" alt="Wnode" className="w-12 h-12" />
                     <div className="flex flex-col text-left items-start">
                         <span className="font-space-grotesk text-3xl tracking-tighter font-bold text-white leading-none text-left">Wnode</span>
-                        <span className="text-sm text-slate-400 font-medium max-w-md mt-2 text-left">Planetary DePIN & DeWi Mesh</span>
+                        <span className="text-sm uppercase tracking-widest text-blue-400 font-bold max-w-md mt-2 text-left">AI Powered DePin/DeWi</span>
                     </div>
                 </div>
                 

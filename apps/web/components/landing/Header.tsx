@@ -104,7 +104,7 @@ export default function Header({ onContactClick }: HeaderProps) {
                         <img src="/logo.png" alt="Wnode" className="w-10 h-10 transition-transform group-hover:scale-110" />
                         <div className="flex flex-col text-left items-start">
                             <span className="font-space-grotesk text-2xl tracking-tighter font-bold text-white leading-none">Wnode</span>
-                            <span className="text-[10px] uppercase tracking-widest text-blue-500 font-bold mt-1">AI Powered Planetary & Orbital Compute Mesh</span>
+                            <span className="text-[11px] uppercase tracking-widest text-blue-400 font-bold mt-1">AI Powered DePin/DeWi</span>
                         </div>
                     </a>
 

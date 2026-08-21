@@ -111,59 +111,53 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
                                 </div>
                             </div>
 
-                            {/* 4 Authoritative Resource Capacity Modals / Cards */}
-                            <div className="grid grid-cols-2 gap-3.5 mb-2">
+                            {/* 4 Authoritative Resource Capacity Modals / Cards with White Titles & Distinct Color Highlights */}
+                            <div className="grid grid-cols-2 gap-3.5">
                                 
-                                {/* Card 1: Total Nodes */}
-                                <div className="bg-slate-900/80 border border-purple-900/40 p-4 rounded-2xl text-left space-y-1 hover:border-purple-500/50 transition-all">
-                                    <div className="text-[10px] font-mono text-purple-300 uppercase tracking-wider font-semibold">1. Total Nodes</div>
+                                {/* Card 1: Total Nodes (Emerald Highlight) */}
+                                <div className="bg-emerald-950/30 border border-emerald-500/40 p-4 rounded-2xl text-left space-y-1.5 shadow-[0_0_20px_rgba(16,185,129,0.12)] hover:border-emerald-400/70 transition-all duration-300">
+                                    <div className="text-xs font-mono text-white font-bold uppercase tracking-wider">1. Total Nodes</div>
                                     <div className="text-2xl font-extrabold text-white font-space-grotesk tracking-tight">
                                         {liveStats.totalNodes}
                                     </div>
-                                    <div className="text-[10px] font-mono text-emerald-400 flex items-center gap-1">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" /> Authoritative Mesh
+                                    <div className="text-[10px] font-mono text-emerald-400 flex items-center gap-1 font-medium">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" /> Active Mesh
                                     </div>
                                 </div>
 
-                                {/* Card 2: Total CPU Capacity (Cores) */}
-                                <div className="bg-slate-900/80 border border-purple-900/40 p-4 rounded-2xl text-left space-y-1 hover:border-purple-500/50 transition-all">
-                                    <div className="text-[10px] font-mono text-purple-300 uppercase tracking-wider font-semibold">2. CPU Capacity</div>
-                                    <div className="text-2xl font-extrabold text-blue-400 font-space-grotesk tracking-tight">
+                                {/* Card 2: Total CPU Capacity (Cyan Highlight) */}
+                                <div className="bg-cyan-950/30 border border-cyan-500/40 p-4 rounded-2xl text-left space-y-1.5 shadow-[0_0_20px_rgba(6,182,212,0.12)] hover:border-cyan-400/70 transition-all duration-300">
+                                    <div className="text-xs font-mono text-white font-bold uppercase tracking-wider">2. CPU Capacity</div>
+                                    <div className="text-2xl font-extrabold text-cyan-300 font-space-grotesk tracking-tight">
                                         {liveStats.totalCpuCores}
                                     </div>
-                                    <div className="text-[10px] font-mono text-blue-300">
+                                    <div className="text-[10px] font-mono text-cyan-400 font-medium">
                                         Compute Cores
                                     </div>
                                 </div>
 
-                                {/* Card 3: Total GPU Capacity (GB) */}
-                                <div className="bg-slate-900/80 border border-purple-900/40 p-4 rounded-2xl text-left space-y-1 hover:border-purple-500/50 transition-all">
-                                    <div className="text-[10px] font-mono text-purple-300 uppercase tracking-wider font-semibold">3. GPU Capacity</div>
-                                    <div className="text-2xl font-extrabold text-indigo-400 font-space-grotesk tracking-tight">
+                                {/* Card 3: Total GPU Capacity (Indigo Highlight) */}
+                                <div className="bg-indigo-950/30 border border-indigo-500/40 p-4 rounded-2xl text-left space-y-1.5 shadow-[0_0_20px_rgba(99,102,241,0.12)] hover:border-indigo-400/70 transition-all duration-300">
+                                    <div className="text-xs font-mono text-white font-bold uppercase tracking-wider">3. GPU Capacity</div>
+                                    <div className="text-2xl font-extrabold text-indigo-300 font-space-grotesk tracking-tight">
                                         {liveStats.totalGpuGB} <span className="text-xs font-normal text-slate-400">GB</span>
                                     </div>
-                                    <div className="text-[10px] font-mono text-indigo-300">
+                                    <div className="text-[10px] font-mono text-indigo-400 font-medium">
                                         Accelerated VRAM
                                     </div>
                                 </div>
 
-                                {/* Card 4: Total Memory Pool (GB) */}
-                                <div className="bg-slate-900/80 border border-purple-900/40 p-4 rounded-2xl text-left space-y-1 hover:border-purple-500/50 transition-all">
-                                    <div className="text-[10px] font-mono text-purple-300 uppercase tracking-wider font-semibold">4. Memory Pool</div>
-                                    <div className="text-2xl font-extrabold text-purple-400 font-space-grotesk tracking-tight">
+                                {/* Card 4: Total Memory Pool (Purple Highlight) */}
+                                <div className="bg-purple-950/30 border border-purple-500/40 p-4 rounded-2xl text-left space-y-1.5 shadow-[0_0_20px_rgba(168,85,247,0.12)] hover:border-purple-400/70 transition-all duration-300">
+                                    <div className="text-xs font-mono text-white font-bold uppercase tracking-wider">4. Memory Pool</div>
+                                    <div className="text-2xl font-extrabold text-purple-300 font-space-grotesk tracking-tight">
                                         {liveStats.totalMemoryGB} <span className="text-xs font-normal text-slate-400">GB</span>
                                     </div>
-                                    <div className="text-[10px] font-mono text-purple-300">
+                                    <div className="text-[10px] font-mono text-purple-400 font-medium">
                                         RAM Substrate
                                     </div>
                                 </div>
 
-                            </div>
-
-                            {/* Live Substrate Footer Indicator */}
-                            <div className="mt-4 pt-3 border-t border-purple-900/40 flex items-center justify-between text-[10px] font-mono text-slate-400">
-                                <span>Zero-Storage Fabric</span>
-                                <span className="text-purple-400 font-bold">● SOT Synchronized</span>
                             </div>
 
                         </div>

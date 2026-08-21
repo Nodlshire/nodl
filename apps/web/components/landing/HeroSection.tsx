@@ -10,42 +10,32 @@ interface HeroSectionProps {
 
 export default function HeroSection({ onOpenModal }: HeroSectionProps) {
     const [liveStats, setLiveStats] = useState({
-        totalNodes: 1482,
-        totalCpuCores: 8920,
-        totalGpuGB: 3840,
-        totalMemoryGB: 24576,
-        isLive: true
+        totalNodes: 0,
+        totalCpuCores: 0,
+        totalGpuGB: 0,
+        totalMemoryGB: 0
     });
 
     useEffect(() => {
         const fetchLiveMetrics = async () => {
             try {
-                const res = await fetch("https://cmd.wnode.one/api/v1/nodes", { cache: "no-store" });
+                const res = await fetch("/api/nodes/stats", { cache: "no-store" });
                 if (res.ok) {
-                    const nodes = await res.json();
-                    if (Array.isArray(nodes) && nodes.length > 0) {
-                        const activeNodes = nodes.filter((n: any) => n.status === "active" || n.status?.active);
-                        const totalNodesCount = activeNodes.length > 0 ? activeNodes.length : nodes.length;
-                        const cpu = nodes.reduce((acc: number, n: any) => acc + (n.metrics?.cpuCores || n.cpuCores || 4), 0);
-                        const gpu = nodes.reduce((acc: number, n: any) => acc + (n.metrics?.gpuVramGB || n.gpuVramGB || 2), 0);
-                        const ram = nodes.reduce((acc: number, n: any) => acc + (n.metrics?.memoryGb || n.memoryGb || 16), 0);
-                        
-                        setLiveStats({
-                            totalNodes: totalNodesCount > 0 ? totalNodesCount : 1482,
-                            totalCpuCores: cpu > 0 ? cpu : 8920,
-                            totalGpuGB: gpu > 0 ? gpu : 3840,
-                            totalMemoryGB: ram > 0 ? ram : 24576,
-                            isLive: true
-                        });
-                    }
+                    const data = await res.json();
+                    setLiveStats({
+                        totalNodes: data.totalNodes || 0,
+                        totalCpuCores: data.totalCpuCores || 0,
+                        totalGpuGB: data.totalGpuGB || 0,
+                        totalMemoryGB: data.totalMemoryGB || 0
+                    });
                 }
             } catch (err) {
-                // Fallback to live production baseline metrics
+                console.error("Failed to load live resource capacity:", err);
             }
         };
 
         fetchLiveMetrics();
-        const interval = setInterval(fetchLiveMetrics, 15000);
+        const interval = setInterval(fetchLiveMetrics, 10000);
         return () => clearInterval(interval);
     }, []);
 
@@ -116,25 +106,22 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
                             {/* Card Glow Header */}
                             <div className="flex items-center justify-between border-b border-purple-900/50 pb-4 mb-6">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-3 h-3 rounded-full bg-emerald-400 animate-ping" />
+                                    <div className="w-3 h-3 rounded-full bg-purple-400 animate-ping" />
                                     <span className="text-xs font-mono font-bold text-purple-300 uppercase tracking-widest">Live Resource Capacity</span>
                                 </div>
-                                <span className="text-[10px] font-mono bg-purple-950/80 text-purple-300 px-2.5 py-1 rounded-md border border-purple-800/80 font-bold">
-                                    CMD Live Data
-                                </span>
                             </div>
 
-                            {/* 4 Live Resource Capacity Modals / Cards */}
+                            {/* 4 Authoritative Resource Capacity Modals / Cards */}
                             <div className="grid grid-cols-2 gap-3.5 mb-2">
                                 
                                 {/* Card 1: Total Nodes */}
                                 <div className="bg-slate-900/80 border border-purple-900/40 p-4 rounded-2xl text-left space-y-1 hover:border-purple-500/50 transition-all">
                                     <div className="text-[10px] font-mono text-purple-300 uppercase tracking-wider font-semibold">1. Total Nodes</div>
                                     <div className="text-2xl font-extrabold text-white font-space-grotesk tracking-tight">
-                                        {liveStats.totalNodes.toLocaleString()}
+                                        {liveStats.totalNodes}
                                     </div>
                                     <div className="text-[10px] font-mono text-emerald-400 flex items-center gap-1">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" /> Active Mesh Peers
+                                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" /> Authoritative Mesh
                                     </div>
                                 </div>
 
@@ -142,7 +129,7 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
                                 <div className="bg-slate-900/80 border border-purple-900/40 p-4 rounded-2xl text-left space-y-1 hover:border-purple-500/50 transition-all">
                                     <div className="text-[10px] font-mono text-purple-300 uppercase tracking-wider font-semibold">2. CPU Capacity</div>
                                     <div className="text-2xl font-extrabold text-blue-400 font-space-grotesk tracking-tight">
-                                        {liveStats.totalCpuCores.toLocaleString()}
+                                        {liveStats.totalCpuCores}
                                     </div>
                                     <div className="text-[10px] font-mono text-blue-300">
                                         Compute Cores
@@ -153,7 +140,7 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
                                 <div className="bg-slate-900/80 border border-purple-900/40 p-4 rounded-2xl text-left space-y-1 hover:border-purple-500/50 transition-all">
                                     <div className="text-[10px] font-mono text-purple-300 uppercase tracking-wider font-semibold">3. GPU Capacity</div>
                                     <div className="text-2xl font-extrabold text-indigo-400 font-space-grotesk tracking-tight">
-                                        {liveStats.totalGpuGB.toLocaleString()} <span className="text-xs font-normal text-slate-400">GB</span>
+                                        {liveStats.totalGpuGB} <span className="text-xs font-normal text-slate-400">GB</span>
                                     </div>
                                     <div className="text-[10px] font-mono text-indigo-300">
                                         Accelerated VRAM
@@ -164,10 +151,10 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
                                 <div className="bg-slate-900/80 border border-purple-900/40 p-4 rounded-2xl text-left space-y-1 hover:border-purple-500/50 transition-all">
                                     <div className="text-[10px] font-mono text-purple-300 uppercase tracking-wider font-semibold">4. Memory Pool</div>
                                     <div className="text-2xl font-extrabold text-purple-400 font-space-grotesk tracking-tight">
-                                        {liveStats.totalMemoryGB.toLocaleString()} <span className="text-xs font-normal text-slate-400">GB</span>
+                                        {liveStats.totalMemoryGB} <span className="text-xs font-normal text-slate-400">GB</span>
                                     </div>
                                     <div className="text-[10px] font-mono text-purple-300">
-                                        RAM-Isolated Substrate
+                                        RAM Substrate
                                     </div>
                                 </div>
 
@@ -176,7 +163,7 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
                             {/* Live Substrate Footer Indicator */}
                             <div className="mt-4 pt-3 border-t border-purple-900/40 flex items-center justify-between text-[10px] font-mono text-slate-400">
                                 <span>Zero-Storage Fabric</span>
-                                <span className="text-emerald-400 font-bold">● Network Growth Active</span>
+                                <span className="text-purple-400 font-bold">● SOT Synchronized</span>
                             </div>
 
                         </div>

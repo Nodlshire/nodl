@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import AppLayout from "../components/layout/AppLayout";
 import HeroSection from "../components/landing/HeroSection";
-import TractionBar from "../components/landing/TractionBar";
 import HowItWorksSection from "../components/landing/HowItWorksSection";
 import ValuePathsSection from "../components/landing/ValuePathsSection";
 import DeWiSection from "../components/landing/DeWiSection";
@@ -34,9 +33,6 @@ export default function LandingPage() {
                 
                 {/* SECTION B: Hero Section */}
                 <HeroSection onOpenModal={openModal} />
-
-                {/* SECTION C: Live Traction Bar */}
-                <TractionBar />
 
                 {/* SECTION D: How It Works (Simple 4-Step Visual Section) */}
                 <HowItWorksSection />

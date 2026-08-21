@@ -1,144 +1,58 @@
 # Wnode Documentation Index
 
+## 00-overview
+* [Vision & Mission](./00-overview/vision.md)
+* [Architecture Overview](./00-overview/architecture-overview.md)
+* [Protocol Glossary](./00-overview/glossary.md)
+* [System Status](./00-overview/status.md)
 
-> ### Contextual Architecture Narrative
+## 01-architecture
+* [System Architecture & Building Blocks](./01-architecture/system-architecture.md)
+* [RAM-Only Compute Model](./01-architecture/compute-model.md)
+* [Telemetry Data Flow](./01-architecture/data-flow.md)
+* [Network Topology & Tiers](./01-architecture/network-topology.md)
+* [Locality Engine & Latency Proofs](./01-architecture/locality-engine.md)
 
-> - **WHAT**: Core architectural specification for **Wnode Documentation Index** within the Wnode Sovereign Mesh network.
+## 02-security
+* [STRIDE Threat Model](./02-security/threat-model.md)
+* [Cryptographic Security Model](./02-security/security-model.md)
+* [Zero-Trust Execution Sandbox](./02-security/zero-trust-execution.md)
+* [Identity Fingerprinting & Sybil Defense](./02-security/identity-and-sybil.md)
+* [Auditability & Compliance](./02-security/audit-and-compliance.md)
 
-> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+## 03-dewi (Decentralized Wireless Subsystem)
+* [DeWi Subsystem Overview](./03-dewi/README.md)
+* [DeWi Subsystem Architecture](./03-dewi/architecture.md)
+* [Wireless Protocols & Handshakes](./03-dewi/protocols.md)
+* [Radio Safety & Compliance](./03-dewi/radio-safety.md)
+* [Hardware Abstraction Layer (HAL)](./03-dewi/hardware-abstraction.md)
+* [Integrating DeWi with Compute Mesh](./03-dewi/integration-with-mesh.md)
 
-> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+## 04-node-operator
+* [Getting Started Guide](./04-node-operator/getting-started.md)
+* [Node Types & Archetypes](./04-node-operator/node-types.md)
+* [Operator Complete Guide](./04-node-operator/operator-guide.md)
+* [Rewards & Payout Mechanics](./04-node-operator/rewards-and-payouts.md)
+* [Troubleshooting & Diagnostics](./04-node-operator/troubleshooting.md)
 
+## 05-developer
+* [Developer Quickstart](./05-developer/quickstart.md)
+* [API Reference Specification](./05-developer/api-reference.md)
+* [Client SDK Guide](./05-developer/sdk-guide.md)
+* [Job Envelope Format](./05-developer/job-envelope-spec.md)
+* [RAM-Native Capabilities](./05-developer/wasm-capabilities.md)
 
+## 06-economics-governance
+* [WWEX Tokenomics](./06-economics-governance/tokenomics.md)
+* [USD Revenue Model](./06-economics-governance/revenue-model.md)
+* [Nodlr Affiliate System](./06-economics-governance/affiliate-system.md)
+* [Soul-DAO Governance](./06-economics-governance/governance.md)
+* [Founder Slots & Allocations](./06-economics-governance/founder-slots.md)
 
-> Canonical reference for the Wnode Sovereign Mesh — v1.0
+## 07-integrations
+* [Ecosystem Integrations Overview](./07-integrations/overview.md)
 
----
-
-## Core Architecture
-
-- [Vision and Architecture](vision-and-architecture.md)
-- [Architecture Overview](architecture/)
-- [Overview](overview/)
-- [Data Flow](data-flow.md)
-- [Network Topology](network-topology.md)
-- [Compute Topology](compute-topology.md)
-- [Zero-Storage Architecture](zero-storage.md)
-- [RAM Execution Model](ram-execution-model.md)
-- [Locality Engine](locality-engine.md)
-
-## Security
-
-- [Security Model](security-model.md)
-- [Security Hardening](security-hardening.md)
-- [Mesh Client Security](mesh-client-security.md)
-- [Audit and Compliance](audit-and-compliance.md)
-- [Node Compliance](node-compliance.md)
-- [Network Failure Modes](network-failure-modes.md)
-- [Security Reference](security/)
-
-## Execution & Runtime
-
-- [Proof of Compute](proof-of-compute.md)
-- [Job Envelope Specification](JOB_ENVELOPE_SPEC.md)
-- [Job Types](job-types.md)
-- [Compute Classes](compute-classes.md)
-- [Compute Tiers](compute-tiers.md)
-- [Compute Scheduling](compute-scheduling.md)
-- [Routing Instructions](routing-instructions.md)
-- [Execution Reference](execution/)
-- [Runtime](runtime.md)
-
-## Economics & Tokenomics
-
-- [Compute Economics](compute-economics.md)
-- [Compute Pricing](compute-pricing.md)
-- [Compute Guarantees](compute-guarantees.md)
-- [Revenue Model](revenue-model.md)
-- [Founder Economics](founder-economics.md)
-- [Stripe Connect Architecture](stripe-connect-architecture.md)
-- [Market Monitoring](market-monitoring.md)
-- [Economics Reference](economics/)
-- [Financials](financials/)
-
-## Governance
-
-- [Governance Overview](governance.md)
-- [Founder Governance](founder-governance.md)
-- [Steward Constitution](steward-constitution.md)
-- [Steward Governance](steward-governance.md)
-- [Steward API](steward-api.md)
-- [Steward Metrics](steward-metrics.md)
-- [Steward Update Policy](steward-update-policy.md)
-- [Licensing and Stewardship](licensing-and-stewardship.md)
-- [Governance Reference](governance/)
-
-## Node Operations
-
-- [Node Operator Guide](node-operator-guide.md)
-- [Node Contract](NODE_CONTRACT.md)
-- [Node Lifecycle](node-lifecycle.md)
-- [Node Performance Scoring](node-performance-scoring.md)
-- [Node Performance Tuning](node-performance-tuning.md)
-- [Mini Datacenter Guidelines](mini-datacenter-guidelines.md)
-- [Network Lifecycle](network-lifecycle.md)
-- [Operator Reference](operator/)
-- [Operators Reference](operators/)
-
-## AI & Intelligence
-
-- [Mesh Maestro Intelligence](mesh-maestro-intelligence.md)
-- [Agents](agents.md)
-
-## Mesh & Clients
-
-- [Mesh Client Lifecycle](mesh-client-lifecycle.md)
-- [Nodlr Onboarding](nodlr-onboarding.md)
-- [Environmental Impact](environmental-impact.md)
-- [Mesh Reference](mesh/)
-
-## Technical Specifications
-
-- [Attestation A+](attestation-a-plus.md)
-- [Verification](verification/)
-- [Protocols](protocols/)
-- [Interfaces](interfaces/)
-
-## Guides
-
-- [Developer Guide](DEVELOPER_GUIDE.md)
-- [Contributing](CONTRIBUTING.md)
-- [Deployment](DEPLOYMENT.md)
-- [Ambassador Handbook](ambassador-handbook.md)
-- [Code of Conduct](CODE_OF_CONDUCT.md)
-- [Apps Overview](apps.md)
-- [Workflows](workflows.md)
-
-## Reference
-
-- [Glossary](glossary/)
-- [Diagrams](diagrams/)
-- [API Reference](api/)
-- [SDK Reference](sdk/)
-- [Backend Responsibilities](backend/)
-- [UI Reference](ui/)
-- [Integration Catalog](../integrations/)
-- [Investor Summary](investor_summary.md)
-- [Investors](investors/)
-- [Integrations Overview](integrations.md)
-- [Integrations Details](integrations/)
-- [Telemetry](telemetry/)
-- [Deployment Reference](deployment/)
-- [Command Reference](cmd/)
-
-## Specifications
-
-- [M2M](m2m.md)
-- [MEV](mev.md)
-- [Vault](VAULT.md)
-- [Security](security.md)
-- [SDK](sdk.md)
-
----
-
-*Version: 1.0 · Last Updated: July 2026*
+## 08-operations
+* [Production Deployment Protocol](./08-operations/deployment.md)
+* [Monitoring & Telemetry](./08-operations/monitoring-and-telemetry.md)
+* [Incident Response Runbook](./08-operations/runbooks/incident-response.md)

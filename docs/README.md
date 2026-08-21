@@ -1,33 +1,23 @@
-# Wnode Main Overview
+# Wnode Sovereign Compute Mesh Documentation
 
+Welcome to the official canonical technical documentation for the Wnode Sovereign Compute Mesh protocol.
 
-> ### Contextual Architecture Narrative
+---
 
-> - **WHAT**: Core architectural specification for **Wnode Main Overview** within the Wnode Sovereign Mesh network.
+## Master Documentation Structure
 
-> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+- [`00-overview/`](./00-overview/vision.md): Vision, System Architecture Overview, Protocol Glossary & Status
+- [`01-architecture/`](./01-architecture/system-architecture.md): System Architecture, Compute Model, Data Flow, Network Topology, Locality Engine
+- [`02-security/`](./02-security/threat-model.md): STRIDE Threat Model, Security Model, Zero-Trust RAM Sandbox, Sybil Defense
+- [`03-dewi/`](./03-dewi/README.md): First-Class DeWi (Decentralized Wireless) Subsystem Architecture & Protocols
+- [`04-node-operator/`](./04-node-operator/getting-started.md): Node Operator Getting Started, Node Archetypes, Troubleshooting
+- [`05-developer/`](./05-developer/quickstart.md): Developer Quickstart, API Reference, SDK Guide, Job Envelope Specs
+- [`06-economics-governance/`](./06-economics-governance/tokenomics.md): WWEX Tokenomics, Revenue Model, Affiliate System, Soul-DAO Governance
+- [`07-integrations/`](./07-integrations/overview.md): Third-Party Ecosystem Integrations
+- [`08-operations/`](./08-operations/deployment.md): Infrastructure Deployment, Monitoring & Operational Runbooks
+- [`INDEX.md`](./INDEX.md): Master Navigable Index
 
-> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+---
 
-
-
-## Overview
-Wnode is a decentralized, sovereign compute network designed to execute high-value tasks, ranging from general machine-to-machine (M2M) compute to highly optimized MEV extraction. 
-
-## Purpose
-To empower operators to monetize idle and active compute while providing a secure, resilient fabric for automated integrations.
-
-## Architecture
-Wnode consists of the Command portal (operations), Nodlr (node management), Mesh (client network), and the nodld backend powered by libp2p.
-
-## Revenue path
-Operators earn yield via direct compute leasing, automated protocol integrations (e.g., Aave liquidations), and MEV arbitrage.
-
-## Test results
-Core infrastructure successfully deployed and tested. All portals communicating securely via canonical auth.
-
-## Status
-Working/Tested
-
-## Screenshots
-![Placeholder: Wnode Ecosystem Overview]()
+For contributor guidelines, see [`../CONTRIBUTING.md`](../CONTRIBUTING.md).  
+For vulnerability reporting, see [`../SECURITY.md`](../SECURITY.md).

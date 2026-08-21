@@ -1,13 +1,58 @@
-# Contributing to the Sovereign Mesh Specification
+# Contributing to Wnode Sovereign Compute Mesh
 
-All changes to the Wnode Sovereign Mesh architecture, execution semantics, or tokenomics must undergo strict peer review.
+Thank you for your interest in contributing to the Wnode Sovereign Compute Mesh protocol! This document outlines our development workflow, coding standards, commit conventions, and pull request requirements.
 
-## Proposal Process
-1. **Open a Discussion**: Raise an issue describing the limitation in the current v1.0 specification.
-2. **Draft a Formal PR**: All pull requests must respect the following constraints:
-   - Modifications to state invariants must prove adherence to `S(n+1) = f(S(n), P)`.
-   - Threat model additions must classify under the established adversarial models.
-   - Any architectural SVGs must adhere to the 1.5px monochrome (`#111`, `#444`, `#888`) standard.
-3. **Governance Review**: Your PR must be submitted for a DAO timelock review as defined in [GOVERNANCE.md](GOVERNANCE.md).
+---
 
-*Direct, unverified pushes to the `/docs/` specification tree are strictly prohibited.*
+## 1. Code of Conduct
+We expect all contributors to maintain professional, polite, and inclusive interactions. Please review our repository standards in [`rules.md`](./rules.md).
+
+---
+
+## 2. Contributor Workflow
+
+1. **Fork & Clone**: Fork the repository on GitHub and clone your fork locally:
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/wnode.git
+   cd wnode
+   ```
+2. **Create a Feature Branch**: Always create a descriptive branch off `main`:
+   ```bash
+   git checkout -b feat/telemetry-batch-validation
+   ```
+3. **Make Intentional Changes**: Follow modern Go and TypeScript best practices. Ensure code is modular, well-commented, and includes automated tests.
+4. **Run Static Analysis & Tests**:
+   - Go: `go test ./...`
+   - TypeScript: `npx tsc --noEmit`
+5. **Commit Your Changes**: Follow the Conventional Commits standard (see below).
+6. **Submit a Pull Request**: Open a PR targeting `main`. Provide a comprehensive description of the change, linked issues, and verification steps.
+
+---
+
+## 3. Conventional Commit Standard
+
+Commit messages must adhere to the [Conventional Commits](https://www.conventionalcommits.org/) specification:
+
+- `feat(nodld)`: Add support for batch telemetry verification
+- `fix(node-operator)`: Resolve 429 exponential backoff handling in daemon
+- `docs(dewi)`: Add radio frequency compliance documentation
+- `refactor(web)`: Modernize investor whitepaper layout
+- `test(core)`: Add unit tests for self-healing token reconstruction
+- `chore`: Update workspace dependencies
+
+---
+
+## 4. Pull Request Guidelines & Quality Bar
+
+Every Pull Request must meet the following mandatory criteria before review:
+
+- [ ] **Clean Build**: All packages and services compile without errors or warnings.
+- [ ] **Test Coverage**: Includes unit or integration tests verifying the new behavior.
+- [ ] **Zero Synthetic Data**: Adheres strictly to the zero-synthetic data policy in production code.
+- [ ] **Documentation**: Updates relevant markdown files in `docs/` and updates `docs/INDEX.md`.
+- [ ] **Repository Hygiene**: No scratch files, debug logs, or temporary scripts committed.
+
+---
+
+## 5. Security & Vulnerability Reporting
+Do **NOT** report security vulnerabilities through public GitHub issues. Please follow the instructions in [`SECURITY.md`](./SECURITY.md) to submit confidential reports directly to our security team.

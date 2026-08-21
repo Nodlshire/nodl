@@ -3,12 +3,12 @@ import fs from 'fs';
 import path from 'path';
 import ReactMarkdown from 'react-markdown';
 import { notFound } from 'next/navigation';
-import IntegrationsClient from '../../../../../../docs/integrations/components/IntegrationsClient';
-import NetworkBadge from '../../../../../../docs/integrations/components/NetworkBadge';
+import IntegrationsClient from '../../../../../../docs/07-integrations/components/IntegrationsClient';
+import NetworkBadge from '../../../../../../docs/07-integrations/components/NetworkBadge';
 import { parseIntegrationMetadata } from '../../../../lib/integration-utils';
 
 export async function generateStaticParams() {
-    const integrationsDir = path.join(process.cwd(), '../../docs/integrations');
+    const integrationsDir = path.join(process.cwd(), '../../docs/07-integrations');
     if (!fs.existsSync(integrationsDir)) return [];
     
     const files = fs.readdirSync(integrationsDir);

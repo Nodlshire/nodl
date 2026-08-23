@@ -1,0 +1,21 @@
+{
+  "name": "@wnode/discord-bot",
+  "version": "1.0.0",
+  "description": "Wnode Sovereign Compute Discord Bot (Docs-as-SOT & Telemetry Integration)",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "discord.js": "^14.16.3",
+    "chokidar": "^3.6.0",
+    "glob": "^10.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.9",
+    "typescript": "^5.5.4",
+    "ts-node": "^10.9.2"
+  }
+}

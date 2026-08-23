@@ -56,3 +56,4 @@
 * [Production Deployment Protocol](./08-operations/deployment.md)
 * [Monitoring & Telemetry](./08-operations/monitoring-and-telemetry.md)
 * [Incident Response Runbook](./08-operations/runbooks/incident-response.md)
+* [Discord Server Specification](./08-operations/discord-server-specification.md)

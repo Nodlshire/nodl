@@ -1,0 +1,130 @@
+{
+  "guild": {
+    "name": "Wnode Sovereign Compute Mesh",
+    "description": "Official community hub for Wnode Node Operators, Developers, and DeWi Participants.",
+    "verification_level": 2,
+    "default_message_notifications": 1
+  },
+  "roles": [
+    {
+      "name": "Founder",
+      "color": "#F59E0B",
+      "hoist": true,
+      "permissions": "8",
+      "position": 6
+    },
+    {
+      "name": "Core Team",
+      "color": "#8B5CF6",
+      "hoist": true,
+      "permissions": "1071698660864",
+      "position": 5
+    },
+    {
+      "name": "Node Operator",
+      "color": "#10B981",
+      "hoist": true,
+      "permissions": "3072",
+      "position": 4
+    },
+    {
+      "name": "Developer",
+      "color": "#06B6D4",
+      "hoist": true,
+      "permissions": "3072",
+      "position": 3
+    },
+    {
+      "name": "Beta Tester",
+      "color": "#3B82F6",
+      "hoist": true,
+      "permissions": "3072",
+      "position": 2
+    },
+    {
+      "name": "Community",
+      "color": "#94A3B8",
+      "hoist": false,
+      "permissions": "3072",
+      "position": 1
+    }
+  ],
+  "categories": [
+    {
+      "name": "📣 Wnode — Announcements",
+      "channels": [
+        { "name": "announcements", "type": 0, "topic": "Authoritative protocol releases and governance announcements." },
+        { "name": "status", "type": 0, "topic": "Real-time network operational status and health metrics." },
+        { "name": "release-notes", "type": 0, "topic": "Changelogs and release tags for nodld daemon and SDKs." }
+      ]
+    },
+    {
+      "name": "🌐 Network",
+      "channels": [
+        { "name": "mesh-live", "type": 0, "topic": "Live telemetry feeds, network capacity reports, and peer counts." },
+        { "name": "operator-updates", "type": 0, "topic": "Targeted announcements for Node Operators regarding Stripe payouts." },
+        { "name": "dewi-updates", "type": 0, "topic": "Updates on LoRaWAN, 5G micro-cells, and CBRS gateway protocols." }
+      ]
+    },
+    {
+      "name": "👥 Community",
+      "channels": [
+        { "name": "general", "type": 0, "topic": "High-level discussion regarding sovereign compute and DePIN." },
+        { "name": "introductions", "type": 0, "topic": "Member introductions and hardware configuration sharing." },
+        { "name": "help", "type": 0, "topic": "Community-driven general support and onboarding assistance." }
+      ]
+    },
+    {
+      "name": "🛠 Node Operator",
+      "channels": [
+        { "name": "getting-started", "type": 0, "topic": "3-step node installation guide and binary links." },
+        { "name": "troubleshooting", "type": 0, "topic": "Peer-to-peer technical support for daemon errors." },
+        { "name": "operator-guides", "type": 0, "topic": "Headless Linux deployment and performance tuning." }
+      ]
+    },
+    {
+      "name": "💻 Developer",
+      "channels": [
+        { "name": "api", "type": 0, "topic": "REST API v1 endpoints and WebSocket telemetry streams." },
+        { "name": "sdk", "type": 0, "topic": "Native Go and WASM SDK integration guidance." },
+        { "name": "jobs-envelope", "type": 0, "topic": "Deterministic WASM job envelope specifications." },
+        { "name": "dev-help", "type": 0, "topic": "Q&A for building M2M services on Wnode." }
+      ]
+    },
+    {
+      "name": "🔐 Security",
+      "channels": [
+        { "name": "security-updates", "type": 0, "topic": "Cryptographic bulletins and security advisories." },
+        { "name": "responsible-disclosure", "type": 0, "topic": "Guidelines for confidential security vulnerability reports." }
+      ]
+    },
+    {
+      "name": "📚 Documentation",
+      "channels": [
+        { "name": "docs-index", "type": 0, "topic": "Master index of canonical documentation (/docs/INDEX.md)." },
+        { "name": "docs-changelog", "type": 0, "topic": "Automated log of revisions to the /docs/** canon." }
+      ]
+    },
+    {
+      "name": "🤖 Bot",
+      "channels": [
+        { "name": "bot-commands", "type": 0, "topic": "Execute !docs, !search, !operator, !dewi, !mesh, and !status." },
+        { "name": "bot-log", "type": 0, "topic": "Internal audit log for bot re-indexing and command execution." }
+      ]
+    },
+    {
+      "name": "🗳 Governance",
+      "channels": [
+        { "name": "governance", "type": 0, "topic": "Discussions on Soul-DAO 1-Soul-1-Vote proposals." },
+        { "name": "proposals", "type": 0, "topic": "Formal governance proposals and community feedback." }
+      ]
+    },
+    {
+      "name": "🧪 Beta",
+      "channels": [
+        { "name": "beta-feedback", "type": 0, "topic": "Feedback for Public Beta release candidates." },
+        { "name": "beta-bugs", "type": 0, "topic": "Structured telemetry bug reports and log submissions." }
+      ]
+    }
+  ]
+}

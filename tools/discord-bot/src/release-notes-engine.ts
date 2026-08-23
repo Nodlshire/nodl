@@ -21,7 +21,7 @@ export interface ReleaseState {
     lastSundayDigestDate?: string;
 }
 
-const STATE_FILE_PATH = path.resolve(__dirname, '../../../services/nodld/state/release-notes-state.json');
+const STATE_FILE_PATH = path.resolve(__dirname, '../../../services/nodld/state/release-registry.json');
 const DEFAULT_REPO_URL = 'https://github.com/wnodeltd/wnode';
 const DOCS_BASE_URL = 'https://wnode.one/docs/sdk/api-reference';
 
@@ -227,6 +227,14 @@ export class ReleaseNotesEngine {
                 }
             ]);
         }
+
+        embed.addFields([
+            {
+                name: '📊 Version Sync Diagram',
+                value: '🖼️ Flowchart: `/assets/illustrations/releases/version-flow.svg`',
+                inline: false
+            }
+        ]);
 
         const row = new ActionRowBuilder().addComponents(
             new ButtonBuilder()

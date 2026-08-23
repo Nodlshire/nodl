@@ -8,6 +8,7 @@ import { EngagementEngine } from './engagement-engine';
 import { FeedbackEngine } from './feedback-engine';
 import { AnnouncementCadenceEngine } from './announcement-cadence';
 import { ReleaseNotesEngine } from './release-notes-engine';
+import { WelcomePortalEngine } from './welcome-portal-engine';
 
 // Require discord.js dynamically
 const { Client, GatewayIntentBits, EmbedBuilder, Events } = require('discord.js');
@@ -28,6 +29,7 @@ export class WnodeDiscordBot {
     private feedbackEngine: FeedbackEngine;
     private cadenceEngine: AnnouncementCadenceEngine;
     private releaseEngine: ReleaseNotesEngine;
+    private welcomeEngine: WelcomePortalEngine;
     private statusInterval: any = null;
 
     constructor(docsPath: string) {
@@ -39,6 +41,7 @@ export class WnodeDiscordBot {
         this.feedbackEngine = new FeedbackEngine();
         this.cadenceEngine = new AnnouncementCadenceEngine();
         this.releaseEngine = new ReleaseNotesEngine();
+        this.welcomeEngine = new WelcomePortalEngine();
 
         this.client = new Client({
             intents: [
@@ -69,15 +72,17 @@ export class WnodeDiscordBot {
                     console.error(`[Wnode Discord Bot] Error during automated guild provisioning:`, err.message || err);
                 }
 
-                // Initial status update & release notes check
+                // Initial status update, release notes & pinned welcome portal check
                 await this.updatePinnedStatusTelemetry(boundGuild);
                 await this.releaseEngine.processAndPostReleases(boundGuild);
+                await this.welcomeEngine.ensureMainWelcomePinned(boundGuild);
 
                 // Schedule recurring 10-minute status telemetry update & Sunday digest check
                 if (this.statusInterval) clearInterval(this.statusInterval);
                 this.statusInterval = setInterval(async () => {
                     this.updatePinnedStatusTelemetry(boundGuild);
                     await this.releaseEngine.processAndPostReleases(boundGuild);
+                    await this.welcomeEngine.postDailyMembersSummary(boundGuild);
 
                     // If Sunday, post Sunday summary & release digest
                     const today = new Date();
@@ -121,16 +126,8 @@ export class WnodeDiscordBot {
                     console.log(`[Wnode Discord Bot] Assigned 'Community' role to ${member.user.tag}`);
                 }
 
-                // 2. Trigger Welcome Flow in #welcome channel (Single message per user)
-                const isNewJoin = this.betaManager.recordUserJoin(member.id, member.user.tag);
-                if (isNewJoin) {
-                    const welcomeChannel = member.guild.channels.cache.find((c: any) => c.name === 'welcome');
-                    if (welcomeChannel) {
-                        const payload = BetaOnboardingManager.createWelcomeMessage(member);
-                        await welcomeChannel.send(payload);
-                        console.log(`[Wnode Discord Bot] 🚀 Sent personalized Welcome Flow message for ${member.user.tag} in #welcome`);
-                    }
-                }
+                // 2. Trigger Welcome Portal Interactive Thread
+                await this.welcomeEngine.handleNewMember(member);
             } catch (err) {
                 console.error('[Wnode Discord Bot] Failed to execute welcome flow:', err);
             }
@@ -139,6 +136,31 @@ export class WnodeDiscordBot {
         // Interactive Component & Modal Handler (Onboarding Button & Eligibility Check)
         this.client.on(Events.InteractionCreate, async (interaction: any) => {
             try {
+                // Welcome Portal Onboarding Check Button
+                if (interaction.isButton() && (interaction.customId === 'start_welcome_onboarding' || interaction.customId.startsWith('submit_onboarding_answers_'))) {
+                    const modal = this.welcomeEngine.createOnboardingModal(interaction.user.id);
+                    await interaction.showModal(modal);
+                    return;
+                }
+
+                // Welcome Portal Modal Submit
+                if (interaction.isModalSubmit() && interaction.customId.startsWith('modal_welcome_answers_')) {
+                    await this.welcomeEngine.handleModalSubmission(interaction);
+                    return;
+                }
+
+                // Welcome Navigation Portal Buttons
+                if (interaction.isButton() && interaction.customId.startsWith('nav_')) {
+                    const targetName = interaction.customId.replace('nav_', '').replace(/_/g, '-');
+                    const targetChannel = interaction.guild?.channels.cache.find((c: any) => c.name === targetName);
+                    if (targetChannel) {
+                        await interaction.reply({ content: `🚀 Navigate to portal: <#${targetChannel.id}>`, ephemeral: true });
+                    } else {
+                        await interaction.reply({ content: `🚀 Explore channel: #${targetName}`, ephemeral: true });
+                    }
+                    return;
+                }
+
                 // 1. Button Click: Start Beta Onboarding
                 if (interaction.isButton() && interaction.customId === 'start_beta_onboarding') {
                     const modal = BetaOnboardingManager.createEligibilityModal();

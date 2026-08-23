@@ -7,6 +7,7 @@ import { BetaOnboardingManager } from './beta-onboarding';
 import { EngagementEngine } from './engagement-engine';
 import { FeedbackEngine } from './feedback-engine';
 import { AnnouncementCadenceEngine } from './announcement-cadence';
+import { ReleaseNotesEngine } from './release-notes-engine';
 
 // Require discord.js dynamically
 const { Client, GatewayIntentBits, EmbedBuilder, Events } = require('discord.js');
@@ -26,6 +27,7 @@ export class WnodeDiscordBot {
     private engagementEngine: EngagementEngine;
     private feedbackEngine: FeedbackEngine;
     private cadenceEngine: AnnouncementCadenceEngine;
+    private releaseEngine: ReleaseNotesEngine;
     private statusInterval: any = null;
 
     constructor(docsPath: string) {
@@ -36,6 +38,7 @@ export class WnodeDiscordBot {
         this.engagementEngine = new EngagementEngine();
         this.feedbackEngine = new FeedbackEngine();
         this.cadenceEngine = new AnnouncementCadenceEngine();
+        this.releaseEngine = new ReleaseNotesEngine();
 
         this.client = new Client({
             intents: [
@@ -66,21 +69,24 @@ export class WnodeDiscordBot {
                     console.error(`[Wnode Discord Bot] Error during automated guild provisioning:`, err.message || err);
                 }
 
-                // Initial status update & pin
+                // Initial status update & release notes check
                 await this.updatePinnedStatusTelemetry(boundGuild);
+                await this.releaseEngine.processAndPostReleases(boundGuild);
 
                 // Schedule recurring 10-minute status telemetry update & Sunday digest check
                 if (this.statusInterval) clearInterval(this.statusInterval);
-                this.statusInterval = setInterval(() => {
+                this.statusInterval = setInterval(async () => {
                     this.updatePinnedStatusTelemetry(boundGuild);
+                    await this.releaseEngine.processAndPostReleases(boundGuild);
 
-                    // If Sunday, post Sunday summary
+                    // If Sunday, post Sunday summary & release digest
                     const today = new Date();
                     if (today.getDay() === 0) {
                         this.cadenceEngine.postWeeklySundaySummary(boundGuild);
+                        await this.releaseEngine.checkAndPostWeeklyDigest(boundGuild);
                     }
                 }, STATUS_UPDATE_INTERVAL);
-                console.log(`[Wnode Discord Bot] ⏰ Scheduled 10-minute node telemetry status & Sunday digest updater.`);
+                console.log(`[Wnode Discord Bot] ⏰ Scheduled 10-minute node telemetry status, release notes monitor & Sunday digest updater.`);
             } else {
                 console.log(`[Wnode Discord Bot] ℹ️ Serving ${c.guilds.cache.size} guild(s). Target GUILD_ID: ${GUILD_ID}`);
             }

@@ -9,6 +9,7 @@ import { FeedbackEngine } from './feedback-engine';
 import { AnnouncementCadenceEngine } from './announcement-cadence';
 import { ReleaseNotesEngine } from './release-notes-engine';
 import { WelcomePortalEngine } from './welcome-portal-engine';
+import { OperatorGuidesEngine } from './operator-guides-engine';
 
 // Require discord.js dynamically
 const { Client, GatewayIntentBits, EmbedBuilder, Events } = require('discord.js');
@@ -30,6 +31,7 @@ export class WnodeDiscordBot {
     private cadenceEngine: AnnouncementCadenceEngine;
     private releaseEngine: ReleaseNotesEngine;
     private welcomeEngine: WelcomePortalEngine;
+    private guidesEngine: OperatorGuidesEngine;
     private statusInterval: any = null;
 
     constructor(docsPath: string) {
@@ -42,6 +44,7 @@ export class WnodeDiscordBot {
         this.cadenceEngine = new AnnouncementCadenceEngine();
         this.releaseEngine = new ReleaseNotesEngine();
         this.welcomeEngine = new WelcomePortalEngine();
+        this.guidesEngine = new OperatorGuidesEngine();
 
         this.client = new Client({
             intents: [
@@ -72,10 +75,11 @@ export class WnodeDiscordBot {
                     console.error(`[Wnode Discord Bot] Error during automated guild provisioning:`, err.message || err);
                 }
 
-                // Initial status update, release notes & pinned welcome portal check
+                // Initial status update, release notes, pinned welcome portal & operator guides check
                 await this.updatePinnedStatusTelemetry(boundGuild);
                 await this.releaseEngine.processAndPostReleases(boundGuild);
                 await this.welcomeEngine.ensureMainWelcomePinned(boundGuild);
+                await this.guidesEngine.processAndPostGuides(boundGuild);
 
                 // Schedule recurring 10-minute status telemetry update & Sunday digest check
                 if (this.statusInterval) clearInterval(this.statusInterval);
@@ -83,6 +87,7 @@ export class WnodeDiscordBot {
                     this.updatePinnedStatusTelemetry(boundGuild);
                     await this.releaseEngine.processAndPostReleases(boundGuild);
                     await this.welcomeEngine.postDailyMembersSummary(boundGuild);
+                    await this.guidesEngine.processAndPostGuides(boundGuild);
 
                     // If Sunday, post Sunday summary & release digest
                     const today = new Date();
@@ -91,7 +96,7 @@ export class WnodeDiscordBot {
                         await this.releaseEngine.checkAndPostWeeklyDigest(boundGuild);
                     }
                 }, STATUS_UPDATE_INTERVAL);
-                console.log(`[Wnode Discord Bot] ⏰ Scheduled 10-minute node telemetry status, release notes monitor & Sunday digest updater.`);
+                console.log(`[Wnode Discord Bot] ⏰ Scheduled 10-minute telemetry, release notes, operator guides & Sunday digest updater.`);
             } else {
                 console.log(`[Wnode Discord Bot] ℹ️ Serving ${c.guilds.cache.size} guild(s). Target GUILD_ID: ${GUILD_ID}`);
             }

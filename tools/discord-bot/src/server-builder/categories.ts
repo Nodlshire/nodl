@@ -38,6 +38,7 @@ export const CATEGORY_TEMPLATES: CategoryDefinition[] = [
             { name: 'general', type: 0, topic: 'High-level discussion regarding sovereign compute and DePIN.' },
             { name: 'introductions', type: 0, topic: 'Member introductions and hardware configuration sharing.' },
             { name: 'build-nights', type: 0, topic: 'Weekly build & test sessions, live demos, and WASM envelope workshops.' },
+            { name: 'contributions', type: 0, topic: 'Share improvements, experiments, and creative contributions that strengthen the Wnode Mesh.' },
             { name: 'help', type: 0, topic: 'Community-driven general support and onboarding assistance.' }
         ]
     },

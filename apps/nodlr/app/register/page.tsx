@@ -46,7 +46,7 @@ function RegisterForm() {
                     firstName,
                     lastName,
                     businessName,
-                    inviteToken
+                    inviteToken: inviteToken ? inviteToken.trim() : ""
                 })
             });
 

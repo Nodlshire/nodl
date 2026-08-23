@@ -1817,7 +1817,6 @@ func (s *Store) GetOpportunityAudit(nodlrID string) *OpportunityAudit {
 
 func (s *Store) CreateInviteToken(email, domain string, role UserRole) string {
 	s.mu.Lock()
-	defer s.mu.Unlock()
 	token := uuid.New().String()
 	s.inviteTokens[token] = &InviteToken{
 		Token:     token,
@@ -1827,23 +1826,29 @@ func (s *Store) CreateInviteToken(email, domain string, role UserRole) string {
 		ExpiresAt: time.Now().Add(72 * time.Hour),
 		CreatedAt: time.Now(),
 	}
+	s.mu.Unlock()
+	go s.SaveState()
 	return token
 }
 
 func (s *Store) ConsumeInviteToken(token string) (*InviteToken, error) {
 	s.mu.Lock()
-	defer s.mu.Unlock()
 	t, ok := s.inviteTokens[token]
 	if !ok {
+		s.mu.Unlock()
 		return nil, fmt.Errorf("invalid invite token")
 	}
 	if t.Used {
+		s.mu.Unlock()
 		return nil, fmt.Errorf("invite token already used")
 	}
 	if time.Now().After(t.ExpiresAt) {
+		s.mu.Unlock()
 		return nil, fmt.Errorf("invite token expired")
 	}
 	t.Used = true
+	s.mu.Unlock()
+	go s.SaveState()
 	return t, nil
 }
 

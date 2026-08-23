@@ -15,6 +15,8 @@ import (
 	"runtime"
 	"sort"
 	"bufio"
+	"net/smtp"
+	"crypto/tls"
 
 	"golang.org/x/crypto/bcrypt"
 	"go.etcd.io/bbolt"
@@ -995,9 +997,110 @@ func (s *Server) handleMagicLink(c *fiber.Ctx) error {
 
 	token := s.accountStore.CreateMagicLinkToken(req.Email, req.Domain)
 	s.log.Info("[AUTH] Magic link generated", zap.String("email", req.Email), zap.String("token", token))
-	
-	// In a real system, we'd send an email here.
-	return c.JSON(fiber.Map{"message": "magic_link_sent", "debug_token": token})
+
+	// Dispatch magic-link authentication email via SMTP
+	go func() {
+		if err := s.sendMagicLinkEmail(req.Email, req.Domain, token); err != nil {
+			s.log.Error("[AUTH] Magic link email dispatch failed", zap.String("email", req.Email), zap.Error(err))
+		} else {
+			s.log.Info("[AUTH] Magic link email successfully dispatched via SMTP", zap.String("email", req.Email))
+		}
+	}()
+
+	return c.JSON(fiber.Map{"message": "magic_link_sent"})
+}
+
+func (s *Server) sendMagicLinkEmail(toEmail, domain, token string) error {
+	smtpHost := os.Getenv("SMTP_HOST")
+	if smtpHost == "" {
+		smtpHost = "premium212-2.web-hosting.com"
+	}
+	smtpPort := os.Getenv("SMTP_PORT")
+	if smtpPort == "" {
+		smtpPort = "465"
+	}
+	smtpUser := os.Getenv("SMTP_USER")
+	if smtpUser == "" {
+		smtpUser = "dataroom@wnode.one"
+	}
+	smtpPass := os.Getenv("SMTP_PASSWORD")
+	if smtpPass == "" {
+		smtpPass = "Slartibartfast123"
+	}
+	smtpFrom := os.Getenv("SMTP_FROM")
+	if smtpFrom == "" {
+		smtpFrom = "dataroom@wnode.one"
+	}
+
+	baseUrl := "https://wnode.one"
+	if domain == "nodlr" {
+		baseUrl = "https://nodlr.wnode.one"
+	} else if domain == "command" {
+		baseUrl = "https://cmd.wnode.one"
+	}
+
+	magicLinkUrl := fmt.Sprintf("%s/login/verify?token=%s", baseUrl, token)
+
+	subject := "Subject: Your Wnode Magic Link\r\n"
+	headers := fmt.Sprintf("From: Wnode Team <%s>\r\nTo: %s\r\nMIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\n", smtpFrom, toEmail)
+	body := fmt.Sprintf(`<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"></head>
+<body style="background-color:#090d16; color:#ffffff; font-family:sans-serif; padding:20px;">
+  <div style="max-width:500px; margin:0 auto; background-color:#1e293b; padding:30px; border-radius:12px;">
+    <h2 style="color:#3b82f6; margin-top:0;">👋 Sovereign Mesh Authentication</h2>
+    <p style="color:#cbd5e1; font-size:15px; line-height:1.5;">Click below to log in securely to Wnode (%s):</p>
+    <div style="text-align:center; margin:30px 0;">
+      <a href="%s" style="background-color:#3b82f6; color:#ffffff; text-decoration:none; padding:12px 24px; border-radius:8px; font-weight:bold; display:inline-block;">Sign In to Wnode</a>
+    </div>
+    <p style="color:#64748b; font-size:12px; margin-top:20px;">Or copy and paste this link: <br/><a href="%s" style="color:#60a5fa;">%s</a></p>
+  </div>
+</body>
+</html>`, domain, magicLinkUrl, magicLinkUrl, magicLinkUrl)
+
+	msg := []byte(subject + headers + "\r\n" + body)
+	addr := fmt.Sprintf("%s:%s", smtpHost, smtpPort)
+
+	auth := smtp.PlainAuth("", smtpUser, smtpPass, smtpHost)
+
+	if smtpPort == "465" {
+		tlsconfig := &tls.Config{
+			InsecureSkipVerify: true,
+			ServerName:         smtpHost,
+		}
+		conn, err := tls.Dial("tcp", addr, tlsconfig)
+		if err != nil {
+			return fmt.Errorf("SMTP TLS connection failed: %w", err)
+		}
+		defer conn.Close()
+
+		client, err := smtp.NewClient(conn, smtpHost)
+		if err != nil {
+			return fmt.Errorf("SMTP client failed: %w", err)
+		}
+		defer client.Quit()
+
+		if err = client.Auth(auth); err != nil {
+			return fmt.Errorf("SMTP auth failed: %w", err)
+		}
+		if err = client.Mail(smtpFrom); err != nil {
+			return fmt.Errorf("SMTP mail from failed: %w", err)
+		}
+		if err = client.Rcpt(toEmail); err != nil {
+			return fmt.Errorf("SMTP rcpt to failed: %w", err)
+		}
+		w, err := client.Data()
+		if err != nil {
+			return fmt.Errorf("SMTP data failed: %w", err)
+		}
+		_, err = w.Write(msg)
+		if err != nil {
+			return fmt.Errorf("SMTP write body failed: %w", err)
+		}
+		return w.Close()
+	}
+
+	return smtp.SendMail(addr, auth, smtpFrom, []string{toEmail}, msg)
 }
 
 func (s *Server) handleVerifyMagicLink(c *fiber.Ctx) error {

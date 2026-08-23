@@ -6,14 +6,16 @@ export async function POST(request: Request) {
         const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8080";
 
         // Proxy to Go backend onboard/signup endpoint
-        const res = await fetch(`${apiUrl}/api/v1/auth/onboard`, {
+        const res = await fetch(`${apiUrl}/api/v1/auth/signup`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 email: body.email,
-                firstName: 'Operator',
-                lastName: 'Node',
-                businessName: 'Sovereign Node'
+                password: body.password,
+                firstName: body.firstName || 'Operator',
+                lastName: body.lastName || 'Node',
+                businessName: body.businessName || 'Sovereign Node',
+                inviteToken: body.inviteToken || ''
             }),
         });
 

@@ -46,7 +46,7 @@ export const CATEGORY_TEMPLATES: CategoryDefinition[] = [
         name: '🛠 Node Operator',
         channels: [
             { name: 'getting-started', type: 0, topic: '3-step node installation guide and binary links.', isReadOnly: true },
-            { name: 'troubleshooting', type: 0, topic: 'Peer-to-peer technical support for daemon errors.' },
+            { name: 'troubleshooting', type: 0, topic: 'Live support console for daemon issues, error fixes, and telemetry diagnostics.' },
             { name: 'operator-guides', type: 0, topic: 'Headless Linux deployment and performance tuning.' }
         ]
     },

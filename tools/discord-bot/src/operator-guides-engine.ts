@@ -140,6 +140,48 @@ export class OperatorGuidesEngine {
                 improvedViaFeedback: true,
                 lastUpdated: now,
                 hash: this.calculateHash('daemon-troubleshooting-guide:v1.0.1')
+            },
+            {
+                id: 'self-optimization-engine-guide',
+                title: '⚙️ Self-Optimization Engine (SOE) Workflow',
+                category: '⚙️ Performance Optimization',
+                version: 'v1.0.1',
+                summary: 'Autonomous runtime memory re-allocation and DeWi packet routing (VERIFIED_BY_TELEMETRY).',
+                commands: [
+                    './nodld --enable-soe --ram-cap=4096MB',
+                    'curl -s http://localhost:8080/api/soe/status'
+                ],
+                diagramFile: 'integrations/soe-flow.svg',
+                lastUpdated: now,
+                hash: this.calculateHash('self-optimization-engine-guide:v1.0.1')
+            },
+            {
+                id: 'cross-platform-unification-guide',
+                title: '🧠 Cross-Platform Unification Layer (CPUL)',
+                category: '🧠 Headless Deployment',
+                version: 'v1.0.1',
+                summary: 'Unified hardware abstraction & gossip protocols across Linux, macOS, and Windows WSL2.',
+                commands: [
+                    './nodld --cpul-check',
+                    'curl -s http://localhost:8080/api/cpul/info'
+                ],
+                diagramFile: 'integrations/cpu-unification-flow.svg',
+                lastUpdated: now,
+                hash: this.calculateHash('cross-platform-unification-guide:v1.0.1')
+            },
+            {
+                id: 'integration-lifecycle-guide',
+                title: '🖥️ Integration Lifecycle & SOT Synchronization',
+                category: '🖥️ UI Features',
+                version: 'v1.0.1',
+                summary: 'End-to-end integration lifecycle from specification to daemon hooks and automated Discord embeds.',
+                commands: [
+                    './nodld --sync-sot',
+                    'curl -s http://localhost:8080/api/lifecycle/status'
+                ],
+                diagramFile: 'integrations/lifecycle-flow.svg',
+                lastUpdated: now,
+                hash: this.calculateHash('integration-lifecycle-guide:v1.0.1')
             }
         ];
 

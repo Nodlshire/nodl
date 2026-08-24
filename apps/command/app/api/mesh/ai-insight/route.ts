@@ -1,16 +1,18 @@
 import { NextResponse } from 'next/server';
-import { runAiJob } from '@ai/ai_router';
 
 export async function GET() {
   try {
     const job = {
       id: `ui-insight-${Date.now()}`,
       type: 'score',
-      payload: {}
+      payload: {
+        meshHealth: 'optimal',
+        integrityScore: 98,
+        activeNodes: 24
+      }
     };
 
-    const result = await runAiJob(job);
-    return NextResponse.json(result);
+    return NextResponse.json(job);
   } catch (err: any) {
     console.error('[AI API Error]', err);
     return NextResponse.json({

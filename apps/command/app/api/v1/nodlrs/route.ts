@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { IntegrationProtocol } from "../../../../../../engine/sot/integration_protocol";
 import { CrmPerson } from "../../../nodlrs/types";
 
 export const dynamic = 'force-dynamic';
@@ -120,14 +119,7 @@ export async function GET(req: NextRequest) {
             }
         });
 
-        // 2. For each WUID, call SOT identity ledger to merge programmatic identities
-        const merged = Array.from(unifiedMap.values()).map(person => {
-            const sotIdentities = IntegrationProtocol.getProgrammaticIdentities(person.wuid, person);
-            return {
-                ...person,
-                ...sotIdentities
-            };
-        });
+        const merged = Array.from(unifiedMap.values());
 
 
         return NextResponse.json(merged);

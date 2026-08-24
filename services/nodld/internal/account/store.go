@@ -653,14 +653,31 @@ func (s *Store) ListNodlrs() []*Nodlr {
 
 func (s *Store) GetNodlrByEmail(email string) (*Nodlr, bool) {
 	s.mu.RLock()
+	defer s.mu.RUnlock()
+
 	norm := strings.ToLower(strings.TrimSpace(email))
+	var bestMatch *Nodlr
+
 	for _, n := range s.nodlrs {
 		if strings.ToLower(strings.TrimSpace(n.Email)) == norm {
-			s.mu.RUnlock()
-			return n, true
+			if bestMatch == nil {
+				bestMatch = n
+			} else {
+				// Prioritize higher role or super admin
+				nIsAdmin := n.Role == RoleOwner || n.Role == RoleExecutive || n.Role == RoleManagement || n.IsSuperAdmin || n.IsFounder
+				bestIsAdmin := bestMatch.Role == RoleOwner || bestMatch.Role == RoleExecutive || bestMatch.Role == RoleManagement || bestMatch.IsSuperAdmin || bestMatch.IsFounder
+				if nIsAdmin && !bestIsAdmin {
+					bestMatch = n
+				} else if nIsAdmin == bestIsAdmin && n.ID < bestMatch.ID {
+					bestMatch = n
+				}
+			}
 		}
 	}
-	s.mu.RUnlock()
+
+	if bestMatch != nil {
+		return bestMatch, true
+	}
 
 	if s.DB == nil {
 		return nil, false

@@ -58,7 +58,11 @@ export default function LoginPage() {
                 window.location.href = '/';
                 return;
             } else {
-                setError('Invalid credentials.');
+                if (data?.error === 'command_invite_required') {
+                    setError('Command Executive Access Required. Account is not assigned Founder/Executive status.');
+                } else {
+                    setError(data?.error || 'Invalid credentials.');
+                }
             }
         } catch (e) {
             console.error('[Auth Debug] Login error:', e);

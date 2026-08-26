@@ -47,7 +47,8 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }: Sideb
 
     // Rule: Initialize login state ONLY on the client to prevent hydration mismatches
     const userEmail = mounted ? (user?.email || (typeof window !== "undefined" ? localStorage.getItem("nodl_user_email") : null)) : null;
-    const isOwner = userEmail === 'stephen@wnode.one' || userEmail === 'stephen@wnode.one';
+    const normalizedEmail = userEmail ? userEmail.toLowerCase().trim() : '';
+    const isOwner = normalizedEmail === 'stephen@wnode.one' || normalizedEmail === 'stephen.owner@wnode.one' || user?.role?.toLowerCase() === 'owner' || user?.role?.toLowerCase() === 'management';
     
     // Derived canonical role
     let role = 'visitor';

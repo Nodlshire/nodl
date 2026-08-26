@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Shell from '../components/Shell';
-import MetricCard from '../../../../apps/shared/components/MetricCard';
+import MetricCard from '@shared/components/MetricCard';
 import { 
     Radio, Shield, ShieldAlert, ShieldCheck, Zap, Activity, Cpu, RefreshCw, AlertTriangle, CheckCircle2, Lock, Terminal, Layers, ArrowUpRight
 } from 'lucide-react';

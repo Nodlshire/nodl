@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="100%" style="background-color: #0E0E10; font-family: 'Inter', system-ui, sans-serif;">
+  <!-- Header Banner -->
+  <rect x="20" y="20" width="920" height="50" rx="8" fill="#141419" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <text x="40" y="50" fill="#00FFB2" font-size="16" font-weight="700" letter-spacing="0.5">FIG 9.2 – ANNOTATED NODLD INSTALLER &amp; SYSTEM DEPENDENCY CHECK</text>
+  <text x="730" y="50" fill="#22D3EE" font-size="12" font-weight="500">v1.5.0-enterprise | Operator UI</text>
+
+  <!-- Simulated Terminal Window -->
+  <rect x="40" y="90" width="880" height="360" rx="8" fill="#09090D" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+  <rect x="40" y="90" width="880" height="30" rx="8" fill="#1A1A22"/>
+  <circle cx="60" cy="105" r="5" fill="#FF5F56"/>
+  <circle cx="75" cy="105" r="5" fill="#FFBD2E"/>
+  <circle cx="90" cy="105" r="5" fill="#27C93F"/>
+  <text x="480" y="110" fill="#A0A0AB" font-size="11" text-anchor="middle" font-family="monospace">bash - nodld-install.sh (v1.5.0-enterprise)</text>
+
+  <!-- Terminal Content Lines -->
+  <text x="60" y="150" fill="#00FFB2" font-size="13" font-family="monospace">$ curl -fsSL https://get.wnode.one/nodld-install.sh | bash</text>
+  <text x="60" y="175" fill="#FFFFFF" font-size="12" font-family="monospace">[+] Initializing Wnode Sovereign Node Runner Setup...</text>
+  <text x="60" y="195" fill="#00FFB2" font-size="12" font-family="monospace">[✓] Operating System: Linux x86_64 (Kernel 6.8.0-generic)</text>
+  <text x="60" y="215" fill="#00FFB2" font-size="12" font-family="monospace">[✓] Hypervisor Support: KVM / Firecracker microVM detected</text>
+  <text x="60" y="235" fill="#00FFB2" font-size="12" font-family="monospace">[✓] Security Hardware: TPM 2.0 Enclave initialized</text>
+  <text x="60" y="255" fill="#22D3EE" font-size="12" font-family="monospace">[✓] GPU Hardware: NVIDIA RTX 4090 (24GB VRAM) detected</text>
+  <text x="60" y="275" fill="#22D3EE" font-size="12" font-family="monospace">[✓] RAM Allocation: 64GB tmpfs mlock isolation configured</text>
+  <text x="60" y="305" fill="#FFFFFF" font-size="12" font-family="monospace">[!] Machine Identity: Unpaired (Token Required)</text>
+  <text x="60" y="325" fill="#00FFB2" font-size="13" font-family="monospace">$ nodld register --token=WUID_8F92A110BC94</text>
+
+  <!-- Callout 1: Hypervisor Check -->
+  <rect x="520" y="180" width="370" height="40" rx="6" fill="rgba(0,255,178,0.1)" stroke="#00FFB2" stroke-width="1.5"/>
+  <circle cx="500" cy="200" r="14" fill="#00FFB2"/>
+  <text x="500" y="205" fill="#0E0E10" font-size="12" font-weight="800" text-anchor="middle">1</text>
+  <text x="535" y="204" fill="#00FFB2" font-size="11" font-weight="600">Callout 1: Automated Firecracker MicroVM &amp; TPM Hardware Audit</text>
+
+  <!-- Callout 2: Registration Command -->
+  <rect x="520" y="310" width="370" height="40" rx="6" fill="rgba(34,211,238,0.1)" stroke="#22D3EE" stroke-width="1.5"/>
+  <circle cx="500" cy="330" r="14" fill="#22D3EE"/>
+  <text x="500" y="335" fill="#0E0E10" font-size="12" font-weight="800" text-anchor="middle">2</text>
+  <text x="535" y="334" fill="#22D3EE" font-size="11" font-weight="600">Callout 2: One-Step WUID Token Pairing Command</text>
+</svg>

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400" width="100%" height="100%" style="background:#0E0E10; font-family:'Inter', sans-serif;">
+  <text x="30" y="40" fill="#00FFB2" font-size="16" font-weight="700" letter-spacing="1">FIG. 6.1 — NETWORK TOPOLOGY &amp; COMPUTE TIERS</text>
+  <text x="30" y="60" fill="#94A3B8" font-size="12">Tiered compute classification from edge gateways to high-performance GPU clusters and satellite nodes</text>
+
+  <g transform="translate(30, 90)">
+    <!-- Tier 1 -->
+    <rect x="0" y="0" width="170" height="240" rx="10" fill="#141417" stroke="#00FFB2" stroke-opacity="0.6"/>
+    <text x="15" y="25" fill="#00FFB2" font-size="11" font-weight="700">Tier 1: Enterprise GPU</text>
+    <text x="15" y="45" fill="#FFFFFF" font-size="10">8x H100 / A100 GPUs</text>
+    <text x="15" y="65" fill="#94A3B8" font-size="9">128GB RAM • 10Gbps</text>
+    <text x="15" y="90" fill="#00FFB2" font-size="10" font-weight="600">Workloads:</text>
+    <text x="15" y="108" fill="#94A3B8" font-size="9">LLM Fine-tuning</text>
+    <text x="15" y="123" fill="#94A3B8" font-size="9">Distributed Training</text>
+    <text x="15" y="160" fill="#00FFB2" font-size="12" font-mono font-weight="700">Yield: 1.50x</text>
+
+    <!-- Tier 2 -->
+    <rect x="190" y="0" width="170" height="240" rx="10" fill="#141417" stroke="#00FFB2" stroke-opacity="0.4"/>
+    <text x="205" y="25" fill="#00FFB2" font-size="11" font-weight="700">Tier 2: Workstation</text>
+    <text x="205" y="45" fill="#FFFFFF" font-size="10">1x RTX 4090 / 3090</text>
+    <text x="205" y="65" fill="#94A3B8" font-size="9">64GB RAM • 1Gbps</text>
+    <text x="205" y="90" fill="#00FFB2" font-size="10" font-weight="600">Workloads:</text>
+    <text x="205" y="108" fill="#94A3B8" font-size="9">3D Rendering</text>
+    <text x="205" y="123" fill="#94A3B8" font-size="9">Model Quantization</text>
+    <text x="205" y="160" fill="#00FFB2" font-size="12" font-mono font-weight="700">Yield: 1.00x</text>
+
+    <!-- Tier 3 -->
+    <rect x="380" y="0" width="170" height="240" rx="10" fill="#141417" stroke="#00FFB2" stroke-opacity="0.3"/>
+    <text x="395" y="25" fill="#00FFB2" font-size="11" font-weight="700">Tier 3: Edge Gateway</text>
+    <text x="395" y="45" fill="#FFFFFF" font-size="10">8-Core ARM / x86 CPU</text>
+    <text x="395" y="65" fill="#94A3B8" font-size="9">16GB RAM • 100Mbps</text>
+    <text x="395" y="90" fill="#00FFB2" font-size="10" font-weight="600">Workloads:</text>
+    <text x="395" y="108" fill="#94A3B8" font-size="9">PoC Coverage</text>
+    <text x="395" y="123" fill="#94A3B8" font-size="9">Data Verification</text>
+    <text x="395" y="160" fill="#00FFB2" font-size="12" font-mono font-weight="700">Yield: 0.75x</text>
+
+    <!-- Tier 4 -->
+    <rect x="570" y="0" width="170" height="240" rx="10" fill="#141417" stroke="#22D3EE" stroke-opacity="0.4"/>
+    <text x="585" y="25" fill="#22D3EE" font-size="11" font-weight="700">Tier 4: DeWi Radio</text>
+    <text x="585" y="45" fill="#FFFFFF" font-size="10">CBRS 3.5GHz / LoRa</text>
+    <text x="585" y="65" fill="#94A3B8" font-size="9">Spectrum Gateway</text>
+    <text x="585" y="90" fill="#22D3EE" font-size="10" font-weight="600">Workloads:</text>
+    <text x="585" y="108" fill="#94A3B8" font-size="9">Radio Telemetry</text>
+    <text x="585" y="123" fill="#94A3B8" font-size="9">Packet Routing</text>
+    <text x="585" y="160" fill="#22D3EE" font-size="12" font-mono font-weight="700">Yield: Dynamic</text>
+
+    <!-- Tier 5 -->
+    <rect x="760" y="0" width="180" height="240" rx="10" fill="#141417" stroke="#9333EA" stroke-opacity="0.4"/>
+    <text x="775" y="25" fill="#9333EA" font-size="11" font-weight="700">Space Mesh (LEO)</text>
+    <text x="775" y="45" fill="#FFFFFF" font-size="10">LEO Satellite Nodes</text>
+    <text x="775" y="65" fill="#94A3B8" font-size="9">Orbital Uplink</text>
+    <text x="775" y="90" fill="#9333EA" font-size="10" font-weight="600">Workloads:</text>
+    <text x="775" y="108" fill="#94A3B8" font-size="9">Global Sync</text>
+    <text x="775" y="123" fill="#94A3B8" font-size="9">Store &amp; Forward WAL</text>
+    <text x="775" y="160" fill="#9333EA" font-size="12" font-mono font-weight="700">Async Epochs</text>
+  </g>
+</svg>

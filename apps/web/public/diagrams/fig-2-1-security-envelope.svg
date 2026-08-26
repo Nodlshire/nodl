@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420" width="100%" height="100%" style="background:#0E0E10; font-family:'Inter', sans-serif;">
+  <text x="30" y="40" fill="#00FFB2" font-size="16" font-weight="700" letter-spacing="1">FIG. 2.1 — SECURITY ENVELOPE ARCHITECTURE</text>
+  <text x="30" y="60" fill="#94A3B8" font-size="12">Multi-tier defense-in-depth perimeter highlighting dual hard trust boundaries</text>
+
+  <!-- Hard Boundary 1 Container -->
+  <rect x="30" y="90" width="450" height="290" rx="12" fill="#141417" stroke="#00FFB2" stroke-opacity="0.5" stroke-width="1.5"/>
+  <text x="50" y="115" fill="#00FFB2" font-size="12" font-weight="700">HARD TRUST BOUNDARY 1 — INGRESS PERIMETER</text>
+
+  <rect x="50" y="135" width="410" height="40" rx="6" fill="#0E0E10" stroke="rgba(255,255,255,0.1)"/>
+  <text x="65" y="160" fill="#FFFFFF" font-size="11">1. Ingress Firewall (IP Allowlist &amp; Rate Limiter)</text>
+
+  <rect x="50" y="190" width="410" height="40" rx="6" fill="#0E0E10" stroke="rgba(255,255,255,0.1)"/>
+  <text x="65" y="215" fill="#FFFFFF" font-size="11">2. HMAC-SHA256 Payload Signature Verification</text>
+
+  <rect x="50" y="245" width="410" height="40" rx="6" fill="#0E0E10" stroke="rgba(255,255,255,0.1)"/>
+  <text x="65" y="270" fill="#FFFFFF" font-size="11">3. Monotonic Nonce Replay Check (DB Lookup)</text>
+
+  <rect x="50" y="300" width="410" height="50" rx="6" fill="rgba(0,255,178,0.1)" stroke="#00FFB2" stroke-opacity="0.6"/>
+  <text x="65" y="322" fill="#00FFB2" font-size="11" font-weight="700">4. Node Daemon Auth Gateway (nodld)</text>
+  <text x="65" y="338" fill="#94A3B8" font-size="10">mTLS WireGuard Tunnel • Ephemeral Key Rotation</text>
+
+  <!-- Hard Boundary 2 Container -->
+  <rect x="520" y="90" width="450" height="290" rx="12" fill="#141417" stroke="#22D3EE" stroke-opacity="0.5" stroke-width="1.5"/>
+  <text x="540" y="115" fill="#22D3EE" font-size="12" font-weight="700">HARD TRUST BOUNDARY 2 — EXECUTION ISOLATION</text>
+
+  <rect x="540" y="135" width="410" height="40" rx="6" fill="#0E0E10" stroke="rgba(255,255,255,0.1)"/>
+  <text x="555" y="160" fill="#FFFFFF" font-size="11">5. Firecracker VMM MicroVM Hypervisor</text>
+
+  <rect x="540" y="190" width="410" height="40" rx="6" fill="#0E0E10" stroke="rgba(255,255,255,0.1)"/>
+  <text x="555" y="215" fill="#FFFFFF" font-size="11">6. SECCOMP-BPF Syscall Filter (Zero Syscalls)</text>
+
+  <rect x="540" y="245" width="410" height="40" rx="6" fill="#0E0E10" stroke="rgba(255,255,255,0.1)"/>
+  <text x="555" y="270" fill="#FFFFFF" font-size="11">7. Capability-Scoped Native Go Host Boundary</text>
+
+  <rect x="540" y="300" width="410" height="50" rx="6" fill="rgba(34,211,238,0.1)" stroke="#22D3EE" stroke-opacity="0.6"/>
+  <text x="555" y="322" fill="#22D3EE" font-size="11" font-weight="700">8. Quorum Anchor &amp; Result Sealing</text>
+  <text x="555" y="338" fill="#94A3B8" font-size="10">Multi-Node Hash Verification • Memory BZero Wipe</text>
+</svg>

@@ -23,32 +23,7 @@ export default function TemplateIntegrationPage({
                 <div className="flex items-center gap-3 mb-4 flex-wrap">
                     <h1 className="text-4xl font-bold text-white">{displayName === 'Aave' ? 'Aave' : `${displayName} Integration`}</h1>
                     
-            {/* Contextual Narrative Section (What, Why, How) */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-10 not-prose">
-                <div className="bg-slate-900/80 p-6 rounded-2xl border border-emerald-500/30">
-                    <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">WHAT IT IS</span>
-                    <h3 className="text-lg font-bold text-white mt-1 mb-3">displayName === 'Aave' ? 'Aave' : `$displayName Integration` Overview</h3>
-                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
-                        Core architectural specification detailing the operational mechanics, data protocols, and determinism constraints of displayName === 'Aave' ? 'Aave' : `$displayName Integration` within the Wnode mesh.
-                    </p>
-                </div>
-
-                <div className="bg-slate-900/80 p-6 rounded-2xl border border-cyan-500/30">
-                    <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">WHY IT MATTERS</span>
-                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Architectural Purpose</h3>
-                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
-                        Ensures zero-custody verification, high-throughput execution, and fault-tolerant node consensus across Earth &amp; Space mesh topologies.
-                    </p>
-                </div>
-
-                <div className="bg-slate-900/80 p-6 rounded-2xl border border-purple-500/30">
-                    <span className="text-xs font-bold uppercase tracking-widest text-purple-400">HOW IT OPERATES</span>
-                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Native Go Engine</h3>
-                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
-                        Executed via SECCOMP-restricted Native Go modules (`linux-amd64`), validated with mTLS telemetry signatures and HMAC routing epochs.
-                    </p>
-                </div>
-            </div>
+            
 <div className="px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1.5 border border-blue-500/30 bg-blue-500/10 text-blue-400">
                         <span className="w-2 h-2 rounded-full bg-blue-400"></span>
                         {category}

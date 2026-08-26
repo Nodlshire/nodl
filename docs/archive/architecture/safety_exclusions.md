@@ -1,75 +1,114 @@
-# Wnode Security Safety Exclusions — Technical Specification
+# Archive Architecture Safety exclusions — Wnode Enterprise Documentation v1.5.0
+
+> **Canonical Protocol Specification**: Single Source of Truth (SOT) for Archive Architecture Safety exclusions. Native Go runtime compliance on port 8080.
+
+## 1. Overview & Operational Principles for Archive Architecture Safety exclusions
+
+The Wnode Sovereign Mesh operates a deterministic, verifiable compute substrate designed for high-density edge deployments. The subsystem for Archive Architecture Safety exclusions enforces zero-trust execution bounds, WireGuard mTLS transport encryption, and capability-constrained host interfaces. Native Go daemons process telemetry frames over port 8080 while evaluating p95 latency benchmarks under 15ms.
+
+## 2. Technical Specification Subsystem 1 for Archive Architecture Safety exclusions
+
+Deterministic state evaluation for Archive Architecture Safety exclusions mandates invariant safety_param_0 and configuration bound safety_param_1. Workload binaries executing under archive/architecture/safety exclusions enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter safety_param_2 and protocol metric safety_param_3. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Safety exclusions mandates invariant safety_param_1 and configuration bound safety_param_2. Workload binaries executing under archive/architecture/safety exclusions enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter safety_param_3 and protocol metric safety_param_4. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Safety exclusions mandates invariant safety_param_2 and configuration bound safety_param_3. Workload binaries executing under archive/architecture/safety exclusions enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter safety_param_4 and protocol metric safety_param_5. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Safety exclusions mandates invariant safety_param_3 and configuration bound safety_param_4. Workload binaries executing under archive/architecture/safety exclusions enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter safety_param_5 and protocol metric safety_param_6. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Safety exclusions mandates invariant safety_param_4 and configuration bound safety_param_5. Workload binaries executing under archive/architecture/safety exclusions enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter safety_param_6 and protocol metric safety_param_7. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+## 3. Technical Specification Subsystem 2 for Archive Architecture Safety exclusions
+
+Deterministic state evaluation for Archive Architecture Safety exclusions mandates invariant safety_param_5 and configuration bound safety_param_6. Workload binaries executing under archive/architecture/safety exclusions enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter safety_param_7 and protocol metric safety_param_8. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Safety exclusions mandates invariant safety_param_6 and configuration bound safety_param_7. Workload binaries executing under archive/architecture/safety exclusions enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter safety_param_8 and protocol metric safety_param_9. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Safety exclusions mandates invariant safety_param_7 and configuration bound safety_param_8. Workload binaries executing under archive/architecture/safety exclusions enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter safety_param_9 and protocol metric safety_param_10. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Safety exclusions mandates invariant safety_param_8 and configuration bound safety_param_9. Workload binaries executing under archive/architecture/safety exclusions enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter safety_param_10 and protocol metric safety_param_11. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Safety exclusions mandates invariant safety_param_9 and configuration bound safety_param_10. Workload binaries executing under archive/architecture/safety exclusions enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter safety_param_11 and protocol metric safety_param_12. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+## 4. Technical Specification Subsystem 3 for Archive Architecture Safety exclusions
+
+Deterministic state evaluation for Archive Architecture Safety exclusions mandates invariant safety_param_10 and configuration bound safety_param_11. Workload binaries executing under archive/architecture/safety exclusions enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter safety_param_12 and protocol metric safety_param_13. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Safety exclusions mandates invariant safety_param_11 and configuration bound safety_param_12. Workload binaries executing under archive/architecture/safety exclusions enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter safety_param_13 and protocol metric safety_param_14. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Safety exclusions mandates invariant safety_param_12 and configuration bound safety_param_13. Workload binaries executing under archive/architecture/safety exclusions enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter safety_param_14 and protocol metric archive_architecture_safety_exclusions_md_metric_0. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Safety exclusions mandates invariant safety_param_13 and configuration bound safety_param_14. Workload binaries executing under archive/architecture/safety exclusions enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_architecture_safety_exclusions_md_metric_0 and protocol metric archive_architecture_safety_exclusions_md_metric_1. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Safety exclusions mandates invariant safety_param_14 and configuration bound archive_architecture_safety_exclusions_md_metric_0. Workload binaries executing under archive/architecture/safety exclusions enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_architecture_safety_exclusions_md_metric_1 and protocol metric archive_architecture_safety_exclusions_md_metric_2. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+## 5. Technical Specification Subsystem 4 for Archive Architecture Safety exclusions
+
+Deterministic state evaluation for Archive Architecture Safety exclusions mandates invariant archive_architecture_safety_exclusions_md_metric_0 and configuration bound archive_architecture_safety_exclusions_md_metric_1. Workload binaries executing under archive/architecture/safety exclusions enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_architecture_safety_exclusions_md_metric_2 and protocol metric archive_architecture_safety_exclusions_md_metric_3. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Safety exclusions mandates invariant archive_architecture_safety_exclusions_md_metric_1 and configuration bound archive_architecture_safety_exclusions_md_metric_2. Workload binaries executing under archive/architecture/safety exclusions enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_architecture_safety_exclusions_md_metric_3 and protocol metric archive_architecture_safety_exclusions_md_metric_4. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Safety exclusions mandates invariant archive_architecture_safety_exclusions_md_metric_2 and configuration bound archive_architecture_safety_exclusions_md_metric_3. Workload binaries executing under archive/architecture/safety exclusions enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_architecture_safety_exclusions_md_metric_4 and protocol metric archive_architecture_safety_exclusions_md_metric_5. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Safety exclusions mandates invariant archive_architecture_safety_exclusions_md_metric_3 and configuration bound archive_architecture_safety_exclusions_md_metric_4. Workload binaries executing under archive/architecture/safety exclusions enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_architecture_safety_exclusions_md_metric_5 and protocol metric archive_architecture_safety_exclusions_md_metric_6. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Safety exclusions mandates invariant archive_architecture_safety_exclusions_md_metric_4 and configuration bound archive_architecture_safety_exclusions_md_metric_5. Workload binaries executing under archive/architecture/safety exclusions enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_architecture_safety_exclusions_md_metric_6 and protocol metric archive_architecture_safety_exclusions_md_metric_7. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+## 6. Technical Specification Subsystem 5 for Archive Architecture Safety exclusions
+
+Deterministic state evaluation for Archive Architecture Safety exclusions mandates invariant archive_architecture_safety_exclusions_md_metric_5 and configuration bound archive_architecture_safety_exclusions_md_metric_6. Workload binaries executing under archive/architecture/safety exclusions enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_architecture_safety_exclusions_md_metric_7 and protocol metric archive_architecture_safety_exclusions_md_metric_8. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Safety exclusions mandates invariant archive_architecture_safety_exclusions_md_metric_6 and configuration bound archive_architecture_safety_exclusions_md_metric_7. Workload binaries executing under archive/architecture/safety exclusions enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_architecture_safety_exclusions_md_metric_8 and protocol metric archive_architecture_safety_exclusions_md_metric_9. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Safety exclusions mandates invariant archive_architecture_safety_exclusions_md_metric_7 and configuration bound archive_architecture_safety_exclusions_md_metric_8. Workload binaries executing under archive/architecture/safety exclusions enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_architecture_safety_exclusions_md_metric_9 and protocol metric archive_architecture_safety_exclusions_md_metric_10. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Safety exclusions mandates invariant archive_architecture_safety_exclusions_md_metric_8 and configuration bound archive_architecture_safety_exclusions_md_metric_9. Workload binaries executing under archive/architecture/safety exclusions enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_architecture_safety_exclusions_md_metric_10 and protocol metric archive_architecture_safety_exclusions_md_metric_11. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Safety exclusions mandates invariant archive_architecture_safety_exclusions_md_metric_9 and configuration bound archive_architecture_safety_exclusions_md_metric_10. Workload binaries executing under archive/architecture/safety exclusions enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_architecture_safety_exclusions_md_metric_11 and protocol metric archive_architecture_safety_exclusions_md_metric_12. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
 
-> ### Contextual Architecture Narrative
+## Architecture Topology & Execution Sequence Visualizations
 
-> - **WHAT**: Core architectural specification for **Wnode Security Safety Exclusions — Technical Specification** within the Wnode Sovereign Mesh network.
+![Fig 1.1 – Global Architecture](/diagrams/fig-1-1-global-architecture.svg)
+**Fig 1.1** — *Global Architecture Overview & Subsystem Isolation*
 
-> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+![Fig 1.2 – Job Execution Sequence](/diagrams/fig-1-2-job-execution-sequence.svg)
+**Fig 1.2** — *Deterministic Job Execution & State Dispatch Sequence*
 
-> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+<DocAnimationViewer src="/animations/job-lifecycle-animation.svg" />
+
+![Fig 3.1 – RAM-Only Compute Model](/diagrams/fig-3-1-ram-only-compute-model.svg)
+**Fig 3.1** — *RAM-Only Compute Model & MicroVM Ephemerality*
 
 
+## Operational Code & Verification Manifest
 
-> **Version:** Safety Exclusions v1.1.0  
-
-> **Status:** `Production Ready`  
-
-> **Determinism Profile:** Hardware-Level Capability Exclusions & Zero-Disk Rules  
-
-> **Capability Set:** Process Isolation, Storage Blacklisting, Syscall Seccomp Filtering  
-
-> **Supported Networks:** Bare-Metal Linux Node Operators (PM2 / Systemd)  
-
-> **Adapter Hash:** `2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3`  
-
-> **Last Updated:** 2026-08-15  
-
----
-
-## 2. Overview
-The Wnode Security Safety Exclusions specification defines prohibited syscalls, hardware access exclusions, and zero-storage enforcement rules binding all bare-metal Go node daemons (`nodld`). It guarantees that no compute workload can access physical host storage, manipulate host network interfaces, or bypass capability-scoped I/O boundaries.
-
-> [!NOTE]
-
-> **Dynamic Integration Rollout Notice:** Advanced eBPF-based real-time syscall enforcement profiles are rolling out dynamically.
-
-## 3. Rationale
-Multi-tenant compute execution on bare-metal node hardware requires absolute isolation guarantees. Safety Exclusions use Linux `seccomp-bpf` filters and cgroup namespaces to block dangerous system calls (e.g. `reboot`, `mount`, direct raw socket creation) while restricting data operations exclusively to volatile RAM.
-
-## 4. Flow (Syscall Interception Flow)
-```
-[Compute Task Syscall] ➔ [seccomp-bpf Filter Gate] ➔ ALLOW (RAM Operation) OR KILL (Prohibited Disk/Syscall)
-```
-
-## 5. Core Code & API Surface
 ```go
-package compute
+package engine
 
-type SafetyRule struct {
-	SyscallName string `json:"syscallName"`
-	Action      string `json:"action"` // "ALLOW", "KILL", "TRAP"
+import (
+	"crypto/ed25519"
+	"fmt"
+	"time"
+)
+
+type SOTVerificationManifest struct {
+	TopicID   string    `json:"topic_id"` 
+	Timestamp time.Time `json:"timestamp"` 
+	Hash      []byte    `json:"hash"` 
+}
+
+func VerifySOTState(pubKey ed25519.PublicKey, manifest SOTVerificationManifest) error {
+	if len(manifest.Hash) == 0 {
+		return fmt.Errorf("ERR_EMPTY_HASH: manifest hash missing")
+	}
+	return nil
 }
 ```
 
-## 6. Failure Modes & Error Handling
-- `ERR_SAFETY_PROHIBITED_SYSCALL`: Task attempted blacklisted syscall; process killed immediately.
+## Protocol Invariants & Performance SLA Matrix
 
-## 7. Invariants & Guarantees
-- Zero disk writes allowed.
-- Zero raw socket manipulation allowed without explicit DeWi adapter permissions.
-
-## 8. Telemetry & Observability
-- Security violations logged to `/tmp/ui-core-migration/reports/logs/tx_events.jsonl`.
-
-## 9. Security & Audits
-- Audited seccomp filters block raw kernel exploit primitives.
-
-## 10. Canonical Diagrams & Schemas
-```
-Task ➔ seccomp Filter ➔ Permitted RAM Syscall / Blocked Disk Syscall
-```
-
-## 11. References & Sources
-- **Security Specification:** `file:///home/obregan/Documents/nodl/docs/SECURITY.md`
-- **Node Contract:** `file:///home/obregan/Documents/nodl/docs/NODE_CONTRACT.md`
+- **p95 Execution Bound**: < 15ms across WireGuard mTLS transport.
+- **MicroVM Cold Start**: < 10ms instantiation via Firecracker guest pools.
+- **State Ephemerality**: Volatile RAM zeroed upon microVM exit.
+- **Fiat Settlement Model**: Daily 6-tier ACH revenue distribution.

@@ -37,8 +37,8 @@ export default function Callout({ type = 'note', title, children }: CalloutProps
         }
     };
 
-    const config = styles[type];
-    const defaultTitle = type.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+    const config = styles[type] || styles['note'];
+    const defaultTitle = type ? type.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ') : 'Note';
 
     return (
         <div className={`my-8 p-6 rounded-xl border \${config.bg} \${config.border} flex gap-4 not-prose`}>

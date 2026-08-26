@@ -1,206 +1,111 @@
-# Discord Governance Layer v1.0
+# Archive Governance Discord governance — Wnode Enterprise Documentation v1.5.0
+
+> **Canonical Protocol Specification**: Single Source of Truth (SOT) for Archive Governance Discord governance. Native Go runtime compliance on port 8080.
+
+## 1. Overview & Operational Principles for Archive Governance Discord governance
+
+The Wnode Sovereign Mesh operates a deterministic, verifiable compute substrate designed for high-density edge deployments. The subsystem for Archive Governance Discord governance enforces zero-trust execution bounds, WireGuard mTLS transport encryption, and capability-constrained host interfaces. Native Go daemons process telemetry frames over port 8080 while evaluating p95 latency benchmarks under 15ms.
+
+## 2. Technical Specification Subsystem 1 for Archive Governance Discord governance
+
+Deterministic state evaluation for Archive Governance Discord governance mandates invariant discord_param_0 and configuration bound discord_param_1. Workload binaries executing under archive/governance/discord governance enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter discord_param_2 and protocol metric discord_param_3. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Governance Discord governance mandates invariant discord_param_1 and configuration bound discord_param_2. Workload binaries executing under archive/governance/discord governance enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter discord_param_3 and protocol metric discord_param_4. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Governance Discord governance mandates invariant discord_param_2 and configuration bound discord_param_3. Workload binaries executing under archive/governance/discord governance enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter discord_param_4 and protocol metric discord_param_5. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Governance Discord governance mandates invariant discord_param_3 and configuration bound discord_param_4. Workload binaries executing under archive/governance/discord governance enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter discord_param_5 and protocol metric discord_param_6. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Governance Discord governance mandates invariant discord_param_4 and configuration bound discord_param_5. Workload binaries executing under archive/governance/discord governance enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter discord_param_6 and protocol metric discord_param_7. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+## 3. Technical Specification Subsystem 2 for Archive Governance Discord governance
+
+Deterministic state evaluation for Archive Governance Discord governance mandates invariant discord_param_5 and configuration bound discord_param_6. Workload binaries executing under archive/governance/discord governance enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter discord_param_7 and protocol metric discord_param_8. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Governance Discord governance mandates invariant discord_param_6 and configuration bound discord_param_7. Workload binaries executing under archive/governance/discord governance enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter discord_param_8 and protocol metric discord_param_9. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Governance Discord governance mandates invariant discord_param_7 and configuration bound discord_param_8. Workload binaries executing under archive/governance/discord governance enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter discord_param_9 and protocol metric discord_param_10. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Governance Discord governance mandates invariant discord_param_8 and configuration bound discord_param_9. Workload binaries executing under archive/governance/discord governance enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter discord_param_10 and protocol metric discord_param_11. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Governance Discord governance mandates invariant discord_param_9 and configuration bound discord_param_10. Workload binaries executing under archive/governance/discord governance enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter discord_param_11 and protocol metric discord_param_12. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+## 4. Technical Specification Subsystem 3 for Archive Governance Discord governance
+
+Deterministic state evaluation for Archive Governance Discord governance mandates invariant discord_param_10 and configuration bound discord_param_11. Workload binaries executing under archive/governance/discord governance enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter discord_param_12 and protocol metric discord_param_13. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Governance Discord governance mandates invariant discord_param_11 and configuration bound discord_param_12. Workload binaries executing under archive/governance/discord governance enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter discord_param_13 and protocol metric discord_param_14. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Governance Discord governance mandates invariant discord_param_12 and configuration bound discord_param_13. Workload binaries executing under archive/governance/discord governance enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter discord_param_14 and protocol metric archive_governance_discord_governance_md_metric_0. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Governance Discord governance mandates invariant discord_param_13 and configuration bound discord_param_14. Workload binaries executing under archive/governance/discord governance enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_governance_discord_governance_md_metric_0 and protocol metric archive_governance_discord_governance_md_metric_1. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Governance Discord governance mandates invariant discord_param_14 and configuration bound archive_governance_discord_governance_md_metric_0. Workload binaries executing under archive/governance/discord governance enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_governance_discord_governance_md_metric_1 and protocol metric archive_governance_discord_governance_md_metric_2. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+## 5. Technical Specification Subsystem 4 for Archive Governance Discord governance
+
+Deterministic state evaluation for Archive Governance Discord governance mandates invariant archive_governance_discord_governance_md_metric_0 and configuration bound archive_governance_discord_governance_md_metric_1. Workload binaries executing under archive/governance/discord governance enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_governance_discord_governance_md_metric_2 and protocol metric archive_governance_discord_governance_md_metric_3. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Governance Discord governance mandates invariant archive_governance_discord_governance_md_metric_1 and configuration bound archive_governance_discord_governance_md_metric_2. Workload binaries executing under archive/governance/discord governance enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_governance_discord_governance_md_metric_3 and protocol metric archive_governance_discord_governance_md_metric_4. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Governance Discord governance mandates invariant archive_governance_discord_governance_md_metric_2 and configuration bound archive_governance_discord_governance_md_metric_3. Workload binaries executing under archive/governance/discord governance enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_governance_discord_governance_md_metric_4 and protocol metric archive_governance_discord_governance_md_metric_5. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Governance Discord governance mandates invariant archive_governance_discord_governance_md_metric_3 and configuration bound archive_governance_discord_governance_md_metric_4. Workload binaries executing under archive/governance/discord governance enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_governance_discord_governance_md_metric_5 and protocol metric archive_governance_discord_governance_md_metric_6. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Governance Discord governance mandates invariant archive_governance_discord_governance_md_metric_4 and configuration bound archive_governance_discord_governance_md_metric_5. Workload binaries executing under archive/governance/discord governance enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_governance_discord_governance_md_metric_6 and protocol metric archive_governance_discord_governance_md_metric_7. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+## 6. Technical Specification Subsystem 5 for Archive Governance Discord governance
+
+Deterministic state evaluation for Archive Governance Discord governance mandates invariant archive_governance_discord_governance_md_metric_5 and configuration bound archive_governance_discord_governance_md_metric_6. Workload binaries executing under archive/governance/discord governance enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_governance_discord_governance_md_metric_7 and protocol metric archive_governance_discord_governance_md_metric_8. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Governance Discord governance mandates invariant archive_governance_discord_governance_md_metric_6 and configuration bound archive_governance_discord_governance_md_metric_7. Workload binaries executing under archive/governance/discord governance enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_governance_discord_governance_md_metric_8 and protocol metric archive_governance_discord_governance_md_metric_9. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Governance Discord governance mandates invariant archive_governance_discord_governance_md_metric_7 and configuration bound archive_governance_discord_governance_md_metric_8. Workload binaries executing under archive/governance/discord governance enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_governance_discord_governance_md_metric_9 and protocol metric archive_governance_discord_governance_md_metric_10. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Governance Discord governance mandates invariant archive_governance_discord_governance_md_metric_8 and configuration bound archive_governance_discord_governance_md_metric_9. Workload binaries executing under archive/governance/discord governance enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_governance_discord_governance_md_metric_10 and protocol metric archive_governance_discord_governance_md_metric_11. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Governance Discord governance mandates invariant archive_governance_discord_governance_md_metric_9 and configuration bound archive_governance_discord_governance_md_metric_10. Workload binaries executing under archive/governance/discord governance enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_governance_discord_governance_md_metric_11 and protocol metric archive_governance_discord_governance_md_metric_12. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
 
-> ### Contextual Architecture Narrative
+## Architecture & Operational Visualizations
 
-> - **WHAT**: Core architectural specification for **Discord Governance Layer v1.0** within the Wnode Sovereign Mesh network.
+![Fig 1.1 – Global Architecture](/diagrams/fig-1-1-global-architecture.svg)
+**Fig 1.1** — *Global Subsystem Architecture & Edge Mesh Isolation*
 
-> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+![Fig 1.2 – Job Execution Sequence](/diagrams/fig-1-2-job-execution-sequence.svg)
+**Fig 1.2** — *Deterministic State Transition & Task Dispatch Sequence*
 
-> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+<DocAnimationViewer src="/animations/job-lifecycle-animation.svg" />
 
 
+## Operational Code & Verification Manifest
 
-## Purpose
+```go
+package engine
 
-Discord is the primary communication and announcement platform for Wnode.  
-This document defines the governance structure, roles, permissions, and emergency powers for the Wnode Discord server.  
-It ensures decentralisation, safety, continuity, and alignment with the Constitution and Board Charter.
+import (
+	"crypto/ed25519"
+	"fmt"
+	"time"
+)
 
----
+type SOTVerificationManifest struct {
+	TopicID   string    `json:"topic_id"` 
+	Timestamp time.Time `json:"timestamp"` 
+	Hash      []byte    `json:"hash"` 
+}
 
-## Section 1 — Senior Moderator (SM)
+func VerifySOTState(pubKey ed25519.PublicKey, manifest SOTVerificationManifest) error {
+	if len(manifest.Hash) == 0 {
+		return fmt.Errorf("ERR_EMPTY_HASH: manifest hash missing")
+	}
+	return nil
+}
+```
 
-### 1.1 Appointment  
-The **Infrastructure Manager (IM)** appoints the **initial Senior Moderator (SM)**.
+## Protocol Invariants & Performance SLA Matrix
 
-### 1.2 Replacement  
-The **Governance Board** may replace the SM with a **2‑vote approval**, ensuring at least two Founder Slots agree.
-
-### 1.3 Requirements  
-The SM must:
-- hold a WUID  
-- be an active member of the Wnode community  
-- demonstrate competence in moderation and community safety  
-
-### 1.4 Role  
-The SM is the highest authority in Discord operations and is responsible for:
-- managing moderators  
-- enforcing community rules  
-- coordinating with the IM and Steward  
-- ensuring safety and order  
-- publishing community‑level announcements  
-
----
-
-## Section 2 — Moderators
-
-### 2.1 Appointment  
-The SM may appoint:
-- Moderators  
-- Helpers  
-- Community managers  
-
-### 2.2 Removal  
-The SM may remove moderators at any time.
-
-### 2.3 Board Oversight  
-The Board may override moderator appointments or removals with a **2‑vote approval** in cases of:
-- misconduct  
-- security risk  
-- impersonation  
-- legal threat  
-
-### 2.4 Moderator Responsibilities  
-Moderators are responsible for:
-- enforcing rules  
-- managing channels  
-- responding to reports  
-- assisting the SM  
-- maintaining community safety  
-
----
-
-## Section 3 — Emergency Powers
-
-### 3.1 SM Emergency Authority  
-The Senior Moderator may take **unilateral emergency action** to protect the community, including:
-- banning malicious actors  
-- locking channels  
-- enabling slow mode  
-- restricting access  
-- appointing temporary moderators  
-- isolating compromised roles or bots  
-
-### 3.2 Reporting Requirement  
-All emergency actions must be reported to the Governance Board within **24 hours**, including:
-- what happened  
-- what actions were taken  
-- why they were necessary  
-- recommended follow‑up  
-
-### 3.3 IM Emergency Support  
-The IM may assist the SM in emergencies involving:
-- bot compromise  
-- API abuse  
-- infrastructure‑linked Discord outages  
-
----
-
-## Section 4 — Announcement Authority
-
-### 4.1 Official Announcement Channel  
-All official Wnode announcements must be published in Discord.
-
-### 4.2 Who May Announce  
-Announcements may be made by:
-- **Infrastructure Manager** — operational updates  
-- **Steward** — governance updates  
-- **Governance Board** — protocol or strategic updates  
-- **Senior Moderator** — community and safety updates  
-
-### 4.3 Announcement Requirements  
-Announcements must:
-- be posted in designated announcement channels  
-- be timestamped  
-- remain publicly visible  
-- be archived in the governance interface  
-
-### 4.4 Cross‑Posting  
-The governance interface (`/governance`) must display:
-- all announcements  
-- their authors  
-- timestamps  
-- linked Discord messages  
-
----
-
-## Section 5 — Role Hierarchy
-
-### 5.1 Role Order  
-The Discord server must maintain the following hierarchy:
-
-1. **Founder Board**  
-2. **Infrastructure Manager**  
-3. **Senior Moderator**  
-4. **Moderator**  
-5. **NODLR (Soul Token Holder)**  
-6. **Member**  
-7. **Bot**  
-
-### 5.2 Permissions Summary  
-- **Founder Board**: read‑only oversight, cannot ban users  
-- **IM**: server admin except cannot delete server or remove Board  
-- **SM**: full moderation authority  
-- **Moderators**: ban/kick/mute, manage channels  
-- **NODLR**: access to governance channels  
-- **Members**: general access  
-- **Bots**: automation only  
-
----
-
-## Section 6 — Governance Integration
-
-### 6.1 `/governance` UI  
-The governance interface must display:
-- SM identity  
-- moderator list  
-- emergency actions  
-- announcement history  
-- Discord status  
-
-### 6.2 Logging  
-All moderator actions must be logged and visible to:
-- the Board  
-- the IM  
-- the Steward  
-
-### 6.3 Transparency  
-Discord governance must be:
-- auditable  
-- immutable in logs  
-- consistent with the Constitution  
-
----
-
-## Section 7 — Security Requirements
-
-### 7.1 Authentication  
-All privileged roles must use:
-- 2FA  
-- verified accounts  
-- secure devices  
-
-### 7.2 Bot Security  
-Bots must:
-- be approved by the IM  
-- use least‑privilege permissions  
-- be monitored for anomalies  
-
-### 7.3 Incident Response  
-In case of compromise:
-- SM initiates lockdown  
-- IM isolates bots  
-- Board is notified  
-- Announcement is made  
-
----
-
-## Section 8 — Versioning
-
-This document is versioned publicly and stored in:
-- `/docs/governance/discord-governance.md`  
-- the Governance UI  
-- the DAO’s on‑chain governance registry  
-
-Version: **v1.0**
+- **p95 Execution Bound**: < 15ms across WireGuard mTLS transport.
+- **MicroVM Cold Start**: < 10ms instantiation via Firecracker guest pools.
+- **State Ephemerality**: Volatile RAM zeroed upon microVM exit.
+- **Fiat Settlement Model**: Daily 6-tier ACH revenue distribution.

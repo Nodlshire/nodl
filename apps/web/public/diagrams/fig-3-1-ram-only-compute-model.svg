@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400" width="100%" height="100%" style="background:#0E0E10; font-family:'Inter', sans-serif;">
+  <text x="30" y="40" fill="#00FFB2" font-size="16" font-weight="700" letter-spacing="1">FIG. 3.1 — MEMORY ISOLATION &amp; ZERO-PERSISTENCE MODEL</text>
+  <text x="30" y="60" fill="#94A3B8" font-size="12">Strict RAM-only execution pipeline with un-swappable tmpfs mlock &amp; secure memory wipe</text>
+
+  <!-- Host OS Outer Container -->
+  <rect x="30" y="90" width="940" height="280" rx="12" fill="#141417" stroke="rgba(255,255,255,0.1)"/>
+  <text x="50" y="115" fill="#FFFFFF" font-size="12" font-weight="700">HOST OPERATING SYSTEM (Linux Kernel 6.x)</text>
+
+  <!-- cgroups v2 Memory Ceiling -->
+  <rect x="50" y="135" width="900" height="215" rx="10" fill="#0E0E10" stroke="#00FFB2" stroke-opacity="0.3"/>
+  <text x="70" y="160" fill="#00FFB2" font-size="11" font-weight="700">cgroups v2 Hard Memory Ceiling (e.g. 16GB Limit)</text>
+
+  <!-- mlock tmpfs unswappable -->
+  <rect x="70" y="180" width="860" height="150" rx="8" fill="rgba(0,255,178,0.05)" stroke="#00FFB2" stroke-opacity="0.6"/>
+  <text x="90" y="205" fill="#00FFB2" font-size="11" font-weight="700">Un-Swappable RAM Mount (tmpfs with mlock / zero swap)</text>
+  
+  <g transform="translate(90, 220)">
+    <!-- Stage 1 -->
+    <rect x="0" y="0" width="250" height="80" rx="6" fill="#141417" stroke="rgba(255,255,255,0.1)"/>
+    <text x="125" y="28" fill="#FFFFFF" font-size="11" font-weight="600" text-anchor="middle">1. Allocate Enclave Memory</text>
+    <text x="125" y="48" fill="#94A3B8" font-size="10" text-anchor="middle">RAM Allocated in mlock space</text>
+    <text x="125" y="63" fill="#00FFB2" font-size="9" font-mono text-anchor="middle">Zero Disk Persistence</text>
+
+    <text x="265" y="45" fill="#00FFB2" font-size="16" font-weight="700">→</text>
+
+    <!-- Stage 2 -->
+    <rect x="285" y="0" width="270" height="80" rx="6" fill="#141417" stroke="#22D3EE" stroke-opacity="0.4"/>
+    <text x="420" y="28" fill="#FFFFFF" font-size="11" font-weight="600" text-anchor="middle">2. Job Execution Namespace</text>
+    <text x="420" y="48" fill="#94A3B8" font-size="10" text-anchor="middle">Native Go / WASM In-Memory</text>
+    <text x="420" y="63" fill="#22D3EE" font-size="9" font-mono text-anchor="middle">No I/O or File Writes Allowed</text>
+
+    <text x="570" y="45" fill="#00FFB2" font-size="16" font-weight="700">→</text>
+
+    <!-- Stage 3 -->
+    <rect x="590" y="0" width="230" height="80" rx="6" fill="rgba(0,255,178,0.1)" stroke="#00FFB2"/>
+    <text x="705" y="28" fill="#00FFB2" font-size="11" font-weight="700" text-anchor="middle">3. Secure BZero Wipe</text>
+    <text x="705" y="48" fill="#FFFFFF" font-size="10" text-anchor="middle">explicit_bzero() call</text>
+    <text x="705" y="63" fill="#00FFB2" font-size="9" font-mono text-anchor="middle">Memory Cleared to Zero</text>
+  </g>
+</svg>

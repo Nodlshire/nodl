@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420" width="100%" height="100%" style="background:#0E0E10; font-family:'Inter', sans-serif;">
+  <text x="30" y="40" fill="#00FFB2" font-size="16" font-weight="700" letter-spacing="1">FIG. 8.1 — STRIDE THREAT &amp; MITIGATION MATRIX</text>
+  <text x="30" y="60" fill="#94A3B8" font-size="12">Formal security mapping across 6 threat categories and countermeasure boundaries</text>
+
+  <g transform="translate(30, 90)">
+    <!-- Header -->
+    <rect x="0" y="0" width="940" height="30" rx="4" fill="#141417"/>
+    <text x="20" y="20" fill="#00FFB2" font-size="11" font-weight="700">STRIDE Category</text>
+    <text x="220" y="20" fill="#FFFFFF" font-size="11" font-weight="700">Primary Attack Vector / Threat Scenario</text>
+    <text x="600" y="20" fill="#00FFB2" font-size="11" font-weight="700">Technical Countermeasure Control</text>
+
+    <!-- Row 1: Spoofing -->
+    <rect x="0" y="38" width="940" height="42" rx="4" fill="rgba(255,255,255,0.02)"/>
+    <text x="20" y="64" fill="#00FFB2" font-size="11" font-weight="600">S — Spoofing</text>
+    <text x="220" y="64" fill="#94A3B8" font-size="10">Impersonating verified node operator / WUID</text>
+    <text x="600" y="64" fill="#FFFFFF" font-size="10">Ed25519 cryptographic key-pair challenge &amp; TPM 2.0</text>
+
+    <!-- Row 2: Tampering -->
+    <rect x="0" y="88" width="940" height="42" rx="4" fill="rgba(255,255,255,0.04)"/>
+    <text x="20" y="114" fill="#00FFB2" font-size="11" font-weight="600">T — Tampering</text>
+    <text x="220" y="114" fill="#94A3B8" font-size="10">Altering job code binary or compute output</text>
+    <text x="600" y="114" fill="#FFFFFF" font-size="10">Merkle tree hash validation &amp; quorum verification</text>
+
+    <!-- Row 3: Repudiation -->
+    <rect x="0" y="138" width="940" height="42" rx="4" fill="rgba(255,255,255,0.02)"/>
+    <text x="20" y="164" fill="#00FFB2" font-size="11" font-weight="600">R — Repudiation</text>
+    <text x="220" y="164" fill="#94A3B8" font-size="10">Denying executed compute job or referral yield</text>
+    <text x="600" y="164" fill="#FFFFFF" font-size="10">Append-only SOT audit database ledger on port 8080</text>
+
+    <!-- Row 4: Info Disclosure -->
+    <rect x="0" y="188" width="940" height="42" rx="4" fill="rgba(255,255,255,0.04)"/>
+    <text x="20" y="214" fill="#00FFB2" font-size="11" font-weight="600">I — Info Disclosure</text>
+    <text x="220" y="214" fill="#94A3B8" font-size="10">Exposing tenant data across co-located nodes</text>
+    <text x="600" y="214" fill="#FFFFFF" font-size="10">AMD SEV / Intel TDX hardware enclave memory encryption</text>
+
+    <!-- Row 5: DoS -->
+    <rect x="0" y="238" width="940" height="42" rx="4" fill="rgba(255,255,255,0.02)"/>
+    <text x="20" y="264" fill="#00FFB2" font-size="11" font-weight="600">D — Denial of Service</text>
+    <text x="220" y="264" fill="#94A3B8" font-size="10">Flooding SOT API with invalid telemetry/jobs</text>
+    <text x="600" y="264" fill="#FFFFFF" font-size="10">Token bucket rate limiting (100 req/sec) &amp; back-pressure</text>
+
+    <!-- Row 6: Elevation of Privilege -->
+    <rect x="0" y="288" width="940" height="42" rx="4" fill="rgba(255,255,255,0.04)"/>
+    <text x="20" y="314" fill="#00FFB2" font-size="11" font-weight="600">E — Elevation of Priv</text>
+    <text x="220" y="314" fill="#94A3B8" font-size="10">Container escape to host kernel OS</text>
+    <text x="600" y="314" fill="#FFFFFF" font-size="10">Firecracker VMM microVM hypervisor &amp; gVisor sandbox</text>
+  </g>
+</svg>

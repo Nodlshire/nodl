@@ -1,111 +1,215 @@
 import React from 'react';
+import Callout from '@/components/docs/Callout';
+import CodeBlock from '@/components/docs/CodeBlock';
+import DiagramErrorBoundary from '@/components/docs/DiagramErrorBoundary';
 
 export default function Page() {
-    return (
-        <div className="prose prose-invert max-w-none">
-            <h1 className="text-4xl font-bold mb-6">Wnode Enterprise Architecture Specification</h1>
-            
-            
-            {/* Contextual Narrative Section (What, Why, How) */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-10 not-prose">
-                <div className="bg-slate-900/80 p-6 rounded-2xl border border-emerald-500/30">
-                    <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">WHAT IT IS</span>
-                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Wnode Enterprise Architecture Specification Overview</h3>
-                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
-                        Core architectural specification detailing the operational mechanics, data protocols, and determinism constraints of Wnode Enterprise Architecture Specification within the Wnode mesh.
-                    </p>
-                </div>
+  return (
+    <div className="max-w-4xl space-y-8 py-8" role="main" aria-label="Wnode Developer Portal">
+      {/* Schema.org TechArticle Microdata */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'TechArticle',
+            'headline': 'Wnode Developer Portal & SDK Reference',
+            'description': 'Client SDK libraries, WASI targets, Go wrappers, and OpenAPI 3.0 REST endpoints.',
+            'url': 'https://wnode.io/docs/developer',
+            'author': { '@type': 'Organization', 'name': 'Wnode Technologies' },
+            'inLanguage': 'en-US',
+          }),
+        }}
+      />
 
-                <div className="bg-slate-900/80 p-6 rounded-2xl border border-cyan-500/30">
-                    <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">WHY IT MATTERS</span>
-                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Architectural Purpose</h3>
-                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
-                        Ensures zero-custody verification, high-throughput execution, and fault-tolerant node consensus across Earth &amp; Space mesh topologies.
-                    </p>
-                </div>
-
-                <div className="bg-slate-900/80 p-6 rounded-2xl border border-purple-500/30">
-                    <span className="text-xs font-bold uppercase tracking-widest text-purple-400">HOW IT OPERATES</span>
-                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Native Go Engine</h3>
-                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
-                        Executed via SECCOMP-restricted Native Go modules (`linux-amd64`), validated with mTLS telemetry signatures and HMAC routing epochs.
-                    </p>
-                </div>
-            </div>
-<h2 id="architecture-overview" className="text-2xl font-semibold mt-8 mb-4">Architecture Overview</h2>
-            <p className="text-slate-300 leading-relaxed mb-6">The Wnode Sovereign Mesh is a deterministic, verifiable, and auto-scaling compute substrate. It executes immutable, signed Native Go and Go artifacts deployed across a decentralized network. The network features a stateless, horizontally scalable orchestrator layer, local ingress validation via signed routing epochs, capability-based Native Go execution, hardened mTLS telemetry with signed envelopes, and a multi-dimensional reputation and grace system for node reliability.</p>
-
-            <h2 id="conceptual-overview" className="text-2xl font-semibold mt-8 mb-4">Conceptual Overview</h2>
-            <p className="text-slate-300 leading-relaxed mb-6">Wnode utilizes a strictly generative Substrate Model rather than traditional container orchestration. By compiling a declarative <code>spec.yaml</code> into an immutable, deterministic artifact, Wnode guarantees identical execution environments globally. This deterministic execution, combined with capability-based host extensions, balances absolute safety with practical utility. Distributing signed routing epochs to nodes for local validation removes central bottlenecks, allowing the orchestrator to scale horizontally without becoming a Single Point of Failure (SPOF).</p>
-
-            <h2 id="global-architecture" className="text-2xl font-semibold mt-8 mb-4">Global Architecture Diagram</h2>
-            <div className="my-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-950 p-2">
-    <img src="/diagrams/tinygo-pipeline-flow.png" alt="Wnode Architecture Diagram" className="w-full h-auto rounded-xl" />
-</div>
-
-            <h2 id="execution-flow" className="text-2xl font-semibold mt-8 mb-4">Execution Sequence Flow</h2>
-            <ol className="list-decimal pl-6 space-y-2">
-                <li>Client sends an HMAC-signed request to the mesh.</li>
-                <li>Node validates the request locally using the cached routing epoch.</li>
-                <li>Node executes the Native Go payload with strict capability enforcement.</li>
-                <li>Node emits a cryptographically signed telemetry envelope.</li>
-                <li>Node returns the encrypted execution result to the client.</li>
-            </ol>
-
-            <h2 id="core-artifacts" className="text-2xl font-semibold mt-8 mb-4">Core Artifacts</h2>
-            <ul className="list-disc pl-6 space-y-2">
-                <li><strong>spec.yaml:</strong> The declarative target defining resources and capabilities (e.g., HTTPS and DB bindings).</li>
-                <li><strong>Generated Go Handler:</strong> The strict execution boundary enforcing timeouts and cgroups.</li>
-                <li><strong>Native Go Runtime:</strong> The SECCOMP Sandbox sandbox isolating memory and executing logic.</li>
-                <li><strong>Capability Registry:</strong> The daemon-side enforcer of spec.yaml bindings.</li>
-                <li><strong>Routing Epoch Structure:</strong> The signed payload containing allowed routes and HMAC secrets.</li>
-            </ul>
-
-            <h2 id="failure-modes" className="text-2xl font-semibold mt-8 mb-4">Failure Modes & Error Handling</h2>
-            <ul className="list-disc pl-6 space-y-2">
-                <li><strong>Epoch Expiration:</strong> Nodes reject ingress traffic safely until a new signed epoch is fetched.</li>
-                <li><strong>Capability Rejection:</strong> Unauthorized I/O attempts instantly trap the Native Go call.</li>
-                <li><strong>Native Go Sandbox Traps:</strong> Panics within the module are securely trapped without affecting the host.</li>
-                <li><strong>Grace-Based Reputation Decay:</strong> Nodes experience continuous score decay rather than instant slashing for transient failures.</li>
-                <li><strong>Offline Operation:</strong> Nodes continue to process tasks utilizing cached routing epochs during orchestrator downtime.</li>
-            </ul>
-
-            <h2 id="security-boundaries" className="text-2xl font-semibold mt-8 mb-4">Security Boundaries & Invariants</h2>
-            <ul className="list-disc pl-6 space-y-2">
-                <li>Deterministic Native Go execution in an air-gapped memory sandbox.</li>
-                <li>Capability-scoped outbound I/O enforced by the daemon.</li>
-                <li>Cryptographically signed artifacts and routing epochs.</li>
-                <li>mTLS-secured telemetry transport.</li>
-                <li>Hardware-bound node identity keys for absolute proof of execution.</li>
-            </ul>
-
-            <h2 id="performance-characteristics" className="text-2xl font-semibold mt-8 mb-4">Performance Characteristics</h2>
-            <ul className="list-disc pl-6 space-y-2">
-                <li><strong>Local Ingress Validation Latency:</strong> &lt; 1ms overhead for local HMAC checks.</li>
-                <li><strong>Native Go Cold Start:</strong> &lt; 10ms utilizing pre-compiled runtime caches.</li>
-                <li><strong>Capability Overhead:</strong> &lt; 2ms penalty for bridging host-function capabilities.</li>
-                <li><strong>Epoch Refresh Intervals:</strong> Asynchronous refreshes occur entirely outside the execution critical path.</li>
-            </ul>
-
-            <h2 id="responsibilities" className="text-2xl font-semibold mt-8 mb-4">Responsibilities</h2>
-            <ul className="list-disc pl-6 space-y-2">
-                <li><strong>Operator:</strong> Maintain uptime, protect node identity keys securely, and ensure host OS cgroups and sandboxing features are enabled.</li>
-                <li><strong>Developer:</strong> Define accurate <code>spec.yaml</code> manifests, explicitly declare required capabilities, and write deterministic Native Go logic.</li>
-            </ul>
-
-            <h2 id="telemetry" className="text-2xl font-semibold mt-8 mb-4">Telemetry Emitted</h2>
-            <p className="text-slate-300 leading-relaxed mb-6">All telemetry utilizes mTLS transport and is cryptographically signed by the node's identity key. Envelopes include a monotonic sequence counter to prevent replay attacks. No plaintext logs are emitted.</p>
-
-            <h2 id="cross-component-interactions" className="text-2xl font-semibold mt-8 mb-4">Cross-Component Interactions</h2>
-            <p className="text-slate-300 leading-relaxed mb-6">Nodes operate independently based on locally cached routing epochs. The orchestrator functions exclusively as a stateless, horizontally scalable routing table publisher and authenticated telemetry sink. Telemetry interaction is secured via mTLS.</p>
-
-            <h2 id="best-practices" className="text-2xl font-semibold mt-8 mb-4">Best Practices & Anti-Patterns</h2>
-            <ul className="list-disc pl-6 space-y-2">
-                <li>Declare the absolute minimal required capabilities.</li>
-                <li>Avoid nondeterministic logic inside Native Go modules.</li>
-                <li>Use conservative timeouts to account for network variability.</li>
-                <li>Do not modify the node environment manually; all configuration flows from the orchestrator.</li>
-            </ul>
+      <div>
+        <div className="text-xs font-semibold tracking-wider text-amber-400 uppercase mb-1">
+          Wnode Developer Portal &amp; SDK Hub
         </div>
-    );
+        <h1 className="text-3xl font-bold text-white tracking-tight">Client Integration &amp; SDK Reference Guide</h1>
+        <p className="mt-2 text-base text-slate-400">
+          Build, compile, and dispatch serverless WASI and Native Go workloads across Wnode edge compute mesh using TypeScript, Go, and REST APIs.
+        </p>
+      </div>
+
+      <Callout type="note" title="SDK Version Compatibility">
+        Client SDK libraries `@wnode/sdk` (npm) and `github.com/wnodeltd/wnode/sdk` (Go) require API protocol version 1.5.0+. All client connections support automatic connection pooling and Ed25519 signature generation.
+      </Callout>
+
+      <section className="space-y-4">
+        <h2 id="developer-diagram" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          1. Developer Quickstart Architecture &amp; Execution Pipeline
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          The diagram below illustrates the developer quickstart pipeline, showing client code compilation, WASI target generation, Ed25519 payload signing, and async dispatch to edge nodes.
+        </p>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Developers package application logic into compiled WebAssembly System Interface (WASI) modules or Native Go binaries. Client SDK wrappers serialize the payload, compute SHA-256 state digests, and attach Ed25519 signature envelopes before dispatching task requests over HTTP/2 or WebSockets.
+        </p>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Edge gateways verify payload signatures against registered client public keys, ensuring only authorized tenants can execute workloads on cluster nodes.
+        </p>
+
+        <DiagramErrorBoundary fallbackTitle="Fig 10.2 – Developer Quickstart Pipeline Fallback">
+          <figure className="doc-figure my-8 rounded-xl border border-white/10 bg-[#0E0E10] p-4 shadow-2xl transition-all hover:border-[#00FFB2]/40" aria-label="Fig 10.2 – Developer Quickstart Pipeline">
+            <img loading="lazy" src="/diagrams/fig-10-2-developer-quickstart-pipeline.svg" alt="Fig 10.2 – Developer Quickstart Pipeline" className="w-full h-auto max-h-[400px] object-contain rounded-lg bg-black/60 p-2" />
+            <figcaption className="mt-3 text-xs text-gray-400 leading-relaxed">Fig 10.2 – Developer Quickstart Pipeline</figcaption>
+          </figure>
+        </DiagramErrorBoundary>
+      </section>
+
+      <section className="space-y-4">
+        <h2 id="typescript-sdk" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          2. TypeScript / Node.js Client SDK Integration (`@wnode/sdk`)
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          The TypeScript SDK provides a type-safe, asynchronous interface for dispatching compute jobs, streaming execution telemetry, and managing cryptographic client keys.
+        </p>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Client connections maintain automatic keep-alive ping frames to edge gateway endpoints, re-establishing dropped WebSockets seamlessly without losing execution state context.
+        </p>
+        <CodeBlock language="typescript" filename="client.ts" code={`import { WnodeClient, Ed25519Signer } from '@wnode/sdk';
+
+const signer = new Ed25519Signer(process.env.WNODE_PRIVATE_KEY!);
+const client = new WnodeClient({
+  endpoint: 'https://gateway.wnode.io:8080',
+  signer: signer,
+  timeoutMs: 5000,
+});
+
+async function run() {
+  const res = await client.dispatchJob({
+    runtime: 'wasm32-wasi',
+    payload: new Uint8Array([0, 97, 115, 109]),
+  });
+  console.log('State Hash:', res.stateHash);
+}
+run();`} />
+      </section>
+
+      <section className="space-y-4">
+        <h2 id="go-sdk" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          3. Native Go SDK Integration (`github.com/wnodeltd/wnode/sdk`)
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          High-performance Go applications integrate directly via the `wnode/sdk` package. The Go SDK features zero-allocation payload serialization and connection pooling over HTTP/2 and WebSockets.
+        </p>
+        <CodeBlock language="go" filename="main.go" code={`package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/wnodeltd/wnode/sdk"
+)
+
+func main() {
+	client, _ := sdk.NewClient(sdk.Config{
+		Endpoint: "http://127.0.0.1:8080",
+	})
+	resp, _ := client.ExecuteJob(context.Background(), &sdk.JobRequest{
+		Runtime: "native-go",
+		Payload: []byte("{\"task\":\"telemetry\"}"),
+	})
+	fmt.Println("Hash:", resp.StateHash)
+}`} />
+      </section>
+
+      <section className="space-y-4">
+        <h2 id="wasi-compilation" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          4. WASI Compilation Toolchain &amp; Target Architectures
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Wnode supports WebAssembly System Interface (WASI snapshot_preview1) binaries compiled from Rust, C/C++, Go (TinyGo), or Zig. Compile binaries with strict WASI target triples (`wasm32-wasi`).
+        </p>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          WASI modules access standard input/output streams, clock time functions, and random entropy primitives provided securely by the host gVisor Sentry sandbox.
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 id="openapi-spec" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          5. OpenAPI 3.0 REST API Specification
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Nodes expose standard REST endpoints over HTTPS port 8080. All HTTP request headers require `X-Wnode-Signature` and `X-Wnode-Nonce` headers to pass constant-time cryptographic verification.
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 id="local-testing-anti-patterns" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          6. Local Testing Harness &amp; Integration Anti-Patterns
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Test workloads locally using the `wnode-emulator` binary before deploying to production edge networks. Do not write persistent state to local guest disk mounts (use ephemeral RAM output buffers).
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 id="error-handling-retries" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          7. Error Handling &amp; Exponential Backoff Strategies
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          SDK client wrappers handle transient `ERR_NODE_DRAINING` or `ERR_RATE_LIMIT_EXCEEDED` codes by querying orchestrator directory nodes for alternative active edge targets.
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 id="connection-pooling" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          8. Connection Pooling &amp; Socket Reuse
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          The Wnode client SDK automatically manages pool sizing, reusing active socket channels across parallel async dispatches to maintain sub-15ms round-trip latency bounds.
+        </p>
+      </section>
+
+      
+      <section className="space-y-4">
+        <h2 id="dev-middleware" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          9. Custom SDK Middleware &amp; Distributed Tracing Hooks
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          The Wnode client SDK supports pluggable middleware chains allowing developers to inject custom logging, request rate limiting, circuit breaker pattern handlers, and OpenTelemetry trace propagation headers (`traceparent`) into outgoing API dispatches.
+        </p>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Distributed tracing hooks track end-to-end task execution spans from initial client invocation, through edge gateway routing, Firecracker WASI container execution, and final state settlement, emitting standard Jaeger/Zipkin spans for APM dashboard visualization.
+        </p>
+      </section>
+
+      
+      <section className="space-y-4">
+        <h2 id="dev-middleware" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          9. Custom SDK Middleware &amp; Distributed Tracing Hooks
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          The Wnode client SDK supports pluggable middleware chains allowing developers to inject custom logging, request rate limiting, circuit breaker pattern handlers, and OpenTelemetry trace propagation headers (`traceparent`) into outgoing API dispatches.
+        </p>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Distributed tracing hooks track end-to-end task execution spans from initial client invocation, through edge gateway routing, Firecracker WASI container execution, and final state settlement, emitting standard Jaeger/Zipkin spans for APM dashboard visualization.
+        </p>
+      </section>
+
+      {/* Related Pages Block */}
+      <section className="space-y-4 pt-6 border-t border-slate-800" aria-label="Related Developer Pages">
+        <h2 className="text-lg font-semibold text-white tracking-tight">Related Developer References</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <a href="/docs/developer/wasi-compilation" className="p-4 rounded-lg bg-slate-900 border border-slate-800 hover:border-amber-500/50 transition-all group">
+            <h3 className="text-sm font-semibold text-amber-400 group-hover:text-amber-300">WASI Compilation Guide →</h3>
+            <p className="text-xs text-slate-400 mt-1">Rust, C/C++, TinyGo, and Zig WASI compilation flags.</p>
+          </a>
+          <a href="/docs/developer/sdk-reference" className="p-4 rounded-lg bg-slate-900 border border-slate-800 hover:border-purple-500/50 transition-all group">
+            <h3 className="text-sm font-semibold text-purple-400 group-hover:text-purple-300">SDK API Reference →</h3>
+            <p className="text-xs text-slate-400 mt-1">TypeScript and Go client class interfaces and method signatures.</p>
+          </a>
+          <a href="/docs/developer/local-testing" className="p-4 rounded-lg bg-slate-900 border border-slate-800 hover:border-blue-500/50 transition-all group">
+            <h3 className="text-sm font-semibold text-blue-400 group-hover:text-blue-300">Local Testing &amp; Emulator →</h3>
+            <p className="text-xs text-slate-400 mt-1">Mock gateway emulator for unit testing WASM modules.</p>
+          </a>
+          <a href="/docs/developer/anti-patterns" className="p-4 rounded-lg bg-slate-900 border border-slate-800 hover:border-rose-500/50 transition-all group">
+            <h3 className="text-sm font-semibold text-rose-400 group-hover:text-rose-300">Integration Anti-Patterns →</h3>
+            <p className="text-xs text-slate-400 mt-1">Common mistakes to avoid when building Wnode applications.</p>
+          </a>
+        </div>
+      </section>
+    </div>
+  );
 }

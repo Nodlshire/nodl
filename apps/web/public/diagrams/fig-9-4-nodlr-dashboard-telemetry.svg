@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="100%" height="100%" style="background-color: #0E0E10; font-family: 'Inter', system-ui, sans-serif;">
+  <!-- Header Banner -->
+  <rect x="20" y="20" width="920" height="50" rx="8" fill="#141419" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <text x="40" y="50" fill="#00FFB2" font-size="16" font-weight="700" letter-spacing="0.5">FIG 9.4 – NODLR OPERATOR DASHBOARD TELEMETRY &amp; HARVEST YIELD VIEW</text>
+  <text x="730" y="50" fill="#22D3EE" font-size="12" font-weight="500">v1.5.0-enterprise | Operator UI</text>
+
+  <!-- Simulated Dashboard Layout -->
+  <rect x="40" y="90" width="880" height="400" rx="8" fill="#0D0D12" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+
+  <!-- Top Metric Cards Row -->
+  <rect x="60" y="110" width="260" height="90" rx="6" fill="#141419" stroke="#00FFB2" stroke-width="1.5"/>
+  <text x="80" y="135" fill="#A0A0AB" font-size="11" font-weight="600">ACTIVE COMPUTE TIER</text>
+  <text x="80" y="165" fill="#00FFB2" font-size="18" font-weight="800">Tier 1 Enterprise GPU</text>
+  <text x="80" y="185" fill="#FFFFFF" font-size="11">NVIDIA RTX 4090 (24GB)</text>
+  <circle cx="300" cy="135" r="12" fill="#00FFB2"/>
+  <text x="300" y="139" fill="#0E0E10" font-size="11" font-weight="800" text-anchor="middle">1</text>
+
+  <rect x="350" y="110" width="260" height="90" rx="6" fill="#141419" stroke="#22D3EE" stroke-width="1.5"/>
+  <text x="370" y="135" fill="#A0A0AB" font-size="11" font-weight="600">24H HARVEST FIAT YIELD</text>
+  <text x="370" y="165" fill="#22D3EE" font-size="18" font-weight="800">$48.92 USD</text>
+  <text x="370" y="185" fill="#00FFB2" font-size="11">Automated Stripe Payout Active</text>
+  <circle cx="590" cy="135" r="12" fill="#22D3EE"/>
+  <text x="590" y="139" fill="#0E0E10" font-size="11" font-weight="800" text-anchor="middle">2</text>
+
+  <rect x="640" y="110" width="260" height="90" rx="6" fill="#141419" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+  <text x="660" y="135" fill="#A0A0AB" font-size="11" font-weight="600">SOT TELEMETRY HEALTH</text>
+  <text x="660" y="165" fill="#FFFFFF" font-size="18" font-weight="800">99.98% SLA</text>
+  <text x="660" y="185" fill="#00FFB2" font-size="11">sub-15ms SOT Heartbeat</text>
+
+  <!-- Live Job Stream Panel -->
+  <rect x="60" y="220" width="840" height="250" rx="6" fill="#141419" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  <text x="80" y="250" fill="#FFFFFF" font-size="13" font-weight="700">Real-Time RAM-Only Job Telemetry Log (`tmpfs mlock` active)</text>
+
+  <text x="80" y="285" fill="#00FFB2" font-size="11" font-family="monospace">14:02:01 [SOT] Job #JOB-88192 Dispatched -> MicroVM Sandbox #4 (SECCOMP OK)</text>
+  <text x="80" y="310" fill="#FFFFFF" font-size="11" font-family="monospace">14:02:03 [EXEC] CUDA Matrix Multiply completed (1.42s execution time)</text>
+  <text x="80" y="335" fill="#22D3EE" font-size="11" font-family="monospace">14:02:04 [WIPE] explicit_bzero memory wipe completed (0 persistence)</text>
+  <text x="80" y="360" fill="#00FFB2" font-size="11" font-family="monospace">14:02:04 [PAYOUT] +$0.12 fiat yield credited to Stripe Connect SOT balance</text>
+
+  <rect x="60" y="400" width="840" height="50" rx="4" fill="#1A1A22"/>
+  <text x="80" y="430" fill="#A0A0AB" font-size="11">VGE Viral Growth Engine Tier Level 1 Active | 5 Node Referrals Connected ($14.20 daily bonus)</text>
+  <circle cx="870" cy="425" r="12" fill="#00FFB2"/>
+  <text x="870" y="429" fill="#0E0E10" font-size="11" font-weight="800" text-anchor="middle">3</text>
+</svg>

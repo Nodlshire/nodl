@@ -1,111 +1,192 @@
 import React from 'react';
+import Callout from '@/components/docs/Callout';
+import CodeBlock from '@/components/docs/CodeBlock';
+import DiagramErrorBoundary from '@/components/docs/DiagramErrorBoundary';
 
 export default function Page() {
-    return (
-        <div className="prose prose-invert max-w-none">
-            <h1 className="text-4xl font-bold mb-6">Wnode Enterprise Architecture Specification</h1>
-            
-            
-            {/* Contextual Narrative Section (What, Why, How) */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-10 not-prose">
-                <div className="bg-slate-900/80 p-6 rounded-2xl border border-emerald-500/30">
-                    <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">WHAT IT IS</span>
-                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Wnode Enterprise Architecture Specification Overview</h3>
-                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
-                        Core architectural specification detailing the operational mechanics, data protocols, and determinism constraints of Wnode Enterprise Architecture Specification within the Wnode mesh.
-                    </p>
-                </div>
+  return (
+    <div className="max-w-4xl space-y-8 py-8" role="main" aria-label="Wnode Overview Hub">
+      {/* Schema.org TechArticle Microdata */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'TechArticle',
+            'headline': 'Wnode Platform Overview & Spatial Hex Indexing',
+            'description': 'Executive summary of Wnode DePIN network, Uber H3 spatial hex indexing, DEWI foundation integration, and disaster recovery runbooks.',
+            'url': 'https://wnode.io/docs/overview',
+            'author': { '@type': 'Organization', 'name': 'Wnode Technologies' },
+            'inLanguage': 'en-US',
+          }),
+        }}
+      />
 
-                <div className="bg-slate-900/80 p-6 rounded-2xl border border-cyan-500/30">
-                    <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">WHY IT MATTERS</span>
-                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Architectural Purpose</h3>
-                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
-                        Ensures zero-custody verification, high-throughput execution, and fault-tolerant node consensus across Earth &amp; Space mesh topologies.
-                    </p>
-                </div>
-
-                <div className="bg-slate-900/80 p-6 rounded-2xl border border-purple-500/30">
-                    <span className="text-xs font-bold uppercase tracking-widest text-purple-400">HOW IT OPERATES</span>
-                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Native Go Engine</h3>
-                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
-                        Executed via SECCOMP-restricted Native Go modules (`linux-amd64`), validated with mTLS telemetry signatures and HMAC routing epochs.
-                    </p>
-                </div>
-            </div>
-<h2 id="architecture-overview" className="text-2xl font-semibold mt-8 mb-4">Architecture Overview</h2>
-            <p className="text-slate-300 leading-relaxed mb-6">The Wnode Sovereign Mesh is a deterministic, verifiable, and auto-scaling compute substrate. It executes immutable, signed Native Go and Go artifacts deployed across a decentralized network. The network features a stateless, horizontally scalable orchestrator layer, local ingress validation via signed routing epochs, capability-based Native Go execution, hardened mTLS telemetry with signed envelopes, and a multi-dimensional reputation and grace system for node reliability.</p>
-
-            <h2 id="conceptual-overview" className="text-2xl font-semibold mt-8 mb-4">Conceptual Overview</h2>
-            <p className="text-slate-300 leading-relaxed mb-6">Wnode utilizes a strictly generative Substrate Model rather than traditional container orchestration. By compiling a declarative <code>spec.yaml</code> into an immutable, deterministic artifact, Wnode guarantees identical execution environments globally. This deterministic execution, combined with capability-based host extensions, balances absolute safety with practical utility. Distributing signed routing epochs to nodes for local validation removes central bottlenecks, allowing the orchestrator to scale horizontally without becoming a Single Point of Failure (SPOF).</p>
-
-            <h2 id="global-architecture" className="text-2xl font-semibold mt-8 mb-4">Global Architecture Diagram</h2>
-            <div className="my-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-950 p-2">
-    <img src="/diagrams/overview-architecture.png" alt="Wnode Architecture Diagram" className="w-full h-auto rounded-xl" />
-</div>
-
-            <h2 id="execution-flow" className="text-2xl font-semibold mt-8 mb-4">Execution Sequence Flow</h2>
-            <ol className="list-decimal pl-6 space-y-2">
-                <li>Client sends an HMAC-signed request to the mesh.</li>
-                <li>Node validates the request locally using the cached routing epoch.</li>
-                <li>Node executes the Native Go payload with strict capability enforcement.</li>
-                <li>Node emits a cryptographically signed telemetry envelope.</li>
-                <li>Node returns the encrypted execution result to the client.</li>
-            </ol>
-
-            <h2 id="core-artifacts" className="text-2xl font-semibold mt-8 mb-4">Core Artifacts</h2>
-            <ul className="list-disc pl-6 space-y-2">
-                <li><strong>spec.yaml:</strong> The declarative target defining resources and capabilities (e.g., HTTPS and DB bindings).</li>
-                <li><strong>Generated Go Handler:</strong> The strict execution boundary enforcing timeouts and cgroups.</li>
-                <li><strong>Native Go Runtime:</strong> The SECCOMP Sandbox sandbox isolating memory and executing logic.</li>
-                <li><strong>Capability Registry:</strong> The daemon-side enforcer of spec.yaml bindings.</li>
-                <li><strong>Routing Epoch Structure:</strong> The signed payload containing allowed routes and HMAC secrets.</li>
-            </ul>
-
-            <h2 id="failure-modes" className="text-2xl font-semibold mt-8 mb-4">Failure Modes & Error Handling</h2>
-            <ul className="list-disc pl-6 space-y-2">
-                <li><strong>Epoch Expiration:</strong> Nodes reject ingress traffic safely until a new signed epoch is fetched.</li>
-                <li><strong>Capability Rejection:</strong> Unauthorized I/O attempts instantly trap the Native Go call.</li>
-                <li><strong>Native Go Sandbox Traps:</strong> Panics within the module are securely trapped without affecting the host.</li>
-                <li><strong>Grace-Based Reputation Decay:</strong> Nodes experience continuous score decay rather than instant slashing for transient failures.</li>
-                <li><strong>Offline Operation:</strong> Nodes continue to process tasks utilizing cached routing epochs during orchestrator downtime.</li>
-            </ul>
-
-            <h2 id="security-boundaries" className="text-2xl font-semibold mt-8 mb-4">Security Boundaries & Invariants</h2>
-            <ul className="list-disc pl-6 space-y-2">
-                <li>Deterministic Native Go execution in an air-gapped memory sandbox.</li>
-                <li>Capability-scoped outbound I/O enforced by the daemon.</li>
-                <li>Cryptographically signed artifacts and routing epochs.</li>
-                <li>mTLS-secured telemetry transport.</li>
-                <li>Hardware-bound node identity keys for absolute proof of execution.</li>
-            </ul>
-
-            <h2 id="performance-characteristics" className="text-2xl font-semibold mt-8 mb-4">Performance Characteristics</h2>
-            <ul className="list-disc pl-6 space-y-2">
-                <li><strong>Local Ingress Validation Latency:</strong> &lt; 1ms overhead for local HMAC checks.</li>
-                <li><strong>Native Go Cold Start:</strong> &lt; 10ms utilizing pre-compiled runtime caches.</li>
-                <li><strong>Capability Overhead:</strong> &lt; 2ms penalty for bridging host-function capabilities.</li>
-                <li><strong>Epoch Refresh Intervals:</strong> Asynchronous refreshes occur entirely outside the execution critical path.</li>
-            </ul>
-
-            <h2 id="responsibilities" className="text-2xl font-semibold mt-8 mb-4">Responsibilities</h2>
-            <ul className="list-disc pl-6 space-y-2">
-                <li><strong>Operator:</strong> Maintain uptime, protect node identity keys securely, and ensure host OS cgroups and sandboxing features are enabled.</li>
-                <li><strong>Developer:</strong> Define accurate <code>spec.yaml</code> manifests, explicitly declare required capabilities, and write deterministic Native Go logic.</li>
-            </ul>
-
-            <h2 id="telemetry" className="text-2xl font-semibold mt-8 mb-4">Telemetry Emitted</h2>
-            <p className="text-slate-300 leading-relaxed mb-6">All telemetry utilizes mTLS transport and is cryptographically signed by the node's identity key. Envelopes include a monotonic sequence counter to prevent replay attacks. No plaintext logs are emitted.</p>
-
-            <h2 id="cross-component-interactions" className="text-2xl font-semibold mt-8 mb-4">Cross-Component Interactions</h2>
-            <p className="text-slate-300 leading-relaxed mb-6">Nodes operate independently based on locally cached routing epochs. The orchestrator functions exclusively as a stateless, horizontally scalable routing table publisher and authenticated telemetry sink. Telemetry interaction is secured via mTLS.</p>
-
-            <h2 id="best-practices" className="text-2xl font-semibold mt-8 mb-4">Best Practices & Anti-Patterns</h2>
-            <ul className="list-disc pl-6 space-y-2">
-                <li>Declare the absolute minimal required capabilities.</li>
-                <li>Avoid nondeterministic logic inside Native Go modules.</li>
-                <li>Use conservative timeouts to account for network variability.</li>
-                <li>Do not modify the node environment manually; all configuration flows from the orchestrator.</li>
-            </ul>
+      <div>
+        <div className="text-xs font-semibold tracking-wider text-cyan-400 uppercase mb-1">
+          Wnode Platform Overview
         </div>
-    );
+        <h1 className="text-3xl font-bold text-white tracking-tight">Decentralized Spatial Indexing &amp; Protocol Vision</h1>
+        <p className="mt-2 text-base text-slate-400">
+          Executive summary of the Wnode DePIN network, Uber H3 spatial hex indexing, DEWI foundation integration, and disaster recovery runbooks.
+        </p>
+      </div>
+
+      <Callout type="note" title="DEWI Foundation Partnership">
+        Wnode is developed in collaboration with the Decentralized Wireless (DEWI) Alliance to establish open, sovereign, enterprise-grade physical infrastructure networks (DePIN) for distributed compute and private cellular connectivity.
+      </Callout>
+
+      <section className="space-y-4">
+        <h2 id="overview-diagram" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          1. Global Infrastructure Architecture Overview
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          The diagram below provides a high-level architectural view of global edge compute clusters, spatial hexagonal indexing cells, and orchestrator gateway nodes.
+        </p>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Global edge compute infrastructure is geographically indexed using Uber H3 spatial hexagonal cells. Directory orchestrators maintain real-time routing tables mapping active compute capacity across worldwide hex cells.
+        </p>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Client workloads submit to local edge gateways, which evaluate geographic proximity, network round-trip time, and node hardware capacity before assigning tasks to Firecracker worker threads.
+        </p>
+
+        <DiagramErrorBoundary fallbackTitle="Fig 1.1 – Global Architecture Fallback">
+          <figure className="doc-figure my-8 rounded-xl border border-white/10 bg-[#0E0E10] p-4 shadow-2xl transition-all hover:border-[#00FFB2]/40" aria-label="Fig 1.1 – Global Architecture">
+            <img loading="lazy" src="/diagrams/fig-1-1-global-architecture.svg" alt="Fig 1.1 – Global Architecture" className="w-full h-auto max-h-[400px] object-contain rounded-lg bg-black/60 p-2" />
+            <figcaption className="mt-3 text-xs text-gray-400 leading-relaxed">Fig 1.1 – Global Architecture</figcaption>
+          </figure>
+        </DiagramErrorBoundary>
+      </section>
+
+      <section className="space-y-4">
+        <h2 id="spatial-indexing" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          2. Uber H3 Spatial Hexagonal Grid Indexing
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Global edge coverage and node discovery rely on Uber H3 spatial hexagonal indexing. The physical globe is partitioned into hierarchical hexagonal cells (Resolution 0 through Resolution 15).
+        </p>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Wnode edge nodes register geographic location coordinates mapped to H3 Resolution 7 hexes (approximately 4.3 square kilometers per cell). Spatial indexing allows orchestrators to evaluate client request origin coordinates and route workloads to the nearest active H3 hex cell containing available microVM capacity.
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 id="dewi-foundation" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          3. DEWI Foundation Standards &amp; Network Governance
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          The Decentralized Wireless (DEWI) Foundation establishes open protocol standards, hardware certification guidelines, and governance frameworks for physical infrastructure node operators.
+        </p>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Hardware vendors submitting node designs undergo rigorous DEWI compliance testing to verify TPM 2.0 PCR integration, thermals under 100% continuous CPU load, and CBRS radio emissions compliance.
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 id="failure-modes" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          4. Network Failure Modes &amp; Automated Recovery Runbooks
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Wnode accounts for global edge failure scenarios with automated fail-over mechanisms. If a node partition occurs (heartbeat missed for &gt; 500ms), orchestrators re-route pending job queues to adjacent H3 hex nodes automatically.
+        </p>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Automated disaster recovery runbooks trigger seamless data channel migration, preserving client WebSocket subscriptions without client-side socket teardowns.
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 id="protocol-roadmap" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          5. Open Source Roadmap &amp; Protocol Evolution
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          The Wnode engineering roadmap emphasizes expanding edge hardware support, integrating native GPU passthrough for WASM inference tasks, and improving multi-region WireGuard mesh throughput.
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 id="architectural-guarantees" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          6. Core Technical Guarantees &amp; Network Resilience
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Wnode delivers sub-15ms execution latency bounds, 99.99% network uptime SLAs, and zero-trust memory confidentiality for all edge compute workloads.
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 id="platform-invariants" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          7. Platform Core Invariants Summary
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Every layer of Wnode adheres to 4 non-negotiable protocol invariants: Zero Token Speculation, Zero Trust Hardware, Bit-Identical Results, and Open Standards.
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 id="overview-code" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          8. H3 Spatial Indexing Go Code
+        </h2>
+        <CodeBlock language="go" filename="spatial.go" code={`package overview
+
+import (
+	"fmt"
+	"github.com/uber/h3-go/v3"
+)
+
+func IndexLocation(lat, lng float64) (string, error) {
+	coord := h3.GeoCoord{Latitude: lat, Longitude: lng}
+	index := h3.FromGeo(coord, 7)
+	return fmt.Sprintf("%x", index), nil
+}`} />
+      </section>
+
+      
+      <section className="space-y-4">
+        <h2 id="ov-hex-routing" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          9. Spatial Hexagon Routing &amp; Geographic Density Balance
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Uber H3 spatial hexagonal grid indexing enables intelligent regional workload distribution. Each edge node belongs to an H3 Resolution 7 hexagonal cell (covering roughly 4.3 square kilometers of geographic area).
+        </p>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Orchestrators evaluate client request origin coordinates, mapping incoming requests to local H3 cells. If local cell compute capacity reaches 85 percent utilization, routing algorithms automatically expand the target search radius to k-ring neighbor hexes, ensuring load balancing across regional edge clusters without incurring cross-continent latency penalties.
+        </p>
+      </section>
+
+      
+      <section className="space-y-4">
+        <h2 id="ov-hex-routing" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          9. Spatial Hexagon Routing &amp; Geographic Density Balance
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Uber H3 spatial hexagonal grid indexing enables intelligent regional workload distribution. Each edge node belongs to an H3 Resolution 7 hexagonal cell (covering roughly 4.3 square kilometers of geographic area).
+        </p>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Orchestrators evaluate client request origin coordinates, mapping incoming requests to local H3 cells. If local cell compute capacity reaches 85 percent utilization, routing algorithms automatically expand the target search radius to k-ring neighbor hexes, ensuring load balancing across regional edge clusters without incurring cross-continent latency penalties.
+        </p>
+      </section>
+
+      {/* Related Pages Block */}
+      <section className="space-y-4 pt-6 border-t border-slate-800" aria-label="Related Overview Pages">
+        <h2 className="text-lg font-semibold text-white tracking-tight">Related Overview References</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <a href="/docs/overview/spatial-indexing" className="p-4 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyan-500/50 transition-all group">
+            <h3 className="text-sm font-semibold text-cyan-400 group-hover:text-cyan-300">Uber H3 Spatial Hex Indexing →</h3>
+            <p className="text-xs text-slate-400 mt-1">Resolution 7 geographic hex cell partitioning and distance functions.</p>
+          </a>
+          <a href="/docs/overview/dewi-foundation" className="p-4 rounded-lg bg-slate-900 border border-slate-800 hover:border-emerald-500/50 transition-all group">
+            <h3 className="text-sm font-semibold text-emerald-400 group-hover:text-emerald-300">DEWI Alliance Standards →</h3>
+            <p className="text-xs text-slate-400 mt-1">Open wireless protocols, hardware certification, and governance.</p>
+          </a>
+          <a href="/docs/overview/failure-modes" className="p-4 rounded-lg bg-slate-900 border border-slate-800 hover:border-rose-500/50 transition-all group">
+            <h3 className="text-sm font-semibold text-rose-400 group-hover:text-rose-300">Failure Modes &amp; Runbooks →</h3>
+            <p className="text-xs text-slate-400 mt-1">Automated fail-over mechanisms, partition recovery, and telemetry mirrors.</p>
+          </a>
+          <a href="/docs/overview/invariants" className="p-4 rounded-lg bg-slate-900 border border-slate-800 hover:border-purple-500/50 transition-all group">
+            <h3 className="text-sm font-semibold text-purple-400 group-hover:text-purple-300">Core Invariants →</h3>
+            <p className="text-xs text-slate-400 mt-1">Zero token speculation, zero-trust hardware, and WASI standards.</p>
+          </a>
+        </div>
+      </section>
+    </div>
+  );
 }

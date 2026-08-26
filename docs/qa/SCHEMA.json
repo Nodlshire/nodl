@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WnodeQAMetadata",
+  "description": "Metadata schema for canonical Markdown Q&A entries in /docs/qa/",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the Q&A entry"
+    },
+    "question": {
+      "type": "string",
+      "description": "Canonical user question"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Keywords and tags for search indexing"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["operator", "payments", "infrastructure", "community", "policy"],
+      "description": "Target SOT documentation category"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp in ISO 8601 UTC"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last modification timestamp in ISO 8601 UTC"
+    },
+    "canonical": {
+      "type": "boolean",
+      "description": "Flag indicating verified SOT canonical status"
+    },
+    "confidence_score": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Confidence rating for RAG prioritization"
+    },
+    "author": {
+      "type": "string",
+      "description": "Author or approving team"
+    },
+    "embedding_hash": {
+      "type": "string",
+      "description": "SHA-256 hash of question and answer content"
+    }
+  },
+  "required": ["id", "question", "tags", "category", "created_at", "canonical", "confidence_score"]
+}

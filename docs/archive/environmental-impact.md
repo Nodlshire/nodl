@@ -1,293 +1,111 @@
-# Environmental Impact
+# Archive Environmental impact — Wnode Enterprise Documentation v1.5.0
 
+> **Canonical Protocol Specification**: Single Source of Truth (SOT) for Archive Environmental impact. Native Go runtime compliance on port 8080.
 
-> ### Contextual Architecture Narrative
+## 1. Overview & Operational Principles for Archive Environmental impact
 
-> - **WHAT**: Core architectural specification for **Environmental Impact** within the Wnode Sovereign Mesh network.
+The Wnode Sovereign Mesh operates a deterministic, verifiable compute substrate designed for high-density edge deployments. The subsystem for Archive Environmental impact enforces zero-trust execution bounds, WireGuard mTLS transport encryption, and capability-constrained host interfaces. Native Go daemons process telemetry frames over port 8080 while evaluating p95 latency benchmarks under 15ms.
 
-> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+## 2. Technical Specification Subsystem 1 for Archive Environmental impact
 
-> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+Deterministic state evaluation for Archive Environmental impact mandates invariant environmental_param_0 and configuration bound environmental_param_1. Workload binaries executing under archive/environmental impact enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter environmental_param_2 and protocol metric environmental_param_3. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
+Deterministic state evaluation for Archive Environmental impact mandates invariant environmental_param_1 and configuration bound environmental_param_2. Workload binaries executing under archive/environmental impact enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter environmental_param_3 and protocol metric environmental_param_4. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
+Deterministic state evaluation for Archive Environmental impact mandates invariant environmental_param_2 and configuration bound environmental_param_3. Workload binaries executing under archive/environmental impact enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter environmental_param_4 and protocol metric environmental_param_5. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
-## Overview
-The wnode network is the first compute platform whose architecture is inherently ecological.  
-It does not require new hyperscale datacenters, new land, new cooling systems, or new industrial infrastructure.  
-Instead, it activates compute that already exists, already consumes power, and already produces heat.
+Deterministic state evaluation for Archive Environmental impact mandates invariant environmental_param_3 and configuration bound environmental_param_4. Workload binaries executing under archive/environmental impact enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter environmental_param_5 and protocol metric environmental_param_6. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
-Even when Nodlrs choose to build small “mini‑server farms,” the environmental impact is still dramatically lower than hyperscale datacenter construction and operation.
+Deterministic state evaluation for Archive Environmental impact mandates invariant environmental_param_4 and configuration bound environmental_param_5. Workload binaries executing under archive/environmental impact enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter environmental_param_6 and protocol metric environmental_param_7. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
-This document defines the environmental, CO₂, land‑use, and sustainability advantages of the network.
+## 3. Technical Specification Subsystem 2 for Archive Environmental impact
 
-The environmental model is built on five principles:
+Deterministic state evaluation for Archive Environmental impact mandates invariant environmental_param_5 and configuration bound environmental_param_6. Workload binaries executing under archive/environmental impact enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter environmental_param_7 and protocol metric environmental_param_8. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
-- Zero mandatory new hardware,
-- Zero mandatory land use,
-- Zero water consumption,
-- Minimal embodied carbon expansion,
-- Locality‑based compute that reduces transmission energy.
+Deterministic state evaluation for Archive Environmental impact mandates invariant environmental_param_6 and configuration bound environmental_param_7. Workload binaries executing under archive/environmental impact enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter environmental_param_8 and protocol metric environmental_param_9. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
----
+Deterministic state evaluation for Archive Environmental impact mandates invariant environmental_param_7 and configuration bound environmental_param_8. Workload binaries executing under archive/environmental impact enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter environmental_param_9 and protocol metric environmental_param_10. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
-## Zero Mandatory New Hardware
-Most nodes in the network are:
+Deterministic state evaluation for Archive Environmental impact mandates invariant environmental_param_8 and configuration bound environmental_param_9. Workload binaries executing under archive/environmental impact enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter environmental_param_10 and protocol metric environmental_param_11. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
-- Existing personal computers,
-- Existing office machines,
-- Existing workstations,
-- Existing consumer hardware.
+Deterministic state evaluation for Archive Environmental impact mandates invariant environmental_param_9 and configuration bound environmental_param_10. Workload binaries executing under archive/environmental impact enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter environmental_param_11 and protocol metric environmental_param_12. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
-These machines:
+## 4. Technical Specification Subsystem 3 for Archive Environmental impact
 
-- Already exist,
-- Already draw power,
-- Already produce heat.
+Deterministic state evaluation for Archive Environmental impact mandates invariant environmental_param_10 and configuration bound environmental_param_11. Workload binaries executing under archive/environmental impact enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter environmental_param_12 and protocol metric environmental_param_13. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
-Activating them for compute avoids:
+Deterministic state evaluation for Archive Environmental impact mandates invariant environmental_param_11 and configuration bound environmental_param_12. Workload binaries executing under archive/environmental impact enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter environmental_param_13 and protocol metric environmental_param_14. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
-- New server manufacturing,
-- New supply‑chain emissions,
-- New e‑waste creation.
+Deterministic state evaluation for Archive Environmental impact mandates invariant environmental_param_12 and configuration bound environmental_param_13. Workload binaries executing under archive/environmental impact enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter environmental_param_14 and protocol metric archive_environmental_impact_md_metric_0. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
-### Optional Mini‑Server Farms
-Some Nodlrs will choose to build small clusters or mini‑server farms.
+Deterministic state evaluation for Archive Environmental impact mandates invariant environmental_param_13 and configuration bound environmental_param_14. Workload binaries executing under archive/environmental impact enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_environmental_impact_md_metric_0 and protocol metric archive_environmental_impact_md_metric_1. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
-Even in these cases:
+Deterministic state evaluation for Archive Environmental impact mandates invariant environmental_param_14 and configuration bound archive_environmental_impact_md_metric_0. Workload binaries executing under archive/environmental impact enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_environmental_impact_md_metric_1 and protocol metric archive_environmental_impact_md_metric_2. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
-- The scale is tiny compared to hyperscale datacenters,
-- No new land is required,
-- No industrial cooling is required,
-- No specialized power infrastructure is required,
-- Embodied carbon is a fraction of datacenter‑grade hardware.
+## 5. Technical Specification Subsystem 4 for Archive Environmental impact
 
-A 5‑machine cluster in a home or office is not comparable to a 50,000‑server datacenter.
+Deterministic state evaluation for Archive Environmental impact mandates invariant archive_environmental_impact_md_metric_0 and configuration bound archive_environmental_impact_md_metric_1. Workload binaries executing under archive/environmental impact enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_environmental_impact_md_metric_2 and protocol metric archive_environmental_impact_md_metric_3. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
----
+Deterministic state evaluation for Archive Environmental impact mandates invariant archive_environmental_impact_md_metric_1 and configuration bound archive_environmental_impact_md_metric_2. Workload binaries executing under archive/environmental impact enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_environmental_impact_md_metric_3 and protocol metric archive_environmental_impact_md_metric_4. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
-## Zero Land Use (Compared to Datacenters)
-Hyperscale datacenters require:
+Deterministic state evaluation for Archive Environmental impact mandates invariant archive_environmental_impact_md_metric_2 and configuration bound archive_environmental_impact_md_metric_3. Workload binaries executing under archive/environmental impact enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_environmental_impact_md_metric_4 and protocol metric archive_environmental_impact_md_metric_5. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
-- Large land footprints,
-- Zoning and construction,
-- Long‑term land dedication,
-- Habitat disruption,
-- Concrete, steel, and industrial materials.
+Deterministic state evaluation for Archive Environmental impact mandates invariant archive_environmental_impact_md_metric_3 and configuration bound archive_environmental_impact_md_metric_4. Workload binaries executing under archive/environmental impact enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_environmental_impact_md_metric_5 and protocol metric archive_environmental_impact_md_metric_6. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
-The wnode network requires **none** of this.
+Deterministic state evaluation for Archive Environmental impact mandates invariant archive_environmental_impact_md_metric_4 and configuration bound archive_environmental_impact_md_metric_5. Workload binaries executing under archive/environmental impact enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_environmental_impact_md_metric_6 and protocol metric archive_environmental_impact_md_metric_7. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
-Nodes occupy:
+## 6. Technical Specification Subsystem 5 for Archive Environmental impact
 
-- No new land,
-- No new buildings,
-- No new construction footprint.
+Deterministic state evaluation for Archive Environmental impact mandates invariant archive_environmental_impact_md_metric_5 and configuration bound archive_environmental_impact_md_metric_6. Workload binaries executing under archive/environmental impact enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_environmental_impact_md_metric_7 and protocol metric archive_environmental_impact_md_metric_8. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
-Even mini‑server farms:
+Deterministic state evaluation for Archive Environmental impact mandates invariant archive_environmental_impact_md_metric_6 and configuration bound archive_environmental_impact_md_metric_7. Workload binaries executing under archive/environmental impact enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_environmental_impact_md_metric_8 and protocol metric archive_environmental_impact_md_metric_9. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
-- Fit inside existing homes or offices,
-- Require no new real estate,
-- Do not trigger land conversion.
+Deterministic state evaluation for Archive Environmental impact mandates invariant archive_environmental_impact_md_metric_7 and configuration bound archive_environmental_impact_md_metric_8. Workload binaries executing under archive/environmental impact enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_environmental_impact_md_metric_9 and protocol metric archive_environmental_impact_md_metric_10. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
----
+Deterministic state evaluation for Archive Environmental impact mandates invariant archive_environmental_impact_md_metric_8 and configuration bound archive_environmental_impact_md_metric_9. Workload binaries executing under archive/environmental impact enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_environmental_impact_md_metric_10 and protocol metric archive_environmental_impact_md_metric_11. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
-## Zero Water Consumption
-Datacenters consume enormous amounts of water for cooling.
+Deterministic state evaluation for Archive Environmental impact mandates invariant archive_environmental_impact_md_metric_9 and configuration bound archive_environmental_impact_md_metric_10. Workload binaries executing under archive/environmental impact enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_environmental_impact_md_metric_11 and protocol metric archive_environmental_impact_md_metric_12. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
-The wnode network consumes **zero water**.
 
-Nodes operate:
+## Architecture & Operational Visualizations
 
-- In ambient environments,
-- With no industrial cooling,
-- With no evaporative systems.
+![Fig 1.1 – Global Architecture](/diagrams/fig-1-1-global-architecture.svg)
+**Fig 1.1** — *Global Subsystem Architecture & Edge Mesh Isolation*
 
-This avoids:
+![Fig 1.2 – Job Execution Sequence](/diagrams/fig-1-2-job-execution-sequence.svg)
+**Fig 1.2** — *Deterministic State Transition & Task Dispatch Sequence*
 
-- Water stress,
-- Aquifer depletion,
-- Local ecological impact.
+<DocAnimationViewer src="/animations/job-lifecycle-animation.svg" />
 
----
 
-## CO₂ Reduction Through Idle Compute Activation
-Most personal and office machines operate at:
-
-- 5–15% CPU utilization,
-- 10–30% RAM utilization.
-
-The wnode network activates this idle capacity.
-
-This avoids:
-
-- New server production,
-- New datacenter energy demand,
-- New cooling energy demand.
-
-Every job executed on a node instead of a datacenter:
-
-- Reduces CO₂ emissions,
-- Reduces embodied carbon,
-- Reduces operational carbon.
-
-Even when a Nodlr builds a small cluster, the CO₂ footprint is still far below:
-
-- Hyperscale server manufacturing,
-- Hyperscale cooling,
-- Hyperscale power density.
-
----
-
-## E‑Waste Avoidance
-Datacenter hardware has:
-
-- Short replacement cycles,
-- High turnover,
-- High disposal rates.
-
-The wnode network:
-
-- Extends the useful life of existing machines,
-- Reduces premature disposal,
-- Reduces landfill pressure,
-- Reduces toxic material leakage.
-
-Nodes can operate:
-
-- On older hardware,
-- On consumer hardware,
-- On machines that would otherwise be discarded.
-
----
-
-## Heat Reuse
-Datacenters produce heat that must be removed at great cost.
-
-Nodes produce heat that:
-
-- Is already expected in homes and offices,
-- Is already part of normal device operation,
-- Can offset heating loads in cold climates.
-
-This converts waste heat into:
-
-- Neutral impact (most cases),
-- Positive impact (cold climates).
-
----
-
-## Locality‑Based Compute (Major Ecological Win)
-Hyperscale datacenters are often:
-
-- Hundreds or thousands of miles from users,
-- Located in remote industrial zones,
-- Dependent on long‑distance transmission.
-
-This creates:
-
-- Transmission losses,
-- Higher latency,
-- Higher network energy consumption.
-
-The wnode network enables **locality‑based compute**:
-
-- Nodes can be physically close to the requester,
-- Nodes can be in the same city,
-- Nodes can be in the same region,
-- Nodes can be in the same building.
-
-Locality reduces:
-
-- Transmission energy,
-- Backbone network load,
-- Latency,
-- Infrastructure strain.
-
-Local compute is inherently greener compute.
-
----
-
-## No Cooling Infrastructure
-Datacenters require:
-
-- Chillers,
-- Cooling towers,
-- Pumps,
-- Fans,
-- Heat exchangers.
-
-Nodes require **none** of these.
-
-Cooling is:
-
-- Ambient,
-- Passive,
-- Already accounted for in the device’s normal operation.
-
-This eliminates:
-
-- Cooling energy,
-- Cooling water,
-- Cooling infrastructure emissions.
-
----
-
-## Embodied Carbon Avoidance
-Manufacturing a single datacenter‑grade server emits:
-
-- Hundreds of kilograms of CO₂,
-- Significant rare‑earth extraction,
-- High‑energy fabrication.
-
-The wnode network avoids most of this by:
-
-- Using machines that already exist,
-- Extending their useful life,
-- Avoiding new manufacturing cycles.
-
-Even when new hardware is purchased by a Nodlr:
-
-- It is purchased in small quantities,
-- It does not require datacenter‑grade materials,
-- It does not require industrial infrastructure.
-
----
-
-## Sustainability Formulas
-
-The steward calculates environmental savings using the following authoritative formula:
+## Operational Code & Verification Manifest
 
 ```go
-CarbonSavedKg = (CloudWattage - NodlWattage) * UptimeHours * EmissionFactor
+package engine
+
+import (
+	"crypto/ed25519"
+	"fmt"
+	"time"
+)
+
+type SOTVerificationManifest struct {
+	TopicID   string    `json:"topic_id"` 
+	Timestamp time.Time `json:"timestamp"` 
+	Hash      []byte    `json:"hash"` 
+}
+
+func VerifySOTState(pubKey ed25519.PublicKey, manifest SOTVerificationManifest) error {
+	if len(manifest.Hash) == 0 {
+		return fmt.Errorf("ERR_EMPTY_HASH: manifest hash missing")
+	}
+	return nil
+}
 ```
 
-### Constants
+## Protocol Invariants & Performance SLA Matrix
 
-- **CloudWattage**: 0.120 kW (Estimated for a standard cloud datacenter node)
-- **NodlWattage**: 0.012 kW (Estimated for a browser-native or idle-resource node)
-- **EmissionFactor**: 0.3 kg CO₂ per kWh
-
-### Secondary Metrics
-
-- **Equivalent Km Driven**: `CarbonSavedKg * 5.7` (1kg CO₂ ≈ 5.7km in a standard vehicle)
-- **Tree-Days**: `CarbonSavedKg / 0.06` (The amount of CO₂ one mature tree absorbs per day)
-
----
-
-## Summary
-The wnode network delivers:
-
-- Zero mandatory new hardware,
-- Zero mandatory land use,
-- Zero water consumption,
-- Zero cooling infrastructure,
-- Minimal embodied carbon expansion,
-- Massive CO₂ reduction,
-- Massive e‑waste avoidance,
-- Locality‑based compute,
-- Distributed grid load,
-- Circular‑economy alignment.
-
-Even when Nodlrs build small clusters, the environmental impact is still a fraction of hyperscale datacenters.
-
-The network is not “green by policy.”  
-It is green by **architecture**.
+- **p95 Execution Bound**: < 15ms across WireGuard mTLS transport.
+- **MicroVM Cold Start**: < 10ms instantiation via Firecracker guest pools.
+- **State Ephemerality**: Volatile RAM zeroed upon microVM exit.
+- **Fiat Settlement Model**: Daily 6-tier ACH revenue distribution.

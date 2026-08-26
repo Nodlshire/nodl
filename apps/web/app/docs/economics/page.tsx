@@ -1,111 +1,220 @@
 import React from 'react';
+import Callout from '@/components/docs/Callout';
+import CodeBlock from '@/components/docs/CodeBlock';
+import DiagramErrorBoundary from '@/components/docs/DiagramErrorBoundary';
 
 export default function Page() {
-    return (
-        <div className="prose prose-invert max-w-none">
-            <h1 className="text-4xl font-bold mb-6">Wnode Enterprise Architecture Specification</h1>
-            
-            
-            {/* Contextual Narrative Section (What, Why, How) */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-10 not-prose">
-                <div className="bg-slate-900/80 p-6 rounded-2xl border border-emerald-500/30">
-                    <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">WHAT IT IS</span>
-                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Wnode Enterprise Architecture Specification Overview</h3>
-                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
-                        Core architectural specification detailing the operational mechanics, data protocols, and determinism constraints of Wnode Enterprise Architecture Specification within the Wnode mesh.
-                    </p>
-                </div>
+  return (
+    <div className="max-w-4xl space-y-8 py-8" role="main" aria-label="Wnode Fiat Economics Hub">
+      {/* Schema.org TechArticle Microdata */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'TechArticle',
+            'headline': 'Wnode Tokenless Fiat Economics & Rate Cards',
+            'description': 'Stripe Connect automated payouts, rate cards, Proof of Compute receipts, and gas controls.',
+            'url': 'https://wnode.io/docs/economics',
+            'author': { '@type': 'Organization', 'name': 'Wnode Technologies' },
+            'inLanguage': 'en-US',
+          }),
+        }}
+      />
 
-                <div className="bg-slate-900/80 p-6 rounded-2xl border border-cyan-500/30">
-                    <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">WHY IT MATTERS</span>
-                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Architectural Purpose</h3>
-                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
-                        Ensures zero-custody verification, high-throughput execution, and fault-tolerant node consensus across Earth &amp; Space mesh topologies.
-                    </p>
-                </div>
-
-                <div className="bg-slate-900/80 p-6 rounded-2xl border border-purple-500/30">
-                    <span className="text-xs font-bold uppercase tracking-widest text-purple-400">HOW IT OPERATES</span>
-                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Native Go Engine</h3>
-                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
-                        Executed via SECCOMP-restricted Native Go modules (`linux-amd64`), validated with mTLS telemetry signatures and HMAC routing epochs.
-                    </p>
-                </div>
-            </div>
-<h2 id="architecture-overview" className="text-2xl font-semibold mt-8 mb-4">Architecture Overview</h2>
-            <p className="text-slate-300 leading-relaxed mb-6">The Wnode Sovereign Mesh is a deterministic, verifiable, and auto-scaling compute substrate. It executes immutable, signed Native Go and Go artifacts deployed across a decentralized network. The network features a stateless, horizontally scalable orchestrator layer, local ingress validation via signed routing epochs, capability-based Native Go execution, hardened mTLS telemetry with signed envelopes, and a multi-dimensional reputation and grace system for node reliability.</p>
-
-            <h2 id="conceptual-overview" className="text-2xl font-semibold mt-8 mb-4">Conceptual Overview</h2>
-            <p className="text-slate-300 leading-relaxed mb-6">Wnode utilizes a strictly generative Substrate Model rather than traditional container orchestration. By compiling a declarative <code>spec.yaml</code> into an immutable, deterministic artifact, Wnode guarantees identical execution environments globally. This deterministic execution, combined with capability-based host extensions, balances absolute safety with practical utility. Distributing signed routing epochs to nodes for local validation removes central bottlenecks, allowing the orchestrator to scale horizontally without becoming a Single Point of Failure (SPOF).</p>
-
-            <h2 id="global-architecture" className="text-2xl font-semibold mt-8 mb-4">Global Architecture Diagram</h2>
-            <div className="my-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-950 p-2">
-    <img src="/diagrams/mesh-economics.png" alt="Wnode Architecture Diagram" className="w-full h-auto rounded-xl" />
-</div>
-
-            <h2 id="execution-flow" className="text-2xl font-semibold mt-8 mb-4">Execution Sequence Flow</h2>
-            <ol className="list-decimal pl-6 space-y-2">
-                <li>Client sends an HMAC-signed request to the mesh.</li>
-                <li>Node validates the request locally using the cached routing epoch.</li>
-                <li>Node executes the Native Go payload with strict capability enforcement.</li>
-                <li>Node emits a cryptographically signed telemetry envelope.</li>
-                <li>Node returns the encrypted execution result to the client.</li>
-            </ol>
-
-            <h2 id="core-artifacts" className="text-2xl font-semibold mt-8 mb-4">Core Artifacts</h2>
-            <ul className="list-disc pl-6 space-y-2">
-                <li><strong>spec.yaml:</strong> The declarative target defining resources and capabilities (e.g., HTTPS and DB bindings).</li>
-                <li><strong>Generated Go Handler:</strong> The strict execution boundary enforcing timeouts and cgroups.</li>
-                <li><strong>Native Go Runtime:</strong> The SECCOMP Sandbox sandbox isolating memory and executing logic.</li>
-                <li><strong>Capability Registry:</strong> The daemon-side enforcer of spec.yaml bindings.</li>
-                <li><strong>Routing Epoch Structure:</strong> The signed payload containing allowed routes and HMAC secrets.</li>
-            </ul>
-
-            <h2 id="failure-modes" className="text-2xl font-semibold mt-8 mb-4">Failure Modes & Error Handling</h2>
-            <ul className="list-disc pl-6 space-y-2">
-                <li><strong>Epoch Expiration:</strong> Nodes reject ingress traffic safely until a new signed epoch is fetched.</li>
-                <li><strong>Capability Rejection:</strong> Unauthorized I/O attempts instantly trap the Native Go call.</li>
-                <li><strong>Native Go Sandbox Traps:</strong> Panics within the module are securely trapped without affecting the host.</li>
-                <li><strong>Grace-Based Reputation Decay:</strong> Nodes experience continuous score decay rather than instant slashing for transient failures.</li>
-                <li><strong>Offline Operation:</strong> Nodes continue to process tasks utilizing cached routing epochs during orchestrator downtime.</li>
-            </ul>
-
-            <h2 id="security-boundaries" className="text-2xl font-semibold mt-8 mb-4">Security Boundaries & Invariants</h2>
-            <ul className="list-disc pl-6 space-y-2">
-                <li>Deterministic Native Go execution in an air-gapped memory sandbox.</li>
-                <li>Capability-scoped outbound I/O enforced by the daemon.</li>
-                <li>Cryptographically signed artifacts and routing epochs.</li>
-                <li>mTLS-secured telemetry transport.</li>
-                <li>Hardware-bound node identity keys for absolute proof of execution.</li>
-            </ul>
-
-            <h2 id="performance-characteristics" className="text-2xl font-semibold mt-8 mb-4">Performance Characteristics</h2>
-            <ul className="list-disc pl-6 space-y-2">
-                <li><strong>Local Ingress Validation Latency:</strong> &lt; 1ms overhead for local HMAC checks.</li>
-                <li><strong>Native Go Cold Start:</strong> &lt; 10ms utilizing pre-compiled runtime caches.</li>
-                <li><strong>Capability Overhead:</strong> &lt; 2ms penalty for bridging host-function capabilities.</li>
-                <li><strong>Epoch Refresh Intervals:</strong> Asynchronous refreshes occur entirely outside the execution critical path.</li>
-            </ul>
-
-            <h2 id="responsibilities" className="text-2xl font-semibold mt-8 mb-4">Responsibilities</h2>
-            <ul className="list-disc pl-6 space-y-2">
-                <li><strong>Operator:</strong> Maintain uptime, protect node identity keys securely, and ensure host OS cgroups and sandboxing features are enabled.</li>
-                <li><strong>Developer:</strong> Define accurate <code>spec.yaml</code> manifests, explicitly declare required capabilities, and write deterministic Native Go logic.</li>
-            </ul>
-
-            <h2 id="telemetry" className="text-2xl font-semibold mt-8 mb-4">Telemetry Emitted</h2>
-            <p className="text-slate-300 leading-relaxed mb-6">All telemetry utilizes mTLS transport and is cryptographically signed by the node's identity key. Envelopes include a monotonic sequence counter to prevent replay attacks. No plaintext logs are emitted.</p>
-
-            <h2 id="cross-component-interactions" className="text-2xl font-semibold mt-8 mb-4">Cross-Component Interactions</h2>
-            <p className="text-slate-300 leading-relaxed mb-6">Nodes operate independently based on locally cached routing epochs. The orchestrator functions exclusively as a stateless, horizontally scalable routing table publisher and authenticated telemetry sink. Telemetry interaction is secured via mTLS.</p>
-
-            <h2 id="best-practices" className="text-2xl font-semibold mt-8 mb-4">Best Practices & Anti-Patterns</h2>
-            <ul className="list-disc pl-6 space-y-2">
-                <li>Declare the absolute minimal required capabilities.</li>
-                <li>Avoid nondeterministic logic inside Native Go modules.</li>
-                <li>Use conservative timeouts to account for network variability.</li>
-                <li>Do not modify the node environment manually; all configuration flows from the orchestrator.</li>
-            </ul>
+      <div>
+        <div className="text-xs font-semibold tracking-wider text-purple-400 uppercase mb-1">
+          Wnode Tokenless Fiat Economics &amp; Rate Cards
         </div>
-    );
+        <h1 className="text-3xl font-bold text-white tracking-tight">Tokenless Fiat Settlement &amp; Proof of Compute</h1>
+        <p className="mt-2 text-base text-slate-400">
+          Financial model architecture, Stripe Connect automated payouts, rate card compute pricing, and anti-state bloat gas controls.
+        </p>
+      </div>
+
+      <Callout type="note" title="Tokenless Enterprise Philosophy">
+        Wnode operates on a purely fiat-denominated corporate billing model. Clients pay for compute resources in USD/EUR via Stripe billing cards, and node operators receive direct automated bank payouts with no speculative tokens or volatile gas tokens required.
+      </Callout>
+
+      <section className="space-y-4">
+        <h2 id="economics-diagram" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          1. Network Topology Tiers &amp; Compute Economics Architecture
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          The diagram below illustrates the multi-tier network topology, compute resource metering points, and Stripe Connect automated payout settlement boundaries.
+        </p>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Corporate clients purchase compute resource credits in fiat currency (USD, EUR, GBP) using corporate credit cards or ACH bank transfers processed securely through Stripe Billing.
+        </p>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Physical node operators earn revenue based on transparent hardware resource metering. The revenue distribution engine computes daily payout balances based on verified CPU cycle consumption, memory allocation duration, and network egress volume.
+        </p>
+
+        <DiagramErrorBoundary fallbackTitle="Fig 6.1 – Network Topology Tiers Fallback">
+          <figure className="doc-figure my-8 rounded-xl border border-white/10 bg-[#0E0E10] p-4 shadow-2xl transition-all hover:border-[#00FFB2]/40" aria-label="Fig 6.1 – Network Topology Tiers">
+            <img loading="lazy" src="/diagrams/fig-6-1-network-topology-tiers.svg" alt="Fig 6.1 – Network Topology Tiers" className="w-full h-auto max-h-[400px] object-contain rounded-lg bg-black/60 p-2" />
+            <figcaption className="mt-3 text-xs text-gray-400 leading-relaxed">Fig 6.1 – Network Topology Tiers</figcaption>
+          </figure>
+        </DiagramErrorBoundary>
+      </section>
+
+      <section className="space-y-4">
+        <h2 id="rate-cards" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          2. Enterprise Compute Rate Cards &amp; Resource Units
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Compute consumption bills dynamically based on standardized Compute Resource Units (CRUs). Rate cards define transparent pricing per vCPU second, gigabyte-hour of RAM, and VirtIO disk I/O operations:
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
+          <div className="p-4 rounded-lg bg-slate-900 border border-slate-800">
+            <h3 className="text-sm font-semibold text-purple-400 mb-1">vCPU Rate Card</h3>
+            <p className="text-xl font-bold text-white">$0.000018 / vCPU-sec</p>
+            <p className="text-xs text-slate-400 mt-2">Billed in millisecond increments based on Firecracker cgroups v2 CPU cycle counters.</p>
+          </div>
+          <div className="p-4 rounded-lg bg-slate-900 border border-slate-800">
+            <h3 className="text-sm font-semibold text-cyan-400 mb-1">RAM Memory Rate Card</h3>
+            <p className="text-xl font-bold text-white">$0.000004 / GB-sec</p>
+            <p className="text-xs text-slate-400 mt-2">Billed per gigabyte of allocated physical RAM mapped inside microVM sandboxes.</p>
+          </div>
+          <div className="p-4 rounded-lg bg-slate-900 border border-slate-800">
+            <h3 className="text-sm font-semibold text-emerald-400 mb-1">Network &amp; Disk I/O</h3>
+            <p className="text-xl font-bold text-white">$0.08 / GB Egress</p>
+            <p className="text-xs text-slate-400 mt-2">Zero ingress fees; WireGuard mTLS egress frames metered at edge orchestrator gateways.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="space-y-4">
+        <h2 id="stripe-connect" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          3. Stripe Connect Automated Fiat Revenue Distribution
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Node operator payouts settle automatically every 24 hours via Stripe Connect Express accounts. When clients pay invoice balances, the revenue distribution engine splits funds according to node contribution weights:
+        </p>
+        <ul className="list-disc pl-6 space-y-2 text-slate-300">
+          <li><strong className="text-white">70% Operator Direct Payout:</strong> Distributed directly to node operator bank accounts via Stripe Connect.</li>
+          <li><strong className="text-white">15% Infrastructure Growth Pool:</strong> Allocates to network expansion, CBRS hardware subsidies, and DEWI foundation grants.</li>
+          <li><strong className="text-white">10% Affiliate &amp; Referral Pool:</strong> Distributed to operator community onboarding partners.</li>
+          <li><strong className="text-white">5% Network Protocol Treasury:</strong> Covers core platform maintenance, security audits, and orchestrator hosting.</li>
+        </ul>
+      </section>
+
+      <section className="space-y-4">
+        <h2 id="proof-of-compute" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          4. Cryptographic Proof of Compute (PoC) Receipts
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          To prevent operator fraud or false billing, every completed job generates an immutable Proof of Compute receipt. Receipts record starting CPU timestamp counters (RDTSC), memory dirty page counts, input/output SHA-256 state hashes, and the node's TPM 2.0 signature.
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 id="state-bloat" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          5. State Bloat Controls &amp; Storage Expiration Gas Rules
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Un-bounded state storage creates persistent disk bloat across edge networks. Wnode enforces state decay rules that charge monthly storage retention fees on static assets.
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 id="financial-audits" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          6. Financial Auditing &amp; Transparency Reports
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Wnode publishes monthly financial auditing ledgers detailing total compute hours served, gross Stripe invoice revenue collected, and operator payout distributions.
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 id="billing-webhooks" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          7. Automated Billing Webhooks &amp; Invoicing Integration
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Corporate accounting teams can configure automated Stripe invoice webhooks (`invoice.payment_succeeded`, `invoice.payment_failed`) to synchronize monthly usage statements directly into enterprise ERP software.
+        </p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 id="affiliate-accounting" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          8. Affiliate Ledger Accounting &amp; Revenue Code
+        </h2>
+        <CodeBlock language="go" filename="settlement.go" code={`package economics
+
+import (
+	"context"
+	"fmt"
+	"github.com/stripe/stripe-go/v74"
+	"github.com/stripe/stripe-go/v74/transfer"
+)
+
+type OperatorPayout struct {
+	StripeAccountID string \`json:"stripe_account_id"\`
+	GrossUsdCents   int64  \`json:"gross_usd_cents"\`
+	OperatorShare   int64  \`json:"operator_share"\`
+}
+
+func ProcessDailyPayout(ctx context.Context, payout OperatorPayout) (*stripe.Transfer, error) {
+	if payout.OperatorShare <= 0 {
+		return nil, fmt.Errorf("ERR_ZERO_PAYOUT")
+	}
+	params := &stripe.TransferParams{
+		Amount:      stripe.Int64(payout.OperatorShare),
+		Currency:    stripe.String(string(stripe.CurrencyUSD)),
+		Destination: stripe.String(payout.StripeAccountID),
+	}
+	return transfer.New(params)
+}`} />
+      </section>
+
+      
+      <section className="space-y-4">
+        <h2 id="econ-discounts" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          9. Reserved Volume Capacity &amp; Corporate Enterprise Billing
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Enterprise clients requiring dedicated high-throughput compute capacity can purchase monthly reserved node capacity contracts with guaranteed p95 execution latency bounds. Volume pricing tiers grant up to 40 percent discounts on baseline Compute Resource Unit (CRU) rate cards.
+        </p>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Stripe Billing handles automated monthly invoicing, multi-currency conversions, VAT taxation compliance, and enterprise ACH wire transfers. Corporate finance teams access downloadable CSV accounting ledgers detailing daily vCPU second usage per tenant project.
+        </p>
+      </section>
+
+      
+      <section className="space-y-4">
+        <h2 id="econ-discounts" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          9. Reserved Volume Capacity &amp; Corporate Enterprise Billing
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Enterprise clients requiring dedicated high-throughput compute capacity can purchase monthly reserved node capacity contracts with guaranteed p95 execution latency bounds. Volume pricing tiers grant up to 40 percent discounts on baseline Compute Resource Unit (CRU) rate cards.
+        </p>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Stripe Billing handles automated monthly invoicing, multi-currency conversions, VAT taxation compliance, and enterprise ACH wire transfers. Corporate finance teams access downloadable CSV accounting ledgers detailing daily vCPU second usage per tenant project.
+        </p>
+      </section>
+
+      {/* Related Pages Block */}
+      <section className="space-y-4 pt-6 border-t border-slate-800" aria-label="Related Economics Pages">
+        <h2 className="text-lg font-semibold text-white tracking-tight">Related Economics References</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <a href="/docs/economics/rate-cards" className="p-4 rounded-lg bg-slate-900 border border-slate-800 hover:border-purple-500/50 transition-all group">
+            <h3 className="text-sm font-semibold text-purple-400 group-hover:text-purple-300">Rate Cards &amp; Pricing →</h3>
+            <p className="text-xs text-slate-400 mt-1">Compute Resource Unit (CRU) costs per vCPU second and RAM GB-hour.</p>
+          </a>
+          <a href="/docs/economics/stripe-connect" className="p-4 rounded-lg bg-slate-900 border border-slate-800 hover:border-emerald-500/50 transition-all group">
+            <h3 className="text-sm font-semibold text-emerald-400 group-hover:text-emerald-300">Stripe Connect Payouts →</h3>
+            <p className="text-xs text-slate-400 mt-1">Daily 70% operator bank transfers and automated 1099 tax reporting.</p>
+          </a>
+          <a href="/docs/economics/proof-of-compute" className="p-4 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyan-500/50 transition-all group">
+            <h3 className="text-sm font-semibold text-cyan-400 group-hover:text-cyan-300">Proof of Compute (PoC) →</h3>
+            <p className="text-xs text-slate-400 mt-1">Cryptographic execution receipts and Merkle root verification.</p>
+          </a>
+          <a href="/docs/economics/state-bloat-controls" className="p-4 rounded-lg bg-slate-900 border border-slate-800 hover:border-amber-500/50 transition-all group">
+            <h3 className="text-sm font-semibold text-amber-400 group-hover:text-amber-300">State Bloat Gas Controls →</h3>
+            <p className="text-xs text-slate-400 mt-1">Storage retention fees, state decay rules, and garbage collection.</p>
+          </a>
+        </div>
+      </section>
+    </div>
+  );
 }

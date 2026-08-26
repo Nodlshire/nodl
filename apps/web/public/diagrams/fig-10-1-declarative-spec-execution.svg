@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 360" width="100%" height="100%" style="background:#0E0E10; font-family:'Inter', sans-serif;">
+  <text x="30" y="40" fill="#00FFB2" font-size="16" font-weight="700" letter-spacing="1">FIG. 10.1 — DECLARATIVE SPEC TO EXECUTABLE ARTIFACT</text>
+  <text x="30" y="60" fill="#94A3B8" font-size="12">Transformation flow from spec.yaml declaration to validated Native Go capability sandbox boundary</text>
+
+  <g transform="translate(30, 100)">
+    <!-- Stage 1: spec.yaml -->
+    <rect x="0" y="0" width="200" height="180" rx="10" fill="#141417" stroke="#00FFB2" stroke-opacity="0.4"/>
+    <text x="20" y="30" fill="#00FFB2" font-size="12" font-weight="700">1. spec.yaml</text>
+    <text x="20" y="55" fill="#FFFFFF" font-size="10">Declarative Job Spec</text>
+    <text x="20" y="75" fill="#94A3B8" font-size="9">CPU/GPU Quotas</text>
+    <text x="20" y="90" fill="#94A3B8" font-size="9">Memory Ceiling</text>
+    <text x="20" y="105" fill="#94A3B8" font-size="9">Host Capabilities</text>
+
+    <!-- Arrow 1 -->
+    <path d="M 200 90 L 240 90" stroke="#00FFB2" stroke-width="2"/>
+    <polygon points="240,85 250,90 240,95" fill="#00FFB2"/>
+
+    <!-- Stage 2: Spec Validation -->
+    <rect x="250" y="0" width="200" height="180" rx="10" fill="#141417" stroke="#00FFB2" stroke-opacity="0.4"/>
+    <text x="270" y="30" fill="#00FFB2" font-size="12" font-weight="700">2. Spec Validation</text>
+    <text x="270" y="55" fill="#FFFFFF" font-size="10">SOT Schema Check</text>
+    <text x="270" y="75" fill="#94A3B8" font-size="9">HMAC Signature Check</text>
+    <text x="270" y="90" fill="#94A3B8" font-size="9">Capability Scoping</text>
+    <text x="270" y="105" fill="#94A3B8" font-size="9">Nonce Verification</text>
+
+    <!-- Arrow 2 -->
+    <path d="M 450 90 L 490 90" stroke="#00FFB2" stroke-width="2"/>
+    <polygon points="490,85 500,90 490,95" fill="#00FFB2"/>
+
+    <!-- Stage 3: Native Go Boundary -->
+    <rect x="500" y="0" width="200" height="180" rx="10" fill="#141417" stroke="#22D3EE" stroke-opacity="0.4"/>
+    <text x="520" y="30" fill="#22D3EE" font-size="12" font-weight="700">3. Sandbox Boundary</text>
+    <text x="520" y="55" fill="#FFFFFF" font-size="10">Firecracker / gVisor</text>
+    <text x="520" y="75" fill="#94A3B8" font-size="9">SECCOMP-BPF Filter</text>
+    <text x="520" y="90" fill="#94A3B8" font-size="9">RAM-Only Mount</text>
+    <text x="520" y="105" fill="#94A3B8" font-size="9">Zero Disk Access</text>
+
+    <!-- Arrow 3 -->
+    <path d="M 700 90 L 740 90" stroke="#00FFB2" stroke-width="2"/>
+    <polygon points="740,85 750,90 740,95" fill="#00FFB2"/>
+
+    <!-- Stage 4: Signed Result Envelope -->
+    <rect x="750" y="0" width="190" height="180" rx="10" fill="rgba(0,255,178,0.08)" stroke="#00FFB2"/>
+    <text x="765" y="30" fill="#00FFB2" font-size="12" font-weight="700">4. Executed Result</text>
+    <text x="765" y="55" fill="#FFFFFF" font-size="10">Signed Envelope</text>
+    <text x="765" y="75" fill="#94A3B8" font-size="9">SHA-256 Digest</text>
+    <text x="765" y="90" fill="#94A3B8" font-size="9">Telemetry Logs</text>
+    <text x="765" y="115" fill="#00FFB2" font-size="9" font-mono font-weight="700">Encrypted Return</text>
+  </g>
+</svg>

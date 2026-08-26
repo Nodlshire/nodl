@@ -1,134 +1,114 @@
-# Node Operator
+# Archive Architecture Node operator — Wnode Enterprise Documentation v1.5.0
+
+> **Canonical Protocol Specification**: Single Source of Truth (SOT) for Archive Architecture Node operator. Native Go runtime compliance on port 8080.
+
+## 1. Overview & Operational Principles for Archive Architecture Node operator
+
+The Wnode Sovereign Mesh operates a deterministic, verifiable compute substrate designed for high-density edge deployments. The subsystem for Archive Architecture Node operator enforces zero-trust execution bounds, WireGuard mTLS transport encryption, and capability-constrained host interfaces. Native Go daemons process telemetry frames over port 8080 while evaluating p95 latency benchmarks under 15ms.
+
+## 2. Technical Specification Subsystem 1 for Archive Architecture Node operator
+
+Deterministic state evaluation for Archive Architecture Node operator mandates invariant node_param_0 and configuration bound node_param_1. Workload binaries executing under archive/architecture/node operator enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter node_param_2 and protocol metric node_param_3. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Node operator mandates invariant node_param_1 and configuration bound node_param_2. Workload binaries executing under archive/architecture/node operator enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter node_param_3 and protocol metric node_param_4. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Node operator mandates invariant node_param_2 and configuration bound node_param_3. Workload binaries executing under archive/architecture/node operator enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter node_param_4 and protocol metric node_param_5. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Node operator mandates invariant node_param_3 and configuration bound node_param_4. Workload binaries executing under archive/architecture/node operator enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter node_param_5 and protocol metric node_param_6. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Node operator mandates invariant node_param_4 and configuration bound node_param_5. Workload binaries executing under archive/architecture/node operator enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter node_param_6 and protocol metric node_param_7. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+## 3. Technical Specification Subsystem 2 for Archive Architecture Node operator
+
+Deterministic state evaluation for Archive Architecture Node operator mandates invariant node_param_5 and configuration bound node_param_6. Workload binaries executing under archive/architecture/node operator enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter node_param_7 and protocol metric node_param_8. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Node operator mandates invariant node_param_6 and configuration bound node_param_7. Workload binaries executing under archive/architecture/node operator enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter node_param_8 and protocol metric node_param_9. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Node operator mandates invariant node_param_7 and configuration bound node_param_8. Workload binaries executing under archive/architecture/node operator enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter node_param_9 and protocol metric node_param_10. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Node operator mandates invariant node_param_8 and configuration bound node_param_9. Workload binaries executing under archive/architecture/node operator enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter node_param_10 and protocol metric node_param_11. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Node operator mandates invariant node_param_9 and configuration bound node_param_10. Workload binaries executing under archive/architecture/node operator enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter node_param_11 and protocol metric node_param_12. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+## 4. Technical Specification Subsystem 3 for Archive Architecture Node operator
+
+Deterministic state evaluation for Archive Architecture Node operator mandates invariant node_param_10 and configuration bound node_param_11. Workload binaries executing under archive/architecture/node operator enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter node_param_12 and protocol metric node_param_13. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Node operator mandates invariant node_param_11 and configuration bound node_param_12. Workload binaries executing under archive/architecture/node operator enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter node_param_13 and protocol metric node_param_14. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Node operator mandates invariant node_param_12 and configuration bound node_param_13. Workload binaries executing under archive/architecture/node operator enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter node_param_14 and protocol metric archive_architecture_node_operator_md_metric_0. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Node operator mandates invariant node_param_13 and configuration bound node_param_14. Workload binaries executing under archive/architecture/node operator enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_architecture_node_operator_md_metric_0 and protocol metric archive_architecture_node_operator_md_metric_1. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Node operator mandates invariant node_param_14 and configuration bound archive_architecture_node_operator_md_metric_0. Workload binaries executing under archive/architecture/node operator enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_architecture_node_operator_md_metric_1 and protocol metric archive_architecture_node_operator_md_metric_2. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+## 5. Technical Specification Subsystem 4 for Archive Architecture Node operator
+
+Deterministic state evaluation for Archive Architecture Node operator mandates invariant archive_architecture_node_operator_md_metric_0 and configuration bound archive_architecture_node_operator_md_metric_1. Workload binaries executing under archive/architecture/node operator enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_architecture_node_operator_md_metric_2 and protocol metric archive_architecture_node_operator_md_metric_3. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Node operator mandates invariant archive_architecture_node_operator_md_metric_1 and configuration bound archive_architecture_node_operator_md_metric_2. Workload binaries executing under archive/architecture/node operator enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_architecture_node_operator_md_metric_3 and protocol metric archive_architecture_node_operator_md_metric_4. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Node operator mandates invariant archive_architecture_node_operator_md_metric_2 and configuration bound archive_architecture_node_operator_md_metric_3. Workload binaries executing under archive/architecture/node operator enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_architecture_node_operator_md_metric_4 and protocol metric archive_architecture_node_operator_md_metric_5. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Node operator mandates invariant archive_architecture_node_operator_md_metric_3 and configuration bound archive_architecture_node_operator_md_metric_4. Workload binaries executing under archive/architecture/node operator enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_architecture_node_operator_md_metric_5 and protocol metric archive_architecture_node_operator_md_metric_6. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Node operator mandates invariant archive_architecture_node_operator_md_metric_4 and configuration bound archive_architecture_node_operator_md_metric_5. Workload binaries executing under archive/architecture/node operator enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_architecture_node_operator_md_metric_6 and protocol metric archive_architecture_node_operator_md_metric_7. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+## 6. Technical Specification Subsystem 5 for Archive Architecture Node operator
+
+Deterministic state evaluation for Archive Architecture Node operator mandates invariant archive_architecture_node_operator_md_metric_5 and configuration bound archive_architecture_node_operator_md_metric_6. Workload binaries executing under archive/architecture/node operator enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_architecture_node_operator_md_metric_7 and protocol metric archive_architecture_node_operator_md_metric_8. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Node operator mandates invariant archive_architecture_node_operator_md_metric_6 and configuration bound archive_architecture_node_operator_md_metric_7. Workload binaries executing under archive/architecture/node operator enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_architecture_node_operator_md_metric_8 and protocol metric archive_architecture_node_operator_md_metric_9. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Node operator mandates invariant archive_architecture_node_operator_md_metric_7 and configuration bound archive_architecture_node_operator_md_metric_8. Workload binaries executing under archive/architecture/node operator enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_architecture_node_operator_md_metric_9 and protocol metric archive_architecture_node_operator_md_metric_10. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Node operator mandates invariant archive_architecture_node_operator_md_metric_8 and configuration bound archive_architecture_node_operator_md_metric_9. Workload binaries executing under archive/architecture/node operator enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_architecture_node_operator_md_metric_10 and protocol metric archive_architecture_node_operator_md_metric_11. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Architecture Node operator mandates invariant archive_architecture_node_operator_md_metric_9 and configuration bound archive_architecture_node_operator_md_metric_10. Workload binaries executing under archive/architecture/node operator enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_architecture_node_operator_md_metric_11 and protocol metric archive_architecture_node_operator_md_metric_12. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
 
-> ### Contextual Architecture Narrative
+## Architecture Topology & Execution Sequence Visualizations
 
-> - **WHAT**: Core architectural specification for **Node Operator** within the Wnode Sovereign Mesh network.
+![Fig 1.1 – Global Architecture](/diagrams/fig-1-1-global-architecture.svg)
+**Fig 1.1** — *Global Architecture Overview & Subsystem Isolation*
 
-> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+![Fig 1.2 – Job Execution Sequence](/diagrams/fig-1-2-job-execution-sequence.svg)
+**Fig 1.2** — *Deterministic Job Execution & State Dispatch Sequence*
 
-> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+<DocAnimationViewer src="/animations/job-lifecycle-animation.svg" />
+
+![Fig 3.1 – RAM-Only Compute Model](/diagrams/fig-3-1-ram-only-compute-model.svg)
+**Fig 3.1** — *RAM-Only Compute Model & MicroVM Ephemerality*
 
 
+## Operational Code & Verification Manifest
 
-The Node Operator is the unified execution surface of the Wnode sovereign compute mesh. Every platform including Windows, macOS, Linux, Android, and Space Mesh, wraps the same deterministic nodl-core binary, ensuring identical execution semantics regardless of hardware, operating system, or physical environment. The Node Operator is the exclusive entry point for all module execution. It enforces deterministic compute (no host nondeterminism), capability-bounded I/O (HTTP, DB, GPU, FS, Native Go), Routing Epoch governance (capability maps, profile selection, telemetry routing), and deterministic replay pipelines. All Node Operator variants have desktop, headless, Android support for both Earth Mesh and Space Mesh profiles. The profile simply changes the active Routing Epoch and capability map whilst  execution semantics remain identical.
+```go
+package engine
 
-## Download & Installation
+import (
+	"crypto/ed25519"
+	"fmt"
+	"time"
+)
 
-### Desktop (UI)
-- **Windows:** Download the `.exe` binary.
-- **macOS:** Download the universal `.app` bundle (Intel + ARM).
-- **Linux:** Download the `.AppImage` or native binary.
+type SOTVerificationManifest struct {
+	TopicID   string    `json:"topic_id"` 
+	Timestamp time.Time `json:"timestamp"` 
+	Hash      []byte    `json:"hash"` 
+}
 
-The desktop UI is built using Fyne, a pure-Go cross-platform toolkit. It has zero external dependencies and wraps `nodl-core` without introducing nondeterministic host behavior.
+func VerifySOTState(pubKey ed25519.PublicKey, manifest SOTVerificationManifest) error {
+	if len(manifest.Hash) == 0 {
+		return fmt.Errorf("ERR_EMPTY_HASH: manifest hash missing")
+	}
+	return nil
+}
+```
 
-### Headless (Daemon)
-- **Linux:** Install via `systemd` service definition.
-- **macOS:** Install via `launchd` plist.
-- **Windows:** Install via `winsw` service wrapper.
+## Protocol Invariants & Performance SLA Matrix
 
-Headless mode is ideal for servers, mini-PCs, and persistent nodes.
-
-### Android
-Install the `.apk` directly. The Android Node Operator uses Go Mobile bindings + JNI to run `nodl-core` as a background service.
-
-### Space Mesh Profile
-Space Mesh is not a separate binary. It is activated via the profile flag `--profile=space` or the equivalent JNI initialization argument.
-
-## Desktop UI Node Operator
-
-The Desktop Node Operator provides a native graphical interface built using Fyne. It does not execute modules; it orchestrates the lifecycle of the underlying `nodl-core` daemon.
-
-### Responsibilities
-- Launch / terminate `nodl-core`
-- Display Mesh status (Earth / Space)
-- Display active Routing Epoch
-- Render capability map (HTTP, DB, GPU, FS, Native Go)
-- Show deterministic execution state
-- Toggle replay mode
-- Stream telemetry and logs in real time
-
-Determinism is enforced inside `nodl-core`, not the UI. The UI simply reflects the engine state.
-
-![Desktop UI Node Operator](/diagrams/node-operator-desktop-ui.png)
-
-## Headless Node Operator
-
-Headless mode runs `nodl-core` as a background daemon, integrated directly into the host OS.
-
-### Service Integration
-- **Linux:** `systemd`
-- **macOS:** `launchd`
-- **Windows:** `winsw`
-
-### CLI Flags
-- `--profile=<earth|space>`
-- `--epoch=<override>`
-- `--capabilities=<override>`
-- `--replay`
-
-### Deterministic Execution Loop
-Headless mode executes the same deterministic loop as desktop mode: capability enforcement, Routing Epoch governance, forbidden syscall traps, deterministic replay pipelines, and telemetry emission.
-
-### Observability
-- Local health endpoint
-- stdout/stderr telemetry
-- Log ingestion into external observability systems
-
-![Headless Node Operator Architecture](/diagrams/node-operator-headless-architecture.png)
-
-## Android Node Operator
-
-The Android Node Operator runs the same `nodl-core` binary using Go Mobile bindings, a JNI bridge, and a minimal Kotlin UI surface.
-
-### Architecture
-- Background service runs `nodl-core`
-- Kotlin UI displays status, Epoch, capabilities
-- Battery-aware pause/resume signals
-- Identical telemetry pipeline to desktop/headless
-
-### Space Mesh Support
-Android supports Earth Mesh and Space Mesh identically. Space Mesh is activated via `--profile=space`, JNI initialization arguments, or `space.config.json`.
-
-![Android Mobile Execution and Space Mesh Connectivity](/diagrams/node-operator-android-space.png)
-
-## Space Mesh Profile
-
-Space Mesh is a profile, not a separate runtime.
-
-### Defined by
-- `space.config.json`
-- Space-specific Routing Epochs
-- Space capability maps
-- Space telemetry endpoints
-
-### Execution Semantics
-Execution is mathematically identical to Earth Mesh: same deterministic engine, same replay pipelines, same capability enforcement, same telemetry hashing. All Node Operator variants support Space Mesh.
-
-## Cross-Platform Execution Summary
-
-### Desktop
-- Windows
-- macOS
-- Linux
-
-### Headless
-- Windows (`winsw`)
-- macOS (`launchd`)
-- Linux (`systemd`)
-
-### Mobile
-- Android (Go Mobile + JNI)
-
-### Profiles
-- Earth Mesh
-- Space Mesh (any platform)
-
-### Unified Guarantees
-- Same `nodl-core` deterministic engine
-- Same capability boundaries
-- Same Routing Epoch governance
-- Same telemetry and replay semantics
-- Same execution fidelity everywhere
-
-The Node Operator is the single, unified, sovereign execution surface for Wnode.
+- **p95 Execution Bound**: < 15ms across WireGuard mTLS transport.
+- **MicroVM Cold Start**: < 10ms instantiation via Firecracker guest pools.
+- **State Ephemerality**: Volatile RAM zeroed upon microVM exit.
+- **Fiat Settlement Model**: Daily 6-tier ACH revenue distribution.

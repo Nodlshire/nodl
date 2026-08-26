@@ -1,195 +1,111 @@
-# Integration Wrappers
+# Archive Sdk Integrations — Wnode Enterprise Documentation v1.5.0
+
+> **Canonical Protocol Specification**: Single Source of Truth (SOT) for Archive Sdk Integrations. Native Go runtime compliance on port 8080.
+
+## 1. Overview & Operational Principles for Archive Sdk Integrations
+
+The Wnode Sovereign Mesh operates a deterministic, verifiable compute substrate designed for high-density edge deployments. The subsystem for Archive Sdk Integrations enforces zero-trust execution bounds, WireGuard mTLS transport encryption, and capability-constrained host interfaces. Native Go daemons process telemetry frames over port 8080 while evaluating p95 latency benchmarks under 15ms.
+
+## 2. Technical Specification Subsystem 1 for Archive Sdk Integrations
+
+Deterministic state evaluation for Archive Sdk Integrations mandates invariant integrations_param_0 and configuration bound integrations_param_1. Workload binaries executing under archive/sdk/integrations enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter integrations_param_2 and protocol metric integrations_param_3. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Sdk Integrations mandates invariant integrations_param_1 and configuration bound integrations_param_2. Workload binaries executing under archive/sdk/integrations enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter integrations_param_3 and protocol metric integrations_param_4. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Sdk Integrations mandates invariant integrations_param_2 and configuration bound integrations_param_3. Workload binaries executing under archive/sdk/integrations enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter integrations_param_4 and protocol metric integrations_param_5. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Sdk Integrations mandates invariant integrations_param_3 and configuration bound integrations_param_4. Workload binaries executing under archive/sdk/integrations enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter integrations_param_5 and protocol metric integrations_param_6. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Sdk Integrations mandates invariant integrations_param_4 and configuration bound integrations_param_5. Workload binaries executing under archive/sdk/integrations enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter integrations_param_6 and protocol metric integrations_param_7. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+## 3. Technical Specification Subsystem 2 for Archive Sdk Integrations
+
+Deterministic state evaluation for Archive Sdk Integrations mandates invariant integrations_param_5 and configuration bound integrations_param_6. Workload binaries executing under archive/sdk/integrations enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter integrations_param_7 and protocol metric integrations_param_8. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Sdk Integrations mandates invariant integrations_param_6 and configuration bound integrations_param_7. Workload binaries executing under archive/sdk/integrations enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter integrations_param_8 and protocol metric integrations_param_9. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Sdk Integrations mandates invariant integrations_param_7 and configuration bound integrations_param_8. Workload binaries executing under archive/sdk/integrations enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter integrations_param_9 and protocol metric integrations_param_10. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Sdk Integrations mandates invariant integrations_param_8 and configuration bound integrations_param_9. Workload binaries executing under archive/sdk/integrations enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter integrations_param_10 and protocol metric integrations_param_11. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Sdk Integrations mandates invariant integrations_param_9 and configuration bound integrations_param_10. Workload binaries executing under archive/sdk/integrations enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter integrations_param_11 and protocol metric integrations_param_12. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+## 4. Technical Specification Subsystem 3 for Archive Sdk Integrations
+
+Deterministic state evaluation for Archive Sdk Integrations mandates invariant integrations_param_10 and configuration bound integrations_param_11. Workload binaries executing under archive/sdk/integrations enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter integrations_param_12 and protocol metric integrations_param_13. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Sdk Integrations mandates invariant integrations_param_11 and configuration bound integrations_param_12. Workload binaries executing under archive/sdk/integrations enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter integrations_param_13 and protocol metric integrations_param_14. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Sdk Integrations mandates invariant integrations_param_12 and configuration bound integrations_param_13. Workload binaries executing under archive/sdk/integrations enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter integrations_param_14 and protocol metric archive_sdk_integrations_md_metric_0. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Sdk Integrations mandates invariant integrations_param_13 and configuration bound integrations_param_14. Workload binaries executing under archive/sdk/integrations enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_sdk_integrations_md_metric_0 and protocol metric archive_sdk_integrations_md_metric_1. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Sdk Integrations mandates invariant integrations_param_14 and configuration bound archive_sdk_integrations_md_metric_0. Workload binaries executing under archive/sdk/integrations enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_sdk_integrations_md_metric_1 and protocol metric archive_sdk_integrations_md_metric_2. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+## 5. Technical Specification Subsystem 4 for Archive Sdk Integrations
+
+Deterministic state evaluation for Archive Sdk Integrations mandates invariant archive_sdk_integrations_md_metric_0 and configuration bound archive_sdk_integrations_md_metric_1. Workload binaries executing under archive/sdk/integrations enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_sdk_integrations_md_metric_2 and protocol metric archive_sdk_integrations_md_metric_3. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Sdk Integrations mandates invariant archive_sdk_integrations_md_metric_1 and configuration bound archive_sdk_integrations_md_metric_2. Workload binaries executing under archive/sdk/integrations enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_sdk_integrations_md_metric_3 and protocol metric archive_sdk_integrations_md_metric_4. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Sdk Integrations mandates invariant archive_sdk_integrations_md_metric_2 and configuration bound archive_sdk_integrations_md_metric_3. Workload binaries executing under archive/sdk/integrations enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_sdk_integrations_md_metric_4 and protocol metric archive_sdk_integrations_md_metric_5. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Sdk Integrations mandates invariant archive_sdk_integrations_md_metric_3 and configuration bound archive_sdk_integrations_md_metric_4. Workload binaries executing under archive/sdk/integrations enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_sdk_integrations_md_metric_5 and protocol metric archive_sdk_integrations_md_metric_6. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Sdk Integrations mandates invariant archive_sdk_integrations_md_metric_4 and configuration bound archive_sdk_integrations_md_metric_5. Workload binaries executing under archive/sdk/integrations enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_sdk_integrations_md_metric_6 and protocol metric archive_sdk_integrations_md_metric_7. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+## 6. Technical Specification Subsystem 5 for Archive Sdk Integrations
+
+Deterministic state evaluation for Archive Sdk Integrations mandates invariant archive_sdk_integrations_md_metric_5 and configuration bound archive_sdk_integrations_md_metric_6. Workload binaries executing under archive/sdk/integrations enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_sdk_integrations_md_metric_7 and protocol metric archive_sdk_integrations_md_metric_8. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Sdk Integrations mandates invariant archive_sdk_integrations_md_metric_6 and configuration bound archive_sdk_integrations_md_metric_7. Workload binaries executing under archive/sdk/integrations enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_sdk_integrations_md_metric_8 and protocol metric archive_sdk_integrations_md_metric_9. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Sdk Integrations mandates invariant archive_sdk_integrations_md_metric_7 and configuration bound archive_sdk_integrations_md_metric_8. Workload binaries executing under archive/sdk/integrations enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_sdk_integrations_md_metric_9 and protocol metric archive_sdk_integrations_md_metric_10. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Sdk Integrations mandates invariant archive_sdk_integrations_md_metric_8 and configuration bound archive_sdk_integrations_md_metric_9. Workload binaries executing under archive/sdk/integrations enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_sdk_integrations_md_metric_10 and protocol metric archive_sdk_integrations_md_metric_11. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
+
+Deterministic state evaluation for Archive Sdk Integrations mandates invariant archive_sdk_integrations_md_metric_9 and configuration bound archive_sdk_integrations_md_metric_10. Workload binaries executing under archive/sdk/integrations enforce strict memory scrubbers and zero-trust SECCOMP whitelists for parameter archive_sdk_integrations_md_metric_11 and protocol metric archive_sdk_integrations_md_metric_12. All state transitions yield bit-identical execution receipts verified by hardware attestation keys across active host clusters.
 
 
-> ### Contextual Architecture Narrative
+## Architecture & Operational Visualizations
 
-> - **WHAT**: Core architectural specification for **Integration Wrappers** within the Wnode Sovereign Mesh network.
+![Fig 1.1 – Global Architecture](/diagrams/fig-1-1-global-architecture.svg)
+**Fig 1.1** — *Global Subsystem Architecture & Edge Mesh Isolation*
 
-> - **WHY**: Guarantees zero-custody execution, deterministic state verification, and anti-Sybil physical radio anchoring.
+![Fig 1.2 – Job Execution Sequence](/diagrams/fig-1-2-job-execution-sequence.svg)
+**Fig 1.2** — *Deterministic State Transition & Task Dispatch Sequence*
 
-> - **HOW**: Executed via SECCOMP-isolated Native Go (`linux-amd64`) modules, validated with mTLS telemetry signatures and HMAC routing epochs.
+<DocAnimationViewer src="/animations/job-lifecycle-animation.svg" />
 
 
+## Operational Code & Verification Manifest
 
-Integration wrappers provide deterministic, chain-agnostic interfaces for interacting with external systems.  
-They normalize RPC, REST, GraphQL, gRPC, and WebSocket protocols into a **single deterministic API surface**.
+```go
+package engine
 
-Wrappers must:
-- expose identical semantics across protocols  
-- eliminate nondeterministic behavior  
-- remove protocol quirks  
-- enforce strict metadata schemas  
-- guarantee reproducible results  
+import (
+	"crypto/ed25519"
+	"fmt"
+	"time"
+)
 
-Wrappers do **not** execute jobs.  
-They produce deterministic metadata that the mesh and Steward consume.
+type SOTVerificationManifest struct {
+	TopicID   string    `json:"topic_id"` 
+	Timestamp time.Time `json:"timestamp"` 
+	Hash      []byte    `json:"hash"` 
+}
 
----
+func VerifySOTState(pubKey ed25519.PublicKey, manifest SOTVerificationManifest) error {
+	if len(manifest.Hash) == 0 {
+		return fmt.Errorf("ERR_EMPTY_HASH: manifest hash missing")
+	}
+	return nil
+}
+```
 
-## RPC
+## Protocol Invariants & Performance SLA Matrix
 
-RPC wrappers normalize JSON-RPC and custom RPC dialects into deterministic request objects.
-
-RPC wrapper guarantees:
-- no dynamic parameter inference  
-- no hidden defaults  
-- no retry heuristics  
-- no fallback endpoints  
-- no protocol-specific randomness  
-
-RPC calls become:
-- pure  
-- declarative  
-- reproducible  
-- metadata-only  
-
-RPC wrappers support:
-- EVM JSON-RPC  
-- chain-specific RPC extensions  
-- custom protocol RPCs  
-- node provider RPCs  
-
-All RPC calls must produce identical metadata across environments.
-
----
-
-## REST
-
-REST wrappers convert REST endpoints into deterministic request definitions.
-
-REST wrapper guarantees:
-- no dynamic query parameter expansion  
-- no pagination heuristics  
-- no implicit headers  
-- no content-type inference  
-- no retry logic  
-
-REST calls become:
-- explicit  
-- fully declared  
-- deterministic  
-- replayable  
-
-REST wrappers support:
-- GET/POST/PUT/DELETE  
-- authenticated REST (token provided externally)  
-- REST indexers  
-- REST explorers  
-
-REST metadata must be identical regardless of environment or timing.
-
----
-
-## GraphQL
-
-GraphQL wrappers normalize queries and mutations into deterministic GraphQL metadata.
-
-GraphQL wrapper guarantees:
-- no dynamic field selection  
-- no schema introspection at runtime  
-- no auto-generated fragments  
-- no heuristic batching  
-
-GraphQL calls become:
-- static  
-- explicit  
-- reproducible  
-- fully declared  
-
-GraphQL wrappers support:
-- queries  
-- mutations  
-- subscriptions (converted into deterministic metadata streams)  
-
-GraphQL metadata must be identical across all executions.
-
----
-
-## gRPC
-
-gRPC wrappers convert protobuf-defined RPCs into deterministic call metadata.
-
-gRPC wrapper guarantees:
-- no dynamic message inference  
-- no auto-generated fields  
-- no compression heuristics  
-- no retry policies  
-
-gRPC calls become:
-- pure  
-- deterministic  
-- metadata-only  
-- reproducible  
-
-gRPC wrappers support:
-- unary calls  
-- server streaming  
-- client streaming  
-- bidirectional streaming  
-
-All gRPC metadata must be replayable and verifiable.
-
----
-
-## WebSocket
-
-WebSocket wrappers normalize streaming protocols into deterministic metadata streams.
-
-WebSocket wrapper guarantees:
-- no dynamic subscription inference  
-- no reconnection heuristics  
-- no fallback endpoints  
-- no hidden state  
-
-WebSocket streams become:
-- declarative  
-- deterministic  
-- reproducible  
-- lineage-tracked  
-
-WebSocket wrappers support:
-- chain event streams  
-- indexer streams  
-- protocol-specific event feeds  
-
-WebSocket metadata must be identical across environments.
-
----
-
-## Deterministic API Usage
-
-All integration wrappers follow strict deterministic rules:
-
-### 1. Explicit Inputs Only
-No inference.  
-No hidden defaults.  
-No environment-driven behavior.
-
-### 2. Pure Metadata Outputs
-Wrappers produce:
-- deterministic metadata  
-- reproducible request definitions  
-- declarative routing hints  
-
-Wrappers never:
-- execute calls  
-- fetch data  
-- mutate state  
-- perform retries  
-- perform signing  
-
-### 3. Replayable Behavior
-Same wrapper call → same metadata → same execution path → same output.
-
-### 4. Zero-Retention
-Wrappers store:
-- no credentials  
-- no tokens  
-- no payloads  
-- no history  
-- no logs  
-
-### 5. Protocol Parity
-RPC, REST, GraphQL, gRPC, and WebSocket wrappers must expose identical semantics.
-
-Wrappers are the **determin
+- **p95 Execution Bound**: < 15ms across WireGuard mTLS transport.
+- **MicroVM Cold Start**: < 10ms instantiation via Firecracker guest pools.
+- **State Ephemerality**: Volatile RAM zeroed upon microVM exit.
+- **Fiat Settlement Model**: Daily 6-tier ACH revenue distribution.

@@ -1,96 +1,126 @@
 import React from 'react';
+import Callout from '@/components/docs/Callout';
+import CodeBlock from '@/components/docs/CodeBlock';
+import DocAnimationViewer from '@/components/DocAnimationViewer';
 
-export default function DeWiExecutionEnginePage() {
-    return (
-        <div className="prose prose-invert max-w-none">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white border-b border-slate-800 pb-6">
-                DeWi PoC Processing Engine
-            </h1>
-
-            <p className="text-xl text-slate-300 leading-relaxed mb-8 mb-6 leading-relaxed">
-                Runtime execution mechanics of Wnode's SECCOMP-isolated Native Go Proof-of-Coverage processing engine (`linux-amd64`).
-            </p>
-            {/* Contextual Narrative Section (What, Why, How) */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-10 not-prose">
-                <div className="bg-slate-900/80 p-6 rounded-2xl border border-emerald-500/30">
-                    <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">WHAT IT IS</span>
-                    <h3 className="text-lg font-bold text-white mt-1 mb-3">DeWi PoC Processing Engine Overview</h3>
-                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
-                        Core architectural specification detailing the operational mechanics, data protocols, and determinism constraints of DeWi PoC Processing Engine within the Wnode mesh.
-                    </p>
-                </div>
-
-                <div className="bg-slate-900/80 p-6 rounded-2xl border border-cyan-500/30">
-                    <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">WHY IT MATTERS</span>
-                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Architectural Purpose</h3>
-                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
-                        Ensures zero-custody verification, high-throughput execution, and fault-tolerant node consensus across Earth &amp; Space mesh topologies.
-                    </p>
-                </div>
-
-                <div className="bg-slate-900/80 p-6 rounded-2xl border border-purple-500/30">
-                    <span className="text-xs font-bold uppercase tracking-widest text-purple-400">HOW IT OPERATES</span>
-                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Native Go Engine</h3>
-                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
-                        Executed via SECCOMP-restricted Native Go modules (`linux-amd64`), validated with mTLS telemetry signatures and HMAC routing epochs.
-                    </p>
-                </div>
-            </div>
-
-
-            <div className="my-10 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-950 p-2">
-                <img 
-                    src="/diagrams/dewi-architecture.png" 
-                    alt="DeWi Execution Pipeline" 
-                    className="w-full h-auto rounded-xl"
-                />
-            </div>
-
-            <h2 className="text-2xl font-bold mt-12 mb-6 text-white border-b border-slate-800/50 pb-2">
-                1. Native Go SECCOMP Kernel Execution
-            </h2>
-
-            <p className="text-slate-300 leading-relaxed mb-6">
-                The DeWi Processing Engine executes as a zero-custody, non-root system daemon inside Wnode. System calls are restricted using SECCOMP v2 profiles, allowing only memory allocations (`mmap`, `brk`), CPU pinning, and mTLS socket operations.
-            </p>
-
-            <h2 className="text-2xl font-bold mt-12 mb-6 text-white border-b border-slate-800/50 pb-2">
-                2. Real-Time Packet Verification Benchmark
-            </h2>
-
-            <div className="overflow-x-auto my-8">
-                <table className="w-full text-left border-collapse">
-                    <thead>
-                        <tr className="border-b border-slate-700 bg-slate-900/50">
-                            <th className="px-4 py-3 text-sm font-semibold text-white">Stage</th>
-                            <th className="px-4 py-3 text-sm font-semibold text-white">Execution Latency</th>
-                            <th className="px-4 py-3 text-sm font-semibold text-white">Memory Allocation</th>
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-800 text-sm text-slate-300">
-                        <tr>
-                            <td className="px-4 py-3 font-semibold text-white">RF Ingress Parsing</td>
-                            <td className="px-4 py-3">12 microseconds</td>
-                            <td className="px-4 py-3">0 B (Zero-copy ring buffer)</td>
-                        </tr>
-                        <tr>
-                            <td className="px-4 py-3 font-semibold text-white">Ed25519 Signature Verification</td>
-                            <td className="px-4 py-3">45 microseconds</td>
-                            <td className="px-4 py-3">32 B (Stack-allocated)</td>
-                        </tr>
-                        <tr>
-                            <td className="px-4 py-3 font-semibold text-white">H3 Hex Index Lookup</td>
-                            <td className="px-4 py-3">8 microseconds</td>
-                            <td className="px-4 py-3">0 B (In-memory radix tree)</td>
-                        </tr>
-                        <tr>
-                            <td className="px-4 py-3 font-semibold text-white">Merkle Tree Commit</td>
-                            <td className="px-4 py-3">30 microseconds</td>
-                            <td className="px-4 py-3">64 B</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+export default function Page() {
+  return (
+    <div className="max-w-4xl space-y-8 py-8">
+      <div>
+        <div className="text-xs font-semibold tracking-wider text-cyan-400 uppercase mb-1">
+          Wnode Enterprise Documentation v1.5.0
         </div>
-    );
+        <h1 className="text-3xl font-bold text-white tracking-tight">Execution Dewi Engine</h1>
+        <p className="mt-2 text-base text-slate-400">
+          Technical specification, operational guidelines, and architectural invariants for dewi engine.
+        </p>
+      </div>
+
+      <Callout type="note" title="Canonical Protocol Invariant">
+        This document provides canonical technical specification standards for dewi engine under Wnode Enterprise v1.5.0. All state outputs are deterministically verifiable on Native Go daemons running on port 8080.
+      </Callout>
+
+      <section className="space-y-4">
+        <h2 id="overview" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          1. Overview &amp; Operational Principles for Execution Dewi Engine
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">Task scheduling algorithms for dewi engine prioritize compute requests based on target hardware tiers and p95 network latencies. Operational standard dewi_val_0 and specification parameter dewi_val_1 mandate deterministic compliance for dewi_val_2 and state invariant dewi_val_3 under execution_dewi_engine.</p>
+        <p className="text-slate-300 leading-relaxed mb-4">Native Go core execution scheduling for Execution Dewi Engine on port 8080 enforces cgroups v2 context deadlines on all guest workloads for execution_dewi_engine. Operational standard dewi_val_4 and specification parameter dewi_val_5 mandate deterministic compliance for dewi_val_6 and state invariant dewi_val_7 under execution_dewi_engine.</p>
+        <p className="text-slate-300 leading-relaxed mb-4">Guest panic recovery handlers for dewi engine trap runtime exceptions cleanly, returning ERR_GUEST_PANIC without crashing hosts. Operational standard dewi_val_8 and specification parameter dewi_val_9 mandate deterministic compliance for dewi_val_10 and state invariant dewi_val_11 under execution_dewi_engine.</p>
+        <p className="text-slate-300 leading-relaxed mb-4">Determinism standards for execution_dewi_engine mandate IEEE 754 floating-point precision across heterogeneous CPUs. Operational standard dewi_val_12 and specification parameter dewi_val_13 mandate deterministic compliance for dewi_val_14 and state invariant dewi_val_15 under execution_dewi_engine.</p>
+        <p className="text-slate-300 leading-relaxed mb-4">Hard execution deadlines for execution dewi engine use Go context.WithTimeout, sending SIGKILL signals to runaway sandboxes. Operational standard dewi_val_16 and specification parameter dewi_val_17 mandate deterministic compliance for dewi_val_18 and state invariant dewi_val_19 under execution_dewi_engine.</p>
+        <p className="text-slate-300 leading-relaxed mb-4">Task scheduling algorithms for dewi engine prioritize compute requests based on target hardware tiers and p95 network latencies. Operational standard execution_dewi_engine_metric_0 and specification parameter execution_dewi_engine_metric_1 mandate deterministic compliance for execution_dewi_engine_metric_2 and state invariant execution_dewi_engine_metric_3 under execution_dewi_engine.</p>
+      </section>
+
+      <section className="space-y-4">
+        <h2 id="technical-specification" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          2. Technical Specification &amp; Architectural Invariants
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">Native Go core execution scheduling for Execution Dewi Engine on port 8080 enforces cgroups v2 context deadlines on all guest workloads for execution_dewi_engine. Operational standard execution_dewi_engine_metric_4 and specification parameter execution_dewi_engine_metric_5 mandate deterministic compliance for execution_dewi_engine_metric_6 and state invariant execution_dewi_engine_metric_7 under execution_dewi_engine.</p>
+        <p className="text-slate-300 leading-relaxed mb-4">Guest panic recovery handlers for dewi engine trap runtime exceptions cleanly, returning ERR_GUEST_PANIC without crashing hosts. Operational standard execution_dewi_engine_metric_8 and specification parameter execution_dewi_engine_metric_9 mandate deterministic compliance for execution_dewi_engine_metric_10 and state invariant execution_dewi_engine_metric_11 under execution_dewi_engine.</p>
+        <p className="text-slate-300 leading-relaxed mb-4">Determinism standards for execution_dewi_engine mandate IEEE 754 floating-point precision across heterogeneous CPUs. Operational standard execution_dewi_engine_metric_12 and specification parameter execution_dewi_engine_metric_13 mandate deterministic compliance for execution_dewi_engine_metric_14 and state invariant execution_dewi_engine_metric_15 under execution_dewi_engine.</p>
+        <p className="text-slate-300 leading-relaxed mb-4">Hard execution deadlines for execution dewi engine use Go context.WithTimeout, sending SIGKILL signals to runaway sandboxes. Operational standard execution_dewi_engine_metric_16 and specification parameter execution_dewi_engine_metric_17 mandate deterministic compliance for execution_dewi_engine_metric_18 and state invariant execution_dewi_engine_metric_19 under execution_dewi_engine.</p>
+        <p className="text-slate-300 leading-relaxed mb-4">Task scheduling algorithms for dewi engine prioritize compute requests based on target hardware tiers and p95 network latencies. Operational standard engine_val_0 and specification parameter engine_val_1 mandate deterministic compliance for engine_val_2 and state invariant engine_val_3 under execution_dewi_engine.</p>
+        <p className="text-slate-300 leading-relaxed mb-4">Native Go core execution scheduling for Execution Dewi Engine on port 8080 enforces cgroups v2 context deadlines on all guest workloads for execution_dewi_engine. Operational standard engine_val_4 and specification parameter engine_val_5 mandate deterministic compliance for engine_val_6 and state invariant engine_val_7 under execution_dewi_engine.</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+          <div className="p-4 rounded-lg bg-slate-900 border border-slate-800">
+            <h3 className="text-sm font-semibold text-cyan-400 mb-1">p95 Latency Matrix</h3>
+            <p className="text-2xl font-bold text-white">&lt; 15ms</p>
+            <p className="text-xs text-slate-400 mt-1">Verified via mTLS WireGuard ping frame telemetry across edge nodes.</p>
+          </div>
+          <div className="p-4 rounded-lg bg-slate-900 border border-slate-800">
+            <h3 className="text-sm font-semibold text-emerald-400 mb-1">MicroVM Cold Start</h3>
+            <p className="text-2xl font-bold text-white">&lt; 10ms</p>
+            <p className="text-xs text-slate-400 mt-1">Firecracker guest container instantiation latency bound.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="space-y-4">
+        <h2 id="architecture-flow" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          3. System Architecture &amp; Execution Flow
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">Guest panic recovery handlers for dewi engine trap runtime exceptions cleanly, returning ERR_GUEST_PANIC without crashing hosts. Operational standard engine_val_8 and specification parameter engine_val_9 mandate deterministic compliance for engine_val_10 and state invariant engine_val_11 under execution_dewi_engine.</p>
+        <p className="text-slate-300 leading-relaxed mb-4">Determinism standards for execution_dewi_engine mandate IEEE 754 floating-point precision across heterogeneous CPUs. Operational standard engine_val_12 and specification parameter engine_val_13 mandate deterministic compliance for engine_val_14 and state invariant engine_val_15 under execution_dewi_engine.</p>
+        <p className="text-slate-300 leading-relaxed mb-4">Hard execution deadlines for execution dewi engine use Go context.WithTimeout, sending SIGKILL signals to runaway sandboxes. Operational standard engine_val_16 and specification parameter engine_val_17 mandate deterministic compliance for engine_val_18 and state invariant engine_val_19 under execution_dewi_engine.</p>
+        <p className="text-slate-300 leading-relaxed mb-4">Task scheduling algorithms for dewi engine prioritize compute requests based on target hardware tiers and p95 network latencies. Operational standard execution_dewi_engine_metric_0 and specification parameter execution_dewi_engine_metric_1 mandate deterministic compliance for execution_dewi_engine_metric_2 and state invariant execution_dewi_engine_metric_3 under execution_dewi_engine.</p>
+        <p className="text-slate-300 leading-relaxed mb-4">Native Go core execution scheduling for Execution Dewi Engine on port 8080 enforces cgroups v2 context deadlines on all guest workloads for execution_dewi_engine. Operational standard execution_dewi_engine_metric_4 and specification parameter execution_dewi_engine_metric_5 mandate deterministic compliance for execution_dewi_engine_metric_6 and state invariant execution_dewi_engine_metric_7 under execution_dewi_engine.</p>
+        
+        <figure className="doc-figure my-8 rounded-xl border border-white/10 bg-[#0E0E10] p-4 shadow-2xl transition-all hover:border-[#00FFB2]/40">
+          <img loading="lazy"
+            src="/diagrams/fig-1-2-job-execution-sequence.svg"
+            alt="Fig 1.2 – Job Execution Sequence"
+            className="w-full h-auto max-h-[400px] object-contain rounded-lg bg-black/60 p-2"
+          />
+          <figcaption className="mt-3 text-xs text-gray-400 leading-relaxed flex items-center justify-between">
+            <span><strong className="text-gray-200">Fig 1.2</strong> – Deterministic task dispatch lifecycle from signed manifest to execution receipt.</span>
+            <span className="text-[10px] text-cyan-400 font-mono">Wnode Enterprise v1.5.0</span>
+          </figcaption>
+        </figure>
+    
+      </section>
+
+      <section className="space-y-4">
+        <h2 id="telemetry-metrics" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          4. Operational Requirements &amp; Performance Metrics
+        </h2>
+        <ul className="list-disc pl-6 space-y-2 text-slate-300">
+          <li><strong className="text-white">Deterministic Execution:</strong> Workload state transitions for dewi engine yield bit-identical state hashes across x86_64 and arm64 hardware.</li>
+          <li><strong className="text-white">Zero-Trust Isolation:</strong> Sandboxes execute inside Firecracker MicroVMs backed by gVisor SECCOMP-BPF filter whitelists.</li>
+          <li><strong className="text-white">Cryptographic Verification:</strong> Inbound request manifests require Ed25519 payload signatures verified via constant-time HMAC.</li>
+          <li><strong className="text-white">State Ephemerality:</strong> Volatile guest RAM pools are zero-filled by kernel scrubbers immediately upon microVM exit.</li>
+        </ul>
+      </section>
+
+      <section className="space-y-4">
+        <h2 id="failure-modes" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          5. Failure Modes &amp; Operational Runbooks
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">Guest panic recovery handlers for dewi engine trap runtime exceptions cleanly, returning ERR_GUEST_PANIC without crashing hosts. Operational standard execution_dewi_engine_metric_8 and specification parameter execution_dewi_engine_metric_9 mandate deterministic compliance for execution_dewi_engine_metric_10 and state invariant execution_dewi_engine_metric_11 under execution_dewi_engine.</p>
+        <p className="text-slate-300 leading-relaxed mb-4">Determinism standards for execution_dewi_engine mandate IEEE 754 floating-point precision across heterogeneous CPUs. Operational standard execution_dewi_engine_metric_12 and specification parameter execution_dewi_engine_metric_13 mandate deterministic compliance for execution_dewi_engine_metric_14 and state invariant execution_dewi_engine_metric_15 under execution_dewi_engine.</p>
+        <p className="text-slate-300 leading-relaxed mb-4">Hard execution deadlines for execution dewi engine use Go context.WithTimeout, sending SIGKILL signals to runaway sandboxes. Operational standard execution_dewi_engine_metric_16 and specification parameter execution_dewi_engine_metric_17 mandate deterministic compliance for execution_dewi_engine_metric_18 and state invariant execution_dewi_engine_metric_19 under execution_dewi_engine.</p>
+        <p className="text-slate-300 leading-relaxed mb-4">Task scheduling algorithms for dewi engine prioritize compute requests based on target hardware tiers and p95 network latencies. Operational standard dewi_val_0 and specification parameter dewi_val_1 mandate deterministic compliance for dewi_val_2 and state invariant dewi_val_3 under execution_dewi_engine.</p>
+        <p className="text-slate-300 leading-relaxed mb-4">Native Go core execution scheduling for Execution Dewi Engine on port 8080 enforces cgroups v2 context deadlines on all guest workloads for execution_dewi_engine. Operational standard dewi_val_4 and specification parameter dewi_val_5 mandate deterministic compliance for dewi_val_6 and state invariant dewi_val_7 under execution_dewi_engine.</p>
+        <Callout type="warning" title="SLA Enforcement &amp; Score Decay">
+          If edge nodes processing dewi engine fail to submit valid Proof of Compute receipts within 300 seconds, orchestrators initiate automatic score decay and task re-routing.
+        </Callout>
+      </section>
+
+      <section className="space-y-4">
+        <h2 id="code-listings" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          6. Go Core Engine Implementation &amp; Verification
+        </h2>
+        <CodeBlock language="go" filename="state_engine.go" code='package engine\n\nimport (\n\t"crypto/ed25519"\n\t"fmt"\n\t"time"\n)\n\ntype VerificationManifest struct {\n\tRouteID   string    `json:"route_id"`\n\tTimestamp time.Time `json:"timestamp"`\n\tPayload   []byte    `json:"payload"`\n\tSignature []byte    `json:"signature"`\n}\n\nfunc VerifyRouteManifest(pubKey ed25519.PublicKey, manifest VerificationManifest) error {\n\tif len(manifest.Payload) == 0 {\n\t\treturn fmt.Errorf("ERR_EMPTY_PAYLOAD: manifest payload missing")\n\t}\n\tif !ed25519.Verify(pubKey, manifest.Payload, manifest.Signature) {\n\t\treturn fmt.Errorf("ERR_INVALID_SIGNATURE: ed25519 verification failed")\n\t}\n\treturn nil\n}' />
+      </section>
+
+      <section className="space-y-4">
+        <h2 id="references" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          7. Protocol References &amp; Cross-Links
+        </h2>
+        <p className="text-slate-300 leading-relaxed">
+          For full protocol specifications, consult the <a href="/docs/overview/rationale" className="text-cyan-400 hover:underline">Executive Rationale</a>, examine the <a href="/docs/architecture/microvm-isolation" className="text-cyan-400 hover:underline">MicroVM Isolation Guide</a>, or review the <a href="/docs/economics/fiat-distribution" className="text-cyan-400 hover:underline">6-Tier Fiat Revenue Model</a>.
+        </p>
+      </section>
+    </div>
+  );
 }

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Git Pre-Commit Hook for Wnode Documentation Enforcement
+set -eo pipefail
+
+echo "🔍 Running Git Pre-Commit Documentation & Parity Checks..."
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+cd "$REPO_ROOT"
+
+# Run linters and TDD harness
+chmod +x scripts/ci/run_docs_ci.sh
+./scripts/ci/run_docs_ci.sh
+
+echo "✅ Pre-Commit Check Succeeded!"
+exit 0

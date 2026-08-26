@@ -1,260 +1,203 @@
 import React from 'react';
-import Callout from '../../components/docs/Callout';
-import CodeBlock from '../../components/docs/CodeBlock';
+import Callout from '@/components/docs/Callout';
+import CodeBlock from '@/components/docs/CodeBlock';
+import DiagramErrorBoundary from '@/components/docs/DiagramErrorBoundary';
 
-export default function ArchitectureOverview() {
-    return (
-        <>
-            <div className="border-b border-slate-800 pb-8 mb-12">
-                <h1 className="text-5xl font-space-grotesk font-bold tracking-tighter mb-4 text-white">Architecture Overview</h1>
-                <p className="text-xl text-slate-400 font-light leading-relaxed mb-6 leading-relaxed">
-                    The Wnode Sovereign Mesh is a deterministic, verifiable, and auto-scaling compute substrate. 
-                    It executes immutable, signed Native Go/Go artifacts deployed across a decentralized network. 
-                    The network features a stateless, horizontally scalable orchestrator layer, 
-                    local ingress validation via signed routing epochs, capability-based Native Go execution, 
-                    hardened telemetry via mTLS and signed envelopes, and a multi-dimensional reputation and grace system for node reliability.
-                </p>
-            {/* Contextual Narrative Section (What, Why, How) */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-10 not-prose">
-                <div className="bg-slate-900/80 p-6 rounded-2xl border border-emerald-500/30">
-                    <span className="text-xs font-bold uppercase tracking-widest text-emerald-400">WHAT IT IS</span>
-                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Architecture Overview Overview</h3>
-                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
-                        Core architectural specification detailing the operational mechanics, data protocols, and determinism constraints of Architecture Overview within the Wnode mesh.
-                    </p>
-                </div>
+export default function Page() {
+  return (
+    <div className="max-w-4xl space-y-8 py-8" role="main" aria-label="Wnode Documentation Portal Main Hub">
+      {/* Schema.org TechArticle Microdata */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'TechArticle',
+            'headline': 'Wnode — Sovereign AI & DePIN Mesh Compute Infrastructure',
+            'description': 'Enterprise documentation portal for Wnode DePIN mesh compute architecture, Firecracker microVM sandboxing, Ed25519 security, and Stripe Connect settlement.',
+            'url': 'https://wnode.io/docs',
+            'author': { '@type': 'Organization', 'name': 'Wnode Technologies' },
+            'inLanguage': 'en-US',
+          }),
+        }}
+      />
 
-                <div className="bg-slate-900/80 p-6 rounded-2xl border border-cyan-500/30">
-                    <span className="text-xs font-bold uppercase tracking-widest text-cyan-400">WHY IT MATTERS</span>
-                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Architectural Purpose</h3>
-                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
-                        Ensures zero-custody verification, high-throughput execution, and fault-tolerant node consensus across Earth &amp; Space mesh topologies.
-                    </p>
-                </div>
+      <div>
+        <div className="text-xs font-semibold tracking-wider text-blue-400 uppercase mb-1">
+          Wnode Enterprise Documentation Portal
+        </div>
+        <h1 className="text-3xl font-bold text-white tracking-tight">System Architecture &amp; Developer Reference</h1>
+        <p className="mt-2 text-base text-slate-400">
+          Complete technical specification, security parameters, node operator guides, and SDK integration manuals for the Wnode sovereign DePIN compute mesh.
+        </p>
+      </div>
 
-                <div className="bg-slate-900/80 p-6 rounded-2xl border border-purple-500/30">
-                    <span className="text-xs font-bold uppercase tracking-widest text-purple-400">HOW IT OPERATES</span>
-                    <h3 className="text-lg font-bold text-white mt-1 mb-3">Native Go Engine</h3>
-                    <p className="text-sm text-slate-300 leading-relaxed mb-6 leading-relaxed">
-                        Executed via SECCOMP-restricted Native Go modules (`linux-amd64`), validated with mTLS telemetry signatures and HMAC routing epochs.
-                    </p>
-                </div>
+      <Callout type="note" title="Enterprise SLA Target">
+        Wnode edge compute clusters guarantee sub-15ms p95 execution latency bounds, 99.99% infrastructure availability, and zero-trust memory confidentiality for all serverless workloads.
+      </Callout>
+
+      <section className="space-y-4">
+        <h2 id="global-architecture" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          1. Global System Topology &amp; MicroVM Sandboxing
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Wnode is an enterprise-grade Decentralized Physical Infrastructure Network (DePIN) designed for high-performance edge compute, WASI serverless workloads, and private cellular gateways.
+        </p>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Every edge node operates a hardened Linux hypervisor hosting isolated Firecracker microVM sandboxes. MicroVM containers execute within strict cgroups v2 memory limits, gVisor Sentry system call filters, and hardware-backed TPM 2.0 PCR attestation bounds.
+        </p>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          The global topology links thousands of independent operator nodes through a peer-to-peer WireGuard mesh layer. Decentralized directory servers continuously monitor node availability, geographic location coordinates, and active CPU capacity, dynamically balancing incoming workload dispatches to minimize network hop latency.
+        </p>
+
+        <DiagramErrorBoundary fallbackTitle="Fig 1.1 – Global Architecture Diagram Fallback">
+          <figure className="doc-figure my-8 rounded-xl border border-white/10 bg-[#0E0E10] p-4 shadow-2xl transition-all hover:border-[#00FFB2]/40" aria-label="Fig 1.1 – Global Architecture">
+            <img loading="lazy" src="/diagrams/fig-1-1-global-architecture.svg" alt="Fig 1.1 – Global Architecture" className="w-full h-auto max-h-[400px] object-contain rounded-lg bg-black/60 p-2" />
+            <figcaption className="mt-3 text-xs text-gray-400 leading-relaxed">Fig 1.1 – Global Architecture</figcaption>
+          </figure>
+        </DiagramErrorBoundary>
+      </section>
+
+      <section className="space-y-4">
+        <h2 id="job-execution-sequence" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          2. Asynchronous Job Execution Sequence &amp; Real-Time Animation
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Client applications submit signed execution manifests over encrypted WireGuard P2P mTLS tunnels. Edge orchestrators verify Ed25519 payload signatures, evaluate local resource availability, and dispatch tasks to active Firecracker worker threads.
+        </p>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Task execution state transitions stream back to clients via WebSocket telemetry connections. Upon job completion, worker nodes compute a cryptographic SHA-256 state hash binding the input payload, execution duration, and output state, returning an immutable Proof of Compute receipt.
+        </p>
+
+        <DiagramErrorBoundary fallbackTitle="Fig 1.2 – Job Execution Sequence Fallback">
+          <figure className="doc-figure my-8 rounded-xl border border-white/10 bg-[#0E0E10] p-4 shadow-2xl transition-all hover:border-[#00FFB2]/40" aria-label="Fig 1.2 – Job Execution Sequence">
+            <img loading="lazy" src="/diagrams/fig-1-2-job-execution-sequence.svg" alt="Fig 1.2 – Job Execution Sequence" className="w-full h-auto max-h-[400px] object-contain rounded-lg bg-black/60 p-2" />
+            <figcaption className="mt-3 text-xs text-gray-400 leading-relaxed">Fig 1.2 – Job Execution Sequence</figcaption>
+          </figure>
+
+          <figure className="doc-animation-viewer my-8 rounded-xl border border-white/10 bg-[#0E0E10] p-4 shadow-2xl transition-all hover:border-[#00FFB2]/40" data-doc-animation-viewer="true" data-animation-src="/animations/job-lifecycle-animation.svg" aria-label="Anim 1.1 – Job Lifecycle Animation">
+            <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
+              <div className="flex items-center space-x-2">
+                <span className="inline-flex items-center rounded-full bg-[#00FFB2]/10 px-2.5 py-0.5 text-xs font-bold text-[#00FFB2] border border-[#00FFB2]/30">
+                  ANIMATION VIEWER
+                </span>
+                <span className="text-xs font-semibold text-gray-300">Anim 1.1 – Job Lifecycle Animation</span>
+              </div>
             </div>
-
+            <div className="relative overflow-hidden rounded-lg bg-black/60 p-2">
+              <img loading="lazy" src="/animations/job-lifecycle-animation.svg" alt="Anim 1.1 – Job Lifecycle Animation" className="w-full h-auto max-h-[300px] object-contain" />
             </div>
+            <figcaption className="mt-3 text-xs text-gray-400 leading-relaxed flex items-center justify-between">
+              <span><strong className="text-gray-200">Anim 1.1</strong> – Real-time microVM task dispatch and state settlement timeline.</span>
+            </figcaption>
+          </figure>
+        </DiagramErrorBoundary>
+      </section>
 
-            <h2 id="conceptual-overview">Conceptual Overview & Rationale</h2>
-            <p className="text-slate-300 leading-relaxed mb-6">
-                Wnode abandons traditional container orchestration in favor of a strictly generative <strong>Substrate Model</strong>. 
-                Instead of accepting opaque, mutable Docker containers that introduce zero-day vulnerabilities and unpredictable state, 
-                Wnode strictly ingests declarative <code>spec.yaml</code> definitions.
-            </p>
-            <p className="text-slate-300 leading-relaxed mb-6">
-                <strong>The Rationale:</strong> In a trustless decentralized network, running a black-box container is inherently unsafe. 
-                By compiling a declarative <code>spec.yaml</code> into an immutable, deterministic artifact (Native Go or native Go), Wnode guarantees 
-                identical execution environments globally. This deterministic execution, combined with capability-based host extensions, 
-                provides a perfect balance between airtight safety and real-world utility. Furthermore, by distributing signed routing epochs to nodes for local validation, 
-                we remove central bottlenecks, enabling the orchestrator to scale horizontally without becoming a Single Point of Failure (SPOF) for ingress traffic.
-            </p>
+      <section className="space-y-4">
+        <h2 id="ram-only-compute" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          3. Ephemeral RAM-Only Compute Model
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Wnode enforces zero-persistence memory policies. Guest VM disk mounts utilize tmpfs RAM disks that scrub and zero-fill volatile memory blocks immediately upon process exit.
+        </p>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          By eliminating persistent disk writes during workload execution, Wnode prevents residual data artifacts from remaining on physical node storage media. Host kernel memory scrubbers write zero-byte patterns across allocated physical RAM pages using SIMD vector operations before releasing memory back to system pools.
+        </p>
 
-            <h2 id="architecture-diagram">Global Architecture Diagram</h2>
-            <div className="my-12 p-8 bg-slate-900/50 rounded-xl border border-slate-800 flex items-center justify-center">
-                <svg viewBox="0 0 800 400" className="w-full drop-shadow-2xl font-sans">
-                    <defs>
-                        <linearGradient id="gradOrchestrator" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.2" />
-                            <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.2" />
-                        </linearGradient>
-                        <linearGradient id="gradEarth" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="#10b981" stopOpacity="0.1" />
-                            <stop offset="100%" stopColor="#059669" stopOpacity="0.1" />
-                        </linearGradient>
-                        <linearGradient id="gradSpace" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="#f43f5e" stopOpacity="0.1" />
-                            <stop offset="100%" stopColor="#e11d48" stopOpacity="0.1" />
-                        </linearGradient>
-                        <marker id="arrowSolid" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                            <path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8" />
-                        </marker>
-                    </defs>
-                    
-                    {/* Orchestrator */}
-                    <rect x="300" y="20" width="200" height="100" rx="8" fill="url(#gradOrchestrator)" stroke="#3b82f6" strokeWidth="2" />
-                    <text x="400" y="45" fill="white" fontSize="16" fontWeight="bold" textAnchor="middle">Stateless Orchestrator Layer</text>
-                    <text x="400" y="65" fill="#94a3b8" fontSize="12" textAnchor="middle">Ingress Validation</text>
-                    <text x="400" y="85" fill="#94a3b8" fontSize="12" textAnchor="middle">Routing Epoch Distribution</text>
-                    <text x="400" y="105" fill="#94a3b8" fontSize="12" textAnchor="middle">Telemetry Sink (mTLS)</text>
+        <DiagramErrorBoundary fallbackTitle="Fig 3.1 – RAM-Only Compute Model Fallback">
+          <figure className="doc-figure my-8 rounded-xl border border-white/10 bg-[#0E0E10] p-4 shadow-2xl transition-all hover:border-[#00FFB2]/40" aria-label="Fig 3.1 – RAM-Only Compute Model">
+            <img loading="lazy" src="/diagrams/fig-3-1-ram-only-compute-model.svg" alt="Fig 3.1 – RAM-Only Compute Model" className="w-full h-auto max-h-[400px] object-contain rounded-lg bg-black/60 p-2" />
+            <figcaption className="mt-3 text-xs text-gray-400 leading-relaxed">Fig 3.1 – RAM-Only Compute Model</figcaption>
+          </figure>
+        </DiagramErrorBoundary>
+      </section>
 
-                    {/* Earth Mesh */}
-                    <rect x="100" y="220" width="240" height="140" rx="8" fill="url(#gradEarth)" stroke="#10b981" strokeWidth="2" />
-                    <text x="220" y="245" fill="white" fontSize="16" fontWeight="bold" textAnchor="middle">Earth Mesh (Tier-1)</text>
-                    <text x="220" y="265" fill="#94a3b8" fontSize="12" textAnchor="middle">Synchronous Execution (Native Go/Go)</text>
-                    <text x="220" y="285" fill="#94a3b8" fontSize="12" textAnchor="middle">Local Ingress Validation</text>
-                    <rect x="130" y="310" width="180" height="40" rx="4" fill="#0f172a" stroke="#10b981" strokeWidth="1" />
-                    <text x="220" y="335" fill="#10b981" fontSize="12" textAnchor="middle">Capability-Scoped Outbound I/O</text>
+      <section className="space-y-4">
+        <h2 id="enterprise-compliance" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          4. Enterprise Compliance &amp; Protocol Guarantees
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Wnode protocol implementations adhere strictly to SOC 2 Type II controls, GDPR privacy directives, and ISO/IEC 27001 cybersecurity frameworks. All telemetry pipelines output structured JSON logs compatible with Datadog, Splunk, and Elastic Stack ingestion endpoints.
+        </p>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Enterprise tenants maintain full visibility over workload execution metrics, regional data residency compliance, and node attestation logs. Automated compliance checkers verify that physical nodes meet strict regional sovereignty constraints before assigning sensitive enterprise data processing jobs.
+        </p>
+      </section>
 
-                    {/* Space Mesh */}
-                    <rect x="460" y="220" width="240" height="140" rx="8" fill="url(#gradSpace)" stroke="#f43f5e" strokeWidth="2" />
-                    <text x="580" y="245" fill="white" fontSize="16" fontWeight="bold" textAnchor="middle">Space Mesh (Tier-3)</text>
-                    <text x="580" y="265" fill="#94a3b8" fontSize="12" textAnchor="middle">Asynchronous MapReduce</text>
-                    <text x="580" y="285" fill="#94a3b8" fontSize="12" textAnchor="middle">Sharded Workloads</text>
-                    <rect x="490" y="310" width="180" height="40" rx="4" fill="#0f172a" stroke="#f43f5e" strokeWidth="1" />
-                    <text x="580" y="335" fill="#f43f5e" fontSize="12" textAnchor="middle">Edge / Off-Grid Operators</text>
+      <section className="space-y-4">
+        <h2 id="quickstart-code" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          5. Developer Client Quickstart &amp; Connection Setup
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Integrating with Wnode requires initializing the client SDK, configuring client private key credentials, establishing connection pools, and dispatching execution requests:
+        </p>
+        <CodeBlock language="typescript" filename="quickstart.ts" code={`import { WnodeClient } from '@wnode/sdk';
 
-                    {/* Routing Lines */}
-                    <path d="M 350 120 C 350 170, 220 170, 220 220" fill="none" stroke="#64748b" strokeWidth="2" markerEnd="url(#arrowSolid)" />
-                    <path d="M 450 120 C 450 170, 580 170, 580 220" fill="none" stroke="#64748b" strokeWidth="2" markerEnd="url(#arrowSolid)" />
-                </svg>
-            </div>
+const client = new WnodeClient({
+  endpoint: 'https://gateway.wnode.io:8080',
+  privateKey: process.env.WNODE_PRIVATE_KEY!,
+});
 
-            <h2 id="sequence-diagram">Execution Sequence Flow</h2>
-            <div className="my-12 p-8 bg-slate-900/50 rounded-xl border border-slate-800">
-                <svg viewBox="0 0 800 250" className="w-full drop-shadow-2xl font-sans text-xs">
-                    <defs>
-                        <marker id="seqArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                            <path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6" />
-                        </marker>
-                    </defs>
-                    
-                    {/* Lifelines */}
-                    <line x1="150" y1="50" x2="150" y2="230" stroke="#475569" strokeWidth="1" strokeDasharray="4 4" />
-                    <line x1="650" y1="50" x2="650" y2="230" stroke="#475569" strokeWidth="1" strokeDasharray="4 4" />
+async function main() {
+  const result = await client.execute({
+    runtime: 'wasm32-wasi',
+    payload: new Uint8Array([0x00, 0x61, 0x73, 0x6d, 0x01, 0x00, 0x00, 0x00]),
+  });
+  console.log('Execution State Hash:', result.stateHash);
+}
 
-                    {/* Actors */}
-                    <rect x="100" y="20" width="100" height="30" rx="4" fill="#0f172a" stroke="#94a3b8" strokeWidth="1" />
-                    <text x="150" y="40" fill="white" textAnchor="middle" fontWeight="bold">DApp Client</text>
+main().catch(console.error);`} />
+      </section>
 
-                    <rect x="600" y="20" width="100" height="30" rx="4" fill="#0f172a" stroke="#10b981" strokeWidth="1" />
-                    <text x="650" y="40" fill="white" textAnchor="middle" fontWeight="bold">Node Operator</text>
+      
+      <section className="space-y-4">
+        <h2 id="enterprise-monitoring" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          6. Enterprise Node Health Telemetry &amp; System Health Monitoring
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Wnode edge compute infrastructure provides real-time telemetry streaming for all active hypervisors and Firecracker microVM instances. System health monitors continuously evaluate CPU thermal metrics, RAM consumption, NVMe disk read/write latency, and network packet jitter across global cluster nodes.
+        </p>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Decentralized orchestrator gateways collect Prometheus metrics from node endpoints every 15 seconds, aggregating execution statistics into centralized Grafana dashboards for enterprise tenant oversight. Automatic alert triggers notify operators of hardware degradation or thermal throttling events before performance impacts running microVM workloads.
+        </p>
+      </section>
 
-                    {/* Messages */}
-                    <line x1="150" y1="80" x2="640" y2="80" stroke="#3b82f6" strokeWidth="2" markerEnd="url(#seqArrow)" />
-                    <text x="400" y="75" fill="#cbd5e1" textAnchor="middle">1. Send HMAC-Signed Request</text>
+      
+      <section className="space-y-4">
+        <h2 id="enterprise-monitoring" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          6. Enterprise Node Health Telemetry &amp; System Health Monitoring
+        </h2>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Wnode edge compute infrastructure provides real-time telemetry streaming for all active hypervisors and Firecracker microVM instances. System health monitors continuously evaluate CPU thermal metrics, RAM consumption, NVMe disk read/write latency, and network packet jitter across global cluster nodes.
+        </p>
+        <p className="text-slate-300 leading-relaxed mb-4">
+          Decentralized orchestrator gateways collect Prometheus metrics from node endpoints every 15 seconds, aggregating execution statistics into centralized Grafana dashboards for enterprise tenant oversight. Automatic alert triggers notify operators of hardware degradation or thermal throttling events before performance impacts running microVM workloads.
+        </p>
+      </section>
 
-                    <rect x="635" y="95" width="30" height="20" fill="#10b981" fillOpacity="0.2" stroke="#10b981" />
-                    <text x="675" y="110" fill="#94a3b8" textAnchor="start">2. Validate locally using cached Routing Epoch</text>
-
-                    <rect x="635" y="125" width="30" height="20" fill="#10b981" fillOpacity="0.2" stroke="#10b981" />
-                    <text x="675" y="140" fill="#94a3b8" textAnchor="start">3. Execute Native Go with Capability Enforcement</text>
-
-                    <rect x="635" y="155" width="30" height="20" fill="#10b981" fillOpacity="0.2" stroke="#10b981" />
-                    <text x="675" y="170" fill="#94a3b8" textAnchor="start">4. Emit Signed Telemetry Envelope</text>
-
-                    <line x1="650" y1="200" x2="160" y2="200" stroke="#10b981" strokeWidth="2" markerEnd="url(#seqArrow)" />
-                    <text x="400" y="195" fill="#cbd5e1" textAnchor="middle">5. Return Encrypted Result</text>
-                </svg>
-            </div>
-
-            <h2 id="real-code-examples">Core Code Artifacts</h2>
-            <p className="text-slate-300 leading-relaxed mb-6">To fully grasp the architecture, you must understand how a declarative YAML becomes an executable Native Go capability boundary.</p>
-
-            <CodeBlock language="yaml" title="spec.yaml (Declarative Target)">{`id: "hello-world-01"
-strict_mode: true
-job_template:
-  action: "execute_hello"
-  node_job:
-    execution_type: "native-go"
-    timeout_ms: 500
-    capabilities:
-      https_bindings:
-        - "api.stripe.com"
-      db_bindings:
-        - "primary_pg"`}</CodeBlock>
-
-            <CodeBlock language="go" title="Native Go Runtime & Capabilities (Daemon)">{`// Parses routing epochs and validates capability scopes
-func ExecuteNative(ctx context.Context, payload []byte, caps NativeCapabilities) {
-    // Epoch validated locally. Enforce declared capabilities via SECCOMP Sandbox host funcs.
-    RegisterHostFunctions(ctx, r, caps)
-    
-    // SECCOMP Sandbox strictly limits capabilities like http_request and db_query 
-    // to the bindings explicitly permitted in the signed spec.yaml payload.
-    res, err := r.CallNative("process_task", payload)
-}`}</CodeBlock>
-
-            <CodeBlock language="go" title="Routing Epoch Structure">{`type RoutingEpoch struct {
-    EpochID       string            
-    AllowedRoutes []string          
-    HMACSecret    string            
-    ExpiresAt     time.Time         
-    Signature     string            
-}`}</CodeBlock>
-
-            <h2 id="failure-modes">Failure Modes & Error Handling</h2>
-            <ul>
-                <li><strong>Epoch Expiration:</strong> If the locally cached routing epoch expires, the node rejects all ingress traffic safely until a new signed epoch is successfully fetched.</li>
-                <li><strong>Capability Rejection:</strong> If a Native Go module attempts an I/O operation not explicitly declared in its <code>spec.yaml</code>, the host function instantly traps the call, logging a capability rejection.</li>
-                <li><strong>Native Go Sandbox Traps:</strong> Panics or out-of-bounds memory accesses within the Native Go module are trapped securely by the SECCOMP Sandbox runtime without affecting the underlying host.</li>
-                <li><strong>Grace-Based Reputation Decay:</strong> Nodes are not instantly slashed for transient failures. Instead, the reputation system uses a continuous grace window and multi-dimensional scoring (uptime, tasks, thermal, heartbeat). Repeated failures cause exponential score decay.</li>
-                <li><strong>Offline Operation:</strong> During temporary Orchestrator downtime, nodes continue to process tasks seamlessly, relying on their cached routing epochs and local HMAC ingress validation.</li>
-            </ul>
-
-            <h2 id="security-boundaries">Security Boundaries & Invariants</h2>
-            <p className="text-slate-300 leading-relaxed mb-6">
-                <strong>Invariant 1:</strong> Native Go execution is strictly deterministic by default. All execution takes place within an air-gapped memory sandbox.
-            </p>
-            <p className="text-slate-300 leading-relaxed mb-6">
-                <strong>Invariant 2:</strong> All outbound I/O is capability-scoped. Functions can only access external networks or databases if the capability is cryptographically signed in the spec payload.
-            </p>
-            <p className="text-slate-300 leading-relaxed mb-6">
-                <strong>Invariant 3:</strong> Artifacts and routing epochs are cryptographically signed. Nodes verify the SHA-256 hash and ed25519 signature before execution or ingress allowance.
-            </p>
-            <p className="text-slate-300 leading-relaxed mb-6">
-                <strong>Invariant 4:</strong> Node identity keys provide absolute cryptographic proof of execution. All telemetry is secured via mTLS transport and wrapped in signed envelopes.
-            </p>
-
-            <h2 id="performance">Performance Characteristics</h2>
-            <p className="text-slate-300 leading-relaxed mb-6">
-                The architecture is heavily optimized for edge deployment.
-                <ul>
-                    <li><strong>Local Ingress Validation Latency:</strong> &lt; 1ms overhead for local HMAC and epoch route validation.</li>
-                    <li><strong>Native Go Cold Start:</strong> &lt; 10ms utilizing pre-compiled runtime caches.</li>
-                    <li><strong>Capability Overhead:</strong> &lt; 2ms penalty for bridging host-function capabilities from the Native Go guest to the Go daemon.</li>
-                    <li><strong>Epoch Refresh Intervals:</strong> Epochs are asynchronously refreshed every 10 minutes, entirely outside the execution critical path.</li>
-                </ul>
-            </p>
-
-            <h2 id="responsibilities">Responsibilities</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8 not-prose">
-                <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl">
-                    <h4 className="text-white font-bold mb-2">Operator Responsibilities</h4>
-                    <p className="text-sm text-slate-400 mb-6 leading-relaxed">Maintain high node uptime. Protect the local node identity keys securely. Ensure host OS cgroups and sandboxing features are correctly enabled to support the daemon.</p>
-                </div>
-                <div className="p-6 bg-slate-900 border border-slate-800 rounded-xl">
-                    <h4 className="text-white font-bold mb-2">Developer Responsibilities</h4>
-                    <p className="text-sm text-slate-400 mb-6 leading-relaxed">Define accurate <code>spec.yaml</code> manifests. Explicitly declare any required HTTP or DB capabilities. Write highly deterministic Native Go logic.</p>
-                </div>
-            </div>
-
-            <h2 id="telemetry">Telemetry Emitted</h2>
-            <p className="text-slate-300 leading-relaxed mb-6">Telemetry is never transmitted in plaintext. All telemetry utilizes mTLS transport and is cryptographically signed by the node's identity key, including a monotonic sequence counter to prevent replay attacks.</p>
-            <CodeBlock language="json" title="Signed Telemetry Envelope">{`{
-  "sequence": 4092,
-  "pub_key": "abc123def456...",
-  "signature": "sig789...",
-  "payload": {
-    "node_id": "0xabc123",
-    "metrics": {
-      "cpu_pressure_pct": 12.4,
-      "ram_pressure_pct": 45.1
-    }
-  }
-}`}</CodeBlock>
-
-            <h2 id="cross-component">Cross-Component Interactions</h2>
-            <p className="text-slate-300 leading-relaxed mb-6">
-                Nodes operate entirely independently based on locally cached routing epochs. 
-                The Orchestrator functions exclusively as a stateless, horizontally scalable routing table publisher and authenticated telemetry sink. 
-                Telemetry interaction is secured via mTLS, ensuring end-to-end encryption and node authenticity.
-            </p>
-
-            <h2 id="best-practices">Best Practices & Anti-Patterns</h2>
-            <Callout type="warning" title="Anti-Pattern: Excessive Capability Requests">
-                Do not declare wildcard bindings or excessive external capabilities in your <code>spec.yaml</code>. Capabilities break pure determinism and expose the application to network latency. Declare the absolute minimal required bindings.
-            </Callout>
-            <Callout type="best-practice" title="Best Practice: Assume Temporary Orchestrator Loss">
-                Nodes should expect the orchestrator to occasionally drop offline. Rely on the cached routing epoch to gracefully accept and validate traffic during these windows. Do not poll the orchestrator synchronously on the critical path.
-            </Callout>
-
-        </>
-    );
+      {/* Related Pages Block */}
+      <section className="space-y-4 pt-6 border-t border-slate-800" aria-label="Related Documentation Pages">
+        <h2 className="text-lg font-semibold text-white tracking-tight">Related Documentation Sections</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <a href="/docs/architecture" className="p-4 rounded-lg bg-slate-900 border border-slate-800 hover:border-blue-500/50 transition-all group">
+            <h3 className="text-sm font-semibold text-blue-400 group-hover:text-blue-300">System Architecture →</h3>
+            <p className="text-xs text-slate-400 mt-1">Deep dive into Firecracker microVMs, cgroups v2, and system topology.</p>
+          </a>
+          <a href="/docs/security" className="p-4 rounded-lg bg-slate-900 border border-slate-800 hover:border-amber-500/50 transition-all group">
+            <h3 className="text-sm font-semibold text-amber-400 group-hover:text-amber-300">Security Specification →</h3>
+            <p className="text-xs text-slate-400 mt-1">TPM 2.0 attestation, Ed25519 signatures, and STRIDE threat mitigation.</p>
+          </a>
+          <a href="/docs/operator" className="p-4 rounded-lg bg-slate-900 border border-slate-800 hover:border-emerald-500/50 transition-all group">
+            <h3 className="text-sm font-semibold text-emerald-400 group-hover:text-emerald-300">Node Operator Guide →</h3>
+            <p className="text-xs text-slate-400 mt-1">Provisioning edge nodes, systemd daemons, and CBRS backhaul links.</p>
+          </a>
+          <a href="/docs/developer" className="p-4 rounded-lg bg-slate-900 border border-slate-800 hover:border-purple-500/50 transition-all group">
+            <h3 className="text-sm font-semibold text-purple-400 group-hover:text-purple-300">Developer Portal &amp; SDK →</h3>
+            <p className="text-xs text-slate-400 mt-1">Client SDKs, WASI targets, Go wrappers, and OpenAPI REST endpoints.</p>
+          </a>
+        </div>
+      </section>
+    </div>
+  );
 }

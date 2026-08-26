@@ -170,6 +170,7 @@ func NewStore(forensics *forensics.Store, statePath string) *Store {
 	s.SeedFoundationIdentities()
 	s.SeedGlobalMeshNodes()
 	s.SeedIntegrations()
+	s.saveState()
 	go s.runDowntimeWatchdog(10 * time.Second)
 	go s.runReputationRecalculation(24 * time.Hour)
 	go func() {
@@ -318,6 +319,7 @@ func (s *Store) SeedFoundationIdentities() {
 		}
 	} else {
 		n.DisplayName = "Stephen Soos"
+		n.Role = RoleOwner
 		n.IsOwner = true
 		n.IsFounder = true
 		n.IsSuperAdmin = true

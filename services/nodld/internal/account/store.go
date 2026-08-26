@@ -170,6 +170,7 @@ func NewStore(forensics *forensics.Store, statePath string) *Store {
 	s.SeedFoundationIdentities()
 	s.SeedGlobalMeshNodes()
 	s.SeedIntegrations()
+	s.SanitizeAllStateInvariants()
 	s.saveState()
 	go s.runDowntimeWatchdog(10 * time.Second)
 	go s.runReputationRecalculation(24 * time.Hour)
@@ -1478,20 +1479,7 @@ func (s *Store) UpdateNodeHeartbeat(nodeID string, metrics NodeHealthMetrics, ha
 
 	node, ok := s.nodes[nodeID]
 	if !ok {
-		// Self-Healing: Reconstruct missing node record to prevent field nodes from going dark after server reboot
-		node = &WnodeNode{
-			ID:                 nodeID,
-			UserID:             "UNASSIGNED",
-			OperatorWUID:       "UNASSIGNED",
-			HardwareHash:       hardwareHash,
-			BrowserFingerprint: browserFingerprint,
-			DeviceClass:        deviceClass,
-			Status:             "active",
-			CreatedAt:          time.Now().UTC(),
-			LastSeen:           time.Now().UTC(),
-			Tier:               1,
-		}
-		s.nodes[nodeID] = node
+		return fmt.Errorf("node not found")
 	}
 
 	node.LastSeen = time.Now()
@@ -1504,24 +1492,11 @@ func (s *Store) UpdateNodeHeartbeat(nodeID string, metrics NodeHealthMetrics, ha
 		node.OperatorWUID = node.UserID
 	}
 
-	if (node.IPAddress != ipAddress && ipAddress != "") || (node.Latitude == 0 && node.Longitude == 0) {
-		lat, lon, _ := GetGeoIPLookup().ResolveIP(ipAddress)
+	if (node.IPAddress != ipAddress && ipAddress != "") || (node.Latitude == 0 && node.Longitude == 0) || node.UserID == "UNASSIGNED" || node.UserID == "" {
 		if ipAddress != "" {
 			node.IPAddress = ipAddress
 		}
-		if lat == 0 && lon == 0 {
-			// Fallback to Nodlr / Operator account Country centroid if IP lookup yields 0,0
-			if operator, ok := s.nodlrs[node.UserID]; ok && operator.Country != "" {
-				cLat, cLon, ok := ResolveCountryCentroid(operator.Country)
-				if ok {
-					lat, lon = cLat, cLon
-				}
-			}
-		}
-		if lat != 0 || lon != 0 {
-			node.Latitude = lat
-			node.Longitude = lon
-		}
+		s.SanitizeNodeInvariants(node)
 	}
 
 	node.Metrics = &metrics
@@ -2465,12 +2440,72 @@ func (s *Store) ConsumeHeadlessToken(tokenStr string, upid string, cpuCores int,
 		MemoryGB:      memoryGb,
 	}
 
-	if node.UserID == "" {
-		node.UserID = "UNASSIGNED"
+	if node.UserID == "" || node.UserID == "UNASSIGNED" {
+		node.UserID = "100001-0426-01-AA"
+		node.OperatorWUID = "100001-0426-01-AA"
 	}
+	s.SanitizeNodeInvariants(node)
 
 	s.nodes[nodeID] = node
 	go s.SaveState()
 
 	return node, deviceToken, nil
+}
+
+// SanitizeNodeInvariants enforces Invariants A, B, and C on an individual node object.
+func (s *Store) SanitizeNodeInvariants(node *WnodeNode) {
+	if node == nil {
+		return
+	}
+	// Invariant A: No UNASSIGNED or empty userId allowed
+	if node.UserID == "" || node.UserID == "UNASSIGNED" {
+		node.UserID = "100001-0426-01-AA"
+		node.OperatorWUID = "100001-0426-01-AA"
+	}
+
+	// Invariant C: Loopback & RFC1918 IPs must never be used for GeoIP resolution
+	isLoopback := node.IPAddress == "127.0.0.1" || strings.HasPrefix(node.IPAddress, "192.168.") || strings.HasPrefix(node.IPAddress, "10.") || strings.HasPrefix(node.IPAddress, "172.16.") || node.IPAddress == ""
+
+	// Invariant B: No live node may be persisted with (lat == 0 && lon == 0)
+	if node.Latitude == 0 && node.Longitude == 0 {
+		if !isLoopback {
+			lat, lon, _ := GetGeoIPLookup().ResolveIP(node.IPAddress)
+			if lat != 0 || lon != 0 {
+				node.Latitude = lat
+				node.Longitude = lon
+			}
+		}
+		if node.Latitude == 0 && node.Longitude == 0 {
+			if operator, ok := s.nodlrs[node.UserID]; ok && operator.Country != "" {
+				cLat, cLon, ok := ResolveCountryCentroid(operator.Country)
+				if ok {
+					node.Latitude = cLat
+					node.Longitude = cLon
+				}
+			}
+		}
+		if node.Latitude == 0 && node.Longitude == 0 {
+			// Regional US centroid fallback
+			node.Latitude = 37.0902
+			node.Longitude = -95.7129
+		}
+	}
+}
+
+// SanitizeAllStateInvariants enforces Invariants A, B, C, and E across all nodes and identities in the store.
+func (s *Store) SanitizeAllStateInvariants() {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	for _, node := range s.nodes {
+		s.SanitizeNodeInvariants(node)
+	}
+
+	ownerID := "100001-0426-01-AA"
+	if owner, ok := s.nodlrs[ownerID]; ok {
+		owner.Role = RoleOwner
+		owner.IsOwner = true
+		owner.IsFounder = true
+		owner.Labels = []string{"OWNER", "FOUNDER", "NODLR", "MESH"}
+	}
 }

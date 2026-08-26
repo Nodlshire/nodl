@@ -7,10 +7,64 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
+	"regexp"
+	"strings"
 	"time"
 
 	"github.com/google/uuid"
 )
+
+type WUIDComponents struct {
+	Raw      string `json:"raw"`
+	Sequence string `json:"sequence"`
+	Batch    string `json:"batch"`
+	Slot     string `json:"slot"`
+	Checksum string `json:"checksum"`
+	IsValid  bool   `json:"isValid"`
+}
+
+var wuidRegex = regexp.MustCompile(`^(\d{6,7})-(\d{4})-(\d{2})-([A-Za-z0-9]{2})$`)
+
+// ParseWUID validates and parses a WUID into structured components.
+func ParseWUID(code string) (*WUIDComponents, error) {
+	trimmed := strings.TrimSpace(code)
+	matches := wuidRegex.FindStringSubmatch(trimmed)
+	if len(matches) != 5 {
+		return nil, fmt.Errorf("invalid WUID format: %s", code)
+	}
+	return &WUIDComponents{
+		Raw:      trimmed,
+		Sequence: matches[1],
+		Batch:    matches[2],
+		Slot:     matches[3],
+		Checksum: strings.ToUpper(matches[4]),
+		IsValid:  true,
+	}, nil
+}
+
+// ParseAndLogAffiliateCode parses a WUID code and emits invite_code_parsed telemetry.
+func (s *Store) ParseAndLogAffiliateCode(code string) (*WUIDComponents, error) {
+	comp, err := ParseWUID(code)
+	if err != nil {
+		return nil, err
+	}
+
+	if s.Telemetry != nil {
+		s.Telemetry.Publish(&TelemetryEvent{
+			EventType: "invite_code_parsed",
+			Payload: map[string]interface{}{
+				"wuid":      comp.Raw,
+				"sequence":  comp.Sequence,
+				"batch":     comp.Batch,
+				"slot":      comp.Slot,
+				"checksum":  comp.Checksum,
+				"isValid":   comp.IsValid,
+				"timestamp": time.Now().Format(time.RFC3339),
+			},
+		})
+	}
+	return comp, nil
+}
 
 func (s *Store) initInviteState() {
 	if s.inviteState == nil {

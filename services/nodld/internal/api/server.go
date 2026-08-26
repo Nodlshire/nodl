@@ -280,7 +280,7 @@ func (s *Server) registerRoutes() {
 	// Account & Affiliates
 	apiV1.Get("/account/lookup", s.requireLevel(account.RoleVisitor), s.handleLookupAccount)
 	apiV1.Post("/account/create", s.requireLevel(account.RoleVisitor), s.handleCreateAccount)
-	apiV1.Get("/account/me", s.requireLevel(account.RoleVisitor), s.handleGetMyAccount)
+	apiV1.Get("/account/me", s.requireLevel(account.RoleStandard), s.handleGetMyAccount)
 	apiV1.Put("/me/profile", s.requireLevel(account.RoleStandard), s.handleUpdateMyAccount)
 	apiV1.Get("/crm/account/me", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetCRMMe)
 	apiV1.Put("/crm/account/me", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleUpdateCRMMe)
@@ -293,6 +293,8 @@ func (s *Server) registerRoutes() {
 	apiV1.Post("/auth/signup", s.handleOnboardAccount)
 	apiV1.Post("/auth/request-magic-link", s.handleMagicLink)
 	apiV1.Post("/auth/verify-magic-link", s.handleVerifyMagicLink)
+	apiV1.Post("/auth/verify-email", s.handleVerifyEmail)
+	apiV1.Get("/auth/verify-email", s.handleVerifyEmail)
 	apiV1.Post("/auth/google", s.handleGoogleAuth)
 
 	// TOTP 2FA Endpoints
@@ -323,6 +325,7 @@ func (s *Server) registerRoutes() {
 	apiV1.Post("/auth/login", s.handleLogin)
 	apiV1.Post("/auth/register", s.handleRegister)
 	apiV1.Get("/affiliates/tree/:id", s.requireAccess(account.RoleVisitor, "nodlr", "command"), s.handleGetAffiliateTree)
+	apiV1.Post("/affiliates/placement", s.handleAffiliatePlacement)
 	apiV1.Post("/affiliates/transfer", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleTransferAffiliate)
 	apiV1.Post("/affiliates/genesis/activate", s.requireAccess(account.RoleOwner, "command"), s.handleActivateFounder)
 	apiV1.Post("/affiliates/genesis/toggle", s.requireAccess(account.RoleOwner, "command"), s.handleToggleFounderStatus)
@@ -358,7 +361,8 @@ func (s *Server) registerRoutes() {
 	apiV1.Post("/registry/register", s.requireAccess(account.RoleCustomerService, "command"), s.handleRegisterHardware)
 	apiV1.Post("/registry/release", s.requireAccess(account.RoleCustomerService, "command"), s.handleReleaseHardware)
 	apiV1.Get("/account/opportunity", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetOpportunityAudit)
-	apiV1.Get("/system/pulse", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handleGetSystemPulse)
+	apiV1.Get("/system/pulse", s.requireAccess(account.RoleStandard, "mesh", "command", "nodlr"), s.handleGetSystemPulse)
+	apiV1.Post("/system/pulse", s.handlePostSystemPulse)
 	apiV1.Get("/impact", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handleGetImpact)
 	apiV1.Get("/meta/tiers", s.requireAccess(account.RoleManagement, "command", "mesh"), s.handleGetMetaTiers)
 	apiV1.Post("/meta/tiers", s.requireAccess(account.RoleManagement, "command"), s.handleCreateMetaTier)
@@ -873,7 +877,6 @@ func (s *Server) handleGetMyAccount(c *fiber.Ctx) error {
 
 func (s *Server) handleUpdateMyAccount(c *fiber.Ctx) error {
 	userId := c.Locals("user_id").(string)
-	fmt.Printf("[DEBUG] handleUpdateMyAccount: userId=%s\n", userId)
 	var req struct {
 		DisplayName  string `json:"displayName"`
 		Email        string `json:"email"`
@@ -894,16 +897,21 @@ func (s *Server) handleUpdateMyAccount(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "constitutional lock: protected foundation identities cannot be altered"})
 	}
 
+	// Security Policy: Email and Phone can only be modified by a Command Manager via email request
+	if req.Email != "" && strings.ToLower(strings.TrimSpace(req.Email)) != strings.ToLower(strings.TrimSpace(acc.Email)) {
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "Email address can only be modified by a Command Manager via email request"})
+	}
+	if req.Phone != "" && account.NormalizePhone(req.Phone) != account.NormalizePhone(acc.Phone) {
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "Phone number can only be modified by a Command Manager via email request"})
+	}
+
 	if req.DisplayName != "" {
 		acc.DisplayName = req.DisplayName
 	}
-	if req.Email != "" {
-		acc.Email = req.Email
-	}
 
 	// Update CRM
-	if req.BusinessName != "" || req.Phone != "" {
-		s.accountStore.UpdateCRMRecord(userId, req.BusinessName, req.Phone)
+	if req.BusinessName != "" {
+		s.accountStore.UpdateCRMRecord(userId, req.BusinessName, acc.Phone)
 	}
 
 	s.accountStore.SaveState()
@@ -921,6 +929,11 @@ func (s *Server) handleUpdateCRMMe(c *fiber.Ctx) error {
 	var req account.CRMUpdate
 	if err := c.BodyParser(&req); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid request"})
+	}
+
+	crm := s.accountStore.GetCRMRecord(userId)
+	if crm != nil && req.Phone != "" && account.NormalizePhone(req.Phone) != account.NormalizePhone(crm.Phone) {
+		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "Phone number can only be modified by a Command Manager via email request"})
 	}
 
 	err := s.accountStore.UpdateCRMRecord(userId, req.BusinessName, req.Phone)
@@ -1040,6 +1053,7 @@ func (s *Server) sendMagicLinkEmail(toEmail, domain, token string) error {
 	}
 
 	magicLinkUrl := fmt.Sprintf("%s/login/verify?token=%s", baseUrl, token)
+	s.log.Info("[AUTH] Magic Link URL generated", zap.String("email", toEmail), zap.String("url", magicLinkUrl))
 
 	subject := "Subject: Your Wnode Magic Link\r\n"
 	headers := fmt.Sprintf("From: Wnode Team <%s>\r\nTo: %s\r\nMIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\n", smtpFrom, toEmail)
@@ -1151,7 +1165,42 @@ func (s *Server) handleVerifyMagicLink(c *fiber.Ctx) error {
 		Path:     "/",
 	})
 
-	return c.JSON(fiber.Map{"status": "success", "wuid": acc.ID, "role": acc.Role})
+	return c.JSON(fiber.Map{"status": "success", "session_id": sessionID, "wuid": acc.ID, "role": acc.Role})
+}
+
+func (s *Server) handleVerifyEmail(c *fiber.Ctx) error {
+	var req struct {
+		Token string `json:"token"`
+	}
+	if err := c.BodyParser(&req); err != nil {
+		req.Token = c.Query("token")
+	}
+
+	token := strings.TrimSpace(req.Token)
+	if token == "" {
+		token = strings.TrimSpace(c.Query("token"))
+	}
+
+	if token == "" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "missing verification token"})
+	}
+
+	var target *account.Nodlr
+	for _, n := range s.accountStore.ListNodlrs() {
+		if n.EmailVerificationToken == token {
+			n.Verified = true
+			n.VerificationStatus = "verified"
+			target = n
+			break
+		}
+	}
+
+	if target == nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "invalid or expired verification token"})
+	}
+
+	go s.accountStore.SaveState()
+	return c.JSON(fiber.Map{"status": "success", "message": "Email address verified successfully", "wuid": target.ID})
 }
 
 func (s *Server) handleInvite(c *fiber.Ctx) error {
@@ -1188,7 +1237,7 @@ func (s *Server) handleOnboardWithInvite(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "email_mismatch"})
 	}
 
-	acc, err := s.accountStore.CreateNodlr(req.Email, "", "", req.FirstName, req.LastName, "")
+	acc, err := s.accountStore.CreateNodlr(req.Email, "", "", req.FirstName, req.LastName, "", "", "", "", "", "")
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "failed to create account"})
 	}
@@ -1207,10 +1256,21 @@ func (s *Server) handleOnboardWithInvite(c *fiber.Ctx) error {
 func (s *Server) handleUpdateAccount(c *fiber.Ctx) error {
 	id := c.Params("id")
 	var req struct {
+		Email           string `json:"email"`
+		Phone           string `json:"phone"`
+		BusinessName    string `json:"businessName"`
+		FirstName       string `json:"firstName"`
+		LastName        string `json:"lastName"`
 		PayoutFrequency string `json:"payoutFrequency"`
 	}
 	if err := c.BodyParser(&req); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid request"})
+	}
+
+	if req.Email != "" || req.Phone != "" || req.BusinessName != "" || req.FirstName != "" || req.LastName != "" {
+		if err := s.accountStore.AdminUpdateAccount(id, req.Email, req.Phone, req.BusinessName, req.FirstName, req.LastName); err != nil {
+			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err.Error()})
+		}
 	}
 
 	acc, ok := s.accountStore.GetNodlr(id)
@@ -1229,60 +1289,100 @@ func (s *Server) handleOnboardAccount(c *fiber.Ctx) error {
 	var req struct {
 		Email        string `json:"email"`
 		ParentID     string `json:"parentId"`
+		InviterWUID  string `json:"inviterWUID"`
 		InviteToken  string `json:"inviteToken"`
 		Password     string `json:"password"`
 		FirstName    string `json:"firstName"`
 		LastName     string `json:"lastName"`
 		BusinessName string `json:"businessName"`
+		Phone        string `json:"phone"`
+		AddressLine1 string `json:"addressLine1"`
+		AddressLine2 string `json:"addressLine2"`
+		PostalCode   string `json:"postalCode"`
+		Country      string `json:"country"`
 	}
 	if err := c.BodyParser(&req); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid request"})
 	}
 
-	// Capture lineage from URL if present (Mirror Mode)
+	if req.Email == "" || req.Password == "" || req.FirstName == "" || req.LastName == "" || req.Phone == "" || req.AddressLine1 == "" || req.PostalCode == "" || req.Country == "" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Please fill in all mandatory fields (First Name, Last Name, Phone, Address Line 1, Post Code, Country, Email, Password)"})
+	}
+
+	// Capture lineage from URL or inviterWUID field if present
 	ref := c.Query("ref")
 	if ref != "" {
 		req.ParentID = ref
+	} else if req.ParentID == "" && req.InviterWUID != "" {
+		req.ParentID = req.InviterWUID
 	}
 
 	var isFounderSignup bool
 	var founderSlot int
 
-	// Phase 8: Authoritative Invite Token validation
-	if req.InviteToken != "" {
+	// Authoritative Invite Token validation: only consume if it's a signed hex token (not raw WUID)
+	if req.InviteToken != "" && req.InviteToken != req.ParentID && req.InviteToken != req.InviterWUID && len(req.InviteToken) > 30 {
 		invite, err := s.accountStore.ConsumeAffiliateInvite(req.InviteToken)
-		if err != nil {
-			return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err.Error()})
-		}
-		
-		if invite.Role == "founder" || invite.Role == "partner" {
-			isFounderSignup = true
-			founderSlot = invite.FounderSlot
-			req.ParentID = "" // Founders and Partners are root nodes
-		} else {
-			// If target is roundrobin, CreateNodlr handles it naturally if parentID is empty.
-			if invite.PlacementTargetWUID != "roundrobin" {
-				req.ParentID = invite.PlacementTargetWUID
+		if err == nil && invite != nil {
+			if invite.Role == "founder" || invite.Role == "partner" {
+				isFounderSignup = true
+				founderSlot = invite.FounderSlot
+				req.ParentID = "" // Founders and Partners are root nodes
 			} else {
-				req.ParentID = "" // Force organic round-robin
+				if invite.PlacementTargetWUID != "roundrobin" && invite.PlacementTargetWUID != "" {
+					req.ParentID = invite.PlacementTargetWUID
+				}
 			}
 		}
 	}
 
-	// Fallback to genesis rotation if still empty
-	acc, err := s.accountStore.CreateNodlr(req.Email, req.ParentID, req.Password, req.FirstName, req.LastName, req.BusinessName)
+	// Parse and log inviter telemetry if ParentID is set
+	if req.ParentID != "" {
+		s.accountStore.ParseAndLogAffiliateCode(req.ParentID)
+	}
+
+	// Create nodlr account with ParentID
+	acc, err := s.accountStore.CreateNodlr(req.Email, req.ParentID, req.Password, req.FirstName, req.LastName, req.BusinessName, req.Phone, req.AddressLine1, req.AddressLine2, req.PostalCode, req.Country)
 	if err != nil {
-		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err.Error()})
 	}
 
 	if isFounderSignup {
 		if err := s.accountStore.AssignFounderSlot(founderSlot, acc.ID); err != nil {
-			// If assignment fails, we still created the nodlr, but log it
 			s.log.Error("failed to assign founder slot during signup", zap.Error(err))
 		}
 	}
 
 	return c.Status(fiber.StatusCreated).JSON(acc)
+}
+
+func (s *Server) handleAffiliatePlacement(c *fiber.Ctx) error {
+	var req struct {
+		ParentWUID     string `json:"parentWuid"`
+		ChildWUID      string `json:"childWuid"`
+		PlacementLevel int    `json:"placementLevel"`
+	}
+	if err := c.BodyParser(&req); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid request body"})
+	}
+
+	if req.ParentWUID == "" || req.ChildWUID == "" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "parentWuid and childWuid are required"})
+	}
+
+	err := s.accountStore.SetNodlrParent(req.ChildWUID, req.ParentWUID)
+	if err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	s.accountStore.ParseAndLogAffiliateCode(req.ParentWUID)
+
+	return c.JSON(fiber.Map{
+		"success":        true,
+		"parentWuid":     req.ParentWUID,
+		"childWuid":      req.ChildWUID,
+		"placementLevel": req.PlacementLevel,
+	})
 }
 
 func (s *Server) handleGetFounderSlots(c *fiber.Ctx) error {
@@ -1716,6 +1816,27 @@ func (s *Server) handleGetSystemPulse(c *fiber.Ctx) error {
 	})
 }
 
+func (s *Server) handlePostSystemPulse(c *fiber.Ctx) error {
+	var req struct {
+		Type       string `json:"type"`
+		AdvisoryID string `json:"advisory_id,omitempty"`
+		Severity   string `json:"severity,omitempty"`
+		Timestamp  string `json:"timestamp"`
+		Source     string `json:"source"`
+	}
+	if err := c.BodyParser(&req); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid pulse body"})
+	}
+
+	log.Printf("[SystemPulse Audit] Received security event pulse: type=%s, advisory_id=%s, severity=%s, source=%s",
+		req.Type, req.AdvisoryID, req.Severity, req.Source)
+
+	return c.JSON(fiber.Map{
+		"status":    "acknowledged",
+		"timestamp": time.Now().UTC(),
+	})
+}
+
 func (s *Server) handleGetImpact(c *fiber.Ctx) error {
 	if s.host == nil {
 		return c.JSON(fiber.Map{})
@@ -2097,12 +2218,18 @@ func (s *Server) handleGetNodeMe(c *fiber.Ctx) error {
 }
 
 func (s *Server) handleListNodes(c *fiber.Ctx) error {
+	scope := c.Query("scope")
+	if scope == "all" || scope == "global" {
+		nodes := s.accountStore.ListAllNodes()
+		return c.JSON(nodes)
+	}
+
 	wuid, _, _ := s.resolveIdentity(c)
 	if wuid == "" {
 		wuid = c.Get("x-user-id")
 	}
 	if wuid == "" {
-		wuid = account.AuthoritativeOwnerID
+		return c.JSON([]*account.WnodeNode{})
 	}
 	nodes := s.accountStore.ListNodes(wuid)
 	return c.JSON(nodes)
@@ -2113,6 +2240,27 @@ func (s *Server) handleDeleteNode(c *fiber.Ctx) error {
 	if nodeId == "" {
 		return c.Status(400).JSON(fiber.Map{"error": "node id required"})
 	}
+
+	// 1. Resolve caller identity (WUID)
+	callerWUID, _, _ := s.resolveIdentity(c)
+	if callerWUID == "" {
+		callerWUID = c.Get("x-user-id")
+	}
+	if callerWUID == "" {
+		return c.Status(401).JSON(fiber.Map{"error": "authentication required"})
+	}
+
+	// 2. Fetch node and verify ownership before deletion
+	node, exists := s.accountStore.GetNode(nodeId)
+	if !exists {
+		return c.Status(404).JSON(fiber.Map{"error": "node not found"})
+	}
+
+	isOwner := node.UserID == callerWUID || node.OperatorWUID == callerWUID
+	if !isOwner {
+		return c.Status(403).JSON(fiber.Map{"error": "not authorized to delete this node"})
+	}
+
 	success := s.accountStore.DeleteNode(nodeId)
 	if !success {
 		return c.Status(404).JSON(fiber.Map{"error": "node not found"})

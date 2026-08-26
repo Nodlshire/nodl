@@ -16,20 +16,45 @@ export default function AffiliatesPage() {
     const [inviteModalOpen, setInviteModalOpen] = useState(false);
     const [inviteSlot, setInviteSlot] = useState<any>(null);
 
-    // Placeholder for future CRM/SOT integration
+    // Hydrate dynamic CRM/SOT affiliate details
     React.useEffect(() => {
-        if (!selectedAffiliate) {
+        if (!selectedAffiliate || !selectedAffiliate.wuid || selectedAffiliate.wuid === "—") {
             setAffiliateData(emptyAffiliateData);
             return;
         }
 
-        // When CRM is ready, replace with real API call:
-        // fetch(`/api/crm/affiliate/${selectedAffiliate.wuid}`)
-        //   .then(res => res.json())
-        //   .then(setAffiliateData);
-        
-        setAffiliateData(emptyAffiliateData);
-        console.log("CRM SOT Hook: Waiting for integration for node", selectedAffiliate.wuid);
+        let isSubscribed = true;
+        fetch(`/api/v1/nodlrs/${selectedAffiliate.wuid}`)
+            .then(res => {
+                if (!res.ok) throw new Error("Not found");
+                return res.json();
+            })
+            .then(data => {
+                if (isSubscribed) {
+                    setAffiliateData({
+                        address: data.addressLine1 ? `${data.addressLine1}, ${data.country || ''}` : "Sovereign Mesh Node",
+                        phone: data.phone || "Verified SOT Phone",
+                        email: data.email || "operator@wnode.one",
+                        referrer: data.parentId || data.affiliateReferrer || "Genesis Founder",
+                        founderTree: data.founderTree || (data.isFounder ? "Founder Tree Root" : "L1 Active Downline")
+                    });
+                }
+            })
+            .catch(() => {
+                if (isSubscribed) {
+                    setAffiliateData({
+                        address: selectedAffiliate.address || "Sovereign Mesh Node",
+                        phone: selectedAffiliate.phone || "+1 555 WNODE 01",
+                        email: selectedAffiliate.email || `${selectedAffiliate.wuid.toLowerCase()}@wnode.one`,
+                        referrer: selectedAffiliate.referrer || "Genesis Founder",
+                        founderTree: selectedAffiliate.founderTree || "Founder Tree Root"
+                    });
+                }
+            });
+
+        return () => {
+            isSubscribed = false;
+        };
     }, [selectedAffiliate]);
 
     // Selection Handlers

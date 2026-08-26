@@ -1,15 +1,19 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { Users, Code, TrendingUp, Wallet, ArrowUpRight, ShieldCheck, ChevronRight, Info, Copy, Check, Mail, Phone, User, Server } from 'lucide-react';
+import React, { useState } from 'react';
+import { Users, Code, TrendingUp, Wallet, ArrowUpRight, ShieldCheck, ChevronRight, Info, Copy, Check, Phone, User, Server, UserPlus } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import AffiliateInviteModal from '../../components/AffiliateInviteModal';
+import { useAccount } from '../../hooks/useAccount';
 
 export default function AffiliatePage() {
-    const affiliateCode = "100001-0426-01-AA";
+    const { account } = useAccount();
+    const affiliateCode = account?.id || account?.wuid || account?.nodlrId || "100001-0426-01-AA";
+    const [isInviteModalOpen, setIsInviteModalOpen] = useState(false);
     const [l1Referrals, setL1Referrals] = useState([
-        { id: '1', affiliate: '100421-0426-01-AA', name: 'Daniel Reyes', email: 'daniel.reyes@proton.me', phone: '+44 7911 123456', status: 'ACTIVE', revenue: 12.42, nodes: 4, nodeType: 'Command' },
-        { id: '2', affiliate: '100085-0426-01-AA', name: 'Priya Sharma', email: 'priya.s@fastmail.com', phone: '+1 415 555 0199', status: 'ACTIVE', revenue: 8.15, nodes: 2, nodeType: 'Command' },
-        { id: '3', affiliate: '100204-0426-01-AA', name: 'Kai Nakamura', email: 'kai.naka@pm.me', phone: '+81 90 1234 5678', status: 'PENDING', revenue: 0.00, nodes: 0, nodeType: '—' },
+        { id: '1', affiliate: '100421-0426-01-AA', name: 'Daniel Reyes', phone: '+44 7911 123456', status: 'ACTIVE', revenue: 12.42, nodes: 4, nodeType: 'Command' },
+        { id: '2', affiliate: '100085-0426-01-AA', name: 'Priya Sharma', phone: '+1 415 555 0199', status: 'ACTIVE', revenue: 8.15, nodes: 2, nodeType: 'Command' },
+        { id: '3', affiliate: '100204-0426-01-AA', name: 'Kai Nakamura', phone: '+81 90 1234 5678', status: 'PENDING', revenue: 0.00, nodes: 0, nodeType: '—' },
     ]);
     const [l2Referrals, setL2Referrals] = useState([
         { id: '4', affiliate: '100931-0426-01-AA', status: 'ACTIVE', revenue: 42.12 },
@@ -17,20 +21,24 @@ export default function AffiliatePage() {
     ]);
     const [selectedAffiliate, setSelectedAffiliate] = useState<any>(null);
     const [selectedLevel, setSelectedLevel] = useState<1 | 2>(1);
-    const [copied, setCopied] = useState(false);
 
-    const handleCopy = () => {
-        const url = `wnode.one/invite/${affiliateCode}`;
-        navigator.clipboard.writeText(url);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-    };
-
+    React.useEffect(() => {
+        if (!affiliateCode) return;
+        fetch(`/api/v1/affiliates/tree/${affiliateCode}`)
+            .then(res => res.ok ? res.json() : null)
+            .then(data => {
+                if (data && Array.isArray(data.l1) && data.l1.length > 0) {
+                    setL1Referrals(data.l1);
+                }
+                if (data && Array.isArray(data.l2) && data.l2.length > 0) {
+                    setL2Referrals(data.l2);
+                }
+            })
+            .catch(() => {});
+    }, [affiliateCode]);
 
     const totalRevenue = (l1Referrals.reduce((acc, r) => acc + r.revenue, 0) * 0.02) + 
                          (l2Referrals.reduce((acc, r) => acc + r.revenue, 0) * 0.06);
-
-
 
     return (
         <div className="w-full space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
@@ -41,14 +49,17 @@ export default function AffiliatePage() {
                     <p className="text-16px text-slate-400 font-normal">Grow your Affiliate network to increase revenue</p>
                 </div>
 
-                <div className="bg-[#9333ea]/10 border border-[#9333ea]/30 p-4.5 flex items-center gap-6 rounded-[5px]">
+                <div className="bg-[#9333ea]/10 border border-[#9333ea]/30 p-4 flex items-center gap-6 rounded-[5px]">
                     <div className="text-right">
-                        <span className="block text-[10px] text-slate-500 uppercase font-normal mb-0.5 tracking-[0.2em]">Your invite code</span>
-                        <span className="block text-2xl font-normal text-white tracking-tight">{affiliateCode}</span>
+                        <span className="block text-[10px] text-slate-500 uppercase font-normal mb-0.5 tracking-[0.2em]">Your invite WUID</span>
+                        <span className="block text-xl font-mono font-normal text-white tracking-tight">{affiliateCode}</span>
                     </div>
-                    <button className="bg-[#9333ea] hover:bg-[#a855f7] text-white p-3 rounded-[5px] transition-all shadow-md active:scale-95">
-
-                        <Code className="w-6 h-6" />
+                    <button 
+                        onClick={() => setIsInviteModalOpen(true)}
+                        className="bg-[#9333ea] hover:bg-[#a855f7] text-white px-4 py-2.5 rounded-[5px] transition-all shadow-md active:scale-95 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider"
+                    >
+                        <UserPlus className="w-4 h-4" />
+                        Add Affiliate
                     </button>
                 </div>
             </div>
@@ -260,24 +271,18 @@ export default function AffiliatePage() {
                                     </div>
                                 </div>
 
-                                {/* Message Affiliate — L1 only */}
-                                {selectedLevel === 1 && selectedAffiliate.email && (
-                                    <div className="pt-4">
-                                        <a 
-                                            href={`mailto:${selectedAffiliate.email}?subject=Nodl%20Network%20—%20${encodeURIComponent(selectedAffiliate.name)}`}
-                                            className="w-full bg-white text-black font-bold uppercase py-4 rounded-[4px] text-xs tracking-widest hover:bg-cyber-cyan transition-colors active:scale-95 shadow-lg flex items-center justify-center gap-2"
-                                        >
-                                            <Mail className="w-4 h-4" />
-                                            Message {selectedAffiliate.name.split(' ')[0]}
-                                        </a>
-                                    </div>
-                                )}
                             </div>
                         </motion.div>
                     </>
                 )}
             </AnimatePresence>
-        </div>
 
+            {/* Invite Modal */}
+            <AffiliateInviteModal 
+                isOpen={isInviteModalOpen} 
+                onClose={() => setIsInviteModalOpen(false)} 
+                userWUID={affiliateCode} 
+            />
+        </div>
     );
 }

@@ -8,6 +8,7 @@ import (
 	"strings"
 	"sync"
 	"time"
+	"unicode"
 
 	"github.com/google/uuid"
 	"github.com/obregan/nodl/nodld/internal/forensics"
@@ -167,6 +168,7 @@ func NewStore(forensics *forensics.Store, statePath string) *Store {
 	s.initInviteState()
 	s.loadState()
 	s.SeedFoundationIdentities()
+	s.SeedGlobalMeshNodes()
 	s.SeedIntegrations()
 	go s.runDowntimeWatchdog(10 * time.Second)
 	go s.runReputationRecalculation(24 * time.Hour)
@@ -348,6 +350,90 @@ func (s *Store) SeedFoundationIdentities() {
 	// Note: Test User mock record was purged.
 }
 
+// SeedGlobalMeshNodes seeds canonical global mesh nodes under GLOBAL_MESH ownership.
+func (s *Store) SeedGlobalMeshNodes() {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	// Ensure all unassigned or legacy founder-tagged global nodes belong to GLOBAL_MESH
+	for _, n := range s.nodes {
+		if n.UserID == AuthoritativeOwnerID || n.UserID == "" {
+			n.UserID = "GLOBAL_MESH"
+			n.OperatorWUID = "GLOBAL_MESH"
+		}
+	}
+
+	globalNodes := []*WnodeNode{
+		{
+			ID:            "HN-a4a2cf96",
+			UserID:        "GLOBAL_MESH",
+			OperatorWUID:  "GLOBAL_MESH",
+			Status:        "active",
+			CPUCores:      4,
+			MemoryGB:      16,
+			Metadata:      NodeMetadata{GPU: "Intel Corporation TigerLake-LP GT2 [Iris Xe Graphics] (rev 01)"},
+			DeviceClass:   "headless",
+			CreatedAt:     time.Now().Add(-48 * time.Hour),
+			LastSeen:      time.Now(),
+			LastHeartbeat: time.Now().UTC().Format(time.RFC3339),
+			LastSeenAt:    time.Now().UTC().Format(time.RFC3339),
+			GlobalScore:   1.0,
+			Tier:          1,
+		},
+		{
+			ID:            "HN-c66a3de1",
+			UserID:        "GLOBAL_MESH",
+			OperatorWUID:  "GLOBAL_MESH",
+			Status:        "active",
+			CPUCores:      4,
+			MemoryGB:      16,
+			Metadata:      NodeMetadata{GPU: "Intel Corporation Skylake-S GT2 [HD Graphics 530] (rev 06)"},
+			DeviceClass:   "headless",
+			CreatedAt:     time.Now().Add(-24 * time.Hour),
+			LastSeen:      time.Now(),
+			LastHeartbeat: time.Now().UTC().Format(time.RFC3339),
+			LastSeenAt:    time.Now().UTC().Format(time.RFC3339),
+			GlobalScore:   1.0,
+			Tier:          1,
+		},
+		{
+			ID:            "760891088eb582754d7aaa86e23998b47290bf77b6474ec51b0e86e771d9ce19",
+			UserID:        "GLOBAL_MESH",
+			OperatorWUID:  "GLOBAL_MESH",
+			Status:        "offline",
+			CPUCores:      4,
+			MemoryGB:      8,
+			DeviceClass:   "native",
+			CreatedAt:     time.Now().Add(-72 * time.Hour),
+			LastSeen:      time.Now().Add(-2 * time.Hour),
+			LastHeartbeat: time.Now().Add(-2 * time.Hour).UTC().Format(time.RFC3339),
+			LastSeenAt:    time.Now().Add(-2 * time.Hour).UTC().Format(time.RFC3339),
+			GlobalScore:   1.0,
+			Tier:          5,
+		},
+		{
+			ID:            "c0e654cf83f76bf4c903a599ccc4b5950340de878b0eaa13679a630045cc18a2",
+			UserID:        "GLOBAL_MESH",
+			OperatorWUID:  "GLOBAL_MESH",
+			Status:        "offline",
+			CPUCores:      8,
+			MemoryGB:      32,
+			Metadata:      NodeMetadata{GPU: "Microsoft Corporation Basic Render Driver"},
+			DeviceClass:   "native",
+			CreatedAt:     time.Now().Add(-96 * time.Hour),
+			LastSeen:      time.Now().Add(-5 * time.Hour),
+			LastHeartbeat: time.Now().Add(-5 * time.Hour).UTC().Format(time.RFC3339),
+			LastSeenAt:    time.Now().Add(-5 * time.Hour).UTC().Format(time.RFC3339),
+			GlobalScore:   1.0,
+			Tier:          5,
+		},
+	}
+
+	for _, n := range globalNodes {
+		s.nodes[n.ID] = n
+	}
+}
+
 // AssignFounderSlot securely assigns a Nodlr to a specific Founder slot.
 func (s *Store) AssignFounderSlot(slot int, wuid string) error {
 	err := s.assignFounderSlotInternal(slot, wuid)
@@ -415,10 +501,58 @@ func (s *Store) SetFounder(index int, id string) {
 	}
 }
 
+// NormalizePhone normalizes a telephone number to canonical digits with optional leading '+' per security standards.
+func NormalizePhone(phone string) string {
+	phone = strings.TrimSpace(phone)
+	if phone == "" {
+		return ""
+	}
+	var sb strings.Builder
+	if strings.HasPrefix(phone, "+") {
+		sb.WriteRune('+')
+	}
+	for _, r := range phone {
+		if unicode.IsDigit(r) {
+			sb.WriteRune(r)
+		}
+	}
+	res := sb.String()
+	if !strings.HasPrefix(res, "+") && len(res) == 10 {
+		return "+1" + res
+	}
+	if !strings.HasPrefix(res, "+") && len(res) == 11 && strings.HasPrefix(res, "1") {
+		return "+" + res
+	}
+	return res
+}
+
 // CreateNodlr creates a new account. If parentID is empty, it uses round-robin.
-func (s *Store) CreateNodlr(email, parentID, password, firstName, lastName, businessName string) (*Nodlr, error) {
+func (s *Store) CreateNodlr(email, parentID, password, firstName, lastName, businessName, phone, addressLine1, addressLine2, postalCode, country string) (*Nodlr, error) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
+
+	normalizedEmail := strings.ToLower(strings.TrimSpace(email))
+	if normalizedEmail != "" {
+		for _, existing := range s.nodlrs {
+			if strings.ToLower(strings.TrimSpace(existing.Email)) == normalizedEmail {
+				return nil, fmt.Errorf("an account with this email address already exists")
+			}
+		}
+	}
+
+	normalizedPhone := NormalizePhone(phone)
+	if normalizedPhone != "" {
+		for _, existing := range s.nodlrs {
+			if existing.Phone != "" && NormalizePhone(existing.Phone) == normalizedPhone {
+				return nil, fmt.Errorf("an account with this phone number already exists")
+			}
+		}
+		for _, crm := range s.crmRecords {
+			if crm.Phone != "" && NormalizePhone(crm.Phone) == normalizedPhone {
+				return nil, fmt.Errorf("an account with this phone number already exists")
+			}
+		}
+	}
 
 	index := len(s.nodlrs) + 1
 	id := fmt.Sprintf("1000%02d-0426-%02d-AA", index, index)
@@ -458,20 +592,29 @@ func (s *Store) CreateNodlr(email, parentID, password, firstName, lastName, busi
 		}
 	}
 
+	verificationToken := uuid.New().String()
 	n := &Nodlr{
-		ID:              id,
-		Email:           email,
-		Password:        hashedPassword,
-		FirstName:       firstName,
-		LastName:        lastName,
-		MeshClientID:    s.GenerateMeshClientID(),
-		PayoutFrequency: PayoutDaily,
-		PayoutStatus:    PayoutStatusIncomplete,
-		PayoutsEnabled:  false,
-		Role:            RoleStandard,
-		IntegrityScore:  600, // Initial trust
-		ParentID:        parentID,
-		CreatedAt:       time.Now(),
+		ID:                     id,
+		Email:                  email,
+		Password:               hashedPassword,
+		FirstName:              firstName,
+		LastName:               lastName,
+		Phone:                  phone,
+		AddressLine1:           addressLine1,
+		AddressLine2:           addressLine2,
+		PostalCode:             postalCode,
+		Country:                country,
+		EmailVerificationToken: verificationToken,
+		MeshClientID:           s.GenerateMeshClientID(),
+		PayoutFrequency:        PayoutDaily,
+		PayoutStatus:           PayoutStatusIncomplete,
+		PayoutsEnabled:         false,
+		Role:                   RoleStandard,
+		IntegrityScore:         600, // Initial trust
+		ParentID:               parentID,
+		CreatedAt:              time.Now(),
+		Verified:               false,
+		VerificationStatus:     "pending",
 	}
 
 	businessNameVal := businessName
@@ -479,10 +622,15 @@ func (s *Store) CreateNodlr(email, parentID, password, firstName, lastName, busi
 		businessNameVal = "New Operator"
 	}
 
-	// Initialize their native CRM record placeholder
+	// Initialize their native CRM record
 	s.crmRecords[id] = &CRMRecord{
 		NodlrID:      id,
 		BusinessName: businessNameVal,
+		Phone:        phone,
+		AddressLine1: addressLine1,
+		AddressLine2: addressLine2,
+		PostalCode:   postalCode,
+		Country:      country,
 		CreatedAt:    time.Now(),
 	}
 
@@ -751,6 +899,29 @@ func (s *Store) TransferAffiliate(requesterID, childID, newParentID string) erro
 	}
 
 	child.ParentID = newParentID
+	return nil
+}
+
+// SetNodlrParent sets or updates the parent ID for a child account during placement.
+func (s *Store) SetNodlrParent(childID, parentID string) error {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	child, ok := s.nodlrs[childID]
+	if !ok {
+		return fmt.Errorf("child account not found: %s", childID)
+	}
+
+	child.ParentID = parentID
+	if _, exists := s.crmRecords[parentID]; !exists {
+		s.crmRecords[parentID] = &CRMRecord{
+			NodlrID:      parentID,
+			BusinessName: parentID,
+			CreatedAt:    time.Now(),
+		}
+	}
+
+	go s.SaveState()
 	return nil
 }
 
@@ -1186,6 +1357,9 @@ func (s *Store) ConsumePairingCode(code string, metadata NodeMetadata) (string, 
 
 // RegisterNode creates a node directly for a user (browser connect flow).
 func (s *Store) RegisterNode(userId string, metadata NodeMetadata, hardwareHash string, browserFingerprint string, deviceClass string) (string, error) {
+	if userId == "" {
+		return "", fmt.Errorf("node registration rejected: missing WUID ownership")
+	}
 	s.mu.Lock()
 	defer s.mu.Unlock()
 
@@ -1253,8 +1427,8 @@ func (s *Store) GetNodeByToken(token string) (*WnodeNode, bool) {
 		}
 		node := &WnodeNode{
 			ID:           nodeID,
-			UserID:       AuthoritativeOwnerID,
-			OperatorWUID: AuthoritativeOwnerID,
+			UserID:       "UNASSIGNED",
+			OperatorWUID: "UNASSIGNED",
 			DeviceToken:  token,
 			Status:       "active",
 			CreatedAt:    time.Now().UTC(),
@@ -1278,8 +1452,8 @@ func (s *Store) UpdateNodeHeartbeat(nodeID string, metrics NodeHealthMetrics, ha
 		// Self-Healing: Reconstruct missing node record to prevent field nodes from going dark after server reboot
 		node = &WnodeNode{
 			ID:                 nodeID,
-			UserID:             AuthoritativeOwnerID,
-			OperatorWUID:       AuthoritativeOwnerID,
+			UserID:             "UNASSIGNED",
+			OperatorWUID:       "UNASSIGNED",
 			HardwareHash:       hardwareHash,
 			BrowserFingerprint: browserFingerprint,
 			DeviceClass:        deviceClass,
@@ -1464,16 +1638,18 @@ func (s *Store) nextNodeID(userID string) string {
 	return fmt.Sprintf("%s-%06d", userID, count+1)
 }
 
-// ListNodes returns all nodes belonging to a specific user or all nodes if requested by owner/unassigned.
+// ListNodes returns all nodes strictly belonging to a specific user.
 func (s *Store) ListNodes(userId string) []*WnodeNode {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	s.DecayNodesLocked()
 
 	list := make([]*WnodeNode, 0)
-	isOwner := userId == AuthoritativeOwnerID || userId == ""
+	if userId == "" {
+		return list
+	}
 	for _, n := range s.nodes {
-		if (isOwner || n.UserID == userId || n.UserID == "") && n.Status != "purged" {
+		if (n.UserID == userId || n.OperatorWUID == userId) && n.Status != "purged" {
 			list = append(list, n)
 		}
 	}
@@ -1984,6 +2160,60 @@ func (s *Store) UpdateCRMRecord(nodlrID string, businessName, phone string) erro
 	return nil
 }
 
+// AdminUpdateAccount allows a Command Manager/Admin to update account details including Email & Phone with uniqueness enforcement.
+func (s *Store) AdminUpdateAccount(targetID, email, phone, businessName, firstName, lastName string) error {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	target, ok := s.nodlrs[targetID]
+	if !ok {
+		return fmt.Errorf("account not found")
+	}
+
+	normEmail := strings.ToLower(strings.TrimSpace(email))
+	if normEmail != "" && normEmail != strings.ToLower(strings.TrimSpace(target.Email)) {
+		for id, existing := range s.nodlrs {
+			if id != targetID && strings.ToLower(strings.TrimSpace(existing.Email)) == normEmail {
+				return fmt.Errorf("an account with this email address already exists")
+			}
+		}
+		target.Email = normEmail
+	}
+
+	normPhone := NormalizePhone(phone)
+	if normPhone != "" && normPhone != NormalizePhone(target.Phone) {
+		for id, existing := range s.nodlrs {
+			if id != targetID && existing.Phone != "" && NormalizePhone(existing.Phone) == normPhone {
+				return fmt.Errorf("an account with this phone number already exists")
+			}
+		}
+		for id, crm := range s.crmRecords {
+			if id != targetID && crm.Phone != "" && NormalizePhone(crm.Phone) == normPhone {
+				return fmt.Errorf("an account with this phone number already exists")
+			}
+		}
+		target.Phone = normPhone
+		if crm, exists := s.crmRecords[targetID]; exists {
+			crm.Phone = normPhone
+		}
+	}
+
+	if businessName != "" {
+		if crm, exists := s.crmRecords[targetID]; exists {
+			crm.BusinessName = businessName
+		}
+	}
+	if firstName != "" {
+		target.FirstName = firstName
+	}
+	if lastName != "" {
+		target.LastName = lastName
+	}
+
+	go s.SaveState()
+	return nil
+}
+
 // Phase 10: Governance Read-Only Aggregators
 
 func (s *Store) GetGovernanceSummary() *GovernanceSummary {
@@ -2142,7 +2372,7 @@ func (s *Store) ConsumeHeadlessToken(tokenStr string, upid string, cpuCores int,
 	if !ok || token == nil {
 		token = &HeadlessToken{
 			Token:     tokenStr,
-			UserID:    AuthoritativeOwnerID,
+			UserID:    "UNASSIGNED",
 			CreatedAt: time.Now(),
 			ExpiresAt: time.Now().Add(24 * time.Hour),
 			Used:      false,
@@ -2198,7 +2428,7 @@ func (s *Store) ConsumeHeadlessToken(tokenStr string, upid string, cpuCores int,
 	}
 
 	if node.UserID == "" {
-		node.UserID = AuthoritativeOwnerID
+		node.UserID = "UNASSIGNED"
 	}
 
 	s.nodes[nodeID] = node

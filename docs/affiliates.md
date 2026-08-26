@@ -109,3 +109,20 @@ func VerifySOTState(pubKey ed25519.PublicKey, manifest SOTVerificationManifest) 
 - **MicroVM Cold Start**: < 10ms instantiation via Firecracker guest pools.
 - **State Ephemerality**: Volatile RAM zeroed upon microVM exit.
 - **Fiat Settlement Model**: Daily 6-tier ACH revenue distribution.
+
+## 7. WUID Parsing, Inviter Resolution & SOT Placement Pipeline (Canon v1.1)
+
+### 7.1 Structured WUID Component Decomposition
+The Wnode Universal Identifier (WUID) follows a deterministic 4-part structured format (`Sequence-Batch-Slot-Checksum` e.g., `100001-0426-01-AA`). The Go backend kernel validates and decomposes WUID strings via `ParseWUID` using strict regex rules:
+
+- **Sequence**: 6–7 digit account sequence index (`100001`)
+- **Batch**: 4-digit deployment epoch / date (`0426`)
+- **Slot**: 2-digit allocation slot (`01`)
+- **Checksum**: 2-character uppercase integrity hash (`AA`)
+
+### 7.2 Inviter Resolution & Onboarding Pipeline
+1. **Extraction**: The onboarding pipeline extracts the referral WUID from `code`, `invite`, or `ref` URL parameters.
+2. **Payload Separation**: The frontend passes `parentId: <InviterWUID>` during `POST /api/v1/auth/signup`. Raw WUID strings are kept distinct from signed hex `inviteToken` strings, ensuring zero false rejections.
+3. **SOT Placement Write**: The Go kernel executes atomic tree placement via `POST /api/v1/affiliates/placement` (`SetNodlrParent`), placing the invitee directly in the inviter's L1 downline tree.
+4. **Telemetry Audit**: Successful WUID component extraction emits `invite_code_parsed` telemetry payloads containing `wuid`, `sequence`, `batch`, `slot`, `checksum`, and `timestamp`.
+

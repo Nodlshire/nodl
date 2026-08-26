@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { 
-    LayoutDashboard, Activity, Shield, BarChart3, Sliders, Zap, LogOut, Users, Share2, DollarSign, Brain, History as HistoryIcon, ShieldAlert, Wallet, HelpCircle, Search as SearchIcon, Landmark, Coins, Lock, Award, Fingerprint, X, Radio
+    LayoutDashboard, Activity, Shield, BarChart3, Sliders, Zap, LogOut, Users, Share2, DollarSign, Brain, History as HistoryIcon, ShieldAlert, Wallet, HelpCircle, Search as SearchIcon, Landmark, Coins, Lock, Award, Fingerprint, X, Radio, KeyRound
 } from "lucide-react";
 
 interface SidebarProps {
@@ -68,6 +68,7 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }: Sideb
         { name: "User CRM", href: '/nodlrs', icon: Users, roles: ['owner', 'management', 'visitor'], iconColor: 'text-blue-400' },
         { name: 'Affiliates', href: '/affiliates', icon: Share2, roles: ['owner', 'management', 'visitor'], iconColor: 'text-fuchsia-400' },
         { name: 'Money', href: '/ledger', icon: DollarSign, roles: ['owner', 'management', 'customer_service', 'visitor'], iconColor: 'text-emerald-400' },
+        { name: 'Payment Platforms', href: '/operator/psp', icon: KeyRound, roles: ['owner', 'management'], iconColor: 'text-[#ffff00]' },
         { name: 'Governance', href: '/governance', icon: Shield, roles: ['owner', 'management', 'customer_service', 'visitor'], iconColor: 'text-[#22D3EE]' },
         { name: 'Integrations', href: '/integrations', icon: Sliders, roles: ['owner', 'management', 'customer_service', 'visitor'], iconColor: 'text-pink-400' },
         { name: 'Help', href: '/help', icon: HelpCircle, roles: ['owner', 'management', 'customer_service', 'visitor'], iconColor: 'text-yellow-400' },

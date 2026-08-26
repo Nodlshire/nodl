@@ -38,6 +38,7 @@ import (
 	"github.com/obregan/nodl/nodld/internal/stripe"
 	"github.com/obregan/nodl/nodld/internal/money"
 	"github.com/obregan/nodl/nodld/internal/acquisition"
+	"github.com/obregan/nodl/nodld/internal/vault"
 	"github.com/obregan/nodl/nodld/internal/institutional"
 	"github.com/obregan/nodl/nodld/internal/governance"
 )
@@ -58,6 +59,7 @@ type Server struct {
 	instHandler      *institutional.Handler
 	govHandler       *governance.API
 	distEngine       *compute.DistributedEngine
+	pspAdminHandler  *PSPAdminHandler
 	log              *zap.Logger
 	startTime        time.Time
 	heartbeatLimiter sync.Map // node_id → last heartbeat time.Time
@@ -184,10 +186,11 @@ func New(dispatcher *jobs.Dispatcher, store *jobs.Store, pricingStore *pricing.S
 		moneyHandler: moneyHandler,
 		acqHandler:   acqHandler,
 		instHandler:  instHandler,
-		govHandler:   governance.NewAPI(govStore),
-		distEngine:   distEngine,
-		host:         host,
-		hub:          newWSHub(),
+		govHandler:      governance.NewAPI(govStore),
+		distEngine:      distEngine,
+		pspAdminHandler: NewPSPAdminHandler(vault.NewService("mock", "token")),
+		host:            host,
+		hub:             newWSHub(),
 		log:          log,
 		startTime:    startTime,
 	}
@@ -423,6 +426,12 @@ func (s *Server) registerRoutes() {
 	apiV1.Get("/money/overview", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.moneyHandler.HandleMoneyOverview)
 	apiV1.Get("/money/integrity", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.moneyHandler.HandleMoneyIntegrity)
 	apiV1.Get("/money/acquisition", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.moneyHandler.HandleMoneyAcquisition)
+
+	// Multi-PSP Routing Layer & Admin Operations (Owner-Gated)
+	apiV1.Get("/admin/psp/status", s.requireAccess(account.RoleManagement, "command"), s.handlePSPAdminStatus)
+	apiV1.Post("/admin/psp/connect", s.requireAccess(account.RoleManagement, "command"), s.handlePSPAdminConnect)
+	apiV1.Post("/admin/psp/rotate", s.requireAccess(account.RoleManagement, "command"), s.handlePSPAdminRotate)
+	apiV1.Post("/admin/psp/jurisdiction", s.requireAccess(account.RoleManagement, "command"), s.handlePSPAdminJurisdiction)
 	apiV1.Get("/money/transactions", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.moneyHandler.HandleMoneyTransactions)
 	apiV1.Get("/money/balance", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.moneyHandler.HandleMoneyBalance)
 
@@ -3365,4 +3374,32 @@ func (s *Server) handleTelemetryExport(c *fiber.Ctx) error {
 		records = []json.RawMessage{}
 	}
 	return c.JSON(records)
+}
+
+func (s *Server) handlePSPAdminStatus(c *fiber.Ctx) error {
+	if s.pspAdminHandler == nil {
+		s.pspAdminHandler = NewPSPAdminHandler(vault.NewService("mock", "token"))
+	}
+	return s.pspAdminHandler.HandleGetPSPStatus(c)
+}
+
+func (s *Server) handlePSPAdminConnect(c *fiber.Ctx) error {
+	if s.pspAdminHandler == nil {
+		s.pspAdminHandler = NewPSPAdminHandler(vault.NewService("mock", "token"))
+	}
+	return s.pspAdminHandler.HandleConnectPSP(c)
+}
+
+func (s *Server) handlePSPAdminRotate(c *fiber.Ctx) error {
+	if s.pspAdminHandler == nil {
+		s.pspAdminHandler = NewPSPAdminHandler(vault.NewService("mock", "token"))
+	}
+	return s.pspAdminHandler.HandleRotateSecrets(c)
+}
+
+func (s *Server) handlePSPAdminJurisdiction(c *fiber.Ctx) error {
+	if s.pspAdminHandler == nil {
+		s.pspAdminHandler = NewPSPAdminHandler(vault.NewService("mock", "token"))
+	}
+	return s.pspAdminHandler.HandleSwitchJurisdiction(c)
 }

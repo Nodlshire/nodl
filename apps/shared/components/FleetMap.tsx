@@ -181,7 +181,7 @@ export default function FleetMap({
 		coordCounts.set(coordKey, count + 1);
 		if (count > 0) {
 			const angle = count * 137.5 * (Math.PI / 180);
-			const radius = 0.5 * Math.sqrt(count);
+			const radius = 0.03 * Math.sqrt(count);
 			lat = lat + Math.cos(angle) * radius;
 			lon = lon + Math.sin(angle) * radius;
 		}

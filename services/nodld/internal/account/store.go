@@ -316,10 +316,12 @@ func (s *Store) SeedFoundationIdentities() {
 			Verified:           true,
 			Status:             OpStatus{Active: true, Verification: "verified"},
 			Labels:             []string{"OWNER", "FOUNDER", "NODLR", "MESH"},
+			Country:            "HU",
 			CreatedAt:          time.Now(),
 		}
 	} else {
 		n.DisplayName = "Stephen Soos"
+		n.Country = "HU"
 		n.Role = RoleOwner
 		n.IsOwner = true
 		n.IsFounder = true
@@ -2485,9 +2487,9 @@ func (s *Store) SanitizeNodeInvariants(node *WnodeNode) {
 			}
 		}
 		if node.Latitude == 0 && node.Longitude == 0 {
-			// Regional US centroid fallback
-			node.Latitude = 37.0902
-			node.Longitude = -95.7129
+			// Authoritative Hungary centroid fallback
+			node.Latitude = 47.1625
+			node.Longitude = 19.5033
 		}
 	}
 }

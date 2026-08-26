@@ -123,6 +123,7 @@ export default function FleetMap({
     const activeNodes = mode === "provider" ? internalNodes : (propNodes || []);
     const loading = mode === "provider" ? internalLoading : propLoading;
 
+    const nodeList = Array.isArray(activeNodes) ? activeNodes : (activeNodes && typeof activeNodes === 'object' ? Object.values(activeNodes) : []);
     const coordCounts = new Map<string, number>();
 
     const mappedNodes = nodeList.map((n: any, index: number) => {

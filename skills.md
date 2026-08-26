@@ -146,6 +146,12 @@ graph TD
 - **Procedure**:
   - Maintain a thread-safe `processedIDs` map to verify that transaction/proof hashes are processed exactly once.
 
+### SKILL-404: Country Centroid Geolocation Fallback Pipeline
+- **Objective**: Prevent unmapped or local IP node registrations from defaulting to an arbitrary map location (e.g. Budapest golden spiral).
+- **Procedure**:
+  - When GeoIP returns `(0, 0)` for local or unindexed node IP addresses, query `ResolveCountryCentroid(operator.Country)` against the operator's account/CRM country setting.
+  - In frontend map renderers (`FleetMap.tsx`), resolve country centroid coordinates before resorting to default coordinates.
+
 ---
 
 ## 6. Category 500 — Governance & Jurisdictional Failover
@@ -161,6 +167,12 @@ graph TD
   1. Next.js Middleware Guard (client route check).
   2. React Component Guard (`<OwnerGuard>`).
   3. Go Server API Guard (`s.requireAccess(account.RoleManagement, "command")`).
+
+### SKILL-503: Canonical Owner Role & Identity Propagation
+- **Objective**: Ensure platform owners receive full Owner privileges and badge visibility across backend stores, CRM indexes, and client RBAC layouts.
+- **Procedure**:
+  - Seed anchor owner accounts with `Role: RoleOwner`, `IsOwner: true`, `IsFounder: true`, and `Labels: []string{"OWNER", "FOUNDER", ...}`.
+  - Expose boolean flags `isOwner` and `isFounder` in public/admin API JSON payloads to guarantee CRM UI rendering and Sidebar navigation visibility.
 
 ---
 

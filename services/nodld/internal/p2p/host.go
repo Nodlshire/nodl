@@ -123,7 +123,7 @@ func New(ctx context.Context, p2pPort int, priv crypto.PrivKey, bootstrapPeers [
 	// --- mDNS (LAN discovery) ---
 	mdnsService := mdns.NewMdnsService(h, mdnsServiceTag, &mdnsNotifee{h: h, log: log})
 	if err := mdnsService.Start(); err != nil {
-		return nil, fmt.Errorf("failed to start mDNS: %w", err)
+		log.Warn("mDNS discovery start warning (LAN discovery disabled in container/cloud network)", zap.Error(err))
 	}
 
 	// --- Kademlia DHT (WAN discovery) ---

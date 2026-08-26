@@ -56,7 +56,7 @@ func (s *Server) handleGoogleAuth(c *fiber.Ctx) error {
 		// Mock a fast creation
 		s.log.Info("[AUTH] Auto-creating account for Google Sign-In", zap.String("email", email))
 		
-		newAcc, err := s.accountStore.CreateNodlr(email, "", "", email, "", "")
+		newAcc, err := s.accountStore.CreateNodlr(email, "", "", email, "", "", "", "", "", "", "")
 		if err != nil {
 			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "failed to create account"})
 		}

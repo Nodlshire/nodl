@@ -81,6 +81,12 @@ const (
 
 // Nodlr represents a participant in the Nodl network.
 type Nodlr struct {
+	Phone                 string          `json:"phone,omitempty"`
+	AddressLine1          string          `json:"addressLine1,omitempty"`
+	AddressLine2          string          `json:"addressLine2,omitempty"`
+	PostalCode            string          `json:"postalCode,omitempty"`
+	Country               string          `json:"country,omitempty"`
+	EmailVerificationToken string         `json:"emailVerificationToken,omitempty"`
 	ID                    string          `json:"id"`
 	Email                 string          `json:"email"`
 	Password              string          `json:"password,omitempty"`
@@ -105,6 +111,7 @@ type Nodlr struct {
 	PendingBalanceCents   int64           `json:"pendingBalanceCents"` // Ready for payout
 	EscrowBalanceCents    int64           `json:"escrowBalanceCents"`  // Held until Stripe active
 	IsFounder             bool            `json:"isFounder"`
+	IsOwner               bool            `json:"isOwner"`
 	FounderIndex          int             `json:"founderIndex,omitempty"`
 	PayoutFrequency       PayoutFrequency `json:"payoutFrequency"`
 	ParentID              string          `json:"parentId,omitempty"`
@@ -382,6 +389,10 @@ type CRMRecord struct {
 	NodlrID      string    `json:"nodlrId"`
 	BusinessName string    `json:"businessName"`
 	Phone        string    `json:"phone"`
+	AddressLine1 string    `json:"addressLine1,omitempty"`
+	AddressLine2 string    `json:"addressLine2,omitempty"`
+	PostalCode   string    `json:"postalCode,omitempty"`
+	Country      string    `json:"country,omitempty"`
 	Avatar       string    `json:"avatar"`
 	Labels       []string  `json:"labels"`
 	CreatedAt    time.Time `json:"createdAt"`
@@ -391,6 +402,10 @@ type CRMRecord struct {
 type CRMUpdate struct {
 	BusinessName string `json:"businessName"`
 	Phone        string `json:"phone"`
+	AddressLine1 string `json:"addressLine1,omitempty"`
+	AddressLine2 string `json:"addressLine2,omitempty"`
+	PostalCode   string `json:"postalCode,omitempty"`
+	Country      string `json:"country,omitempty"`
 }
 
 // AffiliateInvite represents a generated, single-use invite link payload and record.

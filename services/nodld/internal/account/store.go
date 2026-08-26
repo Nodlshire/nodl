@@ -305,22 +305,26 @@ func (s *Store) SeedFoundationIdentities() {
 			Email:              "stephen@wnode.one",
 			DisplayName:        "Stephen Soos",
 			Role:               RoleOwner,
+			IsOwner:             true,
+			IsFounder:           true,
 			IsSuperAdmin:       true,
 			IsProtected:        true,
 			Password:           "$2a$10$Vb9cM3C/BfLg4Wz2k9WXO.j81o9GZJ2W.xY2QhF5M7c8Ff.j3hP9y",
 			OnboardingComplete: true,
 			Verified:           true,
 			Status:             OpStatus{Active: true, Verification: "verified"},
-			Labels:             []string{"FOUNDER", "NODLR", "MESH"},
+			Labels:             []string{"OWNER", "FOUNDER", "NODLR", "MESH"},
 			CreatedAt:          time.Now(),
 		}
 	} else {
 		n.DisplayName = "Stephen Soos"
+		n.IsOwner = true
+		n.IsFounder = true
 		n.IsSuperAdmin = true
 		n.IsProtected = true
 		n.OnboardingComplete = true
 		n.Verified = true
-		n.Labels = []string{"FOUNDER", "NODLR", "MESH"}
+		n.Labels = []string{"OWNER", "FOUNDER", "NODLR", "MESH"}
 		if n.Password == "" || strings.HasPrefix(n.Password, "$2a$10$Vb9c") {
 			n.Password = "command"
 		}
@@ -331,7 +335,7 @@ func (s *Store) SeedFoundationIdentities() {
 		NodlrID:      ownerID,
 		BusinessName: "Wnode Sovereign Foundation",
 		Phone:        "+1-555-0199",
-		Labels:       []string{"FOUNDER", "NODLR", "MESH"},
+		Labels:       []string{"OWNER", "FOUNDER", "NODLR", "MESH"},
 		CreatedAt:    time.Now(),
 	}
 
@@ -1479,6 +1483,15 @@ func (s *Store) UpdateNodeHeartbeat(nodeID string, metrics NodeHealthMetrics, ha
 		lat, lon, _ := GetGeoIPLookup().ResolveIP(ipAddress)
 		if ipAddress != "" {
 			node.IPAddress = ipAddress
+		}
+		if lat == 0 && lon == 0 {
+			// Fallback to Nodlr / Operator account Country centroid if IP lookup yields 0,0
+			if operator, ok := s.nodlrs[node.UserID]; ok && operator.Country != "" {
+				cLat, cLon, ok := ResolveCountryCentroid(operator.Country)
+				if ok {
+					lat, lon = cLat, cLon
+				}
+			}
 		}
 		if lat != 0 || lon != 0 {
 			node.Latitude = lat

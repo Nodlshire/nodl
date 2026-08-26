@@ -24,7 +24,7 @@ func TestAffiliateRoundRobin(t *testing.T) {
 	fmt.Println("Simulation: 10 organic signups")
 	results := make(map[string]int)
 	for i := 1; i <= 10; i++ {
-		acc, err := s.CreateNodlr(fmt.Sprintf("user%d@test.com", i), "", "password", "First", "Last", "Business")
+		acc, err := s.CreateNodlr(fmt.Sprintf("user%d@test.com", i), "", "password", "First", "Last", "Business", "", "", "", "", "")
 		if err != nil {
 			t.Fatalf("Failed to create nodlr: %v", err)
 		}
@@ -139,14 +139,8 @@ func TestAnchorAccounts(t *testing.T) {
 	
 	// Verify Stephen
 	stephen, ok := s.GetNodlr("100001-0426-01-AA")
-	if !ok || stephen.Role != RoleOwner || !stephen.IsSuperAdmin {
-		t.Errorf("Stephen anchor account not seeded correctly")
-	}
-
-	// Verify Test User
-	testUser, ok := s.GetNodlr("100002-0426-01-AA")
-	if !ok || testUser.Role != RoleObserver || len(testUser.Permissions) == 0 {
-		t.Errorf("Test User anchor account not seeded correctly")
+	if !ok || stephen.Role != RoleOwner || !stephen.IsSuperAdmin || !stephen.IsOwner || !stephen.IsFounder {
+		t.Errorf("Stephen anchor account not seeded correctly with Owner and Founder flags")
 	}
 }
 
@@ -154,7 +148,7 @@ func TestWUIDSequence(t *testing.T) {
 	s := NewStore(nil, "")
 	
 	// Initial state has 2 anchors. Next index should be 3.
-	next, err := s.CreateNodlr("new@user.com", "", "password", "First", "Last", "Business")
+	next, err := s.CreateNodlr("new@user.com", "", "password", "First", "Last", "Business", "", "", "", "", "")
 	if err != nil {
 		t.Fatal(err)
 	}

@@ -132,11 +132,45 @@ export default function FleetMap({
 		if (!isFinite(lon)) lon = 0;
 		
 		if (lat === 0 && lon === 0) {
-			// Staggered golden spiral around Budapest, Hungary (47.4979, 19.0402)
-			const angle = index * 137.5 * (Math.PI / 180);
-			const radius = 0.2 * Math.sqrt(index + 1);
-			lat = 47.4979 + Math.cos(angle) * radius;
-			lon = 19.0402 + Math.sin(angle) * radius;
+			const countryKey = (n.country || n.location || n.countryName || '').toLowerCase().trim();
+			const COUNTRY_CENTROIDS: Record<string, [number, number]> = {
+				"united states": [37.0902, -95.7129],
+				"us": [37.0902, -95.7129],
+				"usa": [37.0902, -95.7129],
+				"united kingdom": [55.3781, -3.4360],
+				"uk": [55.3781, -3.4360],
+				"gb": [55.3781, -3.4360],
+				"germany": [51.1657, 10.4515],
+				"de": [51.1657, 10.4515],
+				"france": [46.2276, 2.2137],
+				"fr": [46.2276, 2.2137],
+				"japan": [36.2048, 138.2529],
+				"jp": [36.2048, 138.2529],
+				"australia": [-25.2744, 133.7751],
+				"au": [-25.2744, 133.7751],
+				"canada": [56.1304, -106.3468],
+				"ca": [56.1304, -106.3468],
+				"brazil": [-14.2350, -51.9253],
+				"br": [-14.2350, -51.9253],
+				"united arab emirates": [23.4241, 53.8478],
+				"uae": [23.4241, 53.8478],
+				"hungary": [47.1625, 19.5033],
+				"hu": [47.1625, 19.5033],
+			};
+
+			if (countryKey && COUNTRY_CENTROIDS[countryKey]) {
+				const [cLat, cLon] = COUNTRY_CENTROIDS[countryKey];
+				const angle = index * 137.5 * (Math.PI / 180);
+				const radius = 0.1 * Math.sqrt(index + 1);
+				lat = cLat + Math.cos(angle) * radius;
+				lon = cLon + Math.sin(angle) * radius;
+			} else {
+				// Staggered golden spiral around Budapest, Hungary (47.4979, 19.0402)
+				const angle = index * 137.5 * (Math.PI / 180);
+				const radius = 0.2 * Math.sqrt(index + 1);
+				lat = 47.4979 + Math.cos(angle) * radius;
+				lon = 19.0402 + Math.sin(angle) * radius;
+			}
 		}
 		
 		return {
@@ -212,10 +246,23 @@ export default function FleetMap({
                 fillOpacity: 0.8,
             }).addTo(markersRef.current);
 
+            const rawType = node.node_type || node.type || node.operator_type || 'native';
+            const operatorLabel = rawType.includes('headless') ? 'Headless Node Operator' : rawType.includes('space') ? 'Space Node Operator' : 'Native Node Operator';
+
+            const currentUserId = typeof window !== 'undefined'
+                ? (localStorage.getItem('nodl_user_id') || localStorage.getItem('nodlr_user_id') || '100001-0426-01-AA')
+                : '100001-0426-01-AA';
+            const nodeOwner = node.ownerId || node.owner_id;
+            const isOwnedByUser = nodeOwner === currentUserId;
+
             const tooltipContent = `
                 <div style="font-family: ui-monospace, monospace; padding: 6px 10px; border-radius: 4px; font-size: 11px; background: #000; border: 1px solid rgba(255,255,255,0.1); color: #fff;">
                     <div style="color: #64748b; margin-bottom: 2px;">NODE_ID: <span style="color: #fff; font-weight: bold;">${node.id || 'Unknown'}</span></div>
-                    <div style="color: #64748b;">STATUS: <span style="color: ${color}; font-weight: bold; text-transform: uppercase;">${status}</span></div>
+                    <div style="color: #22D3EE; margin-bottom: 2px;">TYPE: <span style="color: #fff; font-weight: bold;">${operatorLabel}</span></div>
+                    <div style="color: #64748b; margin-bottom: 2px;">STATUS: <span style="color: ${color}; font-weight: bold; text-transform: uppercase;">${status}</span></div>
+                    <div style="color: ${isOwnedByUser ? '#10B981' : '#94A3B8'}; font-size: 10px; margin-top: 4px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 4px;">
+                        ${isOwnedByUser ? '● OWNER FLEET (Manageable)' : '● GLOBAL MESH (Read-Only)'}
+                    </div>
                 </div>
             `;
 

@@ -230,6 +230,9 @@ func (s *Server) registerRoutes() {
 
 	// Phase 12: Billing API
 	apiV1 := s.app.Group("/api/v1")
+	apiV1.Get("/tiles/:z/:x/:y.png", s.handleGetTile)
+	s.app.Get("/api/tiles/:z/:x/:y.png", s.handleGetTile)
+	s.app.Get("/tiles/:z/:x/:y.png", s.handleGetTile)
 	apiV1.Post("/billing/customer", s.requireAccess(account.RoleManagement, "command"), s.handleBillingCreateCustomer)
 	apiV1.Get("/billing/history", s.requireAccess(account.RoleManagement, "command"), s.handleBillingHistory)
 	apiV1.Get("/billing/job/:id", s.requireAccess(account.RoleManagement, "command"), s.handleBillingJob)

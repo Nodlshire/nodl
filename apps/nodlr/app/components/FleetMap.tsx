@@ -31,47 +31,8 @@ export default function FleetMap({
     const [internalNodes, setInternalNodes] = useState<any[]>([]);
     const [internalLoading, setInternalLoading] = useState(false);
 
-    // Data handling logic
-    const fetchProviderNodes = async () => {
-        if (mode !== "provider" || !accountContext?.id) return;
-        
-        try {
-            setInternalLoading(true);
-            const res = await fetch('/api/v1/nodes', {
-                headers: { 
-                    'Authorization': `Bearer ${accountContext.jwt}`,
-                    'x-user-id': accountContext.id 
-                }
-            });
-            
-            if (res.ok) {
-                const data = await res.json();
-                const normalized = data.map((n: any) => ({
-                    ...n,
-                    lat: (n.lat ?? n.latitude ?? n.location?.lat),
-                    lon: (n.lon ?? n.longitude ?? n.location?.lon),
-                    displayName: (n.name ?? n.displayName ?? n.id)
-                }));
-
-                setInternalNodes(normalized);
-            }
-        } catch (err) {
-            console.error("FleetMap sync error:", err);
-        } finally {
-            setInternalLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        if (mode === "provider") {
-            fetchProviderNodes();
-            const interval = setInterval(fetchProviderNodes, 15000);
-            return () => clearInterval(interval);
-        }
-    }, [mode, accountContext?.id]);
-
-    const activeNodes = mode === "provider" ? internalNodes : (propNodes || []);
-    const loading = mode === "provider" ? internalLoading : propLoading;
+    const activeNodes = propNodes || [];
+    const loading = propLoading;
 
     const nodeList = Array.isArray(activeNodes) ? activeNodes : (activeNodes && typeof activeNodes === 'object' ? Object.values(activeNodes) : []);
     const mappedNodes = nodeList.map((n: any, idx: number) => {
@@ -110,11 +71,12 @@ export default function FleetMap({
                 attributionControl: false,
             });
 
+            const sovereignTileUrl = process.env.NEXT_PUBLIC_TILE_URL || "/api/tiles/{z}/{x}/{y}.png";
             leaflet.tileLayer(
-                "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+                sovereignTileUrl,
                 {
                     maxZoom: 20,
-                    attribution: '&copy; CARTO',
+                    attribution: '&copy; Sovereign Wnode Tile Engine',
                 }
             ).addTo(mapRef.current);
 

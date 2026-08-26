@@ -210,11 +210,12 @@ export default function FleetMap({
                 attributionControl: false,
             });
 
+            const sovereignTileUrl = process.env.NEXT_PUBLIC_TILE_URL || "/api/tiles/{z}/{x}/{y}.png";
             leaflet.tileLayer(
-                "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+                sovereignTileUrl,
                 {
                     maxZoom: 20,
-                    attribution: '&copy; CARTO',
+                    attribution: '&copy; Sovereign Wnode Tile Engine',
                 }
             ).addTo(mapRef.current);
 

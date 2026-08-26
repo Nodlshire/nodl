@@ -6,7 +6,7 @@ export async function GET(req: NextRequest) {
     const headers = resolveIdentityHeaders(req);
     
     try {
-        const res = await fetch(`${BACKEND_URL}/api/v1/nodes`, { 
+        const res = await fetch(`${BACKEND_URL}/api/v1/nodes?scope=all`, { 
             headers,
             cache: 'no-store' 
         });

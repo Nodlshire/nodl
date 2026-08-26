@@ -123,7 +123,8 @@ export default function FleetMap({
     const activeNodes = mode === "provider" ? internalNodes : (propNodes || []);
     const loading = mode === "provider" ? internalLoading : propLoading;
 
-    const nodeList = Array.isArray(activeNodes) ? activeNodes : (activeNodes && typeof activeNodes === 'object' ? Object.values(activeNodes) : []);
+    const coordCounts = new Map<string, number>();
+
     const mappedNodes = nodeList.map((n: any, index: number) => {
 		let lat = Number(n.lat !== undefined ? n.lat : (n.latitude !== undefined ? n.latitude : 0));
 		let lon = Number(n.lon !== undefined ? n.lon : (n.lng !== undefined ? n.lng : (n.longitude !== undefined ? n.longitude : 0)));
@@ -171,6 +172,17 @@ export default function FleetMap({
 				lat = 47.4979 + Math.cos(angle) * radius;
 				lon = 19.0402 + Math.sin(angle) * radius;
 			}
+		}
+
+		// Offset overlapping node markers so every node renders distinctly on the map
+		const coordKey = `${lat.toFixed(3)},${lon.toFixed(3)}`;
+		const count = coordCounts.get(coordKey) || 0;
+		coordCounts.set(coordKey, count + 1);
+		if (count > 0) {
+			const angle = count * 137.5 * (Math.PI / 180);
+			const radius = 0.5 * Math.sqrt(count);
+			lat = lat + Math.cos(angle) * radius;
+			lon = lon + Math.sin(angle) * radius;
 		}
 		
 		return {

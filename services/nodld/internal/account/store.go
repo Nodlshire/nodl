@@ -2459,8 +2459,8 @@ func (s *Store) SanitizeNodeInvariants(node *WnodeNode) {
 	if node == nil {
 		return
 	}
-	// Invariant A: No UNASSIGNED or empty userId allowed
-	if node.UserID == "" || node.UserID == "UNASSIGNED" {
+	// Invariant A: No UNASSIGNED, empty, or GLOBAL_MESH userId allowed
+	if node.UserID == "" || node.UserID == "UNASSIGNED" || node.UserID == "GLOBAL_MESH" {
 		node.UserID = "100001-0426-01-AA"
 		node.OperatorWUID = "100001-0426-01-AA"
 	}

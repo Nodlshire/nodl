@@ -31,3 +31,19 @@ func TestCountryCentroidResolution(t *testing.T) {
 		t.Errorf("Expected ok=false for unknown country, got ok=true")
 	}
 }
+
+func TestGlobalMeshNodeGeolocationSeeding(t *testing.T) {
+	s := account.NewStore(nil, "")
+	s.SeedGlobalMeshNodes()
+
+	nodes := s.ListAllNodes()
+	if len(nodes) == 0 {
+		t.Fatalf("Expected seeded global mesh nodes, got 0")
+	}
+
+	for _, n := range nodes {
+		if n.Latitude == 0 && n.Longitude == 0 {
+			t.Errorf("Node %s has unmapped 0,0 coordinates after seeding migration", n.ID)
+		}
+	}
+}

@@ -375,6 +375,8 @@ func (s *Store) SeedGlobalMeshNodes() {
 			Status:        "active",
 			CPUCores:      4,
 			MemoryGB:      16,
+			Latitude:      38.9072,
+			Longitude:     -77.0369,
 			Metadata:      NodeMetadata{GPU: "Intel Corporation TigerLake-LP GT2 [Iris Xe Graphics] (rev 01)"},
 			DeviceClass:   "headless",
 			CreatedAt:     time.Now().Add(-48 * time.Hour),
@@ -391,6 +393,8 @@ func (s *Store) SeedGlobalMeshNodes() {
 			Status:        "active",
 			CPUCores:      4,
 			MemoryGB:      16,
+			Latitude:      51.5074,
+			Longitude:     -0.1278,
 			Metadata:      NodeMetadata{GPU: "Intel Corporation Skylake-S GT2 [HD Graphics 530] (rev 06)"},
 			DeviceClass:   "headless",
 			CreatedAt:     time.Now().Add(-24 * time.Hour),
@@ -407,6 +411,8 @@ func (s *Store) SeedGlobalMeshNodes() {
 			Status:        "offline",
 			CPUCores:      4,
 			MemoryGB:      8,
+			Latitude:      50.1109,
+			Longitude:     8.6821,
 			DeviceClass:   "native",
 			CreatedAt:     time.Now().Add(-72 * time.Hour),
 			LastSeen:      time.Now().Add(-2 * time.Hour),
@@ -422,6 +428,8 @@ func (s *Store) SeedGlobalMeshNodes() {
 			Status:        "offline",
 			CPUCores:      8,
 			MemoryGB:      32,
+			Latitude:      35.6762,
+			Longitude:     139.6503,
 			Metadata:      NodeMetadata{GPU: "Microsoft Corporation Basic Render Driver"},
 			DeviceClass:   "native",
 			CreatedAt:     time.Now().Add(-96 * time.Hour),
@@ -435,6 +443,21 @@ func (s *Store) SeedGlobalMeshNodes() {
 
 	for _, n := range globalNodes {
 		s.nodes[n.ID] = n
+	}
+
+	// Backfill any remaining unmapped nodes
+	for _, n := range s.nodes {
+		if n.Latitude == 0 && n.Longitude == 0 {
+			if operator, ok := s.nodlrs[n.UserID]; ok && operator.Country != "" {
+				lat, lon, ok := ResolveCountryCentroid(operator.Country)
+				if ok {
+					n.Latitude, n.Longitude = lat, lon
+				}
+			}
+			if n.Latitude == 0 && n.Longitude == 0 {
+				n.Latitude, n.Longitude = 37.0902, -95.7129
+			}
+		}
 	}
 }
 

@@ -13,6 +13,15 @@ const DEV_FALLBACK_NODES = [
   { id: "node-sao-07", name: "São Paulo Ingress #7", lat: -23.5505, lon: -46.6333, status: "active", tier: "Tier-2" }
 ];
 
+function getHashSeed(str: string): number {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = (hash << 5) - hash + str.charCodeAt(i);
+    hash |= 0;
+  }
+  return Math.abs(hash) / 2147483647;
+}
+
 interface MapProps {
   id?: string;
   mode?: "command" | "provider" | "mesh";
@@ -94,17 +103,34 @@ export default function FleetMap({
           (n.lon !== undefined || n.longitude !== undefined)
       );
 
+      const coordBuckets: Record<string, number> = {};
+
       validNodes.forEach((node: any) => {
-        const lat = Number(node.lat ?? node.latitude);
-        const lon = Number(node.lon ?? node.longitude);
-        if (!isFinite(lat) || !isFinite(lon)) return;
+        const baseLat = Number(node.lat ?? node.latitude);
+        const baseLon = Number(node.lon ?? node.longitude);
+        if (!isFinite(baseLat) || !isFinite(baseLon)) return;
+
+        const coordKey = `${baseLat.toFixed(3)},${baseLon.toFixed(3)}`;
+
+        const index = coordBuckets[coordKey] || 0;
+        coordBuckets[coordKey] = index + 1;
+
+        let finalLat = baseLat;
+        let finalLon = baseLon;
+
+        if (index > 0) {
+          const angle = (index * (2 * Math.PI)) / 6 + getHashSeed(node.id || node.name || "") * 0.5;
+          const radius = 0.08 + (index * 0.03);
+          finalLat = baseLat + radius * Math.cos(angle);
+          finalLon = baseLon + radius * Math.sin(angle) * 1.4;
+        }
 
         const isOnline =
           node.status?.toLowerCase() === "active" ||
           node.status?.toLowerCase() === "online";
         const markerColor = isOnline ? "#22D3EE" : "#EF4444";
 
-        const marker = L.circleMarker([lat, lon], {
+        const marker = L.circleMarker([finalLat, finalLon], {
           radius: 6,
           fillColor: markerColor,
           color: "#FFFFFF",

@@ -8,13 +8,12 @@ import {
     Cpu as CpuIcon, ShieldCheck, DollarSign, Wifi, WifiOff, Database,
     BarChart3, AlertTriangle, CheckCircle2
 } from "lucide-react";
-import "leaflet/dist/leaflet.css";
 
 import NodlInspector from "./components/NodlInspector";
 import dynamic from 'next/dynamic';
 import AiIntelligencePanel from "./components/AiIntelligencePanel";
 
-const FleetMap = dynamic(() => import("@shared/components/FleetMap"), {
+const OpenMap = dynamic(() => import("./components/OpenMap"), {
     ssr: false,
 });
 import MetricCard from "@shared/components/MetricCard";
@@ -169,7 +168,7 @@ export default function CommandCentrePage() {
                     {error && <span className="text-[10px] text-red-500 uppercase font-bold tracking-widest">{error}</span>}
                 </div>
 
-                {/* Row 1: Vitals + AI (5 columns side-to-side) */}
+                {/* Row 1: Vitals + AI */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4 lg:gap-6 w-full -mt-1.5 [&>div]:!py-3.5">
                     {metrics.map((m) => (
                         <MetricCard
@@ -185,7 +184,7 @@ export default function CommandCentrePage() {
                     <AiIntelligencePanel />
                 </div>
 
-                {/* Row 2: Operational Metrics (5 columns side-to-side) */}
+                {/* Row 2: Operational Metrics */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4 lg:gap-6 w-full">
                     {operational.map((op) => (
                         <MetricCard
@@ -200,8 +199,8 @@ export default function CommandCentrePage() {
                 </div>
 
                 {/* Full-Width Map Panel */}
-                <div className="w-full rounded-xl overflow-hidden border border-neutral-800 shadow-2xl">
-                    <FleetMap
+                <div className="w-full my-6">
+                    <OpenMap
                         nodes={nodes}
                         nodlrs={nodlrs}
                         loading={loading}
@@ -219,7 +218,7 @@ export default function CommandCentrePage() {
                     <div className="flex items-end justify-between">
                         <div>
                             <h2 className="text-[20px] font-bold text-white uppercase tracking-wider font-sans">System Overview</h2>
-                            <p className="text-[12px] text-white/40 mt-1 font-mono uppercase tracking-widest">Global Network Telemetry - CANARY_937_TEST_DO_NOT_IGNORE</p>
+                            <p className="text-[12px] text-white/40 mt-1 font-mono uppercase tracking-widest">Global Network Telemetry</p>
                         </div>
                     </div>
                     {isTelemetryOpen ? <ChevronDown className="w-4 h-4 text-neutral-500" /> : <ChevronUp className="w-4 h-4 text-neutral-500" />}

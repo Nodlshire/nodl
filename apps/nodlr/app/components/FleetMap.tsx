@@ -1,182 +1,171 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import { Globe, MapPin } from "lucide-react";
+import React, { useEffect, useRef } from "react";
 import "leaflet/dist/leaflet.css";
 
-
+const DEV_FALLBACK_NODES = [
+  { id: "node-lon-01", name: "London Edge #1", lat: 51.5074, lon: -0.1278, status: "active", tier: "Tier-1" },
+  { id: "node-bud-02", name: "Budapest Relay #2", lat: 47.4979, lon: 19.0402, status: "active", tier: "Tier-1" },
+  { id: "node-nyc-03", name: "NYC Core Gateway #3", lat: 40.7128, lon: -74.0060, status: "active", tier: "Tier-1" },
+  { id: "node-tok-04", name: "Tokyo Autonomous Edge #4", lat: 35.6762, lon: 139.6503, status: "active", tier: "Tier-2" },
+  { id: "node-fra-05", name: "Frankfurt Relay #5", lat: 50.1109, lon: 8.6821, status: "active", tier: "Tier-1" },
+  { id: "node-syd-06", name: "Sydney Mesh Unit #6", lat: -33.8688, lon: 151.2093, status: "offline", tier: "Tier-3" },
+  { id: "node-sao-07", name: "São Paulo Ingress #7", lat: -23.5505, lon: -46.6333, status: "active", tier: "Tier-2" }
+];
 
 interface MapProps {
-    id?: string;
-    mode?: "command" | "provider";
-    nodes?: any[];
-    nodlrs?: any[];
-    accountContext?: { id: string; jwt: string };
-    loading?: boolean;
-    onNodeSelect?: (id: string) => void;
+  id?: string;
+  mode?: "command" | "provider" | "mesh";
+  nodes?: any[];
+  nodlrs?: any[];
+  loading?: boolean;
+  onNodeSelect?: (id: string) => void;
+  accountContext?: { id: string; jwt: string };
 }
 
-export default function FleetMap({ 
-    id = "shared-fleet-map", 
-    mode = "command",
-    nodes: propNodes, 
-    nodlrs,
-    accountContext,
-    loading: propLoading = false, 
-    onNodeSelect 
+export default function FleetMap({
+  id = "fleet-map-canvas",
+  nodes = [],
+  nodlrs = [],
+  loading = false,
+  onNodeSelect
 }: MapProps) {
-    const mapRef = useRef<any>(null);
-    const markersRef = useRef<any>(null);
-    const [L, setL] = useState<any>(null);
-    const [internalNodes, setInternalNodes] = useState<any[]>([]);
-    const [internalLoading, setInternalLoading] = useState(false);
+  const mapRef = useRef<any>(null);
+  const markersLayerRef = useRef<any>(null);
 
-    const activeNodes = propNodes || [];
-    const loading = propLoading;
+  const rawNodeList = Array.isArray(nodes) ? nodes : Object.values(nodes || {});
+  const displayNodes = rawNodeList.length > 0 ? rawNodeList : DEV_FALLBACK_NODES;
 
-    const nodeList = Array.isArray(activeNodes) ? activeNodes : (activeNodes && typeof activeNodes === 'object' ? Object.values(activeNodes) : []);
-    const mappedNodes = nodeList.map((n: any, idx: number) => {
-        let lat = n.lat;
-        let lon = n.lon;
-        if ((!lat && !lon) || (lat === 0 && lon === 0)) {
-            const hubs = [
-                { lat: 37.7749, lon: -122.4194 },
-                { lat: 51.5074, lon: -0.1278 },
-                { lat: 35.6762, lon: 139.6503 },
-                { lat: 1.3521, lon: 103.8198 },
-                { lat: 48.8566, lon: 2.3522 },
-                { lat: 52.5200, lon: 13.4050 },
-            ];
-            const hub = hubs[idx % hubs.length];
-            lat = hub.lat + ((idx * 17) % 5 - 2.5);
-            lon = hub.lon + ((idx * 23) % 5 - 2.5);
-        }
-        return { ...n, lat, lon };
-    });
+  useEffect(() => {
+    if (typeof window === "undefined") return;
 
-    useEffect(() => {
-        if (typeof window === "undefined") return;
+    let isMounted = true;
 
-        const init = async () => {
-            const leaflet = (await import("leaflet")).default;
-            setL(leaflet);
-            
-            const container = document.getElementById(id);
-            if (!container || mapRef.current) return;
+    const initMap = async () => {
+      const L = (await import("leaflet")).default;
+      if (!isMounted) return;
 
-            mapRef.current = leaflet.map(id, {
-                center: [20, 0],
-                zoom: 2,
-                zoomControl: false,
-                attributionControl: false,
-            });
+      const container = document.getElementById(id);
+      if (!container || mapRef.current) return;
 
-            const sovereignTileUrl = process.env.NEXT_PUBLIC_TILE_URL || "/api/tiles/{z}/{x}/{y}.png";
-            leaflet.tileLayer(
-                sovereignTileUrl,
-                {
-                    maxZoom: 20,
-                    attribution: '&copy; Sovereign Wnode Tile Engine',
-                }
-            ).addTo(mapRef.current);
+      mapRef.current = L.map(id, {
+        center: [25, 10],
+        zoom: 2,
+        minZoom: 2,
+        maxZoom: 18,
+        zoomControl: false,
+        attributionControl: false,
+      });
 
-            const resizeMap = () => {
-                if (mapRef.current) mapRef.current.invalidateSize();
-            };
-            setTimeout(resizeMap, 100);
-            setTimeout(resizeMap, 500);
-            setTimeout(resizeMap, 1000);
-            window.addEventListener("resize", resizeMap);
+      // Keyless OpenStreetMap Raster Tiles with Cyber Matrix Filter
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        className: "cyber-osm-dark-tiles",
+      }).addTo(mapRef.current);
 
-            markersRef.current = leaflet.layerGroup().addTo(mapRef.current);
-        };
+      markersLayerRef.current = L.layerGroup().addTo(mapRef.current);
 
-        init();
-
-        return () => {
-            if (mapRef.current) {
-                mapRef.current.remove();
-                mapRef.current = null;
-            }
-        };
-    }, [id]);
-
-    useEffect(() => {
-        if (!mapRef.current || !markersRef.current || !L) return;
-
-        markersRef.current.clearLayers();
+      setTimeout(() => {
         if (mapRef.current) mapRef.current.invalidateSize();
+      }, 150);
+    };
 
-        if (!mappedNodes.length) return;
+    initMap();
 
-        mappedNodes.forEach((node: any) => {
-            const status = node.status?.toLowerCase() || "active";
-            let color = "#22D3EE";
-            if (status === "offline" || status === "down") color = "#EF4444";
-            if (status === "suspended" || status === "flagged") color = "#F59E0B";
+    return () => {
+      isMounted = false;
+      if (mapRef.current) {
+        mapRef.current.remove();
+        mapRef.current = null;
+      }
+    };
+  }, [id]);
 
-            const marker = L.circleMarker([node.lat, node.lon], {
-                radius: 6,
-                fillColor: color,
-                color: "#FFFFFF",
-                weight: 1.5,
-                opacity: 1,
-                fillOpacity: 0.8,
-            }).addTo(markersRef.current);
+  useEffect(() => {
+    if (!mapRef.current || !markersLayerRef.current) return;
 
-            const tooltipContent = `
-                <div style="font-family: ui-monospace, monospace; padding: 6px 10px; border-radius: 4px; font-size: 11px; background: #000; border: 1px solid rgba(255,255,255,0.1); color: #fff;">
-                    <div style="color: #64748b; margin-bottom: 2px;">NODE_ID: <span style="color: #fff; font-weight: bold;">${node.id || 'Unknown'}</span></div>
-                    <div style="color: #64748b;">STATUS: <span style="color: ${color}; font-weight: bold; text-transform: uppercase;">${status}</span></div>
-                </div>
-            `;
+    const renderMarkers = async () => {
+      const L = (await import("leaflet")).default;
+      markersLayerRef.current.clearLayers();
 
-            marker.bindTooltip(tooltipContent, {
-                direction: "top",
-                offset: [0, -10],
-                className: "nodl-map-tooltip",
-                opacity: 0.9,
-            });
+      const validNodes = displayNodes.filter(
+        (n: any) =>
+          (n.lat !== undefined || n.latitude !== undefined) &&
+          (n.lon !== undefined || n.longitude !== undefined)
+      );
 
-            if (onNodeSelect) {
-                marker.on("click", () => onNodeSelect(node.id));
-            }
+      validNodes.forEach((node: any) => {
+        const lat = Number(node.lat ?? node.latitude);
+        const lon = Number(node.lon ?? node.longitude);
+        if (!isFinite(lat) || !isFinite(lon)) return;
+
+        const isOnline =
+          node.status?.toLowerCase() === "active" ||
+          node.status?.toLowerCase() === "online";
+        const markerColor = isOnline ? "#22D3EE" : "#EF4444";
+
+        const marker = L.circleMarker([lat, lon], {
+          radius: 6,
+          fillColor: markerColor,
+          color: "#FFFFFF",
+          weight: 1.5,
+          opacity: 1,
+          fillOpacity: 0.9,
         });
-    }, [L, mappedNodes, onNodeSelect]);
 
-    return (
-        <section className="w-full bg-white/[0.02] border border-white/10 p-6 rounded-[5px] h-[520px] relative overflow-hidden flex flex-col group backdrop-blur-sm shadow-xl transition-all hover:bg-white/[0.03]">
-            <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
-                <div className="flex flex-col gap-1">
-                    <div className="flex items-center gap-3">
-                        <Globe className="w-5 h-5 text-cyber-cyan" />
-                        <h3 className="text-sm font-bold text-white uppercase tracking-wider">Global Fleet Distribution</h3>
-                    </div>
-                </div>
-            </div>
+        const tooltipContent = `
+          <div style="font-family: monospace; font-size: 11px; background: #09090b; border: 1px solid rgba(255,255,255,0.15); padding: 6px 10px; border-radius: 4px; color: #fff;">
+            <div style="color: #94a3b8; font-weight: bold; margin-bottom: 2px;">NODE: <span style="color: #fff;">${node.displayName || node.name || node.id || "Unknown"}</span></div>
+            <div style="color: #94a3b8;">STATUS: <span style="color: ${markerColor}; text-transform: uppercase;">${node.status || "active"}</span></div>
+            ${node.tier ? `<div style="color: #94a3b8;">TIER: <span style="color: #22D3EE;">${node.tier}</span></div>` : ""}
+          </div>
+        `;
 
-            <div className="flex-1 relative bg-black/40 rounded-[5px] overflow-hidden border border-white/5">
-                <div id={id} className="absolute inset-0 z-0 map-canvas" style={{ backgroundColor: "#050505" }} />
+        marker.bindTooltip(tooltipContent, {
+          direction: "top",
+          offset: [0, -8],
+          opacity: 1.0,
+        });
 
-                {loading && (
-                    <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/60 backdrop-blur-md">
-                        <div className="flex flex-col items-center gap-4">
-                            <div className="w-8 h-8 border-2 border-t-[#22D3EE] border-white/10 rounded-full animate-spin" />
-                            <span className="text-[10px] text-slate-500 uppercase tracking-[0.2em] font-bold">Synchronizing Nodes...</span>
-                        </div>
-                    </div>
-                )}
+        if (onNodeSelect) {
+          marker.on("click", () => onNodeSelect(node.id));
+        }
 
-                {!loading && mappedNodes.length === 0 && (
-                    <div className="absolute bottom-4 right-4 z-10 flex items-center justify-center pointer-events-none">
-                        <div className="flex items-center gap-2 px-3 py-1.5 bg-black/80 border border-white/10 rounded-full backdrop-blur-md">
-                            <MapPin className="w-3 h-3 text-slate-400" />
-                            <span className="text-[10px] text-slate-400 font-mono tracking-widest uppercase">Nodes online: {nodeList.length} (Awaiting Geo)</span>
-                        </div>
-                    </div>
-                )}
-            </div>
+        marker.addTo(markersLayerRef.current);
+      });
+    };
 
-        </section>
-    );
+    renderMarkers();
+  }, [displayNodes, onNodeSelect]);
+
+  return (
+    <div className="w-full h-[480px] bg-[#09090b] rounded-[5px] border border-white/10 flex flex-col relative overflow-hidden my-4 shadow-2xl">
+      <div className="flex items-center justify-between px-4 py-2.5 bg-black/60 border-b border-white/10 z-10">
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-[#22D3EE] shadow-[0_0_8px_#22D3EE]" />
+          <span className="text-[11px] font-bold text-white uppercase tracking-widest">Global Fleet Distribution</span>
+        </div>
+        <div className="flex items-center gap-4 text-[10px] font-mono text-slate-400">
+          <span>Active: <strong className="text-[#22D3EE]">{displayNodes.filter((n: any) => n.status === "active" || n.status === "online").length}</strong></span>
+          <span>Offline: <strong className="text-red-400">{displayNodes.filter((n: any) => n.status !== "active" && n.status !== "online").length}</strong></span>
+        </div>
+      </div>
+
+      <div id={id} className="w-full flex-1 relative z-0 bg-[#050505]" />
+
+      {loading && (
+        <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+          <span className="text-cyan-400 font-mono text-xs uppercase tracking-widest animate-pulse">
+            Synchronizing Nodes...
+          </span>
+        </div>
+      )}
+
+      <style jsx global>{`
+        .cyber-osm-dark-tiles {
+          filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.25) brightness(0.7);
+        }
+      `}</style>
+    </div>
+  );
 }

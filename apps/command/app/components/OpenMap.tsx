@@ -14,27 +14,17 @@ const DEV_FALLBACK_NODES = [
 ];
 
 interface MapProps {
-  id?: string;
-  mode?: "command" | "provider" | "mesh";
-  nodes?: any[];
+  nodes?: Array<{ id: string; lat?: number; lon?: number; status?: string; name?: string; tier?: string }>;
   nodlrs?: any[];
   loading?: boolean;
   onNodeSelect?: (id: string) => void;
-  accountContext?: { id: string; jwt: string };
 }
 
-export default function FleetMap({
-  id = "fleet-map-canvas",
-  nodes = [],
-  nodlrs = [],
-  loading = false,
-  onNodeSelect
-}: MapProps) {
+export default function OpenMap({ nodes = [], nodlrs = [], loading = false, onNodeSelect }: MapProps) {
   const mapRef = useRef<any>(null);
   const markersLayerRef = useRef<any>(null);
 
-  const rawNodeList = Array.isArray(nodes) ? nodes : Object.values(nodes || {});
-  const displayNodes = rawNodeList.length > 0 ? rawNodeList : DEV_FALLBACK_NODES;
+  const displayNodes = Array.isArray(nodes) && nodes.length > 0 ? nodes : DEV_FALLBACK_NODES;
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -45,10 +35,10 @@ export default function FleetMap({
       const L = (await import("leaflet")).default;
       if (!isMounted) return;
 
-      const container = document.getElementById(id);
+      const container = document.getElementById("cmd-map-canvas");
       if (!container || mapRef.current) return;
 
-      mapRef.current = L.map(id, {
+      mapRef.current = L.map("cmd-map-canvas", {
         center: [25, 10],
         zoom: 2,
         minZoom: 2,
@@ -57,7 +47,7 @@ export default function FleetMap({
         attributionControl: false,
       });
 
-      // Keyless OpenStreetMap Raster Tiles with Cyber Matrix Filter
+      // Free Open-Source OpenStreetMap with High-Res Country/City Labels
       L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
         className: "cyber-osm-dark-tiles",
@@ -79,8 +69,9 @@ export default function FleetMap({
         mapRef.current = null;
       }
     };
-  }, [id]);
+  }, []);
 
+  // Marker updates
   useEffect(() => {
     if (!mapRef.current || !markersLayerRef.current) return;
 
@@ -89,22 +80,14 @@ export default function FleetMap({
       markersLayerRef.current.clearLayers();
 
       const validNodes = displayNodes.filter(
-        (n: any) =>
-          (n.lat !== undefined || n.latitude !== undefined) &&
-          (n.lon !== undefined || n.longitude !== undefined)
+        (n) => n.lat !== undefined && n.lon !== undefined && isFinite(Number(n.lat)) && isFinite(Number(n.lon))
       );
 
-      validNodes.forEach((node: any) => {
-        const lat = Number(node.lat ?? node.latitude);
-        const lon = Number(node.lon ?? node.longitude);
-        if (!isFinite(lat) || !isFinite(lon)) return;
-
-        const isOnline =
-          node.status?.toLowerCase() === "active" ||
-          node.status?.toLowerCase() === "online";
+      validNodes.forEach((node) => {
+        const isOnline = node.status?.toLowerCase() === "active" || node.status?.toLowerCase() === "online";
         const markerColor = isOnline ? "#22D3EE" : "#EF4444";
 
-        const marker = L.circleMarker([lat, lon], {
+        const marker = L.circleMarker([Number(node.lat), Number(node.lon)], {
           radius: 6,
           fillColor: markerColor,
           color: "#FFFFFF",
@@ -113,19 +96,14 @@ export default function FleetMap({
           fillOpacity: 0.9,
         });
 
-        const tooltipContent = `
-          <div style="font-family: monospace; font-size: 11px; background: #09090b; border: 1px solid rgba(255,255,255,0.15); padding: 6px 10px; border-radius: 4px; color: #fff;">
-            <div style="color: #94a3b8; font-weight: bold; margin-bottom: 2px;">NODE: <span style="color: #fff;">${node.displayName || node.name || node.id || "Unknown"}</span></div>
+        marker.bindTooltip(
+          `<div style="font-family: monospace; font-size: 11px; background: #09090b; border: 1px solid rgba(255,255,255,0.15); padding: 6px 10px; border-radius: 4px; color: #fff;">
+            <div style="color: #94a3b8; font-weight: bold; margin-bottom: 2px;">NODE: <span style="color: #fff;">${node.name || node.id}</span></div>
             <div style="color: #94a3b8;">STATUS: <span style="color: ${markerColor}; text-transform: uppercase;">${node.status || "active"}</span></div>
             ${node.tier ? `<div style="color: #94a3b8;">TIER: <span style="color: #22D3EE;">${node.tier}</span></div>` : ""}
-          </div>
-        `;
-
-        marker.bindTooltip(tooltipContent, {
-          direction: "top",
-          offset: [0, -8],
-          opacity: 1.0,
-        });
+          </div>`,
+          { direction: "top", offset: [0, -8], opacity: 1.0 }
+        );
 
         if (onNodeSelect) {
           marker.on("click", () => onNodeSelect(node.id));
@@ -140,28 +118,23 @@ export default function FleetMap({
 
   return (
     <div className="w-full h-[480px] bg-[#09090b] rounded-[5px] border border-white/10 flex flex-col relative overflow-hidden my-4 shadow-2xl">
+      {/* Header bar with Border Box */}
       <div className="flex items-center justify-between px-4 py-2.5 bg-black/60 border-b border-white/10 z-10">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-[#22D3EE] shadow-[0_0_8px_#22D3EE]" />
-          <span className="text-[11px] font-bold text-white uppercase tracking-widest">Global Fleet Distribution</span>
+          <span className="text-[11px] font-bold text-white uppercase tracking-widest">Global Node Distribution</span>
         </div>
         <div className="flex items-center gap-4 text-[10px] font-mono text-slate-400">
-          <span>Active: <strong className="text-[#22D3EE]">{displayNodes.filter((n: any) => n.status === "active" || n.status === "online").length}</strong></span>
-          <span>Offline: <strong className="text-red-400">{displayNodes.filter((n: any) => n.status !== "active" && n.status !== "online").length}</strong></span>
+          <span>Active: <strong className="text-[#22D3EE]">{displayNodes.filter((n) => n.status === "active").length}</strong></span>
+          <span>Offline: <strong className="text-red-400">{displayNodes.filter((n) => n.status !== "active").length}</strong></span>
         </div>
       </div>
 
-      <div id={id} className="w-full flex-1 relative z-0 bg-[#050505]" />
-
-      {loading && (
-        <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/70 backdrop-blur-sm">
-          <span className="text-cyan-400 font-mono text-xs uppercase tracking-widest animate-pulse">
-            Synchronizing Nodes...
-          </span>
-        </div>
-      )}
+      {/* High-Res Labeled Dark Map Surface */}
+      <div id="cmd-map-canvas" className="w-full flex-1 relative z-0 bg-[#050505]" />
 
       <style jsx global>{`
+        /* High-Definition Cyber Inversion Matrix for Zero-Key OSM Tiles */
         .cyber-osm-dark-tiles {
           filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.25) brightness(0.7);
         }

@@ -148,7 +148,7 @@ export default function AffiliateInviteModal({ isOpen, onClose, userWUID }: Affi
           {/* Quick Sharing Channels */}
           <div className="space-y-2">
             <span className="text-xs text-slate-400 font-semibold uppercase tracking-wider block">Share Anywhere</span>
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-3 gap-2">
               <a
                 href={`https://wa.me/?text=${shareText}`}
                 target="_blank"
@@ -175,14 +175,6 @@ export default function AffiliateInviteModal({ isOpen, onClose, userWUID }: Affi
               >
                 <Smartphone className="w-4 h-4 text-[#00FFB2]" />
                 SMS
-              </a>
-
-              <a
-                href={`mailto:?subject=${encodeURIComponent('Invitation to Nodlr Sovereign Network')}&body=${shareText}`}
-                className="p-2.5 bg-white/[0.02] hover:bg-[#00FFB2]/10 border border-white/[0.08] hover:border-[#00FFB2]/30 rounded-xl flex flex-col items-center gap-1 transition-all text-xs font-medium text-slate-300 hover:text-[#00FFB2]"
-              >
-                <Mail className="w-4 h-4 text-[#00FFB2]" />
-                Email
               </a>
             </div>
           </div>

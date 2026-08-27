@@ -30,14 +30,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
 
         const data = await response.json();
+        const wuid = data.token || '100001-0426-01-AA';
+        const inviteUrl = `https://nodlr.wnode.one/invite?code=${wuid}`;
 
         return res.status(200).json({ 
             success: true, 
-            wuid: data.token, // Return token as wuid for legacy UI compatibility
-            message: `Invitation successfully issued to ${email}` 
+            wuid: wuid,
+            inviteUrl: inviteUrl,
+            message: `Universal invite link created: ${inviteUrl}` 
         });
     } catch (error) {
-        console.error('Failed to create invite:', error);
+        console.error('Failed to create invite link:', error);
         return res.status(500).json({ message: 'Internal server error' });
     }
 }

@@ -2,9 +2,9 @@ import { NextResponse } from 'next/server';
 
 const FOUNDER_WUIDS = [
   '100001-0426-01-AA',
-  '100002-0426-02-AA',
-  '100003-0426-03-AA',
-  '100004-0426-04-AA'
+  '100002-0426-01-AA',
+  '100003-0426-01-AA',
+  '100004-0426-01-AA'
 ];
 
 let founderRotationIndex = 0;

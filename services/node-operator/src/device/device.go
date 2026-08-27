@@ -19,14 +19,17 @@ import (
 )
 
 type NodeMetadata struct {
-	OS        string `json:"os"`
-	Hostname  string `json:"hostname,omitempty"`
-	UserAgent string `json:"userAgent,omitempty"`
-	CPU       string `json:"cpu,omitempty"`
-	GPU       string `json:"gpu,omitempty"`
-	RAM       string `json:"ram,omitempty"`
-	Arch      string `json:"arch,omitempty"`
-	MachineID string `json:"machineId,omitempty"`
+	OS        string  `json:"os"`
+	Hostname  string  `json:"hostname,omitempty"`
+	UserAgent string  `json:"userAgent,omitempty"`
+	CPU       string  `json:"cpu,omitempty"`
+	GPU       string  `json:"gpu,omitempty"`
+	RAM       string  `json:"ram,omitempty"`
+	Arch      string  `json:"arch,omitempty"`
+	MachineID string  `json:"machineId,omitempty"`
+	Lat       float64 `json:"lat,omitempty"`
+	Lon       float64 `json:"lon,omitempty"`
+	City      string  `json:"city,omitempty"`
 }
 
 type RegisterRequest struct {
@@ -34,6 +37,8 @@ type RegisterRequest struct {
 	HardwareHash       string       `json:"hardwareHash,omitempty"`
 	BrowserFingerprint string       `json:"browserFingerprint,omitempty"`
 	DeviceClass        string       `json:"deviceClass,omitempty"`
+	Lat                float64      `json:"lat,omitempty"`
+	Lon                float64      `json:"lon,omitempty"`
 }
 
 type RegisterResponse struct {
@@ -100,12 +105,53 @@ func GenerateUUID() string {
 		b[0:4], b[4:6], b[6:8], b[8:10], b[10:16])
 }
 
+// DetectGeo queries public IP geolocation endpoints with fallback.
+func DetectGeo() (float64, float64, string) {
+	client := &http.Client{Timeout: 4 * time.Second}
+	resp, err := client.Get("https://ipapi.co/json/")
+	if err != nil || resp.StatusCode != 200 {
+		resp, err = client.Get("http://ip-api.com/json/")
+	}
+	if err != nil {
+		return 0, 0, "Unknown"
+	}
+	defer resp.Body.Close()
+
+	var geo struct {
+		Lat     float64 `json:"latitude"`
+		Lon     float64 `json:"longitude"`
+		LatAlt  float64 `json:"lat"`
+		LonAlt  float64 `json:"lon"`
+		City    string  `json:"city"`
+		Country string  `json:"country_name"`
+	}
+	if err := json.NewDecoder(resp.Body).Decode(&geo); err != nil {
+		return 0, 0, "Unknown"
+	}
+
+	finalLat := geo.Lat
+	if finalLat == 0 {
+		finalLat = geo.LatAlt
+	}
+	finalLon := geo.Lon
+	if finalLon == 0 {
+		finalLon = geo.LonAlt
+	}
+
+	return finalLat, finalLon, geo.City
+}
+
 // CollectMetadata gathers hardware information using stdlib and common OS files/commands.
 func CollectMetadata() NodeMetadata {
 	meta := NodeMetadata{
 		OS:        runtime.GOOS,
 		MachineID: GetMachineID(),
 	}
+
+	lat, lon, city := DetectGeo()
+	meta.Lat = lat
+	meta.Lon = lon
+	meta.City = city
 
 	if host, err := os.Hostname(); err == nil {
 		meta.Hostname = host
@@ -202,7 +248,7 @@ func Register(apiBase string, state *platform.State) error {
 	}
 
 	meta := CollectMetadata()
-	platform.Info("Collected metadata: OS=%s, CPU=%s, RAM=%s", meta.OS, meta.CPU, meta.RAM)
+	platform.Info("Collected metadata: OS=%s, CPU=%s, RAM=%s, Lat=%.4f, Lon=%.4f", meta.OS, meta.CPU, meta.RAM, meta.Lat, meta.Lon)
 
 	if state.DeviceUUID == "" {
 		state.DeviceUUID = GenerateUUID()
@@ -212,6 +258,8 @@ func Register(apiBase string, state *platform.State) error {
 		Metadata:     meta,
 		HardwareHash: ComputeHardwareHash(meta),
 		DeviceClass:  "native",
+		Lat:          meta.Lat,
+		Lon:          meta.Lon,
 	}
 
 	jsonData, err := json.Marshal(reqBody)

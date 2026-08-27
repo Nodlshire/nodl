@@ -2468,25 +2468,28 @@ func (s *Store) SanitizeNodeInvariants(node *WnodeNode) {
 	// Invariant C: Loopback & RFC1918 IPs must never be used for GeoIP resolution
 	isLoopback := node.IPAddress == "127.0.0.1" || strings.HasPrefix(node.IPAddress, "192.168.") || strings.HasPrefix(node.IPAddress, "10.") || strings.HasPrefix(node.IPAddress, "172.16.") || node.IPAddress == ""
 
-	// Invariant B: Loopback & RFC1918 nodes resolve to operator country (Hungary: 47.1625, 19.5033)
-	if isLoopback || (node.Latitude == 0 && node.Longitude == 0) {
-		if operator, ok := s.nodlrs[node.UserID]; ok && operator.Country != "" {
-			cLat, cLon, ok := ResolveCountryCentroid(operator.Country)
-			if ok {
-				node.Latitude = cLat
-				node.Longitude = cLon
+	// Invariant B: Only resolve fallback coordinates if node.Latitude & node.Longitude are unassigned (0)
+	if node.Latitude == 0 && node.Longitude == 0 {
+		if !isLoopback {
+			lat, lon, _ := GetGeoIPLookup().ResolveIP(node.IPAddress)
+			if lat != 0 || lon != 0 {
+				node.Latitude = lat
+				node.Longitude = lon
+			}
+		}
+		if node.Latitude == 0 && node.Longitude == 0 {
+			if operator, ok := s.nodlrs[node.UserID]; ok && operator.Country != "" {
+				cLat, cLon, ok := ResolveCountryCentroid(operator.Country)
+				if ok {
+					node.Latitude = cLat
+					node.Longitude = cLon
+				}
 			}
 		}
 		if node.Latitude == 0 && node.Longitude == 0 {
 			// Authoritative Hungary centroid fallback
 			node.Latitude = 47.1625
 			node.Longitude = 19.5033
-		}
-	} else if !isLoopback && (node.Latitude == 0 && node.Longitude == 0) {
-		lat, lon, _ := GetGeoIPLookup().ResolveIP(node.IPAddress)
-		if lat != 0 || lon != 0 {
-			node.Latitude = lat
-			node.Longitude = lon
 		}
 	}
 }

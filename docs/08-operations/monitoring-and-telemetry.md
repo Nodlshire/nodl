@@ -78,6 +78,16 @@ Deterministic state evaluation for 08 operations Monitoring and telemetry mandat
 <DocAnimationViewer src="/animations/job-lifecycle-animation.svg" />
 
 
+## 7. Zero-Key Dark Fleet Map & Offline Telemetry Subsystem
+
+The Wnode Enterprise UI stack integrates a zero-key, high-definition Leaflet raster map subsystem with cyber matrix dark-mode rendering across all portals (`Command`, `Nodlr`, `Mesh`).
+
+- **Zero-Key Dark Raster Tile Rendering**: Utilizes open-source OpenStreetMap raster tiles (`https://tile.openstreetmap.org/{z}/{x}/{y}.png`) with CSS matrix inversion (`.cyber-osm-dark-tiles`: `brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.25) brightness(0.7)`) to deliver dark cyber aesthetics with explicit country and city labels without API keys.
+- **Offline Vector GeoJSON Dataset**: Bundles `/data/world.geojson` in public assets for fallback rendering in air-gapped environments.
+- **Card Viewport Bounding**: Enforces `h-[480px]` container limits preventing layout clipping or sidebar overlap across ports 3001, 3002, and 3003.
+- **Telemetry Fallback Pins**: Renders 7 edge fallback telemetry nodes (London, Budapest, NYC, Tokyo, Frankfurt, Sydney, São Paulo) when backend APIs are offline during local dev.
+- **Local Mesh Parity (Port 3003)**: Enforces relative Next.js URL redirection (`new URL('/login', request.url)`) in `apps/mesh/middleware.ts`, eliminating external domain redirects (`mesh.wnode.one`) for local development requests.
+
 ## Operational Code & Verification Manifest
 
 ```go

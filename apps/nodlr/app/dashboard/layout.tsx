@@ -7,6 +7,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useAccount } from '../hooks/useAccount';
 import AddMachineModal from '../components/AddMachineModal';
+import AffiliateInviteModal from '../components/AffiliateInviteModal';
 import ConnectivityAudit from '../components/ConnectivityAudit';
 import { useRouter } from 'next/navigation';
 import useSWR from 'swr';
@@ -45,6 +46,7 @@ export default function DashboardLayout({
     const { account, loading } = useAccount();
     const identity = account ? normalizeAccount(account) : null;
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isInviteModalOpen, setIsInviteModalOpen] = useState(false);
     const [isBannerDismissed, setIsBannerDismissed] = useState(false);
     const [mounted, setMounted] = useState(false);
     const [isAuditOpen, setIsAuditOpen] = useState(false);
@@ -68,6 +70,15 @@ export default function DashboardLayout({
 
     useEffect(() => {
         setMounted(true);
+        if (typeof window !== 'undefined') {
+            const SYSTEM_IDS = ['GLOBAL_MESH', 'UNASSIGNED', 'SYSTEM', 'AUTHORITATIVE'];
+            for (const key of ['nodl_user_id', 'nodlr_user_id']) {
+                const val = localStorage.getItem(key);
+                if (val && SYSTEM_IDS.includes(val.toUpperCase())) {
+                    localStorage.removeItem(key);
+                }
+            }
+        }
         const dismissed = localStorage.getItem('nodl_identity_banner_dismissed') === 'true';
         setIsBannerDismissed(dismissed);
     }, []);
@@ -210,16 +221,16 @@ export default function DashboardLayout({
                             Add Mesh Client
                         </motion.button>
 
-                        <motion.a 
+                        <motion.button 
                             whileHover={{ scale: 1.05, backgroundColor: "#ffffff", color: "#2563eb" }}
                             whileTap={{ scale: 0.95 }}
-                            href={`mailto:?subject=${encodeURIComponent('Wnode Affiliate Invitation')}&body=${encodeURIComponent(`Here is your Wnode affiliate invitation\n\nwnode.one/invite/100001-0426-01-AA\n\nClick on it now, add your devices and start earning. Invite your own friends and watch your earnings grow as their business scales.\n\nEvery new Nodlr and node is a bit more of the planet saved and a bit more compute power added to the world.\n\nThis is your piece of the web 4 real estate`)}`}
-                            title="Send a referral invitation to your professional network"
-                            className="flex items-center gap-2.5 text-xs uppercase font-black bg-[#2563eb] text-white border border-[#2563eb] px-7 py-3.5 transition-all rounded-[4px] shadow-[0_0_20px_rgba(37,99,235,0.4)] cursor-pointer no-underline"
+                            onClick={() => setIsInviteModalOpen(true)}
+                            title="Send an affiliate invitation to your network"
+                            className="flex items-center gap-2.5 text-xs uppercase font-black bg-[#2563eb] text-white border border-[#2563eb] px-7 py-3.5 transition-all rounded-[4px] shadow-[0_0_20px_rgba(37,99,235,0.4)] cursor-pointer"
                         >
                             <UserPlus className="w-4 h-4" />
                             Add Affiliate
-                        </motion.a>
+                        </motion.button>
                     </div>
 
                     <div className="flex items-center gap-5 w-1/4 justify-end">
@@ -245,6 +256,12 @@ export default function DashboardLayout({
                     isOpen={isModalOpen} 
                     onClose={() => setIsModalOpen(false)} 
                     apiBase="" 
+                />
+
+                <AffiliateInviteModal 
+                    isOpen={isInviteModalOpen} 
+                    onClose={() => setIsInviteModalOpen(false)} 
+                    userWUID={account?.id || account?.wuid || account?.nodlrId} 
                 />
 
                 <ConnectivityAudit 

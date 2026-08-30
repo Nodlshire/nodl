@@ -35,18 +35,19 @@ const nextConfig = {
         ];
     },
     async rewrites() {
+        const backendUrl = process.env.NODLD_API_URL || 'http://127.0.0.1:8080';
         return [
             {
                 source: '/ws',
-                destination: 'http://127.0.0.1:8080/ws',
+                destination: `${backendUrl}/ws`,
             },
             {
                 source: '/api/v1/:path*',
-                destination: 'http://127.0.0.1:8080/api/v1/:path*',
+                destination: `${backendUrl}/api/v1/:path*`,
             },
             {
                 source: '/api/:path((?!discord).*)',
-                destination: 'http://127.0.0.1:8080/api/v1/:path*',
+                destination: `${backendUrl}/api/v1/:path*`,
             },
         ];
     },

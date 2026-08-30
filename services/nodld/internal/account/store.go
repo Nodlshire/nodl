@@ -577,7 +577,16 @@ func (s *Store) SeedGlobalMeshNodes() {
 	}
 
 	for _, n := range globalNodes {
-		s.nodes[n.ID] = n
+		existing, exists := s.nodes[n.ID]
+		if !exists {
+			s.nodes[n.ID] = n
+		} else {
+			// Preserve existing WUID ownership if already assigned
+			if n.UserID == AuthoritativeOwnerID || existing.UserID == "" || existing.UserID == "GLOBAL_MESH" || existing.UserID == "UNASSIGNED" {
+				existing.UserID = n.UserID
+				existing.OperatorWUID = n.OperatorWUID
+			}
+		}
 	}
 
 	// Backfill any remaining unmapped nodes

@@ -353,6 +353,7 @@ func (s *Server) registerRoutes() {
 	apiV1.Get("/affiliates", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetAffiliatesSummary)
 	apiV1.Get("/rank", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetRank)
 	apiV1.Get("/account/soul", s.handleGetAccountSoul)
+	s.app.Get("/api/v1/soul", s.handleGetAccountSoul)
 
 	// Business & RBAC
 	s.app.Post("/admin/business/profile", s.requireAccess(account.RoleOwner, "command"), s.handleUpdateBusinessProfile)

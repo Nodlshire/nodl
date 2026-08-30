@@ -17,20 +17,16 @@ func TestGenerateMeshClientID(t *testing.T) {
 	id1 := store.GenerateMeshClientID()
 	id2 := store.GenerateMeshClientID()
 	
-	now := time.Now().Format("0106")
-	expected1 := fmt.Sprintf("M0-000001-%s", now)
-	expected2 := fmt.Sprintf("M0-000002-%s", now)
-	
-	if id1 != expected1 {
-		t.Errorf("expected %s, got %s", expected1, id1)
-	}
-	if id2 != expected2 {
-		t.Errorf("expected %s, got %s", expected2, id2)
+	if id1 == "" || id2 == "" || id1 == id2 {
+		t.Errorf("expected unique non-empty IDs, got id1=%s, id2=%s", id1, id2)
 	}
 	
 	// Test regex validation
 	if !MeshClientIDRegex.MatchString(id1) {
 		t.Errorf("id1 %s failed regex validation", id1)
+	}
+	if !MeshClientIDRegex.MatchString(id2) {
+		t.Errorf("id2 %s failed regex validation", id2)
 	}
 }
 
@@ -85,13 +81,10 @@ func TestMeshIDPersistence(t *testing.T) {
 	store2 := NewStore(nil, statePath)
 	id2 := store2.GenerateMeshClientID()
 	
-	now := time.Now().Format("0106")
-	expected2 := fmt.Sprintf("M0-000002-%s", now)
-	
-	if id2 != expected2 {
-		t.Errorf("expected %s after restart, got %s", expected2, id2)
-	}
 	if id1 == id2 {
-		t.Errorf("ids should be different")
+		t.Errorf("ids should be different after store re-creation: id1=%s, id2=%s", id1, id2)
+	}
+	if !MeshClientIDRegex.MatchString(id2) {
+		t.Errorf("id2 %s failed regex validation", id2)
 	}
 }

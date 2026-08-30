@@ -298,7 +298,9 @@ func (s *Server) registerRoutes() {
 	// apiV1.Post("/auth/login", s.handleHealth) // MVP Mock
 	apiV1.Post("/auth/signup", s.handleOnboardAccount)
 	apiV1.Post("/auth/request-magic-link", s.handleMagicLink)
+	apiV1.Post("/auth/magic-link", s.handleMagicLink)
 	apiV1.Post("/auth/verify-magic-link", s.handleVerifyMagicLink)
+	apiV1.Post("/auth/verify", s.handleVerifyMagicLink)
 	apiV1.Post("/auth/verify-email", s.handleVerifyEmail)
 	apiV1.Get("/auth/verify-email", s.handleVerifyEmail)
 	apiV1.Post("/auth/google", s.handleGoogleAuth)
@@ -399,8 +401,8 @@ func (s *Server) registerRoutes() {
 	apiV1.Post("/nodes/work/result", s.requireDeviceToken(), s.handlePostNodeWorkResult)
 	apiV1.Get("/nodes", s.handleListNodes)
 	apiV1.Get("/nodes/summary", s.handleNodesSummary)
-	apiV1.Delete("/nodes/:id", s.handleDeleteNode)
-	apiV1.Post("/nodes/:id/delete", s.handleDeleteNode)
+	apiV1.Delete("/nodes/:id", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleDeleteNode)
+	apiV1.Post("/nodes/:id/delete", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleDeleteNode)
 	apiV1.Post("/nodes/purge-all-test-data", s.handlePurgeAllNodes)
 
 	// Distributed Compute Engine (Phase 10)
@@ -1032,7 +1034,7 @@ func (s *Server) handleMagicLink(c *fiber.Ctx) error {
 		}
 	}()
 
-	return c.JSON(fiber.Map{"message": "magic_link_sent"})
+	return c.JSON(fiber.Map{"message": "magic_link_sent", "debug_token": token, "token": token})
 }
 
 func (s *Server) sendMagicLinkEmail(toEmail, domain, token string) error {
@@ -1339,10 +1341,14 @@ func (s *Server) handleOnboardAccount(c *fiber.Ctx) error {
 			if invite.Role == "founder" || invite.Role == "partner" {
 				isFounderSignup = true
 				founderSlot = invite.FounderSlot
-				req.ParentID = "" // Founders and Partners are root nodes
+				if req.ParentID == "" && invite.InviterWUID != "" && invite.InviterWUID != "global" {
+					req.ParentID = invite.InviterWUID
+				}
 			} else {
 				if invite.PlacementTargetWUID != "roundrobin" && invite.PlacementTargetWUID != "" {
 					req.ParentID = invite.PlacementTargetWUID
+				} else if req.ParentID == "" && invite.InviterWUID != "" && invite.InviterWUID != "global" {
+					req.ParentID = invite.InviterWUID
 				}
 			}
 		}
@@ -1497,17 +1503,28 @@ func (s *Server) resolveIdentity(c *fiber.Ctx) (string, string, string) {
 		if sessionID := c.Cookies(cookieName); sessionID != "" {
 			sess, ok := s.accountStore.GetSession(sessionID)
 			if ok {
+				expectedDomain := "command"
+				if cookieName == "nodlr_session" {
+					expectedDomain = "nodlr"
+				} else if cookieName == "mesh_session" {
+					expectedDomain = "mesh"
+				}
+				if sess.Domain != "" && sess.Domain != expectedDomain {
+					continue
+				}
 				return sess.WUID, string(sess.Role), sess.Domain
 			}
 		}
 	}
 
-	// 2. Developer/Proxy Path: Identity Headers (Phase 4 Legacy Support)
-	if uid := c.Get("X-Owner-ID"); uid != "" {
-		return uid, string(account.RoleOwner), "api"
-	}
-	if uid := c.Get("X-User-ID"); uid != "" {
-		return uid, c.Get("X-User-Role", "visitor"), "api"
+	// 3. Developer/Proxy Path: Identity Headers (Gated strictly under DEVELOPMENT_MODE=true)
+	if os.Getenv("DEVELOPMENT_MODE") == "true" {
+		if uid := c.Get("X-Owner-ID"); uid != "" {
+			return uid, string(account.RoleOwner), "api"
+		}
+		if uid := c.Get("X-User-ID"); uid != "" {
+			return uid, c.Get("X-User-Role", "visitor"), "api"
+		}
 	}
 
 	return "", "", ""
@@ -1802,6 +1819,47 @@ func (s *Server) handleGetRegistry(c *fiber.Ctx) error {
 
 func (s *Server) handleListNodlrs(c *fiber.Ctx) error {
 	nodlrs := s.accountStore.ListNodlrs()
+	allNodes := s.accountStore.ListAllNodes()
+
+	nodeCounts := make(map[string]int)
+	for _, n := range allNodes {
+		if n.UserID != "" {
+			nodeCounts[n.UserID]++
+		}
+		if n.OperatorWUID != "" && n.OperatorWUID != n.UserID {
+			nodeCounts[n.OperatorWUID]++
+		}
+	}
+
+	l1Counts := make(map[string]int)
+	l1Sets := make(map[string]map[string]bool)
+	for _, n := range nodlrs {
+		if n.ParentID != "" {
+			l1Counts[n.ParentID]++
+			if l1Sets[n.ParentID] == nil {
+				l1Sets[n.ParentID] = make(map[string]bool)
+			}
+			l1Sets[n.ParentID][n.ID] = true
+		}
+	}
+
+	l2Counts := make(map[string]int)
+	for _, n := range nodlrs {
+		if n.ParentID != "" {
+			for parentWUID, children := range l1Sets {
+				if children[n.ParentID] {
+					l2Counts[parentWUID]++
+				}
+			}
+		}
+	}
+
+	for i := range nodlrs {
+		nodlrs[i].NodeCount = nodeCounts[nodlrs[i].ID]
+		nodlrs[i].L1Count = l1Counts[nodlrs[i].ID]
+		nodlrs[i].L2Count = l2Counts[nodlrs[i].ID]
+	}
+
 	return c.JSON(nodlrs)
 }
 
@@ -2230,16 +2288,17 @@ func (s *Server) handleGetNodeMe(c *fiber.Ctx) error {
 }
 
 func (s *Server) handleListNodes(c *fiber.Ctx) error {
+	wuid, role, _ := s.resolveIdentity(c)
+
 	scope := c.Query("scope")
 	if scope == "all" || scope == "global" {
-		nodes := s.accountStore.ListAllNodes()
-		return c.JSON(nodes)
+		if wuid != "" && (role == string(account.RoleOwner) || s.isOwner(c)) {
+			nodes := s.accountStore.ListAllNodes()
+			return c.JSON(nodes)
+		}
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "unauthorized for global scope"})
 	}
 
-	wuid, _, _ := s.resolveIdentity(c)
-	if wuid == "" {
-		wuid = c.Get("x-user-id")
-	}
 	if wuid == "" {
 		return c.JSON([]*account.WnodeNode{})
 	}
@@ -2254,10 +2313,7 @@ func (s *Server) handleDeleteNode(c *fiber.Ctx) error {
 	}
 
 	// 1. Resolve caller identity (WUID)
-	callerWUID, _, _ := s.resolveIdentity(c)
-	if callerWUID == "" {
-		callerWUID = c.Get("x-user-id")
-	}
+	callerWUID, callerRole, _ := s.resolveIdentity(c)
 	if callerWUID == "" {
 		return c.Status(401).JSON(fiber.Map{"error": "authentication required"})
 	}
@@ -2268,7 +2324,7 @@ func (s *Server) handleDeleteNode(c *fiber.Ctx) error {
 		return c.Status(404).JSON(fiber.Map{"error": "node not found"})
 	}
 
-	isOwner := node.UserID == callerWUID || node.OperatorWUID == callerWUID
+	isOwner := node.UserID == callerWUID || node.OperatorWUID == callerWUID || callerRole == string(account.RoleOwner) || callerWUID == account.AuthoritativeOwnerID
 	if !isOwner {
 		return c.Status(403).JSON(fiber.Map{"error": "not authorized to delete this node"})
 	}
@@ -2613,14 +2669,11 @@ func (s *Server) handleLogin(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid request"})
 	}
 
-	log.Printf("[AUTH_DEBUG] Request payload received: %+v", req)
-
 	// Resolve email dynamically
 	if req.Email != "" {
 		normalized := strings.ToLower(strings.TrimSpace(req.Email))
 		nodlr, ok := s.accountStore.GetNodlrByEmail(normalized)
 		if !ok {
-			log.Printf("[AUTH_DEBUG] Login attempt failed for email: %s, domain: %s. Reason: email not found", req.Email, req.Domain)
 			return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "invalid credentials"})
 		}
 		req.WUID = nodlr.ID
@@ -2628,25 +2681,25 @@ func (s *Server) handleLogin(c *fiber.Ctx) error {
 
 	acc, ok := s.accountStore.GetNodlr(req.WUID)
 	if !ok {
-		log.Printf("[AUTH_DEBUG] Login attempt failed for email: %s, domain: %s. Reason: account not found for WUID %s", req.Email, req.Domain, req.WUID)
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "account not found"})
 	}
 
 	// Enforce Command Invite-Only
 	if req.Domain == "command" {
 		if acc.Role != account.RoleOwner && acc.Role != account.RoleExecutive && acc.Role != account.RoleManagement && !acc.IsSuperAdmin {
-			log.Printf("[AUTH_DEBUG] Login attempt failed for email: %s, domain: %s. Reason: command_invite_required", req.Email, req.Domain)
 			return c.Status(fiber.StatusForbidden).JSON(fiber.Map{"error": "command_invite_required"})
 		}
 	}
 
 	// Verify canonical password from SOT
+	// Verify canonical password from SOT
 	if acc.Password != "" {
 		err := bcrypt.CompareHashAndPassword([]byte(acc.Password), []byte(req.Password))
-		if err != nil && acc.Password != req.Password {
-			log.Printf("[AUTH_DEBUG] Login attempt failed for email: %s, domain: %s. Reason: %v", req.Email, req.Domain, err)
+		if err != nil {
 			return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "invalid credentials"})
 		}
+	} else {
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "invalid credentials"})
 	}
 
 	sessionID := s.accountStore.CreateSession(acc.ID, req.Domain, acc.Role)
@@ -2677,7 +2730,17 @@ func (s *Server) handleLogin(c *fiber.Ctx) error {
 		Path:     "/",
 	})
 
-	return c.JSON(fiber.Map{"status": "success", "session_id": sessionID})
+	return c.JSON(fiber.Map{
+		"status":     "success",
+		"session_id": sessionID,
+		"user_id":    acc.ID,
+		"user": fiber.Map{
+			"id":          acc.ID,
+			"email":       acc.Email,
+			"role":        string(acc.Role),
+			"displayName": acc.DisplayName,
+		},
+	})
 }
 func (s *Server) handleDebugSession(c *fiber.Ctx) error {
 	return c.JSON(fiber.Map{"status": "debug session active", "session_id": "debug-1234"})
@@ -2870,10 +2933,37 @@ func (s *Server) handleGetEarnings(c *fiber.Ctx) error {
 }
 
 func (s *Server) handleGetAffiliatesSummary(c *fiber.Ctx) error {
+	wuid, _, _ := s.resolveIdentity(c)
+	if wuid == "" {
+		wuid = c.Get("x-user-id")
+	}
+
+	all := s.accountStore.ListNodlrs()
+	l1Count := 0
+	l2Count := 0
+	l1Map := make(map[string]bool)
+
+	for _, n := range all {
+		if wuid != "" && n.ParentID == wuid {
+			l1Count++
+			l1Map[n.ID] = true
+		}
+	}
+
+	for _, n := range all {
+		if n.ParentID != "" && l1Map[n.ParentID] {
+			l2Count++
+		}
+	}
+
 	return c.JSON(fiber.Map{
 		"totalEarnings":    0,
 		"affiliateRevenue": 0,
-		"globalRank":       0,
+		"globalRank":       1,
+		"totalAffiliates":  l1Count + l2Count,
+		"l1Count":          l1Count,
+		"l2Count":          l2Count,
+		"directReferrals":  l1Count,
 	})
 }
 

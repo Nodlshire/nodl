@@ -92,7 +92,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
 
     useEffect(() => {
-        if (!user && !pathname?.startsWith('/login')) {
+        const isPublicRoute = pathname?.startsWith('/login') || pathname?.startsWith('/register') || pathname?.startsWith('/auth') || pathname?.startsWith('/connect') || pathname?.startsWith('/help');
+        if (!user && !isPublicRoute) {
             const cached = typeof window !== 'undefined' ? localStorage.getItem('nodl_user') : null;
             if (!cached) {
                 router.push('/login');

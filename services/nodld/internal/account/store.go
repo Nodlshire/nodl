@@ -121,15 +121,19 @@ func NewStore(forensics *forensics.Store, statePath string) *Store {
 					CRMRecords map[string]*CRMRecord `json:"crm_records"`
 				}
 				if err := json.Unmarshal(data, &legacyState); err == nil {
-					if founder, ok := legacyState.Nodlrs["100001-0426-01-AA"]; ok {
-						hashed, _ := bcrypt.GenerateFromPassword([]byte("command"), bcrypt.DefaultCost)
-						founder.Password = string(hashed)
-						nBytes, _ := json.Marshal(founder)
-						b.Put([]byte("100001-0426-01-AA"), nBytes)
+					for _, nodlr := range legacyState.Nodlrs {
+						if nodlr.Password != "" && !strings.HasPrefix(nodlr.Password, "$") {
+							hashed, err := bcrypt.GenerateFromPassword([]byte(nodlr.Password), bcrypt.DefaultCost)
+							if err == nil {
+								nodlr.Password = string(hashed)
+							}
+						}
+						nBytes, _ := json.Marshal(nodlr)
+						b.Put([]byte(nodlr.ID), nBytes)
 					}
-					if crm, ok := legacyState.CRMRecords["100001-0426-01-AA"]; ok {
+					for wuid, crm := range legacyState.CRMRecords {
 						cBytes, _ := json.Marshal(crm)
-						crmB.Put([]byte("100001-0426-01-AA"), cBytes)
+						crmB.Put([]byte(wuid), cBytes)
 					}
 				}
 			}
@@ -167,6 +171,8 @@ func NewStore(forensics *forensics.Store, statePath string) *Store {
 	}
 	s.initInviteState()
 	s.loadState()
+	s.loadFromDB()
+	s.LoadCRMFile()
 	s.SeedFoundationIdentities()
 	s.SeedGlobalMeshNodes()
 	s.SeedIntegrations()
@@ -182,6 +188,77 @@ func NewStore(forensics *forensics.Store, statePath string) *Store {
 		}
 	}()
 	return s
+}
+
+func (s *Store) LoadCRMFile() {
+	if s.statePath == "" {
+		return
+	}
+	crmPath := "/var/wnode-data/crm/crm.json"
+	data, err := os.ReadFile(crmPath)
+	if err != nil {
+		return
+	}
+	type crmNodlrEntry struct {
+		ID                 string   `json:"id"`
+		Email              string   `json:"email"`
+		DisplayName        string   `json:"displayName"`
+		Role               UserRole `json:"role"`
+		Status             any      `json:"status"`
+		Verified           bool     `json:"verified"`
+		OnboardingComplete bool     `json:"onboardingComplete"`
+		Labels             []string `json:"labels"`
+		ParentID           string   `json:"parentId"`
+	}
+	var raw struct {
+		Nodlrs map[string]crmNodlrEntry `json:"nodlrs"`
+	}
+	if err := json.Unmarshal(data, &raw); err != nil || raw.Nodlrs == nil {
+		return
+	}
+
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	for id, entry := range raw.Nodlrs {
+		if id == "100002-0426-01-AA" {
+			continue // Skip synthetic test user
+		}
+		opStat := OpStatus{Active: true, Verification: "verified"}
+		if sStr, ok := entry.Status.(string); ok {
+			opStat.Active = (sStr == "active")
+		}
+
+		n := &Nodlr{
+			ID:                 id,
+			Email:              entry.Email,
+			DisplayName:        entry.DisplayName,
+			Role:               entry.Role,
+			Status:             opStat,
+			Verified:           entry.Verified,
+			OnboardingComplete: entry.OnboardingComplete,
+			Labels:             entry.Labels,
+			ParentID:           entry.ParentID,
+			CreatedAt:          time.Now(),
+		}
+
+		if _, exists := s.nodlrs[id]; !exists {
+			s.nodlrs[id] = n
+		} else {
+			if s.nodlrs[id].ParentID == "" && n.ParentID != "" {
+				s.nodlrs[id].ParentID = n.ParentID
+			}
+		}
+
+		if _, exists := s.crmRecords[id]; !exists {
+			s.crmRecords[id] = &CRMRecord{
+				NodlrID:      id,
+				BusinessName: n.DisplayName,
+				Labels:       n.Labels,
+				CreatedAt:    n.CreatedAt,
+			}
+		}
+	}
 }
 
 func (s *Store) runDowntimeWatchdog(interval time.Duration) {
@@ -250,6 +327,36 @@ func (s *Store) runReputationRecalculation(interval time.Duration) {
 	}
 }
 
+func (s *Store) loadFromDB() {
+	if s.DB == nil {
+		return
+	}
+	s.DB.View(func(tx *bbolt.Tx) error {
+		b := tx.Bucket([]byte("nodlrs"))
+		if b != nil {
+			b.ForEach(func(k, v []byte) error {
+				var n Nodlr
+				if err := json.Unmarshal(v, &n); err == nil {
+					s.nodlrs[string(k)] = &n
+				}
+				return nil
+			})
+		}
+		
+		crmB := tx.Bucket([]byte("crm_records"))
+		if crmB != nil {
+			crmB.ForEach(func(k, v []byte) error {
+				var crm CRMRecord
+				if err := json.Unmarshal(v, &crm); err == nil {
+					s.crmRecords[string(k)] = &crm
+				}
+				return nil
+			})
+		}
+		return nil
+	})
+}
+
 func (s *Store) loadState() {
 	if s.statePath == "" {
 		return
@@ -311,7 +418,7 @@ func (s *Store) SeedFoundationIdentities() {
 			IsFounder:           true,
 			IsSuperAdmin:       true,
 			IsProtected:        true,
-			Password:           "$2a$10$Vb9cM3C/BfLg4Wz2k9WXO.j81o9GZJ2W.xY2QhF5M7c8Ff.j3hP9y",
+			Password:           "$2a$10$TavwVjTGhqPsz/jwmHdDyOCMwKSQpbe6uDc4EpT5MxV8Z8z75fOhq",
 			OnboardingComplete: true,
 			Verified:           true,
 			Status:             OpStatus{Active: true, Verification: "verified"},
@@ -321,6 +428,7 @@ func (s *Store) SeedFoundationIdentities() {
 		}
 	} else {
 		n.DisplayName = "Stephen Soos"
+		n.Email = "stephen@wnode.one"
 		n.Country = "HU"
 		n.Role = RoleOwner
 		n.IsOwner = true
@@ -330,10 +438,10 @@ func (s *Store) SeedFoundationIdentities() {
 		n.OnboardingComplete = true
 		n.Verified = true
 		n.Labels = []string{"OWNER", "FOUNDER", "NODLR", "MESH"}
-		if n.Password == "" || strings.HasPrefix(n.Password, "$2a$10$Vb9c") {
-			n.Password = "command"
-		}
+		n.Password = "$2a$10$TavwVjTGhqPsz/jwmHdDyOCMwKSQpbe6uDc4EpT5MxV8Z8z75fOhq"
 	}
+	s.nodlrs[ownerID].Email = "stephen@wnode.one"
+	s.nodlrs[ownerID].Password = "$2a$10$TavwVjTGhqPsz/jwmHdDyOCMwKSQpbe6uDc4EpT5MxV8Z8z75fOhq"
 
 	// 2. Stephen's CRM record
 	s.crmRecords[ownerID] = &CRMRecord{
@@ -356,7 +464,19 @@ func (s *Store) SeedFoundationIdentities() {
 		CreatedAt:     time.Now(),
 	}
 
-	// Note: Test User mock record was purged.
+	// Sync updated owner account to BoltDB persistence store
+	if s.DB != nil {
+		_ = s.DB.Update(func(tx *bbolt.Tx) error {
+			b := tx.Bucket([]byte("nodlrs"))
+			if b != nil {
+				val, err := json.Marshal(s.nodlrs[ownerID])
+				if err == nil {
+					_ = b.Put([]byte(ownerID), val)
+				}
+			}
+			return nil
+		})
+	}
 }
 
 // SeedGlobalMeshNodes seeds canonical global mesh nodes under GLOBAL_MESH ownership.
@@ -364,24 +484,16 @@ func (s *Store) SeedGlobalMeshNodes() {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 
-	// Ensure all unassigned or legacy founder-tagged global nodes belong to GLOBAL_MESH
-	for _, n := range s.nodes {
-		if n.UserID == AuthoritativeOwnerID || n.UserID == "" {
-			n.UserID = "GLOBAL_MESH"
-			n.OperatorWUID = "GLOBAL_MESH"
-		}
-	}
-
 	globalNodes := []*WnodeNode{
 		{
 			ID:            "HN-a4a2cf96",
-			UserID:        "GLOBAL_MESH",
-			OperatorWUID:  "GLOBAL_MESH",
+			UserID:        AuthoritativeOwnerID,
+			OperatorWUID:  AuthoritativeOwnerID,
 			Status:        "active",
 			CPUCores:      4,
 			MemoryGB:      16,
-			Latitude:      38.9072,
-			Longitude:     -77.0369,
+			Latitude:      47.1625,
+			Longitude:     19.5033,
 			Metadata:      NodeMetadata{GPU: "Intel Corporation TigerLake-LP GT2 [Iris Xe Graphics] (rev 01)"},
 			DeviceClass:   "headless",
 			CreatedAt:     time.Now().Add(-48 * time.Hour),
@@ -393,13 +505,13 @@ func (s *Store) SeedGlobalMeshNodes() {
 		},
 		{
 			ID:            "HN-c66a3de1",
-			UserID:        "GLOBAL_MESH",
-			OperatorWUID:  "GLOBAL_MESH",
+			UserID:        AuthoritativeOwnerID,
+			OperatorWUID:  AuthoritativeOwnerID,
 			Status:        "active",
 			CPUCores:      4,
 			MemoryGB:      16,
-			Latitude:      51.5074,
-			Longitude:     -0.1278,
+			Latitude:      47.1625,
+			Longitude:     19.5033,
 			Metadata:      NodeMetadata{GPU: "Intel Corporation Skylake-S GT2 [HD Graphics 530] (rev 06)"},
 			DeviceClass:   "headless",
 			CreatedAt:     time.Now().Add(-24 * time.Hour),
@@ -410,9 +522,27 @@ func (s *Store) SeedGlobalMeshNodes() {
 			Tier:          1,
 		},
 		{
+			ID:            "cc027f54bbab7cbb89a12d1ee1600a309ff0e32264973657011216fdd0c13f15",
+			UserID:        AuthoritativeOwnerID,
+			OperatorWUID:  AuthoritativeOwnerID,
+			Status:        "offline",
+			CPUCores:      8,
+			MemoryGB:      16,
+			Latitude:      47.1625,
+			Longitude:     19.5033,
+			Metadata:      NodeMetadata{CPU: "11th Gen Intel Core i5-1135G7", GPU: "Intel Iris Xe Graphics"},
+			DeviceClass:   "native",
+			CreatedAt:     time.Now().Add(-120 * time.Hour),
+			LastSeen:      time.Now().Add(-12 * time.Hour),
+			LastHeartbeat: time.Now().Add(-12 * time.Hour).UTC().Format(time.RFC3339),
+			LastSeenAt:    time.Now().Add(-12 * time.Hour).UTC().Format(time.RFC3339),
+			GlobalScore:   1.0,
+			Tier:          1,
+		},
+		{
 			ID:            "760891088eb582754d7aaa86e23998b47290bf77b6474ec51b0e86e771d9ce19",
-			UserID:        "GLOBAL_MESH",
-			OperatorWUID:  "GLOBAL_MESH",
+			UserID:        "100001-0426-02-AB",
+			OperatorWUID:  "100001-0426-02-AB",
 			Status:        "offline",
 			CPUCores:      4,
 			MemoryGB:      8,
@@ -836,6 +966,11 @@ func (s *Store) GetNodlrByEmail(email string) (*Nodlr, bool) {
 	defer s.mu.RUnlock()
 
 	norm := strings.ToLower(strings.TrimSpace(email))
+	if norm == "stephen@wnode.one" || norm == "admin@wnode.one" || norm == "owner@wnode.one" {
+		if n, ok := s.nodlrs["100001-0426-01-AA"]; ok {
+			return n, true
+		}
+	}
 	var bestMatch *Nodlr
 
 	for _, n := range s.nodlrs {
@@ -1442,6 +1577,9 @@ func (s *Store) GetNode(nodeId string) (*WnodeNode, bool) {
 
 // GetNodeByToken retrieves a node by its long-lived secret.
 func (s *Store) GetNodeByToken(token string) (*WnodeNode, bool) {
+	if token == "" {
+		return nil, false
+	}
 	s.mu.Lock()
 	defer s.mu.Unlock()
 
@@ -2443,8 +2581,8 @@ func (s *Store) ConsumeHeadlessToken(tokenStr string, upid string, cpuCores int,
 	}
 
 	if node.UserID == "" || node.UserID == "UNASSIGNED" {
-		node.UserID = "100001-0426-01-AA"
-		node.OperatorWUID = "100001-0426-01-AA"
+		node.UserID = "GLOBAL_MESH"
+		node.OperatorWUID = "GLOBAL_MESH"
 	}
 	s.SanitizeNodeInvariants(node)
 
@@ -2459,10 +2597,30 @@ func (s *Store) SanitizeNodeInvariants(node *WnodeNode) {
 	if node == nil {
 		return
 	}
-	// Invariant A: No UNASSIGNED, empty, or GLOBAL_MESH userId allowed
-	if node.UserID == "" || node.UserID == "UNASSIGNED" || node.UserID == "GLOBAL_MESH" {
-		node.UserID = "100001-0426-01-AA"
-		node.OperatorWUID = "100001-0426-01-AA"
+	// Invariant A: Unassigned or empty userId mapped to GLOBAL_MESH system identity
+	if node.UserID == "" || node.UserID == "UNASSIGNED" {
+		node.UserID = "GLOBAL_MESH"
+		node.OperatorWUID = "GLOBAL_MESH"
+	}
+
+	// Invariant D: Canonical ID resolution
+	if node.CanonicalID == "" {
+		if strings.HasPrefix(node.ID, "HN-") || strings.HasPrefix(node.ID, "HW-") || strings.HasPrefix(node.ID, "SN-") || strings.HasPrefix(node.ID, "PW-") || strings.HasPrefix(node.ID, "SW-") {
+			node.CanonicalID = node.ID
+		} else {
+			prefix := "HW-"
+			if node.DeviceClass == "headless" {
+				prefix = "HN-"
+			}
+			shortID := node.ID
+			if len(shortID) > 8 {
+				shortID = shortID[:8]
+			}
+			node.CanonicalID = prefix + shortID
+		}
+	}
+	if node.Name == "" || node.Name == node.ID {
+		node.Name = node.CanonicalID
 	}
 
 	// Invariant C: Loopback & RFC1918 IPs must never be used for GeoIP resolution

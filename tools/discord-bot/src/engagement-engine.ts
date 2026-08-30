@@ -147,4 +147,66 @@ export class EngagementEngine {
             ])
             .setTimestamp();
     }
+
+    public async ensureMeshLiveHeaders(guild: any): Promise<void> {
+        let channel = guild.channels.cache.find((c: any) => c.name === 'mesh-live' || c.id === '1540911995774181426');
+        if (!channel) {
+            const channels = await guild.channels.fetch().catch(() => new Map());
+            channel = channels.find((c: any) => c?.name === 'mesh-live' || c?.id === '1540911995774181426');
+        }
+        if (!channel) return;
+
+        const introText =
+            '🌐 **Welcome to #mesh‑live!**\n' +
+            'This channel provides live telemetry feeds, network capacity reports, and peer counts for the Wnode mesh network.\n' +
+            'It also serves as the central space for updates on the **DeWi (Decentralized Wireless)** protocols that power Wnode’s connectivity layer.\n\n' +
+            '**Current Status:**\n' +
+            'DeWi is already part of the Node Binary and functioning at the protocol level.\n' +
+            'However, it has **not yet been integrated into the user interface** — we’re currently debugging the DePIN (Decentralized Physical Infrastructure Network) layer to ensure stability and accuracy before enabling live UI telemetry.\n\n' +
+            '**Timeline:**\n' +
+            'DeWi integration into the UI is expected to go live in **approximately 4–6 weeks**, following full DePIN validation and telemetry synchronization.\n\n' +
+            '**What You’ll Find Here:**\n' +
+            '• Live mesh telemetry and peer counts.\n' +
+            '• Network capacity and throughput reports.\n' +
+            '• DeWi protocol development updates.\n' +
+            '• Debugging progress and rollout announcements.';
+
+        const dewiOverviewText =
+            '📡 **DeWi Protocol & DePIN Telemetry Status**\n\n' +
+            '**Protocol Architecture & Node Binary Integration:**\n' +
+            'DeWi wireless packet routing and telemetry protocols are fully compiled into the native `nodld` node binary. Nodes active in the mesh participate in peer-to-peer radio packet discovery and bandwidth metering at the daemon level.\n\n' +
+            '**DePIN Layer Debugging & Validation:**\n' +
+            'Our engineering team is actively debugging edge-case DePIN packet routing, latency synchronization, and zero-trust verification between sovereign nodes before surfacing live stats in the Command UI dashboard.\n\n' +
+            '**Expected UI Integration Timeline:**\n' +
+            '• **Current Phase**: Protocol-level mesh routing & DePIN telemetry debugging.\n' +
+            '• **Target Release**: **4–6 Weeks** for live UI telemetry widgets on `cmd.wnode.one` and `mesh.wnode.one`.\n' +
+            '• **Community Role**: Test your node daemon and report telemetry logs in `#beta-feedback`.';
+
+        try {
+            const pinnedMessages = await channel.messages.fetchPinned().catch(() => new Map());
+            let existingIntro = null;
+            let existingOverview = null;
+
+            for (const [id, msg] of pinnedMessages) {
+                if (msg.author.id === guild.client.user.id) {
+                    if (msg.content.includes('Welcome to #mesh‑live')) existingIntro = msg;
+                    if (msg.content.includes('DeWi Protocol & DePIN Telemetry Status')) existingOverview = msg;
+                }
+            }
+
+            if (!existingIntro) {
+                const msg = await channel.send({ content: introText });
+                await msg.pin().catch(() => {});
+            }
+
+            if (!existingOverview) {
+                const msg = await channel.send({ content: dewiOverviewText });
+                await msg.pin().catch(() => {});
+            }
+
+            console.log('[EngagementEngine] ✅ Ensured #mesh-live intro and DeWi overview pins.');
+        } catch (err) {
+            console.error('[EngagementEngine] Failed to pin #mesh-live headers:', err);
+        }
+    }
 }

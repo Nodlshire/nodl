@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { HardDrive, Plus, Trash2, Power, Terminal, X, Check, Copy, Download, Loader2, ShieldCheck, Monitor, Activity, Cpu, Database, Server, RefreshCw, Key, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useProviderNodes } from '../../hooks/useProviderNodes';
+import { useAccount } from '../../hooks/useAccount';
 
 interface NodlDevice {
   id: string;
@@ -20,12 +21,30 @@ interface NodlDevice {
   identity_trust?: number;
   spatial_hex?: string;
   tier?: string;
+  owner_id?: string;
+  ownerId?: string;
+  userId?: string;
+  userID?: string;
+  operator_wuid?: string;
 }
 
+const SYSTEM_IDS = ['GLOBAL_MESH', 'UNASSIGNED', 'SYSTEM', 'AUTHORITATIVE'];
+
 export default function HardwarePage() {
-  const { nodes: nodls, loading, refresh, mutate } = useProviderNodes();
+  const { account, loading: accountLoading } = useAccount();
+  const { nodes: nodls, loading: nodesLoading, refresh, mutate } = useProviderNodes('user');
   const [selectedNode, setSelectedNode] = useState<NodlDevice | null>(null);
   const [copiedToken, setCopiedToken] = useState(false);
+
+  const loading = accountLoading || nodesLoading;
+  const currentWuid = account?.wuid || account?.id || account?.nodlrId || account?.user_id || (typeof window !== 'undefined' ? (localStorage.getItem('nodl_user_id') || localStorage.getItem('user_id')) : '');
+  const isValidUser = Boolean(currentWuid && !SYSTEM_IDS.includes(String(currentWuid).toUpperCase()));
+
+  // MANDATORY FLEET ISOLATION FILTER: Only nodes strictly owned by the logged-in user WUID
+  const myOwnedNodes = (nodls || []).filter((node: any) => {
+    const nodeOwner = node.wuid || node.WUID || node.ownerId || node.owner_id || node.userId || node.userID || node.operator_wuid || node.operatorWUID || node.user_id;
+    return Boolean(isValidUser && nodeOwner && nodeOwner === currentWuid);
+  });
 
   const toggleStatus = (id: string, currentStatus: string, e?: React.MouseEvent) => {
     e?.stopPropagation();
@@ -92,7 +111,7 @@ export default function HardwarePage() {
 
       {/* Device List */}
       <div className="grid grid-cols-1 gap-4">
-        {nodls.map((node: NodlDevice) => {
+        {myOwnedNodes.map((node: NodlDevice) => {
           const isActive = node.status?.toLowerCase() === 'active' || node.status?.toLowerCase() === 'online';
           const isSuspended = node.status?.toLowerCase() === 'suspended';
 
@@ -180,7 +199,7 @@ export default function HardwarePage() {
           );
         })}
 
-        {nodls.length === 0 && !loading && (
+        {myOwnedNodes.length === 0 && !loading && (
           <div className="p-16 text-center border-2 border-dashed border-white/10 rounded-2xl bg-black/30 space-y-4">
             <Server className="w-12 h-12 text-slate-600 mx-auto" />
             <div>

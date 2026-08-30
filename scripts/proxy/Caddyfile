@@ -2,6 +2,10 @@
     email admin@wnode.one
 }
 
+:3000 {
+    reverse_proxy localhost:3004
+}
+
 wnode.one, www.wnode.one {
     reverse_proxy localhost:3004
 }
@@ -10,7 +14,12 @@ cmd.wnode.one {
     reverse_proxy localhost:3001
 }
 
+http://nodlr.wnode.one {
+    reverse_proxy localhost:3002
+}
+
 nodlr.wnode.one {
+    tls internal
     reverse_proxy localhost:3002
 }
 

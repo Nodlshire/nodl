@@ -145,12 +145,14 @@ async function handleProxy(req: NextRequest, method: string, subPath: string) {
     }
 }
 
-export async function GET(req: NextRequest, { params }: { params: { path?: string[] } }) {
-    const pathSegments = params.path || [];
+export async function GET(req: NextRequest, { params }: { params: Promise<{ path?: string[] }> }) {
+    const resolvedParams = await params;
+    const pathSegments = resolvedParams.path || [];
     return handleProxy(req, 'GET', pathSegments.join('/'));
 }
 
-export async function POST(req: NextRequest, { params }: { params: { path?: string[] } }) {
-    const pathSegments = params.path || [];
+export async function POST(req: NextRequest, { params }: { params: Promise<{ path?: string[] }> }) {
+    const resolvedParams = await params;
+    const pathSegments = resolvedParams.path || [];
     return handleProxy(req, 'POST', pathSegments.join('/'));
 }

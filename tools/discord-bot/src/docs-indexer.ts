@@ -2,6 +2,19 @@ import fs from 'fs';
 import path from 'path';
 import chokidar from 'chokidar';
 
+export interface QAMetadata {
+    id: string;
+    question: string;
+    tags: string[];
+    category: string;
+    createdAt: string;
+    updatedAt: string;
+    canonical: boolean;
+    confidenceScore: number;
+    author?: string;
+    embeddingHash?: string;
+}
+
 export interface DocArticle {
     filePath: string;
     relativePath: string;
@@ -9,6 +22,8 @@ export interface DocArticle {
     section: string;
     content: string;
     url: string;
+    isQA?: boolean;
+    qaMetadata?: QAMetadata;
 }
 
 export class DocsIndexer {
@@ -25,7 +40,7 @@ export class DocsIndexer {
         console.log(`[DocsIndexer] Indexing documentation tree at: ${this.docsDir}`);
         this.articles.clear();
         this.scanDirectory(this.docsDir);
-        console.log(`[DocsIndexer] Indexed ${this.articles.size} canonical documentation pages.`);
+        console.log(`[DocsIndexer] Indexed ${this.articles.size} documentation & Q&A pages.`);
     }
 
     private scanDirectory(dir: string): void {
@@ -48,15 +63,33 @@ export class DocsIndexer {
             const rawContent = fs.readFileSync(filePath, 'utf-8');
             const relativePath = path.relative(this.docsDir, filePath);
             
-            // Extract Title from First Heading
-            const titleMatch = rawContent.match(/^#\s+(.+)$/m);
-            const title = titleMatch ? titleMatch[1].trim() : path.basename(filePath, '.md');
-            
-            // Determine Section Category
+            // Check if file is a Q&A entry in /docs/qa/
+            const isQA = relativePath.startsWith('qa') || relativePath.includes(`${path.sep}qa${path.sep}`);
+            let qaMetadata: QAMetadata | undefined = undefined;
+            let cleanContent = rawContent;
+            let title = path.basename(filePath, '.md');
+
+            // Parse YAML Frontmatter if present
+            if (rawContent.startsWith('---')) {
+                const parts = rawContent.split('---');
+                if (parts.length >= 3) {
+                    const frontmatterStr = parts[1].trim();
+                    cleanContent = parts.slice(2).join('---').trim();
+
+                    qaMetadata = this.parseFrontmatter(frontmatterStr);
+                    if (qaMetadata && qaMetadata.question) {
+                        title = qaMetadata.question;
+                    }
+                }
+            }
+
+            if (!title || title === path.basename(filePath, '.md')) {
+                const titleMatch = cleanContent.match(/^#\s+(.+)$/m);
+                if (titleMatch) title = titleMatch[1].trim();
+            }
+
             const pathParts = relativePath.split(path.sep);
             const section = pathParts.length > 1 ? pathParts[0] : 'root';
-            
-            // Format Web URL
             const webPath = relativePath.replace(/\.md$/, '').replace(/README$/, '');
             const url = `https://wnode.one/docs/${webPath}`;
 
@@ -65,12 +98,65 @@ export class DocsIndexer {
                 relativePath,
                 title,
                 section,
-                content: rawContent,
-                url
+                content: cleanContent,
+                url,
+                isQA,
+                qaMetadata
             });
         } catch (err) {
             console.error(`[DocsIndexer] Failed to index file ${filePath}:`, err);
         }
+    }
+
+    private parseFrontmatter(str: string): QAMetadata | undefined {
+        try {
+            const lines = str.split('\n');
+            const meta: any = {};
+            for (const line of lines) {
+                const colonIdx = line.indexOf(':');
+                if (colonIdx === -1) continue;
+                const key = line.slice(0, colonIdx).trim();
+                let val = line.slice(colonIdx + 1).trim();
+
+                // Unquote strings
+                if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+                    val = val.slice(1, -1);
+                }
+
+                // Parse booleans and numbers
+                if (val === 'true') val = true as any;
+                else if (val === 'false') val = false as any;
+                else if (!isNaN(Number(val)) && val !== '') val = Number(val) as any;
+                // Parse simple arrays e.g. ["tag1", "tag2"]
+                else if (val.startsWith('[') && val.endsWith(']')) {
+                    try {
+                        val = JSON.parse(val);
+                    } catch (e) {
+                        val = val.slice(1, -1).split(',').map((s: string) => s.trim().replace(/^['"]|['"]$/g, '')) as any;
+                    }
+                }
+
+                meta[key] = val;
+            }
+
+            if (meta.id || meta.question) {
+                return {
+                    id: meta.id || `qa-${Date.now()}`,
+                    question: meta.question || '',
+                    tags: Array.isArray(meta.tags) ? meta.tags : [],
+                    category: meta.category || 'general',
+                    createdAt: meta.created_at || new Date().toISOString(),
+                    updatedAt: meta.updated_at || new Date().toISOString(),
+                    canonical: meta.canonical === true,
+                    confidenceScore: typeof meta.confidence_score === 'number' ? meta.confidence_score : 1.0,
+                    author: meta.author,
+                    embeddingHash: meta.embedding_hash
+                };
+            }
+        } catch (e) {
+            console.error('[DocsIndexer] Error parsing frontmatter:', e);
+        }
+        return undefined;
     }
 
     public startWatcher(onNotify: (changedFile: string, changeType: 'add' | 'change' | 'unlink') => void): void {
@@ -85,7 +171,7 @@ export class DocsIndexer {
         watcher.on('change', (filePath) => this.handleFileSystemEvent(filePath, 'change'));
         watcher.on('unlink', (filePath) => this.handleFileSystemEvent(filePath, 'unlink'));
 
-        console.log('[DocsIndexer] Live filesystem watcher initialized for /docs/**');
+        console.log('[DocsIndexer] Live filesystem watcher initialized for /docs/** (Canonical + Q&A)');
     }
 
     private handleFileSystemEvent(filePath: string, eventType: 'add' | 'change' | 'unlink'): void {
@@ -117,18 +203,26 @@ export class DocsIndexer {
         for (const article of this.articles.values()) {
             const contentLower = article.content.toLowerCase();
             const titleLower = article.title.toLowerCase();
-            let score = 0;
+            let baseScore = 0;
 
             for (const term of terms) {
-                if (titleLower.includes(term)) score += 10;
+                if (titleLower.includes(term)) baseScore += 10;
                 
-                // Count occurrences in content
+                if (article.qaMetadata && article.qaMetadata.tags) {
+                    const hasTagMatch = article.qaMetadata.tags.some(t => t.toLowerCase().includes(term));
+                    if (hasTagMatch) baseScore += 15;
+                }
+
                 const occurrences = (contentLower.match(new RegExp(term, 'g')) || []).length;
-                score += occurrences;
+                baseScore += occurrences;
             }
 
-            if (score > 0) {
-                // Extract Snippet around first match
+            if (baseScore > 0) {
+                // Canonical Prioritization Multiplier (2.5x boost for verified SOT Q&A entries)
+                const isCanonical = article.qaMetadata?.canonical ?? false;
+                const confidenceFactor = article.qaMetadata?.confidenceScore ?? 1.0;
+                const finalScore = baseScore * (isCanonical ? 2.5 : 1.0) * confidenceFactor;
+
                 const firstTerm = terms[0];
                 const index = contentLower.indexOf(firstTerm);
                 let snippet = '';
@@ -140,7 +234,7 @@ export class DocsIndexer {
                     snippet = article.content.substring(0, 150).replace(/\n/g, ' ') + '...';
                 }
 
-                results.push({ article, score, snippet });
+                results.push({ article, score: finalScore, snippet });
             }
         }
 

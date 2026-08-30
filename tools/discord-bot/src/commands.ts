@@ -10,6 +10,7 @@ export interface CommandResponse {
     fields?: { name: string; value: string; inline?: boolean }[];
     url?: string;
     targetChannelName?: string;
+    footerText?: string;
 }
 
 export class CommandDispatcher {
@@ -26,42 +27,61 @@ export class CommandDispatcher {
     public handleCommand(command: string, args: string[], username: string = 'Operator'): CommandResponse {
         const cmd = command.toLowerCase();
         const subCmd = args.length > 0 ? args[0].toLowerCase() : '';
+        let res: CommandResponse;
 
         switch (cmd) {
             case '!challenge':
-                return this.engagementEngine.handleChallengeCommand(args, username);
+                res = this.engagementEngine.handleChallengeCommand(args, username);
+                break;
             case '!spotlight':
-                return this.engagementEngine.handleSpotlightCommand(args.join(' '));
+                res = this.engagementEngine.handleSpotlightCommand(args.join(' '));
+                break;
             case '!buildnight':
-                return this.engagementEngine.handleBuildNightCommand();
+                res = this.engagementEngine.handleBuildNightCommand();
+                break;
             case '!nodes':
-                return this.handleNodesCommand();
+                res = this.handleNodesCommand();
+                break;
             case '!setup':
-                return this.serverBuilder.handleSetup(subCmd === 'confirm');
+                res = this.serverBuilder.handleSetup(subCmd === 'confirm');
+                break;
             case '!deploy':
-                return this.serverBuilder.handleDeploy();
+                res = this.serverBuilder.handleDeploy();
+                break;
             case '!initialize':
-                return this.serverBuilder.handleInitialize();
+                res = this.serverBuilder.handleInitialize();
+                break;
             case '!builder':
-                if (subCmd === 'rebuild') return this.serverBuilder.handleBuilderRebuild();
-                if (subCmd === 'deploy') return this.serverBuilder.handleBuilderDeploy();
-                return this.handleHelpCommand();
+                if (subCmd === 'rebuild') res = this.serverBuilder.handleBuilderRebuild();
+                else if (subCmd === 'deploy') res = this.serverBuilder.handleBuilderDeploy();
+                else res = this.handleHelpCommand();
+                break;
             case '!docs':
-                return this.handleDocsCommand();
+                res = this.handleDocsCommand();
+                break;
             case '!search':
-                return this.handleSearchCommand(args.join(' '));
+                res = this.handleSearchCommand(args.join(' '));
+                break;
             case '!operator':
-                return this.handleOperatorCommand();
+                res = this.handleOperatorCommand();
+                break;
             case '!dewi':
-                return this.handleDewiCommand();
+                res = this.handleDewiCommand();
+                break;
             case '!mesh':
-                return this.handleMeshCommand();
+                res = this.handleMeshCommand();
+                break;
             case '!status':
-                return this.handleStatusCommand();
+                res = this.handleStatusCommand();
+                break;
             case '!help':
             default:
-                return this.handleHelpCommand();
+                res = this.handleHelpCommand();
+                break;
         }
+
+        res.footerText = `Executed by ${username} — ${new Date().toUTCString()}`;
+        return res;
     }
 
     private handleNodesCommand(): CommandResponse {

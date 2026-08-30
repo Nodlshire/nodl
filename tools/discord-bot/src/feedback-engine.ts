@@ -169,6 +169,123 @@ export class FeedbackEngine {
         return false;
     }
 
+    // 5. Channel Intro & Template Pin Management
+    public async ensureBetaFeedbackIntro(guild: any): Promise<void> {
+        let channel = guild.channels.cache.find((c: any) => c.name === 'beta-feedback' || c.id === '1540912048873934940');
+        if (!channel) {
+            const channels = await guild.channels.fetch().catch(() => new Map());
+            channel = channels.find((c: any) => c?.name === 'beta-feedback' || c?.id === '1540912048873934940');
+        }
+        if (!channel) return;
+
+        const introText =
+            '🧪 **Welcome to #beta‑feedback!**\n' +
+            'This channel is dedicated to feedback and discussion for Wnode Public Beta releases.\n' +
+            'Your insights help refine stability, performance, and usability before production rollout.\n\n' +
+            '**How to Contribute:**\n' +
+            '• Test the latest Beta release candidate.\n' +
+            '• Report bugs, UI issues, or unexpected behavior.\n' +
+            '• Suggest improvements or feature adjustments.\n' +
+            '• Share performance metrics or system logs if relevant.\n\n' +
+            'All feedback here is reviewed by the Core Team and logged for analysis.';
+
+        const templateText =
+            '📋 **Wnode Beta Feedback Template**\n\n' +
+            '**Component / Feature:** [e.g., Dashboard UI, Node Telemetry, CLI]\n' +
+            '**Release Candidate / Version:** [e.g., v1.0.0-rc.2]\n' +
+            '**OS / Environment:** [e.g., Ubuntu 22.04 LTS, Docker, macOS]\n' +
+            '**Feedback Summary:** [Clear, concise description]\n' +
+            '**Reproduction Steps / Metrics:** [Steps to reproduce or relevant metrics/logs]';
+
+        try {
+            const pinnedMessages = await channel.messages.fetchPinned().catch(() => new Map());
+            let existingIntro = null;
+            let existingTemplate = null;
+
+            for (const [id, msg] of pinnedMessages) {
+                if (msg.author.id === guild.client.user.id) {
+                    if (msg.content.includes('Welcome to #beta‑feedback')) existingIntro = msg;
+                    if (msg.content.includes('Wnode Beta Feedback Template')) existingTemplate = msg;
+                }
+            }
+
+            if (!existingIntro) {
+                const msg = await channel.send({ content: introText });
+                await msg.pin().catch(() => {});
+            }
+
+            if (!existingTemplate) {
+                const msg = await channel.send({ content: templateText });
+                await msg.pin().catch(() => {});
+            }
+
+            console.log('[FeedbackEngine] ✅ Ensured #beta-feedback intro and template pins.');
+        } catch (err) {
+            console.error('[FeedbackEngine] Failed to pin #beta-feedback headers:', err);
+        }
+    }
+
+    public async ensureBetaBugsIntro(guild: any): Promise<void> {
+        let channel = guild.channels.cache.find((c: any) => c.name === 'beta-bugs' || c.id === '1540912050337742939');
+        if (!channel) {
+            const channels = await guild.channels.fetch().catch(() => new Map());
+            channel = channels.find((c: any) => c?.name === 'beta-bugs' || c?.id === '1540912050337742939');
+        }
+        if (!channel) return;
+
+        const introText =
+            '🐞 **Welcome to #beta‑bugs!**\n' +
+            'This channel is for structured bug reporting and telemetry submissions during Wnode Public Beta testing.\n' +
+            'Please use the format below to ensure your report is clear and actionable.\n\n' +
+            '**How to Report a Bug:**\n' +
+            '• Confirm you’re using the latest Beta release candidate.\n' +
+            '• Describe the issue precisely and include reproduction steps.\n' +
+            '• Attach logs or screenshots if available.\n' +
+            '• Tag `@Core Team` only for critical issues.\n\n' +
+            'All bug reports are logged and reviewed by QA and telemetry engineers.';
+
+        const templateText =
+            '📋 **Wnode Beta Bug Report Template**\n\n' +
+            '**Issue Title:** [Short descriptive title]\n' +
+            '**Release Candidate / Version:** [e.g., v1.0.0-rc.2]\n' +
+            '**Environment / OS:** [e.g., Ubuntu 22.04 LTS, Docker, Windows WSL2]\n' +
+            '**Severity:** Critical / Major / Minor\n' +
+            '**Reproduction Steps:**\n' +
+            '1. [Step 1]\n' +
+            '2. [Step 2]\n' +
+            '3. [Step 3]\n' +
+            '**Expected Behavior:** [What should happen]\n' +
+            '**Actual Behavior:** [What actually happened]\n' +
+            '**Logs / Error Snippets:** [Relevant log output]';
+
+        try {
+            const pinnedMessages = await channel.messages.fetchPinned().catch(() => new Map());
+            let existingIntro = null;
+            let existingTemplate = null;
+
+            for (const [id, msg] of pinnedMessages) {
+                if (msg.author.id === guild.client.user.id) {
+                    if (msg.content.includes('Welcome to #beta‑bugs')) existingIntro = msg;
+                    if (msg.content.includes('Wnode Beta Bug Report Template')) existingTemplate = msg;
+                }
+            }
+
+            if (!existingIntro) {
+                const msg = await channel.send({ content: introText });
+                await msg.pin().catch(() => {});
+            }
+
+            if (!existingTemplate) {
+                const msg = await channel.send({ content: templateText });
+                await msg.pin().catch(() => {});
+            }
+
+            console.log('[FeedbackEngine] ✅ Ensured #beta-bugs intro and template pins.');
+        } catch (err) {
+            console.error('[FeedbackEngine] Failed to pin #beta-bugs headers:', err);
+        }
+    }
+
     public getRegistry(): FeedbackRecord[] {
         return Array.from(this.feedbackMap.values());
     }

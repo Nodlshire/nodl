@@ -218,3 +218,12 @@ func TestLoginFlow(t *testing.T) {
 	assert.Equal(t, "stephen@wnode.one", meResp.Email)
 }
 
+func TestUnauthenticatedGlobalScope(t *testing.T) {
+	s, _ := setupTestServer()
+	s.app.Get("/api/v1/nodes", s.handleListNodes)
+
+	req := httptest.NewRequest("GET", "/api/v1/nodes?scope=all", nil)
+	resp, _ := s.app.Test(req)
+	assert.Equal(t, http.StatusUnauthorized, resp.StatusCode)
+}
+

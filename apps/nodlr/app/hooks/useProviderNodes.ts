@@ -1,10 +1,10 @@
 import useSWR from 'swr';
 import { featureFlags } from '@/lib/featureFlags';
 
-export function useProviderNodes() {
+export function useProviderNodes(scope: string = 'user') {
     const fetcher = async (url: string) => {
         const token = typeof window !== 'undefined' ? (localStorage.getItem('nodl_jwt') || localStorage.getItem('nodlr_session_id')) : null;
-        const userId = typeof window !== 'undefined' ? (localStorage.getItem('user_id') || localStorage.getItem('nodl_user_id')) : null;
+        const userId = typeof window !== 'undefined' ? (localStorage.getItem('nodl_user_id') || localStorage.getItem('nodlr_user_id') || localStorage.getItem('user_id')) : null;
         const headers: Record<string, string> = {};
         if (token && token !== 'null' && token !== 'undefined') {
             headers['Authorization'] = `Bearer ${token}`;
@@ -27,8 +27,10 @@ export function useProviderNodes() {
         return res.json();
     };
 
+    const endpoint = scope ? `/api/nodes?scope=${encodeURIComponent(scope)}` : '/api/nodes';
+
     const { data, error, isLoading, mutate } = useSWR(
-        '/api/nodes',
+        endpoint,
         fetcher,
         {
             refreshInterval: 10000, // Refresh every 10s

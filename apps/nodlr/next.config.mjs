@@ -52,7 +52,7 @@ const nextConfig = {
                 destination: 'http://127.0.0.1:8080/api/v1/:path*',
             },
             {
-                source: '/api/:path((?!download|stale-chunk).*)',
+                source: '/api/:path((?!nodes|account|auth|avatar|discord|signup|tiles|download|stale-chunk).*)',
                 destination: 'http://127.0.0.1:8080/api/v1/:path*',
             },
         ];

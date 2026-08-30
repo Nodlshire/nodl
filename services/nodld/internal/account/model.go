@@ -115,6 +115,9 @@ type Nodlr struct {
 	FounderIndex          int             `json:"founderIndex,omitempty"`
 	PayoutFrequency       PayoutFrequency `json:"payoutFrequency"`
 	ParentID              string          `json:"parentId,omitempty"`
+	NodeCount             int             `json:"nodeCount"`
+	L1Count               int             `json:"l1Count"`
+	L2Count               int             `json:"l2Count"`
 	Status                OpStatus        `json:"status"`
 	IsProtected           bool            `json:"isProtected"`
 	IsSuperAdmin          bool            `json:"isSuperAdmin"`
@@ -182,6 +185,8 @@ type WnodeNode struct {
 	Longitude          float64            `json:"lon"`
 	IPAddress          string             `json:"ipAddress"`
 	ID                 string             `json:"id"`
+	Name               string             `json:"name,omitempty"`
+	CanonicalID        string             `json:"canonical_id,omitempty"`
 	UserID             string             `json:"userId"`
 	OperatorWUID       string             `json:"operator_wuid"`
 	CRMLink            string             `json:"crm_link"`

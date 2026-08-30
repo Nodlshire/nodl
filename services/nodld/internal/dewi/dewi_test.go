@@ -3,7 +3,6 @@ package dewi
 import (
 	"crypto/ed25519"
 	"testing"
-	"time"
 )
 
 func TestStateMachine11States(t *testing.T) {

@@ -1,0 +1,563 @@
+diff --git a/apps/nodlr/app/api/nodes/route.ts b/apps/nodlr/app/api/nodes/route.ts
+index 9ba8bd6c1..731c2dae4 100644
+--- a/apps/nodlr/app/api/nodes/route.ts
++++ b/apps/nodlr/app/api/nodes/route.ts
+@@ -1,39 +1,61 @@
+ import { NextResponse } from 'next/server';
+ import { featureFlags } from '@/lib/featureFlags';
++import { parseNodeType, getNodeOperatorLabel } from '@shared/types/node-types';
++
++export const dynamic = 'force-dynamic';
++export const revalidate = 0;
+ 
+ export async function GET(request: Request) {
+     const { searchParams } = new URL(request.url);
++    const scope = searchParams.get('scope') || 'user'; // 'user' (personal fleet) | 'global' (global mesh)
+     const authHeader = request.headers.get('Authorization') || request.headers.get('authorization');
+-    const userId = request.headers.get('x-user-id');
++    const headerUserId = request.headers.get('x-user-id');
+     const cookieHeader = request.headers.get('cookie') || '';
+ 
++    const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8080";
++    const headers: Record<string, string> = { 'Connection': 'close' };
++    if (authHeader) headers['Authorization'] = authHeader;
++    if (headerUserId) headers['x-user-id'] = headerUserId;
++    if (cookieHeader) headers['Cookie'] = cookieHeader;
++
++    let resolvedWuid = headerUserId || searchParams.get('wuid') || '';
++
++    // If scope=user and wuid is not passed in header/query, resolve authoritative WUID from backend auth
++    if (scope === 'user' && !resolvedWuid) {
++        try {
++            const accRes = await fetch(`${apiUrl}/api/v1/account/me`, { headers, cache: 'no-store' });
++            if (accRes.ok) {
++                const accData = await accRes.json();
++                resolvedWuid = accData.id || accData.wuid || accData.nodlrId || accData.user_id || '';
++            }
++        } catch (e) {
++            console.warn('Failed to resolve account.me for wuid in /api/nodes');
++        }
++    }
++
+     if (featureFlags.NODLR_DEBUG_REGISTRATION) {
+         console.log('[DEBUG-REG] /api/nodes request:', {
+             url: request.url,
++            scope,
++            resolvedWuid,
+             authPresent: !!authHeader,
+-            cookiePresent: !!cookieHeader,
+-            userId
++            cookiePresent: !!cookieHeader
+         });
+     }
+ 
+-    const effectiveUserId = userId || '100001-0426-01-AA';
++    // RULE 1 (Nodlr Personal Fleet): If scope=user and no authenticated user WUID can be resolved, return [] immediately.
++    if (scope === 'user' && !resolvedWuid) {
++        return NextResponse.json([]);
++    }
+ 
+     try {
+-        // Fetch all nodes from the Coordinator
+-        const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8080";
+-        
+-        const headers: Record<string, string> = { 'Connection': 'close' };
+-        if (authHeader) headers['Authorization'] = authHeader;
+-        headers['x-user-id'] = effectiveUserId;
+-        if (cookieHeader) headers['Cookie'] = cookieHeader;
+-
+         let attempts = 0;
+         let res: Response | null = null;
+ 
+         while (attempts < 3) {
+             attempts++;
+             try {
+-                res = await fetch(`${apiUrl}/api/v1/nodes`, {
++                res = await fetch(`${apiUrl}/api/v1/nodes?scope=${encodeURIComponent(scope)}`, {
+                     headers,
+                     cache: 'no-store'
+                 });
+@@ -51,29 +73,40 @@ export async function GET(request: Request) {
+         const nodes = await res.json();
+         let providerNodes = Array.isArray(nodes) ? nodes : [];
+ 
+-        // 1. Filter: Include ONLY nodes belonging to this provider (if userId is known)
+-        if (effectiveUserId) {
+-            providerNodes = providerNodes.filter((n: any) => 
+-                n.userID === effectiveUserId || 
+-                n.user_id === effectiveUserId || 
+-                n.userId === effectiveUserId || 
+-                n.operator_wuid === effectiveUserId ||
+-                effectiveUserId === '100001-0426-01-AA'
+-            );
++        // STRICT MANDATORY FILTER: For scope=user, return ONLY nodes strictly owned by resolvedWuid
++        if (scope === 'user') {
++            providerNodes = providerNodes.filter((n: any) => {
++                const nodeOwner = n.userID || n.user_id || n.userId || n.operator_wuid || n.owner_id || n.ownerId;
++                return Boolean(nodeOwner && nodeOwner === resolvedWuid);
++            });
+         }
+ 
+-        // 2. Normalize: Map to FleetMap shape { id, name, lat, lon, status }
++        // Normalize & Annotate canonical node operator types (Native, Headless, Space)
+         providerNodes = providerNodes.map((n: any) => {
+             const cores = n.cpu_cores || n.CPUCores || n.cpuCores;
+             const memory = n.memory_gb || n.MemoryGB || n.memoryGb;
+             const gpu = n.gpu_model || n.GPUModel || n.gpuModel || n.metadata?.gpu;
+             const osName = n.os || n.OS || n.metadata?.os || n.metrics?.os;
+             const archName = n.arch || n.Arch || n.metadata?.arch || n.metrics?.arch;
+-            const isOnline = n.status === 'active' || (n.lastSeen && Date.now() - new Date(n.lastSeen).getTime() < 300000);
++            const isOnline = n.status === 'active' || n.status === 'online' || (n.lastSeen && Date.now() - new Date(n.lastSeen).getTime() < 300000);
++
++            const rawType = n.node_type || n.type || n.operator_type || n.metadata?.node_type || 'native';
++            const nodeType = parseNodeType(rawType);
++            const operatorLabel = getNodeOperatorLabel(nodeType);
++            const nodeOwner = n.userID || n.user_id || n.userId || n.operator_wuid || n.owner_id || n.ownerId || '';
++            const rawId = n.node_id || n.id || '';
++            const rawName = n.node_name || n.name;
++            const isLongHash = rawId.length > 20 && /^[a-f0-9]+$/i.test(rawId);
++            const shortId = isLongHash ? `HN-${rawId.slice(0, 8)}` : rawId;
++            const displayName = rawName || shortId;
+ 
+             return {
+-                id: n.node_id || n.id,
+-                name: n.node_name || n.name || n.node_id || n.id,
++                id: rawId,
++                name: displayName,
++                node_type: nodeType, // 'native' | 'headless' | 'space'
++                operator_type: operatorLabel, // 'Native Node Operator' | 'Headless Node Operator' | 'Space Node Operator'
++                owner_id: nodeOwner,
++                ownerId: nodeOwner,
+                 lat: n.lat ?? n.latitude ?? (n.location?.lat) ?? (n.Latitude) ?? 47.4979,
+                 lon: n.lon ?? n.longitude ?? (n.location?.lon) ?? (n.Longitude) ?? 19.0402,
+                 status: isOnline ? 'Active' : 'Offline',
+@@ -84,9 +117,10 @@ export async function GET(request: Request) {
+                 last_seen: n.last_seen || n.lastSeen || n.last_heartbeat || n.last_seen_at || 'N/A',
+                 os: osName || 'N/A',
+                 arch: archName || 'N/A',
+-                tier: n.tier || n.Tier || 1,
+-                reputation: n.reputation ?? n.GlobalScore ?? 0.0,
+-                identity_trust: n.identity_trust ?? 1.0
++                tier: n.tier || n.Tier || 'Standard',
++                reputation: n.reputation ?? n.GlobalScore ?? 1.0,
++                identity_trust: n.identity_trust ?? 1.0,
++                spatial_hex: n.spatial_hex || n.h3_index || '88194ad2a3fffff'
+             };
+         });
+ 
+diff --git a/apps/nodlr/app/components/FleetMap.tsx b/apps/nodlr/app/components/FleetMap.tsx
+index cb8a82ecf..87065e8b5 100644
+--- a/apps/nodlr/app/components/FleetMap.tsx
++++ b/apps/nodlr/app/components/FleetMap.tsx
+@@ -31,47 +31,8 @@ export default function FleetMap({
+     const [internalNodes, setInternalNodes] = useState<any[]>([]);
+     const [internalLoading, setInternalLoading] = useState(false);
+ 
+-    // Data handling logic
+-    const fetchProviderNodes = async () => {
+-        if (mode !== "provider" || !accountContext?.id) return;
+-        
+-        try {
+-            setInternalLoading(true);
+-            const res = await fetch('/api/v1/nodes', {
+-                headers: { 
+-                    'Authorization': `Bearer ${accountContext.jwt}`,
+-                    'x-user-id': accountContext.id 
+-                }
+-            });
+-            
+-            if (res.ok) {
+-                const data = await res.json();
+-                const normalized = data.map((n: any) => ({
+-                    ...n,
+-                    lat: (n.lat ?? n.latitude ?? n.location?.lat),
+-                    lon: (n.lon ?? n.longitude ?? n.location?.lon),
+-                    displayName: (n.name ?? n.displayName ?? n.id)
+-                }));
+-
+-                setInternalNodes(normalized);
+-            }
+-        } catch (err) {
+-            console.error("FleetMap sync error:", err);
+-        } finally {
+-            setInternalLoading(false);
+-        }
+-    };
+-
+-    useEffect(() => {
+-        if (mode === "provider") {
+-            fetchProviderNodes();
+-            const interval = setInterval(fetchProviderNodes, 15000);
+-            return () => clearInterval(interval);
+-        }
+-    }, [mode, accountContext?.id]);
+-
+-    const activeNodes = mode === "provider" ? internalNodes : (propNodes || []);
+-    const loading = mode === "provider" ? internalLoading : propLoading;
++    const activeNodes = propNodes || [];
++    const loading = propLoading;
+ 
+     const nodeList = Array.isArray(activeNodes) ? activeNodes : (activeNodes && typeof activeNodes === 'object' ? Object.values(activeNodes) : []);
+     const mappedNodes = nodeList.map((n: any, idx: number) => {
+diff --git a/apps/nodlr/app/components/MachineList.tsx b/apps/nodlr/app/components/MachineList.tsx
+index 0050a0bec..917f345fd 100644
+--- a/apps/nodlr/app/components/MachineList.tsx
++++ b/apps/nodlr/app/components/MachineList.tsx
+@@ -67,7 +67,7 @@ export default function MachineList({ nodes }: MachineListProps) {
+                 {node.gpu_model && <span className="text-[#22D3EE]">{node.gpu_model}</span>}
+               </div>
+               <div className="flex gap-4 text-[10px] text-slate-500 uppercase tracking-wider mt-1.5 border-t border-white/5 pt-1.5">
+-                <span className="text-[#a855f7] font-semibold">Reputation: {node.reputation ? `${Math.round(node.reputation * 100)}%` : '98%'}</span>
++                <span className="text-[#a855f7] font-semibold">Reputation: {node.reputation ? `${Math.round(node.reputation * 100)}%` : '100%'}</span>
+                 <span className="text-emerald-400 font-semibold">Identity: {node.identity_trust ? `${Math.round(node.identity_trust * 100)}% Verified` : 'Verified (100%)'}</span>
+               </div>
+             </div>
+diff --git a/apps/nodlr/app/dashboard/hardware/page.tsx b/apps/nodlr/app/dashboard/hardware/page.tsx
+index ce4a5970e..0173f877f 100644
+--- a/apps/nodlr/app/dashboard/hardware/page.tsx
++++ b/apps/nodlr/app/dashboard/hardware/page.tsx
+@@ -1,19 +1,30 @@
+ 'use client';
+ 
+ import React, { useState } from 'react';
+-import { HardDrive, Plus, Trash2, Power, Terminal, X, Check, Copy, Download, Loader2, ShieldCheck, Monitor, Activity, Cpu, Database, Server, RefreshCw, Key, ChevronRight } from 'lucide-react';
++import { 
++  HardDrive, Trash2, Power, X, RefreshCw, Key, 
++  ChevronRight, Server, Cpu, ShieldCheck 
++} from 'lucide-react';
+ import { motion, AnimatePresence } from 'framer-motion';
+ import { useProviderNodes } from '../../hooks/useProviderNodes';
++import { useAccount } from '../../hooks/useAccount';
+ 
+ interface NodlDevice {
+   id: string;
+-  name: string;
+-  status: string;
+-  cpu_specs: string;
+-  gpu_specs: string;
+-  ram_total: string;
+-  uptime: string;
+-  last_seen: string;
++  name?: string;
++  node_type?: 'native' | 'headless' | 'space';
++  operator_type?: string;
++  owner_id?: string;
++  ownerId?: string;
++  userId?: string;
++  UserID?: string;
++  OperatorWUID?: string;
++  status?: string;
++  cpu_specs?: string;
++  gpu_specs?: string;
++  ram_total?: string;
++  uptime?: string;
++  last_seen?: string;
+   os?: string;
+   arch?: string;
+   reputation?: number;
+@@ -22,11 +33,32 @@ interface NodlDevice {
+   tier?: string;
+ }
+ 
++const SYSTEM_IDS = ['GLOBAL_MESH', 'UNASSIGNED', 'SYSTEM', 'AUTHORITATIVE'];
++
+ export default function HardwarePage() {
+-  const { nodes: nodls, loading, refresh, mutate } = useProviderNodes();
++  const { account, loading: accountLoading } = useAccount();
++  const { nodes: nodls, loading: nodesLoading, refresh, mutate } = useProviderNodes('user');
+   const [selectedNode, setSelectedNode] = useState<NodlDevice | null>(null);
+   const [copiedToken, setCopiedToken] = useState(false);
+ 
++  const loading = accountLoading || nodesLoading;
++  const currentUserId = account?.id || account?.wuid || account?.nodlrId || '';
++  const isValidUser = Boolean(currentUserId && !SYSTEM_IDS.includes(currentUserId.toUpperCase()));
++
++  // MANDATORY FLEET ISOLATION FILTER: Only nodes strictly owned by the logged-in user
++  const myOwnedNodes = (nodls || []).filter((node: NodlDevice) => {
++    const nodeOwner = node.ownerWUID || node.ownerId || node.owner_id || node.userId || node.UserID || node.OperatorWUID;
++    return Boolean(isValidUser && nodeOwner && nodeOwner === currentUserId);
++  });
++
++  const formatShortId = (id: string, name?: string) => {
++    if (name && name !== id) return name;
++    if (id && id.length > 20 && /^[a-f0-9]+$/i.test(id)) {
++      return `HN-${id.slice(0, 8)}`;
++    }
++    return id || 'Unknown Node';
++  };
++
+   const toggleStatus = (id: string, currentStatus: string, e?: React.MouseEvent) => {
+     e?.stopPropagation();
+     console.log('Toggle node status for:', id, currentStatus);
+@@ -36,23 +68,19 @@ export default function HardwarePage() {
+   const removeNode = async (id: string, e?: React.MouseEvent) => {
+     e?.stopPropagation();
+     
+-    // 1. Immediately close slide-out drawer if open
+     if (selectedNode?.id === id) {
+       setSelectedNode(null);
+     }
+ 
+-    // 2. Optimistically update local SWR cache so node disappears instantly from UI
+     if (mutate && Array.isArray(nodls)) {
+       mutate(nodls.filter((n: NodlDevice) => n.id !== id), false);
+     }
+ 
+-    // 3. Send API delete requests to Go backend
+     try {
+       const token = typeof window !== 'undefined' ? (localStorage.getItem('nodl_jwt') || localStorage.getItem('nodlr_session_id')) : null;
+       const headers: Record<string, string> = {};
+       if (token) headers['Authorization'] = `Bearer ${token}`;
+       
+-      // Try DELETE first, then fallback POST
+       const res = await fetch(`/api/v1/nodes/${id}`, { method: 'DELETE', headers });
+       if (!res.ok) {
+         await fetch(`/api/v1/nodes/${id}/delete`, { method: 'POST', headers });
+@@ -61,7 +89,6 @@ export default function HardwarePage() {
+       console.error('Failed to delete node:', err);
+     }
+ 
+-    // 4. Re-sync with backend
+     refresh();
+   };
+ 
+@@ -92,9 +119,12 @@ export default function HardwarePage() {
+ 
+       {/* Device List */}
+       <div className="grid grid-cols-1 gap-4">
+-        {nodls.map((node: NodlDevice) => {
++        {myOwnedNodes.map((node: NodlDevice) => {
+           const isActive = node.status?.toLowerCase() === 'active' || node.status?.toLowerCase() === 'online';
+           const isSuspended = node.status?.toLowerCase() === 'suspended';
++          const nodeOwner = node.ownerId || node.owner_id || node.userId || node.UserID || node.OperatorWUID;
++          const isOwnedByUser = Boolean(isValidUser && nodeOwner && nodeOwner === currentUserId);
++          const displayName = formatShortId(node.id, node.name);
+ 
+           return (
+             <motion.div 
+@@ -104,7 +134,7 @@ export default function HardwarePage() {
+             >
+               <div className="flex items-center gap-6">
+                 {/* Health Pulse */}
+-                <div className="relative" title={`Node Health: ${node.status}`}>
++                <div className="relative" title={`Node Health: ${node.status || 'Offline'}`}>
+                   <div className={`w-3.5 h-3.5 rounded-full ${isActive ? 'bg-emerald-400' : isSuspended ? 'bg-amber-400' : 'bg-red-500'}`} />
+                   {isActive && (
+                     <div className="absolute inset-0 bg-emerald-400 rounded-full animate-ping opacity-30" />
+@@ -114,9 +144,12 @@ export default function HardwarePage() {
+                 <div className="flex-1">
+                   <div className="flex items-center gap-3">
+                     <h3 className="text-white font-bold text-lg tracking-tight group-hover:text-cyan-300 transition-colors">
+-                      {node.name || node.id}
++                      {displayName}
+                     </h3>
+                     <span className="text-[10px] font-mono uppercase px-2 py-0.5 border border-cyan-500/30 text-cyan-400 rounded-full">
++                      {node.operator_type || 'Native Node Operator'}
++                    </span>
++                    <span className="text-[10px] font-mono uppercase px-2 py-0.5 border border-white/10 text-slate-400 rounded-full">
+                       {node.tier || 'Standard'}
+                     </span>
+                   </div>
+@@ -136,7 +169,7 @@ export default function HardwarePage() {
+ 
+                     <div className="flex flex-col border-l border-white/10 pl-6" title="Node behavioral reputation score">
+                       <span className="text-[10px] text-slate-500 uppercase tracking-widest mb-0.5">Reputation</span>
+-                      <span className="text-xs text-[#a855f7] font-semibold">{node.reputation ? `${Math.round(node.reputation * 100)}%` : '98%'}</span>
++                      <span className="text-xs text-[#a855f7] font-semibold">{node.reputation ? `${Math.round(node.reputation * 100)}%` : '100%'}</span>
+                     </div>
+ 
+                     <div className="flex flex-col border-l border-white/10 pl-6" title="Verified cryptographic device identity check">
+@@ -153,26 +186,31 @@ export default function HardwarePage() {
+               </div>
+ 
+               <div className="flex items-center gap-3 pt-4 md:pt-0 border-t md:border-t-0 md:border-l border-white/10 md:pl-6">
+-                <button
+-                  onClick={(e) => toggleStatus(node.id, node.status, e)}
+-                  title={isSuspended ? 'Re-enable this node' : 'Pause this node'}
+-                  className={`flex items-center gap-2 px-3.5 py-1.5 border text-xs font-bold transition-all rounded-lg ${
+-                    isSuspended 
+-                      ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30 hover:bg-emerald-500/20' 
+-                      : 'bg-amber-500/10 text-amber-400 border-amber-500/30 hover:bg-amber-500/20'
+-                  }`}
+-                >
+-                  <Power className="w-3.5 h-3.5" />
+-                  <span>{isSuspended ? 'Enable' : 'Pause'}</span>
+-                </button>
+-
+-                <button
+-                  onClick={(e) => removeNode(node.id, e)}
+-                  title="Remove this node"
+-                  className="p-2 border border-white/10 text-slate-400 hover:text-red-400 hover:border-red-500/40 transition-all rounded-lg"
+-                >
+-                  <Trash2 className="w-4 h-4" />
+-                </button>
++                {/* Actions strictly rendered ONLY for user-owned nodes */}
++                {isOwnedByUser && (
++                  <>
++                    <button
++                      onClick={(e) => toggleStatus(node.id, node.status || 'active', e)}
++                      title={isSuspended ? 'Re-enable this node' : 'Pause this node'}
++                      className={`flex items-center gap-2 px-3.5 py-1.5 border text-xs font-bold transition-all rounded-lg ${
++                        isSuspended 
++                          ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30 hover:bg-emerald-500/20' 
++                          : 'bg-amber-500/10 text-amber-400 border-amber-500/30 hover:bg-amber-500/20'
++                      }`}
++                    >
++                      <Power className="w-3.5 h-3.5" />
++                      <span>{isSuspended ? 'Enable' : 'Pause'}</span>
++                    </button>
++
++                    <button
++                      onClick={(e) => removeNode(node.id, e)}
++                      title="Remove this node"
++                      className="p-2 border border-white/10 text-slate-400 hover:text-red-400 hover:border-red-500/40 transition-all rounded-lg"
++                    >
++                      <Trash2 className="w-4 h-4" />
++                    </button>
++                  </>
++                )}
+ 
+                 <ChevronRight className="w-5 h-5 text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all ml-2" />
+               </div>
+@@ -180,13 +218,13 @@ export default function HardwarePage() {
+           );
+         })}
+ 
+-        {nodls.length === 0 && !loading && (
++        {myOwnedNodes.length === 0 && !loading && (
+           <div className="p-16 text-center border-2 border-dashed border-white/10 rounded-2xl bg-black/30 space-y-4">
+             <Server className="w-12 h-12 text-slate-600 mx-auto" />
+             <div>
+               <h3 className="text-lg font-bold text-white">No active machines connected</h3>
+               <p className="text-xs text-slate-400 max-w-md mx-auto mt-1">
+-                Click <span className="text-cyan-400 font-bold">"Add Node"</span> in the top header to pair your first physical Linux, Windows, or macOS machine.
++                You don’t have any machines yet. Install the Node Operator to register your first machine.
+               </p>
+             </div>
+           </div>
+@@ -216,8 +254,8 @@ export default function HardwarePage() {
+                       <Server className="w-6 h-6" />
+                     </div>
+                     <div>
+-                      <h2 className="text-xl font-black text-white">{selectedNode.name || selectedNode.id}</h2>
+-                      <span className="text-xs font-mono text-cyan-400">ID: {selectedNode.id}</span>
++                      <h2 className="text-xl font-black text-white">{formatShortId(selectedNode.id, selectedNode.name)}</h2>
++                      <span className="text-xs font-mono text-cyan-400">ID: {formatShortId(selectedNode.id)}</span>
+                     </div>
+                   </div>
+                   <button 
+@@ -244,7 +282,7 @@ export default function HardwarePage() {
+ 
+                   <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/10 space-y-1">
+                     <span className="text-[10px] text-slate-500 uppercase font-bold tracking-widest block">Reputation Score</span>
+-                    <span className="text-sm font-bold text-purple-400 block">{selectedNode.reputation ? `${Math.round(selectedNode.reputation * 100)}%` : '98%'}</span>
++                    <span className="text-sm font-bold text-purple-400 block">{selectedNode.reputation ? `${Math.round(selectedNode.reputation * 100)}%` : '100%'}</span>
+                   </div>
+ 
+                   <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/10 space-y-1">
+@@ -315,21 +353,29 @@ export default function HardwarePage() {
+ 
+               {/* Actions Footer */}
+               <div className="pt-6 border-t border-white/10 flex items-center justify-between gap-3">
+-                <button
+-                  onClick={(e) => toggleStatus(selectedNode.id, selectedNode.status, e)}
+-                  className="flex-1 py-2.5 bg-white/10 hover:bg-white/20 text-white font-bold text-xs rounded-xl transition-colors flex items-center justify-center gap-2"
+-                >
+-                  <Power className="w-4 h-4 text-amber-400" />
+-                  <span>{selectedNode.status?.toLowerCase() === 'suspended' ? 'Enable Node' : 'Pause Node'}</span>
+-                </button>
+-
+-                <button
+-                  onClick={(e) => removeNode(selectedNode.id, e)}
+-                  className="px-4 py-2.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 font-bold text-xs rounded-xl transition-colors flex items-center justify-center gap-2"
+-                >
+-                  <Trash2 className="w-4 h-4" />
+-                  <span>Purge Node</span>
+-                </button>
++                {(selectedNode.ownerId || selectedNode.owner_id || selectedNode.userId || selectedNode.UserID || selectedNode.OperatorWUID) === currentUserId ? (
++                  <>
++                    <button
++                      onClick={(e) => toggleStatus(selectedNode.id, selectedNode.status || 'active', e)}
++                      className="flex-1 py-2.5 bg-white/10 hover:bg-white/20 text-white font-bold text-xs rounded-xl transition-colors flex items-center justify-center gap-2"
++                    >
++                      <Power className="w-4 h-4 text-amber-400" />
++                      <span>{selectedNode.status?.toLowerCase() === 'suspended' ? 'Enable Node' : 'Pause Node'}</span>
++                    </button>
++
++                    <button
++                      onClick={(e) => removeNode(selectedNode.id, e)}
++                      className="px-4 py-2.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 font-bold text-xs rounded-xl transition-colors flex items-center justify-center gap-2"
++                    >
++                      <Trash2 className="w-4 h-4" />
++                      <span>Purge Node</span>
++                    </button>
++                  </>
++                ) : (
++                  <div className="w-full text-center py-2.5 px-4 bg-white/5 border border-white/10 rounded-xl text-slate-400 text-xs font-mono">
++                    ● Read-Only Global Node View (Actions restricted to owner)
++                  </div>
++                )}
+               </div>
+             </motion.div>
+           </div>
+diff --git a/apps/nodlr/app/dashboard/page.tsx b/apps/nodlr/app/dashboard/page.tsx
+index ce16d5603..0c2e8b7fb 100644
+--- a/apps/nodlr/app/dashboard/page.tsx
++++ b/apps/nodlr/app/dashboard/page.tsx
+@@ -41,7 +41,7 @@ export default function DashboardPage() {
+     const [hasSkipped, setHasSkipped] = useState(false);
+     const [mounted, setMounted] = useState(false);
+     
+-    const { nodes, loading: nodesLoading } = useProviderNodes();
++    const { nodes, loading: nodesLoading } = useProviderNodes('global');
+     const isPayoutActive = accountData?.payoutStatus === 'active';
+ 
+     const activeNodes = nodes?.filter((n: any) => n.status?.toLowerCase() === 'active') || [];
+diff --git a/apps/nodlr/app/hooks/useAccount.ts b/apps/nodlr/app/hooks/useAccount.ts
+index 06a6ddbaf..cad11aae0 100644
+--- a/apps/nodlr/app/hooks/useAccount.ts
++++ b/apps/nodlr/app/hooks/useAccount.ts
+@@ -16,12 +16,23 @@ export interface CRMRecord {
+     phone?: string;
+ }
+ 
++const SYSTEM_IDS = ['GLOBAL_MESH', 'UNASSIGNED', 'SYSTEM', 'AUTHORITATIVE'];
++
+ export function useAccount() {
+     const [account, setAccount] = useState<CRMRecord | null>(null);
+     const [loading, setLoading] = useState(true);
+     const [error, setError] = useState<string | null>(null);
+ 
+     useEffect(() => {
++        if (typeof window !== 'undefined') {
++            for (const key of ['nodl_user_id', 'nodlr_user_id']) {
++                const val = localStorage.getItem(key);
++                if (val && SYSTEM_IDS.includes(val.toUpperCase())) {
++                    localStorage.removeItem(key);
++                }
++            }
++        }
++
+         const fetchAccount = async () => {
+             try {
+                 const token = typeof window !== 'undefined' ? localStorage.getItem('nodl_jwt') : null;
+@@ -31,7 +42,7 @@ export function useAccount() {
+                 if (token && token !== 'null' && token !== 'undefined') {
+                     headers['Authorization'] = `Bearer ${token}`;
+                 }
+-                if (userId) {
++                if (userId && !SYSTEM_IDS.includes(userId.toUpperCase())) {
+                     headers['X-User-ID'] = userId;
+                 }
+ 
+@@ -45,6 +56,10 @@ export function useAccount() {
+                     const data = await res.json();
+                     if (!data.error) {
+                         setAccount(data);
++                        const fetchedUserId = data.id || data.wuid || data.nodlrId || data.user_id;
++                        if (fetchedUserId && !SYSTEM_IDS.includes(String(fetchedUserId).toUpperCase()) && typeof window !== 'undefined') {
++                            localStorage.setItem('nodl_user_id', fetchedUserId);
++                        }
+                     } else {
+                         setError(data.error);
+                     }

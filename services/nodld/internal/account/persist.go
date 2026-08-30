@@ -134,7 +134,9 @@ func (s *Store) LoadState() error {
 	}
 
 	if state.Nodlrs != nil {
-		s.nodlrs = state.Nodlrs
+		for k, v := range state.Nodlrs {
+			s.nodlrs[k] = v
+		}
 	}
 
 	if state.PendingCommissions != nil {
@@ -166,7 +168,9 @@ func (s *Store) LoadState() error {
 	s.meshSequence = state.MeshSequence
 	s.meshMonthYear = state.MeshMonthYear
 	if state.CRMRecords != nil {
-		s.crmRecords = state.CRMRecords
+		for k, v := range state.CRMRecords {
+			s.crmRecords[k] = v
+		}
 	}
 	if state.Nodes != nil {
 		s.nodes = state.Nodes

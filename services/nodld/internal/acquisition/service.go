@@ -213,13 +213,14 @@ func (s *Service) GetAffiliateTree(ctx context.Context) (*AffiliateTreeResponse,
 		if n.IsFounder {
 			nodes := s.accountStore.ListNodes(n.ID)
 			l1, l2 := s.resolveReferrals(n.ID)
+			children, _ := s.GetAffiliateChildren(ctx, n.ID)
 			resp.Founders = append(resp.Founders, &AffiliateNode{
 				NodlrID:   n.ID,
 				NodeCount: len(nodes),
 				L1Count:   len(l1),
 				L2Count:   len(l2),
 				Active:    n.Status.Active,
-				Children:  []*AffiliateNode{}, // Lazy load later
+				Children:  children,
 			})
 		}
 	}

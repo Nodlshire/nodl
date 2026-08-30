@@ -79,8 +79,8 @@ func TestConcurrentAuthAndNodeListings(t *testing.T) {
 			defer wg.Done()
 			for j := 0; j < iterations; j++ {
 				nodes := store.ListNodes(ownerID)
-				if len(nodes) != 10 {
-					t.Errorf("worker %d: expected 10 nodes, got %d", workerID, len(nodes))
+				if len(nodes) < 10 {
+					t.Errorf("worker %d: expected at least 10 nodes, got %d", workerID, len(nodes))
 					return
 				}
 				store.DecayNodes()

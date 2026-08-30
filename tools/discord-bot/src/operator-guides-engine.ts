@@ -4,44 +4,50 @@ import crypto from 'crypto';
 
 const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 
+export type GuideCategory = 'Deployment' | 'Configuration' | 'Performance' | 'Troubleshooting' | 'Telemetry';
+
 export interface OperatorGuide {
     id: string;
     title: string;
-    category: '🧠 Headless Deployment' | '⚙️ Performance Optimization' | '🖥️ UI Features' | '🧩 Troubleshooting';
+    category: GuideCategory;
+    isCritical?: boolean;
     version: string;
     summary: string;
     commands: string[];
-    diagramFile: string;
-    improvedViaFeedback?: boolean;
+    sourceFile: string;
     lastUpdated: string;
     hash: string;
 }
 
 export interface GuidesRegistryRecord {
     guideId: string;
+    sourceFile: string;
+    category: GuideCategory;
     version: string;
-    author: string;
-    commitHash?: string;
-    feedbackSource?: string;
-    diagramReferences: string[];
+    commitHash: string;
+    severity: 'normal' | 'critical';
     timestamp: string;
 }
 
 export interface OperatorGuidesState {
     postedHashes: string[];
     registry: GuidesRegistryRecord[];
-    pinnedMessageId?: string;
+    introMessageId?: string;
+    introMessageHash?: string;
+    categoryIndexIds?: { [cat in GuideCategory]?: string };
 }
 
-const REGISTRY_PATH = path.resolve(__dirname, '../../../services/nodld/state/operator-guides-registry.json');
-const DIAGRAMS_DIR = path.resolve(__dirname, '../../../assets/illustrations/operator-flows');
+const REGISTRY_PATH = process.env.OPERATOR_GUIDES_REGISTRY_PATH ||
+    (fs.existsSync('/home/obregan/wnode/services/nodld/state')
+        ? '/home/obregan/wnode/services/nodld/state/operator-guides-registry.json'
+        : path.resolve(__dirname, '../../services/nodld/state/operator-guides-registry.json'));
 
 export class OperatorGuidesEngine {
-    private state: OperatorGuidesState = { postedHashes: [], registry: [] };
-    private rootPath: string;
+    private state: OperatorGuidesState = { postedHashes: [], registry: [], categoryIndexIds: {} };
+    private docsPath: string;
 
-    constructor(rootPath?: string) {
-        this.rootPath = rootPath || path.resolve(__dirname, '../../..');
+    constructor(docsPath?: string) {
+        this.docsPath = docsPath || path.resolve(__dirname, '../../../docs');
         this.loadState();
     }
 
@@ -49,13 +55,7 @@ export class OperatorGuidesEngine {
         try {
             if (fs.existsSync(REGISTRY_PATH)) {
                 const data = fs.readFileSync(REGISTRY_PATH, 'utf-8');
-                const parsed = JSON.parse(data);
-                if (Array.isArray(parsed)) {
-                    this.state.registry = parsed;
-                    this.state.postedHashes = parsed.map(p => p.guideId + ':' + p.version);
-                } else {
-                    this.state = parsed;
-                }
+                this.state = JSON.parse(data);
             }
         } catch (err) {
             console.error('[OperatorGuidesEngine] Failed to load registry:', err);
@@ -78,155 +78,172 @@ export class OperatorGuidesEngine {
         return crypto.createHash('sha256').update(content.trim()).digest('hex');
     }
 
-    // 1. Generate Canonical Operator Guides
+    // 1. Ensure Pinned Intro Message in #operator-guides
+    public async ensureOperatorChannelIntro(guild: any): Promise<void> {
+        let channel = guild.channels.cache.find((c: any) => c.name === 'operator-guides' || c.id === '1540912010890707014');
+        if (!channel) {
+            const channels = await guild.channels.fetch().catch(() => new Map());
+            channel = channels.find((c: any) => c?.name === 'operator-guides' || c?.id === '1540912010890707014');
+        }
+        if (!channel) return;
+
+        const introText =
+            '🧩 **Welcome to #operator‑guides!**\n' +
+            'This channel is your hub for advanced operator documentation — from headless Linux deployment to performance tuning and telemetry optimization.\n' +
+            'Here you’ll find:\n' +
+            '• Step‑by‑step deployment guides for Wnode and Node Operator environments.\n' +
+            '• Configuration examples for PM2, systemd, and Docker.\n' +
+            '• Performance tuning tips for CPU, memory, and network throughput.\n' +
+            '• Troubleshooting workflows and telemetry validation scripts.\n' +
+            'Share your own optimizations or ask for help with edge‑case setups — our operator community thrives on precision and collaboration.';
+
+        const currentHash = this.calculateHash(introText);
+        if (this.state.introMessageHash === currentHash && this.state.introMessageId) {
+            return; // Anti-noise rule: silent update / noop
+        }
+
+        try {
+            const pinnedMessages = await channel.messages.fetchPinned().catch(() => new Map());
+            let existingPinned = null;
+
+            for (const [id, msg] of pinnedMessages) {
+                if (msg.author.id === guild.client.user.id && (msg.content.includes('Welcome to #operator') || msg.embeds[0]?.title?.includes('operator'))) {
+                    existingPinned = msg;
+                    break;
+                }
+            }
+
+            const embed = new EmbedBuilder()
+                .setTitle('🧩 Welcome to #operator‑guides!')
+                .setColor(0x3B82F6)
+                .setDescription(
+                    'This channel is your hub for advanced operator documentation — from headless Linux deployment to performance tuning and telemetry optimization.\n\n' +
+                    'Here you’ll find:\n' +
+                    '• **Step‑by‑step deployment guides** for Wnode and Node Operator environments.\n' +
+                    '• **Configuration examples** for PM2, systemd, and Docker.\n' +
+                    '• **Performance tuning tips** for CPU, memory, and network throughput.\n' +
+                    '• **Troubleshooting workflows** and telemetry validation scripts.\n\n' +
+                    'Share your own optimizations or ask for help with edge‑case setups — our operator community thrives on precision and collaboration.'
+                )
+                .setFooter({ text: 'Wnode Sovereign Mesh • Technical Documentation Hub' })
+                .setTimestamp();
+
+            if (existingPinned) {
+                await existingPinned.edit({ content: introText, embeds: [embed] });
+                this.state.introMessageId = existingPinned.id;
+            } else {
+                const message = await channel.send({ content: introText, embeds: [embed] });
+                await message.pin().catch(() => {});
+                this.state.introMessageId = message.id;
+            }
+
+            this.state.introMessageHash = currentHash;
+            this.saveState();
+            console.log('[OperatorGuidesEngine] ✅ Ensured #operator-guides intro message is active and pinned.');
+        } catch (err) {
+            console.error('[OperatorGuidesEngine] Failed to ensure channel intro:', err);
+        }
+    }
+
+    // 2. Generate Canonical Operator Guides
     public getCanonicalGuides(): OperatorGuide[] {
         const now = new Date().toISOString();
 
-        const guides: OperatorGuide[] = [
+        return [
             {
-                id: 'headless-linux-setup',
-                title: '🧠 Headless Linux Node Deployment',
-                category: '🧠 Headless Deployment',
-                version: 'v1.0.1',
-                summary: 'Deploy nodld on headless Ubuntu/Debian/Fedora servers with 1-line binary installer.',
+                id: 'headless-linux-deployment',
+                title: 'Headless Linux Deployment (PM2, systemd & Docker)',
+                category: 'Deployment',
+                isCritical: true,
+                version: 'v1.1.0',
+                summary: 'Deploy nodld on headless Ubuntu/Debian/Fedora servers using PM2, systemd unit files, or containerized Docker builds.',
                 commands: [
                     'curl -fsSL https://nodlr.wnode.one/install.sh | bash',
-                    './nodld --status',
-                    'journalctl -u nodld -f'
+                    'sudo systemctl enable --now nodld',
+                    'pm2 start nodld --name "wnode-daemon"'
                 ],
-                diagramFile: 'deployment-flow.svg',
+                sourceFile: '04-node-operator/getting-started.md',
                 lastUpdated: now,
-                hash: this.calculateHash('headless-linux-setup:v1.0.1')
+                hash: this.calculateHash('headless-linux-deployment:v1.1.0')
             },
             {
-                id: 'ram-performance-tuning',
-                title: '⚙️ Zero-Storage RAM & DeWi Tuning',
-                category: '⚙️ Performance Optimization',
-                version: 'v1.0.1',
-                summary: 'Optimize ephemeral RAM memory substrate, WASM thread pools, and 5G/LoRaWAN packet routing.',
+                id: 'operator-configuration-environment',
+                title: 'Network Interfaces, operator.json & Environment Config',
+                category: 'Configuration',
+                isCritical: false,
+                version: 'v1.0.2',
+                summary: 'Comprehensive reference for operator.json config keys, environment variable overrides, and multi-interface binding.',
+                commands: [
+                    'cat ~/.config/wnode/operator.json',
+                    'export WNODE_API_BASE="https://cmd.wnode.one"',
+                    './nodld --config-validate'
+                ],
+                sourceFile: '04-node-operator/operator-guide.md',
+                lastUpdated: now,
+                hash: this.calculateHash('operator-configuration-environment:v1.0.2')
+            },
+            {
+                id: 'zero-storage-ram-performance',
+                title: 'CPU Tuning, RAM Optimization & Substrate Throughput',
+                category: 'Performance',
+                isCritical: false,
+                version: 'v1.0.3',
+                summary: 'Fine-tune CPU core pinning, ephemeral RAM memory substrates, WASM thread pools, and zero-storage network throughput.',
                 commands: [
                     'export NODE_OPTIONS="--max-old-space-size=4096"',
-                    './nodld --tune-ram --dewi-mode=active'
+                    './nodld --tune-ram --soe-mode=active',
+                    'cpupower frequency-set -g performance'
                 ],
-                diagramFile: 'telemetry-flow.svg',
+                sourceFile: '04-node-operator/performance-tuning.md',
                 lastUpdated: now,
-                hash: this.calculateHash('ram-performance-tuning:v1.0.1')
+                hash: this.calculateHash('zero-storage-ram-performance:v1.0.3')
             },
             {
-                id: 'command-ui-integration',
-                title: '🖥️ Command UI Dashboard & Telemetry',
-                category: '🖥️ UI Features',
-                version: 'v1.0.1',
-                summary: 'Connect nodld daemon to cmd.wnode.one for real-time compute visualization and Stripe payouts.',
-                commands: [
-                    'curl -s http://localhost:8080/api/status',
-                    'https://cmd.wnode.one'
-                ],
-                diagramFile: 'ui-workflow.svg',
-                lastUpdated: now,
-                hash: this.calculateHash('command-ui-integration:v1.0.1')
-            },
-            {
-                id: 'daemon-troubleshooting-guide',
-                title: '🧩 Node Operator Troubleshooting Console',
-                category: '🧩 Troubleshooting',
-                version: 'v1.0.1',
-                summary: 'Step-by-step diagnostic workflows for peer discovery, websocket reconnects, and WASM envelope errors.',
+                id: 'peer-discovery-troubleshooting',
+                title: 'Peer Discovery, Websocket Reconnects & Diagnostic Logs',
+                category: 'Troubleshooting',
+                isCritical: false,
+                version: 'v1.0.2',
+                summary: 'Step-by-step diagnostic workflows for NAT traversal, peer discovery timeouts, websocket reconnects, and log analysis.',
                 commands: [
                     './nodld --diagnose',
+                    'journalctl -u nodld -n 100 --no-pager',
                     'tail -n 100 /var/log/nodld.log'
                 ],
-                diagramFile: 'deployment-flow.svg',
-                improvedViaFeedback: true,
+                sourceFile: '04-node-operator/troubleshooting-guide.md',
                 lastUpdated: now,
-                hash: this.calculateHash('daemon-troubleshooting-guide:v1.0.1')
+                hash: this.calculateHash('peer-discovery-troubleshooting:v1.0.2')
             },
             {
-                id: 'self-optimization-engine-guide',
-                title: '⚙️ Self-Optimization Engine (SOE) Workflow',
-                category: '⚙️ Performance Optimization',
+                id: 'telemetry-validation-metrics',
+                title: 'Telemetry Validation Scripts, Health Checks & System Pulse',
+                category: 'Telemetry',
+                isCritical: false,
                 version: 'v1.0.1',
-                summary: 'Autonomous runtime memory re-allocation and DeWi packet routing (VERIFIED_BY_TELEMETRY).',
+                summary: 'Validation scripts for real-time telemetry pulse verification, health threshold interpretation, and node metrics.',
                 commands: [
-                    './nodld --enable-soe --ram-cap=4096MB',
-                    'curl -s http://localhost:8080/api/soe/status'
+                    'curl -s http://localhost:8080/api/v1/system/pulse',
+                    'curl -s http://localhost:8080/api/status | jq .'
                 ],
-                diagramFile: 'integrations/soe-flow.svg',
+                sourceFile: '04-node-operator/telemetry-guide.md',
                 lastUpdated: now,
-                hash: this.calculateHash('self-optimization-engine-guide:v1.0.1')
-            },
-            {
-                id: 'cross-platform-unification-guide',
-                title: '🧠 Cross-Platform Unification Layer (CPUL)',
-                category: '🧠 Headless Deployment',
-                version: 'v1.0.1',
-                summary: 'Unified hardware abstraction & gossip protocols across Linux, macOS, and Windows WSL2.',
-                commands: [
-                    './nodld --cpul-check',
-                    'curl -s http://localhost:8080/api/cpul/info'
-                ],
-                diagramFile: 'integrations/cpu-unification-flow.svg',
-                lastUpdated: now,
-                hash: this.calculateHash('cross-platform-unification-guide:v1.0.1')
-            },
-            {
-                id: 'integration-lifecycle-guide',
-                title: '🖥️ Integration Lifecycle & SOT Synchronization',
-                category: '🖥️ UI Features',
-                version: 'v1.0.1',
-                summary: 'End-to-end integration lifecycle from specification to daemon hooks and automated Discord embeds.',
-                commands: [
-                    './nodld --sync-sot',
-                    'curl -s http://localhost:8080/api/lifecycle/status'
-                ],
-                diagramFile: 'integrations/lifecycle-flow.svg',
-                lastUpdated: now,
-                hash: this.calculateHash('integration-lifecycle-guide:v1.0.1')
+                hash: this.calculateHash('telemetry-validation-metrics:v1.0.1')
             }
         ];
-
-        return guides;
     }
 
-    // 2. Build Guide Embed
-    public buildGuideEmbed(guide: OperatorGuide): { embeds: any[]; components: any[] } {
+    // 3. Build Guide Embed
+    public buildGuideEmbed(guide: OperatorGuide): { content?: string; embeds: any[]; components: any[] } {
         const embed = new EmbedBuilder()
-            .setTitle(guide.title)
-            .setColor(0x3b82f6)
-            .setDescription(`**Category**: \`${guide.category}\` | **Version**: \`${guide.version}\``)
+            .setTitle(`Operator Guide — ${guide.title}`)
+            .setColor(0x3B82F6)
+            .setDescription(`**Category**: \`${guide.category}\` | **Version**: \`${guide.version}\` | **File**: \`${guide.sourceFile}\``)
             .addFields([
-                {
-                    name: '📖 Overview & Workflow',
-                    value: guide.summary,
-                    inline: false
-                },
-                {
-                    name: '💻 Terminal Commands',
-                    value: '```bash\n' + guide.commands.join('\n') + '\n```',
-                    inline: false
-                },
-                {
-                    name: '📊 Visual Workflow Diagram',
-                    value: `🖼️ Diagram Reference: \`/assets/illustrations/operator-flows/${guide.diagramFile}\``,
-                    inline: false
-                }
+                { name: '📖 Overview', value: guide.summary, inline: false },
+                { name: '💻 Terminal Commands', value: '```bash\n' + guide.commands.join('\n') + '\n```', inline: false }
             ])
-            .setFooter({
-                text: guide.improvedViaFeedback
-                    ? `Wnode Sovereign Mesh • Improved via Feedback Loop • Updated ${guide.lastUpdated.split('T')[0]}`
-                    : `Wnode Sovereign Mesh • Operator Guides Engine • Updated ${guide.lastUpdated.split('T')[0]}`
-            })
-            .setTimestamp();
-
-        if (guide.improvedViaFeedback) {
-            embed.addFields([
-                {
-                    name: '💡 Feedback Loop Status',
-                    value: '✨ **Improved via Feedback Loop**: Incorporates verified community fixes from `#beta-feedback`.',
-                    inline: false
-                }
-            ]);
-        }
+            .setFooter({ text: `Synced from Wnode Docs — ${new Date(guide.lastUpdated).toUTCString()}` })
+            .setTimestamp(new Date(guide.lastUpdated));
 
         const row = new ActionRowBuilder().addComponents(
             new ButtonBuilder()
@@ -239,55 +256,51 @@ export class OperatorGuidesEngine {
                 .setURL('https://nodlr.wnode.one')
         );
 
-        return { embeds: [embed], components: [row] };
+        let content = undefined;
+        if (guide.isCritical) {
+            content = `🚨 **CRITICAL DEPLOYMENT UPDATE** <@&1540911984898474015>`;
+        }
+
+        return { content, embeds: [embed], components: [row] };
     }
 
-    // 3. Process & Post/Pin Guides in #operator-guides
+    // 4. Process & Post Guides in #operator-guides
     public async processAndPostGuides(guild: any): Promise<number> {
-        const channel = guild.channels.cache.find((c: any) => c.name === 'operator-guides');
+        let channel = guild.channels.cache.find((c: any) => c.name === 'operator-guides' || c.id === '1540912010890707014');
         if (!channel) {
-            console.warn('[OperatorGuidesEngine] #operator-guides channel not found in guild.');
-            return 0;
+            const channels = await guild.channels.fetch().catch(() => new Map());
+            channel = channels.find((c: any) => c?.name === 'operator-guides' || c?.id === '1540912010890707014');
         }
+        if (!channel) return 0;
 
         const guides = this.getCanonicalGuides();
         let updatedCount = 0;
 
         for (const guide of guides) {
             if (this.state.postedHashes.includes(guide.hash)) {
-                continue; // Anti-noise rule: deduplicated
+                continue; // Deduplicated
             }
 
             const payload = this.buildGuideEmbed(guide);
-            const message = await channel.send(payload);
-
-            // Pin latest guide embed & unpin older ones
-            try {
-                const pinned = await channel.messages.fetchPinned();
-                for (const [id, msg] of pinned) {
-                    if (id !== message.id && msg.author.id === guild.client.user.id) {
-                        await msg.unpin().catch(() => {});
-                    }
-                }
-                await message.pin().catch(() => {});
-            } catch (err) {
-                console.error('[OperatorGuidesEngine] Failed to manage message pins:', err);
-            }
+            await channel.send(payload);
 
             // Audit Registry Record
             const auditRecord: GuidesRegistryRecord = {
                 guideId: guide.id,
+                sourceFile: guide.sourceFile,
+                category: guide.category,
                 version: guide.version,
-                author: 'Wnode Bot / Core Team',
                 commitHash: 'bcce3486b',
-                feedbackSource: guide.improvedViaFeedback ? '#beta-feedback' : undefined,
-                diagramReferences: [`/assets/illustrations/operator-flows/${guide.diagramFile}`],
+                severity: guide.isCritical ? 'critical' : 'normal',
                 timestamp: new Date().toISOString()
             };
 
             this.state.postedHashes.push(guide.hash);
             this.state.registry.push(auditRecord);
             updatedCount++;
+
+            // Pulse Audit Log
+            await this.logPulseAudit(guide);
         }
 
         if (updatedCount > 0) {
@@ -295,5 +308,27 @@ export class OperatorGuidesEngine {
         }
 
         return updatedCount;
+    }
+
+    // 5. Audit Log to /api/v1/system/pulse
+    private async logPulseAudit(guide: OperatorGuide): Promise<void> {
+        try {
+            const apiUrl = process.env.NODLD_API_URL || 'http://127.0.0.1:8080';
+            await fetch(`${apiUrl}/api/v1/system/pulse`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    type: 'operator_guide_published',
+                    guide_file: guide.sourceFile,
+                    category: guide.category,
+                    timestamp: new Date().toISOString(),
+                    commit_hash: 'bcce3486b',
+                    severity: guide.isCritical ? 'critical' : 'normal',
+                    source: 'discord_operator_guides'
+                })
+            });
+        } catch (err) {
+            console.error('[OperatorGuidesEngine] Failed to log pulse audit:', err);
+        }
     }
 }

@@ -12,6 +12,16 @@ import { WelcomePortalEngine } from './welcome-portal-engine';
 import { OperatorGuidesEngine } from './operator-guides-engine';
 import { ApiDocsEngine } from './api-docs-engine';
 import { SdkDocsEngine } from './sdk-docs-engine';
+import { SecurityAdvisoryEngine } from './security-advisory-engine';
+import { ResponsibleDisclosureEngine } from './responsible-disclosure-engine';
+import { DocsIndexEngine } from './docs-index-engine';
+import { BotCommandsConsoleEngine } from './bot-commands-engine';
+import { AdminDashboardEngine } from './admin-dashboard-engine';
+import { GovernanceEngine } from './governance-engine';
+import { BetaTestersModeratorsEngine } from './beta-testers-moderators-engine';
+import { BotLoggerEngine } from './bot-log-engine';
+import { UnifiedRAGPipeline } from './rag-pipeline';
+import { QAFeedbackLoop } from './qa-feedback-loop';
 
 // Require discord.js dynamically
 const { Client, GatewayIntentBits, EmbedBuilder, Events } = require('discord.js');
@@ -19,7 +29,7 @@ const { Client, GatewayIntentBits, EmbedBuilder, Events } = require('discord.js'
 const TOKEN = (process.env.DISCORD_BOT_TOKEN || process.env.DISCORD_TOKEN || process.env.BOT_TOKEN || '').trim();
 const GUILD_ID = (process.env.GUILD_ID || '1496144706776600697').trim();
 const DOCS_PATH = process.env.DOCS_PATH || path.resolve(__dirname, '../../../docs');
-const STATUS_UPDATE_INTERVAL = 10 * 60 * 1000; // 10 minutes in milliseconds
+const STATUS_UPDATE_INTERVAL = 5 * 60 * 1000; // 5 minutes in milliseconds
 const PROTOCOL_VERSION = 'v1.0.0';
 
 export class WnodeDiscordBot {
@@ -36,6 +46,16 @@ export class WnodeDiscordBot {
     private guidesEngine: OperatorGuidesEngine;
     private apiDocsEngine: ApiDocsEngine;
     private sdkDocsEngine: SdkDocsEngine;
+    private securityEngine: SecurityAdvisoryEngine;
+    private disclosureEngine: ResponsibleDisclosureEngine;
+    private docsIndexEngine: DocsIndexEngine;
+    private botCommandsEngine: BotCommandsConsoleEngine;
+    private adminDashboardEngine: AdminDashboardEngine;
+    private governanceEngine: GovernanceEngine;
+    private betaTestersModeratorsEngine: BetaTestersModeratorsEngine;
+    private botLoggerEngine: BotLoggerEngine;
+    private ragPipeline: UnifiedRAGPipeline;
+    private qaFeedbackLoop: QAFeedbackLoop;
     private statusInterval: any = null;
 
     constructor(docsPath: string) {
@@ -51,6 +71,16 @@ export class WnodeDiscordBot {
         this.guidesEngine = new OperatorGuidesEngine();
         this.apiDocsEngine = new ApiDocsEngine();
         this.sdkDocsEngine = new SdkDocsEngine();
+        this.securityEngine = new SecurityAdvisoryEngine();
+        this.disclosureEngine = new ResponsibleDisclosureEngine();
+        this.docsIndexEngine = new DocsIndexEngine(docsPath);
+        this.botCommandsEngine = new BotCommandsConsoleEngine();
+        this.adminDashboardEngine = new AdminDashboardEngine();
+        this.governanceEngine = new GovernanceEngine();
+        this.betaTestersModeratorsEngine = new BetaTestersModeratorsEngine();
+        this.botLoggerEngine = new BotLoggerEngine();
+        this.ragPipeline = new UnifiedRAGPipeline(this.indexer);
+        this.qaFeedbackLoop = new QAFeedbackLoop(docsPath);
 
         this.client = new Client({
             intents: [
@@ -85,19 +115,48 @@ export class WnodeDiscordBot {
                 await this.updatePinnedStatusTelemetry(boundGuild);
                 await this.releaseEngine.processAndPostReleases(boundGuild);
                 await this.welcomeEngine.ensureMainWelcomePinned(boundGuild);
+                await this.welcomeEngine.ensureGeneralChannelIntro(boundGuild);
+                await this.guidesEngine.ensureOperatorChannelIntro(boundGuild);
                 await this.guidesEngine.processAndPostGuides(boundGuild);
                 await this.apiDocsEngine.processAndPostApiDocs(boundGuild);
                 await this.sdkDocsEngine.processAndPostSdkDocs(boundGuild);
+                await this.securityEngine.ensureSecurityChannelIntro(boundGuild);
+                await this.disclosureEngine.ensureDisclosureChannelIntro(boundGuild);
+                await this.docsIndexEngine.ensureDocsIndexHeader(boundGuild);
+                await this.docsIndexEngine.processAndPostDocsIndex(boundGuild);
+                await this.botCommandsEngine.ensureConsoleHeader(boundGuild);
+                await this.botCommandsEngine.ensureCategoryReferences(boundGuild);
+                await this.adminDashboardEngine.ensureDashboardHeader(boundGuild);
+                await this.betaTestersModeratorsEngine.ensureChannelsAndRoles(boundGuild);
+                await this.botLoggerEngine.ensureBotLogChannel(boundGuild);
+                await this.betaManager.ensureBetaOnboardingIntro(boundGuild);
+                await this.engagementEngine.ensureMeshLiveHeaders(boundGuild);
 
-                // Schedule recurring 10-minute status telemetry update & Sunday digest check
+                // Schedule recurring 5-minute status telemetry update & Sunday digest check
                 if (this.statusInterval) clearInterval(this.statusInterval);
                 this.statusInterval = setInterval(async () => {
                     this.updatePinnedStatusTelemetry(boundGuild);
                     await this.releaseEngine.processAndPostReleases(boundGuild);
                     await this.welcomeEngine.postDailyMembersSummary(boundGuild);
+                    await this.guidesEngine.ensureOperatorChannelIntro(boundGuild);
                     await this.guidesEngine.processAndPostGuides(boundGuild);
                     await this.apiDocsEngine.processAndPostApiDocs(boundGuild);
                     await this.sdkDocsEngine.processAndPostSdkDocs(boundGuild);
+                    await this.securityEngine.ensureSecurityChannelIntro(boundGuild);
+                    await this.disclosureEngine.ensureDisclosureChannelIntro(boundGuild);
+                    await this.docsIndexEngine.ensureDocsIndexHeader(boundGuild);
+                    await this.docsIndexEngine.processAndPostDocsIndex(boundGuild);
+                    await this.botCommandsEngine.ensureConsoleHeader(boundGuild);
+                    await this.botCommandsEngine.ensureCategoryReferences(boundGuild);
+                    await this.adminDashboardEngine.ensureDashboardHeader(boundGuild);
+                    await this.adminDashboardEngine.updateTelemetryDashboard(boundGuild);
+                    await this.governanceEngine.ensureGovernanceChannel(boundGuild);
+                    await this.feedbackEngine.ensureBetaFeedbackIntro(boundGuild);
+                    await this.feedbackEngine.ensureBetaBugsIntro(boundGuild);
+                    await this.betaTestersModeratorsEngine.ensureChannelsAndRoles(boundGuild);
+                    await this.botLoggerEngine.ensureBotLogChannel(boundGuild);
+                    await this.betaManager.ensureBetaOnboardingIntro(boundGuild);
+                    await this.engagementEngine.ensureMeshLiveHeaders(boundGuild);
 
                     // If Sunday, post Sunday summary & release digest
                     const today = new Date();
@@ -145,6 +204,15 @@ export class WnodeDiscordBot {
                 await this.welcomeEngine.handleNewMember(member);
             } catch (err) {
                 console.error('[Wnode Discord Bot] Failed to execute welcome flow:', err);
+            }
+        });
+
+        // Responsible Disclosure Handler for Vulnerability Reports
+        this.client.on(Events.MessageCreate, async (message: any) => {
+            try {
+                await this.disclosureEngine.handleIncomingMessage(message);
+            } catch (err) {
+                console.error('[Wnode Discord Bot] Error handling disclosure message:', err);
             }
         });
 
@@ -247,6 +315,48 @@ export class WnodeDiscordBot {
         this.client.on(Events.MessageCreate, async (message: any) => {
             if (message.author.bot) return;
 
+            // Handle Governance Channel Proposals
+            await this.governanceEngine.handleIncomingProposal(message);
+
+            // Handle #beta-testers and #moderators Automation
+            await this.betaTestersModeratorsEngine.handleMessage(message);
+
+            // Handle Unified RAG Query !qa [question]
+            if (message.content.startsWith('!qa ')) {
+                const query = message.content.slice(4).trim();
+                if (query.length > 0) {
+                    const ragRes = this.ragPipeline.processQuery(query);
+                    await message.reply({ content: ragRes.answer });
+
+                    if (ragRes.suggestsReview) {
+                        await this.qaFeedbackLoop.processLowConfidenceQuery(message.guild, ragRes, message.author.id);
+                    }
+                    await this.botLoggerEngine.logEvent(message.guild, {
+                        eventType: 'command_executed',
+                        summary: `RAG Query processed: "${query}" (Confidence: ${(ragRes.confidenceScore * 100).toFixed(0)}%)`,
+                        source: message.author.tag
+                    });
+                    return;
+                }
+            }
+
+            // Handle Staff Q&A Approval !approve-qa [ticketId] [category]
+            if (message.content.startsWith('!approve-qa ')) {
+                const parts = message.content.slice(12).trim().split(/\s+/);
+                const ticketId = parts[0];
+                const category = parts[1] || 'operator';
+                if (ticketId) {
+                    const createdFile = await this.qaFeedbackLoop.approveAndCreateQAFile(ticketId, category);
+                    if (createdFile) {
+                        this.indexer.buildIndex(); // Live re-index
+                        await message.reply({ content: `✅ Created canonical Q&A file: \`${path.basename(createdFile)}\` inside \`/docs/qa/${category}/\`. SOT re-indexed!` });
+                    } else {
+                        await message.reply({ content: `❌ Ticket \`${ticketId}\` not found or already approved.` });
+                    }
+                    return;
+                }
+            }
+
             const channelName = message.channel.name;
 
             // 1. Role-Gated & Rate-Limited Feedback Channels (#beta-feedback, #beta-bugs)
@@ -307,6 +417,9 @@ export class WnodeDiscordBot {
 
             const response: CommandResponse = this.dispatcher.handleCommand(command, args, message.author.username);
 
+            // Audit Log to /api/v1/system/pulse
+            await this.botCommandsEngine.logCommandAudit(command, message.author.username);
+
             // Handle reward role assignment for !challenge complete
             if (command.toLowerCase() === '!challenge' && args.length > 0 && args[0].toLowerCase() === 'complete' && message.member) {
                 const pioneerRole = message.guild.roles.cache.find((r: any) => r.name === 'Mesh Pioneer');
@@ -329,6 +442,7 @@ export class WnodeDiscordBot {
                 .setTitle(response.embedTitle)
                 .setColor(response.embedColor)
                 .setDescription(response.description)
+                .setFooter({ text: response.footerText || `Executed by ${message.author.username} — ${new Date().toUTCString()}` })
                 .setTimestamp();
 
             if (response.url) {

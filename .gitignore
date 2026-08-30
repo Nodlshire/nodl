@@ -94,3 +94,6 @@ wenode-hardhat/artifacts/
 cookie.txt
 csrf.json
 heartbeat.json
+
+# Protected CRM Storage
+apps/crm/storage/*

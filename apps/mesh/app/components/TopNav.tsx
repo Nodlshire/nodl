@@ -8,7 +8,7 @@ import { useAuth } from "./AuthProvider";
 export function TopNav() {
     const { user: profile } = useAuth();
     const pathname = usePathname();
-    if (pathname === '/login') return null;
+    if (pathname?.startsWith('/login') || pathname?.startsWith('/register') || pathname?.startsWith('/auth')) return null;
 
     const navItems = [
         { name: 'Overview', href: '/', icon: LayoutGrid, color: 'text-[#22d3ee]' },

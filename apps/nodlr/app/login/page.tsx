@@ -1,15 +1,9 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Chrome, ArrowRight, Loader2, Mail } from 'lucide-react';
+import { ArrowRight, Loader2, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
-
-declare global {
-  interface Window {
-    google: any;
-  }
-}
 
 export default function LoginPage() {
     const router = useRouter();
@@ -22,68 +16,12 @@ export default function LoginPage() {
     const [totpCode, setTotpCode] = useState('');
     const [isMounted, setIsMounted] = useState(false);
 
-    const googleButtonRef = useRef<HTMLDivElement>(null);
-
     useEffect(() => {
         setIsMounted(true);
         if (!email) {
             setEmail('stephen@wnode.one');
         }
-        
-        // Initialize Google Sign-In
-        const loadGoogleScript = () => {
-            const script = document.createElement('script');
-            script.src = 'https://accounts.google.com/gsi/client';
-            script.async = true;
-            script.defer = true;
-            script.onload = initializeGoogleAuth;
-            document.head.appendChild(script);
-        };
-        
-        if (typeof window !== 'undefined') {
-            loadGoogleScript();
-        }
     }, []);
-
-    const initializeGoogleAuth = () => {
-        if (!window.google || !googleButtonRef.current) return;
-        
-        window.google.accounts.id.initialize({
-            client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || 'placeholder-client-id.apps.googleusercontent.com',
-            callback: handleGoogleCredential
-        });
-        
-        window.google.accounts.id.renderButton(
-            googleButtonRef.current,
-            { theme: 'filled_black', size: 'large', width: 300 }
-        );
-    };
-
-    const handleGoogleCredential = async (response: any) => {
-        setIsLoading(true);
-        try {
-            const res = await fetch('/api/v1/auth/google', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ id_token: response.credential, domain: 'nodlr' })
-            });
-            const data = await res.json();
-            
-            if (res.ok) {
-                if (data.requires_2fa) {
-                    setTotpRequired(true);
-                } else {
-                    router.push('/dashboard');
-                }
-            } else {
-                setError(data.error || 'Google Sign-In failed');
-            }
-        } catch (e) {
-            setError('Auth service unreachable.');
-        } finally {
-            setIsLoading(false);
-        }
-    };
 
     const handleTotpVerify = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -239,18 +177,6 @@ export default function LoginPage() {
                     </div>
 
                     <div className="space-y-4">
-                        {process.env.NODE_ENV !== 'development' && (
-                            <>
-                                <div className="flex justify-center mb-6 w-full" ref={googleButtonRef}></div>
-
-                                <div className="relative flex py-4 items-center">
-                                    <div className="flex-grow border-t border-white/10"></div>
-                                    <span className="flex-shrink-0 mx-4 text-white/30 text-xs">OR</span>
-                                    <div className="flex-grow border-t border-white/10"></div>
-                                </div>
-                            </>
-                        )}
-
                         {authMode === 'magic' ? (
                             <form onSubmit={handleMagicLink} className="space-y-4">
                                 <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full bg-black/40 border border-white/10 rounded-[5px] px-4 py-4 text-white text-sm focus:outline-none focus:border-[#9333ea]/50 transition-all border-b-2" required />

@@ -13,6 +13,7 @@ import (
 func TestTXSafetyGatesAndKillSwitch(t *testing.T) {
 	log := zap.NewNop()
 	cfg := dewi.DefaultConfig()
+	cfg.DeWi.TX.DutyCycleCap = 1.0
 
 	mgr, err := dewi.NewManager(context.Background(), cfg, log, nil)
 	if err != nil {

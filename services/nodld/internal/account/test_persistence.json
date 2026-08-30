@@ -1,9 +1,10 @@
 {
   "nodlrs": {
     "100001-0426-01-AA": {
+      "country": "HU",
       "id": "100001-0426-01-AA",
       "email": "stephen@wnode.one",
-      "password": "$2a$10$Vb9cM3C/BfLg4Wz2k9WXO.j81o9GZJ2W.xY2QhF5M7c8Ff.j3hP9y",
+      "password": "$2a$10$TavwVjTGhqPsz/jwmHdDyOCMwKSQpbe6uDc4EpT5MxV8Z8z75fOhq",
       "displayName": "Stephen Soos",
       "meshClientId": "",
       "stripeConnectId": "",
@@ -23,6 +24,9 @@
       "isFounder": true,
       "isOwner": true,
       "payoutFrequency": "",
+      "nodeCount": 0,
+      "l1Count": 0,
+      "l2Count": 0,
       "status": {
         "active": true,
         "verification": "verified"
@@ -37,14 +41,134 @@
         "NODLR",
         "MESH"
       ],
-      "createdAt": "2026-08-26T18:02:54.751772011+02:00",
+      "createdAt": "2026-08-28T11:24:33.672055147+02:00",
+      "totpEnabled": false
+    },
+    "100001-0426-02-AB": {
+      "id": "100001-0426-02-AB",
+      "email": "malthevinther@outlook.dk",
+      "displayName": "Malthe Vinther",
+      "meshClientId": "",
+      "stripeConnectId": "",
+      "stripeAccountId": "",
+      "founderStripeAccountId": null,
+      "nodlrStripeAccountId": null,
+      "role": "nodlr",
+      "payoutStatus": "",
+      "payoutsEnabled": false,
+      "verificationStatus": "",
+      "integrityScore": 0,
+      "isFrozen": false,
+      "accruedFounderBalance": 0,
+      "walletBalance": 0,
+      "pendingBalanceCents": 0,
+      "escrowBalanceCents": 0,
+      "isFounder": false,
+      "isOwner": false,
+      "payoutFrequency": "",
+      "parentId": "100001-0426-01-AA",
+      "nodeCount": 0,
+      "l1Count": 0,
+      "l2Count": 0,
+      "status": {
+        "active": true,
+        "verification": "verified"
+      },
+      "isProtected": false,
+      "isSuperAdmin": false,
+      "onboardingComplete": false,
+      "verified": true,
+      "labels": [
+        "NODLR"
+      ],
+      "createdAt": "2026-08-28T11:24:33.672061932+02:00",
+      "totpEnabled": false
+    },
+    "100002-0426-02-AB": {
+      "id": "100002-0426-02-AB",
+      "email": "tarekelbatl@gmail.com",
+      "displayName": "Tarek Elbatl",
+      "meshClientId": "",
+      "stripeConnectId": "",
+      "stripeAccountId": "",
+      "founderStripeAccountId": null,
+      "nodlrStripeAccountId": null,
+      "role": "nodlr",
+      "payoutStatus": "",
+      "payoutsEnabled": false,
+      "verificationStatus": "",
+      "integrityScore": 0,
+      "isFrozen": false,
+      "accruedFounderBalance": 0,
+      "walletBalance": 0,
+      "pendingBalanceCents": 0,
+      "escrowBalanceCents": 0,
+      "isFounder": false,
+      "isOwner": false,
+      "payoutFrequency": "",
+      "parentId": "100002-0426-01-AA",
+      "nodeCount": 0,
+      "l1Count": 0,
+      "l2Count": 0,
+      "status": {
+        "active": true,
+        "verification": "verified"
+      },
+      "isProtected": false,
+      "isSuperAdmin": false,
+      "onboardingComplete": false,
+      "verified": true,
+      "labels": [
+        "NODLR"
+      ],
+      "createdAt": "2026-08-28T11:24:33.672062679+02:00",
+      "totpEnabled": false
+    },
+    "100003-0426-02-AB": {
+      "id": "100003-0426-02-AB",
+      "email": "artem.protsenko01@gmail.com",
+      "displayName": "Artem Protsenko",
+      "meshClientId": "",
+      "stripeConnectId": "",
+      "stripeAccountId": "",
+      "founderStripeAccountId": null,
+      "nodlrStripeAccountId": null,
+      "role": "nodlr",
+      "payoutStatus": "",
+      "payoutsEnabled": false,
+      "verificationStatus": "",
+      "integrityScore": 0,
+      "isFrozen": false,
+      "accruedFounderBalance": 0,
+      "walletBalance": 0,
+      "pendingBalanceCents": 0,
+      "escrowBalanceCents": 0,
+      "isFounder": false,
+      "isOwner": false,
+      "payoutFrequency": "",
+      "parentId": "100003-0426-01-AA",
+      "nodeCount": 0,
+      "l1Count": 0,
+      "l2Count": 0,
+      "status": {
+        "active": true,
+        "verification": "verified"
+      },
+      "isProtected": false,
+      "isSuperAdmin": false,
+      "onboardingComplete": false,
+      "verified": true,
+      "labels": [
+        "NODLR"
+      ],
+      "createdAt": "2026-08-28T11:24:33.672063168+02:00",
       "totpEnabled": false
     }
   },
   "pending_commissions": {},
   "organic_count": 0,
   "mesh_bucket": 0,
-  "mesh_sequence": 1,
+  "mesh_sequence": 2,
   "mesh_month_year": "0826",
   "crm_records": {
     "100001-0426-01-AA": {
@@ -58,7 +182,37 @@
         "NODLR",
         "MESH"
       ],
-      "createdAt": "2026-08-26T18:02:54.751772431+02:00"
+      "createdAt": "2026-08-28T11:24:33.67206496+02:00"
+    },
+    "100001-0426-02-AB": {
+      "nodlrId": "100001-0426-02-AB",
+      "businessName": "Malthe Vinther",
+      "phone": "",
+      "avatar": "",
+      "labels": [
+        "NODLR"
+      ],
+      "createdAt": "2026-08-28T11:24:33.672061932+02:00"
+    },
+    "100002-0426-02-AB": {
+      "nodlrId": "100002-0426-02-AB",
+      "businessName": "Tarek Elbatl",
+      "phone": "",
+      "avatar": "",
+      "labels": [
+        "NODLR"
+      ],
+      "createdAt": "2026-08-28T11:24:33.672062679+02:00"
+    },
+    "100003-0426-02-AB": {
+      "nodlrId": "100003-0426-02-AB",
+      "businessName": "Artem Protsenko",
+      "phone": "",
+      "avatar": "",
+      "labels": [
+        "NODLR"
+      ],
+      "createdAt": "2026-08-28T11:24:33.672063168+02:00"
     }
   },
   "nodes": {
@@ -69,17 +223,17 @@
       "lon": 8.6821,
       "ipAddress": "",
       "id": "760891088eb582754d7aaa86e23998b47290bf77b6474ec51b0e86e771d9ce19",
-      "userId": "GLOBAL_MESH",
-      "operator_wuid": "GLOBAL_MESH",
+      "userId": "100001-0426-01-AA",
+      "operator_wuid": "100001-0426-01-AA",
       "crm_link": "",
       "metadata": {
         "os": ""
       },
       "status": "offline",
-      "createdAt": "2026-08-23T18:02:54.751774039+02:00",
-      "lastSeen": "2026-08-26T16:02:54.751774087+02:00",
-      "last_heartbeat": "2026-08-26T14:02:54Z",
-      "last_seen_at": "2026-08-26T14:02:54Z",
+      "createdAt": "2026-08-25T11:24:33.681084883+02:00",
+      "lastSeen": "2026-08-28T09:24:33.681084973+02:00",
+      "last_heartbeat": "2026-08-28T07:24:33Z",
+      "last_seen_at": "2026-08-28T07:24:33Z",
       "globalScore": 1,
       "tier": 5,
       "isWasm": false,
@@ -90,22 +244,22 @@
     "HN-a4a2cf96": {
       "cpu_cores": 4,
       "memory_gb": 16,
-      "lat": 38.9072,
-      "lon": -77.0369,
+      "lat": 47.1625,
+      "lon": 19.5033,
       "ipAddress": "",
       "id": "HN-a4a2cf96",
-      "userId": "GLOBAL_MESH",
-      "operator_wuid": "GLOBAL_MESH",
+      "userId": "100001-0426-01-AA",
+      "operator_wuid": "100001-0426-01-AA",
       "crm_link": "",
       "metadata": {
         "os": "",
         "gpu": "Intel Corporation TigerLake-LP GT2 [Iris Xe Graphics] (rev 01)"
       },
       "status": "active",
-      "createdAt": "2026-08-24T18:02:54.751773035+02:00",
-      "lastSeen": "2026-08-26T18:02:54.751773213+02:00",
-      "last_heartbeat": "2026-08-26T16:02:54Z",
-      "last_seen_at": "2026-08-26T16:02:54Z",
+      "createdAt": "2026-08-26T11:24:33.680984637+02:00",
+      "lastSeen": "2026-08-28T11:24:33.680985553+02:00",
+      "last_heartbeat": "2026-08-28T09:24:33Z",
+      "last_seen_at": "2026-08-28T09:24:33Z",
       "globalScore": 1,
       "tier": 1,
       "isWasm": false,
@@ -116,22 +270,22 @@
     "HN-c66a3de1": {
       "cpu_cores": 4,
       "memory_gb": 16,
-      "lat": 51.5074,
-      "lon": -0.1278,
+      "lat": 47.1625,
+      "lon": 19.5033,
       "ipAddress": "",
       "id": "HN-c66a3de1",
-      "userId": "GLOBAL_MESH",
-      "operator_wuid": "GLOBAL_MESH",
+      "userId": "100001-0426-02-AB",
+      "operator_wuid": "100001-0426-02-AB",
       "crm_link": "",
       "metadata": {
         "os": "",
         "gpu": "Intel Corporation Skylake-S GT2 [HD Graphics 530] (rev 06)"
       },
       "status": "active",
-      "createdAt": "2026-08-25T18:02:54.751773743+02:00",
-      "lastSeen": "2026-08-26T18:02:54.751773791+02:00",
-      "last_heartbeat": "2026-08-26T16:02:54Z",
-      "last_seen_at": "2026-08-26T16:02:54Z",
+      "createdAt": "2026-08-27T11:24:33.681082935+02:00",
+      "lastSeen": "2026-08-28T11:24:33.681083079+02:00",
+      "last_heartbeat": "2026-08-28T09:24:33Z",
+      "last_seen_at": "2026-08-28T09:24:33Z",
       "globalScore": 1,
       "tier": 1,
       "isWasm": false,
@@ -154,12 +308,39 @@
         "gpu": "Microsoft Corporation Basic Render Driver"
       },
       "status": "offline",
-      "createdAt": "2026-08-22T18:02:54.751774349+02:00",
-      "lastSeen": "2026-08-26T13:02:54.75177439+02:00",
-      "last_heartbeat": "2026-08-26T11:02:54Z",
-      "last_seen_at": "2026-08-26T11:02:54Z",
+      "createdAt": "2026-08-24T11:24:33.681085726+02:00",
+      "lastSeen": "2026-08-28T06:24:33.68108583+02:00",
+      "last_heartbeat": "2026-08-28T04:24:33Z",
+      "last_seen_at": "2026-08-28T04:24:33Z",
       "globalScore": 1,
       "tier": 5,
+      "isWasm": false,
+      "downtimePenalized": false,
+      "downtimeSlashed": false,
+      "deviceClass": "native"
+    },
+    "cc027f54bbab7cbb89a12d1ee1600a309ff0e32264973657011216fdd0c13f15": {
+      "cpu_cores": 8,
+      "memory_gb": 16,
+      "lat": 47.1625,
+      "lon": 19.5033,
+      "ipAddress": "",
+      "id": "cc027f54bbab7cbb89a12d1ee1600a309ff0e32264973657011216fdd0c13f15",
+      "userId": "100001-0426-01-AA",
+      "operator_wuid": "100001-0426-01-AA",
+      "crm_link": "",
+      "metadata": {
+        "os": "",
+        "cpu": "11th Gen Intel Core i5-1135G7",
+        "gpu": "Intel Iris Xe Graphics"
+      },
+      "status": "offline",
+      "createdAt": "2026-08-23T11:24:33.681083955+02:00",
+      "lastSeen": "2026-08-27T23:24:33.681084071+02:00",
+      "last_heartbeat": "2026-08-27T21:24:33Z",
+      "last_seen_at": "2026-08-27T21:24:33Z",
+      "globalScore": 1,
+      "tier": 1,
       "isWasm": false,
       "downtimePenalized": false,
       "downtimeSlashed": false,
@@ -167,7 +348,7 @@
     }
   },
   "invite": {
-    "secret": "e4065e6140ca7b2b655d5e9ec6bff15aaf105b60e0d380289c128528372622c18354684d7545f5c2d591a282207aff85e0ff71cb59532947e1938d7c9457c58e",
+    "secret": "ddc08320dc20f3ff13008a7984e41f5f74aa22dfee59a29a5f97957ad14ed13cbbd83d9b20054a6bb5fda1080cdb18f9194611980babf861f00a5d50c9a3127b",
     "nextFounderIndex": 1,
     "registry": {}
   },
@@ -181,15 +362,15 @@
       "slug": "aws-s3",
       "status": "active",
       "logo_url": "/integrations/aws/s3/logo.svg",
-      "join_date": "2026-07-26T18:02:54.751775693+02:00",
-      "active_date": "2026-08-16T18:02:54.751775693+02:00",
+      "join_date": "2026-07-28T11:24:33.681098263+02:00",
+      "active_date": "2026-08-18T11:24:33.681098263+02:00",
       "currency": "USD",
       "revenue": 0,
       "details": {
         "integration_path": "aws/s3"
       },
-      "createdAt": "2026-08-26T18:02:54.751775693+02:00",
-      "updatedAt": "2026-08-26T18:02:54.751775693+02:00"
+      "createdAt": "2026-08-28T11:24:33.681098263+02:00",
+      "updatedAt": "2026-08-28T11:24:33.681098263+02:00"
     },
     "1878ade6-4e90-42da-9985-7ac726fbfcc9": {
       "id": "1878ade6-4e90-42da-9985-7ac726fbfcc9",
@@ -197,15 +378,15 @@
       "slug": "ai-openai",
       "status": "active",
       "logo_url": "/integrations/ai/openai/logo.svg",
-      "join_date": "2026-07-26T18:02:54.751775693+02:00",
-      "active_date": "2026-08-16T18:02:54.751775693+02:00",
+      "join_date": "2026-07-28T11:24:33.681098263+02:00",
+      "active_date": "2026-08-18T11:24:33.681098263+02:00",
       "currency": "USD",
       "revenue": 0,
       "details": {
         "integration_path": "ai/openai"
       },
-      "createdAt": "2026-08-26T18:02:54.751775693+02:00",
-      "updatedAt": "2026-08-26T18:02:54.751775693+02:00"
+      "createdAt": "2026-08-28T11:24:33.681098263+02:00",
+      "updatedAt": "2026-08-28T11:24:33.681098263+02:00"
     },
     "235c4e27-abd8-49cb-afc2-8b8579ef62c8": {
       "id": "235c4e27-abd8-49cb-afc2-8b8579ef62c8",
@@ -213,15 +394,15 @@
       "slug": "aws-lambda",
       "status": "active",
       "logo_url": "/integrations/aws/lambda/logo.svg",
-      "join_date": "2026-07-26T18:02:54.751775693+02:00",
-      "active_date": "2026-08-16T18:02:54.751775693+02:00",
+      "join_date": "2026-07-28T11:24:33.681098263+02:00",
+      "active_date": "2026-08-18T11:24:33.681098263+02:00",
       "currency": "USD",
       "revenue": 0,
       "details": {
         "integration_path": "aws/lambda"
       },
-      "createdAt": "2026-08-26T18:02:54.751775693+02:00",
-      "updatedAt": "2026-08-26T18:02:54.751775693+02:00"
+      "createdAt": "2026-08-28T11:24:33.681098263+02:00",
+      "updatedAt": "2026-08-28T11:24:33.681098263+02:00"
     },
     "2ebc7e18-dca8-4018-8846-2cb2c887754d": {
       "id": "2ebc7e18-dca8-4018-8846-2cb2c887754d",
@@ -229,15 +410,15 @@
       "slug": "azure-event-grid",
       "status": "active",
       "logo_url": "/integrations/azure/event-grid/logo.svg",
-      "join_date": "2026-07-26T18:02:54.751775693+02:00",
-      "active_date": "2026-08-16T18:02:54.751775693+02:00",
+      "join_date": "2026-07-28T11:24:33.681098263+02:00",
+      "active_date": "2026-08-18T11:24:33.681098263+02:00",
       "currency": "USD",
       "revenue": 0,
       "details": {
         "integration_path": "azure/event-grid"
       },
-      "createdAt": "2026-08-26T18:02:54.751775693+02:00",
-      "updatedAt": "2026-08-26T18:02:54.751775693+02:00"
+      "createdAt": "2026-08-28T11:24:33.681098263+02:00",
+      "updatedAt": "2026-08-28T11:24:33.681098263+02:00"
     },
     "33652e4b-286d-499f-bfea-41df9cd3a49d": {
       "id": "33652e4b-286d-499f-bfea-41df9cd3a49d",
@@ -245,15 +426,15 @@
       "slug": "ai-xai-grok",
       "status": "active",
       "logo_url": "/integrations/ai/xai-grok/logo.svg",
-      "join_date": "2026-07-26T18:02:54.751775693+02:00",
-      "active_date": "2026-08-16T18:02:54.751775693+02:00",
+      "join_date": "2026-07-28T11:24:33.681098263+02:00",
+      "active_date": "2026-08-18T11:24:33.681098263+02:00",
       "currency": "USD",
       "revenue": 0,
       "details": {
         "integration_path": "ai/xai-grok"
       },
-      "createdAt": "2026-08-26T18:02:54.751775693+02:00",
-      "updatedAt": "2026-08-26T18:02:54.751775693+02:00"
+      "createdAt": "2026-08-28T11:24:33.681098263+02:00",
+      "updatedAt": "2026-08-28T11:24:33.681098263+02:00"
     },
     "4cda9cfc-7b94-4074-b1d0-b6942447491a": {
       "id": "4cda9cfc-7b94-4074-b1d0-b6942447491a",
@@ -261,15 +442,15 @@
       "slug": "aws-sqs",
       "status": "active",
       "logo_url": "/integrations/aws/sqs/logo.svg",
-      "join_date": "2026-07-26T18:02:54.751775693+02:00",
-      "active_date": "2026-08-16T18:02:54.751775693+02:00",
+      "join_date": "2026-07-28T11:24:33.681098263+02:00",
+      "active_date": "2026-08-18T11:24:33.681098263+02:00",
       "currency": "USD",
       "revenue": 0,
       "details": {
         "integration_path": "aws/sqs"
       },
-      "createdAt": "2026-08-26T18:02:54.751775693+02:00",
-      "updatedAt": "2026-08-26T18:02:54.751775693+02:00"
+      "createdAt": "2026-08-28T11:24:33.681098263+02:00",
+      "updatedAt": "2026-08-28T11:24:33.681098263+02:00"
     },
     "5d8b4f07-1d19-472a-925d-3191ab66c9f5": {
       "id": "5d8b4f07-1d19-472a-925d-3191ab66c9f5",
@@ -277,15 +458,15 @@
       "slug": "azure-blob-storage",
       "status": "active",
       "logo_url": "/integrations/azure/blob-storage/logo.svg",
-      "join_date": "2026-07-26T18:02:54.751775693+02:00",
-      "active_date": "2026-08-16T18:02:54.751775693+02:00",
+      "join_date": "2026-07-28T11:24:33.681098263+02:00",
+      "active_date": "2026-08-18T11:24:33.681098263+02:00",
       "currency": "USD",
       "revenue": 0,
       "details": {
         "integration_path": "azure/blob-storage"
       },
-      "createdAt": "2026-08-26T18:02:54.751775693+02:00",
-      "updatedAt": "2026-08-26T18:02:54.751775693+02:00"
+      "createdAt": "2026-08-28T11:24:33.681098263+02:00",
+      "updatedAt": "2026-08-28T11:24:33.681098263+02:00"
     },
     "7899c244-cc27-4a20-b56d-db248246c871": {
       "id": "7899c244-cc27-4a20-b56d-db248246c871",
@@ -293,15 +474,15 @@
       "slug": "gcp-cloud-functions",
       "status": "active",
       "logo_url": "/integrations/gcp/cloud-functions/logo.svg",
-      "join_date": "2026-07-26T18:02:54.751775693+02:00",
-      "active_date": "2026-08-16T18:02:54.751775693+02:00",
+      "join_date": "2026-07-28T11:24:33.681098263+02:00",
+      "active_date": "2026-08-18T11:24:33.681098263+02:00",
       "currency": "USD",
       "revenue": 0,
       "details": {
         "integration_path": "gcp/cloud-functions"
       },
-      "createdAt": "2026-08-26T18:02:54.751775693+02:00",
-      "updatedAt": "2026-08-26T18:02:54.751775693+02:00"
+      "createdAt": "2026-08-28T11:24:33.681098263+02:00",
+      "updatedAt": "2026-08-28T11:24:33.681098263+02:00"
     },
     "820b22ab-d450-4dfa-b1e7-8b0abef2b535": {
       "id": "820b22ab-d450-4dfa-b1e7-8b0abef2b535",
@@ -309,15 +490,15 @@
       "slug": "optimism",
       "status": "live",
       "logo_url": "/integrations/optimism/optimismlogo.svg",
-      "join_date": "2026-07-26T18:02:54.751775693+02:00",
-      "active_date": "2026-08-16T18:02:54.751775693+02:00",
+      "join_date": "2026-07-28T11:24:33.681098263+02:00",
+      "active_date": "2026-08-18T11:24:33.681098263+02:00",
       "currency": "USD",
       "revenue": 1523.5,
       "details": {
         "chainId": 10
       },
-      "createdAt": "2026-08-26T18:02:54.751775693+02:00",
-      "updatedAt": "2026-08-26T18:02:54.751775693+02:00"
+      "createdAt": "2026-08-28T11:24:33.681098263+02:00",
+      "updatedAt": "2026-08-28T11:24:33.681098263+02:00"
     },
     "8320477b-bda3-4dfc-9545-5968bd9ebfec": {
       "id": "8320477b-bda3-4dfc-9545-5968bd9ebfec",
@@ -325,15 +506,15 @@
       "slug": "aws-eventbridge",
       "status": "active",
       "logo_url": "/integrations/aws/eventbridge/logo.svg",
-      "join_date": "2026-07-26T18:02:54.751775693+02:00",
-      "active_date": "2026-08-16T18:02:54.751775693+02:00",
+      "join_date": "2026-07-28T11:24:33.681098263+02:00",
+      "active_date": "2026-08-18T11:24:33.681098263+02:00",
       "currency": "USD",
       "revenue": 0,
       "details": {
         "integration_path": "aws/eventbridge"
       },
-      "createdAt": "2026-08-26T18:02:54.751775693+02:00",
-      "updatedAt": "2026-08-26T18:02:54.751775693+02:00"
+      "createdAt": "2026-08-28T11:24:33.681098263+02:00",
+      "updatedAt": "2026-08-28T11:24:33.681098263+02:00"
     },
     "878eaf3f-f3a8-4777-94ec-8c9a71b7008f": {
       "id": "878eaf3f-f3a8-4777-94ec-8c9a71b7008f",
@@ -341,15 +522,15 @@
       "slug": "ai-anthropic",
       "status": "active",
       "logo_url": "/integrations/ai/anthropic/logo.svg",
-      "join_date": "2026-07-26T18:02:54.751775693+02:00",
-      "active_date": "2026-08-16T18:02:54.751775693+02:00",
+      "join_date": "2026-07-28T11:24:33.681098263+02:00",
+      "active_date": "2026-08-18T11:24:33.681098263+02:00",
       "currency": "USD",
       "revenue": 0,
       "details": {
         "integration_path": "ai/anthropic"
       },
-      "createdAt": "2026-08-26T18:02:54.751775693+02:00",
-      "updatedAt": "2026-08-26T18:02:54.751775693+02:00"
+      "createdAt": "2026-08-28T11:24:33.681098263+02:00",
+      "updatedAt": "2026-08-28T11:24:33.681098263+02:00"
     },
     "93ea51b3-6a80-44b5-8516-045688bde397": {
       "id": "93ea51b3-6a80-44b5-8516-045688bde397",
@@ -357,15 +538,15 @@
       "slug": "edge-cloudflare-workers",
       "status": "active",
       "logo_url": "/integrations/edge/cloudflare-workers/logo.svg",
-      "join_date": "2026-07-26T18:02:54.751775693+02:00",
-      "active_date": "2026-08-16T18:02:54.751775693+02:00",
+      "join_date": "2026-07-28T11:24:33.681098263+02:00",
+      "active_date": "2026-08-18T11:24:33.681098263+02:00",
       "currency": "USD",
       "revenue": 0,
       "details": {
         "integration_path": "edge/cloudflare-workers"
       },
-      "createdAt": "2026-08-26T18:02:54.751775693+02:00",
-      "updatedAt": "2026-08-26T18:02:54.751775693+02:00"
+      "createdAt": "2026-08-28T11:24:33.681098263+02:00",
+      "updatedAt": "2026-08-28T11:24:33.681098263+02:00"
     },
     "b9954389-599b-49c8-872d-607395c8a3ac": {
       "id": "b9954389-599b-49c8-872d-607395c8a3ac",
@@ -373,15 +554,15 @@
       "slug": "gcp-vision-api",
       "status": "active",
       "logo_url": "/integrations/gcp/vision-api/logo.svg",
-      "join_date": "2026-07-26T18:02:54.751775693+02:00",
-      "active_date": "2026-08-16T18:02:54.751775693+02:00",
+      "join_date": "2026-07-28T11:24:33.681098263+02:00",
+      "active_date": "2026-08-18T11:24:33.681098263+02:00",
       "currency": "USD",
       "revenue": 0,
       "details": {
         "integration_path": "gcp/vision-api"
       },
-      "createdAt": "2026-08-26T18:02:54.751775693+02:00",
-      "updatedAt": "2026-08-26T18:02:54.751775693+02:00"
+      "createdAt": "2026-08-28T11:24:33.681098263+02:00",
+      "updatedAt": "2026-08-28T11:24:33.681098263+02:00"
     },
     "cb46d432-a6f7-4f28-8729-fbfbd4484e02": {
       "id": "cb46d432-a6f7-4f28-8729-fbfbd4484e02",
@@ -389,15 +570,15 @@
       "slug": "gcp-pubsub",
       "status": "active",
       "logo_url": "/integrations/gcp/pubsub/logo.svg",
-      "join_date": "2026-07-26T18:02:54.751775693+02:00",
-      "active_date": "2026-08-16T18:02:54.751775693+02:00",
+      "join_date": "2026-07-28T11:24:33.681098263+02:00",
+      "active_date": "2026-08-18T11:24:33.681098263+02:00",
       "currency": "USD",
       "revenue": 0,
       "details": {
         "integration_path": "gcp/pubsub"
       },
-      "createdAt": "2026-08-26T18:02:54.751775693+02:00",
-      "updatedAt": "2026-08-26T18:02:54.751775693+02:00"
+      "createdAt": "2026-08-28T11:24:33.681098263+02:00",
+      "updatedAt": "2026-08-28T11:24:33.681098263+02:00"
     },
     "cf584cb0-bc7e-4001-aa2f-e8b60098df49": {
       "id": "cf584cb0-bc7e-4001-aa2f-e8b60098df49",
@@ -405,15 +586,15 @@
       "slug": "polygon",
       "status": "live",
       "logo_url": "/integrations/polygon/polygonlogo.svg",
-      "join_date": "2026-07-26T18:02:54.751775693+02:00",
-      "active_date": "2026-08-16T18:02:54.751775693+02:00",
+      "join_date": "2026-07-28T11:24:33.681098263+02:00",
+      "active_date": "2026-08-18T11:24:33.681098263+02:00",
       "currency": "USD",
       "revenue": 3240,
       "details": {
         "chainId": 137
       },
-      "createdAt": "2026-08-26T18:02:54.751775693+02:00",
-      "updatedAt": "2026-08-26T18:02:54.751775693+02:00"
+      "createdAt": "2026-08-28T11:24:33.681098263+02:00",
+      "updatedAt": "2026-08-28T11:24:33.681098263+02:00"
     },
     "d055e569-efda-4831-800d-7189d55c5df6": {
       "id": "d055e569-efda-4831-800d-7189d55c5df6",
@@ -421,15 +602,15 @@
       "slug": "edge-vercel-serverless",
       "status": "active",
       "logo_url": "/integrations/edge/vercel-serverless/logo.svg",
-      "join_date": "2026-07-26T18:02:54.751775693+02:00",
-      "active_date": "2026-08-16T18:02:54.751775693+02:00",
+      "join_date": "2026-07-28T11:24:33.681098263+02:00",
+      "active_date": "2026-08-18T11:24:33.681098263+02:00",
       "currency": "USD",
       "revenue": 0,
       "details": {
         "integration_path": "edge/vercel-serverless"
       },
-      "createdAt": "2026-08-26T18:02:54.751775693+02:00",
-      "updatedAt": "2026-08-26T18:02:54.751775693+02:00"
+      "createdAt": "2026-08-28T11:24:33.681098263+02:00",
+      "updatedAt": "2026-08-28T11:24:33.681098263+02:00"
     },
     "d1a100cc-7561-419b-b6d3-cf58231bbd12": {
       "id": "d1a100cc-7561-419b-b6d3-cf58231bbd12",
@@ -437,15 +618,15 @@
       "slug": "solana",
       "status": "live",
       "logo_url": "/integrations/solana/solanalogo.svg",
-      "join_date": "2026-07-26T18:02:54.751775693+02:00",
-      "active_date": "2026-08-16T18:02:54.751775693+02:00",
+      "join_date": "2026-07-28T11:24:33.681098263+02:00",
+      "active_date": "2026-08-18T11:24:33.681098263+02:00",
       "currency": "USD",
       "revenue": 5410.8,
       "details": {
         "network": "mainnet-beta"
       },
-      "createdAt": "2026-08-26T18:02:54.751775693+02:00",
-      "updatedAt": "2026-08-26T18:02:54.751775693+02:00"
+      "createdAt": "2026-08-28T11:24:33.681098263+02:00",
+      "updatedAt": "2026-08-28T11:24:33.681098263+02:00"
     },
     "d71b8dd5-ed7f-406c-b1b6-baa23fa84d8b": {
       "id": "d71b8dd5-ed7f-406c-b1b6-baa23fa84d8b",
@@ -453,15 +634,15 @@
       "slug": "aws-sns",
       "status": "active",
       "logo_url": "/integrations/aws/sns/logo.svg",
-      "join_date": "2026-07-26T18:02:54.751775693+02:00",
-      "active_date": "2026-08-16T18:02:54.751775693+02:00",
+      "join_date": "2026-07-28T11:24:33.681098263+02:00",
+      "active_date": "2026-08-18T11:24:33.681098263+02:00",
       "currency": "USD",
       "revenue": 0,
       "details": {
         "integration_path": "aws/sns"
       },
-      "createdAt": "2026-08-26T18:02:54.751775693+02:00",
-      "updatedAt": "2026-08-26T18:02:54.751775693+02:00"
+      "createdAt": "2026-08-28T11:24:33.681098263+02:00",
+      "updatedAt": "2026-08-28T11:24:33.681098263+02:00"
     },
     "e5200234-a1bf-4fa9-b883-7c01239aa8ff": {
       "id": "e5200234-a1bf-4fa9-b883-7c01239aa8ff",
@@ -469,8 +650,8 @@
       "slug": "discord",
       "status": "active",
       "logo_url": "/integrations/discord/discordlogo.svg",
-      "join_date": "2026-07-26T18:02:54.751775693+02:00",
-      "active_date": "2026-08-16T18:02:54.751775693+02:00",
+      "join_date": "2026-07-28T11:24:33.681098263+02:00",
+      "active_date": "2026-08-18T11:24:33.681098263+02:00",
       "currency": "USD",
       "revenue": 0,
       "details": {
@@ -479,8 +660,8 @@
           "alerts"
         ]
       },
-      "createdAt": "2026-08-26T18:02:54.751775693+02:00",
-      "updatedAt": "2026-08-26T18:02:54.751775693+02:00"
+      "createdAt": "2026-08-28T11:24:33.681098263+02:00",
+      "updatedAt": "2026-08-28T11:24:33.681098263+02:00"
     },
     "f1e82e5c-ee3c-4cfe-a3fb-fdf8de36b941": {
       "id": "f1e82e5c-ee3c-4cfe-a3fb-fdf8de36b941",
@@ -488,15 +669,15 @@
       "slug": "gcp-cloud-run",
       "status": "active",
       "logo_url": "/integrations/gcp/cloud-run/logo.svg",
-      "join_date": "2026-07-26T18:02:54.751775693+02:00",
-      "active_date": "2026-08-16T18:02:54.751775693+02:00",
+      "join_date": "2026-07-28T11:24:33.681098263+02:00",
+      "active_date": "2026-08-18T11:24:33.681098263+02:00",
       "currency": "USD",
       "revenue": 0,
       "details": {
         "integration_path": "gcp/cloud-run"
       },
-      "createdAt": "2026-08-26T18:02:54.751775693+02:00",
-      "updatedAt": "2026-08-26T18:02:54.751775693+02:00"
+      "createdAt": "2026-08-28T11:24:33.681098263+02:00",
+      "updatedAt": "2026-08-28T11:24:33.681098263+02:00"
     },
     "f613537c-5c72-41ac-99e7-667c7aac390b": {
       "id": "f613537c-5c72-41ac-99e7-667c7aac390b",
@@ -504,15 +685,15 @@
       "slug": "azure-functions",
       "status": "active",
       "logo_url": "/integrations/azure/functions/logo.svg",
-      "join_date": "2026-07-26T18:02:54.751775693+02:00",
-      "active_date": "2026-08-16T18:02:54.751775693+02:00",
+      "join_date": "2026-07-28T11:24:33.681098263+02:00",
+      "active_date": "2026-08-18T11:24:33.681098263+02:00",
       "currency": "USD",
       "revenue": 0,
       "details": {
         "integration_path": "azure/functions"
       },
-      "createdAt": "2026-08-26T18:02:54.751775693+02:00",
-      "updatedAt": "2026-08-26T18:02:54.751775693+02:00"
+      "createdAt": "2026-08-28T11:24:33.681098263+02:00",
+      "updatedAt": "2026-08-28T11:24:33.681098263+02:00"
     },
     "f98011aa-b1b7-4a5f-9aa1-88c9918fb5ee": {
       "id": "f98011aa-b1b7-4a5f-9aa1-88c9918fb5ee",
@@ -520,15 +701,15 @@
       "slug": "stripe",
       "status": "active",
       "logo_url": "/integrations/stripe/stripelogo.svg",
-      "join_date": "2026-07-26T18:02:54.751775693+02:00",
-      "active_date": "2026-08-16T18:02:54.751775693+02:00",
+      "join_date": "2026-07-28T11:24:33.681098263+02:00",
+      "active_date": "2026-08-18T11:24:33.681098263+02:00",
       "currency": "USD",
       "revenue": 0,
       "details": {
         "mode": "connect"
       },
-      "createdAt": "2026-08-26T18:02:54.751775693+02:00",
-      "updatedAt": "2026-08-26T18:02:54.751775693+02:00"
+      "createdAt": "2026-08-28T11:24:33.681098263+02:00",
+      "updatedAt": "2026-08-28T11:24:33.681098263+02:00"
     },
     "fe9b5bdf-0777-48a8-a7f0-550adcee0f60": {
       "id": "fe9b5bdf-0777-48a8-a7f0-550adcee0f60",
@@ -536,15 +717,15 @@
       "slug": "gcp-cloud-storage",
       "status": "active",
       "logo_url": "/integrations/gcp/cloud-storage/logo.svg",
-      "join_date": "2026-07-26T18:02:54.751775693+02:00",
-      "active_date": "2026-08-16T18:02:54.751775693+02:00",
+      "join_date": "2026-07-28T11:24:33.681098263+02:00",
+      "active_date": "2026-08-18T11:24:33.681098263+02:00",
       "currency": "USD",
       "revenue": 0,
       "details": {
         "integration_path": "gcp/cloud-storage"
       },
-      "createdAt": "2026-08-26T18:02:54.751775693+02:00",
-      "updatedAt": "2026-08-26T18:02:54.751775693+02:00"
+      "createdAt": "2026-08-28T11:24:33.681098263+02:00",
+      "updatedAt": "2026-08-28T11:24:33.681098263+02:00"
     }
   }
 }

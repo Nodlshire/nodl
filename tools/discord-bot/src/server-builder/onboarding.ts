@@ -7,7 +7,7 @@ export class OnboardingManager {
             fields: [
                 {
                     name: '🚀 Essential Quick Links',
-                    value: '• **Run a Node**: [nodlr.wnode.one](https://nodlr.wnode.one)\n• **Read the Docs**: [wnode.one/docs](https://wnode.one/docs)\n• **Command UI**: [cmd.wnode.one](https://cmd.wnode.one)',
+                    value: '• **Run a Node**: [nodlr.wnode.one](https://nodlr.wnode.one)\n• **Read the Docs**: [wnode.one/docs](https://wnode.one/docs)',
                     inline: false
                 },
                 {

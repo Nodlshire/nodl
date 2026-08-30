@@ -23,6 +23,8 @@ export interface WelcomeRecord {
     };
     assignedRoles: string[];
     threadId?: string;
+    welcomedInGeneral?: boolean;
+    welcomedAt?: string;
     joinedAt: string;
     updatedAt: string;
 }
@@ -31,10 +33,15 @@ export interface WelcomeState {
     records: { [userId: string]: WelcomeRecord };
     pinnedMessageId?: string;
     pinnedMessageHash?: string;
+    generalIntroMessageId?: string;
+    generalIntroMessageHash?: string;
     lastDailySummaryDate?: string;
 }
 
-const REGISTRY_PATH = path.resolve(__dirname, '../../../services/nodld/state/welcome-registry.json');
+const REGISTRY_PATH = process.env.WELCOME_REGISTRY_PATH || 
+    (fs.existsSync('/home/obregan/wnode/services/nodld/state') 
+        ? '/home/obregan/wnode/services/nodld/state/welcome-registry.json' 
+        : path.resolve(__dirname, '../../services/nodld/state/welcome-registry.json'));
 
 export class WelcomePortalEngine {
     private state: WelcomeState = { records: {} };
@@ -172,67 +179,180 @@ export class WelcomePortalEngine {
         }
     }
 
-    // 2. Interactive Onboarding Thread for New Member
-    public async handleNewMember(member: any): Promise<void> {
-        const userId = member.id;
-        const username = member.user.tag;
-
-        if (this.state.records[userId]?.threadId) {
-            return; // Anti-noise rule: only 1 welcome thread per user
-        }
-
-        const channel = member.guild.channels.cache.find((c: any) => c.name === 'welcome');
+    // Ensure #general channel intro message is active and pinned
+    public async ensureGeneralChannelIntro(guild: any): Promise<void> {
+        const channel = guild.channels.cache.find((c: any) => 
+            (c.name === 'general' || c.name === '💬general') && c.type === 0
+        ) || guild.channels.cache.find((c: any) => 
+            c.name === 'general' || c.name === '💬general'
+        );
         if (!channel) return;
 
-        // Log initial join
-        const record: WelcomeRecord = {
-            userId,
-            username,
-            assignedRoles: ['Community'],
-            joinedAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString()
-        };
-        this.state.records[userId] = record;
+        const introText = 
+            '👋 **Welcome to #general!**\n' +
+            'This is where our community connects.\n\n' +
+            'Tell us a bit about yourself — what brings you to Wnode, what you’re building, or what excites you about sovereign compute and DePIN.\n\n' +
+            'Our onboarding bot will greet you when you first join and help you get started.';
+
+        const currentHash = this.calculateHash(introText);
+        if (this.state.generalIntroMessageHash === currentHash && this.state.generalIntroMessageId) {
+            return; // Anti-noise rule: silent update / noop
+        }
 
         try {
-            const threadName = `welcome-${member.user.username}`.toLowerCase().replace(/[^a-z0-9_-]/g, '');
-            const thread = await channel.threads.create({
-                name: threadName || `welcome-${member.id}`,
-                autoArchiveDuration: 1440,
-                type: ChannelType.PrivateThread,
-                reason: 'Wnode Interactive Onboarding Thread'
-            }).catch(async () => {
-                return await channel.threads.create({
-                    name: threadName || `welcome-${member.id}`,
-                    autoArchiveDuration: 1440,
-                    reason: 'Wnode Interactive Onboarding Thread'
-                });
-            });
+            const pinnedMessages = await channel.messages.fetchPinned().catch(() => new Map());
+            let existingPinned = null;
 
-            record.threadId = thread.id;
-            this.saveRegistry();
+            for (const [id, msg] of pinnedMessages) {
+                if (msg.author.id === guild.client.user.id && (msg.content.includes('Welcome to #general!') || msg.embeds[0]?.title?.includes('Welcome to #general'))) {
+                    existingPinned = msg;
+                    break;
+                }
+            }
 
-            const threadEmbed = new EmbedBuilder()
-                .setTitle(`👋 Welcome to Wnode, ${member.displayName}!`)
-                .setColor(0x3b82f6)
+            const embed = new EmbedBuilder()
+                .setTitle('👋 Welcome to #general!')
+                .setColor(0x00f2ff)
                 .setDescription(
-                    'To help us personalize your experience and assign your network roles, please complete this quick 3-question onboarding check:\n\n' +
-                    '**1.** What OS or device will you use to run `nodld`? *(Linux, macOS, Windows WSL2, RPi)*\n' +
-                    '**2.** Are you familiar with terminal or SSH? *(Experienced, Learning, Beginner)*\n' +
-                    '**3.** What interests you most about the mesh? *(Beta Testing, Running Nodes, Contributing Code, Exploring DeWi)*'
+                    'This is where our community connects.\n\n' +
+                    'Tell us a bit about yourself — what brings you to Wnode, what you’re building, or what excites you about sovereign compute and DePIN.\n\n' +
+                    'Our onboarding bot will greet you when you first join and help you get started.'
                 )
-                .setFooter({ text: 'Click below to submit your answers and unlock your roles.' });
+                .setFooter({ text: 'Wnode Sovereign Mesh • General Community Channel' })
+                .setTimestamp();
 
-            const row = new ActionRowBuilder().addComponents(
-                new ButtonBuilder()
-                    .setCustomId(`submit_onboarding_answers_${userId}`)
-                    .setLabel('✏️ Answer Onboarding Check')
-                    .setStyle(ButtonStyle.Primary)
+            if (existingPinned) {
+                await existingPinned.edit({ content: introText, embeds: [embed] });
+                this.state.generalIntroMessageId = existingPinned.id;
+            } else {
+                const message = await channel.send({ content: introText, embeds: [embed] });
+                await message.pin().catch(() => {});
+                this.state.generalIntroMessageId = message.id;
+            }
+
+            this.state.generalIntroMessageHash = currentHash;
+            this.saveRegistry();
+            console.log(`[WelcomePortalEngine] ✅ Ensured #general channel intro message is active and pinned.`);
+        } catch (err) {
+            console.error('[WelcomePortalEngine] Failed to ensure #general channel intro:', err);
+        }
+    }
+
+    // One-time Greeting in #general + Interactive Onboarding Thread for New Member
+    public async handleNewMember(member: any): Promise<void> {
+        const userId = member.id;
+        const username = member.user?.tag || member.displayName || member.id;
+
+        let record = this.state.records[userId];
+        if (!record) {
+            record = {
+                userId,
+                username,
+                assignedRoles: [],
+                joinedAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString()
+            };
+            this.state.records[userId] = record;
+        }
+
+        const guild = member.guild;
+
+        // 1. Assign "New Member" or "Community" Role
+        const newMemberRole = guild?.roles.cache.find((r: any) => r.name === 'New Member') ||
+                              guild?.roles.cache.find((r: any) => r.name === 'Community');
+        if (newMemberRole && member.roles) {
+            await member.roles.add(newMemberRole).catch(() => {});
+            if (!record.assignedRoles.includes(newMemberRole.name)) {
+                record.assignedRoles.push(newMemberRole.name);
+            }
+        }
+
+        // 2. ONE-TIME Welcome Message in #general (Persistent Check)
+        if (!record.welcomedInGeneral) {
+            const generalChannel = guild?.channels.cache.find((c: any) => 
+                (c.name === 'general' || c.name === '💬general') && c.type === 0
+            ) || guild?.channels.cache.find((c: any) => 
+                c.name === 'general' || c.name === '💬general'
             );
 
-            await thread.send({ content: `<@${userId}>`, embeds: [threadEmbed], components: [row] });
-        } catch (err) {
-            console.error('[WelcomePortalEngine] Failed to create welcome thread for member:', err);
+            if (generalChannel) {
+                try {
+                    const welcomeContent = `👋 Welcome <@${userId}>! Great to have you here.\nTell us a bit about yourself — what drew you to Wnode and sovereign compute?`;
+
+                    const welcomeEmbed = new EmbedBuilder()
+                        .setTitle(`👋 Welcome to Wnode, ${member.displayName || member.user?.username || 'Pioneer'}!`)
+                        .setColor(0x00f2ff)
+                        .setDescription(
+                            `Great to have you here <@${userId}>!\n\n` +
+                            `Tell us a bit about yourself — what drew you to Wnode and sovereign compute?`
+                        )
+                        .setFooter({ text: 'Wnode Sovereign Mesh • Community Onboarding' })
+                        .setTimestamp();
+
+                    await generalChannel.send({
+                        content: welcomeContent,
+                        embeds: [welcomeEmbed]
+                    });
+
+                    record.welcomedInGeneral = true;
+                    record.welcomedAt = new Date().toISOString();
+                    record.updatedAt = new Date().toISOString();
+                    this.saveRegistry();
+
+                    console.log(`[WelcomePortalEngine] ✅ Greeted new member ${username} (${userId}) in #general.`);
+                } catch (err) {
+                    console.error(`[WelcomePortalEngine] Failed to post welcome message in #general for ${username}:`, err);
+                }
+            }
+        } else {
+            console.log(`[WelcomePortalEngine] Member ${username} (${userId}) was already greeted in #general. Skipping duplicate greeting.`);
+        }
+
+        // 3. Interactive Welcome Thread in #welcome
+        if (!record.threadId) {
+            const welcomeChannel = guild?.channels.cache.find((c: any) => c.name === 'welcome');
+            if (welcomeChannel) {
+                try {
+                    const threadName = `welcome-${member.user?.username || member.id}`.toLowerCase().replace(/[^a-z0-9_-]/g, '');
+                    const thread = await welcomeChannel.threads.create({
+                        name: threadName || `welcome-${member.id}`,
+                        autoArchiveDuration: 1440,
+                        type: ChannelType.PrivateThread,
+                        reason: 'Wnode Interactive Onboarding Thread'
+                    }).catch(async () => {
+                        return await welcomeChannel.threads.create({
+                            name: threadName || `welcome-${member.id}`,
+                            autoArchiveDuration: 1440,
+                            reason: 'Wnode Interactive Onboarding Thread'
+                        });
+                    });
+
+                    record.threadId = thread.id;
+                    this.saveRegistry();
+
+                    const threadEmbed = new EmbedBuilder()
+                        .setTitle(`👋 Welcome to Wnode, ${member.displayName}!`)
+                        .setColor(0x3b82f6)
+                        .setDescription(
+                            'To help us personalize your experience and assign your network roles, please complete this quick 3-question onboarding check:\n\n' +
+                            '**1.** What OS or device will you use to run `nodld`? *(Linux, macOS, Windows WSL2, RPi)*\n' +
+                            '**2.** Are you familiar with terminal or SSH? *(Experienced, Learning, Beginner)*\n' +
+                            '**3.** What interests you most about the mesh? *(Beta Testing, Running Nodes, Contributing Code, Exploring DeWi)*'
+                        )
+                        .setFooter({ text: 'Click below to submit your answers and unlock your roles.' });
+
+                    const row = new ActionRowBuilder().addComponents(
+                        new ButtonBuilder()
+                            .setCustomId(`submit_onboarding_answers_${userId}`)
+                            .setLabel('✏️ Answer Onboarding Check')
+                            .setStyle(ButtonStyle.Primary)
+                    );
+
+                    await thread.send({ content: `<@${userId}>`, embeds: [threadEmbed], components: [row] });
+                } catch (err) {
+                    console.error('[WelcomePortalEngine] Failed to create welcome thread for member:', err);
+                }
+            }
         }
     }
 

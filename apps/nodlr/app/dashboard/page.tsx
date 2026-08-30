@@ -41,7 +41,7 @@ export default function DashboardPage() {
     const [hasSkipped, setHasSkipped] = useState(false);
     const [mounted, setMounted] = useState(false);
     
-    const { nodes, loading: nodesLoading } = useProviderNodes();
+    const { nodes, loading: nodesLoading } = useProviderNodes('global');
     const isPayoutActive = accountData?.payoutStatus === 'active';
 
     const activeNodes = nodes?.filter((n: any) => n.status?.toLowerCase() === 'active') || [];

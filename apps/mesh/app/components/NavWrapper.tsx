@@ -18,9 +18,9 @@ export function NavWrapper({ children }: { children: React.ReactNode }) {
         return <div className="min-h-screen bg-black" />;
     }
 
-    const isLoginPage = pathname === '/login';
+    const isAuthPage = pathname?.startsWith('/login') || pathname?.startsWith('/register') || pathname?.startsWith('/auth');
 
-    if (isLoginPage) {
+    if (isAuthPage) {
         return <>{children}</>;
     }
 

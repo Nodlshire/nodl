@@ -1,40 +1,60 @@
 import { NextResponse } from 'next/server';
 import { featureFlags } from '@/lib/featureFlags';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export async function GET(request: Request) {
+    const { searchParams } = new URL(request.url);
+    const scope = searchParams.get('scope') || 'user'; // 'user' (personal fleet) | 'global' (global mesh)
     const authHeader = request.headers.get('Authorization') || request.headers.get('authorization');
     const cookieHeader = request.headers.get('cookie') || '';
     const userIdHeader = request.headers.get('x-user-id') || request.headers.get('X-User-ID');
 
-    // Require valid session cookie, authorization header, or x-user-id header
-    if (!authHeader && !cookieHeader && !userIdHeader) {
+    const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8080";
+    const headers: Record<string, string> = { 'Connection': 'close' };
+    if (authHeader) headers['Authorization'] = authHeader;
+    if (cookieHeader) headers['Cookie'] = cookieHeader;
+    if (userIdHeader) headers['x-user-id'] = userIdHeader;
+
+    let resolvedWuid = userIdHeader || searchParams.get('wuid') || '';
+
+    // If scope=user and wuid is not passed in header/query, resolve WUID from backend account/me
+    if (scope === 'user' && !resolvedWuid) {
+        try {
+            const accRes = await fetch(`${apiUrl}/api/v1/account/me`, { headers, cache: 'no-store' });
+            if (accRes.ok) {
+                const accData = await accRes.json();
+                resolvedWuid = accData.wuid || accData.id || accData.nodlrId || accData.user_id || accData.WnodeID || '';
+            }
+        } catch (e) {
+            console.warn('Failed to resolve account.me for wuid in /api/nodes');
+        }
+    }
+
+    // MANDATORY FLEET ISOLATION: For scope=user, if no authenticated user WUID can be resolved, return [] immediately.
+    if (scope === 'user' && !resolvedWuid) {
         return NextResponse.json([]);
     }
 
     if (featureFlags.NODLR_DEBUG_REGISTRATION) {
         console.log('[DEBUG-REG] /api/nodes request:', {
             url: request.url,
+            scope,
+            resolvedWuid,
             authPresent: !!authHeader,
-            cookiePresent: !!cookieHeader,
-            userIdPresent: !!userIdHeader
+            cookiePresent: !!cookieHeader
         });
     }
 
     try {
-        const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8080";
-        
-        const headers: Record<string, string> = { 'Connection': 'close' };
-        if (authHeader) headers['Authorization'] = authHeader;
-        if (cookieHeader) headers['Cookie'] = cookieHeader;
-        if (userIdHeader) headers['x-user-id'] = userIdHeader;
-
         let attempts = 0;
         let res: Response | null = null;
 
         while (attempts < 3) {
             attempts++;
             try {
-                res = await fetch(`${apiUrl}/api/v1/nodes`, {
+                res = await fetch(`${apiUrl}/api/v1/nodes?scope=${encodeURIComponent(scope)}`, {
                     headers,
                     cache: 'no-store'
                 });
@@ -51,15 +71,12 @@ export async function GET(request: Request) {
         const nodes = await res.json();
         let providerNodes = Array.isArray(nodes) ? nodes : [];
 
-        // Defense-in-depth: If x-user-id is supplied, filter strictly by WUID with zero bypasses
-        if (userIdHeader) {
-            providerNodes = providerNodes.filter((n: any) => 
-                n.userID === userIdHeader || 
-                n.user_id === userIdHeader || 
-                n.userId === userIdHeader || 
-                n.operator_wuid === userIdHeader ||
-                n.operatorWUID === userIdHeader
-            );
+        // STRICT MANDATORY FILTER: For scope=user, return ONLY nodes strictly owned by resolvedWuid
+        if (scope === 'user' && resolvedWuid) {
+            providerNodes = providerNodes.filter((n: any) => {
+                const nodeOwner = n.wuid || n.WUID || n.userID || n.user_id || n.userId || n.operator_wuid || n.operatorWUID || n.owner_id || n.ownerId;
+                return Boolean(nodeOwner && nodeOwner === resolvedWuid);
+            });
         }
 
         // Normalize: Map to FleetMap / MachineList shape { id, name, lat, lon, status }
@@ -69,11 +86,19 @@ export async function GET(request: Request) {
             const gpu = n.gpu_model || n.GPUModel || n.gpuModel || n.metadata?.gpu;
             const osName = n.os || n.OS || n.metadata?.os || n.metrics?.os;
             const archName = n.arch || n.Arch || n.metadata?.arch || n.metrics?.arch;
-            const isOnline = n.status === 'active' || (n.lastSeen && Date.now() - new Date(n.lastSeen).getTime() < 300000);
+            const isOnline = n.status === 'active' || n.status === 'online' || (n.lastSeen && Date.now() - new Date(n.lastSeen).getTime() < 300000);
+            const nodeOwner = n.wuid || n.WUID || n.userID || n.user_id || n.userId || n.operator_wuid || n.operatorWUID || n.owner_id || n.ownerId || '';
 
             return {
                 id: n.node_id || n.id,
                 name: n.node_name || n.name || n.node_id || n.id,
+                wuid: nodeOwner,
+                WUID: nodeOwner,
+                owner_id: nodeOwner,
+                ownerId: nodeOwner,
+                userId: nodeOwner,
+                userID: nodeOwner,
+                operator_wuid: nodeOwner,
                 lat: n.lat ?? n.latitude ?? (n.location?.lat) ?? (n.Latitude) ?? 47.4979,
                 lon: n.lon ?? n.longitude ?? (n.location?.lon) ?? (n.Longitude) ?? 19.0402,
                 status: isOnline ? 'Active' : 'Offline',
@@ -84,9 +109,10 @@ export async function GET(request: Request) {
                 last_seen: n.last_seen || n.lastSeen || n.last_heartbeat || n.last_seen_at || 'N/A',
                 os: osName || 'N/A',
                 arch: archName || 'N/A',
-                tier: n.tier || n.Tier || 1,
-                reputation: n.reputation ?? n.GlobalScore ?? 0.0,
-                identity_trust: n.identity_trust ?? 1.0
+                tier: n.tier || n.Tier || 'Standard',
+                reputation: n.reputation ?? n.GlobalScore ?? 1.0,
+                identity_trust: n.identity_trust ?? 1.0,
+                spatial_hex: n.spatial_hex || n.h3_index || '88194ad2a3fffff'
             };
         });
 

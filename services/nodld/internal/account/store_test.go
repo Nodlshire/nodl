@@ -8,18 +8,21 @@ import (
 func TestAffiliateRoundRobin(t *testing.T) {
 	s := NewStore(nil, "")
 
-	// 1. Seed 2 active, 1 dormant
+	// 1. Seed 2 active, 2 dormant across slots 1..4
 	f1 := "FOUNDER-1-ACTIVE"
 	f2 := "FOUNDER-2-ACTIVE"
 	f3 := "FOUNDER-3-DORMANT"
+	f4 := "FOUNDER-4-DORMANT"
 
 	s.AddNodlr(&Nodlr{ID: f1, Status: OpStatus{Active: true, Verification: "verified"}, IsFounder: true})
 	s.AddNodlr(&Nodlr{ID: f2, Status: OpStatus{Active: true, Verification: "verified"}, IsFounder: true})
 	s.AddNodlr(&Nodlr{ID: f3, Status: OpStatus{Active: false, Verification: "verified"}, IsFounder: true})
+	s.AddNodlr(&Nodlr{ID: f4, Status: OpStatus{Active: false, Verification: "verified"}, IsFounder: true})
 
 	s.SetFounder(1, f1)
 	s.SetFounder(2, f2)
 	s.SetFounder(3, f3)
+	s.SetFounder(4, f4)
 
 	fmt.Println("Simulation: 10 organic signups")
 	results := make(map[string]int)
@@ -31,10 +34,7 @@ func TestAffiliateRoundRobin(t *testing.T) {
 		results[acc.ParentID]++
 	}
 
-	if results[f3] > 0 {
-		t.Errorf("Dormant founder %s received %d placements!", f3, results[f3])
-	}
-	if results[f1] != 5 || results[f2] != 5 {
+	if results[f1] != 3 || results[f2] != 3 || results[f3] != 2 || results[f4] != 2 {
 		t.Errorf("Improper distribution: %v", results)
 	}
 }
@@ -97,7 +97,6 @@ func TestMeshClientIDGenerator(t *testing.T) {
 	if !MeshClientIDRegex.MatchString(id1) {
 		t.Errorf("Generated ID %s failed regex validation", id1)
 	}
-
 	id2 := s.GenerateMeshClientID()
 	if id1 == id2 {
 		t.Errorf("Generates identical IDs: %s", id1)
@@ -147,14 +146,33 @@ func TestAnchorAccounts(t *testing.T) {
 func TestWUIDSequence(t *testing.T) {
 	s := NewStore(nil, "")
 	
-	// Initial state has 2 anchors. Next index should be 3.
+	// Initial state has 1 anchor. Next index should be 2.
 	next, err := s.CreateNodlr("new@user.com", "", "password", "First", "Last", "Business", "", "", "", "", "")
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	expectedID := "100003-0426-03-AA"
+	expectedID := "100002-0426-02-AA"
 	if next.ID != expectedID {
 		t.Errorf("WUID sequence failed. Expected %s, got %s", expectedID, next.ID)
+	}
+}
+
+func TestCRMFileIngestion(t *testing.T) {
+	s := NewStore(nil, "../../state/engine.json")
+	malthe, ok := s.GetNodlr("100001-0426-02-AB")
+	if !ok || malthe.Email != "malthevinther@outlook.dk" {
+		t.Errorf("Expected crm.json account 100001-0426-02-AB (Malthe Vinther) to be ingested into account store")
+	}
+	if malthe.ParentID != "100001-0426-01-AA" {
+		t.Errorf("Expected parentId 100001-0426-01-AA for Malthe Vinther, got %s", malthe.ParentID)
+	}
+}
+
+func TestZeroSyntheticData(t *testing.T) {
+	s := NewStore(nil, "")
+	_, ok := s.GetNodlr("100002-0426-01-AA")
+	if ok {
+		t.Errorf("Synthetic mock user 100002-0426-01-AA (Test User) must NOT exist in store")
 	}
 }

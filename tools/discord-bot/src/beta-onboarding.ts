@@ -215,4 +215,68 @@ export class BetaOnboardingManager {
                 { name: '📊 #status', value: 'View real-time mesh capacity & telemetry.', inline: true }
             ]);
     }
+
+    // 6. Ensure Channel Intro & Quick-Start Guide Pins
+    public async ensureBetaOnboardingIntro(guild: any): Promise<void> {
+        let channel = guild.channels.cache.find((c: any) => c.name === 'beta-onboarding' || c.id === '1541332805122916453');
+        if (!channel) {
+            const channels = await guild.channels.fetch().catch(() => new Map());
+            channel = channels.find((c: any) => c?.name === 'beta-onboarding' || c?.id === '1541332805122916453');
+        }
+        if (!channel) return;
+
+        const introText =
+            '🚀 **Welcome to #beta‑onboarding!**\n' +
+            'We’re thrilled to have you join the Wnode Public Beta program!\n' +
+            'This channel will guide you through setup, telemetry activation, and node configuration so you can start testing right away.\n\n' +
+            '**Here’s what you’ll find:**\n' +
+            '• Step‑by‑step onboarding instructions.\n' +
+            '• Quick‑Start Beta Guide for your platform.\n' +
+            '• Help with telemetry activation and node setup.\n' +
+            '• Friendly support from moderators and fellow testers.\n\n' +
+            'If you’re new, start with the pinned **Quick‑Start Guide** below.';
+
+        const guideText =
+            '🚀 **Wnode Beta Tester Quick-Start Guide**\n' +
+            'Follow this 4-step checklist to deploy your node in under 60 seconds:\n\n' +
+            '**1. Headless Linux / Terminal Setup**\n' +
+            'Wnode runs natively on Linux (Ubuntu/Debian/Fedora), macOS, or Windows WSL2.\n\n' +
+            '**2. One-Line Node Installer**\n' +
+            'Execute the official binary installer in your terminal:\n' +
+            '```bash\ncurl -fsSL https://nodlr.wnode.one/install.sh | bash\n```\n\n' +
+            '**3. Telemetry & Mesh Connection Verification**\n' +
+            'Verify your zero-storage daemon status & mesh connectivity:\n' +
+            '```bash\n./nodld --status\n```\n\n' +
+            '**4. First-Run Checklist**\n' +
+            '✅ Daemon running on port `:8080`\n' +
+            '✅ Connected to Stripe Daily USD Payouts\n' +
+            '✅ Zero disk storage consumed (100% ephemeral RAM fabric)';
+
+        try {
+            const pinnedMessages = await channel.messages.fetchPinned().catch(() => new Map());
+            let existingIntro = null;
+            let existingGuide = null;
+
+            for (const [id, msg] of pinnedMessages) {
+                if (msg.author.id === guild.client.user.id) {
+                    if (msg.content.includes('Welcome to #beta‑onboarding')) existingIntro = msg;
+                    if (msg.content.includes('Wnode Beta Tester Quick-Start Guide')) existingGuide = msg;
+                }
+            }
+
+            if (!existingIntro) {
+                const msg = await channel.send({ content: introText });
+                await msg.pin().catch(() => {});
+            }
+
+            if (!existingGuide) {
+                const msg = await channel.send({ content: guideText });
+                await msg.pin().catch(() => {});
+            }
+
+            console.log('[BetaOnboardingManager] ✅ Ensured #beta-onboarding intro and quick-start guide pins.');
+        } catch (err) {
+            console.error('[BetaOnboardingManager] Failed to pin #beta-onboarding headers:', err);
+        }
+    }
 }

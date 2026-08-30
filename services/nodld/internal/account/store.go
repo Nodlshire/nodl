@@ -272,7 +272,7 @@ func (s *Store) runDowntimeWatchdog(interval time.Duration) {
 			if now.Sub(node.LastSeen) > 90*time.Second {
 				if !node.DowntimePenalized {
 					node.DowntimePenalized = true
-					node.Status = "offline"
+					// SOT.status is authoritative; timestamp decay does not mutate node.Status
 					
 					// Apply downtime penalty: -1 * BaseRateForTier
 					baseRate := GetBaseRateForTier(node.Tier)
@@ -1753,9 +1753,7 @@ func (s *Store) DecayNodesLocked() {
 	now := time.Now()
 	for _, node := range s.nodes {
 		hoursOffline := now.Sub(node.LastSeen).Hours()
-		if hoursOffline > 1.0 && node.Status != "offline" {
-			node.Status = "offline"
-		}
+		// SOT.status is authoritative; timestamp decay does not mutate node.Status
 		
 		if hoursOffline > 1.0 {
 			// Apply 0.95 multiplier per hour

@@ -86,7 +86,8 @@ export async function GET(request: Request) {
             const gpu = n.gpu_model || n.GPUModel || n.gpuModel || n.metadata?.gpu;
             const osName = n.os || n.OS || n.metadata?.os || n.metrics?.os;
             const archName = n.arch || n.Arch || n.metadata?.arch || n.metrics?.arch;
-            const isOnline = n.status === 'active' || n.status === 'online' || (n.lastSeen && Date.now() - new Date(n.lastSeen).getTime() < 300000);
+            // SOT.status is authoritative: do not recompute status using timestamps
+            const isOnline = n.status === 'active' || n.status === 'online' || n.status === 'Active' || n.status === 'Online';
             const nodeOwner = n.wuid || n.WUID || n.userID || n.user_id || n.userId || n.operator_wuid || n.operatorWUID || n.owner_id || n.ownerId || '';
 
             return {

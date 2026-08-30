@@ -15,7 +15,7 @@ export async function GET() {
         // 1. Try querying nodld API endpoints
         for (const url of backendUrls) {
             try {
-                const res = await fetch(`${url}/api/v1/nodes`, { 
+                const res = await fetch(`${url}/api/v1/nodes?scope=all`, { 
                     cache: 'no-store',
                     headers: { 'x-user-id': '100001-0426-01-AA' }
                 });

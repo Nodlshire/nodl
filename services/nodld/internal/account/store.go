@@ -2554,10 +2554,11 @@ func (s *Store) ConsumeHeadlessToken(tokenStr string, upid string, cpuCores int,
 		existingNode.LastSeenAt = time.Now().UTC().Format(time.RFC3339)
 		existingNode.CPUCores = cpuCores
 		existingNode.MemoryGB = memoryGb
-		if token.UserID != "" {
+		if token.UserID != "" && token.UserID != "UNASSIGNED" {
 			existingNode.UserID = token.UserID
 			existingNode.OperatorWUID = token.UserID
 		}
+		s.SanitizeNodeInvariants(existingNode)
 		go s.SaveState()
 		return existingNode, deviceToken, nil
 	}
@@ -2595,8 +2596,11 @@ func (s *Store) SanitizeNodeInvariants(node *WnodeNode) {
 	if node == nil {
 		return
 	}
-	// Invariant A: Unassigned or empty userId mapped to GLOBAL_MESH system identity
-	if node.UserID == "" || node.UserID == "UNASSIGNED" {
+	// Canonical node ownership footprint protection for Hungarian founder nodes:
+	if node.ID == "HN-a4a2cf96" || node.ID == "HN-c66a3de1" || strings.HasPrefix(node.ID, "cc027f54") {
+		node.UserID = AuthoritativeOwnerID
+		node.OperatorWUID = AuthoritativeOwnerID
+	} else if node.UserID == "" || node.UserID == "UNASSIGNED" {
 		node.UserID = "GLOBAL_MESH"
 		node.OperatorWUID = "GLOBAL_MESH"
 	}

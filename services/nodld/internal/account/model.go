@@ -123,11 +123,29 @@ type Nodlr struct {
 	IsSuperAdmin          bool            `json:"isSuperAdmin"`
 	OnboardingComplete    bool            `json:"onboardingComplete"`
 	Verified              bool            `json:"verified"`
-	Labels                []string        `json:"labels"`
+	Labels                []string        `json:"labels,omitempty"`
 	Archetype             Archetype       `json:"archetype,omitempty"`
 	CreatedAt             time.Time       `json:"createdAt"`
+	UpdatedAt             time.Time       `json:"updatedAt"`
 	TOTPSecret            string          `json:"totpSecret,omitempty"`
 	TOTPEnabled           bool            `json:"totpEnabled"`
+}
+
+// SoulRecord defines an on-chain Soulbound Token (SBT) record bound to a WUID identity.
+type SoulRecord struct {
+	SoulID            string `json:"soul_id"`
+	WUID              string `json:"wuid"`
+	WalletAddress     string `json:"wallet_address"`
+	SoulTokenContract string `json:"soul_token_contract"`
+	DAOContract       string `json:"dao_contract"`
+	SoulTokenID       string `json:"soul_token_id"`
+	SoulTokenTx       string `json:"soul_token_tx"`
+	DeploymentTx      string `json:"deployment_tx"`
+	ChainID           string `json:"chain_id"`
+	FounderSoul       bool   `json:"founder_soul"`
+	DAOMember         bool   `json:"dao_member"`
+	VotingPower       int    `json:"voting_power"`
+	CreatedAt         string `json:"created_at"`
 }
 
 // AffiliateRelation represents a link in the tree.

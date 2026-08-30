@@ -74,6 +74,9 @@ type Store struct {
 	// Phase 1: Integrations Registry
 	integrations       map[string]*Integration
 
+	// On-chain Soul Tokens (SBT)
+	souls              map[string]*SoulRecord
+
 	// SaveState debouncing
 	saveMu    sync.Mutex
 	lastSave  time.Time
@@ -168,6 +171,7 @@ func NewStore(forensics *forensics.Store, statePath string) *Store {
 		Telemetry:           NewTelemetryDispatcher("http://127.0.0.1:3001/api/intelligence/event"),
 		hardwareMapping:     make(map[string]*WUIDHardwareMapping),
 		integrations:        make(map[string]*Integration),
+		souls:               make(map[string]*SoulRecord),
 	}
 	s.initInviteState()
 	s.loadState()
@@ -464,6 +468,26 @@ func (s *Store) SeedFoundationIdentities() {
 		CreatedAt:     time.Now(),
 	}
 
+	// 4. Canonical Founder Soul Record
+	if s.souls == nil {
+		s.souls = make(map[string]*SoulRecord)
+	}
+	s.souls[ownerID] = &SoulRecord{
+		SoulID:            ownerID,
+		WUID:              ownerID,
+		WalletAddress:     "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+		SoulTokenContract: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+		DAOContract:       "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+		SoulTokenID:       "1",
+		SoulTokenTx:       "0x5ae3320c2ca4950a18350f10c588e1d0888f28134835ab51f4bddb5ef518361a",
+		DeploymentTx:      "0x4232363f50a207cf790db851eeef0258472ee4d459fafd340d9c86bec2a4f913",
+		ChainID:           "31337",
+		FounderSoul:       true,
+		DAOMember:         true,
+		VotingPower:       1,
+		CreatedAt:         time.Now().UTC().Format(time.RFC3339),
+	}
+
 	// Sync updated owner account to BoltDB persistence store
 	if s.DB != nil {
 		_ = s.DB.Update(func(tx *bbolt.Tx) error {
@@ -477,6 +501,17 @@ func (s *Store) SeedFoundationIdentities() {
 			return nil
 		})
 	}
+}
+
+// GetSoul returns the SoulRecord for a given WUID.
+func (s *Store) GetSoul(wuid string) (*SoulRecord, bool) {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	if s.souls == nil {
+		return nil, false
+	}
+	soul, ok := s.souls[wuid]
+	return soul, ok
 }
 
 // SeedGlobalMeshNodes seeds canonical global mesh nodes under GLOBAL_MESH ownership.

@@ -352,6 +352,7 @@ func (s *Server) registerRoutes() {
 	apiV1.Get("/earnings", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetEarnings)
 	apiV1.Get("/affiliates", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetAffiliatesSummary)
 	apiV1.Get("/rank", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetRank)
+	apiV1.Get("/account/soul", s.handleGetAccountSoul)
 
 	// Business & RBAC
 	s.app.Post("/admin/business/profile", s.requireAccess(account.RoleOwner, "command"), s.handleUpdateBusinessProfile)
@@ -2887,6 +2888,18 @@ func (s *Server) handleGetAdminMoneyTransactionDetail(c *fiber.Ctx) error {
 			"rolling_hash": s.accountStore.ComputeRollingHash(),
 		},
 	})
+}
+
+func (s *Server) handleGetAccountSoul(c *fiber.Ctx) error {
+	wuid, _, _ := s.resolveIdentity(c)
+	if wuid == "" {
+		wuid = account.AuthoritativeOwnerID
+	}
+	soul, ok := s.accountStore.GetSoul(wuid)
+	if !ok {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "soul token not found for WUID"})
+	}
+	return c.JSON(soul)
 }
 
 func (s *Server) handleExportAdminMoneyCSV(c *fiber.Ctx) error {

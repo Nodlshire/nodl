@@ -1,14 +1,18 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import "./SoulToken.sol";
+import "./WST.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
+/**
+ * @title WnodeDAO Governance Contract
+ * @notice On-chain DAO governance enforcing 1 vote per WUID bound Soul Token.
+ */
 contract WnodeDAO is Ownable {
-
-    SoulToken public soul;
+    WST public immutable soulToken;
 
     struct Proposal {
+        uint256 id;
         string description;
         uint256 yesVotes;
         uint256 noVotes;
@@ -19,17 +23,36 @@ contract WnodeDAO is Ownable {
 
     uint256 public nextProposalId = 1;
     mapping(uint256 => Proposal) public proposals;
-    mapping(uint256 => mapping(uint256 => bool)) public hasVoted;
+    // proposalId => WUID => hasVoted
+    mapping(uint256 => mapping(string => bool)) public wuidHasVoted;
 
-    constructor(address soulAddress) {
-        soul = SoulToken(soulAddress);
+    event ProposalCreated(uint256 indexed proposalId, string description, uint256 startTime, uint256 endTime);
+    event Voted(uint256 indexed proposalId, string indexed wuid, address voter, bool support);
+
+    constructor(address wstAddress) {
+        require(wstAddress != address(0), "Invalid WST address");
+        soulToken = WST(wstAddress);
     }
 
-    function submitProposal(string memory description) external {
-        uint256 soulId = soulIdOf(msg.sender);
-        require(soul.getSoulStatus(soulId) == SoulToken.SoulStatus.VOTING, "Not a Voting Soul");
+    /**
+     * @notice Gets voting power for an address. Exactly 1 vote if holding a valid WST Soul Token.
+     */
+    function getVotingPower(address voter) public view returns (uint256) {
+        if (soulToken.balanceOf(voter) == 1) {
+            return 1;
+        }
+        return 0;
+    }
 
-        proposals[nextProposalId] = Proposal({
+    /**
+     * @notice Creates a new DAO proposal. Requires voter to hold a WST Soul Token.
+     */
+    function createProposal(string memory description) external returns (uint256) {
+        require(getVotingPower(msg.sender) == 1, "DAO: Must hold a WST Soul Token to create proposal");
+
+        uint256 proposalId = nextProposalId++;
+        proposals[proposalId] = Proposal({
+            id: proposalId,
             description: description,
             yesVotes: 0,
             noVotes: 0,
@@ -38,34 +61,33 @@ contract WnodeDAO is Ownable {
             executed: false
         });
 
-        nextProposalId++;
+        emit ProposalCreated(proposalId, description, block.timestamp, block.timestamp + 7 days);
+        return proposalId;
     }
 
+    /**
+     * @notice Casts 1 vote per WUID.
+     */
     function vote(uint256 proposalId, bool support) external {
-        uint256 soulId = soulIdOf(msg.sender);
-        require(soul.getSoulStatus(soulId) == SoulToken.SoulStatus.VOTING, "Not a Voting Soul");
-        require(!hasVoted[proposalId][soulId], "Already voted");
+        require(getVotingPower(msg.sender) == 1, "DAO: Must hold a WST Soul Token to vote");
+        
+        uint256 tokenId = soulToken.tokenOfOwnerByIndex(msg.sender, 0);
+        string memory wuid = soulToken.soulWUID(tokenId);
+        require(bytes(wuid).length > 0, "DAO: Unbound soul");
+        require(!wuidHasVoted[proposalId][wuid], "DAO: WUID has already voted on this proposal");
 
         Proposal storage p = proposals[proposalId];
-        require(block.timestamp < p.endTime, "Voting ended");
+        require(block.timestamp <= p.endTime, "DAO: Voting period ended");
+        require(!p.executed, "DAO: Proposal already executed");
 
-        hasVoted[proposalId][soulId] = true;
+        wuidHasVoted[proposalId][wuid] = true;
 
-        if (support) p.yesVotes++;
-        else p.noVotes++;
-    }
+        if (support) {
+            p.yesVotes += 1;
+        } else {
+            p.noVotes += 1;
+        }
 
-    function execute(uint256 proposalId) external {
-        Proposal storage p = proposals[proposalId];
-        require(!p.executed, "Already executed");
-        require(block.timestamp >= p.endTime, "Voting not ended");
-
-        p.executed = true;
-    }
-
-    function soulIdOf(address user) internal view returns (uint256) {
-        uint256 balance = soul.balanceOf(user);
-        require(balance == 1, "User must hold exactly one Soul");
-        return soul.tokenOfOwnerByIndex(user, 0);
+        emit Voted(proposalId, wuid, msg.sender, support);
     }
 }

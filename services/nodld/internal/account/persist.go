@@ -35,6 +35,7 @@ type AuthState struct {
 	DomainSessions      map[string]*DomainSession      `json:"domain_sessions,omitempty"`
 	HeadlessTokens      map[string]*HeadlessToken      `json:"headless_tokens,omitempty"`
 	InviteTokens        map[string]*InviteToken        `json:"invite_tokens,omitempty"`
+	Souls               map[string]*SoulRecord         `json:"souls,omitempty"`
 }
 
 func (s *Store) SaveState() error {
@@ -92,6 +93,7 @@ func (s *Store) SaveState() error {
 		DomainSessions:      s.domainSessions,
 		HeadlessTokens:      s.headlessTokens,
 		InviteTokens:        s.inviteTokens,
+		Souls:               s.souls,
 	}
 
 	data, err := json.MarshalIndent(state, "", "  ")
@@ -242,6 +244,12 @@ func (s *Store) LoadState() error {
 	}
 	if s.inviteTokens == nil {
 		s.inviteTokens = make(map[string]*InviteToken)
+	}
+	if state.Souls != nil {
+		s.souls = state.Souls
+	}
+	if s.souls == nil {
+		s.souls = make(map[string]*SoulRecord)
 	}
 	if state.Invite != nil {
 		s.inviteState = state.Invite

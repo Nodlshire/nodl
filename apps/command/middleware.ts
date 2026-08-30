@@ -2,25 +2,14 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 function createRedirectResponse(request: NextRequest, targetPath: string): NextResponse {
-  const forwardedHost = request.headers.get('x-forwarded-host');
-  const hostHeader = request.headers.get('host');
-  const rawHost = forwardedHost || hostHeader || 'cmd.wnode.one';
-  
-  let host = rawHost;
-  if (host.includes('localhost') || host.includes('127.0.0.1')) {
-    host = 'cmd.wnode.one';
-  }
-  
-  const proto = request.headers.get('x-forwarded-proto') || 'https';
-  const redirectUrl = `${proto}://${host}${targetPath}`;
-  
-  return new NextResponse(null, {
-    status: 307,
-    headers: {
-      'Location': redirectUrl,
-      'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate'
-    }
-  });
+  const host = request.headers.get('x-forwarded-host') || request.headers.get('host') || request.nextUrl.host;
+  const proto = request.headers.get('x-forwarded-proto') || (request.nextUrl.protocol.startsWith('https') ? 'https' : 'http');
+  const redirectUrl = new URL(targetPath, `${proto}://${host}`);
+  const response = NextResponse.redirect(redirectUrl);
+  response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');
+  response.headers.set('Pragma', 'no-cache');
+  response.headers.set('Expires', '0');
+  return response;
 }
 
 export function middleware(request: NextRequest) {

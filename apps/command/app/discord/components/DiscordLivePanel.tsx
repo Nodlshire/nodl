@@ -32,10 +32,23 @@ export default function DiscordLivePanel() {
   const fetchInitialData = async () => {
     try {
       const guildId = "1496144706776600697"; 
-      const res = await fetch(`/api/discord/guild/${guildId}/channels`);
-      if (res.ok) {
-        const data = await res.json();
-        setChannels(data);
+      const generalChannelId = "1540912001125978112";
+
+      const [chanRes, msgRes] = await Promise.all([
+        fetch(`/api/discord/guild/${guildId}/channels`).catch(() => null),
+        fetch(`/api/discord/channel/${generalChannelId}/messages`).catch(() => null)
+      ]);
+
+      if (chanRes && chanRes.ok) {
+        const data = await chanRes.json();
+        setChannels(Array.isArray(data) ? data : []);
+      }
+
+      if (msgRes && msgRes.ok) {
+        const initialMsgs = await msgRes.json();
+        if (Array.isArray(initialMsgs)) {
+          setMessages(initialMsgs.reverse());
+        }
       }
     } catch (err) {
       console.error("Failed to fetch initial Discord data:", err);

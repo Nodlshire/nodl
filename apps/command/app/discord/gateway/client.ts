@@ -74,11 +74,10 @@ export class DiscordGatewayClient extends EventEmitter {
         token: this.token,
         intents: 33281, // GUILDS + GUILD_MESSAGES + MESSAGE_CONTENT
         properties: {
-          os: 'linux',
-          browser: 'nextjs',
-          device: 'server'
-        },
-        subscriptions: ["MESSAGE_CREATE"]
+          $os: 'linux',
+          $browser: 'nextjs',
+          $device: 'server'
+        }
       }
     };
     this.socket?.send(JSON.stringify(payload));

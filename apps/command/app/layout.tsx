@@ -6,6 +6,7 @@ import "./globals.css";
 
 import Shell from "./components/Shell";
 import AuthGuard from "./components/AuthGuard";
+import { PageTitleProvider } from "./components/PageTitleContext";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     "--command-portal-glow-color": "#22D3EE",
                 } as React.CSSProperties}
             >
+                <PageTitleProvider>
                     <AuthGuard>
                         <React.Suspense fallback={<div className="h-screen w-screen bg-black" />}>
                             {pathname?.startsWith("/auth") ? (
@@ -36,6 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                             )}
                         </React.Suspense>
                     </AuthGuard>
+                </PageTitleProvider>
             </body>
         </html>
     );

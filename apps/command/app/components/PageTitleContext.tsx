@@ -39,17 +39,20 @@ export function PageTitleProvider({ children }: { children: ReactNode }) {
  */
 export function usePageTitle(title?: string, subtitle?: string) {
     const context = useContext(PageTitleContext);
-    if (!context) {
-        throw new Error("usePageTitle must be used within a PageTitleProvider");
-    }
-
-    const { setPageTitle } = context;
-
+    
     useEffect(() => {
-        if (title) {
-            setPageTitle(title, subtitle);
+        if (context && title) {
+            context.setPageTitle(title, subtitle);
         }
-    }, [title, subtitle, setPageTitle]);
+    }, [title, subtitle, context]);
+
+    if (!context) {
+        return {
+            pageTitle: title || "",
+            pageSubtitle: subtitle || "",
+            setPageTitle: () => {},
+        };
+    }
 
     return context;
 }

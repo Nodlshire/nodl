@@ -40,7 +40,7 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
         };
 
         checkAuth();
-    }, [pathname, router]);
+    }, []);
 
     if (isLoading) {
         return (

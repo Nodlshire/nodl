@@ -3,16 +3,6 @@
 import React, { useEffect, useRef } from "react";
 import "leaflet/dist/leaflet.css";
 
-const DEV_FALLBACK_NODES = [
-  { id: "node-lon-01", name: "London Edge #1", lat: 51.5074, lon: -0.1278, status: "active", tier: "Tier-1" },
-  { id: "node-bud-02", name: "Budapest Relay #2", lat: 47.4979, lon: 19.0402, status: "active", tier: "Tier-1" },
-  { id: "node-nyc-03", name: "NYC Core Gateway #3", lat: 40.7128, lon: -74.0060, status: "active", tier: "Tier-1" },
-  { id: "node-tok-04", name: "Tokyo Autonomous Edge #4", lat: 35.6762, lon: 139.6503, status: "active", tier: "Tier-2" },
-  { id: "node-fra-05", name: "Frankfurt Relay #5", lat: 50.1109, lon: 8.6821, status: "active", tier: "Tier-1" },
-  { id: "node-syd-06", name: "Sydney Mesh Unit #6", lat: -33.8688, lon: 151.2093, status: "offline", tier: "Tier-3" },
-  { id: "node-sao-07", name: "São Paulo Ingress #7", lat: -23.5505, lon: -46.6333, status: "active", tier: "Tier-2" }
-];
-
 function getHashSeed(str: string): number {
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
@@ -33,7 +23,7 @@ export default function OpenMap({ nodes = [], nodlrs = [], loading = false, onNo
   const mapRef = useRef<any>(null);
   const markersLayerRef = useRef<any>(null);
 
-  const displayNodes = Array.isArray(nodes) && nodes.length > 0 ? nodes : DEV_FALLBACK_NODES;
+  const displayNodes = Array.isArray(nodes) ? nodes : [];
 
   useEffect(() => {
     if (typeof window === "undefined") return;

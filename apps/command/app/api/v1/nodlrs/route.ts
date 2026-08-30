@@ -38,10 +38,10 @@ export async function GET(req: NextRequest) {
                 isMeshInt: !!r.integration_path || !!r.isIntegration || !!r.isMeshInt,
                 isNodlrInt: !!r.isNodlrInt,
                 isTechFounder: !!r.isTechFounder,
-                activeNodes: Number(r.nodeCount || 0),
-                l1Affiliates: 0,
-                l2Affiliates: 0,
-                affiliateReferrer: r.referrerWuid || (r.isFounder ? "Founder" : "Partner"),
+                activeNodes: Number(r.nodeCount ?? r.activeNodes ?? 0),
+                l1Affiliates: Number(r.l1Count ?? 0),
+                l2Affiliates: Number(r.l2Count ?? 0),
+                affiliateReferrer: r.parentId || (r.isFounder ? "Founder" : "Partner"),
                 events: r.events || [],
                 notes: r.notes || []
             }));

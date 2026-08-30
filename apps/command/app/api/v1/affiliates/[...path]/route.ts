@@ -6,8 +6,20 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ path
     const { path } = await params;
     const pathString = path.join('/');
     const searchParams = req.nextUrl.searchParams.toString();
+    const cookieHeader = req.headers.get("cookie") || "";
+    const authHeader = req.headers.get("authorization") || req.headers.get("Authorization") || "";
     const cookieStore = await cookies();
-    const sessionCookie = cookieStore.get('cmd_session')?.value;
+    const sessionCookie = cookieStore.get('cmd_session')?.value || cookieStore.get('nodlr_session')?.value;
+
+    const headers: Record<string, string> = { 'Accept': 'application/json' };
+    if (cookieHeader) {
+        headers['Cookie'] = cookieHeader;
+    } else if (sessionCookie) {
+        headers['Cookie'] = `cmd_session=${sessionCookie}; nodlr_session=${sessionCookie}`;
+    }
+    if (authHeader) {
+        headers['Authorization'] = authHeader;
+    }
 
     try {
         const url = `${apiUrl}/api/v1/affiliates/${pathString}${searchParams ? `?${searchParams}` : ''}`;
@@ -15,10 +27,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ path
         const res = await fetch(url, {
             method: 'GET',
             cache: 'no-store',
-            headers: {
-                'Accept': 'application/json',
-                'Cookie': sessionCookie ? `cmd_session=${sessionCookie}` : '',
-            },
+            headers,
         });
 
         if (!res.ok) {

@@ -39,6 +39,7 @@ export default function MeshNodesPage() {
                     <thead className="bg-white/[0.03] text-white/40 uppercase text-[10px] font-bold tracking-widest">
                         <tr>
                             <th className="px-6 py-4">Node ID</th>
+                            <th className="px-6 py-4">Operator Type</th>
                             <th className="px-6 py-4">Status</th>
                             <th className="px-6 py-4">Last Heartbeat</th>
                             <th className="px-6 py-4">Load</th>
@@ -46,12 +47,20 @@ export default function MeshNodesPage() {
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-white/5 bg-black">
-                        {nodes.map(node => (
-                            <tr key={node.nodeId} className="hover:bg-white/[0.02] transition-colors group">
+                        {nodes.map((node: any) => {
+                            const rawType = node.node_type || node.type || node.operator_type || 'native';
+                            const typeLabel = rawType.includes('headless') ? 'Headless Operator' : rawType.includes('space') ? 'Space Operator' : 'Native Operator';
+                            return (
+                            <tr key={node.nodeId || node.id} className="hover:bg-white/[0.02] transition-colors group">
                                 <td className="px-6 py-4 font-mono text-cyan-400">
-                                    <Link href={`/mesh/nodes/${node.nodeId}`} className="hover:underline">
-                                        {node.nodeId}
+                                    <Link href={`/mesh/nodes/${node.nodeId || node.id}`} className="hover:underline">
+                                        {node.nodeId || node.id}
                                     </Link>
+                                </td>
+                                <td className="px-6 py-4">
+                                    <span className="px-2 py-0.5 rounded-full text-[10px] font-mono border border-cyan-500/30 text-cyan-300">
+                                        {typeLabel}
+                                    </span>
                                 </td>
                                 <td className="px-6 py-4">
                                     <span className={`px-2 py-1 rounded-full text-[10px] uppercase font-bold ${
@@ -82,7 +91,8 @@ export default function MeshNodesPage() {
                                     </div>
                                 </td>
                             </tr>
-                        ))}
+                        );
+                        })}
                         {nodes.length === 0 && (
                             <tr>
                                 <td colSpan={5} className="px-6 py-12 text-center text-white/40 italic">

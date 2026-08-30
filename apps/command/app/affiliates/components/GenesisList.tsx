@@ -19,20 +19,28 @@ interface GenesisListProps {
     selectedWuid?: string;
 }
 
-const genesisData: GenesisRow[] = [
-    { index: "01", name: "Stephen Soos", type: "Founder", wuid: "100001-0426-01-AA", l1Count: "—", l2Count: "—" },
-    { index: "02", name: "Steward (Reserved)", type: "Founder", wuid: "—", l1Count: "—", l2Count: "—" },
-    { index: "03", name: "Head of Development (Reserved)", type: "Founder", wuid: "—", l1Count: "—", l2Count: "—" },
-    { index: "04", name: "Investor (Reserved)", type: "Founder", wuid: "—", l1Count: "—", l2Count: "—" },
-    { index: "05", name: "Cars (Reserved)", type: "Partner", wuid: "—", l1Count: "—", l2Count: "—" },
-    { index: "06", name: "Computers & Peripherals (Reserved)", type: "Partner", wuid: "—", l1Count: "—", l2Count: "—" },
-    { index: "07", name: "Mobile Phones & Tablets (Reserved)", type: "Partner", wuid: "—", l1Count: "—", l2Count: "—" },
-    { index: "08", name: "Smart TVs (Reserved)", type: "Partner", wuid: "—", l1Count: "—", l2Count: "—" },
-    { index: "09", name: "Robots (Reserved)", type: "Partner", wuid: "—", l1Count: "—", l2Count: "—" },
-    { index: "10", name: "IoT (Reserved)", type: "Partner", wuid: "—", l1Count: "—", l2Count: "—" },
-];
-
 export default function GenesisList({ onRowClick, onL1Click, onInvite, selectedWuid }: GenesisListProps) {
+    const [rows, setRows] = React.useState<GenesisRow[]>([]);
+
+    React.useEffect(() => {
+        fetch("/api/v1/nodlrs", { cache: "no-store" })
+            .then(res => res.ok ? res.json() : [])
+            .then((nodlrs: any[]) => {
+                if (Array.isArray(nodlrs)) {
+                    const mapped: GenesisRow[] = nodlrs.map((n: any, i: number) => ({
+                        index: String(i + 1).padStart(2, "0"),
+                        name: n.name || n.displayName || n.email || "Nodlr Identity",
+                        type: n.isFounderOrPartner || n.isFounder ? "Founder" : "Partner",
+                        wuid: n.wuid || n.id || "—",
+                        l1Count: String(n.l1Affiliates ?? n.l1Count ?? 0),
+                        l2Count: String(n.l2Affiliates ?? n.l2Count ?? 0)
+                    }));
+                    setRows(mapped);
+                }
+            })
+            .catch(() => {});
+    }, []);
+
     return (
         <section className="space-y-6">
             <div className="bg-white/[0.01] border border-wnode-border-neutral shadow-[0_0_20px_rgba(255,255,255,0.05)] rounded-[5px] overflow-hidden">
@@ -48,7 +56,7 @@ export default function GenesisList({ onRowClick, onL1Click, onInvite, selectedW
 
                 {/* Data Rows */}
                 <div className="divide-y divide-white/20 p-1 space-y-1">
-                    {genesisData.map((row) => {
+                    {rows.map((row) => {
                         const isSelected = selectedWuid === row.wuid && row.wuid !== "—";
                         const isEmpty = row.wuid === "—" || !row.wuid;
                         

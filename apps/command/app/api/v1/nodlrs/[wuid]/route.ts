@@ -60,8 +60,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { wuid: stri
         });
 
         if (!res.ok) {
-            console.log("Mocked backend identity propagation:", payload);
-            return NextResponse.json({ success: true, mocked: true, payload });
+            return NextResponse.json({ error: "Failed to propagate identity to nodld backend" }, { status: res.status });
         }
         
         const data = await res.json();

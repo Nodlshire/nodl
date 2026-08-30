@@ -5,56 +5,35 @@ import { DollarSign, ArrowUpRight, ArrowDownRight, CreditCard, Building, History
 import { motion, AnimatePresence } from 'framer-motion';
 import FinancialStatus from '../../components/FinancialStatus';
 
-const REVENUE_STREAMS = [
-    { source: 'Hardware Yield', amount: '$482.10', change: '+12.4%', trend: 'up' },
-    { source: 'Affiliate Earnings', amount: '$124.50', change: '+8.2%', trend: 'up' },
-];
-
-const SUMMARY_LEDGER = [
-    { 
-        timeframe: 'Last 24h', 
-        total: '$12.80', 
-        status: 'Settled',
-        breakdown: {
-            hardware: '$8.50',
-            l1: '$3.10',
-            l2: '$1.20'
-        }
-    },
-    { 
-        timeframe: 'Last Week', 
-        total: '$84.20', 
-        status: 'Settled',
-        breakdown: {
-            hardware: '$56.00',
-            l1: '$22.40',
-            l2: '$5.80'
-        }
-    },
-    { 
-        timeframe: 'Last Month', 
-        total: '$342.15', 
-        status: 'Settled',
-        breakdown: {
-            hardware: '$230.15',
-            l1: '$85.00',
-            l2: '$27.00'
-        }
-    },
-    { 
-        timeframe: 'Last Year', 
-        total: '$2,482.10', 
-        status: 'Settled',
-        breakdown: {
-            hardware: '$1,650.00',
-            l1: '$612.10',
-            l2: '$220.00'
-        }
-    },
-];
-
 export default function FinancesPage() {
-    const [selectedTimeframe, setSelectedTimeframe] = useState<typeof SUMMARY_LEDGER[0] | null>(null);
+    const [earnings, setEarnings] = React.useState<{ totalEarnings: number; affiliateRevenue: number }>({ totalEarnings: 0, affiliateRevenue: 0 });
+    const [selectedTimeframe, setSelectedTimeframe] = useState<any | null>(null);
+
+    React.useEffect(() => {
+        fetch('/api/v1/earnings', { cache: 'no-store' })
+            .then(res => res.ok ? res.json() : { totalEarnings: 0, affiliateRevenue: 0 })
+            .then(data => {
+                setEarnings({
+                    totalEarnings: data.totalEarnings || 0,
+                    affiliateRevenue: data.affiliateRevenue || 0
+                });
+            })
+            .catch(() => {});
+    }, []);
+
+    const hardwareYield = (earnings.totalEarnings - earnings.affiliateRevenue).toFixed(2);
+    const affiliateYield = earnings.affiliateRevenue.toFixed(2);
+
+    const revenueStreams = [
+        { source: 'Hardware Yield', amount: `$${hardwareYield}`, change: '0.0%', trend: 'neutral' },
+        { source: 'Affiliate Earnings', amount: `$${affiliateYield}`, change: '0.0%', trend: 'neutral' },
+    ];
+
+    const summaryLedger = [
+        { timeframe: 'Last 24h', total: `$${earnings.totalEarnings.toFixed(2)}`, status: 'Settled', breakdown: { hardware: `$${hardwareYield}`, l1: `$${affiliateYield}`, l2: '$0.00' } },
+        { timeframe: 'Last Week', total: `$${earnings.totalEarnings.toFixed(2)}`, status: 'Settled', breakdown: { hardware: `$${hardwareYield}`, l1: `$${affiliateYield}`, l2: '$0.00' } },
+        { timeframe: 'Last Month', total: `$${earnings.totalEarnings.toFixed(2)}`, status: 'Settled', breakdown: { hardware: `$${hardwareYield}`, l1: `$${affiliateYield}`, l2: '$0.00' } },
+    ];
 
     return (
         <div className="w-full space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
@@ -74,7 +53,7 @@ export default function FinancesPage() {
 
             {/* Snapshots - Balanced Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                {REVENUE_STREAMS.map((stream) => (
+                {revenueStreams.map((stream) => (
                     <div key={stream.source} className="surface-card p-8 space-y-4 rounded-[5px]">
                         <span className="text-16px text-slate-500 font-normal">{stream.source}</span>
                         <div className="flex items-baseline justify-between">
@@ -172,7 +151,7 @@ export default function FinancesPage() {
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-white/5">
-                                    {SUMMARY_LEDGER.map((row) => (
+                                    {summaryLedger.map((row) => (
                                         <tr 
                                             key={row.timeframe} 
                                             className="group hover:bg-white/[0.04] transition-colors cursor-pointer"

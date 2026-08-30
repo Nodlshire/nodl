@@ -2,30 +2,31 @@ import { NextResponse } from 'next/server';
 import { featureFlags } from '@/lib/featureFlags';
 
 export async function GET(request: Request) {
-    const { searchParams } = new URL(request.url);
     const authHeader = request.headers.get('Authorization') || request.headers.get('authorization');
-    const userId = request.headers.get('x-user-id');
     const cookieHeader = request.headers.get('cookie') || '';
+    const userIdHeader = request.headers.get('x-user-id') || request.headers.get('X-User-ID');
+
+    // Require valid session cookie, authorization header, or x-user-id header
+    if (!authHeader && !cookieHeader && !userIdHeader) {
+        return NextResponse.json([]);
+    }
 
     if (featureFlags.NODLR_DEBUG_REGISTRATION) {
         console.log('[DEBUG-REG] /api/nodes request:', {
             url: request.url,
             authPresent: !!authHeader,
             cookiePresent: !!cookieHeader,
-            userId
+            userIdPresent: !!userIdHeader
         });
     }
 
-    const effectiveUserId = userId || '100001-0426-01-AA';
-
     try {
-        // Fetch all nodes from the Coordinator
         const apiUrl = process.env.NODLD_API_URL || "http://127.0.0.1:8080";
         
         const headers: Record<string, string> = { 'Connection': 'close' };
         if (authHeader) headers['Authorization'] = authHeader;
-        headers['x-user-id'] = effectiveUserId;
         if (cookieHeader) headers['Cookie'] = cookieHeader;
+        if (userIdHeader) headers['x-user-id'] = userIdHeader;
 
         let attempts = 0;
         let res: Response | null = null;
@@ -44,26 +45,25 @@ export async function GET(request: Request) {
         }
 
         if (!res || !res.ok) {
-            console.warn(`Coordinator returned status ${res?.status} for /api/v1/nodes. Returning empty array.`);
             return NextResponse.json([]);
         }
 
         const nodes = await res.json();
         let providerNodes = Array.isArray(nodes) ? nodes : [];
 
-        // 1. Filter: Include ONLY nodes belonging to this provider (if userId is known)
-        if (effectiveUserId) {
+        // Defense-in-depth: If x-user-id is supplied, filter strictly by WUID with zero bypasses
+        if (userIdHeader) {
             providerNodes = providerNodes.filter((n: any) => 
-                n.userID === effectiveUserId || 
-                n.user_id === effectiveUserId || 
-                n.userId === effectiveUserId || 
-                n.operator_wuid === effectiveUserId ||
-                effectiveUserId === '100001-0426-01-AA'
+                n.userID === userIdHeader || 
+                n.user_id === userIdHeader || 
+                n.userId === userIdHeader || 
+                n.operator_wuid === userIdHeader ||
+                n.operatorWUID === userIdHeader
             );
         }
 
-        // 2. Normalize: Map to FleetMap shape { id, name, lat, lon, status }
-        providerNodes = providerNodes.map((n: any) => {
+        // Normalize: Map to FleetMap / MachineList shape { id, name, lat, lon, status }
+        const mappedNodes = providerNodes.map((n: any) => {
             const cores = n.cpu_cores || n.CPUCores || n.cpuCores;
             const memory = n.memory_gb || n.MemoryGB || n.memoryGb;
             const gpu = n.gpu_model || n.GPUModel || n.gpuModel || n.metadata?.gpu;
@@ -90,9 +90,11 @@ export async function GET(request: Request) {
             };
         });
 
-        return NextResponse.json(providerNodes);
+        return NextResponse.json(mappedNodes);
     } catch (err) {
         console.error('Nodlr API /api/nodes failure:', err);
         return NextResponse.json([]);
     }
 }
+
+

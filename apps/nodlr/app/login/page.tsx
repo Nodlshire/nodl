@@ -166,7 +166,11 @@ export default function LoginPage() {
                     localStorage.setItem('nodl_jwt', data.session_id);
                     localStorage.setItem('nodlr_session_id', data.session_id);
                     localStorage.setItem('nodlr_session', JSON.stringify(data.user || data));
-                    localStorage.setItem('nodl_user_id', data.user_id || '100001-0426-01-AA');
+                    if (data.user_id || data.user?.id) {
+                        localStorage.setItem('nodl_user_id', data.user_id || data.user?.id);
+                    } else {
+                        localStorage.removeItem('nodl_user_id');
+                    }
                     document.cookie = `nodlr_session=${data.session_id}; path=/; max-age=86400; SameSite=Lax; Secure`;
                     document.cookie = `nodlr_session_id=${data.session_id}; path=/; max-age=86400; SameSite=Lax; Secure`;
                     document.cookie = `nodl_session=${data.session_id}; path=/; max-age=86400; SameSite=Lax; Secure`;

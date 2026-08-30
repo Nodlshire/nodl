@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+Allow: /signup
+Allow: /login
+Allow: /vge-explainer.html
+Disallow: /api/
+Disallow: /dashboard/
+
+# Explicitly Allow AI & LLM Search Engine Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://nodlr.wnode.one/sitemap.xml

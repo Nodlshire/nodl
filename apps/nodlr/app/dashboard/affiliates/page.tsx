@@ -10,32 +10,45 @@ export default function AffiliatePage() {
     const { account } = useAccount();
     const affiliateCode = account?.id || account?.wuid || account?.nodlrId || "100001-0426-01-AA";
     const [isInviteModalOpen, setIsInviteModalOpen] = useState(false);
-    const [l1Referrals, setL1Referrals] = useState([
-        { id: '1', affiliate: '100421-0426-01-AA', name: 'Daniel Reyes', phone: '+44 7911 123456', status: 'ACTIVE', revenue: 12.42, nodes: 4, nodeType: 'Command' },
-        { id: '2', affiliate: '100085-0426-01-AA', name: 'Priya Sharma', phone: '+1 415 555 0199', status: 'ACTIVE', revenue: 8.15, nodes: 2, nodeType: 'Command' },
-        { id: '3', affiliate: '100204-0426-01-AA', name: 'Kai Nakamura', phone: '+81 90 1234 5678', status: 'PENDING', revenue: 0.00, nodes: 0, nodeType: '—' },
-    ]);
-    const [l2Referrals, setL2Referrals] = useState([
-        { id: '4', affiliate: '100931-0426-01-AA', status: 'ACTIVE', revenue: 42.12 },
-        { id: '5', affiliate: '100772-0426-01-AA', status: 'ACTIVE', revenue: 15.80 },
-    ]);
+    const [l1Referrals, setL1Referrals] = useState<any[]>([]);
+    const [l2Referrals, setL2Referrals] = useState<any[]>([]);
+    const [copied, setCopied] = useState(false);
     const [selectedAffiliate, setSelectedAffiliate] = useState<any>(null);
     const [selectedLevel, setSelectedLevel] = useState<1 | 2>(1);
 
+    const handleCopy = () => {
+        if (typeof navigator !== 'undefined' && navigator.clipboard) {
+            navigator.clipboard.writeText(`https://wnode.one/invite/${affiliateCode}`);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        }
+    };
+
     React.useEffect(() => {
         if (!affiliateCode) return;
-        fetch(`/api/v1/affiliates/tree/${affiliateCode}`)
-            .then(res => res.ok ? res.json() : null)
-            .then(data => {
-                if (data && Array.isArray(data.l1) && data.l1.length > 0) {
-                    setL1Referrals(data.l1);
-                }
-                if (data && Array.isArray(data.l2) && data.l2.length > 0) {
-                    setL2Referrals(data.l2);
+
+        // Fetch live nodlrs to build L1 downline (where child.parentId === affiliateCode)
+        fetch('/api/v1/nodlrs', { cache: 'no-store' })
+            .then(res => res.ok ? res.json() : [])
+            .then((data: any[]) => {
+                if (Array.isArray(data)) {
+                    const l1 = data.filter(n => n.parentId === affiliateCode || n.parentId === account?.id || n.parentId === account?.wuid)
+                        .map(n => ({
+                            id: n.wuid || n.id,
+                            affiliate: n.wuid || n.id,
+                            name: n.displayName || n.name || n.email,
+                            phone: n.phone || 'SOT Verified Phone',
+                            status: 'ACTIVE',
+                            revenue: 0.00,
+                            nodes: n.nodeCount || 0,
+                            nodeType: 'Standard'
+                        }));
+                    setL1Referrals(l1);
+                    setL2Referrals([]);
                 }
             })
             .catch(() => {});
-    }, [affiliateCode]);
+    }, [affiliateCode, account]);
 
     const totalRevenue = (l1Referrals.reduce((acc, r) => acc + r.revenue, 0) * 0.02) + 
                          (l2Referrals.reduce((acc, r) => acc + r.revenue, 0) * 0.06);

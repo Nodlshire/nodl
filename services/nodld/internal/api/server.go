@@ -2891,7 +2891,10 @@ func (s *Server) handleGetAdminMoneyTransactionDetail(c *fiber.Ctx) error {
 }
 
 func (s *Server) handleGetAccountSoul(c *fiber.Ctx) error {
-	wuid, _, _ := s.resolveIdentity(c)
+	wuid := c.Query("wuid")
+	if wuid == "" {
+		wuid, _, _ = s.resolveIdentity(c)
+	}
 	if wuid == "" {
 		wuid = account.AuthoritativeOwnerID
 	}

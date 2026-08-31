@@ -17,8 +17,28 @@ export default function Page() {
       </div>
 
       <Callout type="note" title="Canonical Protocol Invariant">
-        This document provides canonical technical specification standards for dewi gateway under Wnode Enterprise v1.5.0. All state outputs are deterministically verifiable on Native Go daemons running on port 8080.
+        This document provides canonical technical specification standards for DeWi Gateway under Wnode Enterprise v1.5.0. All state outputs are deterministically verifiable on Native Go daemons running on port 8080.
       </Callout>
+
+      <section className="space-y-4">
+        <h2 id="ui-surfaces" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">
+          DeWi Interface Surfaces & WUID RBAC Scope
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+          <div className="p-4 rounded-lg bg-slate-900 border border-slate-800 space-y-2">
+            <h3 className="text-sm font-semibold text-cyan-400">1. Executive Control (Command / Port 3001)</h3>
+            <p className="text-xs text-slate-300">
+              Serves network-wide fleet telemetry (<code>scope=all</code>) across all operators. Features the global emergency kill switch, FRCL regulatory compliance monitor, and SHA-256 rolling proof lineage chain.
+            </p>
+          </div>
+          <div className="p-4 rounded-lg bg-slate-900 border border-slate-800 space-y-2">
+            <h3 className="text-sm font-semibold text-emerald-400">2. Operator Dashboard (Nodlr / Port 3002)</h3>
+            <p className="text-xs text-slate-300">
+              Serves WUID-isolated operator telemetry (<code>scope=user</code>) at <code>/dashboard/dewi</code>. Displays active user hardware, regional RF frequency selection (EU868/US915/AS923), and local TX safety gate.
+            </p>
+          </div>
+        </div>
+      </section>
 
       <section className="space-y-4">
         <h2 id="overview" className="text-xl font-semibold text-white tracking-tight border-b border-slate-800 pb-2">

@@ -527,8 +527,8 @@ func (s *Store) SeedGlobalMeshNodes() {
 			Status:        "active",
 			CPUCores:      4,
 			MemoryGB:      16,
-			Latitude:      47.1625,
-			Longitude:     19.5033,
+			Latitude:      0,
+			Longitude:     0,
 			Metadata:      NodeMetadata{GPU: "Intel Corporation TigerLake-LP GT2 [Iris Xe Graphics] (rev 01)"},
 			DeviceClass:   "headless",
 			CreatedAt:     time.Now().Add(-48 * time.Hour),
@@ -545,8 +545,8 @@ func (s *Store) SeedGlobalMeshNodes() {
 			Status:        "active",
 			CPUCores:      4,
 			MemoryGB:      16,
-			Latitude:      47.1625,
-			Longitude:     19.5033,
+			Latitude:      0,
+			Longitude:     0,
 			Metadata:      NodeMetadata{GPU: "Intel Corporation Skylake-S GT2 [HD Graphics 530] (rev 06)"},
 			DeviceClass:   "headless",
 			CreatedAt:     time.Now().Add(-24 * time.Hour),
@@ -560,11 +560,11 @@ func (s *Store) SeedGlobalMeshNodes() {
 			ID:            "cc027f54bbab7cbb89a12d1ee1600a309ff0e32264973657011216fdd0c13f15",
 			UserID:        AuthoritativeOwnerID,
 			OperatorWUID:  AuthoritativeOwnerID,
-			Status:        "offline",
+			Status:        "active",
 			CPUCores:      8,
 			MemoryGB:      16,
-			Latitude:      47.1625,
-			Longitude:     19.5033,
+			Latitude:      0,
+			Longitude:     0,
 			Metadata:      NodeMetadata{CPU: "11th Gen Intel Core i5-1135G7", GPU: "Intel Iris Xe Graphics"},
 			DeviceClass:   "native",
 			CreatedAt:     time.Now().Add(-120 * time.Hour),
@@ -588,24 +588,6 @@ func (s *Store) SeedGlobalMeshNodes() {
 			LastSeen:      time.Now().Add(-2 * time.Hour),
 			LastHeartbeat: time.Now().Add(-2 * time.Hour).UTC().Format(time.RFC3339),
 			LastSeenAt:    time.Now().Add(-2 * time.Hour).UTC().Format(time.RFC3339),
-			GlobalScore:   1.0,
-			Tier:          5,
-		},
-		{
-			ID:            "c0e654cf83f76bf4c903a599ccc4b5950340de878b0eaa13679a630045cc18a2",
-			UserID:        "GLOBAL_MESH",
-			OperatorWUID:  "GLOBAL_MESH",
-			Status:        "offline",
-			CPUCores:      8,
-			MemoryGB:      32,
-			Latitude:      35.6762,
-			Longitude:     139.6503,
-			Metadata:      NodeMetadata{GPU: "Microsoft Corporation Basic Render Driver"},
-			DeviceClass:   "native",
-			CreatedAt:     time.Now().Add(-96 * time.Hour),
-			LastSeen:      time.Now().Add(-5 * time.Hour),
-			LastHeartbeat: time.Now().Add(-5 * time.Hour).UTC().Format(time.RFC3339),
-			LastSeenAt:    time.Now().Add(-5 * time.Hour).UTC().Format(time.RFC3339),
 			GlobalScore:   1.0,
 			Tier:          5,
 		},
@@ -2689,11 +2671,6 @@ func (s *Store) SanitizeNodeInvariants(node *WnodeNode) {
 					node.Longitude = cLon
 				}
 			}
-		}
-		if node.Latitude == 0 && node.Longitude == 0 {
-			// Authoritative Hungary centroid fallback
-			node.Latitude = 47.1625
-			node.Longitude = 19.5033
 		}
 	}
 }

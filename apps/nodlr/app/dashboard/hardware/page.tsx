@@ -28,8 +28,6 @@ interface NodlDevice {
   operator_wuid?: string;
 }
 
-const SYSTEM_IDS = ['GLOBAL_MESH', 'UNASSIGNED', 'SYSTEM', 'AUTHORITATIVE'];
-
 export default function HardwarePage() {
   const { account, loading: accountLoading } = useAccount();
   const { nodes: nodls, loading: nodesLoading, refresh, mutate } = useProviderNodes('user');
@@ -38,7 +36,7 @@ export default function HardwarePage() {
 
   const loading = accountLoading || nodesLoading;
   const currentWuid = account?.wuid || account?.id || account?.nodlrId || account?.user_id || (typeof window !== 'undefined' ? (localStorage.getItem('nodl_user_id') || localStorage.getItem('user_id')) : '');
-  const isValidUser = Boolean(currentWuid && !SYSTEM_IDS.includes(String(currentWuid).toUpperCase()));
+  const isValidUser = Boolean(currentWuid);
 
   // MANDATORY FLEET ISOLATION FILTER: Only nodes strictly owned by the logged-in user WUID
   const myOwnedNodes = (nodls || []).filter((node: any) => {

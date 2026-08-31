@@ -39,82 +39,42 @@ interface TransmissionRecord {
 }
 
 export default function DeWiPanelPage() {
-    const [statuses, setStatuses] = useState<Record<string, AdapterStatus>>({
-        reticulum: {
-            protocol: 'reticulum',
-            state: 'TelemetryEmitting',
-            running: true,
-            connected: true,
-            lastError: '',
-            lastSeen: new Date().toISOString(),
-            packetsIn: 1420,
-            packetsOut: 0,
-            errorCount: 0,
-            memoryBytes: 12450000,
-            uptime: 86400,
-        },
-        meshtastic: {
-            protocol: 'meshtastic',
-            state: 'Ready',
-            running: true,
-            connected: true,
-            lastError: '',
-            lastSeen: new Date().toISOString(),
-            packetsIn: 890,
-            packetsOut: 0,
-            errorCount: 1,
-            memoryBytes: 8200000,
-            uptime: 86400,
-        },
-        lorawan: {
-            protocol: 'lorawan',
-            state: 'ComplianceValidated',
-            running: true,
-            connected: true,
-            lastError: '',
-            lastSeen: new Date().toISOString(),
-            packetsIn: 3200,
-            packetsOut: 0,
-            errorCount: 0,
-            memoryBytes: 18400000,
-            uptime: 86400,
-        },
-        aprs: {
-            protocol: 'aprs',
-            state: 'Ready',
-            running: true,
-            connected: true,
-            lastError: '',
-            lastSeen: new Date().toISOString(),
-            packetsIn: 410,
-            packetsOut: 0,
-            errorCount: 0,
-            memoryBytes: 6100000,
-            uptime: 86400,
-        },
-    });
-
+    const [statuses, setStatuses] = useState<Record<string, AdapterStatus>>({});
     const [killSwitchActive, setKillSwitchActive] = useState<boolean>(false);
     const [selectedRegion, setSelectedRegion] = useState<string>('EU868');
     const [approvalInput, setApprovalInput] = useState<string>('');
-    const [logs, setLogs] = useState<TransmissionRecord[]>([
-        {
-            txId: 'a1b2c3d4-e5f6-7890-abcd-ef1234567890',
-            operatorId: 'op-node-01',
-            adapterName: 'reticulum',
-            protocol: 'RNS/LXMF',
-            destination: '7b8c9d1a2b3c4d5e',
-            payloadHash: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
-            payloadSize: 128,
-            timestamp: new Date(Date.now() - 300000).toISOString(),
-            txCostUsd: 0.0001,
-            txSignature: '3045022100a9b8c7d6e5f4321...',
-            approvalString: 'APPROVED-OPERATOR-SIG-091283',
-            previousProofId: '00000000-0000-0000-0000-000000000000',
-            lineageDepth: 1,
-            lineageHash: '8f9e0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f',
-        },
-    ]);
+    const [logs, setLogs] = useState<TransmissionRecord[]>([]);
+
+    useEffect(() => {
+        // Fetch live telemetry / node status from canonical backend API
+        fetch('/api/nodls/all')
+            .then(res => res.json())
+            .then(data => {
+                if (Array.isArray(data)) {
+                    const fetchedStatuses: Record<string, AdapterStatus> = {};
+                    data.forEach((node: any) => {
+                        if (node.id && node.status === 'active') {
+                            const protoName = node.deviceClass || node.name || 'native';
+                            fetchedStatuses[node.name || node.id] = {
+                                protocol: protoName,
+                                state: node.status === 'active' ? 'TelemetryEmitting' : 'Ready',
+                                running: node.status === 'active',
+                                connected: node.status === 'active',
+                                lastError: '',
+                                lastSeen: node.lastSeen || new Date().toISOString(),
+                                packetsIn: 0,
+                                packetsOut: 0,
+                                errorCount: 0,
+                                memoryBytes: (node.memory_gb || 4) * 1024 * 1024 * 1024,
+                                uptime: 86400
+                            };
+                        }
+                    });
+                    setStatuses(fetchedStatuses);
+                }
+            })
+            .catch(err => console.error('Failed to fetch live SOT telemetry:', err));
+    }, []);
 
     const getStateColor = (state: string) => {
         switch (state) {
@@ -176,28 +136,28 @@ export default function DeWiPanelPage() {
                 {/* Top Metrics Row */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     <MetricCard
-                        title="Active Adapters"
+                        label="Active Adapters"
                         value={Object.keys(statuses).length.toString()}
-                        change="4 Protocols Active"
-                        isPositive={true}
+                        icon={Radio}
+                        subValue="4 Protocols Active"
                     />
                     <MetricCard
-                        title="Region Profile"
+                        label="Region Profile"
                         value={selectedRegion}
-                        change="EU868 / US915 / AS923"
-                        isPositive={true}
+                        icon={Zap}
+                        subValue="EU868 / US915 / AS923"
                     />
                     <MetricCard
-                        title="Total Packets Ingested"
+                        label="Total Packets Ingested"
                         value={Object.values(statuses).reduce((acc, cur) => acc + cur.packetsIn, 0).toLocaleString()}
-                        change="Deterministic TSE"
-                        isPositive={true}
+                        icon={Activity}
+                        subValue="Deterministic TSE"
                     />
                     <MetricCard
-                        title="Proof Lineage Depth"
+                        label="Proof Lineage Depth"
                         value={logs.length.toString()}
-                        change="SOT Hash-Chained"
-                        isPositive={true}
+                        icon={ShieldCheck}
+                        subValue="SOT Hash-Chained"
                     />
                 </div>
 
@@ -214,40 +174,46 @@ export default function DeWiPanelPage() {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        {Object.entries(statuses).map(([proto, st]) => (
-                            <div key={proto} className="bg-[#070b14] border border-wnode-border-separator rounded-lg p-4 space-y-3 relative overflow-hidden">
-                                <div className="flex items-center justify-between">
-                                    <span className="font-bold text-white uppercase tracking-wider text-sm">{proto}</span>
-                                    <span className={`px-2 py-0.5 text-xs font-semibold rounded border ${getStateColor(st.state)}`}>
-                                        {st.state}
-                                    </span>
-                                </div>
+                    {Object.keys(statuses).length === 0 ? (
+                        <div className="text-center py-8 text-slate-500 text-xs font-mono">
+                            No active protocol adapters reported by backend SOT.
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                            {Object.entries(statuses).map(([proto, st]) => (
+                                <div key={proto} className="bg-[#070b14] border border-wnode-border-separator rounded-lg p-4 space-y-3 relative overflow-hidden">
+                                    <div className="flex items-center justify-between">
+                                        <span className="font-bold text-white uppercase tracking-wider text-sm">{proto}</span>
+                                        <span className={`px-2 py-0.5 text-xs font-semibold rounded border ${getStateColor(st.state)}`}>
+                                            {st.state}
+                                        </span>
+                                    </div>
 
-                                <div className="space-y-1.5 text-xs text-slate-300">
-                                    <div className="flex justify-between">
-                                        <span className="text-slate-500">Packets In:</span>
-                                        <span className="font-mono text-white">{st.packetsIn.toLocaleString()}</span>
+                                    <div className="space-y-1.5 text-xs text-slate-300">
+                                        <div className="flex justify-between">
+                                            <span className="text-slate-500">Packets In:</span>
+                                            <span className="font-mono text-white">{st.packetsIn.toLocaleString()}</span>
+                                        </div>
+                                        <div className="flex justify-between">
+                                            <span className="text-slate-500">Error Count:</span>
+                                            <span className="font-mono text-white">{st.errorCount}</span>
+                                        </div>
+                                        <div className="flex justify-between">
+                                            <span className="text-slate-500">Memory:</span>
+                                            <span className="font-mono text-white">{(st.memoryBytes / (1024 * 1024)).toFixed(1)} MB</span>
+                                        </div>
                                     </div>
-                                    <div className="flex justify-between">
-                                        <span className="text-slate-500">Error Count:</span>
-                                        <span className="font-mono text-white">{st.errorCount}</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span className="text-slate-500">Memory:</span>
-                                        <span className="font-mono text-white">{(st.memoryBytes / (1024 * 1024)).toFixed(1)} MB</span>
-                                    </div>
-                                </div>
 
-                                <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-xs">
-                                    <span className="text-slate-500">Mode:</span>
-                                    <span className="text-emerald-400 font-semibold flex items-center gap-1">
-                                        <Lock className="w-3 h-3" /> RX-Only (Default)
-                                    </span>
+                                    <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-xs">
+                                        <span className="text-slate-500">Mode:</span>
+                                        <span className="text-emerald-400 font-semibold flex items-center gap-1">
+                                            <Lock className="w-3 h-3" /> RX-Only (Default)
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
-                    </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
 
                 {/* Region & Safety Gate Control Section */}
@@ -345,17 +311,25 @@ export default function DeWiPanelPage() {
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-slate-800/60 font-mono text-slate-300">
-                                {logs.map((log) => (
-                                    <tr key={log.txId} className="hover:bg-slate-900/40">
-                                        <td className="p-3 text-[#22D3EE] font-bold">#{log.lineageDepth}</td>
-                                        <td className="p-3 text-white">{log.txId.substring(0, 8)}...</td>
-                                        <td className="p-3 text-amber-400">{log.protocol}</td>
-                                        <td className="p-3">{log.destination}</td>
-                                        <td className="p-3 text-slate-500">{log.previousProofId.substring(0, 8)}...</td>
-                                        <td className="p-3 text-purple-400">{log.lineageHash.substring(0, 12)}...</td>
-                                        <td className="p-3 text-emerald-400 font-bold">VERIFIED</td>
+                                {logs.length === 0 ? (
+                                    <tr>
+                                        <td colSpan={7} className="text-center py-6 text-slate-500 text-xs font-mono">
+                                            No cryptographic proof lineage logs recorded in SOT ledger.
+                                        </td>
                                     </tr>
-                                ))}
+                                ) : (
+                                    logs.map((log) => (
+                                        <tr key={log.txId} className="hover:bg-slate-900/40">
+                                            <td className="p-3 text-[#22D3EE] font-bold">#{log.lineageDepth}</td>
+                                            <td className="p-3 text-white">{log.txId.substring(0, 8)}...</td>
+                                            <td className="p-3 text-amber-400">{log.protocol}</td>
+                                            <td className="p-3">{log.destination}</td>
+                                            <td className="p-3 text-slate-500">{log.previousProofId.substring(0, 8)}...</td>
+                                            <td className="p-3 text-purple-400">{log.lineageHash.substring(0, 12)}...</td>
+                                            <td className="p-3 text-emerald-400 font-bold">VERIFIED</td>
+                                        </tr>
+                                    ))
+                                )}
                             </tbody>
                         </table>
                     </div>

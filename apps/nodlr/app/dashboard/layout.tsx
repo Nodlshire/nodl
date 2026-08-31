@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Cpu, Users, Settings, LogOut, Upload, DollarSign, Plus, UserPlus, HelpCircle, AlertCircle, TrendingUp, Shield } from 'lucide-react';
+import { LayoutDashboard, Cpu, Users, Settings, LogOut, Upload, DollarSign, Plus, UserPlus, HelpCircle, AlertCircle, TrendingUp, Shield, Radio } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useAccount } from '../hooks/useAccount';
@@ -26,6 +26,7 @@ const fetcher = (url: string) => {
 const navigation = [
     { name: 'Overview', href: '/dashboard', icon: LayoutDashboard, color: 'text-[#22d3ee]' },
     { name: 'Nodes', href: '/dashboard/hardware', icon: Cpu, color: 'text-[#a855f7]' },
+    { name: 'DeWi Mesh', href: '/dashboard/dewi', icon: Radio, color: 'text-[#22D3EE]' },
     { name: 'Mesh Sales', href: '/dashboard/sales', icon: TrendingUp, color: 'text-[#ffff00]' },
     { name: 'Money', href: '/dashboard/finances', icon: DollarSign, color: 'text-[#10b981]' },
     { name: 'Affiliates', href: '/dashboard/affiliates', icon: Users, color: 'text-[#3b82f6]' },
@@ -70,15 +71,6 @@ export default function DashboardLayout({
 
     useEffect(() => {
         setMounted(true);
-        if (typeof window !== 'undefined') {
-            const SYSTEM_IDS = ['GLOBAL_MESH', 'UNASSIGNED', 'SYSTEM', 'AUTHORITATIVE'];
-            for (const key of ['nodl_user_id', 'nodlr_user_id']) {
-                const val = localStorage.getItem(key);
-                if (val && SYSTEM_IDS.includes(val.toUpperCase())) {
-                    localStorage.removeItem(key);
-                }
-            }
-        }
         const dismissed = localStorage.getItem('nodl_identity_banner_dismissed') === 'true';
         setIsBannerDismissed(dismissed);
     }, []);

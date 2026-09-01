@@ -14,6 +14,49 @@ export default function SettingsPage() {
     const fileInputRef = React.useRef<HTMLInputElement>(null);
     const { account, loading: accountLoading } = useAccount();
 
+    const [currentPassword, setCurrentPassword] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [passwordSuccess, setPasswordSuccess] = useState('');
+    const [isChangingPassword, setIsChangingPassword] = useState(false);
+
+    const handlePasswordChange = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setPasswordError('');
+        setPasswordSuccess('');
+
+        if (!currentPassword || !newPassword) {
+            setPasswordError('Current password and new password are required');
+            return;
+        }
+
+        if (newPassword.length < 6) {
+            setPasswordError('New password must be at least 6 characters');
+            return;
+        }
+
+        setIsChangingPassword(true);
+        try {
+            const res = await fetch('/api/account/change-password', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ currentPassword, newPassword })
+            });
+            const data = await res.json();
+            if (res.ok) {
+                setPasswordSuccess('Password updated successfully');
+                setCurrentPassword('');
+                setNewPassword('');
+            } else {
+                setPasswordError(data.error || 'Failed to update password');
+            }
+        } catch (err: any) {
+            setPasswordError('Network error while updating password');
+        } finally {
+            setIsChangingPassword(false);
+        }
+    };
+
     const [profile, setProfile] = useState({
         displayName: '',
         businessName: '',
@@ -351,12 +394,55 @@ export default function SettingsPage() {
                                         <div className="mb-6">
                                             <Input label="Permissions / Roles" value={profile.permissions.join(', ')} disabled badge badgeColor="text-white" />
                                         </div>
-                                        <div className="p-6 bg-red-500/5 border border-red-500/20 rounded-[5px]">
-                                            <h3 className="text-[13px] font-bold text-red-500 mb-2">Change Password</h3>
-                                            <div className="grid grid-cols-2 gap-4">
-                                                <Input label="Current Password" type="password" placeholder="••••••••" value="" onChange={() => {}} />
-                                                <Input label="New Password" type="password" placeholder="••••••••" value="" onChange={() => {}} />
-                                            </div>
+                                        <div className="p-6 bg-purple-950/20 border border-purple-500/20 rounded-[5px]">
+                                            <h3 className="text-[13px] font-bold text-purple-400 mb-3">Change Password</h3>
+                                            <form onSubmit={handlePasswordChange} className="space-y-4">
+                                                <div className="grid grid-cols-2 gap-4">
+                                                    <Input 
+                                                        label="Current Password" 
+                                                        type="password" 
+                                                        placeholder="••••••••" 
+                                                        value={currentPassword} 
+                                                        onChange={(val: string) => setCurrentPassword(val)} 
+                                                    />
+                                                    <Input 
+                                                        label="New Password" 
+                                                        type="password" 
+                                                        placeholder="••••••••" 
+                                                        value={newPassword} 
+                                                        onChange={(val: string) => setNewPassword(val)} 
+                                                    />
+                                                </div>
+                                                {passwordError && (
+                                                    <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-[5px] text-xs text-red-400 font-medium">
+                                                        {passwordError}
+                                                    </div>
+                                                )}
+                                                {passwordSuccess && (
+                                                    <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-[5px] text-xs text-emerald-400 font-medium">
+                                                        {passwordSuccess}
+                                                    </div>
+                                                )}
+                                                <div className="flex justify-end">
+                                                    <button
+                                                        type="submit"
+                                                        disabled={isChangingPassword || !currentPassword || !newPassword}
+                                                        className="px-5 py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 disabled:opacity-50 text-white text-xs font-semibold rounded-[5px] transition-all shadow-md flex items-center gap-2"
+                                                    >
+                                                        {isChangingPassword ? (
+                                                            <>
+                                                                <svg className="animate-spin h-3.5 w-3.5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                                                </svg>
+                                                                <span>Updating Password...</span>
+                                                            </>
+                                                        ) : (
+                                                            <span>Update Password</span>
+                                                        )}
+                                                    </button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </Section>
 

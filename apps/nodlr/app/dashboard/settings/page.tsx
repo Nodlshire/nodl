@@ -382,12 +382,18 @@ export default function SettingsPage() {
                                 <div className="space-y-8">
                                     <Section title="Security, Sessions & Permissions">
                                         <div className="grid grid-cols-2 gap-6 mt-4 mb-6">
-                                            <div className="p-4 border border-white/10 rounded-[5px] flex justify-between items-center">
+                                            <div 
+                                                className="p-4 border border-white/10 rounded-[5px] flex justify-between items-center opacity-50 cursor-not-allowed relative group"
+                                                title="Coming Soon"
+                                            >
                                                 <div>
-                                                    <span className="text-[12px] text-white font-bold block mb-1">MFA Enabled</span>
+                                                    <div className="flex items-center gap-2 mb-1">
+                                                        <span className="text-[12px] text-white font-bold block">MFA Enabled</span>
+                                                        <span className="text-[9px] bg-white/10 text-slate-400 font-mono px-1.5 py-0.5 rounded border border-white/10 uppercase tracking-wider">Coming Soon</span>
+                                                    </div>
                                                     <span className="text-[11px] text-slate-500">Multi-factor acts as step-up verification.</span>
                                                 </div>
-                                                <Toggle checked={profile.mfaEnabled} onChange={() => setProfile({ ...profile, mfaEnabled: !profile.mfaEnabled })} />
+                                                <Toggle checked={false} disabled />
                                             </div>
                                             <Input label="Last Login" value={new Date(profile.lastLogin).toLocaleString()} disabled mono />
                                         </div>
@@ -520,9 +526,12 @@ function StatBlock({ label, value, color = 'text-white' }: { label: string; valu
     );
 }
 
-function Toggle({ checked, onChange }: { checked: boolean; onChange: (checked: boolean) => void }) {
+function Toggle({ checked, onChange, disabled }: { checked: boolean; onChange?: (checked: boolean) => void; disabled?: boolean }) {
     return (
-        <div onClick={() => onChange(!checked)} className={`w-10 h-5 rounded-full relative cursor-pointer border-2 transition-colors ${checked ? 'bg-[#22D3EE]/20 border-[#22D3EE]/50' : 'bg-white/5 border-white/20'}`}>
+        <div 
+            onClick={() => !disabled && onChange?.(!checked)} 
+            className={`w-10 h-5 rounded-full relative border-2 transition-colors ${disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'} ${checked ? 'bg-[#22D3EE]/20 border-[#22D3EE]/50' : 'bg-white/5 border-white/20'}`}
+        >
             <div className={`absolute top-0.5 w-3 h-3 rounded-full transition-all ${checked ? 'bg-[#22D3EE] right-1' : 'bg-slate-500 left-1'}`} />
         </div>
     );

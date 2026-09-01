@@ -10,7 +10,7 @@ export default function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [authMode, setAuthMode] = useState<'signin' | 'signup' | 'magic'>('signin');
+    const [authMode, setAuthMode] = useState<'signin' | 'signup'>('signin');
     const [error, setError] = useState('');
     const [totpRequired, setTotpRequired] = useState(false);
     const [totpCode, setTotpCode] = useState('');
@@ -36,27 +36,6 @@ export default function LoginPage() {
                 router.push('/dashboard');
             } else {
                 setError('Invalid TOTP code');
-            }
-        } catch (e) {
-            setError('Auth service unreachable.');
-        } finally {
-            setIsLoading(false);
-        }
-    };
-
-    const handleMagicLink = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setIsLoading(true);
-        try {
-            const res = await fetch('/api/v1/auth/request-magic-link', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: email, domain: 'nodlr' })
-            });
-            if (res.ok) {
-                alert("Magic Link / OTP sent to your email!");
-            } else {
-                setError('Failed to request magic link');
             }
         } catch (e) {
             setError('Auth service unreachable.');
@@ -177,28 +156,16 @@ export default function LoginPage() {
                     </div>
 
                     <div className="space-y-4">
-                        {authMode === 'magic' ? (
-                            <form onSubmit={handleMagicLink} className="space-y-4">
-                                <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full bg-black/40 border border-white/10 rounded-[5px] px-4 py-4 text-white text-sm focus:outline-none focus:border-[#9333ea]/50 transition-all border-b-2" required />
-                                {error && <div className="text-red-500 text-[10px] uppercase bg-red-500/10 p-3 rounded">{error}</div>}
-                                <button type="submit" disabled={isLoading} className="w-full bg-transparent border border-white/10 hover:bg-white/5 text-white font-bold py-4 rounded-[5px] flex items-center justify-center gap-2">
-                                    {isLoading ? <Loader2 className="w-5 h-5 animate-spin text-[#9333ea]" /> : 'Send Magic Link'}
-                                </button>
-                                <button type="button" onClick={() => setAuthMode('signin')} className="w-full text-slate-500 text-xs hover:text-white mt-2">Back to Password</button>
-                            </form>
-                        ) : (
-                            <form onSubmit={handleEmailAuth} className="space-y-4">
-                                <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full bg-black/40 border border-white/10 rounded-[5px] px-4 py-4 text-white text-sm focus:outline-none focus:border-[#9333ea]/50 transition-all border-b-2" required />
-                                {authMode !== 'signup' && (
-                                    <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full bg-black/40 border border-white/10 rounded-[5px] px-4 py-4 text-white text-sm focus:outline-none focus:border-[#9333ea]/50 transition-all border-b-2" required />
-                                )}
-                                {error && <div className="text-red-500 text-[10px] uppercase bg-red-500/10 p-3 rounded">{error}</div>}
-                                <button type="submit" disabled={isLoading} className="w-full bg-transparent border border-white/10 hover:bg-white/5 text-white font-bold py-4 rounded-[5px] flex items-center justify-center gap-2">
-                                    {isLoading ? <Loader2 className="w-5 h-5 animate-spin text-[#9333ea]" /> : authMode === 'signin' ? 'Sign In' : 'Create Account'}
-                                </button>
-                                <button type="button" onClick={() => setAuthMode('magic')} className="w-full text-slate-500 text-xs hover:text-white mt-2">Sign in with Magic Link instead</button>
-                            </form>
-                        )}
+                        <form onSubmit={handleEmailAuth} className="space-y-4">
+                            <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full bg-black/40 border border-white/10 rounded-[5px] px-4 py-4 text-white text-sm focus:outline-none focus:border-[#9333ea]/50 transition-all border-b-2" required />
+                            {authMode !== 'signup' && (
+                                <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full bg-black/40 border border-white/10 rounded-[5px] px-4 py-4 text-white text-sm focus:outline-none focus:border-[#9333ea]/50 transition-all border-b-2" required />
+                            )}
+                            {error && <div className="text-red-500 text-[10px] uppercase bg-red-500/10 p-3 rounded">{error}</div>}
+                            <button type="submit" disabled={isLoading} className="w-full bg-transparent border border-white/10 hover:bg-white/5 text-white font-bold py-4 rounded-[5px] flex items-center justify-center gap-2">
+                                {isLoading ? <Loader2 className="w-5 h-5 animate-spin text-[#9333ea]" /> : authMode === 'signin' ? 'Sign In' : 'Create Account'}
+                            </button>
+                        </form>
 
                         <div className="text-center mt-6">
                             <button type="button" onClick={() => setAuthMode(authMode === 'signup' ? 'signin' : 'signup')} className="text-slate-500 text-xs hover:text-white transition-colors underline-offset-4 hover:underline">

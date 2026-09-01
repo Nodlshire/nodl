@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Loader2 } from "lucide-react";
+import useSWR from "swr";
 import { normalizeAccount } from "../lib/identity";
 
 declare global {
@@ -10,9 +11,14 @@ declare global {
     }
 }
 
+const fetcher = (url: string) => fetch(url).then(res => res.json()).catch(() => ({}));
+
 export default function IdentityHeader({ account }: { account?: any }) {
     const [user, setUser] = useState<any>(account || null);
     const [fetchError, setFetchError] = useState(false);
+
+    // SOT Avatar Hydration
+    const { data: avatarData } = useSWR('/api/avatar', fetcher, { revalidateOnFocus: true });
 
     useEffect(() => {
         if (account) {
@@ -56,7 +62,7 @@ export default function IdentityHeader({ account }: { account?: any }) {
         return () => {
             cancelled = true;
         };
-    }, []);
+    }, [account]);
 
     // Show a minimal placeholder while loading
     if (!user) {
@@ -79,6 +85,7 @@ export default function IdentityHeader({ account }: { account?: any }) {
     }
 
     const identity = normalizeAccount(user);
+    const effectiveAvatar = avatarData?.avatar || identity.avatarUrl;
 
     return (
         <div className="flex items-center gap-4 select-none">
@@ -93,10 +100,10 @@ export default function IdentityHeader({ account }: { account?: any }) {
 
             {/* User Avatar */}
             <div className="relative group">
-                <div className="relative w-10 h-10 rounded-full bg-neutral-900 overflow-hidden flex items-center justify-center">
-                    {identity.avatarUrl ? (
+                <div className="relative w-10 h-10 rounded-full bg-neutral-900 overflow-hidden flex items-center justify-center border border-white/10">
+                    {effectiveAvatar ? (
                         <img 
-                            src={identity.avatarUrl} 
+                            src={effectiveAvatar} 
                             alt={identity.displayName} 
                             className="w-full h-full object-cover"
                         />

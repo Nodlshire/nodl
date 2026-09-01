@@ -16,7 +16,7 @@ export function normalizeAccount(raw: any): NormalizedIdentity {
         };
     }
 
-    const id = raw.id || raw.nodlrId || 'Session Active';
+    const id = raw.id || raw.nodlrId || raw.wuid || 'Session Active';
     const displayName = raw.displayName || raw.name || raw.firstName || (raw.email ? raw.email.split('@')[0] : 'Operator');
     
     let initials = '?';
@@ -35,7 +35,7 @@ export function normalizeAccount(raw: any): NormalizedIdentity {
         id,
         displayName: displayName.charAt(0).toUpperCase() + displayName.slice(1),
         initials,
-        avatarUrl: raw.avatarUrl,
+        avatarUrl: raw.avatarUrl || raw.avatar || raw.avatar_url,
         role: raw.role,
         permissions: raw.permissions || [],
     };

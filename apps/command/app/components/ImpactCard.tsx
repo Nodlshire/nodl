@@ -15,7 +15,7 @@ export default function ImpactCard({ carbonSaved, kmAvoided, treeDays, isActive 
             <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-2">
                     <Leaf className={`w-5 h-5 ${isActive ? 'text-emerald animate-bounce' : 'text-white/40'}`} />
-                    <span className="text-[14px] font-normal text-white uppercase-none">Green Mesh Impact</span>
+                    <span className="text-[14px] font-normal text-white uppercase-none">Environmental Telemetry</span>
                 </div>
                 {isActive && (
                     <span className="px-2 py-0.5 rounded-full bg-emerald/10 text-emerald text-[10px] uppercase tracking-wider animate-pulse">

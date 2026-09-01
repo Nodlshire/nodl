@@ -32,7 +32,7 @@ export async function GET() {
         // 2. Fallback to state engine.json if empty
         if (nodes.length === 0) {
             const paths = [
-                '/home/obregan/wnode/services/nodld/state/engine.json',
+                '/home/obregan/Documents/nodl/state/engine.json',
                 '/home/obregan/Documents/nodl/services/nodld/state/engine.json'
             ];
             for (const p of paths) {

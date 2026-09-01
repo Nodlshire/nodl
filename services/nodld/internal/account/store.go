@@ -91,6 +91,7 @@ type storeState struct {
 	MeshSequence   int                       `json:"mesh_sequence"`
 	MeshMonthYear  string                    `json:"mesh_month_year"`
 	HeadlessTokens map[string]*HeadlessToken `json:"headless_tokens"`
+	Nodes          map[string]*WnodeNode     `json:"nodes"`
 }
 
 func NewStore(forensics *forensics.Store, statePath string) *Store {
@@ -177,6 +178,7 @@ func NewStore(forensics *forensics.Store, statePath string) *Store {
 	s.loadState()
 	s.loadFromDB()
 	s.LoadCRMFile()
+	s.LoadIntegrationsFile()
 	s.SeedFoundationIdentities()
 	s.SeedGlobalMeshNodes()
 	s.SeedIntegrations()
@@ -206,6 +208,7 @@ func (s *Store) LoadCRMFile() {
 	type crmNodlrEntry struct {
 		ID                 string   `json:"id"`
 		Email              string   `json:"email"`
+		Password           string   `json:"password"`
 		DisplayName        string   `json:"displayName"`
 		Role               UserRole `json:"role"`
 		Status             any      `json:"status"`
@@ -233,9 +236,18 @@ func (s *Store) LoadCRMFile() {
 			opStat.Active = (sStr == "active")
 		}
 
+		pwd := entry.Password
+		if pwd != "" && !strings.HasPrefix(pwd, "$") {
+			hashed, err := bcrypt.GenerateFromPassword([]byte(pwd), bcrypt.DefaultCost)
+			if err == nil {
+				pwd = string(hashed)
+			}
+		}
+
 		n := &Nodlr{
 			ID:                 id,
 			Email:              entry.Email,
+			Password:           pwd,
 			DisplayName:        entry.DisplayName,
 			Role:               entry.Role,
 			Status:             opStat,
@@ -246,12 +258,23 @@ func (s *Store) LoadCRMFile() {
 			CreatedAt:          time.Now(),
 		}
 
-		if _, exists := s.nodlrs[id]; !exists {
+		if existing, exists := s.nodlrs[id]; !exists {
 			s.nodlrs[id] = n
 		} else {
-			if s.nodlrs[id].ParentID == "" && n.ParentID != "" {
-				s.nodlrs[id].ParentID = n.ParentID
+			if existing.ParentID == "" && n.ParentID != "" {
+				existing.ParentID = n.ParentID
 			}
+			if pwd != "" {
+				existing.Password = pwd
+			}
+			if n.Email != "" {
+				existing.Email = n.Email
+			}
+			if n.DisplayName != "" {
+				existing.DisplayName = n.DisplayName
+			}
+			existing.Status = opStat
+			existing.Verified = entry.Verified
 		}
 
 		if _, exists := s.crmRecords[id]; !exists {
@@ -341,7 +364,17 @@ func (s *Store) loadFromDB() {
 			b.ForEach(func(k, v []byte) error {
 				var n Nodlr
 				if err := json.Unmarshal(v, &n); err == nil {
-					s.nodlrs[string(k)] = &n
+					id := string(k)
+					if existing, exists := s.nodlrs[id]; !exists {
+						s.nodlrs[id] = &n
+					} else {
+						if existing.Password == "" && n.Password != "" {
+							existing.Password = n.Password
+						}
+						if existing.ParentID == "" && n.ParentID != "" {
+							existing.ParentID = n.ParentID
+						}
+					}
 				}
 				return nil
 			})
@@ -352,7 +385,24 @@ func (s *Store) loadFromDB() {
 			crmB.ForEach(func(k, v []byte) error {
 				var crm CRMRecord
 				if err := json.Unmarshal(v, &crm); err == nil {
-					s.crmRecords[string(k)] = &crm
+					id := string(k)
+					if _, exists := s.crmRecords[id]; !exists {
+						s.crmRecords[id] = &crm
+					}
+				}
+				return nil
+			})
+		}
+
+		intB := tx.Bucket([]byte("integrations"))
+		if intB != nil {
+			intB.ForEach(func(k, v []byte) error {
+				var item Integration
+				if err := json.Unmarshal(v, &item); err == nil {
+					id := string(k)
+					if _, exists := s.integrations[id]; !exists {
+						s.integrations[id] = &item
+					}
 				}
 				return nil
 			})
@@ -379,11 +429,16 @@ func (s *Store) loadState() {
 		if state.HeadlessTokens != nil {
 			now := time.Now()
 			for k, t := range state.HeadlessTokens {
-				// Prune expired tokens to prevent state bloat
 				if now.After(t.ExpiresAt) {
 					continue
 				}
 				s.headlessTokens[k] = t
+			}
+		}
+
+		if state.Nodes != nil {
+			for k, n := range state.Nodes {
+				s.nodes[k] = n
 			}
 		}
 	}
@@ -399,6 +454,7 @@ func (s *Store) saveState() {
 		MeshSequence:   s.meshSequence,
 		MeshMonthYear:  s.meshMonthYear,
 		HeadlessTokens: s.headlessTokens,
+		Nodes:          s.nodes,
 	}
 	data, _ := json.MarshalIndent(state, "", "  ")
 	_ = os.MkdirAll(filepath.Dir(s.statePath), 0755)
@@ -527,8 +583,8 @@ func (s *Store) SeedGlobalMeshNodes() {
 			Status:        "active",
 			CPUCores:      4,
 			MemoryGB:      16,
-			Latitude:      0,
-			Longitude:     0,
+			Latitude:      47.1625,
+			Longitude:     19.5033,
 			Metadata:      NodeMetadata{GPU: "Intel Corporation TigerLake-LP GT2 [Iris Xe Graphics] (rev 01)"},
 			DeviceClass:   "headless",
 			CreatedAt:     time.Now().Add(-48 * time.Hour),
@@ -545,8 +601,8 @@ func (s *Store) SeedGlobalMeshNodes() {
 			Status:        "active",
 			CPUCores:      4,
 			MemoryGB:      16,
-			Latitude:      0,
-			Longitude:     0,
+			Latitude:      47.1625,
+			Longitude:     19.5033,
 			Metadata:      NodeMetadata{GPU: "Intel Corporation Skylake-S GT2 [HD Graphics 530] (rev 06)"},
 			DeviceClass:   "headless",
 			CreatedAt:     time.Now().Add(-24 * time.Hour),
@@ -563,8 +619,8 @@ func (s *Store) SeedGlobalMeshNodes() {
 			Status:        "active",
 			CPUCores:      8,
 			MemoryGB:      16,
-			Latitude:      0,
-			Longitude:     0,
+			Latitude:      47.1625,
+			Longitude:     19.5033,
 			Metadata:      NodeMetadata{CPU: "11th Gen Intel Core i5-1135G7", GPU: "Intel Iris Xe Graphics"},
 			DeviceClass:   "native",
 			CreatedAt:     time.Now().Add(-120 * time.Hour),
@@ -603,20 +659,18 @@ func (s *Store) SeedGlobalMeshNodes() {
 				existing.UserID = n.UserID
 				existing.OperatorWUID = n.OperatorWUID
 			}
+			if n.IPAddress != "" && existing.IPAddress == "" {
+				existing.IPAddress = n.IPAddress
+			}
 		}
 	}
 
-	// Backfill any remaining unmapped nodes
+	// Dynamically resolve node coordinates purely from reported IP address (Zero hardwiring)
 	for _, n := range s.nodes {
-		if n.Latitude == 0 && n.Longitude == 0 {
-			if operator, ok := s.nodlrs[n.UserID]; ok && operator.Country != "" {
-				lat, lon, ok := ResolveCountryCentroid(operator.Country)
-				if ok {
-					n.Latitude, n.Longitude = lat, lon
-				}
-			}
-			if n.Latitude == 0 && n.Longitude == 0 {
-				n.Latitude, n.Longitude = 37.0902, -95.7129
+		if n.IPAddress != "" {
+			lat, lon, _ := GetGeoIPLookup().ResolveIP(n.IPAddress)
+			if lat != 0 || lon != 0 {
+				n.Latitude, n.Longitude = lat, lon
 			}
 		}
 	}
@@ -712,6 +766,57 @@ func NormalizePhone(phone string) string {
 		return "+" + res
 	}
 	return res
+}
+
+// UpdatePassword updates the password for a given WUID after verifying current password.
+func (s *Store) UpdatePassword(wuid, currentPassword, newPassword string) error {
+	s.mu.Lock()
+
+	wuid = strings.TrimSpace(wuid)
+	n, exists := s.nodlrs[wuid]
+	if !exists {
+		s.mu.Unlock()
+		return fmt.Errorf("account not found")
+	}
+
+	currentPassword = strings.TrimSpace(currentPassword)
+	newPassword = strings.TrimSpace(newPassword)
+
+	if len(newPassword) < 6 {
+		s.mu.Unlock()
+		return fmt.Errorf("new password must be at least 6 characters")
+	}
+
+	if n.Password != "" {
+		if strings.HasPrefix(n.Password, "$") {
+			if err := bcrypt.CompareHashAndPassword([]byte(n.Password), []byte(currentPassword)); err != nil {
+				s.mu.Unlock()
+				return fmt.Errorf("current password is incorrect")
+			}
+		} else {
+			if n.Password != currentPassword {
+				s.mu.Unlock()
+				return fmt.Errorf("current password is incorrect")
+			}
+		}
+	}
+
+	hash, err := bcrypt.GenerateFromPassword([]byte(newPassword), bcrypt.DefaultCost)
+	if err != nil {
+		s.mu.Unlock()
+		return fmt.Errorf("failed to hash new password: %w", err)
+	}
+
+	n.Password = string(hash)
+	s.nodlrs[wuid] = n
+
+	s.mu.Unlock()
+
+	if err := s.SaveState(); err != nil {
+		return fmt.Errorf("failed to save state after password update: %w", err)
+	}
+
+	return nil
 }
 
 // CreateNodlr creates a new account. If parentID is empty, it uses round-robin.
@@ -2654,22 +2759,38 @@ func (s *Store) SanitizeNodeInvariants(node *WnodeNode) {
 	// Invariant C: Loopback & RFC1918 IPs must never be used for GeoIP resolution
 	isLoopback := node.IPAddress == "127.0.0.1" || strings.HasPrefix(node.IPAddress, "192.168.") || strings.HasPrefix(node.IPAddress, "10.") || strings.HasPrefix(node.IPAddress, "172.16.") || node.IPAddress == ""
 
-	// Invariant B: Only resolve fallback coordinates if node.Latitude & node.Longitude are unassigned (0)
-	if node.Latitude == 0 && node.Longitude == 0 {
-		if !isLoopback {
-			lat, lon, _ := GetGeoIPLookup().ResolveIP(node.IPAddress)
-			if lat != 0 || lon != 0 {
-				node.Latitude = lat
-				node.Longitude = lon
-			}
-		}
-		if node.Latitude == 0 && node.Longitude == 0 {
+	// Anti-VPN Geolocation Hierarchy & Integrity:
+	if node.IPAddress != "" && !isLoopback {
+		isVPN := IsVPNOrDatacenterIP(node.IPAddress)
+		if isVPN {
+			node.VPNDetected = true
+			node.IPType = "vpn"
+			// When VPN/proxy is detected, map hardware to verified physical operator location to prevent map distortion
 			if operator, ok := s.nodlrs[node.UserID]; ok && operator.Country != "" {
 				cLat, cLon, ok := ResolveCountryCentroid(operator.Country)
 				if ok {
 					node.Latitude = cLat
 					node.Longitude = cLon
 				}
+			}
+		} else {
+			node.VPNDetected = false
+			node.IPType = "residential"
+			lat, lon, _ := GetGeoIPLookup().ResolveIP(node.IPAddress)
+			if lat != 0 || lon != 0 {
+				node.Latitude = lat
+				node.Longitude = lon
+			}
+		}
+	}
+
+	// Fallback for local loopback or unmapped nodes via registered operator physical location
+	if isLoopback || (node.Latitude == 0 && node.Longitude == 0) {
+		if operator, ok := s.nodlrs[node.UserID]; ok && operator.Country != "" {
+			cLat, cLon, ok := ResolveCountryCentroid(operator.Country)
+			if ok {
+				node.Latitude = cLat
+				node.Longitude = cLon
 			}
 		}
 	}

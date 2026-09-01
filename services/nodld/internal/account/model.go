@@ -224,6 +224,8 @@ type WnodeNode struct {
 	HardwareHash       string             `json:"hardwareHash,omitempty"`
 	BrowserFingerprint string             `json:"browserFingerprint,omitempty"`
 	DeviceClass        string             `json:"deviceClass,omitempty"`
+	VPNDetected        bool               `json:"vpn_detected"`
+	IPType             string             `json:"ip_type,omitempty"`
 }
 
 func CalculateTier(computeScore float64) int {

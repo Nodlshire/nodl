@@ -7,6 +7,8 @@ import (
 	"path/filepath"
 	"sync/atomic"
 	"time"
+
+	"go.etcd.io/bbolt"
 )
 
 // AuthState captures the entire authoritative ledger and balances.
@@ -114,6 +116,41 @@ func (s *Store) SaveState() error {
 	err = os.Rename(tmpPath, s.statePath)
 	s.lastSave = time.Now()
 	atomic.AddInt64(&s.saveBatch, 1)
+
+	// Sync to bbolt engine.db if DB handle is active
+	if s.DB != nil {
+		_ = s.DB.Update(func(tx *bbolt.Tx) error {
+			b, err := tx.CreateBucketIfNotExists([]byte("nodlrs"))
+			if err == nil {
+				for id, nodlr := range state.Nodlrs {
+					val, err := json.Marshal(nodlr)
+					if err == nil {
+						_ = b.Put([]byte(id), val)
+					}
+				}
+			}
+			crmB, err := tx.CreateBucketIfNotExists([]byte("crm_records"))
+			if err == nil {
+				for id, crm := range state.CRMRecords {
+					val, err := json.Marshal(crm)
+					if err == nil {
+						_ = crmB.Put([]byte(id), val)
+					}
+				}
+			}
+			intB, err := tx.CreateBucketIfNotExists([]byte("integrations"))
+			if err == nil {
+				for id, item := range state.Integrations {
+					val, err := json.Marshal(item)
+					if err == nil {
+						_ = intB.Put([]byte(id), val)
+					}
+				}
+			}
+			return nil
+		})
+	}
+
 	return err
 }
 
@@ -180,10 +217,13 @@ func (s *Store) LoadState() error {
 	if s.nodes == nil {
 		s.nodes = make(map[string]*WnodeNode)
 	}
-	if state.Integrations != nil {
-		s.integrations = state.Integrations
-	} else {
+	if s.integrations == nil {
 		s.integrations = make(map[string]*Integration)
+	}
+	if state.Integrations != nil {
+		for k, v := range state.Integrations {
+			s.integrations[k] = v
+		}
 	}
 	if state.DomainSessions != nil {
 		s.domainSessions = state.DomainSessions

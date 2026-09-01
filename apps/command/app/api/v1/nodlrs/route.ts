@@ -1,21 +1,24 @@
 import { NextRequest, NextResponse } from "next/server";
 import { CrmPerson } from "../../../nodlrs/types";
+import { resolveIdentityHeaders } from "@/app/lib/identity";
 
 export const dynamic = 'force-dynamic';
 export const fetchCache = 'force-no-store';
 
 export async function GET(req: NextRequest) {
     try {
-        const cookieHeader = req.headers.get("cookie") || "";
-        const headers = { "cookie": cookieHeader };
+        const headers = resolveIdentityHeaders(req);
+        const cookieHeader = req.headers.get("cookie");
+        if (cookieHeader) headers["cookie"] = cookieHeader;
 
-        // 1. Fetch CRM records (Mocking by calling the legacy endpoints if they existed, 
-        // or just building the array from those legacy routes internally if they are active)
+        const BACKEND_URL = process.env.NODLD_API_URL || 'http://127.0.0.1:8080';
         const [nodlrsRes, clientsRes, integrationsRes] = await Promise.all([
-            fetch('http://localhost:3001/api/nodlrs/all', { headers, cache: 'no-store' }).catch(() => ({ ok: false, json: async () => [] })),
-            fetch('http://localhost:3001/api/clients/all', { headers, cache: 'no-store' }).catch(() => ({ ok: false, json: async () => [] })),
-            fetch('http://localhost:3001/api/integrations/all', { headers, cache: 'no-store' }).catch(() => ({ ok: false, json: async () => [] }))
+            fetch(`${BACKEND_URL}/api/v1/nodlrs`, { headers, cache: 'no-store' }).catch((err) => { console.error('nodlrs fetch err:', err); return { ok: false, status: 500, json: async () => [] }; }),
+            fetch(`${BACKEND_URL}/api/v1/clients`, { headers, cache: 'no-store' }).catch((err) => { console.error('clients fetch err:', err); return { ok: false, status: 500, json: async () => [] }; }),
+            fetch(`${BACKEND_URL}/api/v1/integrations`, { headers, cache: 'no-store' }).catch((err) => { console.error('integrations fetch err:', err); return { ok: false, status: 500, json: async () => [] }; })
         ]);
+
+        console.log('[DEBUG_NODLRS_ROUTE] nodlrsRes status:', nodlrsRes.status, 'ok:', nodlrsRes.ok);
         
         let nodlrs: CrmPerson[] = [];
         let clients: CrmPerson[] = [];
@@ -31,7 +34,7 @@ export async function GET(req: NextRequest) {
                 createdAt: r.createdAt || new Date().toISOString(),
                 lastContact: r.lastContact || r.createdAt || new Date().toISOString(),
                 isNodlr: true,
-                isMeshCustomer: !!r.isMeshCustomer,
+                isMeshCustomer: !!r.isOwner || (Array.isArray(r.labels) && r.labels.includes("MESH")),
                 isFounderOrPartner: !!r.isFounder,
                 isOwner: !!r.isOwner,
                 isCommand: !!r.isCommand,

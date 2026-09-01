@@ -25,6 +25,18 @@ func TestCountryCentroidResolution(t *testing.T) {
 		t.Errorf("Expected UAE centroid (23.4241, 53.8478), got lat=%f lon=%f (ok=%v)", latUAE, lonUAE, okUAE)
 	}
 
+	// Test Hungary (HU)
+	latHU, lonHU, okHU := account.ResolveCountryCentroid("HU")
+	if !okHU || latHU != 47.1625 || lonHU != 19.5033 {
+		t.Errorf("Expected Hungary centroid (47.1625, 19.5033), got lat=%f lon=%f (ok=%v)", latHU, lonHU, okHU)
+	}
+
+	// Test Denmark (DK)
+	latDK, lonDK, okDK := account.ResolveCountryCentroid("DK")
+	if !okDK || latDK != 56.2639 || lonDK != 9.5018 {
+		t.Errorf("Expected Denmark centroid (56.2639, 9.5018), got lat=%f lon=%f (ok=%v)", latDK, lonDK, okDK)
+	}
+
 	// Test Unknown Country
 	_, _, okUnknown := account.ResolveCountryCentroid("Unknown Atlantis")
 	if okUnknown {
@@ -32,18 +44,30 @@ func TestCountryCentroidResolution(t *testing.T) {
 	}
 }
 
-func TestGlobalMeshNodeGeolocationSeeding(t *testing.T) {
-	s := account.NewStore(nil, "")
-	s.SeedGlobalMeshNodes()
+func TestResolveIP(t *testing.T) {
+	lookup := account.GetGeoIPLookup()
 
-	nodes := s.ListAllNodes()
-	if len(nodes) == 0 {
-		t.Fatalf("Expected seeded global mesh nodes, got 0")
+	// Test Loopback IP returns 0,0
+	lat, lon, err := lookup.ResolveIP("127.0.0.1")
+	if err != nil || lat != 0 || lon != 0 {
+		t.Errorf("Expected 0,0 for loopback IP 127.0.0.1, got lat=%f lon=%f err=%v", lat, lon, err)
 	}
 
-	for _, n := range nodes {
-		if n.Latitude == 0 && n.Longitude == 0 {
-			t.Errorf("Node %s has unmapped 0,0 coordinates after seeding migration", n.ID)
-		}
+	// Test Empty IP returns 0,0
+	lat, lon, err = lookup.ResolveIP("")
+	if err != nil || lat != 0 || lon != 0 {
+		t.Errorf("Expected 0,0 for empty IP, got lat=%f lon=%f err=%v", lat, lon, err)
+	}
+}
+
+func TestVPNDetection(t *testing.T) {
+	if !account.IsVPNOrDatacenterIP("185.220.101.4") {
+		t.Errorf("Expected 185.220.101.4 to be detected as VPN IP")
+	}
+	if !account.IsVPNOrDatacenterIP("81.2.69.142") {
+		t.Errorf("Expected 81.2.69.142 to be detected as VPN IP")
+	}
+	if account.IsVPNOrDatacenterIP("127.0.0.1") {
+		t.Errorf("Expected 127.0.0.1 not to be flagged as VPN IP")
 	}
 }

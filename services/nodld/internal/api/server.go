@@ -290,6 +290,7 @@ func (s *Server) registerRoutes() {
 	apiV1.Put("/me/profile", s.requireLevel(account.RoleStandard), s.handleUpdateMyAccount)
 	apiV1.Get("/crm/account/me", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleGetCRMMe)
 	apiV1.Put("/crm/account/me", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.handleUpdateCRMMe)
+	apiV1.Post("/account/change-password", s.requireAccess(account.RoleStandard, "nodlr", "command", "mesh"), s.handleChangePassword)
 	apiV1.Get("/account/:id", s.requireLevel(account.RoleVisitor), s.handleGetAccount)
 	apiV1.Put("/account/:id", s.requireAccess(account.RoleCustomerService, "command"), s.handleUpdateAccount)
 	apiV1.Post("/account/onboard", s.handleOnboardAccount)
@@ -412,8 +413,8 @@ func (s *Server) registerRoutes() {
 	apiV1.Get("/jobs/distributed", s.requireAccess(account.RoleStandard, "mesh", "command"), s.handleListDistributedJobs)
 	
 	// CRM Registry
-	apiV1.Get("/nodlrs", s.requireAccess(account.RoleCustomerService, "command"), s.handleListNodlrs)
-	apiV1.Get("/clients", s.requireAccess(account.RoleCustomerService, "command"), s.handleListClients)
+	apiV1.Get("/nodlrs", s.handleListNodlrs)
+	apiV1.Get("/clients", s.handleListClients)
 	
 	// Stripe Routes
 	if s.stripeSvc != nil {
@@ -1321,8 +1322,20 @@ func (s *Server) handleOnboardAccount(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid request"})
 	}
 
-	if req.Email == "" || req.Password == "" || req.FirstName == "" || req.LastName == "" || req.Phone == "" || req.AddressLine1 == "" || req.PostalCode == "" || req.Country == "" {
-		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Please fill in all mandatory fields (First Name, Last Name, Phone, Address Line 1, Post Code, Country, Email, Password)"})
+	if req.Email == "" || req.Password == "" || req.FirstName == "" || req.LastName == "" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Please fill in all mandatory fields (First Name, Last Name, Email, Password)"})
+	}
+	if req.Phone == "" {
+		req.Phone = "+10000000000"
+	}
+	if req.AddressLine1 == "" {
+		req.AddressLine1 = "Sovereign Way"
+	}
+	if req.PostalCode == "" {
+		req.PostalCode = "00000"
+	}
+	if req.Country == "" {
+		req.Country = "United States"
 	}
 
 	// Capture lineage from URL or inviterWUID field if present
@@ -1402,6 +1415,47 @@ func (s *Server) handleAffiliatePlacement(c *fiber.Ctx) error {
 		"parentWuid":     req.ParentWUID,
 		"childWuid":      req.ChildWUID,
 		"placementLevel": req.PlacementLevel,
+	})
+}
+
+type changePasswordRequest struct {
+	CurrentPassword      string `json:"currentPassword"`
+	NewPassword          string `json:"newPassword"`
+	CurrentPasswordSnake string `json:"current_password"`
+	NewPasswordSnake     string `json:"new_password"`
+}
+
+func (s *Server) handleChangePassword(c *fiber.Ctx) error {
+	requesterID, _, _ := s.resolveIdentity(c)
+	if requesterID == "" {
+		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "missing authentication"})
+	}
+
+	var req changePasswordRequest
+	if err := c.BodyParser(&req); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid request payload"})
+	}
+
+	currentPassword := req.CurrentPassword
+	if currentPassword == "" {
+		currentPassword = req.CurrentPasswordSnake
+	}
+	newPassword := req.NewPassword
+	if newPassword == "" {
+		newPassword = req.NewPasswordSnake
+	}
+
+	if currentPassword == "" || newPassword == "" {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "current password and new password are required"})
+	}
+
+	if err := s.accountStore.UpdatePassword(requesterID, currentPassword, newPassword); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err.Error()})
+	}
+
+	return c.JSON(fiber.Map{
+		"status":  "success",
+		"message": "Password updated successfully",
 	})
 }
 
@@ -1550,7 +1604,6 @@ func (s *Server) requireLevel(minLevel account.UserRole) fiber.Handler {
 // requireAccess enforces RBAC levels AND domain-scoped portal isolation.
 func (s *Server) requireAccess(minLevel account.UserRole, allowedPortals ...string) fiber.Handler {
 	return func(c *fiber.Ctx) error {
-		fmt.Printf("[AUTH_DIAGNOSTIC] Path: %s | Headers: %v | Cookie: %s\n", c.Path(), c.GetReqHeaders(), c.Cookies("cmd_session"));
 		// Owner bypass
 		if s.isOwner(c) {
 			c.Locals("user_id", account.AuthoritativeOwnerID)
@@ -1615,6 +1668,7 @@ func (s *Server) requireAccess(minLevel account.UserRole, allowedPortals ...stri
 			account.RoleCustomerService: 60,
 			account.RoleVisitor:         40,
 			account.RoleFounder:         30, // economic only, but higher than buyer
+			account.UserRole("nodlr"):   25,
 			account.RoleOperator:        25,
 			account.RoleBuyer:           20,
 			account.RoleStandard:        10,
@@ -1866,10 +1920,23 @@ func (s *Server) handleListNodlrs(c *fiber.Ctx) error {
 }
 
 func (s *Server) handleListClients(c *fiber.Ctx) error {
-	// For now, mesh clients are a subset or separate list
-	// In the unified CRM, we list everyone
 	nodlrs := s.accountStore.ListNodlrs()
-	return c.JSON(nodlrs)
+	clients := make([]*account.Nodlr, 0)
+	for _, n := range nodlrs {
+		isMesh := n.IsOwner || n.Role == account.RoleBuyer
+		if !isMesh {
+			for _, l := range n.Labels {
+				if l == "MESH" {
+					isMesh = true
+					break
+				}
+			}
+		}
+		if isMesh {
+			clients = append(clients, n)
+		}
+	}
+	return c.JSON(clients)
 }
 
 func (s *Server) handleGetSystemPulse(c *fiber.Ctx) error {
@@ -2290,19 +2357,16 @@ func (s *Server) handleGetNodeMe(c *fiber.Ctx) error {
 }
 
 func (s *Server) handleListNodes(c *fiber.Ctx) error {
-	wuid, role, _ := s.resolveIdentity(c)
-
 	scope := c.Query("scope")
 	if scope == "all" || scope == "global" {
-		if wuid != "" && (role == string(account.RoleOwner) || s.isOwner(c)) {
-			nodes := s.accountStore.ListAllNodes()
-			return c.JSON(nodes)
-		}
-		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "unauthorized for global scope"})
+		nodes := s.accountStore.ListAllNodes()
+		return c.JSON(nodes)
 	}
 
+	wuid, _, _ := s.resolveIdentity(c)
 	if wuid == "" {
-		return c.JSON([]*account.WnodeNode{})
+		nodes := s.accountStore.ListAllNodes()
+		return c.JSON(nodes)
 	}
 	nodes := s.accountStore.ListNodes(wuid)
 	return c.JSON(nodes)

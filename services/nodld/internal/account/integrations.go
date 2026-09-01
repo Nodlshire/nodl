@@ -1,7 +1,10 @@
 package account
 
 import (
+	"encoding/json"
 	"fmt"
+	"os"
+	"path/filepath"
 	"sort"
 	"time"
 
@@ -21,6 +24,102 @@ type Integration struct {
 	Details      map[string]any `json:"details"`
 	CreatedAt    time.Time      `json:"createdAt"`
 	UpdatedAt    time.Time      `json:"updatedAt"`
+}
+
+func (s *Store) LoadIntegrationsFile() {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	paths := []string{
+		"/var/wnode-data/integrations/integrations.json",
+		"state/integrations.json",
+		"../state/integrations.json",
+		"../../state/integrations.json",
+	}
+
+	var data []byte
+	var err error
+	for _, p := range paths {
+		data, err = os.ReadFile(p)
+		if err == nil && len(data) > 0 {
+			break
+		}
+	}
+	if err != nil || len(data) == 0 {
+		return
+	}
+
+	type filePayload struct {
+		Version      string                  `json:"version"`
+		Total        int                     `json:"total"`
+		Integrations map[string]*Integration `json:"integrations"`
+	}
+
+	var payload filePayload
+	if err := json.Unmarshal(data, &payload); err != nil {
+		var rawMap map[string]*Integration
+		if err2 := json.Unmarshal(data, &rawMap); err2 != nil {
+			return
+		}
+		payload.Integrations = rawMap
+	}
+
+	if payload.Integrations == nil {
+		return
+	}
+
+	now := time.Now()
+	for id, item := range payload.Integrations {
+		if item.ID == "" {
+			item.ID = id
+		}
+		if item.Slug == "" {
+			item.Slug = id
+		}
+		if item.Status == "" {
+			item.Status = "live"
+		}
+		if item.JoinedAt.IsZero() {
+			item.JoinedAt = now
+		}
+		if item.ActivatedAt.IsZero() {
+			item.ActivatedAt = now
+		}
+		s.integrations[item.ID] = item
+	}
+	fmt.Printf("[INTEGRATIONS_SOT] Loaded %d integrations into memory SOT\n", len(s.integrations))
+}
+
+func (s *Store) SaveIntegrationsFile() error {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+
+	payload := map[string]interface{}{
+		"version":      "1.0.0",
+		"total":        len(s.integrations),
+		"updatedAt":    time.Now().Format(time.RFC3339),
+		"integrations": s.integrations,
+	}
+
+	data, err := json.MarshalIndent(payload, "", "  ")
+	if err != nil {
+		return err
+	}
+
+	sotPath := "/var/wnode-data/integrations/integrations.json"
+	dir := filepath.Dir(sotPath)
+	_ = os.MkdirAll(dir, 0755)
+
+	tmpPath := sotPath + ".tmp"
+	if err := os.WriteFile(tmpPath, data, 0644); err == nil {
+		_ = os.Rename(tmpPath, sotPath)
+	}
+
+	if _, err := os.Stat("state"); err == nil {
+		_ = os.WriteFile("state/integrations.json", data, 0644)
+	}
+
+	return nil
 }
 
 func (s *Store) ListIntegrationsSorted() []*Integration {
@@ -64,6 +163,7 @@ func (s *Store) CreateIntegration(integration *Integration) error {
 	integration.UpdatedAt = now
 
 	s.integrations[integration.ID] = integration
+	go s.SaveIntegrationsFile()
 	go s.SaveState()
 	return nil
 }
@@ -123,11 +223,14 @@ func (s *Store) UpdateIntegration(id string, updates map[string]interface{}) (*I
 	}
 
 	integration.UpdatedAt = time.Now()
+	go s.SaveIntegrationsFile()
 	go s.SaveState()
 	return integration, nil
 }
 
 func (s *Store) SeedIntegrations() {
+	s.LoadIntegrationsFile()
+
 	s.mu.Lock()
 	defer s.mu.Unlock()
 

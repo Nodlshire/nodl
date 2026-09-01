@@ -61,14 +61,15 @@ func TestFullSmokeAndPressureSuite(t *testing.T) {
 		malthe, hasMalthe := accStore.GetNodlr("100001-0426-02-AB")
 		tarek, hasTarek := accStore.GetNodlr("100002-0426-02-AB")
 		artem, hasArtem := accStore.GetNodlr("100003-0426-02-AB")
+		user3D, has3D := accStore.GetNodlr("100004-0426-02-AB")
 		_, hasTestUser := accStore.GetNodlr("100002-0426-01-AA")
 
-		if !hasStephen || !hasMalthe || !hasTarek || !hasArtem {
-			t.Fatalf("SOT Nodlrs missing! Stephen:%v, Malthe:%v, Tarek:%v, Artem:%v",
-				hasStephen, hasMalthe, hasTarek, hasArtem)
+		if !hasStephen || !hasMalthe || !hasTarek || !hasArtem || !has3D {
+			t.Fatalf("SOT Nodlrs missing! Stephen:%v, Malthe:%v, Tarek:%v, Artem:%v, 3D:%v",
+				hasStephen, hasMalthe, hasTarek, hasArtem, has3D)
 		}
-		t.Logf("SOT Nodlrs verified: Stephen (%s), Malthe (%s), Tarek (%s), Artem (%s)",
-			stephen.Email, malthe.Email, tarek.Email, artem.Email)
+		t.Logf("SOT Nodlrs verified: Stephen (%s), Malthe (%s), Tarek (%s), Artem (%s), 3D (%s)",
+			stephen.Email, malthe.Email, tarek.Email, artem.Email, user3D.Email)
 
 		if hasTestUser {
 			t.Fatal("Synthetic Test User 100002-0426-01-AA must NOT exist in store")

@@ -159,7 +159,7 @@ export default function FleetMap({
       <div className="flex items-center justify-between px-4 py-2.5 bg-black/60 border-b border-white/10 z-10">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-[#22D3EE] shadow-[0_0_8px_#22D3EE]" />
-          <span className="text-[11px] font-bold text-white uppercase tracking-widest">Global Fleet Distribution</span>
+          <span className="text-[11px] font-bold text-white uppercase tracking-widest">Node Network Distribution</span>
         </div>
         <div className="flex items-center gap-4 text-[10px] font-mono text-slate-400">
           <span>Active: <strong className="text-[#22D3EE]">{displayNodes.filter((n: any) => n.status === "active" || n.status === "online").length}</strong></span>

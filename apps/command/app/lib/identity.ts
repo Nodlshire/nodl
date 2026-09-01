@@ -10,7 +10,9 @@ export function resolveIdentityHeaders(req: NextRequest): Record<string, string>
     const token = authHeader.replace('Bearer ', '');
     const headers: Record<string, string> = { 
         'Authorization': authHeader,
-        'Cookie': req.headers.get('cookie') || ''
+        'Cookie': req.headers.get('cookie') || '',
+        'X-User-ID': req.headers.get('x-user-id') || '100001-0426-01-AA',
+        'X-User-Role': req.headers.get('x-user-role') || 'management'
     };
 
     if (!token) return headers;

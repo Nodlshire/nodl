@@ -104,7 +104,11 @@ func main() {
 	// ── Account & Affiliate Store ─────────────────────────────────────────────
 	statePath := os.Getenv("STATE_PATH")
 	if statePath == "" {
-		statePath = "state/engine.json"
+		if _, err := os.Stat("/home/obregan/Documents/nodl/state/engine.json"); err == nil {
+			statePath = "/home/obregan/Documents/nodl/state/engine.json"
+		} else {
+			statePath = "state/engine.json"
+		}
 	}
 	accountStore := account.NewStore(forensicsStore, statePath)
 	accountStore.LoadState()

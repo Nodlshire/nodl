@@ -227,3 +227,38 @@ func TestUnauthenticatedGlobalScope(t *testing.T) {
 	assert.Equal(t, http.StatusUnauthorized, resp.StatusCode)
 }
 
+func TestSmart72AccountLogin(t *testing.T) {
+	fStore := forensics.NewStore("secret", "salt")
+	accStore := account.NewStore(fStore, "../../state/engine.json")
+
+	app := fiber.New()
+	s := &Server{
+		app:          app,
+		accountStore: accStore,
+		log:          zap.NewNop(),
+	}
+
+	app.Post("/api/v1/auth/login", s.handleLogin)
+
+	loginBody, _ := json.Marshal(map[string]string{
+		"email":    "smart72@hotmail.fr",
+		"password": "plschangeme",
+		"domain":   "nodlr",
+	})
+	req := httptest.NewRequest("POST", "/api/v1/auth/login", bytes.NewBuffer(loginBody))
+	req.Header.Set("Content-Type", "application/json")
+	resp, err := s.app.Test(req)
+	assert.NoError(t, err)
+	assert.Equal(t, http.StatusOK, resp.StatusCode)
+
+	var resData map[string]interface{}
+	json.NewDecoder(resp.Body).Decode(&resData)
+	assert.Equal(t, "success", resData["status"])
+
+	nodlr, ok := accStore.GetNodlrByEmail("smart72@hotmail.fr")
+	assert.True(t, ok)
+	assert.Equal(t, "100004-0426-02-AB", nodlr.ID)
+	assert.Equal(t, "100004-0426-01-AA", nodlr.ParentID)
+}
+
+

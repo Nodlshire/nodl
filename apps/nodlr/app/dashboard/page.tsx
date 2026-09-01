@@ -196,7 +196,7 @@ export default function DashboardPage() {
                     >
                         <div className="flex items-center gap-2 border-b border-white/5 pb-3">
                             <Activity className="w-3.5 h-3.5 text-[#9333ea]" />
-                            <h4 className="text-[10px] uppercase font-bold text-slate-400 tracking-widest">Resource Snapshot</h4>
+                            <h4 className="text-[10px] uppercase font-bold text-slate-400 tracking-widest">Active Infrastructure Summary</h4>
                         </div>
                         <div className="space-y-4">
                             {[

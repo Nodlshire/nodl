@@ -31,6 +31,10 @@ export function middleware(request: NextRequest) {
           request.nextUrl.pathname.startsWith('/api/auth') ||
           request.nextUrl.pathname.startsWith('/api/v1/') ||
           request.nextUrl.pathname.startsWith('/api/cmd') ||
+          request.nextUrl.pathname.startsWith('/api/nodlrs') ||
+          request.nextUrl.pathname.startsWith('/api/nodls') ||
+          request.nextUrl.pathname.startsWith('/api/stats') ||
+          request.nextUrl.pathname.startsWith('/api/clients') ||
           request.nextUrl.pathname.startsWith('/api/discord') ||
           request.nextUrl.pathname.startsWith('/api/tiles') ||
           request.nextUrl.pathname.startsWith('/api/intelligence/event')) {

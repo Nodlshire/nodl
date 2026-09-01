@@ -24,42 +24,64 @@ import {
 function SignupContent() {
   const searchParams = useSearchParams();
 
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [inviteCode, setInviteCode] = useState("");
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-  }, []);
+    const inv = searchParams.get("invite") || searchParams.get("ref") || searchParams.get("code") || "";
+    if (inv) setInviteCode(inv);
+  }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
+    if (!email || !password || !firstName || !lastName) {
+      setError("Please fill in all required fields (First Name, Last Name, Email, Password).");
+      return;
+    }
 
     setLoading(true);
     setError(null);
 
-    const inviteCode = searchParams.get("invite") || searchParams.get("ref") || "";
+    const nodlrApiUrl = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+      ? 'http://127.0.0.1:3002/api/signup'
+      : 'https://nodlr.wnode.one/api/signup';
 
     try {
-      const response = await fetch(`/api/v1/stripe/connect/start`, {
+      const response = await fetch(nodlrApiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, inviteCode }),
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          password,
+          inviterWUID: inviteCode,
+          phone: "+10000000000",
+          addressLine1: "Sovereign Way",
+          postalCode: "00000",
+          country: "United States"
+        }),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || "Failed to start onboarding session");
+        throw new Error(data.error || "Failed to complete account registration");
       }
 
-      if (data.url) {
-        window.location.href = data.url;
-      } else {
-        throw new Error("No onboarding URL received");
-      }
+      const targetHost = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+        ? 'http://127.0.0.1:3002'
+        : 'https://nodlr.wnode.one';
+
+      window.location.href = `${targetHost}/login?registered=true&email=${encodeURIComponent(email)}`;
     } catch (err: any) {
       console.error("Signup error:", err);
       setError(err.message || "An unexpected error occurred. Please try again.");
@@ -134,14 +156,39 @@ function SignupContent() {
             <div className="absolute -inset-4 bg-purple-500/5 blur-3xl rounded-3xl" />
             
             <div className="relative bg-white/[0.03] border border-white/10 backdrop-blur-2xl rounded-2xl p-8 md:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
-              <div className="mb-8">
+              <div className="mb-6">
                 <h3 className="text-xl font-medium mb-2">Create Operator Account</h3>
                 <p className="text-sm text-slate-400">Initialize your presence in the compute mesh.</p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-2">
-                  <label className="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-bold ml-1">Business Email</label>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-1">
+                    <label className="text-[10px] uppercase tracking-[0.2em] text-slate-400 font-bold">First Name *</label>
+                    <input
+                      type="text"
+                      required
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      placeholder="John"
+                      className="w-full bg-black/40 border border-white/10 rounded-xl py-3 px-4 text-sm focus:outline-none focus:border-purple-500/50"
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-[10px] uppercase tracking-[0.2em] text-slate-400 font-bold">Last Name *</label>
+                    <input
+                      type="text"
+                      required
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      placeholder="Doe"
+                      className="w-full bg-black/40 border border-white/10 rounded-xl py-3 px-4 text-sm focus:outline-none focus:border-purple-500/50"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-[10px] uppercase tracking-[0.2em] text-slate-400 font-bold">Email Address *</label>
                   <div className="relative group">
                     <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600 group-focus-within:text-purple-400 transition-colors" />
                     <input
@@ -150,15 +197,38 @@ function SignupContent() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="stephen@wnode.one"
-                      className="w-full bg-black/40 border border-white/5 rounded-xl py-4 pl-12 pr-4 text-sm focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/20 transition-all placeholder:text-slate-800"
+                      className="w-full bg-black/40 border border-white/10 rounded-xl py-3 pl-12 pr-4 text-sm focus:outline-none focus:border-purple-500/50"
                     />
                   </div>
                 </div>
 
-                {(searchParams.get("invite") || searchParams.get("ref")) && (
+                <div className="space-y-1">
+                  <label className="text-[10px] uppercase tracking-[0.2em] text-slate-400 font-bold">Password *</label>
+                  <input
+                    type="password"
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="••••••••"
+                    className="w-full bg-black/40 border border-white/10 rounded-xl py-3 px-4 text-sm focus:outline-none focus:border-purple-500/50"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-[10px] uppercase tracking-[0.2em] text-slate-400 font-bold">Inviter WUID (Optional)</label>
+                  <input
+                    type="text"
+                    value={inviteCode}
+                    onChange={(e) => setInviteCode(e.target.value)}
+                    placeholder="e.g. 100001-0426-01-AA"
+                    className="w-full bg-black/40 border border-white/10 text-purple-300 font-mono rounded-xl py-3 px-4 text-sm focus:outline-none focus:border-purple-500/50"
+                  />
+                </div>
+
+                {inviteCode && (
                   <div className="p-3 rounded-lg bg-green-500/5 border border-green-500/20 flex items-center gap-3">
                     <CheckCircle2 className="w-4 h-4 text-green-500" />
-                    <span className="text-[10px] uppercase tracking-wider text-green-400 font-bold">Incentive Code Validated</span>
+                    <span className="text-[10px] uppercase tracking-wider text-green-400 font-bold">Inviter Placement Code Active</span>
                   </div>
                 )}
 
@@ -172,16 +242,16 @@ function SignupContent() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-white text-black font-bold uppercase tracking-[0.2em] text-xs py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-purple-50/90 active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed group shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(168,85,247,0.3)]"
+                  className="w-full bg-white text-black font-bold uppercase tracking-[0.2em] text-xs py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-purple-50/90 active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed group shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(168,85,247,0.3)] mt-2"
                 >
                   {loading ? (
                     <>
                       <Loader2 className="w-4 h-4 animate-spin" />
-                      Initializing...
+                      Creating Account...
                     </>
                   ) : (
                     <>
-                      Begin Onboarding
+                      Complete Registration
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </>
                   )}

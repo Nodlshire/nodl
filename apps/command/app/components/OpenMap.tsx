@@ -78,9 +78,17 @@ export default function OpenMap({ nodes = [], nodlrs = [], loading = false, onNo
       const L = (await import("leaflet")).default;
       markersLayerRef.current.clearLayers();
 
-      const validNodes = displayNodes.filter(
-        (n) => n.lat !== undefined && n.lon !== undefined && isFinite(Number(n.lat)) && isFinite(Number(n.lon))
-      );
+      const validNodes = displayNodes.filter((n: any) => {
+        const lat = Number(n.lat ?? n.latitude);
+        const lon = Number(n.lon ?? n.longitude);
+        return (
+          (n.lat !== undefined || n.latitude !== undefined) &&
+          (n.lon !== undefined || n.longitude !== undefined) &&
+          isFinite(lat) &&
+          isFinite(lon) &&
+          !(lat === 0 && lon === 0)
+        );
+      });
 
       const coordBuckets: Record<string, number> = {};
 
@@ -96,10 +104,12 @@ export default function OpenMap({ nodes = [], nodlrs = [], loading = false, onNo
         let finalLon = baseLon;
 
         if (index > 0) {
-          const angle = (index * (2 * Math.PI)) / 6 + getHashSeed(node.id || node.name || "") * 0.5;
-          const radius = 0.08 + (index * 0.03);
+          const currentZoom = mapRef.current ? mapRef.current.getZoom() : 2;
+          const scaleFactor = Math.pow(2, Math.max(0, 5 - currentZoom));
+          const angle = (index * (2 * Math.PI)) / 3 + getHashSeed(node.id || node.name || "") * 0.5;
+          const radius = (0.45 + (index * 0.35)) * scaleFactor;
           finalLat = baseLat + radius * Math.cos(angle);
-          finalLon = baseLon + radius * Math.sin(angle) * 1.4;
+          finalLon = baseLon + radius * Math.sin(angle) * 1.5;
         }
 
         const isOnline = node.status?.toLowerCase() === "active" || node.status?.toLowerCase() === "online";
@@ -114,11 +124,15 @@ export default function OpenMap({ nodes = [], nodlrs = [], loading = false, onNo
           fillOpacity: 0.9,
         });
 
+        const isVPN = Boolean(node.vpn_detected);
+        const vpnBadge = isVPN ? `<div style="color: #F59E0B; margin-top: 2px;">🛡️ <span style="color: #FBBF24; font-weight: bold;">VPN PROTECTED</span></div>` : "";
+
         marker.bindTooltip(
           `<div style="font-family: monospace; font-size: 11px; background: #09090b; border: 1px solid rgba(255,255,255,0.15); padding: 6px 10px; border-radius: 4px; color: #fff;">
             <div style="color: #94a3b8; font-weight: bold; margin-bottom: 2px;">NODE: <span style="color: #fff;">${node.displayName || node.name || node.id}</span></div>
             <div style="color: #94a3b8;">STATUS: <span style="color: ${markerColor}; text-transform: uppercase;">${node.status || "active"}</span></div>
             ${node.tier ? `<div style="color: #94a3b8;">TIER: <span style="color: #22D3EE;">${node.tier}</span></div>` : ""}
+            ${vpnBadge}
           </div>`,
           { direction: "top", offset: [0, -8], opacity: 1.0 }
         );

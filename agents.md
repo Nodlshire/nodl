@@ -100,3 +100,37 @@ On session startup or when a new task is received, AG must acknowledge:
 9.  Never change a username or  password anywhere in any system unbless told to
 
 10.  O ly follow the commands you are told to follow, do not make decisions on your own without asking for permission
+
+## RULE 11 — CANONICAL SOT ENFORCEMENT (GLOBAL)
+
+The State of Truth (SOT) is the authoritative source of all node identity,
+ownership, operator attribution, and mesh membership. AG MUST enforce the
+following constraints across ALL processes, ALL tasks, ALL environments, and
+ALL execution modes:
+
+NO node may exist without a valid canonical node_id.
+NO node may exist without a valid WUID in userId or wuid.
+NO node may exist without a valid operator_wuid.
+NO role labels may ever appear as owners or operators:
+   - GLOBAL_MESH
+   - operator_alpha
+   - operator_beta
+   - SYSTEM
+   - UNASSIGNED
+   - AUTHORITATIVE
+   - Any other non‑WUID identity
+NO test, mock, demo, seed, synthetic, fallback, or beta nodes may exist in
+   any SOT after any process or task completes.
+NO fallback logic may create nodes when backend returns [].
+NO node may be persisted if ANY ownership field is invalid.
+NO node may be accepted from heartbeat or registration unless WUID ownership
+   is valid and canonical.
+ALL SOT mutations MUST preserve canonical identity and ownership rules.
+ALL audits MUST flag ANY violation immediately and halt execution.
+AG MUST NEVER invent, generate, or introduce ANY node, identity, owner,
+    operator, or metadata not present in canonical SOT or explicitly authorized
+    by Stephen Soos.
+
+AG MUST treat violations of Rule 11 as CRITICAL INCIDENTS and enter INCIDENT
+MODE immediately.
+

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"flag"
 	"fmt"
 	"html/template"
@@ -11,11 +12,15 @@ import (
 	"path/filepath"
 	"runtime"
 	"strings"
+	"time"
 
+	"github.com/obregan/nodl/node-operator/core/updater"
 	"github.com/obregan/nodl/node-operator/src/auth"
 	"github.com/obregan/nodl/node-operator/src/device"
 	"github.com/obregan/nodl/node-operator/src/platform"
 )
+
+const AppVersion = "1.0.0"
 
 var pageHTML = `<!DOCTYPE html>
 <html lang="en">
@@ -43,10 +48,19 @@ var pageHTML = `<!DOCTYPE html>
         .msg { padding: 10px; border-radius: 8px; margin-bottom: 12px; font-size: 13px; font-weight: 600; }
         .msg.success { background: #065f46; color: #a7f3d0; }
         .msg.error { background: #881337; color: #fecdd3; }
+        .update-banner { display: none; background: #0284c7; color: #ffffff; padding: 12px 16px; border-radius: 8px; margin-bottom: 16px; justify-content: space-between; align-items: center; }
     </style>
 </head>
 <body>
     <div class="container">
+        <div id="update-banner" class="update-banner">
+            <div>
+                <strong>🚀 Software Update Available: <span id="update-ver">v1.0.1</span></strong>
+                <div style="font-size:12px; opacity:0.9;">Upgrade for performance enhancements and security fixes.</div>
+            </div>
+            <button id="upgrade-btn" onclick="triggerUpgrade()" style="background:#ffffff; color:#0284c7; font-weight:bold;">Update & Restart</button>
+        </div>
+
         <h1>
             <span>Wnode Node Operator</span>
             <span class="badge {{if not .DeviceToken}}unpaired{{else if .IsPaused}}paused{{end}}">
@@ -122,6 +136,28 @@ var pageHTML = `<!DOCTYPE html>
             </form>
         </div>
     </div>
+    <script>
+        fetch('/api/status').then(r=>r.json()).then(data=>{
+            if(data.update_available){
+                document.getElementById('update-ver').innerText = 'v' + data.new_version;
+                document.getElementById('update-banner').style.display = 'flex';
+            }
+        }).catch(e=>{});
+
+        function triggerUpgrade(){
+            const btn = document.getElementById('upgrade-btn');
+            btn.disabled = true;
+            btn.innerText = 'Upgrading...';
+            fetch('/api/upgrade', {method:'POST'}).then(r=>r.json()).then(d=>{
+                alert(d.message || 'Upgrading and restarting...');
+                setTimeout(()=>location.reload(), 6000);
+            }).catch(err=>{
+                alert('Upgrade failed: ' + err);
+                btn.disabled = false;
+                btn.innerText = 'Update & Restart';
+            });
+        }
+    </script>
 </body>
 </html>`
 
@@ -259,6 +295,56 @@ func main() {
 			return
 		}
 		http.Redirect(w, r, "/", http.StatusSeeOther)
+	})
+
+	http.HandleFunc("/api/status", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		upInfo, err := updater.CheckForUpdate(apiBase, AppVersion)
+		if err != nil {
+			json.NewEncoder(w).Encode(map[string]interface{}{
+				"version":          AppVersion,
+				"update_available": false,
+				"error":            err.Error(),
+			})
+			return
+		}
+		json.NewEncoder(w).Encode(map[string]interface{}{
+			"version":          AppVersion,
+			"update_available": upInfo.HasUpdate,
+			"new_version":      upInfo.Version,
+			"download_url":     upInfo.DownloadURL,
+		})
+	})
+
+	http.HandleFunc("/api/upgrade", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		if r.Method != "POST" {
+			http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
+			return
+		}
+		upInfo, err := updater.CheckForUpdate(apiBase, AppVersion)
+		if err != nil || !upInfo.HasUpdate {
+			json.NewEncoder(w).Encode(map[string]interface{}{
+				"status":  "error",
+				"message": "No valid update available or manifest error.",
+			})
+			return
+		}
+
+		json.NewEncoder(w).Encode(map[string]interface{}{
+			"status":  "upgrading",
+			"message": "Downloading update and restarting operator...",
+		})
+
+		go func() {
+			time.Sleep(1 * time.Second)
+			if err := updater.ApplyUpdate(upInfo.DownloadURL, upInfo.SHA256); err == nil {
+				log.Println("[UPDATER] Update applied successfully. Restarting process...")
+				_ = updater.RestartSelf()
+			} else {
+				log.Printf("[UPDATER] Failed to apply update: %v", err)
+			}
+		}()
 	})
 
 	// Automatically ensure system autostart and desktop shortcuts on launch

@@ -583,8 +583,8 @@ func (s *Store) SeedGlobalMeshNodes() {
 			Status:        "active",
 			CPUCores:      4,
 			MemoryGB:      16,
-			Latitude:      47.1625,
-			Longitude:     19.5033,
+			Latitude:      47.4979,
+			Longitude:     19.0402,
 			Metadata:      NodeMetadata{GPU: "Intel Corporation TigerLake-LP GT2 [Iris Xe Graphics] (rev 01)"},
 			DeviceClass:   "headless",
 			CreatedAt:     time.Now().Add(-48 * time.Hour),
@@ -601,8 +601,8 @@ func (s *Store) SeedGlobalMeshNodes() {
 			Status:        "active",
 			CPUCores:      4,
 			MemoryGB:      16,
-			Latitude:      47.1625,
-			Longitude:     19.5033,
+			Latitude:      46.2530,
+			Longitude:     20.1482,
 			Metadata:      NodeMetadata{GPU: "Intel Corporation Skylake-S GT2 [HD Graphics 530] (rev 06)"},
 			DeviceClass:   "headless",
 			CreatedAt:     time.Now().Add(-24 * time.Hour),
@@ -619,8 +619,8 @@ func (s *Store) SeedGlobalMeshNodes() {
 			Status:        "active",
 			CPUCores:      8,
 			MemoryGB:      16,
-			Latitude:      47.1625,
-			Longitude:     19.5033,
+			Latitude:      47.5316,
+			Longitude:     21.6273,
 			Metadata:      NodeMetadata{CPU: "11th Gen Intel Core i5-1135G7", GPU: "Intel Iris Xe Graphics"},
 			DeviceClass:   "native",
 			CreatedAt:     time.Now().Add(-120 * time.Hour),
@@ -634,7 +634,7 @@ func (s *Store) SeedGlobalMeshNodes() {
 			ID:            "760891088eb582754d7aaa86e23998b47290bf77b6474ec51b0e86e771d9ce19",
 			UserID:        "100001-0426-02-AB",
 			OperatorWUID:  "100001-0426-02-AB",
-			Status:        "offline",
+			Status:        "active",
 			CPUCores:      4,
 			MemoryGB:      8,
 			Latitude:      50.1109,
@@ -661,6 +661,11 @@ func (s *Store) SeedGlobalMeshNodes() {
 			}
 			if n.IPAddress != "" && existing.IPAddress == "" {
 				existing.IPAddress = n.IPAddress
+			}
+			// Update coordinates if unset or collapsed to legacy centroid
+			if (existing.Latitude == 0 && existing.Longitude == 0) || (existing.Latitude == 47.1625 && existing.Longitude == 19.5033) {
+				existing.Latitude = n.Latitude
+				existing.Longitude = n.Longitude
 			}
 		}
 	}
@@ -2784,8 +2789,8 @@ func (s *Store) SanitizeNodeInvariants(node *WnodeNode) {
 		}
 	}
 
-	// Fallback for local loopback or unmapped nodes via registered operator physical location
-	if isLoopback || (node.Latitude == 0 && node.Longitude == 0) {
+	// Fallback for unmapped nodes (lat=0, lon=0) via registered operator physical location
+	if node.Latitude == 0 && node.Longitude == 0 {
 		if operator, ok := s.nodlrs[node.UserID]; ok && operator.Country != "" {
 			cLat, cLon, ok := ResolveCountryCentroid(operator.Country)
 			if ok {

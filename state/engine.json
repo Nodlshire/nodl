@@ -20,7 +20,7 @@
       "metadata": {
         "os": ""
       },
-      "status": "offline",
+      "status": "active",
       "createdAt": "2026-08-29T15:02:37.809264315+02:00",
       "lastSeen": "2026-09-01T13:02:37.80926436+02:00",
       "last_heartbeat": "2026-09-01T11:02:37Z",
@@ -36,8 +36,8 @@
     "HN-a4a2cf96": {
       "cpu_cores": 4,
       "memory_gb": 16,
-      "lat": 47.1625,
-      "lon": 19.5033,
+      "lat": 47.4979,
+      "lon": 19.0402,
       "ipAddress": "",
       "id": "HN-a4a2cf96",
       "name": "HN-a4a2cf96",
@@ -65,8 +65,8 @@
     "HN-c66a3de1": {
       "cpu_cores": 4,
       "memory_gb": 16,
-      "lat": 47.1625,
-      "lon": 19.5033,
+      "lat": 46.2530,
+      "lon": 20.1482,
       "ipAddress": "",
       "id": "HN-c66a3de1",
       "name": "HN-c66a3de1",
@@ -94,8 +94,8 @@
     "cc027f54bbab7cbb89a12d1ee1600a309ff0e32264973657011216fdd0c13f15": {
       "cpu_cores": 8,
       "memory_gb": 16,
-      "lat": 47.1625,
-      "lon": 19.5033,
+      "lat": 47.5316,
+      "lon": 21.6273,
       "ipAddress": "",
       "id": "cc027f54bbab7cbb89a12d1ee1600a309ff0e32264973657011216fdd0c13f15",
       "name": "HW-cc027f54",

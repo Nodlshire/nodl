@@ -48,8 +48,8 @@ export default function FleetMap({
       if (!container || mapRef.current) return;
 
       mapRef.current = L.map(id, {
-        center: [25, 10],
-        zoom: 2,
+        center: [48, 15],
+        zoom: 3.5,
         minZoom: 2,
         maxZoom: 18,
         zoomControl: false,

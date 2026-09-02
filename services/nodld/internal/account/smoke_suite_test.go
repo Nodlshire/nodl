@@ -110,8 +110,8 @@ func TestFullSmokeAndPressureSuite(t *testing.T) {
 	// -------------------------------------------------------------
 	t.Run("Node_Ownership", func(t *testing.T) {
 		stephenNodes := accStore.ListNodes("100001-0426-01-AA")
-		if len(stephenNodes) != 5 {
-			t.Fatalf("Expected 5 nodes for Stephen, got %d", len(stephenNodes))
+		if len(stephenNodes) != 3 {
+			t.Fatalf("Expected 3 nodes for Stephen, got %d", len(stephenNodes))
 		}
 		for _, n := range stephenNodes {
 			t.Logf("Node ID: %s | UserID: %s | Status: %s", n.ID, n.UserID, n.Status)

@@ -79,12 +79,12 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
 
   const directLinuxCmd = `curl -sSL https://nodlr.wnode.one/releases/install_linux.sh | bash -s -- "${activeTokenDisplay}"`;
   const directArm64Cmd = `curl -sSL https://nodlr.wnode.one/releases/install_linux.sh | bash -s -- "${activeTokenDisplay}"`;
-  const directMacCmd = `curl -sSL https://nodlr.wnode.one/releases/install_linux.sh | bash -s -- "${activeTokenDisplay}"`;
+  const directMacCmd = `curl -L https://nodlr.wnode.one/releases/nodl-core-darwin-arm64 -o nodl-core && chmod +x nodl-core && NODL_DEVICE_TOKEN="${activeTokenDisplay}" NODL_API_BASE=https://nodlr.wnode.one ./nodl-core --profile earth`;
   const directWinCmd = `$env:NODL_DEVICE_TOKEN='${activeTokenDisplay}'; iwr -useb https://nodlr.wnode.one/releases/install_windows.ps1 | iex`;
 
   const headlessLinuxCmd = `curl -sSL https://nodlr.wnode.one/releases/install_linux.sh | bash -s -- "${activeTokenDisplay}"`;
   const headlessArm64Cmd = `curl -sSL https://nodlr.wnode.one/releases/install_linux.sh | bash -s -- "${activeTokenDisplay}"`;
-  const headlessMacCmd = `curl -sSL https://nodlr.wnode.one/releases/install_linux.sh | bash -s -- "${activeTokenDisplay}"`;
+  const headlessMacCmd = `curl -L https://nodlr.wnode.one/releases/nodl-core-darwin-arm64 -o nodl-core && chmod +x nodl-core && NODL_DEVICE_TOKEN="${activeTokenDisplay}" NODL_API_BASE=https://nodlr.wnode.one ./nodl-core --profile earth`;
 
   const linuxVariants: Record<string, { name: string; desc: string; cmd: string }> = {
     "linux-ubuntu": {

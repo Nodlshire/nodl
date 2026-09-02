@@ -1,8 +1,30 @@
+param (
+    [string]$Token = $env:NODL_DEVICE_TOKEN
+)
+
 $ErrorActionPreference = "Stop"
-$installPath = "$env:ProgramFiles\Wnode"
+$installPath = "$env:ProgramData\NODL"
 New-Item -ItemType Directory -Force -Path $installPath | Out-Null
-Copy-Item "nodl-core.exe" -Destination $installPath
-Copy-Item "winsw.exe" -Destination "$installPath\nodl-core-service.exe"
-Copy-Item "winsw.xml" -Destination "$installPath\nodl-core-service.xml"
-Start-Process -FilePath "$installPath\nodl-core-service.exe" -ArgumentList "install" -Wait -NoNewWindow
-Start-Process -FilePath "$installPath\nodl-core-service.exe" -ArgumentList "start" -Wait -NoNewWindow
+
+$binPath = "$installPath\nodl-core.exe"
+if (Test-Path ".\nodl-core-windows-amd64.exe") {
+    Copy-Item ".\nodl-core-windows-amd64.exe" -Destination $binPath -Force
+} elseif (Test-Path ".\nodl-core.exe") {
+    Copy-Item ".\nodl-core.exe" -Destination $binPath -Force
+} else {
+    Invoke-WebRequest -Uri "https://nodlr.wnode.one/releases/nodl-core-windows-amd64.exe" -OutFile $binPath
+}
+
+if ($Token) {
+    Set-Content -Path "$installPath\token" -Value $Token
+}
+
+$taskName = "NODL-Core-Daemon"
+$action = New-ScheduledTaskAction -Execute $binPath -Argument "--profile earth" -WorkingDirectory $installPath
+$trigger = New-ScheduledTaskTrigger -AtStartup
+$principal = New-ScheduledTaskPrincipal -UserId "NT AUTHORITY\SYSTEM" -LogonType ServiceAccount -RunLevel Highest
+
+Register-ScheduledTask -TaskName $taskName -Action $action -Trigger $trigger -Principal $principal -Force | Out-Null
+Start-ScheduledTask -TaskName $taskName
+
+Write-Host "[NODL] Headless daemon installed and registered to start automatically at system boot."

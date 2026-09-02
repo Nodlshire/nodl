@@ -77,44 +77,44 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
 
   const activeTokenDisplay = token || "YOUR_TOKEN";
 
-  const directLinuxCmd = `curl -L https://nodlr.wnode.one/releases/nodl-core-linux-amd64 -o nodl-core && chmod +x nodl-core && NODL_DEVICE_TOKEN="${activeTokenDisplay}" NODL_API_BASE=https://nodlr.wnode.one ./nodl-core --profile earth`;
-  const directArm64Cmd = `curl -L https://nodlr.wnode.one/releases/nodl-core-linux-arm64 -o nodl-core && chmod +x nodl-core && NODL_DEVICE_TOKEN="${activeTokenDisplay}" NODL_API_BASE=https://nodlr.wnode.one ./nodl-core --profile earth`;
-  const directMacCmd = `curl -L https://nodlr.wnode.one/releases/nodl-core-darwin-arm64 -o nodl-core && chmod +x nodl-core && NODL_DEVICE_TOKEN="${activeTokenDisplay}" NODL_API_BASE=https://nodlr.wnode.one ./nodl-core --profile earth`;
-  const directWinCmd = `iwr -useb https://nodlr.wnode.one/releases/nodl-core-windows-amd64.exe -OutFile nodl-core.exe; $env:NODL_DEVICE_TOKEN='${activeTokenDisplay}'; $env:NODL_API_BASE='https://nodlr.wnode.one'; .\\nodl-core.exe --profile earth`;
+  const directLinuxCmd = `curl -sSL https://nodlr.wnode.one/releases/install_linux.sh | bash -s -- "${activeTokenDisplay}"`;
+  const directArm64Cmd = `curl -sSL https://nodlr.wnode.one/releases/install_linux.sh | bash -s -- "${activeTokenDisplay}"`;
+  const directMacCmd = `curl -sSL https://nodlr.wnode.one/releases/install_linux.sh | bash -s -- "${activeTokenDisplay}"`;
+  const directWinCmd = `iwr -useb https://nodlr.wnode.one/releases/install_windows.ps1 | iex -Token "${activeTokenDisplay}"`;
 
-  const headlessLinuxCmd = `curl -L https://nodlr.wnode.one/releases/nodl-core-linux-amd64 -o nodl-core && chmod +x nodl-core && NODL_DEVICE_TOKEN="${activeTokenDisplay}" NODL_API_BASE=https://nodlr.wnode.one ./nodl-core --profile earth`;
-  const headlessArm64Cmd = `curl -L https://nodlr.wnode.one/releases/nodl-core-linux-arm64 -o nodl-core && chmod +x nodl-core && NODL_DEVICE_TOKEN="${activeTokenDisplay}" NODL_API_BASE=https://nodlr.wnode.one ./nodl-core --profile earth`;
-  const headlessMacCmd = `curl -L https://nodlr.wnode.one/releases/nodl-core-darwin-arm64 -o nodl-core && chmod +x nodl-core && NODL_DEVICE_TOKEN="${activeTokenDisplay}" NODL_API_BASE=https://nodlr.wnode.one ./nodl-core --profile earth`;
+  const headlessLinuxCmd = `curl -sSL https://nodlr.wnode.one/releases/install_linux.sh | bash -s -- "${activeTokenDisplay}"`;
+  const headlessArm64Cmd = `curl -sSL https://nodlr.wnode.one/releases/install_linux.sh | bash -s -- "${activeTokenDisplay}"`;
+  const headlessMacCmd = `curl -sSL https://nodlr.wnode.one/releases/install_linux.sh | bash -s -- "${activeTokenDisplay}"`;
 
   const linuxVariants: Record<string, { name: string; desc: string; cmd: string }> = {
     "linux-ubuntu": {
       name: "Ubuntu 22.04 / 24.04 LTS (x86_64)",
-      desc: "Autostart Desktop App & Control Panel for Ubuntu Linux.",
+      desc: "Automatic Systemd Background Service & Auto-Start Daemon.",
       cmd: directLinuxCmd
     },
     "linux-debian": {
       name: "Debian 11 / 12 Bookworm (x86_64)",
-      desc: "Direct GitHub Releases binary download for Debian Linux.",
+      desc: "Automatic Systemd Background Service & Auto-Start Daemon.",
       cmd: directLinuxCmd
     },
     "linux-fedora": {
       name: "Fedora / RHEL / CentOS / AlmaLinux (x86_64)",
-      desc: "Direct GitHub Releases binary download for Fedora/RPM Linux.",
+      desc: "Automatic Systemd Background Service & Auto-Start Daemon.",
       cmd: directLinuxCmd
     },
     "linux-arch": {
       name: "Arch Linux / Manjaro (x86_64)",
-      desc: "Direct GitHub Releases binary download for Arch Linux.",
+      desc: "Automatic Systemd Background Service & Auto-Start Daemon.",
       cmd: directLinuxCmd
     },
     "linux-alpine": {
       name: "Alpine Linux (musl x86_64)",
-      desc: "Direct GitHub Releases binary download for Alpine Linux.",
+      desc: "Automatic Systemd Background Service & Auto-Start Daemon.",
       cmd: directLinuxCmd
     },
     "linux-arm64": {
       name: "Linux ARM64 / Raspberry Pi 4/5 (aarch64)",
-      desc: "Direct GitHub Releases binary download for 64-bit ARM Linux.",
+      desc: "Automatic Systemd Background Service & Auto-Start Daemon.",
       cmd: directArm64Cmd
     }
   };
@@ -122,42 +122,42 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
   const headlessVariants: Record<string, { name: string; desc: string; cmd: string }> = {
     "headless-debian": {
       name: "Debian 11 / 12 Bookworm (x86_64)",
-      desc: "Direct GitHub Releases binary download for Debian Linux headless server.",
+      desc: "Automatic Systemd Background Service & Auto-Start Daemon.",
       cmd: headlessLinuxCmd
     },
     "headless-ubuntu": {
       name: "Ubuntu 22.04 / 24.04 LTS (x86_64)",
-      desc: "Direct GitHub Releases binary download for Ubuntu Linux headless server.",
+      desc: "Automatic Systemd Background Service & Auto-Start Daemon.",
       cmd: headlessLinuxCmd
     },
     "headless-fedora": {
       name: "Fedora / RHEL / CentOS / AlmaLinux (x86_64)",
-      desc: "Direct GitHub Releases binary download for Fedora/RHEL headless server.",
+      desc: "Automatic Systemd Background Service & Auto-Start Daemon.",
       cmd: headlessLinuxCmd
     },
     "headless-arch": {
       name: "Arch Linux / Manjaro (x86_64)",
-      desc: "Direct GitHub Releases binary download for Arch Linux headless server.",
+      desc: "Automatic Systemd Background Service & Auto-Start Daemon.",
       cmd: headlessLinuxCmd
     },
     "headless-alpine": {
       name: "Alpine Linux (musl x86_64)",
-      desc: "Direct GitHub Releases binary download for Alpine Linux headless server.",
+      desc: "Automatic Systemd Background Service & Auto-Start Daemon.",
       cmd: headlessLinuxCmd
     },
     "headless-arm64": {
       name: "Linux ARM64 / Raspberry Pi 4/5 (aarch64)",
-      desc: "Direct GitHub Releases binary download for ARM64 headless server.",
+      desc: "Automatic Systemd Background Service & Auto-Start Daemon.",
       cmd: headlessArm64Cmd
     },
     "headless-mac": {
       name: "macOS Headless Daemon (Apple Silicon & Intel)",
-      desc: "Direct GitHub Releases binary download for macOS terminal/background daemon.",
+      desc: "Automatic Background Service & Auto-Start Daemon.",
       cmd: headlessMacCmd
     },
     "headless-windows": {
-      name: "Windows Headless Service (PowerShell)",
-      desc: "Direct GitHub Releases binary download for Windows PowerShell daemon.",
+      name: "Windows Headless Service (Task Scheduler)",
+      desc: "Automatic Task Scheduler Startup Daemon (RunLevel Highest).",
       cmd: directWinCmd
     }
   };
@@ -314,7 +314,7 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-auto">
                 <a 
-                  href="https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-core-windows-amd64.exe" 
+                  href="https://nodlr.wnode.one/releases/nodl-desktop-windows-amd64.exe" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3.5 bg-cyan-950/20 border border-cyan-500/30 hover:border-cyan-400 hover:bg-cyan-950/40 transition-all rounded-xl group flex flex-col justify-between"
@@ -325,21 +325,21 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                     </div>
                     <div>
                       <span className="text-xs font-bold text-white block group-hover:text-cyan-300">
-                        Windows Executable (.exe)
+                        Windows Tray App (.exe)
                       </span>
                       <span className="text-[10px] text-slate-400 block mt-0.5">
-                        GitHub Releases Direct Asset
+                        Taskbar Tray GUI + Auto-Start
                       </span>
                     </div>
                   </div>
                   <div className="mt-3 text-[10px] text-cyan-400 font-bold flex items-center justify-between">
-                    <span>Download .exe</span>
+                    <span>Download Windows .exe</span>
                     <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </a>
 
                 <a 
-                  href="https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-core-darwin-arm64" 
+                  href="https://nodlr.wnode.one/releases/nodl-desktop-darwin-arm64" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3.5 bg-cyan-950/20 border border-cyan-500/30 hover:border-cyan-400 hover:bg-cyan-950/40 transition-all rounded-xl group flex flex-col justify-between"
@@ -350,10 +350,10 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                     </div>
                     <div>
                       <span className="text-xs font-bold text-white block group-hover:text-cyan-300">
-                        macOS Universal Binary
+                        macOS Desktop Binary
                       </span>
                       <span className="text-[10px] text-slate-400 block mt-0.5">
-                        GitHub Releases Direct Asset
+                        Menu Bar Tray GUI + Auto-Start
                       </span>
                     </div>
                   </div>
@@ -364,7 +364,7 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                 </a>
 
                 <a 
-                  href="https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-core-linux-amd64" 
+                  href="https://nodlr.wnode.one/releases/nodl-desktop-linux-amd64" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3.5 bg-cyan-950/20 border border-cyan-500/30 hover:border-cyan-400 hover:bg-cyan-950/40 transition-all rounded-xl group flex flex-col justify-between"
@@ -375,9 +375,18 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                     </div>
                     <div>
                       <span className="text-xs font-bold text-white block group-hover:text-cyan-300">
-                        Android APK (.apk)
+                        Linux Desktop App
                       </span>
                       <span className="text-[10px] text-slate-400 block mt-0.5">
+                        System Tray GUI + Auto-Start
+                      </span>
+                    </div>
+                  </div>
+                  <div className="mt-3 text-[10px] text-cyan-400 font-bold flex items-center justify-between">
+                    <span>Download Linux</span>
+                    <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </a>
                         GitHub Releases Direct Asset
                       </span>
                     </div>

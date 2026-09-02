@@ -80,7 +80,7 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
   const directLinuxCmd = `curl -sSL https://nodlr.wnode.one/releases/install_linux.sh | bash -s -- "${activeTokenDisplay}"`;
   const directArm64Cmd = `curl -sSL https://nodlr.wnode.one/releases/install_linux.sh | bash -s -- "${activeTokenDisplay}"`;
   const directMacCmd = `curl -sSL https://nodlr.wnode.one/releases/install_linux.sh | bash -s -- "${activeTokenDisplay}"`;
-  const directWinCmd = `iwr -useb https://nodlr.wnode.one/releases/install_windows.ps1 | iex -Token "${activeTokenDisplay}"`;
+  const directWinCmd = `$env:NODL_DEVICE_TOKEN='${activeTokenDisplay}'; iwr -useb https://nodlr.wnode.one/releases/install_windows.ps1 | iex`;
 
   const headlessLinuxCmd = `curl -sSL https://nodlr.wnode.one/releases/install_linux.sh | bash -s -- "${activeTokenDisplay}"`;
   const headlessArm64Cmd = `curl -sSL https://nodlr.wnode.one/releases/install_linux.sh | bash -s -- "${activeTokenDisplay}"`;

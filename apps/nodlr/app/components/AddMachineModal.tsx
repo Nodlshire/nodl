@@ -387,15 +387,6 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
                     <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </a>
-                        GitHub Releases Direct Asset
-                      </span>
-                    </div>
-                  </div>
-                  <div className="mt-3 text-[10px] text-cyan-400 font-bold flex items-center justify-between">
-                    <span>Download APK</span>
-                    <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </a>
               </div>
 
               <div className="p-2.5 rounded-lg bg-cyan-950/20 border border-cyan-500/20 text-[11px] text-slate-300 flex items-center gap-2">

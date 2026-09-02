@@ -260,7 +260,7 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
 
         {/* Footer */}
         <div className="px-6 py-4 bg-white/[0.02] border-t border-white/10 flex justify-between items-center text-xs text-slate-400">
-          <span>Official Wnode Desktop Releases</span>
+          <span>Verified Production Builds • v1.0.1 Secure Distribution</span>
           <button
             onClick={onClose}
             className="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/15 text-white font-bold transition-colors"

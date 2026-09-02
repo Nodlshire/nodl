@@ -120,6 +120,36 @@
       "downtimeSlashed": true,
       "deviceClass": "native",
       "vpn_detected": false
+    },
+    "HN-3dmax01": {
+      "cpu_cores": 8,
+      "memory_gb": 16,
+      "lat": 45.7640,
+      "lon": 4.8357,
+      "ipAddress": "",
+      "id": "HN-3dmax01",
+      "name": "HN-3dmax01",
+      "canonical_id": "HN-3dmax01",
+      "userId": "100004-0426-02-AB",
+      "operator_wuid": "100004-0426-02-AB",
+      "crm_link": "",
+      "metadata": {
+        "os": "",
+        "cpu": "AMD Ryzen 7 5800X",
+        "gpu": "NVIDIA GeForce RTX 3080"
+      },
+      "status": "active",
+      "createdAt": "2026-09-01T15:02:37.809263943+02:00",
+      "lastSeen": "2026-09-02T03:02:37.809263997+02:00",
+      "last_heartbeat": "2026-09-02T01:02:37Z",
+      "last_seen_at": "2026-09-02T01:02:37Z",
+      "globalScore": 1,
+      "tier": 5,
+      "isWasm": false,
+      "downtimePenalized": true,
+      "downtimeSlashed": true,
+      "deviceClass": "headless",
+      "vpn_detected": false
     }
   }
 }

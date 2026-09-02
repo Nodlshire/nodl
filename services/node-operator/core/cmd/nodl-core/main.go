@@ -121,7 +121,7 @@ func main() {
 				os.Remove(tokenFile)
 			}
 		} else {
-			log.Println("Warning: NODL_DEVICE_TOKEN not set and no registration token found. Joining mesh might fail.")
+			log.Fatalf("Fatal: NODL_DEVICE_TOKEN is not set and no registration token was provided. Node must be registered to a valid WUID.")
 		}
 	}
 

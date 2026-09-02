@@ -22,8 +22,14 @@ func TestNodeLocationUniquenessAndPersistence(t *testing.T) {
 	store.SeedGlobalMeshNodes()
 
 	nodes := store.ListAllNodes()
-	if len(nodes) < 4 {
-		t.Fatalf("Expected at least 4 seeded nodes, got %d", len(nodes))
+	if len(nodes) != 5 {
+		t.Fatalf("Expected exactly 5 seeded nodes, got %d", len(nodes))
+	}
+
+	// Verify unassigned tokens are rejected and never auto-created
+	_, found := store.GetNodeByToken("UNREGISTERED_TOKEN_12345")
+	if found {
+		t.Errorf("FAIL: Unregistered token was accepted by GetNodeByToken without WUID ownership")
 	}
 
 	coordMap := make(map[string]string)

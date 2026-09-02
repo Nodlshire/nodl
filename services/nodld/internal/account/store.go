@@ -647,6 +647,24 @@ func (s *Store) SeedGlobalMeshNodes() {
 			GlobalScore:   1.0,
 			Tier:          5,
 		},
+		{
+			ID:            "HN-3dmax01",
+			UserID:        "100004-0426-02-AB",
+			OperatorWUID:  "100004-0426-02-AB",
+			Status:        "active",
+			CPUCores:      8,
+			MemoryGB:      16,
+			Latitude:      45.7640,
+			Longitude:     4.8357,
+			Metadata:      NodeMetadata{CPU: "AMD Ryzen 7 5800X", GPU: "NVIDIA GeForce RTX 3080"},
+			DeviceClass:   "headless",
+			CreatedAt:     time.Now().Add(-10 * time.Hour),
+			LastSeen:      time.Now(),
+			LastHeartbeat: time.Now().UTC().Format(time.RFC3339),
+			LastSeenAt:    time.Now().UTC().Format(time.RFC3339),
+			GlobalScore:   1.0,
+			Tier:          1,
+		},
 	}
 
 	for _, n := range globalNodes {
@@ -1725,26 +1743,7 @@ func (s *Store) GetNodeByToken(token string) (*WnodeNode, bool) {
 		}
 	}
 
-	// Self-Healing Fallback: If valid device token is presented after server reboot, auto-reconstruct node
-	if token != "" && (strings.HasPrefix(token, "HN-") || len(token) >= 16) {
-		nodeID := token
-		if !strings.HasPrefix(token, "HN-") && len(token) >= 12 {
-			nodeID = "HN-" + token[:8]
-		}
-		node := &WnodeNode{
-			ID:           nodeID,
-			UserID:       "UNASSIGNED",
-			OperatorWUID: "UNASSIGNED",
-			DeviceToken:  token,
-			Status:       "active",
-			CreatedAt:    time.Now().UTC(),
-			LastSeen:     time.Now().UTC(),
-			Tier:         1,
-		}
-		s.nodes[nodeID] = node
-		return node, true
-	}
-
+	// Strict Rule: NO UNASSIGNED nodes allowed. Return false if not registered to a valid WUID.
 	return nil, false
 }
 

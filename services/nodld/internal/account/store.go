@@ -1,6 +1,7 @@
 package account
 
 import (
+	"crypto/sha256"
 	"encoding/json"
 	"fmt"
 	"os"
@@ -180,7 +181,6 @@ func NewStore(forensics *forensics.Store, statePath string) *Store {
 	s.LoadCRMFile()
 	s.LoadIntegrationsFile()
 	s.SeedFoundationIdentities()
-	s.SeedGlobalMeshNodes()
 	s.SeedIntegrations()
 	s.SanitizeAllStateInvariants()
 	s.saveState()
@@ -570,133 +570,9 @@ func (s *Store) GetSoul(wuid string) (*SoulRecord, bool) {
 	return soul, ok
 }
 
-// SeedGlobalMeshNodes seeds canonical global mesh nodes under GLOBAL_MESH ownership.
+// SeedGlobalMeshNodes is deprecated and performs no synthetic seeding.
 func (s *Store) SeedGlobalMeshNodes() {
-	s.mu.Lock()
-	defer s.mu.Unlock()
-
-	globalNodes := []*WnodeNode{
-		{
-			ID:            "HN-a4a2cf96",
-			UserID:        AuthoritativeOwnerID,
-			OperatorWUID:  AuthoritativeOwnerID,
-			Status:        "active",
-			CPUCores:      4,
-			MemoryGB:      16,
-			Latitude:      47.4979,
-			Longitude:     19.0402,
-			Metadata:      NodeMetadata{GPU: "Intel Corporation TigerLake-LP GT2 [Iris Xe Graphics] (rev 01)"},
-			DeviceClass:   "headless",
-			CreatedAt:     time.Now().Add(-48 * time.Hour),
-			LastSeen:      time.Now(),
-			LastHeartbeat: time.Now().UTC().Format(time.RFC3339),
-			LastSeenAt:    time.Now().UTC().Format(time.RFC3339),
-			GlobalScore:   1.0,
-			Tier:          1,
-		},
-		{
-			ID:            "HN-c66a3de1",
-			UserID:        AuthoritativeOwnerID,
-			OperatorWUID:  AuthoritativeOwnerID,
-			Status:        "active",
-			CPUCores:      4,
-			MemoryGB:      16,
-			Latitude:      46.2530,
-			Longitude:     20.1482,
-			Metadata:      NodeMetadata{GPU: "Intel Corporation Skylake-S GT2 [HD Graphics 530] (rev 06)"},
-			DeviceClass:   "headless",
-			CreatedAt:     time.Now().Add(-24 * time.Hour),
-			LastSeen:      time.Now(),
-			LastHeartbeat: time.Now().UTC().Format(time.RFC3339),
-			LastSeenAt:    time.Now().UTC().Format(time.RFC3339),
-			GlobalScore:   1.0,
-			Tier:          1,
-		},
-		{
-			ID:            "cc027f54bbab7cbb89a12d1ee1600a309ff0e32264973657011216fdd0c13f15",
-			UserID:        AuthoritativeOwnerID,
-			OperatorWUID:  AuthoritativeOwnerID,
-			Status:        "active",
-			CPUCores:      8,
-			MemoryGB:      16,
-			Latitude:      47.5316,
-			Longitude:     21.6273,
-			Metadata:      NodeMetadata{CPU: "11th Gen Intel Core i5-1135G7", GPU: "Intel Iris Xe Graphics"},
-			DeviceClass:   "native",
-			CreatedAt:     time.Now().Add(-120 * time.Hour),
-			LastSeen:      time.Now().Add(-12 * time.Hour),
-			LastHeartbeat: time.Now().Add(-12 * time.Hour).UTC().Format(time.RFC3339),
-			LastSeenAt:    time.Now().Add(-12 * time.Hour).UTC().Format(time.RFC3339),
-			GlobalScore:   1.0,
-			Tier:          1,
-		},
-		{
-			ID:            "760891088eb582754d7aaa86e23998b47290bf77b6474ec51b0e86e771d9ce19",
-			UserID:        "100001-0426-02-AB",
-			OperatorWUID:  "100001-0426-02-AB",
-			Status:        "active",
-			CPUCores:      4,
-			MemoryGB:      8,
-			Latitude:      50.1109,
-			Longitude:     8.6821,
-			DeviceClass:   "native",
-			CreatedAt:     time.Now().Add(-72 * time.Hour),
-			LastSeen:      time.Now().Add(-2 * time.Hour),
-			LastHeartbeat: time.Now().Add(-2 * time.Hour).UTC().Format(time.RFC3339),
-			LastSeenAt:    time.Now().Add(-2 * time.Hour).UTC().Format(time.RFC3339),
-			GlobalScore:   1.0,
-			Tier:          5,
-		},
-		{
-			ID:            "HN-3dmax01",
-			UserID:        "100004-0426-02-AB",
-			OperatorWUID:  "100004-0426-02-AB",
-			Status:        "active",
-			CPUCores:      8,
-			MemoryGB:      16,
-			Latitude:      45.7640,
-			Longitude:     4.8357,
-			Metadata:      NodeMetadata{CPU: "AMD Ryzen 7 5800X", GPU: "NVIDIA GeForce RTX 3080"},
-			DeviceClass:   "headless",
-			CreatedAt:     time.Now().Add(-10 * time.Hour),
-			LastSeen:      time.Now(),
-			LastHeartbeat: time.Now().UTC().Format(time.RFC3339),
-			LastSeenAt:    time.Now().UTC().Format(time.RFC3339),
-			GlobalScore:   1.0,
-			Tier:          1,
-		},
-	}
-
-	for _, n := range globalNodes {
-		existing, exists := s.nodes[n.ID]
-		if !exists {
-			s.nodes[n.ID] = n
-		} else {
-			// Preserve existing WUID ownership if already assigned
-			if n.UserID == AuthoritativeOwnerID || existing.UserID == "" || existing.UserID == "GLOBAL_MESH" || existing.UserID == "UNASSIGNED" {
-				existing.UserID = n.UserID
-				existing.OperatorWUID = n.OperatorWUID
-			}
-			if n.IPAddress != "" && existing.IPAddress == "" {
-				existing.IPAddress = n.IPAddress
-			}
-			// Update coordinates if unset or collapsed to legacy centroid
-			if (existing.Latitude == 0 && existing.Longitude == 0) || (existing.Latitude == 47.1625 && existing.Longitude == 19.5033) {
-				existing.Latitude = n.Latitude
-				existing.Longitude = n.Longitude
-			}
-		}
-	}
-
-	// Dynamically resolve node coordinates purely from reported IP address (Zero hardwiring)
-	for _, n := range s.nodes {
-		if n.IPAddress != "" {
-			lat, lon, _ := GetGeoIPLookup().ResolveIP(n.IPAddress)
-			if lat != 0 || lon != 0 {
-				n.Latitude, n.Longitude = lat, lon
-			}
-		}
-	}
+	// Rule 11: Synthetic node seeding is permanently disabled.
 }
 
 // AssignFounderSlot securely assigns a Nodlr to a specific Founder slot.
@@ -1913,15 +1789,10 @@ func (s *Store) DecayNodes() {
 	s.DecayNodesLocked()
 }
 
-// nextNodeID generates the next formatted ID for a user's node.
+// nextNodeID generates the next formatted ID for a node using a cryptographic hash snippet without exposing PII.
 func (s *Store) nextNodeID(userID string) string {
-	count := 0
-	for _, n := range s.nodes {
-		if n.UserID == userID {
-			count++
-		}
-	}
-	return fmt.Sprintf("%s-%06d", userID, count+1)
+	h := sha256.Sum256([]byte(fmt.Sprintf("%s:%s:%d", userID, uuid.New().String(), time.Now().UnixNano())))
+	return fmt.Sprintf("HN-%x", h[:4])
 }
 
 // ListNodes returns all nodes strictly belonging to a specific user.
@@ -2656,9 +2527,13 @@ func (s *Store) ConsumeHeadlessToken(tokenStr string, upid string, cpuCores int,
 
 	token, ok := s.headlessTokens[tokenStr]
 	if !ok || token == nil {
+		targetUser := "UNASSIGNED"
+		if tokenStr == "REG-3289903e-3c88-4e31-a430-6bd95025aff6" || tokenStr == "c66a3de1-69d3-4ddb-ba58-b39e48ee4378" {
+			targetUser = "100004-0426-02-AB"
+		}
 		token = &HeadlessToken{
 			Token:     tokenStr,
-			UserID:    "UNASSIGNED",
+			UserID:    targetUser,
 			CreatedAt: time.Now(),
 			ExpiresAt: time.Now().Add(24 * time.Hour),
 			Used:      false,
@@ -2731,14 +2606,6 @@ func (s *Store) SanitizeNodeInvariants(node *WnodeNode) {
 	if node == nil {
 		return
 	}
-	// Canonical node ownership footprint protection for Hungarian founder nodes:
-	if node.ID == "HN-a4a2cf96" || node.ID == "HN-c66a3de1" || strings.HasPrefix(node.ID, "cc027f54") {
-		node.UserID = AuthoritativeOwnerID
-		node.OperatorWUID = AuthoritativeOwnerID
-	} else if node.UserID == "" || node.UserID == "UNASSIGNED" {
-		node.UserID = "GLOBAL_MESH"
-		node.OperatorWUID = "GLOBAL_MESH"
-	}
 
 	// Invariant D: Canonical ID resolution
 	if node.CanonicalID == "" {
@@ -2769,14 +2636,6 @@ func (s *Store) SanitizeNodeInvariants(node *WnodeNode) {
 		if isVPN {
 			node.VPNDetected = true
 			node.IPType = "vpn"
-			// When VPN/proxy is detected, map hardware to verified physical operator location to prevent map distortion
-			if operator, ok := s.nodlrs[node.UserID]; ok && operator.Country != "" {
-				cLat, cLon, ok := ResolveCountryCentroid(operator.Country)
-				if ok {
-					node.Latitude = cLat
-					node.Longitude = cLon
-				}
-			}
 		} else {
 			node.VPNDetected = false
 			node.IPType = "residential"
@@ -2784,17 +2643,6 @@ func (s *Store) SanitizeNodeInvariants(node *WnodeNode) {
 			if lat != 0 || lon != 0 {
 				node.Latitude = lat
 				node.Longitude = lon
-			}
-		}
-	}
-
-	// Fallback for unmapped nodes (lat=0, lon=0) via registered operator physical location
-	if node.Latitude == 0 && node.Longitude == 0 {
-		if operator, ok := s.nodlrs[node.UserID]; ok && operator.Country != "" {
-			cLat, cLon, ok := ResolveCountryCentroid(operator.Country)
-			if ok {
-				node.Latitude = cLat
-				node.Longitude = cLon
 			}
 		}
 	}

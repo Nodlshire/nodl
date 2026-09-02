@@ -338,7 +338,6 @@ func (s *Store) LoadState() error {
 
 	s.mu.Unlock()
 	s.SeedFoundationIdentities()
-	s.SeedGlobalMeshNodes()
 	s.SanitizeAllStateInvariants()
 	s.mu.Lock()
 

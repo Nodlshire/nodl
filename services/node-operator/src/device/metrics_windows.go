@@ -3,12 +3,16 @@
 package device
 
 import (
+	"fmt"
+	"os/exec"
+	"runtime"
+	"strconv"
+	"strings"
+
 	"github.com/obregan/nodl/node-operator/src/platform"
 )
 
 // CollectMetrics gathers dynamic hardware telemetry for Windows.
-// Full implementation requires syscalls specific to Windows API (e.g. GetSystemTimes, GlobalMemoryStatusEx, GetDiskFreeSpaceEx).
-// For this foundational phase, we return a basic stub so compilation succeeds.
 func CollectMetrics(state *platform.State) NodeHealthMetrics {
 	gpuInfo := DetectGPU()
 	cpuS, gpuS, memS, compS := RunBenchmarks(gpuInfo)
@@ -21,6 +25,24 @@ func CollectMetrics(state *platform.State) NodeHealthMetrics {
 		GPUScore:     gpuS,
 		MemoryScore:  memS,
 		ComputeScore: compS,
+		CPUCores:     runtime.NumCPU(),
+		OS:           fmt.Sprintf("Windows (%s)", runtime.GOARCH),
+		Arch:         runtime.GOARCH,
+	}
+
+	if out, err := exec.Command("powershell", "-Command", "Get-CimInstance Win32_PhysicalMemory | Measure-Object -Property Capacity -Sum | Select-Object -ExpandProperty Sum").Output(); err == nil {
+		if bytesVal, parseErr := strconv.ParseFloat(strings.TrimSpace(string(out)), 64); parseErr == nil && bytesVal > 0 {
+			metrics.MemoryGB = int(bytesVal / (1024 * 1024 * 1024))
+		}
+	}
+	if metrics.MemoryGB <= 0 {
+		metrics.MemoryGB = 8
+	}
+
+	if out, err := exec.Command("powershell", "-Command", "(Get-CimInstance Win32_Processor).Name").Output(); err == nil && len(strings.TrimSpace(string(out))) > 0 {
+		metrics.CPUModel = strings.TrimSpace(string(out))
+	} else {
+		metrics.CPUModel = fmt.Sprintf("Windows Processor (%d cores)", runtime.NumCPU())
 	}
 
 	if state.Reputation != nil {
@@ -41,7 +63,6 @@ func CollectMetrics(state *platform.State) NodeHealthMetrics {
 		}
 	}
 
-	// Basic Windows stubs
 	metrics.CPU = 0.1
 	metrics.RAM = 0.5
 	metrics.Disk = 0.5

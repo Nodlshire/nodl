@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"runtime"
 )
 
 // State represents the local configuration and authentication state of the node.
@@ -48,16 +49,32 @@ type ReputationState struct {
 }
 
 func getWnodeDir() (string, error) {
+	dir := os.Getenv("WNODE_DIR")
+	if dir == "" {
+		dir = os.Getenv("NODL_DIR")
+	}
+	if dir != "" {
+		if err := os.MkdirAll(dir, 0755); err == nil {
+			return dir, nil
+		}
+	}
+
+	if runtime.GOOS == "windows" {
+		if appData := os.Getenv("APPDATA"); appData != "" {
+			dir = filepath.Join(appData, "nodl")
+			if err := os.MkdirAll(dir, 0755); err == nil {
+				return dir, nil
+			}
+		}
+	}
+
 	home, err := os.UserHomeDir()
 	if err != nil {
 		return "", fmt.Errorf("failed to get user home dir: %w", err)
 	}
-	dir := os.Getenv("WNODE_DIR")
-	if dir == "" {
-		dir = filepath.Join(home, ".wnode")
-	}
+	dir = filepath.Join(home, ".nodl")
 	if err := os.MkdirAll(dir, 0755); err != nil {
-		return "", fmt.Errorf("failed to create .wnode dir: %w", err)
+		return "", fmt.Errorf("failed to create .nodl dir: %w", err)
 	}
 	return dir, nil
 }

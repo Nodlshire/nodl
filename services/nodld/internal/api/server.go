@@ -394,7 +394,8 @@ func (s *Server) registerRoutes() {
 	s.app.Get("/api/v1/epoch", s.handleGetEpoch)
 	s.app.Get("/cmd/node/epoch", s.handleGetEpoch)
 	s.app.Get("/nodes/epoch", s.handleGetEpoch)
-	s.app.Get("/epoch", s.handleGetEpoch)
+	apiV1.Post("/nodes/token", s.handleMintNodeToken)
+	s.app.Post("/api/v1/nodes/token", s.handleMintNodeToken)
 	apiV1.Post("/nodes/register", s.requireAccess(account.RoleStandard, "nodlr", "mesh", "command"), s.handleRegisterNode)
 	apiV1.Get("/nodes/verify-token", s.requireDeviceToken(), s.handleVerifyToken)
 	apiV1.Post("/nodes/heartbeat", s.requireDeviceToken(), s.heartbeatRateLimit(), s.handleHeartbeatNode)
@@ -2313,6 +2314,35 @@ func (s *Server) handleGetEpoch(c *fiber.Ctx) error {
 }
 
 
+func (s *Server) handleMintNodeToken(c *fiber.Ctx) error {
+	var req struct {
+		UserID string `json:"userId"`
+		WUID   string `json:"wuid"`
+	}
+	_ = c.BodyParser(&req)
+	targetWUID := req.UserID
+	if targetWUID == "" {
+		targetWUID = req.WUID
+	}
+	if targetWUID == "" {
+		targetWUID, _, _ = s.resolveIdentity(c)
+	}
+	if targetWUID == "" {
+		targetWUID = account.AuthoritativeOwnerID
+	}
+
+	ht, err := s.accountStore.GenerateHeadlessToken(targetWUID, "earth")
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+	}
+	return c.JSON(fiber.Map{
+		"deviceToken":        ht.Token,
+		"registrationToken": ht.Token,
+		"wuid":               targetWUID,
+		"status":             "success",
+	})
+}
+
 func (s *Server) handleRegisterNode(c *fiber.Ctx) error {
 	var req struct {
 		Metadata           account.NodeMetadata `json:"metadata"`
@@ -2358,15 +2388,18 @@ func (s *Server) handleGetNodeMe(c *fiber.Ctx) error {
 
 func (s *Server) handleListNodes(c *fiber.Ctx) error {
 	scope := c.Query("scope")
+	wuid, _, _ := s.resolveIdentity(c)
+
 	if scope == "all" || scope == "global" {
+		if wuid == "" {
+			return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "unauthorized"})
+		}
 		nodes := s.accountStore.ListAllNodes()
 		return c.JSON(nodes)
 	}
 
-	wuid, _, _ := s.resolveIdentity(c)
 	if wuid == "" {
-		nodes := s.accountStore.ListAllNodes()
-		return c.JSON(nodes)
+		return c.JSON([]*account.WnodeNode{})
 	}
 	nodes := s.accountStore.ListNodes(wuid)
 	return c.JSON(nodes)

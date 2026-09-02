@@ -121,7 +121,7 @@ func main() {
 				os.Remove(tokenFile)
 			}
 		} else {
-			log.Fatalf("Fatal: NODL_DEVICE_TOKEN is not set and no registration token was provided. Node must be registered to a valid WUID.")
+			log.Fatalf("[FATAL] Missing device registration token. Get your token from https://nodlr.wnode.one/dashboard/hardware")
 		}
 	}
 

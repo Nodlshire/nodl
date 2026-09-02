@@ -25,10 +25,10 @@ func TestCountryCentroidResolution(t *testing.T) {
 		t.Errorf("Expected UAE centroid (23.4241, 53.8478), got lat=%f lon=%f (ok=%v)", latUAE, lonUAE, okUAE)
 	}
 
-	// Test Hungary (HU)
+	// Test Hungary (HU) returns unresolved per Rule 11
 	latHU, lonHU, okHU := account.ResolveCountryCentroid("HU")
-	if !okHU || latHU != 47.1625 || lonHU != 19.5033 {
-		t.Errorf("Expected Hungary centroid (47.1625, 19.5033), got lat=%f lon=%f (ok=%v)", latHU, lonHU, okHU)
+	if okHU || latHU != 0 || lonHU != 0 {
+		t.Errorf("Expected Hungary centroid to be unresolved (0,0, false), got lat=%f lon=%f (ok=%v)", latHU, lonHU, okHU)
 	}
 
 	// Test Denmark (DK)

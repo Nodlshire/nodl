@@ -18,6 +18,8 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
   const [selectedLinuxVariant, setSelectedLinuxVariant] = useState("linux-ubuntu");
   const [selectedHeadlessOs, setSelectedHeadlessOs] = useState("headless-ubuntu");
 
+  const [tokenError, setTokenError] = useState<string | null>(null);
+
   useEffect(() => {
     if (isOpen) {
       if (!token && !loadingToken) {
@@ -28,6 +30,7 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
 
   const generateToken = async () => {
     setLoadingToken(true);
+    setTokenError(null);
     try {
       const jwt = typeof window !== "undefined" ? localStorage.getItem("nodl_jwt") : null;
       const headers: Record<string, string> = {
@@ -53,20 +56,12 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
           return;
         }
       }
-      const randStr = Math.random().toString(36).substring(2, 8).toUpperCase() + Math.random().toString(36).substring(2, 8).toUpperCase();
-      const fallbackToken = `REG-${Date.now().toString(36).toUpperCase()}-${randStr}`;
-      setToken(fallbackToken);
-      if (typeof window !== "undefined") {
-        localStorage.setItem("nodl_active_token", fallbackToken);
-      }
+      setTokenError("Failed to generate registration token. Please re-authenticate.");
+      setToken(null);
     } catch (err) {
-      console.error("Failed to generate token, using fallback", err);
-      const randStr = Math.random().toString(36).substring(2, 8).toUpperCase() + Math.random().toString(36).substring(2, 8).toUpperCase();
-      const fallbackToken = `REG-${Date.now().toString(36).toUpperCase()}-${randStr}`;
-      setToken(fallbackToken);
-      if (typeof window !== "undefined") {
-        localStorage.setItem("nodl_active_token", fallbackToken);
-      }
+      console.error("Failed to generate registration token from backend:", err);
+      setTokenError("Failed to generate registration token. Please re-authenticate.");
+      setToken(null);
     } finally {
       setLoadingToken(false);
     }
@@ -82,14 +77,14 @@ export default function AddMachineModal({ isOpen, onClose, apiBase }: AddMachine
 
   const activeTokenDisplay = token || "YOUR_TOKEN";
 
-  const directLinuxCmd = `curl -L https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-desktop-linux-amd64 -o nodl-desktop && chmod +x nodl-desktop && WNODE_API_BASE=https://nodlr.wnode.one ./nodl-desktop --token=${activeTokenDisplay}`;
-  const directArm64Cmd = `curl -L https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-desktop-linux-arm64 -o nodl-desktop && chmod +x nodl-desktop && WNODE_API_BASE=https://nodlr.wnode.one ./nodl-desktop --token=${activeTokenDisplay}`;
-  const directMacCmd = `curl -L https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-desktop-darwin-arm64 -o nodl-desktop && chmod +x nodl-desktop && WNODE_API_BASE=https://nodlr.wnode.one ./nodl-desktop --token=${activeTokenDisplay}`;
-  const directWinCmd = `iwr -useb https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-desktop-windows-amd64.exe -OutFile nodl-desktop.exe; $env:WNODE_API_BASE='https://nodlr.wnode.one'; .\\nodl-desktop.exe --token=${activeTokenDisplay}`;
+  const directLinuxCmd = `curl -L https://nodlr.wnode.one/releases/nodl-core-linux-amd64 -o nodl-core && chmod +x nodl-core && NODL_DEVICE_TOKEN="${activeTokenDisplay}" NODL_API_BASE=https://nodlr.wnode.one ./nodl-core --profile earth`;
+  const directArm64Cmd = `curl -L https://nodlr.wnode.one/releases/nodl-core-linux-arm64 -o nodl-core && chmod +x nodl-core && NODL_DEVICE_TOKEN="${activeTokenDisplay}" NODL_API_BASE=https://nodlr.wnode.one ./nodl-core --profile earth`;
+  const directMacCmd = `curl -L https://nodlr.wnode.one/releases/nodl-core-darwin-arm64 -o nodl-core && chmod +x nodl-core && NODL_DEVICE_TOKEN="${activeTokenDisplay}" NODL_API_BASE=https://nodlr.wnode.one ./nodl-core --profile earth`;
+  const directWinCmd = `iwr -useb https://nodlr.wnode.one/releases/nodl-core-windows-amd64.exe -OutFile nodl-core.exe; $env:NODL_DEVICE_TOKEN='${activeTokenDisplay}'; $env:NODL_API_BASE='https://nodlr.wnode.one'; .\\nodl-core.exe --profile earth`;
 
-  const headlessLinuxCmd = `curl -L https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-core-linux-amd64 -o nodl-core && chmod +x nodl-core && WNODE_API_BASE=https://nodlr.wnode.one ./nodl-core --token=${activeTokenDisplay}`;
-  const headlessArm64Cmd = `curl -L https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-core-linux-arm64 -o nodl-core && chmod +x nodl-core && WNODE_API_BASE=https://nodlr.wnode.one ./nodl-core --token=${activeTokenDisplay}`;
-  const headlessMacCmd = `curl -L https://github.com/wnodeltd/wnode/releases/download/v1.0.3/nodl-core-darwin-arm64 -o nodl-core && chmod +x nodl-core && WNODE_API_BASE=https://nodlr.wnode.one ./nodl-core --token=${activeTokenDisplay}`;
+  const headlessLinuxCmd = `curl -L https://nodlr.wnode.one/releases/nodl-core-linux-amd64 -o nodl-core && chmod +x nodl-core && NODL_DEVICE_TOKEN="${activeTokenDisplay}" NODL_API_BASE=https://nodlr.wnode.one ./nodl-core --profile earth`;
+  const headlessArm64Cmd = `curl -L https://nodlr.wnode.one/releases/nodl-core-linux-arm64 -o nodl-core && chmod +x nodl-core && NODL_DEVICE_TOKEN="${activeTokenDisplay}" NODL_API_BASE=https://nodlr.wnode.one ./nodl-core --profile earth`;
+  const headlessMacCmd = `curl -L https://nodlr.wnode.one/releases/nodl-core-darwin-arm64 -o nodl-core && chmod +x nodl-core && NODL_DEVICE_TOKEN="${activeTokenDisplay}" NODL_API_BASE=https://nodlr.wnode.one ./nodl-core --profile earth`;
 
   const linuxVariants: Record<string, { name: string; desc: string; cmd: string }> = {
     "linux-ubuntu": {

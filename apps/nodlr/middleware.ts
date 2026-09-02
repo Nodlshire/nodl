@@ -3,6 +3,9 @@ import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
+  if (path.startsWith('/releases')) {
+    return NextResponse.next();
+  }
   const isApiPage = path.startsWith('/api');
 
   if (isApiPage) {
@@ -35,6 +38,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|logo.webp).*)',
+    '/((?!_next/static|_next/image|favicon.ico|logo.webp|releases).*)',
   ],
 };

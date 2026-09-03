@@ -17,8 +17,10 @@ export default function IdentityHeader({ account }: { account?: any }) {
     const [user, setUser] = useState<any>(account || null);
     const [fetchError, setFetchError] = useState(false);
 
-    // SOT Avatar Hydration
-    const { data: avatarData } = useSWR('/api/avatar', fetcher, { revalidateOnFocus: true });
+    // SOT Avatar Hydration - Scoped strictly per WUID/User Session
+    const userId = user?.id || user?.nodlrId || user?.wuid || "";
+    const avatarApiUrl = userId ? `/api/avatar?wuid=${encodeURIComponent(userId)}` : null;
+    const { data: avatarData } = useSWR(avatarApiUrl, fetcher, { revalidateOnFocus: true });
 
     useEffect(() => {
         if (account) {
@@ -85,7 +87,7 @@ export default function IdentityHeader({ account }: { account?: any }) {
     }
 
     const identity = normalizeAccount(user);
-    const effectiveAvatar = avatarData?.avatar || identity.avatarUrl;
+    const effectiveAvatar = identity.avatarUrl || avatarData?.avatar || user?.avatar;
 
     return (
         <div className="flex items-center gap-4 select-none">

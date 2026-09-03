@@ -2676,15 +2676,15 @@ func (s *Store) SanitizeNodeInvariants(node *WnodeNode) {
 		}
 	}
 
-	// Country centroid fallback for local/private nodes
-	if node.Latitude == 0 && node.Longitude == 0 {
-		country := "HU"
+	// Country centroid fallback for local/private nodes with active IP address
+	if node.Latitude == 0 && node.Longitude == 0 && node.IPAddress != "" {
+		country := ""
 		if node.UserID != "" {
 			if owner, ok := s.nodlrs[node.UserID]; ok && owner.Country != "" {
 				country = owner.Country
 			}
 		}
-		if country == "HU" || country == "" {
+		if country == "HU" {
 			node.Latitude = 47.1625
 			node.Longitude = 19.5033
 		}

@@ -214,36 +214,36 @@ func flushQueue(apiBase string, state *platform.State) {
 }
 
 func sendHeartbeat(apiBase string, payload HeartbeatPayload, state *platform.State) error {
-	url := fmt.Sprintf("%s/api/v1/nodes/heartbeat", strings.TrimRight(apiBase, "/"))
-	
-	// Envelope and Signature
-	seq := atomic.AddUint64(&telemetrySeq, 1)
-	envelope := struct {
-		Payload   HeartbeatPayload `json:"payload"`
-		Sequence  uint64           `json:"sequence"`
-		Signature []byte           `json:"signature"`
-		PubKey    []byte           `json:"pub_key"`
-	}{
-		Payload:  payload,
-		Sequence: seq,
-		PubKey:   nodePubKey,
+	url := fmt.Sprintf("%s/api/v1/telemetry/pulse", strings.TrimRight(apiBase, "/"))
+
+	nodeID := state.UPID
+	if nodeID == "" {
+		nodeID = state.NodeID
+	}
+	if nodeID == "" {
+		nodeID = payload.NodeID
 	}
 
-	rawPayload, _ := json.Marshal(payload)
-	envelope.Signature = ed25519.Sign(nodePrivKey, rawPayload)
+	pulseBody, _ := json.Marshal(map[string]interface{}{
+		"nodeId": nodeID,
+		"upid":   nodeID,
+		"metrics": map[string]interface{}{
+			"cpuCores":     payload.Metrics.CPUCores,
+			"memoryGb":     payload.Metrics.MemoryGB,
+			"cpuModel":     payload.Metrics.CPUModel,
+			"os":           payload.Metrics.OS,
+			"computeScore": payload.Metrics.ComputeScore,
+		},
+		"hardwareHash": payload.HardwareHash,
+		"deviceClass":  "native",
+	})
 
-	jsonData, err := json.Marshal(envelope)
+	req, err := http.NewRequest("POST", url, bytes.NewBuffer(pulseBody))
 	if err != nil {
 		return err
 	}
 
-	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
-	if err != nil {
-		return err
-	}
-	
 	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Authorization", "Bearer "+state.DeviceToken)
 
 	// Hardened mTLS Client (Requires cert config in production)
 	tlsConfig := &tls.Config{
@@ -255,7 +255,7 @@ func sendHeartbeat(apiBase string, payload HeartbeatPayload, state *platform.Sta
 		Timeout:   10 * time.Second,
 		Transport: transport,
 	}
-	
+
 	resp, err := client.Do(req)
 	if err != nil {
 		return err

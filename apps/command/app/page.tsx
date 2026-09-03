@@ -37,33 +37,33 @@ export default function CommandCentrePage() {
     const fetchData = async () => {
         try {
             const t0 = performance.now();
-            const [nodesRes, nodlrsRes, statsRes, summaryRes] = await Promise.all([
+            const [nodesRes, nodlrsRes] = await Promise.all([
                 fetch('/api/nodls/all'),
-                fetch('/api/nodlrs/all'),
-                fetch('/api/stats'),
-                fetch('/api/nodls/summary')
+                fetch('/api/nodlrs/all')
             ]);
             const latency = Math.round(performance.now() - t0);
             setApiLatencyMs(latency);
             
-            if (nodesRes.ok) setNodes(await nodesRes.json());
-            if (nodlrsRes.ok) setNodlrs(await nodlrsRes.json());
-            
-            let combinedStats = { totalNodes: 0, activeNodes: 0, offlineNodes: 0 };
-            if (statsRes.ok) {
-                const baseStats = await statsRes.json();
-                combinedStats = { ...combinedStats, ...baseStats };
+            let fetchedNodes: any[] = [];
+            if (nodesRes.ok) {
+                fetchedNodes = await nodesRes.json();
+                setNodes(fetchedNodes);
                 setBackendOnline(true);
             } else {
                 setBackendOnline(false);
             }
-
-            if (summaryRes.ok) {
-                const summary = await summaryRes.json();
-                combinedStats = { ...combinedStats, ...summary };
-            }
+            if (nodlrsRes.ok) setNodlrs(await nodlrsRes.json());
             
-            setStats(combinedStats);
+            const totalNodes = fetchedNodes.length;
+            const activeNodes = fetchedNodes.filter((n: any) => n.status?.toLowerCase() === 'active').length;
+            const offlineNodes = totalNodes - activeNodes;
+            let totalCores = 0;
+            let totalMemory = 0;
+            fetchedNodes.forEach((n: any) => {
+                totalCores += Number(n.cpu_cores || n.metrics?.cpuCores || 0);
+                totalMemory += Number(n.memory_gb || n.metrics?.memoryGb || 0);
+            });
+            setStats({ totalNodes, activeNodes, offlineNodes, totalCores, totalMemory });
         } catch (err) {
             console.warn("Dashboard vital fetch failed (backend potentially offline):", err);
             setError("Backend Offline");

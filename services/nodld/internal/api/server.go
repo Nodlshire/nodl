@@ -430,6 +430,9 @@ func (s *Server) registerRoutes() {
 
 	// Local ONNX Telemetry Export
 	apiV1.Get("/telemetry/export", s.handleTelemetryExport)
+	apiV1.Post("/telemetry/pulse", s.handlePostTelemetryPulse)
+	s.app.Post("/api/v1/telemetry/pulse", s.handlePostTelemetryPulse)
+	s.app.Post("/api/telemetry/pulse", s.handlePostTelemetryPulse)
 
 	// Money Routes (Canonical 8080)
 	apiV1.Get("/money/overview", s.requireAccess(account.RoleStandard, "nodlr", "command"), s.moneyHandler.HandleMoneyOverview)
@@ -2299,12 +2302,13 @@ func (s *Server) handleGetEpoch(c *fiber.Ctx) error {
 
 	epoch := fiber.Map{
 		"epoch_id":       epochID,
-		"allowed_routes": []string{"/api/v1/nodes/heartbeat", "/api/v1/nodes/work", "/api/v1/system/pulse"},
+		"allowed_routes": []string{"/api/v1/nodes/heartbeat", "/api/v1/nodes/work", "/api/v1/system/pulse", "/api/v1/telemetry/pulse"},
 		"hmac_secret":    "wnode-sovereign-mesh-secret-key",
 		"expires_at":     expiresAt,
 		"signature":      "wnode-sig-sovereign-mesh-signed-epoch-v1",
 		"capabilities": map[string][]string{
 			"/api/v1/nodes/heartbeat": {"telemetry", "pulse"},
+			"/api/v1/telemetry/pulse": {"telemetry", "pulse"},
 			"/api/v1/nodes/work":      {"compute", "wasm"},
 		},
 		"determinism": "sovereign",
@@ -3598,6 +3602,46 @@ func (s *Server) handleTelemetryExport(c *fiber.Ctx) error {
 		records = []json.RawMessage{}
 	}
 	return c.JSON(records)
+}
+
+func (s *Server) handlePostTelemetryPulse(c *fiber.Ctx) error {
+	var req struct {
+		NodeID             string                    `json:"nodeId,omitempty"`
+		UPID               string                    `json:"upid,omitempty"`
+		Metrics            account.NodeHealthMetrics `json:"metrics,omitempty"`
+		HardwareHash       string                    `json:"hardwareHash,omitempty"`
+		BrowserFingerprint string                    `json:"browserFingerprint,omitempty"`
+		DeviceClass        string                    `json:"deviceClass,omitempty"`
+	}
+
+	if err := c.BodyParser(&req); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid pulse body"})
+	}
+
+	nodeID := req.NodeID
+	if nodeID == "" {
+		nodeID = req.UPID
+	}
+
+	clientIP := getClientIP(c)
+	if nodeID != "" {
+		deviceClass := req.DeviceClass
+		if deviceClass == "" {
+			if req.Metrics.IsWASM {
+				deviceClass = "wasm"
+			} else {
+				deviceClass = "native"
+			}
+		}
+		if err := s.accountStore.UpdateNodeHeartbeat(nodeID, req.Metrics, req.HardwareHash, req.BrowserFingerprint, deviceClass, clientIP); err != nil {
+			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
+		}
+	}
+
+	return c.JSON(fiber.Map{
+		"status":    "success",
+		"timestamp": time.Now().UTC(),
+	})
 }
 
 func (s *Server) handlePSPAdminStatus(c *fiber.Ctx) error {

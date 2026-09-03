@@ -3,14 +3,6 @@
 import React, { useEffect, useRef } from "react";
 import "leaflet/dist/leaflet.css";
 
-function getHashSeed(str: string): number {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    hash = (hash << 5) - hash + str.charCodeAt(i);
-    hash |= 0;
-  }
-  return Math.abs(hash) / 2147483647;
-}
 
 interface MapProps {
   nodes?: Array<{ id: string; lat?: number; lon?: number; status?: string; name?: string; tier?: string }>;
@@ -90,27 +82,9 @@ export default function OpenMap({ nodes = [], nodlrs = [], loading = false, onNo
         );
       });
 
-      const coordBuckets: Record<string, number> = {};
-
       validNodes.forEach((node: any) => {
-        const baseLat = Number(node.lat ?? node.latitude);
-        const baseLon = Number(node.lon ?? node.longitude);
-        const coordKey = `${baseLat.toFixed(3)},${baseLon.toFixed(3)}`;
-
-        const index = coordBuckets[coordKey] || 0;
-        coordBuckets[coordKey] = index + 1;
-
-        let finalLat = baseLat;
-        let finalLon = baseLon;
-
-        if (index > 0) {
-          const currentZoom = mapRef.current ? mapRef.current.getZoom() : 2;
-          const scaleFactor = Math.pow(2, Math.max(0, 5 - currentZoom));
-          const angle = (index * (2 * Math.PI)) / 3 + getHashSeed(node.id || node.name || "") * 0.5;
-          const radius = (0.45 + (index * 0.35)) * scaleFactor;
-          finalLat = baseLat + radius * Math.cos(angle);
-          finalLon = baseLon + radius * Math.sin(angle) * 1.5;
-        }
+        const finalLat = Number(node.lat ?? node.latitude);
+        const finalLon = Number(node.lon ?? node.longitude);
 
         const isOnline = node.status?.toLowerCase() === "active" || node.status?.toLowerCase() === "online";
         const markerColor = isOnline ? "#22D3EE" : "#EF4444";

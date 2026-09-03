@@ -2,7 +2,8 @@
 import os
 import sys
 import logging
-from datetime import datetime
+import time
+from datetime import datetime, timedelta
 
 # Ensure scripts directory and betainv root are in sys.path
 SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -44,5 +45,23 @@ def run_airdrop_export_job(recipient: str = "stephen@wnode.one") -> str:
     logger.info(f"Reconciliation export finished: {len(participants)} qualified participants exported.")
     return csv_path
 
+def run_daily_cron_loop(recipient: str = "stephen@wnode.one"):
+    """Runs continuous supervisor task executing daily at 00:00 UTC."""
+    logger.info("Starting supervised daily Airdrop Exporter daemon (Scheduled for 00:00 UTC daily)...")
+    while True:
+        try:
+            run_airdrop_export_job(recipient=recipient)
+        except Exception as e:
+            logger.error(f"Error executing daily airdrop export: {e}")
+
+        now = datetime.utcnow()
+        next_run = (now + timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0)
+        seconds_until_next = (next_run - now).total_seconds()
+        logger.info(f"Next automated export scheduled for {next_run.strftime('%Y-%m-%d %H:%M:%S UTC')} (in {seconds_until_next / 3600:.2f} hours)")
+        time.sleep(seconds_until_next)
+
 if __name__ == "__main__":
-    run_airdrop_export_job()
+    if "--loop" in sys.argv or "--cron" in sys.argv:
+        run_daily_cron_loop()
+    else:
+        run_airdrop_export_job()

@@ -34,11 +34,13 @@ def run_airdrop_end_to_end_test():
     init_db()
     logger.info("[TEST 1/6] Database Schema & Airdrop Table initialized.")
 
-    test_discord_id = "123456789012345678"
-    test_username = "AirdropTester#9999"
+    import time
+    timestamp = int(time.time())
+    test_discord_id = f"discord_{timestamp}"
+    test_username = f"AirdropTester_{timestamp}"
     test_wallet = "0x71C7656EC7ab88b098defB751B7401B5f6d8976F"
-    test_email = "airdroptester@wnode.one"
-    test_node_pubkey = "node_pubkey_alpha_01"
+    test_email = f"airdroptester_{timestamp}@wnode.one"
+    test_node_pubkey = f"node_pubkey_alpha_{timestamp}"
 
     # 2. Stage 1: Register Wallet (/airdrop register)
     logger.info("[TEST 2/6] Mocking /airdrop register <polygon_wallet_address>...")

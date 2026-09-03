@@ -30,7 +30,7 @@ export default function SettingsPage() {
         email: 'stephen@wnode.one',
         phone: '+1 (555) 000-0000',
         address: '123 Mesh Lane, Cloud City, CC 10101',
-        avatar: globalProfile?.avatar || 'https://wnode.one/wp-content/uploads/2025/05/nodl-medium.webp',
+        avatar: globalProfile?.avatar || '',
         password: '••••••••••••'
     });
 

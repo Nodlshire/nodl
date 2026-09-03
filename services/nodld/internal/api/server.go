@@ -2452,6 +2452,25 @@ func (s *Server) handleVerifyToken(c *fiber.Ctx) error {
 	})
 }
 
+func getClientIP(c *fiber.Ctx) string {
+	if xff := c.Get("X-Forwarded-For"); xff != "" {
+		parts := strings.Split(xff, ",")
+		if len(parts) > 0 {
+			ip := strings.TrimSpace(parts[0])
+			if ip != "" {
+				return ip
+			}
+		}
+	}
+	if xri := c.Get("X-Real-IP"); xri != "" {
+		ip := strings.TrimSpace(xri)
+		if ip != "" {
+			return ip
+		}
+	}
+	return c.IP()
+}
+
 func (s *Server) handleHeartbeatNode(c *fiber.Ctx) error {
 	nodeId := c.Locals("node_id").(string)
 	
@@ -2463,8 +2482,6 @@ func (s *Server) handleHeartbeatNode(c *fiber.Ctx) error {
 			DeviceClass        string                    `json:"deviceClass,omitempty"`
 		} `json:"payload"`
 	}
-	body := c.Body()
-	fmt.Printf("===================\nRAW HEARTBEAT BODY:\n%s\n===================\n", string(body))
 
 	if err := c.BodyParser(&envelope); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid request body"})
@@ -2480,11 +2497,10 @@ func (s *Server) handleHeartbeatNode(c *fiber.Ctx) error {
 		}
 	}
 
-	if err := s.accountStore.UpdateNodeHeartbeat(nodeId, req.Metrics, req.HardwareHash, req.BrowserFingerprint, deviceClass, c.IP()); err != nil {
+	clientIP := getClientIP(c)
+	if err := s.accountStore.UpdateNodeHeartbeat(nodeId, req.Metrics, req.HardwareHash, req.BrowserFingerprint, deviceClass, clientIP); err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
 	}
-
-
 
 	res := fiber.Map{"status": "success"}
 	return c.JSON(res)
@@ -2508,6 +2524,7 @@ func (s *Server) handleBatchHeartbeatNode(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid batch payload"})
 	}
 
+	clientIP := getClientIP(c)
 	ingested := 0
 	for _, item := range req.Batch {
 		p := item.Payload
@@ -2519,7 +2536,7 @@ func (s *Server) handleBatchHeartbeatNode(c *fiber.Ctx) error {
 				deviceClass = "native"
 			}
 		}
-		if err := s.accountStore.UpdateNodeHeartbeat(nodeId, p.Metrics, p.HardwareHash, p.BrowserFingerprint, deviceClass, c.IP()); err == nil {
+		if err := s.accountStore.UpdateNodeHeartbeat(nodeId, p.Metrics, p.HardwareHash, p.BrowserFingerprint, deviceClass, clientIP); err == nil {
 			ingested++
 		}
 	}

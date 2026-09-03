@@ -1,23 +1,5 @@
 import { NextResponse, NextRequest } from 'next/server';
 import { resolveIdentityHeaders } from '@/app/lib/identity';
-import fs from 'fs';
-import path from 'path';
-
-function getFallbackEngineNodes() {
-    try {
-        const enginePath = path.resolve(process.cwd(), '../../state/engine.json');
-        if (fs.existsSync(enginePath)) {
-            const raw = fs.readFileSync(enginePath, 'utf8');
-            const parsed = JSON.parse(raw);
-            if (parsed && parsed.nodes) {
-                return Object.values(parsed.nodes);
-            }
-        }
-    } catch (e) {
-        console.error('Failed to read fallback engine.json:', e);
-    }
-    return [];
-}
 
 export async function GET(req: NextRequest) {
     const BACKEND_URL = process.env.NODLD_API_URL || 'http://127.0.0.1:8080';
@@ -30,14 +12,12 @@ export async function GET(req: NextRequest) {
         });
         if (res.ok) {
             const data = await res.json();
-            if (Array.isArray(data) && data.length >= 4) {
-                return NextResponse.json(data);
-            }
+            return NextResponse.json(data);
         }
+        console.warn(`Nodls backend returned HTTP ${res.status}`);
+        return NextResponse.json([]);
     } catch (error) {
-        console.warn('Nodls backend fetch warning, using engine.json SOT fallback');
+        console.error('Nodls backend fetch error:', error);
+        return NextResponse.json([]);
     }
-
-    const fallbackNodes = getFallbackEngineNodes();
-    return NextResponse.json(fallbackNodes);
 }

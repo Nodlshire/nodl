@@ -162,8 +162,9 @@ export default function FleetMap({
           <span className="text-[11px] font-bold text-white uppercase tracking-widest">Node Network Distribution</span>
         </div>
         <div className="flex items-center gap-4 text-[10px] font-mono text-slate-400">
-          <span>Active: <strong className="text-[#22D3EE]">{displayNodes.filter((n: any) => n.status === "active" || n.status === "online").length}</strong></span>
-          <span>Offline: <strong className="text-red-400">{displayNodes.filter((n: any) => n.status !== "active" && n.status !== "online").length}</strong></span>
+          <span>Active: <strong className="text-[#22D3EE]">{displayNodes.filter((n: any) => (n.status?.toLowerCase() === "active" || n.status?.toLowerCase() === "online") && !(Number(n.lat ?? n.latitude) === 0 && Number(n.lon ?? n.longitude) === 0)).length}</strong></span>
+          <span>Offline: <strong className="text-red-400">{displayNodes.filter((n: any) => n.status?.toLowerCase() === "offline").length}</strong></span>
+          <span>Unlocated: <strong className="text-yellow-400">{displayNodes.filter((n: any) => (n.status?.toLowerCase() === "active" || n.status?.toLowerCase() === "online") && (Number(n.lat ?? n.latitude) === 0 && Number(n.lon ?? n.longitude) === 0)).length}</strong></span>
         </div>
       </div>
 

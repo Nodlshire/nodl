@@ -292,14 +292,17 @@ func (s *Store) runDowntimeWatchdog(interval time.Duration) {
 	ticker := time.NewTicker(interval)
 	for range ticker.C {
 		s.mu.Lock()
-		now := time.Now()
+		now := time.Now().UTC()
 		for _, node := range s.nodes {
+			lastSeen := node.GetLastSeenTime().UTC()
 			// A node sends a heartbeat every 30 seconds.
 			// 3 missed heartbeats = 90 seconds.
-			if now.Sub(node.LastSeen) > 90*time.Second {
+			if now.Sub(lastSeen) > 90*time.Second {
+				if node.Status != "offline" {
+					node.Status = "offline"
+				}
 				if !node.DowntimePenalized {
 					node.DowntimePenalized = true
-					// SOT.status is authoritative; timestamp decay does not mutate node.Status
 					
 					// Apply downtime penalty: -1 * BaseRateForTier
 					baseRate := GetBaseRateForTier(node.Tier)
@@ -334,7 +337,7 @@ func (s *Store) runDowntimeWatchdog(interval time.Duration) {
 			}
 
 			// 5 missed heartbeats = 150 seconds
-			if now.Sub(node.LastSeen) > 150*time.Second {
+			if now.Sub(lastSeen) > 150*time.Second {
 				if !node.DowntimeSlashed {
 					node.DowntimeSlashed = true
 					s.slashDowntimeLocked(node.UserID)
@@ -1635,6 +1638,8 @@ func (s *Store) UpdateNodeHeartbeat(nodeID string, metrics NodeHealthMetrics, ha
 
 	node.LastSeen = time.Now()
 	node.Status = "active"
+	node.DowntimePenalized = false
+	node.DowntimeSlashed = false
 	nowISO := time.Now().UTC().Format(time.RFC3339)
 	node.LastHeartbeat = nowISO
 	node.LastSeenAt = nowISO
@@ -1760,12 +1765,21 @@ func (s *Store) UpdateNodeHeartbeat(nodeID string, metrics NodeHealthMetrics, ha
 	return nil
 }
 
-func (s *Store) DecayNodesLocked() {
-	now := time.Now()
+func (s *Store) DecayNodesLocked() bool {
+	now := time.Now().UTC()
+	changed := false
 	for _, node := range s.nodes {
-		hoursOffline := now.Sub(node.LastSeen).Hours()
-		// SOT.status is authoritative; timestamp decay does not mutate node.Status
-		
+		if node.Status == "purged" {
+			continue
+		}
+		lastSeen := node.GetLastSeenTime().UTC()
+		if now.Sub(lastSeen) > 90*time.Second {
+			if node.Status != "offline" {
+				node.Status = "offline"
+				changed = true
+			}
+		}
+		hoursOffline := now.Sub(lastSeen).Hours()
 		if hoursOffline > 1.0 {
 			// Apply 0.95 multiplier per hour
 			decayFactor := 1.0
@@ -1779,14 +1793,18 @@ func (s *Store) DecayNodesLocked() {
 			}
 		}
 	}
+	return changed
 }
 
 // DecayNodes applies reputation penalties for nodes that are offline.
 // It applies a 5% penalty per hour offline to the GlobalScore.
 func (s *Store) DecayNodes() {
 	s.mu.Lock()
-	defer s.mu.Unlock()
-	s.DecayNodesLocked()
+	changed := s.DecayNodesLocked()
+	s.mu.Unlock()
+	if changed {
+		go s.SaveState()
+	}
 }
 
 // nextNodeID generates the next formatted ID for a node using a cryptographic hash snippet without exposing PII.
@@ -1798,8 +1816,13 @@ func (s *Store) nextNodeID(userID string) string {
 // ListNodes returns all nodes strictly belonging to a specific user.
 func (s *Store) ListNodes(userId string) []*WnodeNode {
 	s.mu.Lock()
-	defer s.mu.Unlock()
-	s.DecayNodesLocked()
+	changed := s.DecayNodesLocked()
+	defer func() {
+		s.mu.Unlock()
+		if changed {
+			go s.SaveState()
+		}
+	}()
 
 	list := make([]*WnodeNode, 0)
 	if userId == "" {
@@ -1816,7 +1839,13 @@ func (s *Store) ListNodes(userId string) []*WnodeNode {
 // ListAllNodes returns all registered nodes in the network.
 func (s *Store) ListAllNodes() []*WnodeNode {
 	s.mu.Lock()
-	defer s.mu.Unlock()
+	changed := s.DecayNodesLocked()
+	defer func() {
+		s.mu.Unlock()
+		if changed {
+			go s.SaveState()
+		}
+	}()
 
 	list := make([]*WnodeNode, 0)
 	for _, n := range s.nodes {
@@ -2653,7 +2682,11 @@ func (s *Store) SanitizeAllStateInvariants() {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 
+	now := time.Now().UTC()
 	for _, node := range s.nodes {
+		if node.Status != "purged" && now.Sub(node.GetLastSeenTime().UTC()) > 90*time.Second {
+			node.Status = "offline"
+		}
 		s.SanitizeNodeInvariants(node)
 	}
 

@@ -150,9 +150,9 @@ func TestSandbox_DataCorrectnessEndToEnd(t *testing.T) {
 		t.Errorf("ListNodes ID mismatch: expected %s, got %s", nodeId, ln.ID)
 	}
 
-	// === VERIFY: SOT default GeoIP fallback coordinates ===
-	if node.Latitude != 47.1625 || node.Longitude != 19.5033 {
-		t.Errorf("Expected default SOT coords (47.1625, 19.5033), got lat=%f lon=%f", node.Latitude, node.Longitude)
+	// === VERIFY: Unpositioned node zero coordinates ===
+	if node.Latitude != 0 || node.Longitude != 0 {
+		t.Errorf("Expected zero coords for unpositioned node (0.0, 0.0), got lat=%f lon=%f", node.Latitude, node.Longitude)
 	}
 
 	t.Logf("[PASS] Data correctness: All %d fields verified end-to-end", 15)
@@ -494,11 +494,11 @@ func TestSandbox_NoFakeDataGeneration(t *testing.T) {
 	if node.Metadata.OS != "" {
 		t.Errorf("Metadata.OS should be empty, got %q", node.Metadata.OS)
 	}
-	if node.Latitude != 47.1625 {
-		t.Errorf("Latitude should be 47.1625, got %f", node.Latitude)
+	if node.Latitude != 0 {
+		t.Errorf("Latitude should be 0, got %f", node.Latitude)
 	}
-	if node.Longitude != 19.5033 {
-		t.Errorf("Longitude should be 19.5033, got %f", node.Longitude)
+	if node.Longitude != 0 {
+		t.Errorf("Longitude should be 0, got %f", node.Longitude)
 	}
 	if node.GlobalScore != 0 {
 		t.Errorf("GlobalScore should be 0, got %f", node.GlobalScore)

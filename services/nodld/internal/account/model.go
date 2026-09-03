@@ -228,6 +228,31 @@ type WnodeNode struct {
 	IPType             string             `json:"ip_type,omitempty"`
 }
 
+func (n *WnodeNode) GetLastSeenTime() time.Time {
+	var best time.Time
+	if !n.LastSeen.IsZero() {
+		best = n.LastSeen
+	}
+	if n.LastHeartbeat != "" {
+		if t, err := time.Parse(time.RFC3339Nano, n.LastHeartbeat); err == nil && t.After(best) {
+			best = t
+		} else if t, err := time.Parse(time.RFC3339, n.LastHeartbeat); err == nil && t.After(best) {
+			best = t
+		}
+	}
+	if n.LastSeenAt != "" {
+		if t, err := time.Parse(time.RFC3339Nano, n.LastSeenAt); err == nil && t.After(best) {
+			best = t
+		} else if t, err := time.Parse(time.RFC3339, n.LastSeenAt); err == nil && t.After(best) {
+			best = t
+		}
+	}
+	if best.IsZero() {
+		return n.CreatedAt
+	}
+	return best
+}
+
 func CalculateTier(computeScore float64) int {
 	if computeScore >= 90 {
 		return 1

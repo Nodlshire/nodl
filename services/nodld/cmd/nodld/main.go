@@ -104,7 +104,9 @@ func main() {
 	// ── Account & Affiliate Store ─────────────────────────────────────────────
 	statePath := os.Getenv("STATE_PATH")
 	if statePath == "" {
-		if _, err := os.Stat("/home/obregan/Documents/nodl/state/engine.json"); err == nil {
+		if _, err := os.Stat("/home/obregan/wnode/state/engine.json"); err == nil {
+			statePath = "/home/obregan/wnode/state/engine.json"
+		} else if _, err := os.Stat("/home/obregan/Documents/nodl/state/engine.json"); err == nil {
 			statePath = "/home/obregan/Documents/nodl/state/engine.json"
 		} else {
 			statePath = "state/engine.json"

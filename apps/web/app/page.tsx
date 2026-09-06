@@ -3,11 +3,15 @@
 import { useState, useEffect } from "react";
 import AppLayout from "../components/layout/AppLayout";
 import HeroSection from "../components/landing/HeroSection";
+import ValueStripSection from "../components/landing/ValueStripSection";
+import WhoItsForSection from "../components/landing/WhoItsForSection";
 import HowItWorksSection from "../components/landing/HowItWorksSection";
+import ComparisonSection from "../components/landing/ComparisonSection";
+import AffiliateEngineSection from "../components/landing/AffiliateEngineSection";
+import FAQSection from "../components/landing/FAQSection";
 import ValuePathsSection from "../components/landing/ValuePathsSection";
 import DeWiSection from "../components/landing/DeWiSection";
 import SecuritySection from "../components/landing/SecuritySection";
-import WhoItsForSection from "../components/landing/WhoItsForSection";
 import FinalCTASection from "../components/landing/FinalCTASection";
 import CTAModal, { ModalMode } from "../components/landing/CTAModal";
 
@@ -31,25 +35,33 @@ export default function LandingPage() {
         <AppLayout>
             <div className="bg-black text-white selection:bg-blue-500/30 overflow-x-hidden">
                 
-                {/* SECTION B: Hero Section */}
+                {/* 1. HERO SECTION */}
                 <HeroSection onOpenModal={openModal} />
 
-                {/* SECTION D: How It Works (Simple 4-Step Visual Section) */}
-                <HowItWorksSection />
+                {/* 2. EARLY ADOPTER TICKER / VALUE STRIP */}
+                <ValueStripSection />
 
-                {/* SECTION E: Two Core Value Paths (Side-by-Side) */}
-                <ValuePathsSection onOpenModal={openModal} />
-
-                {/* SECTION F: Dedicated DeWi Section */}
-                <DeWiSection />
-
-                {/* SECTION G: Security & Sovereignty Section */}
-                <SecuritySection />
-
-                {/* SECTION H: Who It's For (Three Short Cards) */}
+                {/* 3. AUDIENCE PIVOT: WHO WNODE IS BUILT FOR (4-Grid / Pillars) */}
                 <WhoItsForSection onOpenModal={openModal} />
 
-                {/* SECTION I & J: Final CTA & Community Section */}
+                {/* 4. HOW IT WORKS (IN PLAIN ENGLISH - 3 Steps) */}
+                <HowItWorksSection />
+
+                {/* 5. COMPARISON SECTION: WHY WNODE WINS */}
+                <ComparisonSection />
+
+                {/* 6. THE VIRAL AFFILIATE & GROWTH ENGINE */}
+                <AffiliateEngineSection />
+
+                {/* CORE ECOSYSTEM & SECURITY SECTIONS */}
+                <ValuePathsSection onOpenModal={openModal} />
+                <DeWiSection />
+                <SecuritySection />
+
+                {/* 7. FAQ SECTION */}
+                <FAQSection />
+
+                {/* 8. FINAL BOTTOM CTA */}
                 <FinalCTASection onOpenModal={openModal} />
 
             </div>
@@ -63,3 +75,4 @@ export default function LandingPage() {
         </AppLayout>
     );
 }
+

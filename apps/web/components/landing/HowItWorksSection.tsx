@@ -43,7 +43,7 @@ export default function HowItWorksSection() {
                         Zero Friction Onboarding
                     </span>
                     <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight font-space-grotesk uppercase">
-                        How It Works <span className="text-slate-400 font-normal text-2xl md:text-4xl block sm:inline">(In Plain English)</span>
+                        How It Works
                     </h2>
                     <p className="text-slate-300 text-base md:text-lg">
                         Turn idle silicon into daily bank deposits in 3 simple steps without tech complexity.

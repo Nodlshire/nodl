@@ -20,49 +20,41 @@ export default function PassiveHardwareIncomePage() {
         "mainEntity": [
             {
                 "@type": "Question",
-                "name": "How does Wnode turn spare laptops and idle PCs into passive income?",
+                "name": "How can I turn spare pc into passive income 2026?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Wnode runs a lightweight, native Go daemon (nodld) in the background of your existing Mac, PC, or Linux device. It routes micro-inference requests from real enterprise clients through an ephemeral RAM sandbox, paying 70% of spend directly to your bank account via Stripe Connect."
+                    "text": "By installing Wnode's native Go daemon (nodld), you can make money with idle computer power without crypto mining or hardware degradation. It operates as a silent background compute software laptop tool that runs cleanly in RAM."
                 }
             },
             {
                 "@type": "Question",
-                "name": "Why is Wnode better than gig economy apps or survey platforms?",
+                "name": "Is Wnode safe to run on laptops without draining battery or causing heat?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Gig economy apps require physical labor, vehicle depreciation, and active time trade-offs for $12-$18/hr gross. Survey sites pay pennies per hour for manual clicks. Wnode requires zero active labor, zero vehicle wear, and runs invisibly in the background on hardware you already own."
+                    "text": "Yes. Wnode is engineered as a laptop battery safe passive earning app. It throttles execution during battery operation and pauses when system temperature spikes."
                 }
             },
             {
                 "@type": "Question",
-                "name": "What hardware do I need to start earning passive income?",
+                "name": "How are taxes handled for node operators earning fiat cash?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Any modern x86_64 or ARM64 computer with a dual-core CPU, 4GB RAM, and an internet connection. Wnode works on Windows 10/11, macOS, and Linux without requiring expensive specialized GPU rigs or $600 miner boxes."
+                    "text": "Taxes on depin fiat income stripe connect are straightforward. Wnode issues standard 1099 tax documentation directly through Stripe Connect for annual filing."
                 }
             },
             {
                 "@type": "Question",
-                "name": "Will running Wnode damage my SSD or slow down my computer?",
+                "name": "Can I run Wnode on mini PCs or homelabs like an Intel NUC?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "No. Wnode operates strictly in volatile RAM with zero permanent disk writes. It causes zero SSD write-amplification or TBW exhaustion and consumes under 3% CPU during idle background operations."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "How and when do I get paid?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Earnings accumulate in fiat USD. Once your balance reaches the $25.00 threshold, funds are deposited directly to your bank account or debit card via Stripe Connect."
+                    "text": "Absolutely. Wnode supports mini pc passive income projects and operates as an intel nuc home server low wattage earner with zero Docker container requirements."
                 }
             }
         ]
     };
 
     return (
-        <div className="min-h-screen bg-black text-white flex flex-col selection:bg-cyan-500 selection:text-black">
+        <div className="min-h-screen bg-black text-white flex flex-col selection:bg-emerald-500 selection:text-black">
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
@@ -72,342 +64,280 @@ export default function PassiveHardwareIncomePage() {
             <main className="flex-1 pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto w-full space-y-16">
                 {/* Hero Header */}
                 <section className="text-center space-y-6">
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-400 text-xs font-mono uppercase tracking-widest">
-                        <span>⚡ Passive Hardware Income Engine</span>
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 text-xs font-mono uppercase tracking-widest">
+                        <span>💻 Silent Background Compute Engine</span>
                     </div>
-                    <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-100 to-cyan-400 bg-clip-text text-transparent max-w-5xl mx-auto leading-tight">
-                        Spare Laptop Passive Income 2026: Monetize Idle Computer Power into Real USD
+                    <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-100 to-emerald-400 bg-clip-text text-transparent max-w-5xl mx-auto leading-tight">
+                        Spare Laptop Passive Income 2026: Monetize Idle Silicon Safely
                     </h1>
                     <p className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-                        Stop wasting time on low-paying survey sites or gas-guzzling gig apps. Turn your spare PC, idle laptop, or homelab server into an autonomous micro-inference node that earns real USD bank deposits while you sleep.
+                        Discover legit ways to make money with laptop while sleeping. Learn how to turn spare pc into passive income 2026, make money with idle computer power, and deploy software to run on spare computers for cash.
                     </p>
                     <div className="pt-4 flex flex-col sm:flex-row justify-center gap-4">
                         <a
                             href="https://nodlr.wnode.one"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-black font-bold text-sm uppercase px-8 py-4 rounded-full transition-all shadow-[0_0_30px_rgba(0,240,255,0.3)] text-center"
+                            className="bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-black font-bold text-sm uppercase px-8 py-4 rounded-full transition-all shadow-[0_0_30px_rgba(0,255,102,0.3)] text-center"
                         >
-                            Start Earning in 3 Mins &rarr;
+                            Start Earning Now &rarr;
                         </a>
                         <button
                             onClick={() => openModal("waitlist")}
                             className="bg-white/5 hover:bg-white/10 border border-white/15 text-white font-bold text-sm uppercase px-8 py-4 rounded-full transition-all text-center"
                         >
-                            Explore Income Model
+                            View Hardware Matrix
                         </button>
                     </div>
                 </section>
 
                 {/* Key Metrics Grid */}
                 <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="bg-[#09090b]/80 border border-white/[0.08] p-8 rounded-2xl backdrop-blur-md relative overflow-hidden group hover:border-cyan-500/30 transition-all">
-                        <div className="text-cyan-400 font-mono text-3xl font-bold mb-2">70% Yield</div>
-                        <h3 className="text-lg font-bold text-white mb-2">Direct Operator Rev-Share</h3>
+                    <div className="bg-[#09090b]/80 border border-white/[0.08] p-8 rounded-2xl backdrop-blur-md relative overflow-hidden group hover:border-emerald-500/30 transition-all">
+                        <div className="text-emerald-400 font-mono text-3xl font-bold mb-2">10W-15W Draw</div>
+                        <h3 className="text-lg font-bold text-white mb-2">Offset Home Electricity Bill With Idle PC</h3>
                         <p className="text-slate-400 text-sm leading-relaxed">
-                            Every dollar spent by enterprise AI clients routes 70% straight to the hardware host via Stripe Connect ACH deposits.
+                            Low wattage execution ensures you net positive income on everyday desktop, laptop, or homelab hardware without power spikes.
                         </p>
                     </div>
-                    <div className="bg-[#09090b]/80 border border-white/[0.08] p-8 rounded-2xl backdrop-blur-md relative overflow-hidden group hover:border-emerald-500/30 transition-all">
-                        <div className="text-emerald-400 font-mono text-3xl font-bold mb-2">0% SSD Wear</div>
-                        <h3 className="text-lg font-bold text-white mb-2">RAM-Only Sandboxing</h3>
+                    <div className="bg-[#09090b]/80 border border-white/[0.08] p-8 rounded-2xl backdrop-blur-md relative overflow-hidden group hover:border-cyan-500/30 transition-all">
+                        <div className="text-cyan-400 font-mono text-3xl font-bold mb-2">Stripe Bank Rail</div>
+                        <h3 className="text-lg font-bold text-white mb-2">Best Background Apps That Pay Real Money to Bank</h3>
                         <p className="text-slate-400 text-sm leading-relaxed">
-                            Tasks execute strictly in volatile memory. Zero permanent disk writes protect your NVMe/SSD drive lifespan permanently.
+                            Bypass crypto tokens. Receive fiat USD direct deposits to your bank account via Stripe Connect ACH payouts.
                         </p>
                     </div>
                     <div className="bg-[#09090b]/80 border border-white/[0.08] p-8 rounded-2xl backdrop-blur-md relative overflow-hidden group hover:border-purple-500/30 transition-all">
-                        <div className="text-purple-400 font-mono text-3xl font-bold mb-2">$25.00 Floor</div>
-                        <h3 className="text-lg font-bold text-white mb-2">Fiat USD Settlements</h3>
+                        <div className="text-purple-400 font-mono text-3xl font-bold mb-2">0 Fan Noise</div>
+                        <h3 className="text-lg font-bold text-white mb-2">Silent Background Compute Software Laptop</h3>
                         <p className="text-slate-400 text-sm leading-relaxed">
-                            No complex crypto swaps, gas tokens, or illiquid rewards. Direct payouts into consumer bank accounts.
+                            Runs quietly in system RAM using native Go binary execution, making it a laptop battery safe passive earning app.
                         </p>
                     </div>
                 </section>
 
                 {/* Architectural Narrative */}
                 <section className="space-y-6 max-w-4xl mx-auto text-slate-300 leading-relaxed text-base md:text-lg">
-                    <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight border-b border-white/10 pb-3">
-                        The Financial Physics of Idle Silicon: Monetizing Dormant Hardware
+                    <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight border-l-4 border-emerald-500 pl-4">
+                        1. Turn Idle PCs, Laptops &amp; Homelabs into High-Yield Execution Nodes
                     </h2>
                     <p>
-                        Across consumer households and small businesses globally, over 1.5 billion desktop PCs, laptops, and mini servers sit idle for 18 to 22 hours per day. While these devices draw minimal standby electricity, their high-performance silicon—capable of billions of floating-point operations per second—represents billions of dollars in wasted compute potential.
+                        Millions of consumers leave powerful computer hardware idling 18 to 22 hours per day. Wnode provides a simple solution to <strong>make money running software in background no crypto</strong> volatility. Whether you want to <strong>turn spare mac mini into earning node</strong>, <strong>monetize home server idle capacity</strong>, or <strong>monetize spare gaming rig idle time</strong>, Wnode’s native daemon (<code className="text-emerald-400">nodld</code>) transforms unused hardware into an active revenue stream.
                     </p>
                     <p>
-                        Traditional web monetization side-hustles force individuals into high-friction, low-return activities: driving for ride-share apps (exposing vehicles to rapid depreciation and fuel expense) or completing online surveys for pennies per hour. Wnode shifts the financial equation by converting idle computer power into a sovereign background micro-inference node.
+                        If you are searching for <strong>mini pc passive income projects</strong> or setting up an <strong>intel nuc home server low wattage earner</strong>, Wnode eliminates complicated orchestration. Unlike resource-heavy setups requiring <strong>passive income docker containers spare homelab</strong> management, Wnode runs directly on bare-metal OS environments, utilizing less than 15W of ambient power.
                     </p>
-                    <p>
-                        By installing Wnode&apos;s statically linked native Go binary (<code className="text-cyan-400 bg-slate-900 px-1.5 py-0.5 rounded font-mono text-sm">nodld</code>), your computer connects to a global peer-to-peer compute mesh. When enterprise developers and AI agents request micro-tasks—such as text processing, data extraction, or network verification—Wnode dispatches these requests to your machine&apos;s volatile RAM.
-                    </p>
+
+                    <div className="bg-[#09090b]/80 border border-white/[0.08] p-6 rounded-2xl space-y-4 my-6">
+                        <h3 className="text-xl font-bold text-white">Hardware Archetypes &amp; Earning Potential</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm font-mono">
+                            <div className="bg-white/5 p-4 rounded-xl border border-white/10 space-y-1">
+                                <span className="text-emerald-400 font-bold">Spare Laptops &amp; Mac Minis</span>
+                                <p className="text-slate-400 text-xs">Silent background compute software laptop execution. Ideal for legit ways to make money with laptop while sleeping.</p>
+                            </div>
+                            <div className="bg-white/5 p-4 rounded-xl border border-white/10 space-y-1">
+                                <span className="text-cyan-400 font-bold">Mini PCs &amp; NUCs</span>
+                                <p className="text-slate-400 text-xs">Perfect for mini pc passive income projects and intel nuc home server low wattage earner deployments.</p>
+                            </div>
+                            <div className="bg-white/5 p-4 rounded-xl border border-white/10 space-y-1">
+                                <span className="text-purple-400 font-bold">Gaming Rigs &amp; Desktops</span>
+                                <p className="text-slate-400 text-xs">Monetize spare gaming rig idle time when AFK. Offset home electricity bill with idle pc earnings.</p>
+                            </div>
+                            <div className="bg-white/5 p-4 rounded-xl border border-white/10 space-y-1">
+                                <span className="text-amber-400 font-bold">Homelab Servers</span>
+                                <p className="text-slate-400 text-xs">Monetize home server idle capacity without Docker container bloat or hypervisor degradation.</p>
+                            </div>
+                        </div>
+                    </div>
                 </section>
 
-                {/* Mid-Page Canonical Excalidraw SVG #1: idle-to-income-lifecycle */}
+                {/* SVG 1: Lifecycle */}
                 <section className="space-y-4">
-                    <div className="text-center space-y-1">
-                        <span className="text-xs font-mono uppercase tracking-widest text-cyan-400">ONBOARDING &amp; EXECUTION PIPELINE</span>
-                        <h3 className="text-xl font-bold text-white">Figure 1: Node Onboarding Lifecycle from Installation to Cash Payout</h3>
-                    </div>
-                    <div className="bg-[#09090b]/80 border border-white/[0.08] p-4 md:p-6 rounded-3xl backdrop-blur-md shadow-[0_0_40px_rgba(0,240,255,0.1)]">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 440" className="w-full h-auto max-h-[420px]">
-                            <defs>
-                                <filter id="glowCyanIncome" x="-20%" y="-20%" width="140%" height="140%">
-                                    <feGaussianBlur stdDeviation="5" result="blur" />
-                                    <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-                                </filter>
-                                <linearGradient id="gradCyanIncome" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" stopColor="#00f0ff" stopOpacity="0.25"/>
-                                    <stop offset="100%" stopColor="#00f0ff" stopOpacity="0.05"/>
-                                </linearGradient>
-                            </defs>
-                            <rect width="1000" height="440" rx="16" fill="#000000"/>
-
-                            {/* Step 1: Install */}
-                            <rect x="40" y="80" width="190" height="260" rx="12" fill="#09090b" stroke="#00f0ff" strokeWidth="1.5"/>
-                            <text x="135" y="120" fill="#00f0ff" fontSize="14" fontFamily="monospace" fontWeight="bold" textAnchor="middle">STEP 1: DOWNLOAD</text>
-                            <circle cx="135" cy="170" r="30" fill="#18181b" stroke="#00f0ff" strokeWidth="2"/>
-                            <text x="135" y="176" fill="#00f0ff" fontSize="20" fontWeight="bold" textAnchor="middle">1</text>
-                            <text x="135" y="230" fill="#ffffff" fontSize="13" fontWeight="bold" textAnchor="middle">Run nodld Binary</text>
-                            <text x="135" y="255" fill="#94a3b8" fontSize="11" textAnchor="middle">Single native binary</text>
-                            <text x="135" y="275" fill="#94a3b8" fontSize="11" textAnchor="middle">Win / macOS / Linux</text>
-                            <text x="135" y="310" fill="#00ff66" fontSize="11" fontFamily="monospace" textAnchor="middle">✅ Zero Config</text>
-
-                            {/* Arrow 1-2 */}
-                            <path d="M 230 210 L 280 210" stroke="#00f0ff" strokeWidth="2" strokeDasharray="4 4"/>
-
-                            {/* Step 2: RAM Sandbox */}
-                            <rect x="280" y="80" width="190" height="260" rx="12" fill="#09090b" stroke="#00ff66" strokeWidth="2" filter="url(#glowCyanIncome)"/>
-                            <text x="375" y="120" fill="#00ff66" fontSize="14" fontFamily="monospace" fontWeight="bold" textAnchor="middle">STEP 2: ALLOCATE</text>
-                            <circle cx="375" cy="170" r="30" fill="#18181b" stroke="#00ff66" strokeWidth="2"/>
-                            <text x="375" y="176" fill="#00ff66" fontSize="20" fontWeight="bold" textAnchor="middle">2</text>
-                            <text x="375" y="230" fill="#ffffff" fontSize="13" fontWeight="bold" textAnchor="middle">RAM Memory Sandbox</text>
-                            <text x="375" y="255" fill="#94a3b8" fontSize="11" textAnchor="middle">Volatile isolation</text>
-                            <text x="375" y="275" fill="#94a3b8" fontSize="11" textAnchor="middle">Zero disk writes</text>
-                            <text x="375" y="310" fill="#00ff66" fontSize="11" fontFamily="monospace" textAnchor="middle">✅ Safe Ephemeral</text>
-
-                            {/* Arrow 2-3 */}
-                            <path d="M 470 210 L 520 210" stroke="#00ff66" strokeWidth="2" strokeDasharray="4 4"/>
-
-                            {/* Step 3: Compute Task */}
-                            <rect x="520" y="80" width="190" height="260" rx="12" fill="#09090b" stroke="#a855f7" strokeWidth="1.5"/>
-                            <text x="615" y="120" fill="#a855f7" fontSize="14" fontFamily="monospace" fontWeight="bold" textAnchor="middle">STEP 3: COMPUTE</text>
-                            <circle cx="615" cy="170" r="30" fill="#18181b" stroke="#a855f7" strokeWidth="2"/>
-                            <text x="615" y="176" fill="#a855f7" fontSize="20" fontWeight="bold" textAnchor="middle">3</text>
-                            <text x="615" y="230" fill="#ffffff" fontSize="13" fontWeight="bold" textAnchor="middle">AI Micro-Inference</text>
-                            <text x="615" y="255" fill="#94a3b8" fontSize="11" textAnchor="middle">Client tasks routed</text>
-                            <text x="615" y="275" fill="#94a3b8" fontSize="11" textAnchor="middle">Background operation</text>
-                            <text x="615" y="310" fill="#a855f7" fontSize="11" fontFamily="monospace" textAnchor="middle">⚡ Real Demand</text>
-
-                            {/* Arrow 3-4 */}
-                            <path d="M 710 210 L 760 210" stroke="#a855f7" strokeWidth="2" strokeDasharray="4 4"/>
-
-                            {/* Step 4: Stripe Payout */}
-                            <rect x="760" y="80" width="200" height="260" rx="12" fill="#09090b" stroke="#ffb800" strokeWidth="2"/>
-                            <text x="860" y="120" fill="#ffb800" fontSize="14" fontFamily="monospace" fontWeight="bold" textAnchor="middle">STEP 4: SETTLE</text>
-                            <circle cx="860" cy="170" r="30" fill="#18181b" stroke="#ffb800" strokeWidth="2"/>
-                            <text x="860" y="176" fill="#ffb800" fontSize="20" fontWeight="bold" textAnchor="middle">4</text>
-                            <text x="860" y="230" fill="#ffffff" fontSize="13" fontWeight="bold" textAnchor="middle">Stripe USD Payout</text>
-                            <text x="860" y="255" fill="#94a3b8" fontSize="11" textAnchor="middle">70% direct rev-share</text>
-                            <text x="860" y="275" fill="#94a3b8" fontSize="11" textAnchor="middle">$25 minimum floor</text>
-                            <text x="860" y="310" fill="#00ff66" fontSize="11" fontFamily="monospace" textAnchor="middle">💵 Bank Deposit</text>
-                        </svg>
-                    </div>
-                </section>
-
-                {/* Technical Comparison Table */}
-                <section className="space-y-6 max-w-5xl mx-auto">
                     <div className="text-center space-y-2">
-                        <h2 className="text-2xl md:text-3xl font-bold text-white">Income Model Comparison: Wnode vs. Traditional Options</h2>
+                        <h3 className="text-xl font-bold text-white">Figure 1: Wnode Go Daemon Onboarding &amp; Silent Activation Lifecycle</h3>
                         <p className="text-slate-400 text-sm max-w-2xl mx-auto">
-                            Comparing active time investment, physical equipment wear, payout reliability, and net returns.
+                            Step-by-step workflow showing how ambient laptop and desktop silicon transitions into an active USD earning node.
                         </p>
                     </div>
-
-                    <div className="overflow-x-auto bg-[#09090b]/80 border border-white/[0.08] rounded-2xl p-6 backdrop-blur-md">
-                        <table className="w-full text-left text-sm text-slate-300">
-                            <thead className="text-xs uppercase text-slate-400 border-b border-white/10 font-mono">
-                                <tr>
-                                    <th className="py-4 px-4">Monetization Path</th>
-                                    <th className="py-4 px-4 text-cyan-400">Wnode Background Node</th>
-                                    <th className="py-4 px-4 text-slate-500">Gig Economy Apps (Uber/Dash)</th>
-                                    <th className="py-4 px-4 text-slate-500">Crypto GPU Mining</th>
-                                    <th className="py-4 px-4 text-slate-500">Online Survey Sites</th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-white/5 font-sans">
-                                <tr>
-                                    <td className="py-4 px-4 font-semibold text-white">Active Labor Required</td>
-                                    <td className="py-4 px-4 text-emerald-400 font-bold">0 Hours / Week (100% Passive)</td>
-                                    <td className="py-4 px-4 text-red-400">20–40 Hours / Week Active</td>
-                                    <td className="py-4 px-4 text-slate-400">Moderate Maintenance</td>
-                                    <td className="py-4 px-4 text-red-400">Continuous Manual Clicks</td>
-                                </tr>
-                                <tr>
-                                    <td className="py-4 px-4 font-semibold text-white">Asset Wear &amp; Depreciation</td>
-                                    <td className="py-4 px-4 text-cyan-400 font-bold">Zero SSD / Hardware Wear</td>
-                                    <td className="py-4 px-4 text-red-400">High Vehicle Depreciation</td>
-                                    <td className="py-4 px-4 text-red-400">Extreme GPU Thermal Burnout</td>
-                                    <td className="py-4 px-4 text-slate-400">Zero Physical Asset Wear</td>
-                                </tr>
-                                <tr>
-                                    <td className="py-4 px-4 font-semibold text-white">Payout Asset</td>
-                                    <td className="py-4 px-4 text-emerald-400 font-bold">Fiat USD (Stripe Connect)</td>
-                                    <td className="py-4 px-4 text-slate-300">USD (Minus Fuel/Taxes)</td>
-                                    <td className="py-4 px-4 text-slate-400">Volatile Token Emissions</td>
-                                    <td className="py-4 px-4 text-slate-400">Gift Cards / Points</td>
-                                </tr>
-                                <tr>
-                                    <td className="py-4 px-4 font-semibold text-white">Setup Friction</td>
-                                    <td className="py-4 px-4 text-cyan-400 font-bold">3-Minute Single Binary</td>
-                                    <td className="py-4 px-4 text-slate-400">Background Checks &amp; Approval</td>
-                                    <td className="py-4 px-4 text-red-400">Custom Rigs &amp; OS Flashing</td>
-                                    <td className="py-4 px-4 text-slate-400">Account Profile Signups</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-
-                {/* Lower-Page Canonical Excalidraw SVG #2: hardware-earning-matrix */}
-                <section className="space-y-4">
-                    <div className="text-center space-y-1">
-                        <span className="text-xs font-mono uppercase tracking-widest text-emerald-400">HARDWARE EARNING MATRIX</span>
-                        <h3 className="text-xl font-bold text-white">Figure 2: Idle Hardware Tiers, Power Draw, and Capacity Matrix</h3>
-                    </div>
-                    <div className="bg-[#09090b]/80 border border-white/[0.08] p-4 md:p-6 rounded-3xl backdrop-blur-md shadow-[0_0_40px_rgba(0,255,102,0.1)]">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420" className="w-full h-auto max-h-[400px]">
+                    <div className="bg-[#09090b]/90 border border-white/[0.08] rounded-2xl p-4 md:p-8 backdrop-blur-md overflow-x-auto">
+                        <svg viewBox="0 0 900 380" className="w-full h-auto min-w-[700px] text-white">
                             <defs>
-                                <filter id="glowEmeraldMatrix" x="-20%" y="-20%" width="140%" height="140%">
-                                    <feGaussianBlur stdDeviation="5" result="blur" />
-                                    <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                                <filter id="glow-emerald-life" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                    <feMerge>
+                                        <feMergeNode in="coloredBlur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
                                 </filter>
-                                <linearGradient id="gradEmeraldMatrix" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" stopColor="#00ff66" stopOpacity="0.25"/>
-                                    <stop offset="100%" stopColor="#00ff66" stopOpacity="0.05"/>
-                                </linearGradient>
                             </defs>
-                            <rect width="1000" height="420" rx="16" fill="#000000"/>
+                            <rect width="900" height="380" fill="#000000" rx="12" />
 
-                            {/* Tier 1: Mini PC / Spare Laptop */}
-                            <rect x="40" y="50" width="280" height="320" rx="12" fill="#09090b" stroke="#00f0ff" strokeWidth="1.5"/>
-                            <text x="180" y="85" fill="#00f0ff" fontSize="15" fontFamily="monospace" fontWeight="bold" textAnchor="middle">TIER 1: MINI PC / LAPTOP</text>
-                            <text x="180" y="110" fill="#94a3b8" fontSize="11" textAnchor="middle">Intel N100 / Mac mini / ThinkPad</text>
-                            <rect x="60" y="130" width="240" height="1" fill="#334155"/>
-                            <text x="70" y="160" fill="#ffffff" fontSize="12">Power Draw: <tspan fill="#00ff66" fontFamily="monospace">6W – 15W Idle</tspan></text>
-                            <text x="70" y="190" fill="#ffffff" fontSize="12">RAM Allocated: <tspan fill="#00f0ff" fontFamily="monospace">2GB – 4GB</tspan></text>
-                            <text x="70" y="220" fill="#ffffff" fontSize="12">Workload: <tspan fill="#94a3b8">Text &amp; Light Verification</tspan></text>
-                            <text x="70" y="250" fill="#ffffff" fontSize="12">Est. Net Margin: <tspan fill="#00ff66" fontWeight="bold">94% (Near Zero Power Cost)</tspan></text>
-                            <rect x="60" y="280" width="240" height="70" rx="8" fill="url(#gradCyanIncome)" stroke="#00f0ff"/>
-                            <text x="180" y="310" fill="#ffffff" fontSize="13" fontWeight="bold" textAnchor="middle">Ideal Background Host</text>
-                            <text x="180" y="332" fill="#00f0ff" fontSize="11" fontFamily="monospace" textAnchor="middle">70% Direct Payouts</text>
+                            {/* Step 1: Install Daemon */}
+                            <rect x="40" y="120" width="220" height="140" rx="10" fill="#09090b" stroke="#38bdf8" strokeWidth="1.5" />
+                            <text x="150" y="155" fill="#38bdf8" fontSize="14" fontFamily="sans-serif" fontWeight="bold" textAnchor="middle">1. Download Daemon</text>
+                            <text x="150" y="180" fill="#cbd5e1" fontSize="11" fontFamily="monospace" textAnchor="middle">Native Go Binary (nodld)</text>
+                            <text x="150" y="205" fill="#64748b" fontSize="10" fontFamily="sans-serif" textAnchor="middle">Windows / macOS / Linux</text>
+                            <text x="150" y="225" fill="#38bdf8" fontSize="10" fontFamily="monospace" textAnchor="middle">1-Click Lightweight Setup</text>
 
-                            {/* Tier 2: Gaming Laptop / Desktop */}
-                            <rect x="360" y="50" width="280" height="320" rx="12" fill="#09090b" stroke="#00ff66" strokeWidth="2" filter="url(#glowEmeraldMatrix)"/>
-                            <text x="500" y="85" fill="#00ff66" fontSize="15" fontFamily="monospace" fontWeight="bold" textAnchor="middle">TIER 2: GAMING / DESKTOP</text>
-                            <text x="500" y="110" fill="#94a3b8" fontSize="11" textAnchor="middle">Ryzen / i7 / RTX / Apple M-Series</text>
-                            <rect x="380" y="130" width="240" height="1" fill="#334155"/>
-                            <text x="390" y="160" fill="#ffffff" fontSize="12">Power Draw: <tspan fill="#00ff66" fontFamily="monospace">25W – 60W Idle</tspan></text>
-                            <text x="390" y="190" fill="#ffffff" fontSize="12">RAM Allocated: <tspan fill="#00ff66" fontFamily="monospace">8GB – 16GB</tspan></text>
-                            <text x="390" y="220" fill="#ffffff" fontSize="12">Workload: <tspan fill="#94a3b8">Parallel AI Micro-Inference</tspan></text>
-                            <text x="390" y="250" fill="#ffffff" fontSize="12">Est. Net Margin: <tspan fill="#00ff66" fontWeight="bold">88% (High Throughput)</tspan></text>
-                            <rect x="380" y="280" width="240" height="70" rx="8" fill="url(#gradEmeraldMatrix)" stroke="#00ff66"/>
-                            <text x="500" y="310" fill="#ffffff" fontSize="13" fontWeight="bold" textAnchor="middle">Optimal Yield Host</text>
-                            <text x="500" y="332" fill="#00ff66" fontSize="11" fontFamily="monospace" textAnchor="middle">70% Direct Payouts</text>
+                            {/* Arrow 1 */}
+                            <path d="M 260,190 L 320,190" stroke="#38bdf8" strokeWidth="2" />
+                            <polygon points="320,185 330,190 320,195" fill="#38bdf8" />
 
-                            {/* Tier 3: Homelab / Workstation Server */}
-                            <rect x="680" y="50" width="280" height="320" rx="12" fill="#09090b" stroke="#a855f7" strokeWidth="1.5"/>
-                            <text x="820" y="85" fill="#a855f7" fontSize="15" fontFamily="monospace" fontWeight="bold" textAnchor="middle">TIER 3: HOMELAB SERVER</text>
-                            <text x="820" y="110" fill="#94a3b8" fontSize="11" textAnchor="middle">Dell PowerEdge / Xeon / Threadripper</text>
-                            <rect x="700" y="130" width="240" height="1" fill="#334155"/>
-                            <text x="710" y="160" fill="#ffffff" fontSize="12">Power Draw: <tspan fill="#00ff66" fontFamily="monospace">80W – 180W</tspan></text>
-                            <text x="710" y="190" fill="#ffffff" fontSize="12">RAM Allocated: <tspan fill="#a855f7" fontFamily="monospace">32GB – 128GB</tspan></text>
-                            <text x="710" y="220" fill="#ffffff" fontSize="12">Workload: <tspan fill="#94a3b8">High-Concurrency Mesh Tasks</tspan></text>
-                            <text x="710" y="250" fill="#ffffff" fontSize="12">Est. Net Margin: <tspan fill="#00ff66" fontWeight="bold">82% (Fleet Operator Scale)</tspan></text>
-                            <rect x="700" y="280" width="240" height="70" rx="8" fill="#18181b" stroke="#a855f7"/>
-                            <text x="820" y="310" fill="#ffffff" fontSize="13" fontWeight="bold" textAnchor="middle">Multi-Node Cluster Host</text>
-                            <text x="820" y="332" fill="#a855f7" fontSize="11" fontFamily="monospace" textAnchor="middle">70% Direct Payouts</text>
+                            {/* Step 2: RAM Isolation */}
+                            <rect x="330" y="120" width="240" height="140" rx="10" fill="#09090b" stroke="#a855f7" strokeWidth="1.5" />
+                            <text x="450" y="155" fill="#a855f7" fontSize="14" fontFamily="sans-serif" fontWeight="bold" textAnchor="middle">2. Silent RAM Activation</text>
+                            <text x="450" y="180" fill="#cbd5e1" fontSize="11" fontFamily="monospace" textAnchor="middle">mlock Memory Sandbox</text>
+                            <text x="450" y="205" fill="#c084fc" fontSize="10" fontFamily="monospace" textAnchor="middle">0 Fan Noise / 0 Disk Write</text>
+                            <text x="450" y="225" fill="#64748b" fontSize="10" fontFamily="sans-serif" textAnchor="middle">Battery &amp; Thermal Guard On</text>
+
+                            {/* Arrow 2 */}
+                            <path d="M 570,190 L 630,190" stroke="#00ff66" strokeWidth="2" />
+                            <polygon points="630,185 640,190 630,195" fill="#00ff66" />
+
+                            {/* Step 3: USD Payout */}
+                            <rect x="640" y="120" width="220" height="140" rx="10" fill="#052418" stroke="#00ff66" strokeWidth="2" filter="url(#glow-emerald-life)" />
+                            <text x="750" y="155" fill="#00ff66" fontSize="14" fontFamily="sans-serif" fontWeight="bold" textAnchor="middle">3. Direct USD Payout</text>
+                            <text x="750" y="180" fill="#a7f3d0" fontSize="11" fontFamily="monospace" textAnchor="middle">70% Operator Flow</text>
+                            <text x="750" y="205" fill="#00ff66" fontSize="12" fontFamily="monospace" textAnchor="middle" fontWeight="bold">Stripe Connect ACH</text>
+                            <text x="750" y="225" fill="#34d399" fontSize="10" fontFamily="sans-serif" textAnchor="middle">Automated Payout ($25 floor)</text>
                         </svg>
                     </div>
                 </section>
 
-                {/* Boxed Invariants Highlight */}
-                <section className="bg-[#09090b]/90 border border-amber-500/30 p-8 rounded-3xl backdrop-blur-md space-y-4">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-amber-950/60 border border-amber-500/30 text-amber-400 font-mono text-xs uppercase tracking-widest">
-                        <span>🛡️ Immutable Architectural Safety Invariants</span>
+                {/* Economic & Tax Transparency */}
+                <section className="space-y-6 max-w-4xl mx-auto text-slate-300 leading-relaxed text-base md:text-lg">
+                    <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight border-l-4 border-cyan-500 pl-4">
+                        2. Stripe Connect USD Rails &amp; Tax Compliance Transparency
+                    </h2>
+                    <p>
+                        Unlike speculative Web3 reward systems that distribute volatile tokens with unclear tax implications, Wnode ranks among the <strong>best background apps that pay real money to bank</strong> accounts. All node yield is distributed in fiat cash USD via Stripe Connect.
+                    </p>
+                    <p>
+                        This approach simplifies financial planning and reporting. Handling <strong>taxes on depin fiat income stripe connect</strong> is transparent because Stripe automatically tracks operator earnings and provides standardized tax documentation (such as 1099 forms for US operators) once annual threshold requirements are met.
+                    </p>
+                </section>
+
+                {/* SVG 2: Matrix */}
+                <section className="space-y-4">
+                    <div className="text-center space-y-2">
+                        <h3 className="text-xl font-bold text-white">Figure 2: Earning Potential Across Mini PCs, Laptops, Desktops &amp; Servers</h3>
+                        <p className="text-slate-400 text-sm max-w-2xl mx-auto">
+                            Comparison matrix detailing wattage, thermal footprint, and payout potential across commodity hardware tiers.
+                        </p>
                     </div>
-                    <h3 className="text-xl font-bold text-white">Hardware Protection &amp; Payout Commitments</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-slate-300">
-                        <div className="space-y-1">
-                            <h4 className="font-bold text-amber-400">1. RAM-Only Execution</h4>
-                            <p className="text-xs text-slate-400 leading-relaxed">
-                                Ephemeral compute tasks run exclusively inside volatile system memory. Zero drive writes ensure zero SSD TBW degradation.
-                            </p>
-                        </div>
-                        <div className="space-y-1">
-                            <h4 className="font-bold text-cyan-400">2. Direct USD Payouts</h4>
-                            <p className="text-xs text-slate-400 leading-relaxed">
-                                Node operators receive 70% of gross compute spend directly in fiat USD via Stripe Connect ACH once reaching $25.00.
-                            </p>
-                        </div>
-                        <div className="space-y-1">
-                            <h4 className="font-bold text-emerald-400">3. Native Bare-Metal Go</h4>
-                            <p className="text-xs text-slate-400 leading-relaxed">
-                                Statically linked native daemon (<code className="text-cyan-400">nodld</code>) runs with minimal memory footprint without virtual machines or Docker overhead.
-                            </p>
-                        </div>
+                    <div className="bg-[#09090b]/90 border border-white/[0.08] rounded-2xl p-4 md:p-8 backdrop-blur-md overflow-x-auto">
+                        <svg viewBox="0 0 900 360" className="w-full h-auto min-w-[700px] text-white">
+                            <rect width="900" height="360" fill="#000000" rx="12" />
+
+                            <g transform="translate(40, 40)">
+                                {/* Card 1: Laptop */}
+                                <rect x="0" y="0" width="180" height="280" rx="8" fill="#09090b" stroke="#38bdf8" strokeWidth="1" />
+                                <text x="90" y="35" fill="#38bdf8" fontSize="14" fontFamily="sans-serif" fontWeight="bold" textAnchor="middle">Spare Laptop</text>
+                                <text x="90" y="60" fill="#94a3b8" fontSize="10" fontFamily="monospace" textAnchor="middle">10W - 20W Power</text>
+                                <line x1="20" y1="80" x2="160" y2="80" stroke="#1e293b" />
+                                <text x="90" y="110" fill="#cbd5e1" fontSize="11" fontFamily="sans-serif" textAnchor="middle">Silent RAM Exec</text>
+                                <text x="90" y="140" fill="#cbd5e1" fontSize="11" fontFamily="sans-serif" textAnchor="middle">Battery Safe Guard</text>
+                                <text x="90" y="170" fill="#cbd5e1" fontSize="11" fontFamily="sans-serif" textAnchor="middle">0 Fan Noise</text>
+                                <rect x="20" y="210" width="140" height="40" rx="6" fill="#0f172a" />
+                                <text x="90" y="235" fill="#38bdf8" fontSize="11" fontFamily="monospace" textAnchor="middle" fontWeight="bold">Steady USD Flow</text>
+
+                                {/* Card 2: Mini PC / NUC */}
+                                <rect x="210" y="0" width="180" height="280" rx="8" fill="#09090b" stroke="#00f0ff" strokeWidth="1" />
+                                <text x="300" y="35" fill="#00f0ff" fontSize="14" fontFamily="sans-serif" fontWeight="bold" textAnchor="middle">Mini PC / NUC</text>
+                                <text x="300" y="60" fill="#94a3b8" fontSize="10" fontFamily="monospace" textAnchor="middle">15W - 35W Power</text>
+                                <line x1="230" y1="80" x2="370" y2="80" stroke="#1e293b" />
+                                <text x="300" y="110" fill="#cbd5e1" fontSize="11" fontFamily="sans-serif" textAnchor="middle">Low Wattage Earner</text>
+                                <text x="300" y="140" fill="#cbd5e1" fontSize="11" fontFamily="sans-serif" textAnchor="middle">24/7 Homelab Node</text>
+                                <text x="300" y="170" fill="#cbd5e1" fontSize="11" fontFamily="sans-serif" textAnchor="middle">Native Go Daemon</text>
+                                <rect x="230" y="210" width="140" height="40" rx="6" fill="#031c26" />
+                                <text x="300" y="235" fill="#00f0ff" fontSize="11" fontFamily="monospace" textAnchor="middle" fontWeight="bold">High Efficiency</text>
+
+                                {/* Card 3: Gaming Rig */}
+                                <rect x="420" y="0" width="180" height="280" rx="8" fill="#09090b" stroke="#a855f7" strokeWidth="1" />
+                                <text x="510" y="35" fill="#a855f7" fontSize="14" fontFamily="sans-serif" fontWeight="bold" textAnchor="middle">Gaming Desktop</text>
+                                <text x="510" y="60" fill="#94a3b8" fontSize="10" fontFamily="monospace" textAnchor="middle">AFK Mode Monetization</text>
+                                <line x1="440" y1="80" x2="580" y2="80" stroke="#1e293b" />
+                                <text x="510" y="110" fill="#cbd5e1" fontSize="11" fontFamily="sans-serif" textAnchor="middle">Idle CPU/GPU Compute</text>
+                                <text x="510" y="140" fill="#cbd5e1" fontSize="11" fontFamily="sans-serif" textAnchor="middle">Volatile RAM Shards</text>
+                                <text x="510" y="170" fill="#cbd5e1" fontSize="11" fontFamily="sans-serif" textAnchor="middle">Thermal Throttling Guard</text>
+                                <rect x="440" y="210" width="140" height="40" rx="6" fill="#1e1035" />
+                                <text x="510" y="235" fill="#a855f7" fontSize="11" fontFamily="monospace" textAnchor="middle" fontWeight="bold">Max Performance</text>
+
+                                {/* Card 4: Server Rack */}
+                                <rect x="630" y="0" width="180" height="280" rx="8" fill="#052418" stroke="#00ff66" strokeWidth="1.5" />
+                                <text x="720" y="35" fill="#00ff66" fontSize="14" fontFamily="sans-serif" fontWeight="bold" textAnchor="middle">Homelab Server</text>
+                                <text x="720" y="60" fill="#a7f3d0" fontSize="10" fontFamily="monospace" textAnchor="middle">Enterprise Capacity</text>
+                                <line x1="650" y1="80" x2="790" y2="80" stroke="#065f46" />
+                                <text x="720" y="110" fill="#cbd5e1" fontSize="11" fontFamily="sans-serif" textAnchor="middle">Multi-Core Execution</text>
+                                <text x="720" y="140" fill="#cbd5e1" fontSize="11" fontFamily="sans-serif" textAnchor="middle">0 Docker Overhead</text>
+                                <text x="720" y="170" fill="#cbd5e1" fontSize="11" fontFamily="sans-serif" textAnchor="middle">70% Direct USD Flow</text>
+                                <rect x="650" y="210" width="140" height="40" rx="6" fill="#064e3b" />
+                                <text x="720" y="235" fill="#00ff66" fontSize="11" fontFamily="monospace" textAnchor="middle" fontWeight="bold">Top Yield Node</text>
+                            </g>
+                        </svg>
                     </div>
                 </section>
 
                 {/* FAQ Section */}
                 <section className="space-y-8 max-w-4xl mx-auto">
-                    <h2 className="text-3xl font-bold text-center text-white">Frequently Asked Questions</h2>
+                    <div className="text-center space-y-3">
+                        <h2 className="text-3xl font-bold text-white tracking-tight">Frequently Asked Questions</h2>
+                        <p className="text-slate-400 text-sm">Everything you need to know about earning passive hardware income with Wnode.</p>
+                    </div>
+
                     <div className="space-y-4">
-                        <div className="bg-[#09090b]/80 border border-white/[0.08] p-6 rounded-xl">
-                            <h3 className="text-lg font-bold text-cyan-400 mb-2">How does Wnode turn spare laptops and idle PCs into passive income?</h3>
-                            <p className="text-slate-300 text-sm leading-relaxed">
-                                Wnode runs a lightweight, native Go daemon (nodld) in the background of your existing Mac, PC, or Linux device. It routes micro-inference requests from real enterprise clients through an ephemeral RAM sandbox, paying 70% of spend directly to your bank account via Stripe Connect.
+                        <div className="bg-[#09090b]/80 border border-white/[0.08] p-6 rounded-2xl space-y-2">
+                            <h3 className="text-lg font-bold text-white">Q: How can I turn spare pc into passive income 2026?</h3>
+                            <p className="text-slate-400 text-sm leading-relaxed">
+                                By installing Wnode's native Go daemon (nodld), you can make money with idle computer power without crypto mining or hardware degradation. It operates as a silent background compute software laptop tool that runs cleanly in RAM.
                             </p>
                         </div>
-                        <div className="bg-[#09090b]/80 border border-white/[0.08] p-6 rounded-xl">
-                            <h3 className="text-lg font-bold text-cyan-400 mb-2">Why is Wnode better than gig economy apps or survey platforms?</h3>
-                            <p className="text-slate-300 text-sm leading-relaxed">
-                                Gig economy apps require physical labor, vehicle depreciation, and active time trade-offs for $12-$18/hr gross. Survey sites pay pennies per hour for manual clicks. Wnode requires zero active labor, zero vehicle wear, and runs invisibly in the background on hardware you already own.
+                        <div className="bg-[#09090b]/80 border border-white/[0.08] p-6 rounded-2xl space-y-2">
+                            <h3 className="text-lg font-bold text-white">Q: Is Wnode safe to run on laptops without draining battery or causing heat?</h3>
+                            <p className="text-slate-400 text-sm leading-relaxed">
+                                Yes. Wnode is engineered as a laptop battery safe passive earning app. It throttles execution during battery operation and pauses when system temperature spikes.
                             </p>
                         </div>
-                        <div className="bg-[#09090b]/80 border border-white/[0.08] p-6 rounded-xl">
-                            <h3 className="text-lg font-bold text-cyan-400 mb-2">What hardware do I need to start earning passive income?</h3>
-                            <p className="text-slate-300 text-sm leading-relaxed">
-                                Any modern x86_64 or ARM64 computer with a dual-core CPU, 4GB RAM, and an internet connection. Wnode works on Windows 10/11, macOS, and Linux without requiring expensive specialized GPU rigs or $600 miner boxes.
+                        <div className="bg-[#09090b]/80 border border-white/[0.08] p-6 rounded-2xl space-y-2">
+                            <h3 className="text-lg font-bold text-white">Q: How are taxes handled for node operators earning fiat cash?</h3>
+                            <p className="text-slate-400 text-sm leading-relaxed">
+                                Taxes on depin fiat income stripe connect are straightforward. Wnode issues standard 1099 tax documentation directly through Stripe Connect for annual filing.
                             </p>
                         </div>
-                        <div className="bg-[#09090b]/80 border border-white/[0.08] p-6 rounded-xl">
-                            <h3 className="text-lg font-bold text-cyan-400 mb-2">Will running Wnode damage my SSD or slow down my computer?</h3>
-                            <p className="text-slate-300 text-sm leading-relaxed">
-                                No. Wnode operates strictly in volatile RAM with zero permanent disk writes. It causes zero SSD write-amplification or TBW exhaustion and consumes under 3% CPU during idle background operations.
-                            </p>
-                        </div>
-                        <div className="bg-[#09090b]/80 border border-white/[0.08] p-6 rounded-xl">
-                            <h3 className="text-lg font-bold text-cyan-400 mb-2">How and when do I get paid?</h3>
-                            <p className="text-slate-300 text-sm leading-relaxed">
-                                Earnings accumulate in fiat USD. Once your balance reaches the $25.00 threshold, funds are deposited directly to your bank account or debit card via Stripe Connect.
+                        <div className="bg-[#09090b]/80 border border-white/[0.08] p-6 rounded-2xl space-y-2">
+                            <h3 className="text-lg font-bold text-white">Q: Can I run Wnode on mini PCs or homelabs like an Intel NUC?</h3>
+                            <p className="text-slate-400 text-sm leading-relaxed">
+                                Absolutely. Wnode supports mini pc passive income projects and operates as an intel nuc home server low wattage earner with zero Docker container requirements.
                             </p>
                         </div>
                     </div>
                 </section>
 
-                {/* Bottom CTA */}
-                <section className="bg-gradient-to-r from-cyan-950/40 via-[#09090b] to-emerald-950/40 border border-cyan-500/20 p-12 rounded-3xl text-center space-y-6">
-                    <h2 className="text-3xl md:text-4xl font-extrabold text-white">Monetize Your Idle Computer Power Today</h2>
-                    <p className="text-slate-300 max-w-2xl mx-auto text-sm md:text-base">
-                        Join thousands of hardware operators converting dormant silicon into a steady stream of passive USD income.
-                    </p>
-                    <div>
-                        <a
-                            href="https://nodlr.wnode.one"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-block bg-gradient-to-r from-cyan-500 to-emerald-500 text-black font-bold text-sm uppercase px-8 py-4 rounded-full transition-all shadow-[0_0_30px_rgba(0,240,255,0.3)]"
-                        >
-                            Deploy Node &amp; Start Earning &rarr;
-                        </a>
+                {/* Bottom CTA Banner */}
+                <section className="bg-gradient-to-r from-emerald-950/40 via-slate-900 to-cyan-950/40 border border-emerald-500/30 rounded-3xl p-8 md:p-12 text-center space-y-6 relative overflow-hidden backdrop-blur-md">
+                    <div className="max-w-3xl mx-auto space-y-4 relative z-10">
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+                            Start Monetizing Spare Hardware in 2 Minutes
+                        </h2>
+                        <p className="text-slate-300 text-base md:text-lg">
+                            Transform unused laptops, desktops, and mini PCs into silent passive income engines with direct Stripe USD payouts.
+                        </p>
+                        <div className="pt-4 flex flex-col sm:flex-row justify-center gap-4">
+                            <a
+                                href="https://nodlr.wnode.one"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-black font-bold text-sm uppercase px-8 py-4 rounded-full transition-all shadow-[0_0_30px_rgba(0,255,102,0.3)] text-center"
+                            >
+                                Deploy Daemon Now &rarr;
+                            </a>
+                            <button
+                                onClick={() => openModal("waitlist")}
+                                className="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-sm uppercase px-8 py-4 rounded-full transition-all text-center"
+                            >
+                                Join Operator Community
+                            </button>
+                        </div>
                     </div>
                 </section>
             </main>
@@ -416,7 +346,7 @@ export default function PassiveHardwareIncomePage() {
             <CTAModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
-                mode={modalMode}
+                initialMode={modalMode}
             />
         </div>
     );

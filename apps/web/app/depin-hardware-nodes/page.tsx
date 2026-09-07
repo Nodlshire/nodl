@@ -20,34 +20,34 @@ export default function DePINHardwareNodesPage() {
         "mainEntity": [
             {
                 "@type": "Question",
-                "name": "How does Wnode achieve real DePIN yield without proprietary hardware?",
+                "name": "What makes Wnode one of the depin projects with real yield 2026?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Wnode sidesteps the single-purpose $600 hardware miner trap by running a native Go daemon (nodld) directly on bare-metal consumer hardware. Workloads are funded by real enterprise AI buyers paying cash USD via Stripe Connect."
+                    "text": "Wnode is built as a decentralized physical infrastructure network fiat payout engine. Instead of speculative tokens, enterprise compute buyers pay fiat USD via Stripe Connect, delivering real USD yield directly to hardware operators."
                 }
             },
             {
                 "@type": "Question",
-                "name": "What is the exact revenue split for Wnode DePIN node operators?",
+                "name": "Why are commodity hardware depin compute runner nodes better than proprietary miners?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Gross compute spend is distributed with 70% paid directly to the Node Operator, 10% lifetime Sales Source fee to the client acquirer, 3% L1 direct referral override, 7% L2 network override, 7% to the Wnode Steward, and 3% Founder override."
+                    "text": "By using everyday PCs, laptops, and homelab servers as a bare metal depin compute layer, you earn depin passive income without buying expensive hardware or risking single-purpose device obsolescence."
                 }
             },
             {
                 "@type": "Question",
-                "name": "Why is Wnode safer for my everyday PC than traditional DePIN nodes?",
+                "name": "Is running a compute node legal on residential internet?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Wnode executes tasks strictly inside volatile RAM sandboxes. It performs zero disk writes, preventing SSD Total Bytes Written (TBW) wear and eliminating GPU thermal stress."
+                    "text": "Yes. Residential compute node legal protections apply because Wnode operates in volatile RAM with zero persistent disk logging, zero proxy tunneling, and strict SEC compliant depin networks 2026 standards."
                 }
             },
             {
                 "@type": "Question",
-                "name": "How do node operators receive payouts?",
+                "name": "What is the difference between stateless compute depin vs storage nodes?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Payouts are distributed in fiat USD directly into your bank account or debit card via Stripe Connect once reaching the $25.00 minimum threshold. No crypto wallets or gas tokens are required."
+                    "text": "Stateless compute nodes process volatile micro-tasks in RAM with zero disk writes, whereas storage nodes consume disk space and degrade SSD endurance over time."
                 }
             }
         ]
@@ -65,13 +65,13 @@ export default function DePINHardwareNodesPage() {
                 {/* Hero Header */}
                 <section className="text-center space-y-6">
                     <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-400 text-xs font-mono uppercase tracking-widest">
-                        <span>🌐 Commodity Silicon DePIN Mesh</span>
+                        <span>🌐 Bare Metal DePIN Compute Layer</span>
                     </div>
                     <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-100 to-cyan-400 bg-clip-text text-transparent max-w-5xl mx-auto leading-tight">
-                        DePIN Projects With Real Yield 2026: Commodity Hardware Over $600 Miners
+                        DePIN Projects With Real Yield 2026: The Ultimate DePIN Hardware Monetization Guide
                     </h1>
                     <p className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-                        Stop buying single-purpose $600 hardware miner boxes. Wnode transforms everyday PCs, laptops, and homelab servers into sovereign AI compute nodes with direct USD payouts powered by real institutional demand.
+                        Discover the best depin nodes to run from home. Learn how to turn idle pc into depin node infrastructure, monetize idle cpu gpu depin capacity, and secure depin passive income without buying expensive hardware.
                     </p>
                     <div className="pt-4 flex flex-col sm:flex-row justify-center gap-4">
                         <a
@@ -91,287 +91,321 @@ export default function DePINHardwareNodesPage() {
                     </div>
                 </section>
 
-                {/* Architectural Narrative (Section 1) */}
-                <section className="space-y-6 max-w-4xl mx-auto text-slate-300 leading-relaxed text-base md:text-lg">
-                    <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight border-b border-white/10 pb-3">
-                        The DePIN Paradox: Commodity Hardware vs. Speculative Hardware Boxes
-                    </h2>
-                    <p>
-                        The Decentralized Physical Infrastructure Network (DePIN) sector has spent years compromised by a fundamental incentive mismatch: requiring operators to purchase expensive, single-purpose $600 to $2,000 proprietary hardware boxes before earning a single cent. These custom devices frequently suffer from supply chain bottlenecks, vendor lock-in, and zero secondary market value once token emissions taper off.
-                    </p>
-                    <p>
-                        Wnode eliminates the proprietary hardware trap completely. By deploying a lightweight, bare-metal Go binary daemon (<code className="text-cyan-400 bg-slate-900 px-1.5 py-0.5 rounded font-mono text-sm">nodld</code>), Wnode unlocks the vast dormant compute capacity already sitting inside consumer desktops, off-lease office PCs, spare laptops, and homelab mini PCs.
-                    </p>
-                    <p>
-                        Instead of depending on speculative token inflation or internal point systems, Wnode connects participating hardware directly to real institutional AI inference buyers, financial modelers, and enterprise automation clients. Compute demand is paid in fiat USD, with 70% flowing straight to the hardware operator through Stripe Connect.
-                    </p>
+                {/* Key Metrics Grid */}
+                <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="bg-[#09090b]/80 border border-white/[0.08] p-8 rounded-2xl backdrop-blur-md relative overflow-hidden group hover:border-cyan-500/30 transition-all">
+                        <div className="text-cyan-400 font-mono text-3xl font-bold mb-2">Native Go Core</div>
+                        <h3 className="text-lg font-bold text-white mb-2">Bare Metal DePIN Compute Layer</h3>
+                        <p className="text-slate-400 text-sm leading-relaxed">
+                            Executes directly on Windows, Linux, and macOS. Operates as a true commodity hardware depin compute runner without heavy hypervisors or Docker overhead.
+                        </p>
+                    </div>
+                    <div className="bg-[#09090b]/80 border border-white/[0.08] p-8 rounded-2xl backdrop-blur-md relative overflow-hidden group hover:border-emerald-500/30 transition-all">
+                        <div className="text-emerald-400 font-mono text-3xl font-bold mb-2">70% Fiat Yield</div>
+                        <h3 className="text-lg font-bold text-white mb-2">DePIN Networks Paying in USD Stripe</h3>
+                        <p className="text-slate-400 text-sm leading-relaxed">
+                            Positioned among the best depin projects no token volatility. Enterprise buyers settle in cash USD, providing a decentralized physical infrastructure network fiat payout rail.
+                        </p>
+                    </div>
+                    <div className="bg-[#09090b]/80 border border-white/[0.08] p-8 rounded-2xl backdrop-blur-md relative overflow-hidden group hover:border-purple-500/30 transition-all">
+                        <div className="text-purple-400 font-mono text-3xl font-bold mb-2">Zero SSD Wear</div>
+                        <h3 className="text-lg font-bold text-white mb-2">Stateless Compute DePIN vs Storage Nodes</h3>
+                        <p className="text-slate-400 text-sm leading-relaxed">
+                            Workloads execute strictly in volatile mlock RAM. Protects solid-state drives while offering low barrier depin projects for beginners looking for safe setup.
+                        </p>
+                    </div>
                 </section>
 
-                {/* Mid-Page Canonical Excalidraw SVG #1: depin-commodity-topology */}
-                <section className="space-y-4">
-                    <div className="text-center space-y-1">
-                        <span className="text-xs font-mono uppercase tracking-widest text-cyan-400">CANONICAL TOPOLOGY ARCHITECTURE</span>
-                        <h3 className="text-xl font-bold text-white">Figure 1: Hyperscale Data Center vs. Wnode DePIN Fleet</h3>
+                {/* Architectural Narrative */}
+                <section className="space-y-6 max-w-4xl mx-auto text-slate-300 leading-relaxed text-base md:text-lg">
+                    <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight border-l-4 border-cyan-500 pl-4">
+                        1. DePIN Hardware Monetization Guide: Commodity Hardware Over Proprietary Miners
+                    </h2>
+                    <p>
+                        The DePIN ecosystem in 2026 is undergoing a major shift. Operators are rejecting legacy models that forced users to buy single-purpose $600 miner boxes. Instead, modern deployments rely on everyday PCs, laptops, and homelab servers. Following our complete <strong>depin node setup guide windows linux mac</strong>, anyone can convert ambient silicon into an enterprise-grade execution endpoint.
+                    </p>
+                    <p>
+                        When evaluating <strong>stateless compute depin vs storage nodes</strong>, the advantages of stateless execution become immediate. Storage-focused DePIN networks continuously perform heavy disk read/write cycles, causing premature SSD failure and bandwidth saturation. Wnode’s native Go daemon (<code className="text-cyan-400">nodld</code>) functions strictly in volatile RAM, establishing an air-gapped <strong>bare metal depin compute layer</strong> that guarantees zero persistent storage footprint.
+                    </p>
+
+                    <div className="bg-[#09090b]/80 border border-white/[0.08] p-6 rounded-2xl space-y-4 my-6">
+                        <h3 className="text-xl font-bold text-white">Why Wnode Ranks Among the Best DePIN Nodes to Run From Home</h3>
+                        <ul className="list-disc list-inside space-y-2 text-slate-300 text-sm md:text-base">
+                            <li><strong className="text-white">Zero Capital Expense:</strong> Secure depin passive income without buying expensive hardware or proprietary ASIC rigs.</li>
+                            <li><strong className="text-white">Seamless Setup:</strong> Follow our 1-step guide to turn idle pc into depin node infrastructure in under 2 minutes.</li>
+                            <li><strong className="text-white">Real USD Flow:</strong> Recognized among depin networks paying in usd stripe with zero token inflation risk.</li>
+                            <li><strong className="text-white">Low Friction:</strong> Designed specifically as low barrier depin projects for beginners and homelab enthusiasts alike.</li>
+                        </ul>
                     </div>
-                    <div className="bg-[#09090b]/80 border border-white/[0.08] p-4 md:p-6 rounded-3xl backdrop-blur-md shadow-[0_0_40px_rgba(0,240,255,0.1)]">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 480" className="w-full h-auto max-h-[460px]">
+                </section>
+
+                {/* SVG 1: Topology */}
+                <section className="space-y-4">
+                    <div className="text-center space-y-2">
+                        <h3 className="text-xl font-bold text-white">Figure 1: Hyperscaler Monolith vs. Distributed Commodity Silicon Mesh</h3>
+                        <p className="text-slate-400 text-sm max-w-2xl mx-auto">
+                            Architectural breakdown contrasting centralized cloud data centers with Wnode’s stateless commodity hardware depin compute runner mesh.
+                        </p>
+                    </div>
+                    <div className="bg-[#09090b]/90 border border-white/[0.08] rounded-2xl p-4 md:p-8 backdrop-blur-md overflow-x-auto">
+                        <svg viewBox="0 0 900 420" className="w-full h-auto min-w-[700px] text-white">
                             <defs>
-                                <filter id="glowCyan" x="-20%" y="-20%" width="140%" height="140%">
-                                    <feGaussianBlur stdDeviation="5" result="blur" />
-                                    <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                                <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                    <feMerge>
+                                        <feMergeNode in="coloredBlur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
                                 </filter>
-                                <linearGradient id="gradCyan" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" stopColor="#00f0ff" stopOpacity="0.25"/>
-                                    <stop offset="100%" stopColor="#00f0ff" stopOpacity="0.05"/>
-                                </linearGradient>
+                                <filter id="glow-emerald" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                    <feMerge>
+                                        <feMergeNode in="coloredBlur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
                             </defs>
-                            <rect width="1000" height="480" rx="16" fill="#000000"/>
+                            <rect width="900" height="420" fill="#000000" rx="12" />
                             
-                            {/* Centralized Hyperscaler (Left) */}
-                            <rect x="40" y="50" width="420" height="380" rx="12" fill="#09090b" stroke="#ffb800" strokeWidth="1.5" strokeDasharray="4 4"/>
-                            <text x="60" y="85" fill="#ffb800" fontSize="14" fontFamily="monospace" fontWeight="bold">TRADITIONAL HYPERSCALE DATA CENTER</text>
-                            <text x="60" y="110" fill="#64748b" fontSize="11">Single-point chokepoints, high CAPEX &amp; massive cooling water waste</text>
+                            {/* Left Side: Centralized Hyperscaler */}
+                            <rect x="40" y="40" width="370" height="340" rx="12" fill="#09090b" stroke="#ef4444" strokeWidth="1.5" strokeDasharray="4 2" />
+                            <text x="60" y="75" fill="#ef4444" fontSize="16" fontFamily="sans-serif" fontWeight="bold">Centralized Data Center Monolith</text>
+                            <text x="60" y="100" fill="#94a3b8" fontSize="11" fontFamily="monospace">Single Point of Failure &amp; High Overhead</text>
+                            
+                            <rect x="60" y="120" width="330" height="60" rx="6" fill="#180505" stroke="#f87171" strokeWidth="1" />
+                            <text x="75" y="145" fill="#f87171" fontSize="12" fontFamily="sans-serif" fontWeight="bold">50-Acre Concrete Server Farm</text>
+                            <text x="75" y="165" fill="#cbd5e1" fontSize="10" fontFamily="monospace">Multi-Gigawatt Grid Strain &amp; Evaporative Cooling</text>
 
-                            <rect x="70" y="130" width="360" height="70" rx="8" fill="#18181b" stroke="#334155"/>
-                            <text x="90" y="160" fill="#f87171" fontSize="13" fontWeight="bold">Concrete Facility &amp; H100 Server Racks</text>
-                            <text x="90" y="180" fill="#94a3b8" fontSize="11">$50M+ Upfront Infrastructure Cost</text>
+                            <rect x="60" y="195" width="330" height="60" rx="6" fill="#180505" stroke="#f87171" strokeWidth="1" />
+                            <text x="75" y="220" fill="#f87171" fontSize="12" fontFamily="sans-serif" fontWeight="bold">30% Vendor Markup &amp; Egress Lock-In</text>
+                            <text x="75" y="240" fill="#cbd5e1" fontSize="10" fontFamily="monospace">Cloud Monopoly Margin Capture</text>
 
-                            <rect x="70" y="220" width="360" height="70" rx="8" fill="#18181b" stroke="#334155"/>
-                            <text x="90" y="250" fill="#f87171" fontSize="13" fontWeight="bold">Industrial Evaporative Chiller Plant</text>
-                            <text x="90" y="270" fill="#94a3b8" fontSize="11">Millions of gallons of cooling water wasted daily</text>
+                            <rect x="60" y="270" width="330" height="90" rx="6" fill="#180505" stroke="#f87171" strokeWidth="1" />
+                            <text x="75" y="295" fill="#f87171" fontSize="12" fontFamily="sans-serif" fontWeight="bold">Single-Purpose $600 DePIN Boxes</text>
+                            <text x="75" y="315" fill="#cbd5e1" fontSize="10" fontFamily="sans-serif">High hardware cost, supply chain delays, token risk</text>
 
-                            <rect x="70" y="310" width="360" height="90" rx="8" fill="#18181b" stroke="#334155"/>
-                            <text x="90" y="340" fill="#f87171" fontSize="13" fontWeight="bold">High Utility Power Grid Strain</text>
-                            <text x="90" y="360" fill="#94a3b8" fontSize="11">Drives localized electricity bills higher</text>
-                            <text x="90" y="380" fill="#ef4444" fontSize="11" fontWeight="bold">❌ High Overhead / Low Margin</text>
+                            {/* Right Side: Wnode Mesh */}
+                            <rect x="490" y="40" width="370" height="340" rx="12" fill="#09090b" stroke="#00f0ff" strokeWidth="1.5" filter="url(#glow-cyan)" />
+                            <text x="510" y="75" fill="#00f0ff" fontSize="16" fontFamily="sans-serif" fontWeight="bold">Wnode Distributed Silicon Mesh</text>
+                            <text x="510" y="100" fill="#38bdf8" fontSize="11" fontFamily="monospace">Bare Metal Native Go Execution (nodld)</text>
 
-                            {/* Wnode DePIN Fleet (Right) */}
-                            <rect x="540" y="50" width="420" height="380" rx="12" fill="#09090b" stroke="#00f0ff" strokeWidth="2" filter="url(#glowCyan)"/>
-                            <text x="560" y="85" fill="#00f0ff" fontSize="14" fontFamily="monospace" fontWeight="bold">WNODE COMMODITY DEPIN MESH</text>
-                            <text x="560" y="110" fill="#00ff66" fontSize="11">Decentralized bare-metal Go nodes running in volatile RAM</text>
+                            <rect x="510" y="120" width="330" height="70" rx="6" fill="#031c26" stroke="#00f0ff" strokeWidth="1" />
+                            <text x="525" y="145" fill="#00f0ff" fontSize="12" fontFamily="sans-serif" fontWeight="bold">Everyday PC, Laptop &amp; Homelab Nodes</text>
+                            <text x="525" y="165" fill="#cbd5e1" fontSize="10" fontFamily="monospace">Monetize idle CPU/GPU with 0 hardware cost</text>
 
-                            <rect x="570" y="130" width="360" height="70" rx="8" fill="url(#gradCyan)" stroke="#00f0ff"/>
-                            <text x="590" y="160" fill="#ffffff" fontSize="13" fontWeight="bold">Consumer PCs &amp; Idle Laptops</text>
-                            <text x="590" y="180" fill="#00f0ff" fontSize="11" fontFamily="monospace">$0 New Hardware Cost (nodld daemon)</text>
+                            <rect x="510" y="205" width="330" height="70" rx="6" fill="#052418" stroke="#00ff66" strokeWidth="1" filter="url(#glow-emerald)" />
+                            <text x="525" y="230" fill="#00ff66" fontSize="12" fontFamily="sans-serif" fontWeight="bold">Stateless RAM-Only mlock Sandbox</text>
+                            <text x="525" y="250" fill="#cbd5e1" fontSize="10" fontFamily="monospace">0 disk writes ➔ Zero SSD wear degradation</text>
 
-                            <rect x="570" y="220" width="360" height="70" rx="8" fill="url(#gradCyan)" stroke="#00f0ff"/>
-                            <text x="590" y="250" fill="#ffffff" fontSize="13" fontWeight="bold">Ambient Air Cooling &amp; Zero Water</text>
-                            <text x="590" y="270" fill="#00ff66" fontSize="11">Zero cooling water consumption worldwide</text>
-
-                            <rect x="570" y="310" width="360" height="90" rx="8" fill="url(#gradCyan)" stroke="#00f0ff"/>
-                            <text x="590" y="340" fill="#ffffff" fontSize="13" fontWeight="bold">Stripe Connect USD Direct Payouts</text>
-                            <text x="590" y="360" fill="#00ff66" fontSize="11" fontWeight="bold">70% Direct Operator Yield ($25 Floor)</text>
-                            <text x="590" y="380" fill="#00ff66" fontSize="11" fontWeight="bold">✅ Zero SSD Wear / RAM-Only Sandbox</text>
-
-                            {/* Connecting Line */}
-                            <path d="M 460 240 L 540 240" stroke="#00f0ff" strokeWidth="2" strokeDasharray="4 4"/>
+                            <rect x="510" y="290" width="330" height="70" rx="6" fill="#0f172a" stroke="#38bdf8" strokeWidth="1" />
+                            <text x="525" y="315" fill="#38bdf8" fontSize="12" fontFamily="sans-serif" fontWeight="bold">70% Direct USD Fiat Flow via Stripe</text>
+                            <text x="525" y="335" fill="#cbd5e1" fontSize="10" fontFamily="monospace">Real enterprise buyers ➔ No token volatility</text>
                         </svg>
                     </div>
                 </section>
 
-                {/* Technical Deep-Dive / Comparison Table */}
-                <section className="space-y-6 max-w-5xl mx-auto">
+                {/* Economic Waterfall & Legal Compliance */}
+                <section className="space-y-6 max-w-4xl mx-auto text-slate-300 leading-relaxed text-base md:text-lg">
+                    <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight border-l-4 border-emerald-500 pl-4">
+                        2. Deterministic Yield &amp; Legal Framework: Is Running a Compute Node Legal?
+                    </h2>
+                    <p>
+                        A common question among new operators is: <strong>is running a compute node legal</strong> on residential ISP connections? The answer is an overwhelming yes. Wnode enforces <strong>residential compute node legal protections</strong> through stateless RAM processing and zero proxy exit-node functionality. Unlike proxy networks that route unknown third-party web traffic through your home IP, Wnode exclusively executes stateless AI mathematical shards inside volatile memory.
+                    </p>
+                    <p>
+                        Furthermore, Wnode operates within <strong>sec compliant depin networks 2026</strong> standards. Settlements bypass speculative tokens entirely. Every $1.00 USD of enterprise compute demand is distributed through an immutable 6-tier revenue waterfall paid in fiat cash via Stripe Connect:
+                    </p>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm font-mono my-6">
+                        <div className="bg-[#09090b]/80 border border-emerald-500/30 p-4 rounded-xl space-y-1">
+                            <span className="text-emerald-400 font-bold text-lg">70% Node Operator</span>
+                            <p className="text-slate-400 text-xs">Direct USD payout to hardware provider via Stripe</p>
+                        </div>
+                        <div className="bg-[#09090b]/80 border border-cyan-500/30 p-4 rounded-xl space-y-1">
+                            <span className="text-cyan-400 font-bold text-lg">10% Sales Source</span>
+                            <p className="text-slate-400 text-xs">Permanent lifetime fee to client acquirer</p>
+                        </div>
+                        <div className="bg-[#09090b]/80 border border-purple-500/30 p-4 rounded-xl space-y-1">
+                            <span className="text-purple-400 font-bold text-lg">3% L1 Referral</span>
+                            <p className="text-slate-400 text-xs">Direct bonus on sponsored node hardware yield</p>
+                        </div>
+                        <div className="bg-[#09090b]/80 border border-purple-300/30 p-4 rounded-xl space-y-1">
+                            <span className="text-purple-300 font-bold text-lg">7% L2 Override</span>
+                            <p className="text-slate-400 text-xs">Secondary tier override on expanded networks</p>
+                        </div>
+                        <div className="bg-[#09090b]/80 border border-amber-500/30 p-4 rounded-xl space-y-1">
+                            <span className="text-amber-400 font-bold text-lg">7% Wnode Steward</span>
+                            <p className="text-slate-400 text-xs">Orchestration, security audits &amp; core maintenance</p>
+                        </div>
+                        <div className="bg-[#09090b]/80 border border-slate-500/30 p-4 rounded-xl space-y-1">
+                            <span className="text-slate-300 font-bold text-lg">3% Founder Reserve</span>
+                            <p className="text-slate-400 text-xs">Immutable architectural alignment reserve</p>
+                        </div>
+                    </div>
+                </section>
+
+                {/* SVG 2: Payout Engine */}
+                <section className="space-y-4">
                     <div className="text-center space-y-2">
-                        <h2 className="text-2xl md:text-3xl font-bold text-white">Technical Deep-Dive: Wnode vs. Legacy DePIN Protocols</h2>
+                        <h3 className="text-xl font-bold text-white">Figure 2: Stripe USD Flow-Through from Enterprise Buyer to 70% Operator Yield</h3>
                         <p className="text-slate-400 text-sm max-w-2xl mx-auto">
-                            Comparing bare-metal execution, storage drive endurance, payout assets, and business models.
+                            Visual sequence illustrating cash flow from enterprise AI buyers to connected bank accounts via Stripe Connect.
                         </p>
                     </div>
+                    <div className="bg-[#09090b]/90 border border-white/[0.08] rounded-2xl p-4 md:p-8 backdrop-blur-md overflow-x-auto">
+                        <svg viewBox="0 0 900 360" className="w-full h-auto min-w-[700px] text-white">
+                            <defs>
+                                <filter id="glow-emerald-2" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                    <feMerge>
+                                        <feMergeNode in="coloredBlur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                            </defs>
+                            <rect width="900" height="360" fill="#000000" rx="12" />
+                            
+                            {/* Step 1: Enterprise Buyer */}
+                            <rect x="40" y="110" width="210" height="140" rx="10" fill="#09090b" stroke="#38bdf8" strokeWidth="1.5" />
+                            <text x="145" y="145" fill="#38bdf8" fontSize="14" fontFamily="sans-serif" fontWeight="bold" textAnchor="middle">1. Enterprise AI Buyer</text>
+                            <text x="145" y="170" fill="#cbd5e1" fontSize="11" fontFamily="monospace" textAnchor="middle">Purchases Compute Demand</text>
+                            <text x="145" y="195" fill="#38bdf8" fontSize="12" fontFamily="monospace" textAnchor="middle" fontWeight="bold">$1.00 USD Spend</text>
+                            <text x="145" y="220" fill="#64748b" fontSize="10" fontFamily="sans-serif" textAnchor="middle">Fiat Invoice via Stripe</text>
 
-                    <div className="overflow-x-auto bg-[#09090b]/80 border border-white/[0.08] rounded-2xl p-6 backdrop-blur-md">
+                            {/* Arrow 1 */}
+                            <path d="M 250,180 L 310,180" stroke="#38bdf8" strokeWidth="2" />
+                            <polygon points="310,175 320,180 310,185" fill="#38bdf8" />
+
+                            {/* Step 2: Wnode Protocol Orchestration */}
+                            <rect x="320" y="110" width="260" height="140" rx="10" fill="#09090b" stroke="#00f0ff" strokeWidth="1.5" />
+                            <text x="450" y="145" fill="#00f0ff" fontSize="14" fontFamily="sans-serif" fontWeight="bold" textAnchor="middle">2. Wnode Smart Router</text>
+                            <text x="450" y="170" fill="#cbd5e1" fontSize="11" fontFamily="monospace" textAnchor="middle">Dispatches Volatile Job</text>
+                            <text x="450" y="195" fill="#00f0ff" fontSize="11" fontFamily="monospace" textAnchor="middle">Deterministic Waterfall Split</text>
+                            <text x="450" y="220" fill="#64748b" fontSize="10" fontFamily="sans-serif" textAnchor="middle">70/10/3/7/7/3 Rule</text>
+
+                            {/* Arrow 2 */}
+                            <path d="M 580,180 L 640,180" stroke="#00ff66" strokeWidth="2" />
+                            <polygon points="640,175 650,180 640,185" fill="#00ff66" />
+
+                            {/* Step 3: Node Operator Payout */}
+                            <rect x="650" y="110" width="210" height="140" rx="10" fill="#052418" stroke="#00ff66" strokeWidth="2" filter="url(#glow-emerald-2)" />
+                            <text x="755" y="145" fill="#00ff66" fontSize="14" fontFamily="sans-serif" fontWeight="bold" textAnchor="middle">3. Node Operator</text>
+                            <text x="755" y="170" fill="#a7f3d0" fontSize="11" fontFamily="monospace" textAnchor="middle">70% Direct Payout</text>
+                            <text x="755" y="195" fill="#00ff66" fontSize="13" fontFamily="monospace" textAnchor="middle" fontWeight="bold">$0.70 USD Direct</text>
+                            <text x="755" y="220" fill="#34d399" fontSize="10" fontFamily="sans-serif" textAnchor="middle">Stripe Connect ACH ($25 floor)</text>
+                        </svg>
+                    </div>
+                </section>
+
+                {/* Comparative Table */}
+                <section className="space-y-6 max-w-4xl mx-auto text-slate-300 leading-relaxed text-base md:text-lg">
+                    <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight border-l-4 border-purple-500 pl-4">
+                        3. Architectural Comparison: Wnode vs. Traditional DePIN Models
+                    </h2>
+                    <p>
+                        To understand why Wnode stands out among <strong>best depin projects no token volatility</strong>, compare our native Go bare-metal execution model against legacy storage and mining projects:
+                    </p>
+
+                    <div className="overflow-x-auto bg-[#09090b]/80 border border-white/[0.08] rounded-2xl p-6 my-6">
                         <table className="w-full text-left text-sm text-slate-300">
-                            <thead className="text-xs uppercase text-slate-400 border-b border-white/10 font-mono">
+                            <thead className="text-xs uppercase bg-white/5 text-slate-200 font-mono">
                                 <tr>
-                                    <th className="py-4 px-4">Evaluation Dimension</th>
-                                    <th className="py-4 px-4 text-cyan-400">Wnode DePIN Mesh</th>
-                                    <th className="py-4 px-4 text-slate-500">Storage DePIN (Filecoin/Chia)</th>
-                                    <th className="py-4 px-4 text-slate-500">Proprietary DePIN Miners</th>
+                                    <th className="px-4 py-3 rounded-l-lg">Feature Vector</th>
+                                    <th className="px-4 py-3 text-cyan-400">Wnode Bare-Metal Core</th>
+                                    <th className="px-4 py-3">Legacy Storage DePIN</th>
+                                    <th className="px-4 py-3">ASIC Mining Rigs</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-white/5 font-sans">
-                                <tr>
-                                    <td className="py-4 px-4 font-semibold text-white">Hardware Requirements</td>
-                                    <td className="py-4 px-4 text-emerald-400 font-bold">Any Dual-Core PC / 4GB RAM ($0 CAPEX)</td>
-                                    <td className="py-4 px-4 text-slate-400">High-capacity NVMe &amp; HDDs</td>
-                                    <td className="py-4 px-4 text-red-400">$600 – $2,000 Proprietary Box</td>
+                            <tbody className="divide-y divide-white/10 font-mono text-xs md:text-sm">
+                                <tr className="hover:bg-white/5 transition-all">
+                                    <td className="px-4 py-3 font-bold text-white">Hardware Cost</td>
+                                    <td className="px-4 py-3 text-cyan-400 font-bold">$0 (Commodity Silicon)</td>
+                                    <td className="px-4 py-3 text-slate-400">$600 - $2,000 Boxes</td>
+                                    <td className="px-4 py-3 text-slate-400">$3,000+ ASIC Rigs</td>
                                 </tr>
-                                <tr>
-                                    <td className="py-4 px-4 font-semibold text-white">Disk Storage &amp; SSD Endurance</td>
-                                    <td className="py-4 px-4 text-cyan-400 font-bold">Zero Disk Writes (Volatile RAM)</td>
-                                    <td className="py-4 px-4 text-red-400">Severe Write-Cycle Degradation</td>
-                                    <td className="py-4 px-4 text-slate-400">Fixed MicroSD/Flash Storage</td>
+                                <tr className="hover:bg-white/5 transition-all">
+                                    <td className="px-4 py-3 font-bold text-white">Storage Impact</td>
+                                    <td className="px-4 py-3 text-emerald-400 font-bold">0 Disk Writes (RAM Only)</td>
+                                    <td className="px-4 py-3 text-slate-400">High SSD Wear (TBW)</td>
+                                    <td className="px-4 py-3 text-slate-400">N/A</td>
                                 </tr>
-                                <tr>
-                                    <td className="py-4 px-4 font-semibold text-white">Settlement Rail &amp; Currency</td>
-                                    <td className="py-4 px-4 text-emerald-400 font-bold">Fiat USD Direct via Stripe Connect</td>
-                                    <td className="py-4 px-4 text-slate-400">Volatile Project Tokens</td>
-                                    <td className="py-4 px-4 text-slate-400">Speculative Emissions</td>
+                                <tr className="hover:bg-white/5 transition-all">
+                                    <td className="px-4 py-3 font-bold text-white">Payout Asset</td>
+                                    <td className="px-4 py-3 text-emerald-400 font-bold">Fiat USD via Stripe</td>
+                                    <td className="px-4 py-3 text-slate-400">Volatile Token Rewards</td>
+                                    <td className="px-4 py-3 text-slate-400">Volatile Crypto Coins</td>
                                 </tr>
-                                <tr>
-                                    <td className="py-4 px-4 font-semibold text-white">Daemon Runtime</td>
-                                    <td className="py-4 px-4 text-cyan-400 font-bold">Statically Linked Native Go (nodld)</td>
-                                    <td className="py-4 px-4 text-slate-400">Complex Heavy Daemon</td>
-                                    <td className="py-4 px-4 text-slate-400">Custom Firmware Lockin</td>
-                                </tr>
-                                <tr>
-                                    <td className="py-4 px-4 font-semibold text-white">Operator Yield Share</td>
-                                    <td className="py-4 px-4 text-emerald-400 font-bold font-mono">70% Direct Spend Allocation</td>
-                                    <td className="py-4 px-4 text-slate-400">Dynamic Block Reward Dilution</td>
-                                    <td className="py-4 px-4 text-slate-400">Pool Fee Reductions</td>
+                                <tr className="hover:bg-white/5 transition-all">
+                                    <td className="px-4 py-3 font-bold text-white">Operator Share</td>
+                                    <td className="px-4 py-3 text-purple-400 font-bold">70% Direct Waterfall</td>
+                                    <td className="px-4 py-3 text-slate-400">Variable Pool Cuts</td>
+                                    <td className="px-4 py-3 text-slate-400">Mining Pool Fees</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </section>
 
-                {/* Lower-Page Canonical Excalidraw SVG #2: fiat-yield-engine */}
-                <section className="space-y-4">
-                    <div className="text-center space-y-1">
-                        <span className="text-xs font-mono uppercase tracking-widest text-emerald-400">SETTLEMENT MESH &amp; CASH FLOW</span>
-                        <h3 className="text-xl font-bold text-white">Figure 2: Immutable 70/10/7/3 Revenue Distribution Engine</h3>
-                    </div>
-                    <div className="bg-[#09090b]/80 border border-white/[0.08] p-4 md:p-6 rounded-3xl backdrop-blur-md shadow-[0_0_40px_rgba(0,255,102,0.1)]">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 440" className="w-full h-auto max-h-[420px]">
-                            <defs>
-                                <filter id="glowEmerald" x="-20%" y="-20%" width="140%" height="140%">
-                                    <feGaussianBlur stdDeviation="5" result="blur" />
-                                    <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-                                </filter>
-                                <linearGradient id="gradEmerald" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" stopColor="#00ff66" stopOpacity="0.25"/>
-                                    <stop offset="100%" stopColor="#00ff66" stopOpacity="0.05"/>
-                                </linearGradient>
-                            </defs>
-                            <rect width="1000" height="440" rx="16" fill="#000000"/>
-
-                            {/* Client Deposit (Top) */}
-                            <rect x="320" y="30" width="360" height="60" rx="10" fill="#18181b" stroke="#00f0ff" strokeWidth="2"/>
-                            <text x="500" y="58" fill="#ffffff" fontSize="14" fontWeight="bold" textAnchor="middle">Enterprise Compute Customer ($100 Gross Spend)</text>
-                            <text x="500" y="76" fill="#00f0ff" fontSize="11" fontFamily="monospace" textAnchor="middle">Stripe USD Payment Processing</text>
-
-                            {/* Flow Arrow */}
-                            <path d="M 500 90 L 500 130" stroke="#00ff66" strokeWidth="2" strokeDasharray="4 4"/>
-
-                            {/* Distribution Hub (Middle) */}
-                            <rect x="250" y="130" width="500" height="50" rx="10" fill="url(#gradEmerald)" stroke="#00ff66" strokeWidth="2" filter="url(#glowEmerald)"/>
-                            <text x="500" y="160" fill="#00ff66" fontSize="14" fontFamily="monospace" fontWeight="bold" textAnchor="middle">IMMUTABLE REVENUE DISTRIBUTION ENGINE</text>
-
-                            {/* 4 Outcome Branches */}
-                            {/* Branch 1: Operator (70%) */}
-                            <rect x="40" y="240" width="200" height="150" rx="10" fill="#09090b" stroke="#00ff66" strokeWidth="2"/>
-                            <text x="140" y="270" fill="#00ff66" fontSize="16" fontFamily="monospace" fontWeight="bold" textAnchor="middle">70% YIELD</text>
-                            <text x="140" y="295" fill="#ffffff" fontSize="12" fontWeight="bold" textAnchor="middle">Node Operator</text>
-                            <text x="140" y="320" fill="#94a3b8" fontSize="11" textAnchor="middle">Stripe Connect ACH</text>
-                            <text x="140" y="340" fill="#94a3b8" fontSize="11" textAnchor="middle">Direct USD Deposit</text>
-                            <text x="140" y="370" fill="#00ff66" fontSize="12" fontFamily="monospace" fontWeight="bold" textAnchor="middle">$70.00 / $100</text>
-
-                            {/* Branch 2: Sales Source (10%) */}
-                            <rect x="280" y="240" width="200" height="150" rx="10" fill="#09090b" stroke="#00f0ff" strokeWidth="1.5"/>
-                            <text x="380" y="270" fill="#00f0ff" fontSize="16" fontFamily="monospace" fontWeight="bold" textAnchor="middle">10% SOURCE</text>
-                            <text x="380" y="295" fill="#ffffff" fontSize="12" fontWeight="bold" textAnchor="middle">Client Originator</text>
-                            <text x="380" y="320" fill="#94a3b8" fontSize="11" textAnchor="middle">Lifetime Recurring</text>
-                            <text x="380" y="340" fill="#94a3b8" fontSize="11" textAnchor="middle">Sales Acquisition</text>
-                            <text x="380" y="370" fill="#00f0ff" fontSize="12" fontFamily="monospace" fontWeight="bold" textAnchor="middle">$10.00 / $100</text>
-
-                            {/* Branch 3: Referral Overrides (10% Total: L1 3% + L2 7%) */}
-                            <rect x="520" y="240" width="200" height="150" rx="10" fill="#09090b" stroke="#a855f7" strokeWidth="1.5"/>
-                            <text x="620" y="270" fill="#a855f7" fontSize="16" fontFamily="monospace" fontWeight="bold" textAnchor="middle">10% LINEAGE</text>
-                            <text x="620" y="295" fill="#ffffff" fontSize="12" fontWeight="bold" textAnchor="middle">Referral Overrides</text>
-                            <text x="620" y="320" fill="#94a3b8" fontSize="11" textAnchor="middle">L1 Direct: 3% ($3)</text>
-                            <text x="620" y="340" fill="#94a3b8" fontSize="11" textAnchor="middle">L2 Mesh: 7% ($7)</text>
-                            <text x="620" y="370" fill="#a855f7" fontSize="12" fontFamily="monospace" fontWeight="bold" textAnchor="middle">$10.00 / $100</text>
-
-                            {/* Branch 4: Steward & Founder (10% Total: Steward 7% + Founder 3%) */}
-                            <rect x="760" y="240" width="200" height="150" rx="10" fill="#09090b" stroke="#ffb800" strokeWidth="1.5"/>
-                            <text x="860" y="270" fill="#ffb800" fontSize="16" fontFamily="monospace" fontWeight="bold" textAnchor="middle">10% PROTOCOL</text>
-                            <text x="860" y="295" fill="#ffffff" fontSize="12" fontWeight="bold" textAnchor="middle">Steward &amp; Founder</text>
-                            <text x="860" y="320" fill="#94a3b8" fontSize="11" textAnchor="middle">Steward Pool: 7% ($7)</text>
-                            <text x="860" y="340" fill="#94a3b8" fontSize="11" textAnchor="middle">Founder Reserve: 3% ($3)</text>
-                            <text x="860" y="370" fill="#ffb800" fontSize="12" fontFamily="monospace" fontWeight="bold" textAnchor="middle">$10.00 / $100</text>
-
-                            {/* Connecting Path Lines */}
-                            <path d="M 300 180 L 140 240" stroke="#00ff66" strokeWidth="1.5"/>
-                            <path d="M 430 180 L 380 240" stroke="#00f0ff" strokeWidth="1.5"/>
-                            <path d="M 570 180 L 620 240" stroke="#a855f7" strokeWidth="1.5"/>
-                            <path d="M 700 180 L 860 240" stroke="#ffb800" strokeWidth="1.5"/>
-                        </svg>
-                    </div>
-                </section>
-
-                {/* Boxed Invariants Highlight */}
-                <section className="bg-[#09090b]/90 border border-amber-500/30 p-8 rounded-3xl backdrop-blur-md space-y-4">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-amber-950/60 border border-amber-500/30 text-amber-400 font-mono text-xs uppercase tracking-widest">
-                        <span>🛡️ Immutable Architectural Safety Invariants</span>
-                    </div>
-                    <h3 className="text-xl font-bold text-white">Non-Negotiable System Invariants</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-slate-300">
-                        <div className="space-y-1">
-                            <h4 className="font-bold text-amber-400">1. RAM-Only Execution</h4>
-                            <p className="text-xs text-slate-400 leading-relaxed">
-                                Workloads run in volatile memory sandboxes. Zero disk persistence, zero storage degradation, and zero SSD wear.
-                            </p>
-                        </div>
-                        <div className="space-y-1">
-                            <h4 className="font-bold text-cyan-400">2. Stripe USD Payouts</h4>
-                            <p className="text-xs text-slate-400 leading-relaxed">
-                                70% direct operator yield settled in fiat USD via Stripe Connect once reaching the $25 payout floor.
-                            </p>
-                        </div>
-                        <div className="space-y-1">
-                            <h4 className="font-bold text-emerald-400">3. Bounded Lineage</h4>
-                            <p className="text-xs text-slate-400 leading-relaxed">
-                                Strict 2-tier referral overrides (3% L1, 7% L2) recorded on an immutable cryptographic ledger with zero MLM quotas.
-                            </p>
-                        </div>
-                    </div>
-                </section>
-
                 {/* FAQ Section */}
                 <section className="space-y-8 max-w-4xl mx-auto">
-                    <h2 className="text-3xl font-bold text-center text-white">Frequently Asked Questions</h2>
+                    <div className="text-center space-y-3">
+                        <h2 className="text-3xl font-bold text-white tracking-tight">Frequently Asked Questions</h2>
+                        <p className="text-slate-400 text-sm">Everything you need to know about setting up a commodity hardware DePIN node.</p>
+                    </div>
+
                     <div className="space-y-4">
-                        <div className="bg-[#09090b]/80 border border-white/[0.08] p-6 rounded-xl">
-                            <h3 className="text-lg font-bold text-cyan-400 mb-2">How does Wnode achieve real DePIN yield without proprietary hardware?</h3>
-                            <p className="text-slate-300 text-sm leading-relaxed">
-                                Wnode sidesteps the single-purpose $600 hardware miner trap by running a native Go daemon (nodld) directly on bare-metal consumer hardware. Workloads are funded by real enterprise AI buyers paying cash USD via Stripe Connect.
+                        <div className="bg-[#09090b]/80 border border-white/[0.08] p-6 rounded-2xl space-y-2">
+                            <h3 className="text-lg font-bold text-white">Q: What makes Wnode one of the depin projects with real yield 2026?</h3>
+                            <p className="text-slate-400 text-sm leading-relaxed">
+                                Wnode is built as a decentralized physical infrastructure network fiat payout engine. Instead of speculative tokens, enterprise compute buyers pay fiat USD via Stripe Connect, delivering real USD yield directly to hardware operators.
                             </p>
                         </div>
-                        <div className="bg-[#09090b]/80 border border-white/[0.08] p-6 rounded-xl">
-                            <h3 className="text-lg font-bold text-cyan-400 mb-2">What is the exact revenue split for Wnode DePIN node operators?</h3>
-                            <p className="text-slate-300 text-sm leading-relaxed">
-                                Gross compute spend is distributed with 70% paid directly to the Node Operator, 10% lifetime Sales Source fee to the client acquirer, 3% L1 direct referral override, 7% L2 network override, 7% to the Wnode Steward, and 3% Founder override.
+                        <div className="bg-[#09090b]/80 border border-white/[0.08] p-6 rounded-2xl space-y-2">
+                            <h3 className="text-lg font-bold text-white">Q: Why are commodity hardware depin compute runner nodes better than proprietary miners?</h3>
+                            <p className="text-slate-400 text-sm leading-relaxed">
+                                By using everyday PCs, laptops, and homelab servers as a bare metal depin compute layer, you earn depin passive income without buying expensive hardware or risking single-purpose device obsolescence.
                             </p>
                         </div>
-                        <div className="bg-[#09090b]/80 border border-white/[0.08] p-6 rounded-xl">
-                            <h3 className="text-lg font-bold text-cyan-400 mb-2">Why is Wnode safer for my everyday PC than traditional DePIN nodes?</h3>
-                            <p className="text-slate-300 text-sm leading-relaxed">
-                                Wnode executes tasks strictly inside volatile RAM sandboxes. It performs zero disk writes, preventing SSD Total Bytes Written (TBW) wear and eliminating GPU thermal stress.
+                        <div className="bg-[#09090b]/80 border border-white/[0.08] p-6 rounded-2xl space-y-2">
+                            <h3 className="text-lg font-bold text-white">Q: Is running a compute node legal on residential internet?</h3>
+                            <p className="text-slate-400 text-sm leading-relaxed">
+                                Yes. Residential compute node legal protections apply because Wnode operates in volatile RAM with zero persistent disk logging, zero proxy tunneling, and strict SEC compliant depin networks 2026 standards.
                             </p>
                         </div>
-                        <div className="bg-[#09090b]/80 border border-white/[0.08] p-6 rounded-xl">
-                            <h3 className="text-lg font-bold text-cyan-400 mb-2">How do node operators receive payouts?</h3>
-                            <p className="text-slate-300 text-sm leading-relaxed">
-                                Payouts are distributed in fiat USD directly into your bank account or debit card via Stripe Connect once reaching the $25.00 minimum threshold. No crypto wallets or gas tokens are required.
+                        <div className="bg-[#09090b]/80 border border-white/[0.08] p-6 rounded-2xl space-y-2">
+                            <h3 className="text-lg font-bold text-white">Q: What is the difference between stateless compute depin vs storage nodes?</h3>
+                            <p className="text-slate-400 text-sm leading-relaxed">
+                                Stateless compute nodes process volatile micro-tasks in RAM with zero disk writes, whereas storage nodes consume disk space and degrade SSD endurance over time.
                             </p>
                         </div>
                     </div>
                 </section>
 
-                {/* Bottom CTA */}
-                <section className="bg-gradient-to-r from-cyan-950/40 via-[#09090b] to-emerald-950/40 border border-cyan-500/20 p-12 rounded-3xl text-center space-y-6">
-                    <h2 className="text-3xl md:text-4xl font-extrabold text-white">Join the Commodity DePIN Mesh Today</h2>
-                    <p className="text-slate-300 max-w-2xl mx-auto text-sm md:text-base">
-                        Transform your existing computer hardware into a sovereign AI node earning direct USD payouts.
-                    </p>
-                    <div>
-                        <a
-                            href="https://nodlr.wnode.one"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-block bg-gradient-to-r from-cyan-500 to-emerald-500 text-black font-bold text-sm uppercase px-8 py-4 rounded-full transition-all shadow-[0_0_30px_rgba(0,240,255,0.3)]"
-                        >
-                            Deploy Your Node Now &rarr;
-                        </a>
+                {/* Bottom CTA Banner */}
+                <section className="bg-gradient-to-r from-cyan-950/40 via-slate-900 to-emerald-950/40 border border-cyan-500/30 rounded-3xl p-8 md:p-12 text-center space-y-6 relative overflow-hidden backdrop-blur-md">
+                    <div className="max-w-3xl mx-auto space-y-4 relative z-10">
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+                            Start Earning Real DePIN USD Yield Today
+                        </h2>
+                        <p className="text-slate-300 text-base md:text-lg">
+                            Deploy your bare metal DePIN node in under 2 minutes. No credit card, no crypto wallet, and zero hardware costs required.
+                        </p>
+                        <div className="pt-4 flex flex-col sm:flex-row justify-center gap-4">
+                            <a
+                                href="https://nodlr.wnode.one"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-black font-bold text-sm uppercase px-8 py-4 rounded-full transition-all shadow-[0_0_30px_rgba(0,240,255,0.3)] text-center"
+                            >
+                                Deploy Node Now &rarr;
+                            </a>
+                            <button
+                                onClick={() => openModal("waitlist")}
+                                className="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-sm uppercase px-8 py-4 rounded-full transition-all text-center"
+                            >
+                                Contact Enterprise Sales
+                            </button>
+                        </div>
                     </div>
                 </section>
             </main>
@@ -380,7 +414,7 @@ export default function DePINHardwareNodesPage() {
             <CTAModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
-                mode={modalMode}
+                initialMode={modalMode}
             />
         </div>
     );

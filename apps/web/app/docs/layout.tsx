@@ -10,8 +10,62 @@ import Breadcrumb from "../../components/docs/Breadcrumb";
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
 
+    const parts = pathname.split('/').filter(Boolean);
+    const sectionName = parts[1] || 'overview';
+    const subPageName = parts[2] || sectionName;
+    const formattedTitle = subPageName
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+
+    const dynamicTechArticleSchema = {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": `Wnode Technical Documentation — ${formattedTitle}`,
+        "description": `Technical specification, architectural invariants, process bounds, and integration reference for Wnode ${formattedTitle}.`,
+        "url": `https://wnode.one${pathname}`,
+        "author": {
+            "@type": "Organization",
+            "name": "Wnode Technologies",
+            "url": "https://wnode.one"
+        },
+        "inLanguage": "en-US",
+        "dependencies": "nodld native Go daemon, Linux/macOS/Windows commodity hardware"
+    };
+
+    const dynamicFaqSchema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": `What is Wnode ${formattedTitle}?`,
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": `Wnode ${formattedTitle} forms part of the sovereign DePIN mesh architecture, delivering RAM-only process execution, direct Stripe Connect USD revenue, and zero disk degradation.`
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How are Wnode node operators compensated?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "70% of gross compute job spend flows directly to node operators via Stripe Connect once reaching the $25 minimum payout floor."
+                }
+            }
+        ]
+    };
+
     return (
         <div className="bg-[#0f1117] min-h-screen text-[#e5e7eb] font-sans selection:bg-[#3b82f6]/30">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(dynamicTechArticleSchema) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(dynamicFaqSchema) }}
+            />
             <Header onContactClick={() => {}} />
 
             <div className="max-w-7xl mx-auto px-6 md:px-8 pt-32 pb-24 flex overflow-visible flex-col md:flex-row gap-12">
@@ -98,28 +152,6 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                                 <a href="/docs/sdk/examples" className="text-sm font-medium hover:text-white transition-colors">Examples</a>
                                 <a href="/docs/sdk/determinism" className="text-sm font-medium hover:text-white transition-colors">Deterministic Execution</a>
                                 <a href="/docs/sdk/security" className="text-sm font-medium hover:text-white transition-colors">Security</a>
-                                <a href="/docs/sdk/api-reference" className="text-sm font-medium hover:text-white transition-colors">API Reference</a>
-                            </div>
-
-                            <div className="flex flex-col gap-2">
-                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-2">Operator</span>
-                                <a href="/docs/operator" className="text-sm font-medium hover:text-white transition-colors">Operator</a>
-                                <a href="/docs/operator/desktop-gui-and-cli-menu" className="text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors">Desktop GUI &amp; Interactive Menu</a>
-                                <a href="/docs/operator/archetypes" className="text-sm font-medium hover:text-white transition-colors">Archetypes</a>
-                                <a href="/docs/operator/dewi-gateway" className="text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors">DeWi Gateway Setup</a>
-                                <a href="/docs/operator/earth-mesh" className="text-sm font-medium hover:text-white transition-colors">Earth Mesh</a>
-                                <a href="/docs/operator/space-mesh" className="text-sm font-medium hover:text-white transition-colors">Space Mesh</a>
-                                <a href="/docs/operator/security" className="text-sm font-medium hover:text-white transition-colors">Security</a>
-                                <a href="/docs/operator/telemetry" className="text-sm font-medium hover:text-white transition-colors">Telemetry</a>
-                            </div>
-
-                            <div className="flex flex-col gap-2">
-                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 mb-2">Developer</span>
-                                <a href="/docs/developer" className="text-sm font-medium hover:text-white transition-colors">Developer</a>
-                                <a href="/docs/developer/tinygo" className="text-sm font-medium hover:text-white transition-colors">TinyGo</a>
-                                <a href="/docs/developer/testing" className="text-sm font-medium hover:text-white transition-colors">Testing</a>
-                                <a href="/docs/developer/determinism" className="text-sm font-medium hover:text-white transition-colors">Determinism</a>
-                                <a href="/docs/developer/anti-patterns" className="text-sm font-medium hover:text-white transition-colors">Anti Patterns</a>
                             </div>
 
                             <div className="flex flex-col gap-2">
@@ -165,7 +197,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                                 <a href="/docs/protocol-deep-dive/data-retention-model" className="text-sm font-medium hover:text-white transition-colors">Data Retention Model</a>
                                 <a href="/docs/protocol-deep-dive/operator-onboarding" className="text-sm font-medium hover:text-white transition-colors">Operator Onboarding</a>
                                 <a href="/docs/protocol-deep-dive/disaster-recovery" className="text-sm font-medium hover:text-white transition-colors">Disaster Recovery</a>
-                            </div>
+                                </div>
                         </nav>
                     </div>
                 </aside>

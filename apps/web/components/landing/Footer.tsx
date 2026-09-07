@@ -30,6 +30,7 @@ export default function Footer({ onContactClick }: FooterProps) {
                         <a href="/about/founders-bio-note" className="text-white/70 hover:text-white text-xs transition-colors">Founder's Bio & Note</a>
                         <a href="/about/node-operator" className="text-white/70 hover:text-white text-xs transition-colors">Earth Mesh</a>
                         <a href="/about/space-mesh" className="text-white/70 hover:text-white text-xs transition-colors">Space Mesh</a>
+                        <a href="/affiliate-engine" className="text-white/70 hover:text-white text-xs transition-colors">Affiliate Engine</a>
                         <a href="/docs" className="text-white/70 hover:text-white text-xs transition-colors">Documentation</a>
                     </div>
                     

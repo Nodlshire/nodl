@@ -1,25 +1,8 @@
+# Wnode Robots Configuration & AI Discovery Rules
 User-agent: *
 Allow: /
-Allow: /docs/
-Allow: /about/
-Allow: /affiliate-engine/
-Disallow: /api/
-Disallow: /_next/
 
-# Explicitly Allow AI & LLM Search Engine Crawlers
-User-agent: GPTBot
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
+# Canonical Sitemap & AI Discovery Endpoints
 Sitemap: https://wnode.one/sitemap.xml
+llms-txt: https://wnode.one/llms.txt
+llms-full-txt: https://wnode.one/llms-full.txt

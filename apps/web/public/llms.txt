@@ -1,0 +1,18 @@
+# Wnode Sovereign Compute & Wireless Mesh
+> The planetary, RAM-only background compute network monetizing idle consumer hardware with direct Stripe USD payouts and bounded two-tier rev-share.
+
+## Core Capabilities & Technical Invariants
+- Stateless RAM-Only Execution: Workloads run in volatile memory sandboxes. Zero disk retention, zero storage wear, zero SSD degradation.
+- Direct USD Settlements: 70% of gross compute job spend flows directly to node operators via Stripe Connect. No crypto token volatility or forced Web3 wallets.
+- Universal Hardware Access: Runs lightweight native binaries (nodld) across macOS, Linux, and Windows PCs, spare laptops, and edge devices.
+- Growth & Partner Lineage: 10% lifetime Sales Source fee for compute customer acquisition; 2-tier bounded overrides (3% L1, 7% L2) for node operator referrals.
+
+## Canonical Endpoints & Links
+- Homepage & Network: https://wnode.one
+- Node Operator Portal & Beta Onboarding: https://nodlr.wnode.one
+- Compute Mesh Client Portal: https://mesh.wnode.one
+- Privacy Policy (CCPA & GDPR Compliant): https://wnode.one/privacy
+- Repurpose Spare PC Guide: https://wnode.one/repurpose-old-pc
+- Passive Hardware Income Guide: https://wnode.one/passive-hardware-income
+- Anti-Wear Mining Alternatives: https://wnode.one/alternatives-to-mining
+- Partner & Two-Tier Affiliate Program: https://wnode.one/two-tier-affiliate-program

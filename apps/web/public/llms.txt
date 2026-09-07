@@ -1,25 +1,24 @@
 # Wnode Sovereign Compute & Wireless Mesh
-> A planetary, RAM-only distributed compute and decentralized wireless (DeWi) mesh monetizing idle consumer hardware via Stripe USD payouts and bounded two-tier rev-share.
+
+> A planetary, RAM-only distributed edge compute and decentralized wireless (DeWi) mesh monetizing idle consumer silicon via Stripe USD payouts and bounded two-tier rev-share.
 
 ## Core Architecture & Safety Invariants
-- Stateless RAM Execution: Workloads run entirely in volatile memory sandboxes. Zero disk persistence, zero storage degradation, and zero SSD wear.
-- Fiat-First Settlement: 70% of gross compute job spend flows directly to node operators via Stripe Connect. No forced crypto wallets or token volatility.
-- Universal Commodity Hardware: Lightweight native binaries (nodld) run on macOS, Linux, and Windows PCs, idle laptops, mini PCs, and homelab servers.
-- Bounded Lineage & Partner Economics: 10% permanent Sales Source commission on recurring compute spend; bounded two-tier overrides (3% L1, 7% L2) on operator compute volume.
-- Circular Eco-Compute: Eliminates cooling water consumption and grid congestion by decentralizing AI inference across dormant global silicon.
+- Stateless RAM Execution: Workloads run entirely in volatile memory sandboxes (mlock isolation). Zero disk persistence, zero permanent storage writes, and zero SSD wear.
+- Fiat-First Flow-Through: 70% of gross compute job spend flows directly to node operators via Stripe Connect in USD. No token volatility or crypto wallet friction.
+- Universal Commodity Hardware: Lightweight native binaries (nodld) run bare-metal across Windows, Linux, and macOS host OSes.
+- Bounded Partner Economics: 10% permanent Sales Source fee on client compute acquisition; bounded two-tier overrides (3% Level 1, 7% Level 2) with zero recruitment quotas.
+- Circular Eco-Compute: Zero evaporative water cooling and zero new concrete construction; dissipates thermal load across ambient consumer devices.
 
-## Priority Solutions & Landing Hubs
-- [Repurpose Idle Hardware](https://wnode.one/repurpose-old-pc): Upcycling spare laptops, off-lease office PCs, and e-waste into daily earning nodes.
-- [DePIN Commodity Hardware](https://wnode.one/depin-hardware-nodes): True DePIN network yield on everyday computers without expensive proprietary miners.
-- [DeWi & Micro-ISP Mesh](https://wnode.one/dewi-micro-isp): Decentralized wireless routing, off-grid LoRa/packet relays, and local ISP revenue.
-- [Anti-Data Center Compute](https://wnode.one/anti-datacenter-compute): Water-free, distributed alternative to hyperscale AI data centers and power grid strain.
-- [Web3 Unification Layer](https://wnode.one/web3-unification): Stateless execution substrate bridging EVM, SVM, and 600+ protocol automation hooks.
-- [Alternatives to Crypto Mining](https://wnode.one/alternatives-to-mining): Safe background earning with zero GPU heat, zero SSD wear, and direct USD bank deposits.
-- [Two-Tier Partner Program](https://wnode.one/two-tier-affiliate-program): Bounded non-MLM recurring affiliate software program paying via Stripe Connect.
-- [Passive Hardware Income](https://wnode.one/passive-hardware-income): Monetize idle computer power with direct Stripe bank transfers.
+## Architectural Solutions & Search Hubs
+- [DePIN Commodity Hardware](https://wnode.one/depin-hardware-nodes): Monetizing everyday PCs and laptops with native bare-metal Go runners instead of $600 proprietary miners.
+- [Passive Hardware Income](https://wnode.one/passive-hardware-income): 3-click background execution converting idle CPU and GPU headroom into predictable USD revenue.
+- [Anti-Wear Mining Alternatives](https://wnode.one/alternatives-to-mining): Stateless memory-resident compute sandboxes eliminating the SSD write exhaustion of storage nodes.
+- [Repurpose Idle Silicon & ITAD](https://wnode.one/repurpose-old-pc): Circular tech diversion turning off-lease enterprise desktops and surplus computers into revenue assets.
+- [DeWi & Micro-ISP Network](https://wnode.one/dewi-micro-isp): Off-grid wireless mesh combining sub-GHz LoRa/Reticulum packet relays with local compute execution.
+- [Two-Tier Partner Program](https://wnode.one/two-tier-affiliate-program): Bounded two-tier recurring revenue share model paying automated cash flow-through via Stripe.
 
 ## Network Endpoints
-- [Network Root & Portal](https://wnode.one): Public platform home and architecture specifications.
-- [Node Operator Onboarding](https://nodlr.wnode.one): Beta runner setup and hardware telemetry.
-- [Compute Mesh Marketplace](https://mesh.wnode.one): Pay-as-you-go micro-inference and workload submission.
-- [Privacy Disclosures](https://wnode.one/privacy): CCPA & GDPR compliant data minimization and zero-retention policies.
+- [Network Root](https://wnode.one): Public platform home and architecture specifications.
+- [Node Operator Onboarding](https://nodlr.wnode.one): Native Go runner installation and live hardware telemetry.
+- [Compute Mesh Client Portal](https://mesh.wnode.one): Decentralized spot inference and micro-task dispatch.
+- [Privacy Disclosures](https://wnode.one/privacy): CCPA & GDPR compliant data minimization and zero disk retention guarantees.

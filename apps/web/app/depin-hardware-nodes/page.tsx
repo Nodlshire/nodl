@@ -83,6 +83,15 @@ export default function DePINHardwareNodesPage() {
                     </div>
                 </section>
 
+                {/* Hero Graphic / In-Canon Diagram */}
+                <section className="relative rounded-3xl overflow-hidden border border-white/[0.08] bg-[#09090b]/80 p-4 backdrop-blur-md shadow-[0_0_50px_rgba(0,240,255,0.15)] text-center">
+                    <img
+                        src="/diagrams/affiliate_depin_engine_diagram.png"
+                        alt="DePIN Commodity Hardware Mesh Architecture"
+                        className="w-full h-auto max-h-[480px] object-contain mx-auto rounded-2xl bg-black/60 p-2"
+                    />
+                </section>
+
                 {/* Key Pillars */}
                 <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="bg-[#09090b]/80 border border-white/[0.08] p-8 rounded-2xl backdrop-blur-md hover:border-cyan-500/30 transition-all">
@@ -107,50 +116,6 @@ export default function DePINHardwareNodesPage() {
                         <p className="text-slate-400 text-sm leading-relaxed">
                             Workloads execute exclusively in volatile system memory. Your storage drives stay 100% untouched.
                         </p>
-                    </div>
-                </section>
-
-                {/* Comparison Table */}
-                <section className="space-y-6">
-                    <div className="text-center space-y-2">
-                        <h2 className="text-2xl md:text-3xl font-bold text-white">Wnode DePIN vs. Speculative Hardware Networks</h2>
-                        <p className="text-slate-400 text-sm max-w-xl mx-auto">
-                            See why commodity compute orchestration outperforms proprietary hardware miners.
-                        </p>
-                    </div>
-
-                    <div className="overflow-x-auto bg-[#09090b]/80 border border-white/[0.08] rounded-2xl p-6">
-                        <table className="w-full text-left text-sm text-slate-300">
-                            <thead className="text-xs uppercase text-slate-400 border-b border-white/10 font-mono">
-                                <tr>
-                                    <th className="py-3 px-4">Dimension</th>
-                                    <th className="py-3 px-4 text-cyan-400">Wnode DePIN Mesh</th>
-                                    <th className="py-3 px-4 text-slate-500">Legacy Proprietary DePIN</th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-white/5">
-                                <tr>
-                                    <td className="py-4 px-4 font-semibold text-white">Initial Hardware Cost</td>
-                                    <td className="py-4 px-4 text-emerald-400 font-bold">$0 (Use Existing PCs/Laptops)</td>
-                                    <td className="py-4 px-4 text-red-400">$600 – $2,000 Custom Boxes</td>
-                                </tr>
-                                <tr>
-                                    <td className="py-4 px-4 font-semibold text-white">Payout Asset</td>
-                                    <td className="py-4 px-4 text-cyan-400 font-bold">Direct Fiat USD (Stripe)</td>
-                                    <td className="py-4 px-4 text-slate-400">Volatile Project Tokens</td>
-                                </tr>
-                                <tr>
-                                    <td className="py-4 px-4 font-semibold text-white">Revenue Source</td>
-                                    <td className="py-4 px-4 text-emerald-400 font-bold">Real Enterprise AI Compute Spend</td>
-                                    <td className="py-4 px-4 text-slate-400">Speculative Token Emissions</td>
-                                </tr>
-                                <tr>
-                                    <td className="py-4 px-4 font-semibold text-white">Setup Time</td>
-                                    <td className="py-4 px-4 text-cyan-400 font-bold">3 Minutes (Download & Run)</td>
-                                    <td className="py-4 px-4 text-slate-400">Weeks (Shipping & Assembly)</td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </section>
 

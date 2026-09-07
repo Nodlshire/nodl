@@ -83,6 +83,15 @@ export default function PassiveHardwareIncomePage() {
                     </div>
                 </section>
 
+                {/* Hero Graphic / In-Canon Image */}
+                <section className="relative rounded-3xl overflow-hidden border border-white/[0.08] bg-[#09090b]/80 p-2 md:p-4 backdrop-blur-md shadow-[0_0_50px_rgba(0,240,255,0.15)] text-center">
+                    <img
+                        src="/revenue.png"
+                        alt="Passive Hardware Revenue & Stripe Payout Engine"
+                        className="w-full h-auto max-h-[480px] object-cover rounded-2xl"
+                    />
+                </section>
+
                 {/* Key Metrics Grid */}
                 <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="bg-[#09090b]/80 border border-white/[0.08] p-8 rounded-2xl backdrop-blur-md relative overflow-hidden group hover:border-cyan-500/30 transition-all">
@@ -107,55 +116,6 @@ export default function PassiveHardwareIncomePage() {
                         <p className="text-slate-400 text-sm leading-relaxed">
                             Single lightweight binary (nodld) runs silently in the background with zero user intervention required.
                         </p>
-                    </div>
-                </section>
-
-                {/* Comparison Table */}
-                <section className="space-y-6">
-                    <div className="text-center space-y-2">
-                        <h2 className="text-2xl md:text-3xl font-bold text-white">Wnode vs. Legacy Side Hustles</h2>
-                        <p className="text-slate-400 text-sm max-w-xl mx-auto">
-                            See how background compute orchestration compares to traditional passive income and gig options.
-                        </p>
-                    </div>
-
-                    <div className="overflow-x-auto bg-[#09090b]/80 border border-white/[0.08] rounded-2xl p-6">
-                        <table className="w-full text-left text-sm text-slate-300">
-                            <thead className="text-xs uppercase text-slate-400 border-b border-white/10 font-mono">
-                                <tr>
-                                    <th className="py-3 px-4">Feature</th>
-                                    <th className="py-3 px-4 text-cyan-400">Wnode Background Node</th>
-                                    <th className="py-3 px-4 text-slate-500">Gig Delivery (Uber/DoorDash)</th>
-                                    <th className="py-3 px-4 text-slate-500">Online Survey Sites</th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-white/5">
-                                <tr>
-                                    <td className="py-4 px-4 font-semibold text-white">Active Effort</td>
-                                    <td className="py-4 px-4 text-emerald-400 font-bold">Zero (100% Passive)</td>
-                                    <td className="py-4 px-4 text-slate-400">High (Driving / Labor)</td>
-                                    <td className="py-4 px-4 text-slate-400">High (Manual clicking)</td>
-                                </tr>
-                                <tr>
-                                    <td className="py-4 px-4 font-semibold text-white">Payout Method</td>
-                                    <td className="py-4 px-4 text-cyan-400 font-bold">USD via Stripe Connect</td>
-                                    <td className="py-4 px-4 text-slate-400">Direct Deposit (less gas/wear)</td>
-                                    <td className="py-4 px-4 text-slate-400">Gift Cards / Micro-points</td>
-                                </tr>
-                                <tr>
-                                    <td className="py-4 px-4 font-semibold text-white">Hardware Wear</td>
-                                    <td className="py-4 px-4 text-emerald-400 font-bold">Zero (RAM-Only Sandbox)</td>
-                                    <td className="py-4 px-4 text-slate-400">Extreme Vehicle Wear</td>
-                                    <td className="py-4 px-4 text-slate-400">Time Depreciation</td>
-                                </tr>
-                                <tr>
-                                    <td className="py-4 px-4 font-semibold text-white">Setup Time</td>
-                                    <td className="py-4 px-4 text-cyan-400 font-bold">3 Minutes</td>
-                                    <td className="py-4 px-4 text-slate-400">Days (Background checks)</td>
-                                    <td className="py-4 px-4 text-slate-400">Instant (Low Yield)</td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </section>
 

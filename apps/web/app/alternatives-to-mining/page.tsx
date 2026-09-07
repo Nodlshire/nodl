@@ -83,6 +83,15 @@ export default function AlternativesToMiningPage() {
                     </div>
                 </section>
 
+                {/* Hero Graphic / In-Canon Image */}
+                <section className="relative rounded-3xl overflow-hidden border border-white/[0.08] bg-[#09090b]/80 p-2 md:p-4 backdrop-blur-md shadow-[0_0_50px_rgba(168,85,247,0.15)] text-center">
+                    <img
+                        src="/hero-model.png"
+                        alt="Stateless RAM-Only Non-Mining Compute Architecture"
+                        className="w-full h-auto max-h-[480px] object-cover rounded-2xl"
+                    />
+                </section>
+
                 {/* Feature Comparison Cards */}
                 <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="bg-[#09090b]/80 border border-white/[0.08] p-8 rounded-2xl backdrop-blur-md hover:border-purple-500/30 transition-all">
@@ -107,55 +116,6 @@ export default function AlternativesToMiningPage() {
                         <p className="text-slate-400 text-sm leading-relaxed">
                             No 100% GPU thermal throttles or fan noise. nodld operates bounded, low-wattage micro-inference jobs.
                         </p>
-                    </div>
-                </section>
-
-                {/* Technical Comparison Table */}
-                <section className="space-y-6">
-                    <div className="text-center space-y-2">
-                        <h2 className="text-2xl md:text-3xl font-bold text-white">Wnode vs. Crypto Mining & Bandwidth Sharing</h2>
-                        <p className="text-slate-400 text-sm max-w-xl mx-auto">
-                            Comparing hardware impact, security, and earnings stability across passive compute models.
-                        </p>
-                    </div>
-
-                    <div className="overflow-x-auto bg-[#09090b]/80 border border-white/[0.08] rounded-2xl p-6">
-                        <table className="w-full text-left text-sm text-slate-300">
-                            <thead className="text-xs uppercase text-slate-400 border-b border-white/10 font-mono">
-                                <tr>
-                                    <th className="py-3 px-4">Evaluation Metric</th>
-                                    <th className="py-3 px-4 text-purple-400">Wnode RAM Engine</th>
-                                    <th className="py-3 px-4 text-slate-500">Crypto Mining (PoW / GPU)</th>
-                                    <th className="py-3 px-4 text-slate-500">Bandwidth Sharing (EarnApp/Honeygain)</th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-white/5">
-                                <tr>
-                                    <td className="py-4 px-4 font-semibold text-white">SSD/Disk Impact</td>
-                                    <td className="py-4 px-4 text-emerald-400 font-bold">Zero (Volatile RAM execution)</td>
-                                    <td className="py-4 px-4 text-slate-400">High (DAG creation / swap)</td>
-                                    <td className="py-4 px-4 text-slate-400">Moderate (Logging / Cache)</td>
-                                </tr>
-                                <tr>
-                                    <td className="py-4 px-4 font-semibold text-white">Power & Thermals</td>
-                                    <td className="py-4 px-4 text-cyan-400 font-bold">Low (Eco micro-tasks)</td>
-                                    <td className="py-4 px-4 text-red-400">Extreme (Max Wattage & Heat)</td>
-                                    <td className="py-4 px-4 text-slate-400">Low (Network I/O)</td>
-                                </tr>
-                                <tr>
-                                    <td className="py-4 px-4 font-semibold text-white">Currency Type</td>
-                                    <td className="py-4 px-4 text-emerald-400 font-bold">Direct USD (Bank Transfer)</td>
-                                    <td className="py-4 px-4 text-slate-400">Volatile Altcoins / Gas Fees</td>
-                                    <td className="py-4 px-4 text-slate-400">PayPal / Points</td>
-                                </tr>
-                                <tr>
-                                    <td className="py-4 px-4 font-semibold text-white">IP / Network Risk</td>
-                                    <td className="py-4 px-4 text-purple-400 font-bold">Zero (Local Compute Only)</td>
-                                    <td className="py-4 px-4 text-slate-400">Low (Blockchain P2P)</td>
-                                    <td className="py-4 px-4 text-red-400 font-semibold">High (Reroutes 3rd-party traffic)</td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </section>
 

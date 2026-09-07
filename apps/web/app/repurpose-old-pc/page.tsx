@@ -46,7 +46,7 @@ export default function RepurposeOldPCPage() {
     };
 
     return (
-        <div className="min-h-screen bg-black text-white flex flex-col selection:bg-cyan-500 selection:text-black">
+        <div className="min-h-screen bg-black text-white flex flex-col selection:bg-emerald-500 selection:text-black">
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
@@ -78,135 +78,92 @@ export default function RepurposeOldPCPage() {
                             onClick={() => openModal("waitlist")}
                             className="bg-white/5 hover:bg-white/10 border border-white/15 text-white font-bold text-sm uppercase px-8 py-4 rounded-full transition-all text-center"
                         >
-                            Join Waitlist
+                            View Architecture Specs
                         </button>
                     </div>
                 </section>
 
-                {/* Key Benefits */}
-                <section className="grid md:grid-cols-3 gap-8">
-                    <div className="bg-[#09090b]/80 border border-white/[0.08] p-8 rounded-3xl space-y-4">
-                        <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl font-bold font-mono">
-                            ♻️
-                        </div>
-                        <h3 className="text-xl font-bold text-white">E-Waste Mitigation</h3>
-                        <p className="text-slate-300 text-sm leading-relaxed">
-                            Skip the insulting $20 trade-in offer. Repurpose idle Dell OptiPlex towers, ThinkPads, and MacBooks into reliable daily revenue units.
+                {/* Hero Graphic / In-Canon Image */}
+                <section className="relative rounded-3xl overflow-hidden border border-white/[0.08] bg-[#09090b]/80 p-2 md:p-4 backdrop-blur-md shadow-[0_0_50px_rgba(16,185,129,0.15)]">
+                    <img
+                        src="/devices.png"
+                        alt="Repurpose Spare Laptops & Desktops into Wnode Nodes"
+                        className="w-full h-auto max-h-[480px] object-cover rounded-2xl"
+                    />
+                </section>
+
+                {/* Grid features */}
+                <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="bg-[#09090b]/80 border border-white/[0.08] p-8 rounded-2xl backdrop-blur-md hover:border-emerald-500/30 transition-all">
+                        <div className="text-emerald-400 font-mono text-3xl font-bold mb-2">Zero E-Waste</div>
+                        <h3 className="text-lg font-bold text-white mb-2">Upcycle Old Silicon</h3>
+                        <p className="text-slate-400 text-sm leading-relaxed">
+                            Turn sub-$50 trade-in laptops, Dell OptiPlex desktops, and mini PCs into active daily revenue generators instead of throwing them away.
                         </p>
                     </div>
-                    <div className="bg-[#09090b]/80 border border-white/[0.08] p-8 rounded-3xl space-y-4">
-                        <div className="w-12 h-12 rounded-2xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-2xl font-bold font-mono">
-                            💧
-                        </div>
-                        <h3 className="text-xl font-bold text-white">Air-Cooled Efficiency</h3>
-                        <p className="text-slate-300 text-sm leading-relaxed">
-                            Traditional data centers consume billions of gallons of freshwater for cooling. Wnode distributes workloads to air-cooled home hardware.
+
+                    <div className="bg-[#09090b]/80 border border-white/[0.08] p-8 rounded-2xl backdrop-blur-md hover:border-cyan-500/30 transition-all">
+                        <div className="text-cyan-400 font-mono text-3xl font-bold mb-2">Air-Cooled</div>
+                        <h3 className="text-lg font-bold text-white mb-2">Zero Cooling Water</h3>
+                        <p className="text-slate-400 text-sm leading-relaxed">
+                            Unlike massive data centers consuming millions of gallons of water, Wnode relies on ambient air cooling already present in your home or office.
                         </p>
                     </div>
-                    <div className="bg-[#09090b]/80 border border-white/[0.08] p-8 rounded-3xl space-y-4">
-                        <div className="w-12 h-12 rounded-2xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-2xl font-bold font-mono">
-                            💳
-                        </div>
-                        <h3 className="text-xl font-bold text-white">Direct Cash Payouts</h3>
-                        <p className="text-slate-300 text-sm leading-relaxed">
-                            Operators receive 70% of gross compute job spend settled daily to Stripe Connect or direct bank transfer.
+
+                    <div className="bg-[#09090b]/80 border border-white/[0.08] p-8 rounded-2xl backdrop-blur-md hover:border-purple-500/30 transition-all">
+                        <div className="text-purple-400 font-mono text-3xl font-bold mb-2">Stripe USD</div>
+                        <h3 className="text-lg font-bold text-white mb-2">70% Direct Payouts</h3>
+                        <p className="text-slate-400 text-sm leading-relaxed">
+                            70% of gross compute job spend flows straight to node operators via Stripe Connect. No crypto token volatility or gas fee lockups.
                         </p>
                     </div>
                 </section>
 
-                {/* Comparison Table */}
-                <section className="bg-slate-950/60 border border-white/10 rounded-3xl p-8 md:p-12 space-y-8">
-                    <h2 className="text-3xl font-bold text-white text-center font-space-grotesk">
-                        Old PC Options: Trade-In vs Landfill vs Wnode Node
-                    </h2>
-                    <div className="overflow-x-auto">
-                        <table className="w-full text-left text-sm text-slate-300">
-                            <thead className="text-xs uppercase bg-white/5 text-white font-mono">
-                                <tr>
-                                    <th className="p-4 rounded-l-xl">Option</th>
-                                    <th className="p-4">Est. Value</th>
-                                    <th className="p-4">Environmental Impact</th>
-                                    <th className="p-4 rounded-r-xl">Payout Structure</th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-white/10">
-                                <tr>
-                                    <td className="p-4 font-bold text-slate-400">Retail Trade-In</td>
-                                    <td className="p-4 text-amber-400">$15 - $30 One-Time Store Credit</td>
-                                    <td className="p-4">E-waste processing overhead</td>
-                                    <td className="p-4">Single gift card discount</td>
-                                </tr>
-                                <tr>
-                                    <td className="p-4 font-bold text-slate-400">Landfill / E-Waste Bin</td>
-                                    <td className="p-4 text-red-400">$0.00</td>
-                                    <td className="p-4 text-red-400">Toxic heavy metals in soil</td>
-                                    <td className="p-4">Total financial loss</td>
-                                </tr>
-                                <tr className="bg-emerald-950/30 font-semibold text-white">
-                                    <td className="p-4 text-emerald-400 font-bold">Wnode RAM Node</td>
-                                    <td className="p-4 text-emerald-400">Recurring Daily Cash Income</td>
-                                    <td className="p-4 text-emerald-400">Zero e-waste, air-cooled micro compute</td>
-                                    <td className="p-4 text-emerald-400">70% Direct Payout via Stripe</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-
-                {/* FAQ Section with Rich Snippet Schema */}
-                <section className="space-y-8">
-                    <div className="text-center space-y-4">
-                        <h2 className="text-3xl font-bold text-white">Frequently Asked Questions</h2>
-                        <p className="text-slate-400 max-w-xl mx-auto">
-                            Everything you need to know about repurposing your spare PCs with Wnode.
-                        </p>
-                    </div>
-
-                    <div className="space-y-4 max-w-3xl mx-auto">
-                        <div className="bg-[#09090b]/80 border border-white/[0.08] p-6 rounded-2xl space-y-2">
-                            <h3 className="text-lg font-bold text-white">Can I earn money from an old laptop without mining?</h3>
+                {/* FAQ Section */}
+                <section className="space-y-8 max-w-4xl mx-auto">
+                    <h2 className="text-3xl font-bold text-center text-white">Frequently Asked Questions</h2>
+                    <div className="space-y-4">
+                        <div className="bg-[#09090b]/80 border border-white/[0.08] p-6 rounded-xl">
+                            <h3 className="text-lg font-bold text-emerald-400 mb-2">Can I earn money from an old laptop without mining?</h3>
                             <p className="text-slate-300 text-sm leading-relaxed">
                                 Yes! Wnode processes lightweight AI micro-tasks and telemetry data in volatile RAM instead of cryptocurrency mining. It requires zero GPU overheating and does not wear down your hardware.
                             </p>
                         </div>
-                        <div className="bg-[#09090b]/80 border border-white/[0.08] p-6 rounded-2xl space-y-2">
-                            <h3 className="text-lg font-bold text-white">Does this damage older hardware?</h3>
+                        <div className="bg-[#09090b]/80 border border-white/[0.08] p-6 rounded-xl">
+                            <h3 className="text-lg font-bold text-emerald-400 mb-2">Does running Wnode damage older hardware?</h3>
                             <p className="text-slate-300 text-sm leading-relaxed">
                                 No. Wnode operates strictly in RAM-only mode with zero persistent disk writes. Your SSD/HDD is untouched, and hardware stays cool under normal CPU and memory loads.
                             </p>
                         </div>
-                        <div className="bg-[#09090b]/80 border border-white/[0.08] p-6 rounded-2xl space-y-2">
-                            <h3 className="text-lg font-bold text-white">What operating systems and specs are supported?</h3>
+                        <div className="bg-[#09090b]/80 border border-white/[0.08] p-6 rounded-xl">
+                            <h3 className="text-lg font-bold text-emerald-400 mb-2">What operating systems and specs are supported?</h3>
                             <p className="text-slate-300 text-sm leading-relaxed">
-                                Wnode supports Windows 10/11, macOS (Intel &amp; Apple Silicon), and Linux (Ubuntu, Debian, Fedora, Arch). Minimum requirements are 4GB RAM and any dual-core processor.
+                                Wnode supports Windows 10/11, macOS (Intel & Apple Silicon), and Linux (Ubuntu, Debian, Fedora, Arch). Minimum requirements are 4GB RAM and any dual-core processor.
                             </p>
                         </div>
                     </div>
                 </section>
 
                 {/* Bottom CTA */}
-                <section className="p-10 rounded-3xl bg-gradient-to-r from-emerald-950/40 via-slate-900 to-cyan-950/40 border border-emerald-500/30 text-center space-y-6">
-                    <h2 className="text-3xl font-bold text-white uppercase font-space-grotesk">
-                        Ready to Repurpose Your Hardware?
-                    </h2>
-                    <p className="text-slate-300 text-sm max-w-xl mx-auto">
-                        Set up your first node in 3 minutes. Zero setup fees, zero crypto wallets required.
+                <section className="bg-gradient-to-r from-emerald-950/40 via-[#09090b] to-cyan-950/40 border border-emerald-500/20 p-12 rounded-3xl text-center space-y-6">
+                    <h2 className="text-3xl md:text-4xl font-extrabold text-white">Turn Your Spare PC into a Sovereign Node</h2>
+                    <p className="text-slate-300 max-w-2xl mx-auto text-sm md:text-base">
+                        Upcycle your idle computer power in 3 minutes and start receiving direct Stripe Connect USD transfers.
                     </p>
                     <div>
                         <a
                             href="https://nodlr.wnode.one"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-cyan-600 hover:from-emerald-400 hover:to-cyan-500 text-black font-bold text-xs uppercase px-8 py-4 rounded-full transition-all shadow-[0_0_30px_rgba(16,185,129,0.4)]"
+                            className="inline-block bg-gradient-to-r from-emerald-500 to-cyan-500 text-black font-bold text-sm uppercase px-8 py-4 rounded-full transition-all shadow-[0_0_30px_rgba(16,185,129,0.3)]"
                         >
-                            Claim Early Beta Access &rarr;
+                            Onboard Your Old PC Now &rarr;
                         </a>
                     </div>
                 </section>
             </main>
 
-            <Footer onContactClick={() => openModal("waitlist")} />
-
+            <Footer />
             <CTAModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}

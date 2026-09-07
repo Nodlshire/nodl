@@ -83,6 +83,15 @@ export default function DeWiMicroISPPage() {
                     </div>
                 </section>
 
+                {/* Hero Graphic / In-Canon Diagram */}
+                <section className="relative rounded-3xl overflow-hidden border border-white/[0.08] bg-[#09090b]/80 p-2 md:p-4 backdrop-blur-md shadow-[0_0_50px_rgba(0,255,102,0.15)] text-center">
+                    <img
+                        src="/images/dewi/dewi_hero_diagram.jpg"
+                        alt="Decentralized Wireless DeWi Micro-ISP Mesh Architecture"
+                        className="w-full h-auto max-h-[480px] object-cover rounded-2xl"
+                    />
+                </section>
+
                 {/* Key Benefits */}
                 <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="bg-[#09090b]/80 border border-white/[0.08] p-8 rounded-2xl backdrop-blur-md hover:border-emerald-500/30 transition-all">

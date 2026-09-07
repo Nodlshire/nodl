@@ -83,6 +83,15 @@ export default function TwoTierAffiliateProgramPage() {
                     </div>
                 </section>
 
+                {/* Hero Graphic / In-Canon Diagram */}
+                <section className="relative rounded-3xl overflow-hidden border border-white/[0.08] bg-[#09090b]/80 p-2 md:p-4 backdrop-blur-md shadow-[0_0_50px_rgba(255,184,0,0.15)] text-center">
+                    <img
+                        src="/images/affiliate/commission_layers_diagram.jpg"
+                        alt="Two-Tier Affiliate Bounded Commission Lineage Diagram"
+                        className="w-full h-auto max-h-[480px] object-cover rounded-2xl"
+                    />
+                </section>
+
                 {/* Commission Breakdown Grid */}
                 <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="bg-[#09090b]/80 border border-white/[0.08] p-8 rounded-2xl backdrop-blur-md hover:border-amber-500/30 transition-all">
@@ -107,50 +116,6 @@ export default function TwoTierAffiliateProgramPage() {
                         <p className="text-slate-400 text-sm leading-relaxed">
                             Earn a 7% recurring override on secondary node operator network earnings as your invited nodes bring in their own sub-nodes.
                         </p>
-                    </div>
-                </section>
-
-                {/* Transparency & Non-MLM Safeguards Table */}
-                <section className="space-y-6">
-                    <div className="text-center space-y-2">
-                        <h2 className="text-2xl md:text-3xl font-bold text-white">Why Wnode Partner Program is Built Different</h2>
-                        <p className="text-slate-400 text-sm max-w-xl mx-auto">
-                            Strict mathematical bounds ensure zero pyramid mechanics and 100% sustainable compute economics.
-                        </p>
-                    </div>
-
-                    <div className="overflow-x-auto bg-[#09090b]/80 border border-white/[0.08] rounded-2xl p-6">
-                        <table className="w-full text-left text-sm text-slate-300">
-                            <thead className="text-xs uppercase text-slate-400 border-b border-white/10 font-mono">
-                                <tr>
-                                    <th className="py-3 px-4">Architectural Standard</th>
-                                    <th className="py-3 px-4 text-amber-400">Wnode Two-Tier Model</th>
-                                    <th className="py-3 px-4 text-slate-500">Multi-Level Marketing (MLM)</th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-white/5">
-                                <tr>
-                                    <td className="py-4 px-4 font-semibold text-white">Tier Depth</td>
-                                    <td className="py-4 px-4 text-emerald-400 font-bold">Strictly 2 Tiers (L1 3% / L2 7%)</td>
-                                    <td className="py-4 px-4 text-red-400">Unbounded / N-Tiers</td>
-                                </tr>
-                                <tr>
-                                    <td className="py-4 px-4 font-semibold text-white">Entry Fees / Starter Kits</td>
-                                    <td className="py-4 px-4 text-emerald-400 font-bold">$0 (100% Free Forever)</td>
-                                    <td className="py-4 px-4 text-slate-400">Mandatory Starter Packs & Monthly Fees</td>
-                                </tr>
-                                <tr>
-                                    <td className="py-4 px-4 font-semibold text-white">Source of Value</td>
-                                    <td className="py-4 px-4 text-cyan-400 font-bold">Real Enterprise AI Compute Jobs</td>
-                                    <td className="py-4 px-4 text-slate-400">Recruitment Fees & Inventory Loading</td>
-                                </tr>
-                                <tr>
-                                    <td className="py-4 px-4 font-semibold text-white">Settlement Rail</td>
-                                    <td className="py-4 px-4 text-amber-400 font-bold">Stripe Connect Direct USD ACH</td>
-                                    <td className="py-4 px-4 text-slate-400">Internal Points / Wallet Lockups</td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </section>
 

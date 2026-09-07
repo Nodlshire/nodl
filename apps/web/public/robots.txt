@@ -1,5 +1,25 @@
-# Wnode Robots Configuration & AI Discovery Rules
+# Wnode Robots Configuration & AI Discovery Directives
 User-agent: *
+Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
 Allow: /
 
 # Canonical Sitemap & AI Discovery Endpoints

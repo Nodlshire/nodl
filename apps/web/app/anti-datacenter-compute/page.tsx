@@ -161,6 +161,11 @@ export default function AntiDataCenterComputePage() {
                         </a>
                     </div>
                 </section>
+            
+                {/* Author Attribution */}
+                <div className="pt-8 border-t border-white/10 text-center text-slate-400 font-mono text-sm">
+                    Author: Stephen Soos
+                </div>
             </main>
 
             <Footer />
